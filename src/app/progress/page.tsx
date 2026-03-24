@@ -262,46 +262,7 @@ export default function ProgressPage() {
         )}
       </section>
 
-      {/* Section 4: Flashcards stats */}
-      <section className="card">
-        <h2 className="mb-3 text-lg font-semibold text-stone-800">
-          <Layers className="mr-2 inline h-5 w-5 text-primary" />
-          Flashcards
-        </h2>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
-          <MiniStat label="Total" value={cardStats.total} />
-          <MiniStat
-            label="A reviser"
-            value={cardStats.due}
-            color="text-accent"
-          />
-          <MiniStat
-            label="Apprises"
-            value={cardStats.learned}
-            color="text-success"
-          />
-          <MiniStat
-            label="Matures"
-            value={cardStats.mature}
-            color="text-primary"
-          />
-          <MiniStat
-            label="Nouvelles"
-            value={cardStats.newCards}
-            color="text-warning"
-          />
-        </div>
-
-        <Link
-          href="/flashcards"
-          className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
-        >
-          <RotateCcw className="h-4 w-4" />
-          Reviser les flashcards
-        </Link>
-      </section>
-
-      {/* Section 5: Lecons completees */}
+      {/* Section 4: Lecons completees */}
       <section className="card">
         <h2 className="mb-3 text-lg font-semibold text-stone-800">
           <BookOpen className="mr-2 inline h-5 w-5 text-primary" />
