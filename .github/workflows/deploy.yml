@@ -1,0 +1,49 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H 5.196.6.59 >> ~/.ssh/known_hosts
+
+      - name: Deploy standalone build
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            .next/standalone/ ubuntu@5.196.6.59:/var/www/juliankerignard.fr/taiwan/
+
+      - name: Deploy static assets
+        run: |
+          rsync -az \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            .next/static/ ubuntu@5.196.6.59:/var/www/juliankerignard.fr/taiwan/.next/static/
+
+      - name: Deploy public folder
+        run: |
+          rsync -az \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            public/ ubuntu@5.196.6.59:/var/www/juliankerignard.fr/taiwan/public/
+
+      - name: Restart app
+        run: |
+          ssh -i ~/.ssh/deploy_key ubuntu@5.196.6.59 "pm2 restart taiwan"
