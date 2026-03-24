@@ -27,6 +27,7 @@ import { unit14 } from "./chapter3/unit14";
 import { unit15 } from "./chapter3/unit15";
 import { unit16 } from "./chapter3/unit16";
 import { unit34 } from "./chapter3/unit34";
+import { unit43 } from "./chapter3/unit43";
 import { unit17 } from "./chapter3/unit17";
 
 // Chapter 4 - Vie sociale
@@ -43,6 +44,7 @@ import { unit24 } from "./chapter5/unit24";
 import { unit25 } from "./chapter5/unit25";
 import { unit26 } from "./chapter5/unit26";
 import { unit27 } from "./chapter5/unit27";
+import { unit44 } from "./chapter5/unit44";
 
 // Chapter 6 - Pratique avancée
 import { unit36 } from "./chapter6/unit36";
@@ -78,7 +80,7 @@ export const chapters: Chapter[] = [
     title: "Construire des phrases",
     titleZh: "造句",
     description: "Grammaire essentielle et particules",
-    unitIds: ["unit-14", "unit-15", "unit-16", "unit-34", "unit-17"],
+    unitIds: ["unit-14", "unit-15", "unit-16", "unit-34", "unit-43", "unit-17"],
   },
   {
     number: 4,
@@ -92,7 +94,7 @@ export const chapters: Chapter[] = [
     title: "Approfondir",
     titleZh: "深入",
     description: "Grammaire avancée et nuances culturelles",
-    unitIds: ["unit-23", "unit-24", "unit-25", "unit-26", "unit-27"],
+    unitIds: ["unit-23", "unit-24", "unit-25", "unit-26", "unit-27", "unit-44"],
   },
   {
     number: 6,
@@ -120,9 +122,9 @@ export const chapters: Chapter[] = [
 export const allUnits: CourseUnit[] = [
   unit01, unit02, unit03, unit31, unit04, unit05, unit06, unit32, unit07,
   unit08, unit09, unit10, unit11, unit12, unit13, unit33, unit41, unit42,
-  unit14, unit15, unit16, unit34, unit17,
+  unit14, unit15, unit16, unit34, unit43, unit17,
   unit18, unit19, unit20, unit21, unit22, unit35,
-  unit23, unit24, unit25, unit26, unit27,
+  unit23, unit24, unit25, unit26, unit27, unit44,
   unit36, unit37, unit38, unit28,
   unit29, unit30,
   unit39, unit40,

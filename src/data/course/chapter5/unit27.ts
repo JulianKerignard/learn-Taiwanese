@@ -101,55 +101,6 @@ export const unit27: CourseUnit = {
       ],
     },
     {
-      title: "Les compléments résultatifs — 看到, 聽懂, 做完",
-      type: "grammar",
-      content: [
-        {
-          type: "text",
-          content:
-            "En chinois, on peut coller un « résultat » directement après le verbe pour indiquer le résultat obtenu par l'action. C'est le complément résultatif (結果補語). Au lieu de dire « j'ai cherché et j'ai trouvé », le chinois dit simplement 找到 — « chercher-trouver ». Le résultat est intégré au verbe.",
-        },
-        {
-          type: "text",
-          content:
-            "Les quatre compléments résultatifs les plus courants pour un débutant sont : 到 (dào, atteindre le résultat), 懂 (dǒng, comprendre comme résultat), 完 (wán, finir/terminer), 好 (hǎo, bien fait/prêt).",
-        },
-        {
-          type: "example",
-          chinese: "我看到他了！",
-          pinyin: "wǒ kàn dào tā le!",
-          translation: "Je l'ai vu ! (regarder → l'avoir repéré)",
-          content: "看到 = regarder + atteindre le résultat = avoir vu / apercevoir.",
-        },
-        {
-          type: "example",
-          chinese: "你聽懂了嗎？",
-          pinyin: "nǐ tīng dǒng le ma?",
-          translation: "Tu as compris ? (écouter → comprendre)",
-          content: "聽懂 = écouter + comprendre = avoir compris ce qu'on a entendu.",
-        },
-        {
-          type: "example",
-          chinese: "我做完功課了。",
-          pinyin: "wǒ zuò wán gōngkè le.",
-          translation: "J'ai fini mes devoirs. (faire → terminer)",
-          content: "做完 = faire + terminer = avoir fini de faire.",
-        },
-        {
-          type: "example",
-          chinese: "我找到了！",
-          pinyin: "wǒ zhǎo dào le!",
-          translation: "J'ai trouvé ! (chercher → trouver)",
-          content: "找到 = chercher + atteindre = avoir trouvé.",
-        },
-        {
-          type: "tip",
-          content:
-            "Les compléments résultatifs sont partout en chinois quotidien. La bonne nouvelle : ils sont logiques. Le premier caractère dit QUELLE action, le second dit QUEL résultat. 看到 (voir+atteindre), 聽懂 (écouter+comprendre), 做完 (faire+finir), 找到 (chercher+atteindre). Vous les reconnaîtrez vite dans les conversations.",
-        },
-      ],
-    },
-    {
       title: "你吃了嗎？ — La salutation secrète",
       type: "culture",
       content: [
@@ -289,7 +240,7 @@ export const unit27: CourseUnit = {
   keyPoints: [
     "先...然後...最後 pour structurer un recit chronologique. Les marqueurs temporels (早上, 中午, 下午, 晚上) rythment la journee.",
     "正在 / 在 + verbe (+ 呢) = etre en train de. Aspect progressif pour une action en cours. Ne s'utilise pas avec les verbes d'etat.",
-    "Complements resultatifs : 看到 (voir), 聽懂 (comprendre en ecoutant), 做完 (finir de faire), 找到 (trouver). Le premier caractere = action, le second = resultat.",
+    "Les connecteurs avances (一邊...一邊, 一...就, 了...了, 每天...都) enrichissent le recit et permettent d'exprimer simultaneite, reaction immediate, duree et frequence.",
     "你吃了嗎？ (Tu as mange ?) est une salutation courante a Taiwan, pas une vraie question sur le repas. Repondez 吃了 ou 還沒.",
     "Pour raconter sa journee, combinez les particules d'aspect deja apprises (了 pour l'accompli, 過 pour l'experience, 會 pour le futur) avec les connecteurs de sequence.",
   ],
@@ -473,42 +424,6 @@ export const unit27: CourseUnit = {
         sentence: "我正在吃飯，等一下。",
         pinyin: "wǒ zhèngzài chīfàn, děng yīxià.",
         translation: "Je suis en train de manger, attends un peu.",
-      },
-    },
-    {
-      character: "看到",
-      pinyin: "kàn dào",
-      zhuyin: "ㄎㄢˋ ㄉㄠˋ",
-      french: "Voir, apercevoir (resultat)",
-      english: "To see (resultative: look + reach)",
-      example: {
-        sentence: "我看到他了。",
-        pinyin: "wǒ kàn dào tā le.",
-        translation: "Je l'ai vu.",
-      },
-    },
-    {
-      character: "聽懂",
-      pinyin: "tīng dǒng",
-      zhuyin: "ㄊㄧㄥ ㄉㄨㄥˇ",
-      french: "Comprendre (en ecoutant)",
-      english: "To understand (by listening)",
-      example: {
-        sentence: "你聽懂了嗎？",
-        pinyin: "nǐ tīng dǒng le ma?",
-        translation: "Tu as compris ?",
-      },
-    },
-    {
-      character: "做完",
-      pinyin: "zuò wán",
-      zhuyin: "ㄗㄨㄛˋ ㄨㄢˊ",
-      french: "Finir de faire",
-      english: "To finish doing",
-      example: {
-        sentence: "我做完功課了。",
-        pinyin: "wǒ zuò wán gōngkè le.",
-        translation: "J'ai fini mes devoirs.",
       },
     },
     {

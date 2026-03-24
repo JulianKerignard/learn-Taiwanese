@@ -2,7 +2,7 @@ import UnitContent from "./UnitContent";
 
 export function generateStaticParams() {
   const ids: string[] = [];
-  for (let i = 1; i <= 42; i++) {
+  for (let i = 1; i <= 44; i++) {
     ids.push(`unit-${String(i).padStart(2, "0")}`);
   }
   return ids.map((id) => ({ unit: id }));

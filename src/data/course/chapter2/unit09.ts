@@ -97,39 +97,6 @@ export const unit09: CourseUnit = {
         {
           type: "text",
           content:
-            "La cuisine taiwanaise est l'une des meilleures d'Asie. Voici les plats incontournables que vous verrez partout et que vous devez absolument goûter.",
-        },
-        {
-          type: "example",
-          chinese: "滷肉飯",
-          pinyin: "lǔròu fàn",
-          translation: "Riz au porc braisé",
-          content: "LE plat national. Du riz blanc nappé de porc mijoté dans la sauce soja. Pas cher et partout.",
-        },
-        {
-          type: "example",
-          chinese: "牛肉麵",
-          pinyin: "niúròu miàn",
-          translation: "Soupe de nouilles au bœuf",
-          content: "Le plat signature de Taipei. Bouillon riche, nouilles épaisses, morceaux de bœuf fondants.",
-        },
-        {
-          type: "example",
-          chinese: "小籠包",
-          pinyin: "xiǎolóngbāo",
-          translation: "Raviolis vapeur au bouillon",
-          content: "Originaires de Shanghai mais perfectionnés à Taiwan. Din Tai Fung est la référence mondiale.",
-        },
-        {
-          type: "example",
-          chinese: "珍珠奶茶",
-          pinyin: "zhēnzhū nǎichá",
-          translation: "Thé au lait aux perles de tapioca (bubble tea)",
-          content: "Inventé à Taiwan dans les années 80. Les Taiwanais en boivent quotidiennement.",
-        },
-        {
-          type: "text",
-          content:
             "Quelques mots utiles pour vos préférences : 素食 (sùshí) = végétarien, 辣 (là) = piquant, 不辣 (bú là) = pas piquant. La cuisine taiwanaise est généralement moins épicée que la cuisine du Sichuan, mais mieux vaut demander.",
         },
         {
