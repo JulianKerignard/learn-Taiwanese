@@ -1,0 +1,235 @@
+{
+  "id": "lesson-05",
+  "slug": "shopping",
+  "title": "Faire du shopping",
+  "titleZh": "購物",
+  "description": "Apprenez à négocier, payer et faire vos achats dans les marchés et magasins taiwanais.",
+  "icon": "🛍️",
+  "category": "daily",
+  "order": 5,
+  "vocabulary": [
+    {
+      "character": "多少錢",
+      "pinyin": "duōshǎo qián",
+      "zhuyin": "ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ",
+      "french": "Combien ça coûte ?",
+      "english": "How much?",
+      "example": {
+        "sentence": "這個多少錢？",
+        "pinyin": "Zhè ge duōshǎo qián?",
+        "translation": "Combien coûte celui-ci ?"
+      }
+    },
+    {
+      "character": "太貴了",
+      "pinyin": "tài guì le",
+      "zhuyin": "ㄊㄞˋ ㄍㄨㄟˋ ㄌㄜ˙",
+      "french": "Trop cher",
+      "english": "Too expensive"
+    },
+    {
+      "character": "便宜",
+      "pinyin": "piányi",
+      "zhuyin": "ㄆㄧㄢˊ ㄧˋ",
+      "french": "Pas cher / Bon marché",
+      "english": "Cheap / Inexpensive",
+      "example": {
+        "sentence": "可以便宜一點嗎？",
+        "pinyin": "Kěyǐ piányi yìdiǎn ma?",
+        "translation": "Pouvez-vous faire un peu moins cher ?"
+      }
+    },
+    {
+      "character": "打折",
+      "pinyin": "dǎzhé",
+      "zhuyin": "ㄉㄚˇ ㄓㄜˊ",
+      "french": "Réduction / Soldes",
+      "english": "Discount"
+    },
+    {
+      "character": "袋子",
+      "pinyin": "dàizi",
+      "zhuyin": "ㄉㄞˋ ㄗ˙",
+      "french": "Sac",
+      "english": "Bag"
+    },
+    {
+      "character": "大",
+      "pinyin": "dà",
+      "zhuyin": "ㄉㄚˋ",
+      "french": "Grand",
+      "english": "Big / Large"
+    },
+    {
+      "character": "小",
+      "pinyin": "xiǎo",
+      "zhuyin": "ㄒㄧㄠˇ",
+      "french": "Petit",
+      "english": "Small"
+    },
+    {
+      "character": "顏色",
+      "pinyin": "yánsè",
+      "zhuyin": "ㄧㄢˊ ㄙㄜˋ",
+      "french": "Couleur",
+      "english": "Color"
+    },
+    {
+      "character": "付錢",
+      "pinyin": "fùqián",
+      "zhuyin": "ㄈㄨˋ ㄑㄧㄢˊ",
+      "french": "Payer",
+      "english": "To pay"
+    },
+    {
+      "character": "現金",
+      "pinyin": "xiànjīn",
+      "zhuyin": "ㄒㄧㄢˋ ㄐㄧㄣ",
+      "french": "Espèces / Cash",
+      "english": "Cash"
+    },
+    {
+      "character": "信用卡",
+      "pinyin": "xìnyòngkǎ",
+      "zhuyin": "ㄒㄧㄣˋ ㄩㄥˋ ㄎㄚˇ",
+      "french": "Carte de crédit",
+      "english": "Credit card"
+    },
+    {
+      "character": "收據",
+      "pinyin": "shōujù",
+      "zhuyin": "ㄕㄡ ㄐㄩˋ",
+      "french": "Reçu / Ticket de caisse",
+      "english": "Receipt",
+      "example": {
+        "sentence": "請給我收據。",
+        "pinyin": "Qǐng gěi wǒ shōujù.",
+        "translation": "Le reçu, s'il vous plaît."
+      }
+    },
+    {
+      "character": "試穿",
+      "pinyin": "shìchuān",
+      "zhuyin": "ㄕˋ ㄔㄨㄢ",
+      "french": "Essayer (vêtement)",
+      "english": "To try on"
+    },
+    {
+      "character": "買",
+      "pinyin": "mǎi",
+      "zhuyin": "ㄇㄞˇ",
+      "french": "Acheter",
+      "english": "To buy"
+    }
+  ],
+  "phrases": [
+    {
+      "chinese": "這個多少錢？",
+      "pinyin": "Zhè ge duōshǎo qián?",
+      "zhuyin": "ㄓㄜˋ ㄍㄜˋ ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ",
+      "french": "Combien coûte celui-ci ?",
+      "english": "How much is this?"
+    },
+    {
+      "chinese": "太貴了，可以便宜一點嗎？",
+      "pinyin": "Tài guì le, kěyǐ piányi yìdiǎn ma?",
+      "zhuyin": "ㄊㄞˋ ㄍㄨㄟˋ ㄌㄜ˙ ㄎㄜˇ ㄧˇ ㄆㄧㄢˊ ㄧˋ ㄧˋ ㄉㄧㄢˇ ㄇㄚ˙",
+      "french": "C'est trop cher, pouvez-vous faire un prix ?",
+      "english": "It's too expensive, can you give a discount?",
+      "context": "Le marchandage est acceptable dans les marchés de nuit et petites boutiques, mais pas dans les magasins avec prix affichés."
+    },
+    {
+      "chinese": "有沒有別的顏色？",
+      "pinyin": "Yǒu méiyǒu bié de yánsè?",
+      "zhuyin": "ㄧㄡˇ ㄇㄟˊ ㄧㄡˇ ㄅㄧㄝˊ ㄉㄜ˙ ㄧㄢˊ ㄙㄜˋ",
+      "french": "Avez-vous d'autres couleurs ?",
+      "english": "Do you have other colors?"
+    },
+    {
+      "chinese": "可以試穿嗎？",
+      "pinyin": "Kěyǐ shìchuān ma?",
+      "zhuyin": "ㄎㄜˇ ㄧˇ ㄕˋ ㄔㄨㄢ ㄇㄚ˙",
+      "french": "Puis-je l'essayer ?",
+      "english": "Can I try it on?"
+    },
+    {
+      "chinese": "我只是看看。",
+      "pinyin": "Wǒ zhǐ shì kànkan.",
+      "zhuyin": "ㄨㄛˇ ㄓˇ ㄕˋ ㄎㄢˋ ㄎㄢˋ",
+      "french": "Je regarde juste.",
+      "english": "I'm just looking.",
+      "context": "Phrase utile quand un vendeur vous approche et que vous n'êtes pas prêt à acheter."
+    },
+    {
+      "chinese": "可以用現金還是信用卡？",
+      "pinyin": "Kěyǐ yòng xiànjīn háishì xìnyòngkǎ?",
+      "zhuyin": "ㄎㄜˇ ㄧˇ ㄩㄥˋ ㄒㄧㄢˋ ㄐㄧㄣ ㄏㄞˊ ㄕˋ ㄒㄧㄣˋ ㄩㄥˋ ㄎㄚˇ",
+      "french": "On peut payer en espèces ou par carte ?",
+      "english": "Can I pay with cash or credit card?"
+    },
+    {
+      "chinese": "有沒有大一點的？",
+      "pinyin": "Yǒu méiyǒu dà yìdiǎn de?",
+      "zhuyin": "ㄧㄡˇ ㄇㄟˊ ㄧㄡˇ ㄉㄚˋ ㄧˋ ㄉㄧㄢˇ ㄉㄜ˙",
+      "french": "Avez-vous une taille plus grande ?",
+      "english": "Do you have a bigger one?"
+    },
+    {
+      "chinese": "我要買這個，謝謝。",
+      "pinyin": "Wǒ yào mǎi zhè ge, xiè xiè.",
+      "zhuyin": "ㄨㄛˇ ㄧㄠˋ ㄇㄞˇ ㄓㄜˋ ㄍㄜˋ ㄒㄧㄝˋ ㄒㄧㄝˋ",
+      "french": "Je vais acheter celui-ci, merci.",
+      "english": "I'll buy this one, thank you."
+    }
+  ],
+  "culturalNotes": [
+    "À Taiwan, les reçus (統一發票 tǒngyī fāpiào) servent aussi de billets de loterie ! Le gouvernement organise un tirage tous les deux mois. Gardez vos reçus, vous pourriez gagner jusqu'à 10 millions de NT$.",
+    "Le marchandage est courant dans les marchés de nuit et les boutiques de souvenirs, mais PAS dans les magasins avec des prix affichés (supermarchés, malls, convenience stores).",
+    "Les sacs plastiques sont payants à Taiwan (environ 1-2 NT$). Apportez votre propre sac réutilisable.",
+    "Les convenience stores (7-Eleven, FamilyMart) sont partout à Taiwan (plus de 12 000 dans tout le pays). On peut y payer ses factures, recevoir des colis, imprimer, et bien sûr acheter de la nourriture 24h/24."
+  ],
+  "quiz": [
+    {
+      "id": "shopping-q1",
+      "type": "character-to-french",
+      "question": "太貴了",
+      "correctAnswer": "Trop cher",
+      "options": ["Bon marché", "Trop cher", "Juste le bon prix", "Gratuit"]
+    },
+    {
+      "id": "shopping-q2",
+      "type": "french-to-character",
+      "question": "Espèces / Cash",
+      "correctAnswer": "現金",
+      "options": ["信用卡", "現金", "零錢", "鈔票"]
+    },
+    {
+      "id": "shopping-q3",
+      "type": "pinyin-to-character",
+      "question": "piányi",
+      "correctAnswer": "便宜",
+      "options": ["方便", "便宜", "隨便", "便利"]
+    },
+    {
+      "id": "shopping-q4",
+      "type": "character-to-french",
+      "question": "收據",
+      "correctAnswer": "Reçu / Ticket de caisse",
+      "options": ["Facture", "Reçu / Ticket de caisse", "Carte de visite", "Menu"]
+    },
+    {
+      "id": "shopping-q5",
+      "type": "french-to-character",
+      "question": "Acheter",
+      "correctAnswer": "買",
+      "options": ["賣", "買", "要", "給"]
+    },
+    {
+      "id": "shopping-q6",
+      "type": "character-to-french",
+      "question": "打折",
+      "correctAnswer": "Réduction / Soldes",
+      "options": ["Augmentation", "Réduction / Soldes", "Prix fixe", "Pourboire"]
+    }
+  ]
+}

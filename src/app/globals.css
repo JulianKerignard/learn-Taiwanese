@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #e11d48;
+  --color-primary-light: #fb7185;
+  --color-primary-dark: #be123c;
+  --color-surface: #fafaf9;
+  --color-surface-dark: #1c1917;
+  --color-accent: #0ea5e9;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --font-chinese: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-stone-900 antialiased;
+  }
+
+  .chinese {
+    font-family: var(--font-chinese);
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-stone-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary/50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-50 focus:outline-none focus:ring-2 focus:ring-stone-500/30;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .character-display {
+    font-family: var(--font-chinese);
+    @apply text-6xl font-normal leading-none;
+  }
+}
