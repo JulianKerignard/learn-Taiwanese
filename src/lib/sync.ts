@@ -61,7 +61,24 @@ export async function syncDown(): Promise<boolean> {
 }
 
 let saveTimeout: ReturnType<typeof setTimeout> | null = null;
+let isConnected: boolean | null = null;
+
 export function scheduleSync(): void {
   if (saveTimeout) clearTimeout(saveTimeout);
-  saveTimeout = setTimeout(() => { syncUp().catch(() => {}); }, 3000);
+  saveTimeout = setTimeout(async () => {
+    // Check connection status once, then cache it
+    if (isConnected === null) {
+      const user = await checkUser();
+      isConnected = user !== null;
+    }
+    if (isConnected) {
+      const ok = await syncUp();
+      if (!ok) isConnected = null; // Reset on failure
+    }
+  }, 3000);
+}
+
+// Call this when user logs in
+export function setConnected(connected: boolean): void {
+  isConnected = connected;
 }

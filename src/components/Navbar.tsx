@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { User, LogIn, LogOut, Menu, X } from "lucide-react";
-import { checkUser, login, syncUp, syncDown } from "@/lib/sync";
+import { checkUser, login, syncUp, syncDown, setConnected } from "@/lib/sync";
 import { cn } from "@/lib/cn";
 import { getBasePath } from "@/lib/basepath";
 
@@ -31,6 +31,7 @@ export default function Navbar() {
       setUser(u);
       setShowLogin(false);
       setNameInput("");
+      setConnected(true);
       // Sync: if server has data, load it. Otherwise upload local data.
       const loaded = await syncDown();
       if (!loaded) await syncUp();
@@ -42,7 +43,7 @@ export default function Navbar() {
   }
 
   async function handleLogout() {
-    document.cookie = "taiwan-user=; max-age=0; path=/";
+    document.cookie = "taiwan-user=; max-age=0; path=/taiwan";
     setUser(null);
     window.location.reload();
   }
