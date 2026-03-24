@@ -76,14 +76,22 @@ export default function PathPage() {
 
       {/* Chapters */}
       <div className="flex flex-col gap-12">
-        {chapters.map((chapter) => (
-          <ChapterSection
-            key={chapter.number}
-            chapter={chapter}
-            progress={progress}
-            placeholders={placeholders}
-          />
-        ))}
+        {(() => {
+          let globalIndex = 0;
+          return chapters.map((chapter) => {
+            const startIndex = globalIndex;
+            globalIndex += chapter.unitIds.length;
+            return (
+              <ChapterSection
+                key={chapter.number}
+                chapter={chapter}
+                progress={progress}
+                placeholders={placeholders}
+                startIndex={startIndex}
+              />
+            );
+          });
+        })()}
       </div>
     </div>
   );
@@ -93,10 +101,12 @@ function ChapterSection({
   chapter,
   progress,
   placeholders,
+  startIndex,
 }: {
   chapter: Chapter;
   progress: PathProgress;
   placeholders: PlaceholderUnit[];
+  startIndex: number;
 }) {
   const chapterPct = getChapterProgress(chapter, progress);
 
@@ -136,6 +146,7 @@ function ChapterSection({
             <UnitNode
               key={unit.id}
               unit={unit}
+              displayNumber={startIndex + i + 1}
               progress={progress}
               isPlaceholder={isPlaceholder}
               isLast={i === chapterUnits.length - 1}
@@ -149,11 +160,13 @@ function ChapterSection({
 
 function UnitNode({
   unit,
+  displayNumber,
   progress,
   isPlaceholder,
   isLast,
 }: {
   unit: CourseUnit | PlaceholderUnit;
+  displayNumber: number;
   progress: PathProgress;
   isPlaceholder: boolean;
   isLast: boolean;
@@ -181,7 +194,7 @@ function UnitNode({
           circleStyle
         )}
       >
-        {completed ? <Check className="h-5 w-5" /> : unit.number}
+        {completed ? <Check className="h-5 w-5" /> : displayNumber}
       </div>
 
       <div
@@ -207,7 +220,7 @@ function UnitNode({
                   isPlaceholder || !unlocked ? "text-stone-400" : "text-stone-800"
                 )}
               >
-                Unite {unit.number} — {unit.title}
+                Unite {displayNumber} — {unit.title}
               </h3>
               {!isPlaceholder && !unlocked && <Lock className="h-4 w-4 text-stone-300" />}
             </div>
