@@ -44,10 +44,7 @@ function Navbar() {
           <a href="/lessons" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Leçons
           </a>
-          <a href="/flashcards" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
-            Flashcards
-          </a>
-          <a href="/tones" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+<a href="/tones" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Tons
           </a>
           <a href="/dictionary" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
