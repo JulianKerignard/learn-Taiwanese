@@ -1,3 +1,5 @@
+import { getBasePath } from "@/lib/basepath";
+
 const SYNC_KEYS = [
   { local: "taiwan-cards", remote: "cards" },
   { local: "taiwan-progress", remote: "progress" },
@@ -5,12 +7,6 @@ const SYNC_KEYS = [
   { local: "taiwan-gamification", remote: "gamification" },
   { local: "taiwan-settings", remote: "settings" },
 ];
-
-function getBasePath(): string {
-  if (typeof window === "undefined") return "";
-  const w = window as unknown as { __NEXT_DATA__?: { basePath?: string } };
-  return w.__NEXT_DATA__?.basePath ?? "";
-}
 
 export async function checkUser(): Promise<{ id: number; username: string } | null> {
   try {

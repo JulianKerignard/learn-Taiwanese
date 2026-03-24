@@ -4,12 +4,9 @@ let currentAudio: HTMLAudioElement | null = null;
 
 // ── Pre-generated audio manifest ──────────────────────────────────────
 
-let audioManifest: Record<string, string> | null = null;
+import { getBasePath } from "@/lib/basepath";
 
-function getBasePath(): string {
-  const w = window as unknown as { __NEXT_DATA__?: { basePath?: string } };
-  return w.__NEXT_DATA__?.basePath ?? "";
-}
+let audioManifest: Record<string, string> | null = null;
 
 async function getManifest(): Promise<Record<string, string>> {
   if (audioManifest) return audioManifest;

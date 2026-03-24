@@ -14,11 +14,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.8.0",
     "clsx": "^2.1.1",
     "edge-tts-universal": "^1.4.0",
-    "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.577.0",
     "next": "^16.2.0",
     "react": "^19.2.4",
@@ -28,9 +26,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.2",
-    "@types/bcryptjs": "^2.4.6",
     "@types/better-sqlite3": "^7.6.13",
-    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

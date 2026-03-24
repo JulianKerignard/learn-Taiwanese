@@ -3,17 +3,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { User, LogIn, UserPlus, X } from "lucide-react";
 import { syncDown, syncUp } from "@/lib/sync";
+import { getBasePath } from "@/lib/basepath";
 
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   onAuth: (user: { id: number; username: string }) => void;
-}
-
-function getBasePath(): string {
-  if (typeof window === "undefined") return "";
-  const w = window as unknown as { __NEXT_DATA__?: { basePath?: string } };
-  return w.__NEXT_DATA__?.basePath ?? "";
 }
 
 export default function AuthModal({ isOpen, onClose, onAuth }: AuthModalProps) {

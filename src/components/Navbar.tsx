@@ -5,6 +5,7 @@ import Link from "next/link";
 import { User, LogIn, LogOut } from "lucide-react";
 import { checkUser, login, syncUp, syncDown } from "@/lib/sync";
 import { cn } from "@/lib/cn";
+import { getBasePath } from "@/lib/basepath";
 
 export default function Navbar() {
   const [user, setUser] = useState<{ id: number; username: string } | null>(null);
@@ -40,13 +41,9 @@ export default function Navbar() {
   }
 
   async function handleLogout() {
-    await fetch(
-      ((window as unknown as { __NEXT_DATA__?: { basePath?: string } }).__NEXT_DATA__?.basePath ?? "") + "/api/auth/login",
-      { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ username: "__logout__" }) }
-    ).catch(() => {});
-    // Just clear the cookie by setting expired
     document.cookie = "taiwan-user=; max-age=0; path=/";
     setUser(null);
+    window.location.reload();
   }
 
   return (
