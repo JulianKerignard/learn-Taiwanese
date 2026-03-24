@@ -173,6 +173,21 @@ export const unit17: CourseUnit = {
         {
           type: "text",
           content:
+            "Le bail (合約 héyuē) à Taiwan est généralement de 1 an. Points à vérifier AVANT de signer : la caution (押金) est de 1 ou 2 mois ? L'électricité est-elle incluse (包水電) ou facturée séparément (按錶計費) ? Y a-t-il une clause de résiliation anticipée ? En général, 1 mois de préavis suffit. TOUJOURS signer un contrat écrit — même si le propriétaire dit que ce n'est pas nécessaire. Gardez une copie.",
+        },
+        {
+          type: "tip",
+          content:
+            "Problèmes que TOUS les résidents étrangers rencontrent : 1) La moisissure (發霉) — Taiwan est très humide, surtout au nord. Achetez un déshumidificateur (除濕機) dès le premier mois. 2) Les cafards (蟑螂) — ils sont ÉNORMES à Taiwan (5-6 cm). Pas de panique, c'est normal. Spray anti-cafards au conbini. 3) Le bruit — les murs sont fins, les scooters sont bruyants. Visitez l'appart le SOIR avant de signer. 4) La clim qui fuit — 冷氣漏水, appelez le proprio (房東). 5) Le camion poubelle — il passe TOUS LES JOURS avec une musique (Für Elise ou A Maiden's Prayer). Vous devez sortir votre poubelle EN PERSONNE au moment où il passe.",
+        },
+        {
+          type: "warning",
+          content:
+            "Le 頂加 (construction illégale sur le toit) : ces studios sont bon marché (5,000-8,000 NT$) mais dangereux — pas d'isolation (fournaise en été), risque d'incendie, et le gouvernement peut ordonner la démolition à tout moment. Vérifiez que votre logement n'est pas un 頂加 avant de signer.",
+        },
+        {
+          type: "text",
+          content:
             "Le marche immobilier taiwanais a ses propres regles. Voici le vocabulaire et les concepts essentiels pour trouver un logement :\n\nLes types de logement :\n- 雅房 (yǎfáng) : chambre simple dans un appartement partage. Salle de bain et cuisine communes. Le moins cher (4,000-8,000 NT$/mois a Taipei, soit environ 110-220 euros).\n- 套房 (tàofáng) : studio avec salle de bain privee. Pas toujours de cuisine. Le plus courant pour les etrangers (8,000-18,000 NT$/mois, soit 220-500 euros).\n- 整層住家 (zhěng céng zhùjiā) : appartement entier. Plus cher mais plus d'espace et d'independance.\n- 頂加 (dǐngjiā) : construction ajoutee sur le toit. ATTENTION : souvent illegales, mal isolees (fournaise en ete, froid en hiver), mais bon marche. Verifiez que ce n'est pas un 頂加 avant de signer.\n\nLe processus :\n- Cherchez sur 591.com.tw (le Leboncoin taiwanais pour l'immobilier). Le site est en chinois, mais vous pouvez utiliser Google Translate pour naviguer. Filtrez par 套房 et par quartier (區 qū).\n- La 押金 (yājīn, caution) est generalement de 2 mois de loyer. Certains proprios demandent 1 mois seulement pour les etrangers — negociez.\n- 包水電 (bāo shuǐdiàn) = charges incluses (eau + electricite). Tres courant pour les 套房. ATTENTION : en ete, la climatisation fait exploser la facture. Verifiez si l'electricite est vraiment incluse ou plafonnee. Certains proprios facturent l'electricite au compteur a un tarif majore (5-6 NT$/kWh au lieu du tarif normal de 2-3 NT$).\n- Le bail (合約 héyuē) est generalement de 1 an avec possibilite de partir avec 1 mois de preavis.\n- Demandez TOUJOURS a voir l'appartement de jour (pour la lumiere naturelle) ET le soir (pour le bruit du quartier).\n\nConseils supplementaires :\n- Verifiez la distance au MRT (metro). A Taipei, un appartement a moins de 5 minutes a pied du MRT coute 20-30% plus cher, mais le confort de vie est incomparable.\n- Inspectez les murs et plafonds pour des traces d'humidite ou de moisissure. Le climat taiwanais est tres humide et les problemes de moisissure sont extremement courants.\n- Demandez si le 垃圾車 (camion poubelle) passe pres de l'immeuble et a quelle heure. A Taiwan, il n'y a pas de bennes — vous devez sortir jeter vos poubelles quand le camion musical passe (generalement entre 17h et 21h). Si votre immeuble a une 垃圾間 (piece a poubelles commune), c'est un gros plus.\n- Le 熱水器 (rèshuǐqì, chauffe-eau) peut etre au gaz ou electrique. Le gaz est moins cher a l'usage mais verifiez que l'installation est securisee.\n- 寵物 (chǒngwù, animaux de compagnie) : beaucoup de proprietaires interdisent les animaux. Verifiez avant de signer si vous avez un animal.",
         },
         {

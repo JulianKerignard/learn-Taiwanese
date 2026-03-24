@@ -1,6 +1,51 @@
-// Edge TTS via API route (high quality) with Web Speech API fallback
+// Pre-generated audio (instant) → Edge TTS API (high quality) → Web Speech API fallback
 
 let currentAudio: HTMLAudioElement | null = null;
+
+// ── Pre-generated audio manifest ──────────────────────────────────────
+
+let audioManifest: Record<string, string> | null = null;
+
+function getBasePath(): string {
+  const w = window as unknown as { __NEXT_DATA__?: { basePath?: string } };
+  return w.__NEXT_DATA__?.basePath ?? "";
+}
+
+async function getManifest(): Promise<Record<string, string>> {
+  if (audioManifest) return audioManifest;
+  try {
+    const res = await fetch(`${getBasePath()}/audio/manifest.json`);
+    if (res.ok) {
+      audioManifest = await res.json();
+      return audioManifest!;
+    }
+  } catch {
+    // manifest not available
+  }
+  audioManifest = {};
+  return audioManifest;
+}
+
+function playStaticAudio(audioFile: string): Promise<void> {
+  const audio = new Audio(`${getBasePath()}/audio/${audioFile}`);
+  currentAudio = audio;
+  return new Promise((resolve) => {
+    audio.onended = () => {
+      currentAudio = null;
+      resolve();
+    };
+    audio.onerror = () => {
+      currentAudio = null;
+      resolve();
+    };
+    audio.play().catch(() => {
+      currentAudio = null;
+      resolve();
+    });
+  });
+}
+
+// ── Main speak function ───────────────────────────────────────────────
 
 export async function speak(text: string, rate = 0.85): Promise<void> {
   if (typeof window === "undefined") return;
@@ -12,7 +57,14 @@ export async function speak(text: string, rate = 0.85): Promise<void> {
   }
   window.speechSynthesis?.cancel();
 
-  // Try Edge TTS API first
+  // 1. Try pre-generated audio first (instant, zero latency)
+  const manifest = await getManifest();
+  const audioFile = manifest[text];
+  if (audioFile) {
+    return playStaticAudio(audioFile);
+  }
+
+  // 2. Try Edge TTS API (high quality, slight latency)
   try {
     const params = new URLSearchParams({
       text,
@@ -20,8 +72,7 @@ export async function speak(text: string, rate = 0.85): Promise<void> {
       rate: String(rate),
     });
 
-    const w = window as unknown as { __NEXT_DATA__?: { basePath?: string } };
-    const basePath = w.__NEXT_DATA__?.basePath ?? "";
+    const basePath = getBasePath();
     const response = await fetch(`${basePath}/api/tts?${params}`);
     if (response.ok) {
       const blob = await response.blob();
@@ -51,6 +102,7 @@ export async function speak(text: string, rate = 0.85): Promise<void> {
     // API unreachable, fallback
   }
 
+  // 3. Web Speech API fallback
   return speakFallback(text, rate);
 }
 

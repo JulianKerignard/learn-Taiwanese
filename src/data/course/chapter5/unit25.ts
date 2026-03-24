@@ -126,6 +126,16 @@ export const unit25: CourseUnit = {
           translation: "Le soir du reveillon, toute la famille rentre au pays pour le diner du Nouvel An",
           content: "回老家 (rentrer dans sa ville natale) est le grand mouvement de population du Nouvel An. Comme Noel en France, mais a l'echelle d'un continent.",
         },
+        {
+          type: "text",
+          content:
+            "Le 過年 (Nouvel An chinois) jour par jour : 除夕 (veille) = le repas en famille (年夜飯), chaque plat est symbolique. 初一 (jour 1) = visites aux aînés, on reçoit les 紅包. 初二 (jour 2) = les femmes mariées retournent chez leurs parents (回娘家). 初三 (jour 3) = jour de repos (on évite les visites car c'est le jour du 'dieu du sommeil'). 初四 (jour 4) = on accueille les dieux qui reviennent du ciel. 初五 (jour 5) = ouverture des commerces (開工), retour au travail.",
+        },
+        {
+          type: "warning",
+          content:
+            "Tabous culturels à connaître : ne JAMAIS offrir une horloge (送鐘 sòng zhōng = envoyer à la mort, même son que 送終). Ne pas offrir de parapluie (傘 sǎn = même son que 散 sàn, se séparer). Ne pas offrir de chaussures (鞋 xié = même son que 邪 xié, le mal). Ne pas planter les baguettes verticalement dans le riz (ça ressemble à de l'encens pour les morts). Ne pas offrir en nombre de 4 (四 sì = même son que 死 sǐ, mourir). Toujours offrir en nombre pair pour les occasions heureuses.",
+        },
       ],
     },
     {

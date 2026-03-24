@@ -166,6 +166,16 @@ export const unit24: CourseUnit = {
           translation: "Demain c'est jour de typhon, pas besoin d'aller travailler",
           content: "颱風假 (jour de typhon) est annonce la veille au soir par le gouvernement. 不用 = pas besoin de.",
         },
+        {
+          type: "text",
+          content:
+            "Le typhon (颱風 táifēng) est l'événement météo majeur à Taiwan. Saison : juillet à octobre, 3-5 typhons significatifs par an. Quand un typhon approche : 1) Le gouvernement annonce 停班停課 (suspension du travail et de l'école) — consultez le site officiel DGBAS la veille au soir. 2) Stockez eau et nourriture pour 2-3 jours. 3) Fermez les fenêtres et collez du ruban adhésif en X. 4) Ne sortez PAS pendant le typhon. 5) Après le typhon : les rues peuvent être inondées, des arbres tombés, pas de transport pendant quelques heures. Le lendemain, tout reprend comme si de rien n'était.",
+        },
+        {
+          type: "tip",
+          content:
+            "Votre kit de survie météo à Taiwan : 1) Un parapluie SOLIDE (pas un parapluie de poche — le vent les retourne) 2) Un imperméable (les Taiwanais en scooter portent un poncho) 3) Un gilet léger (pour la clim glaciale des intérieurs) 4) De la crème solaire (l'UV est INTENSE, surtout en été) 5) Un déshumidificateur pour l'appart (essentiel mars-juin)",
+        },
       ],
     },
   ],

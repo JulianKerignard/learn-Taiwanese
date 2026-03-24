@@ -121,6 +121,16 @@ export const unit26: CourseUnit = {
         {
           type: "text",
           content:
+            "Le mandarin taiwanais a une prosodie distinctive : plus douce, plus mélodique, moins 'coupante' que le mandarin de Pékin. Les tons 3 sont souvent prononcés très bas sans remontée (半三聲 half-third). Le ton 2 est parfois plus plat qu'en mandarin standard. Le rythme général est plus lent et plus 'chantant'. Pour sonner naturel à Taiwan, ne prononcez pas les tons de manière trop marquée — l'exagération sonne 'continental' (大陸腔).",
+        },
+        {
+          type: "text",
+          content:
+            "Exercice avancé — les tons dans les phrases longues : dans une phrase de 10+ syllabes, les tons individuels se 'compressent'. Le ton 1 reste haut mais moins intense. Les tons 2 et 3 se neutralisent dans les syllabes non-accentuées. Seul le dernier mot de chaque groupe rythmique garde son ton plein. Écoutez un podcast taiwanais et essayez de suivre le contour tonal : vous remarquerez que ça ne ressemble PAS à des tons isolés enchaînés.",
+        },
+        {
+          type: "text",
+          content:
             "Astuce finale : les podcasts et YouTube sont vos meilleurs alliés pour les tons. Recommandations taiwanaises :\n- 志祺七七 (Shasha77) : actualité, rythme naturel\n- 阿滴英文 (Ray Du English) : contenu bilingue\n- 台灣吧 Taiwan Bar : histoire de Taiwan, animations sous-titrées\n- N'importe quel drama taiwanais sur Netflix avec sous-titres chinois\n\nÉcoutez 15 minutes par jour et répétez à voix haute. En 3 mois, vos tons seront naturels.",
         },
       ],
@@ -385,6 +395,61 @@ export const unit26: CourseUnit = {
         "Par la montée de voix en fin de phrase, comme en français",
         "Par un ton spécial sur le dernier mot",
         "Par un changement de ton sur le verbe",
+      ],
+    },
+    {
+      id: "u26-ex7",
+      type: "comprehension",
+      question:
+        "Quelle est la particularité de la prosodie du mandarin taiwanais par rapport au mandarin de Pékin ?",
+      correctAnswer:
+        "Plus douce, plus mélodique, tons moins marqués, rythme plus lent",
+      options: [
+        "Plus douce, plus mélodique, tons moins marqués, rythme plus lent",
+        "Plus rapide et plus saccadée",
+        "Les tons sont identiques, seul le vocabulaire change",
+        "Les tons 1 et 4 sont inversés",
+      ],
+    },
+    {
+      id: "u26-ex8",
+      type: "comprehension",
+      question:
+        "Quand on dit 不是 (búshì), pourquoi le 不 se prononce-t-il au ton 2 ?",
+      correctAnswer:
+        "不 change au ton 2 quand il est suivi d'un ton 4 (sandhi tonal)",
+      options: [
+        "不 change au ton 2 quand il est suivi d'un ton 4 (sandhi tonal)",
+        "不 est toujours au ton 2",
+        "C'est une prononciation spécifique à Taiwan",
+        "Le ton 4 de 是 annule le ton de 不",
+      ],
+    },
+    {
+      id: "u26-ex9",
+      type: "translate",
+      question:
+        "Quel terme désigne le phénomène de 'demi-ton 3' utilisé en conversation rapide ?",
+      correctAnswer: "半三聲 (half-third tone)",
+      options: [
+        "半三聲 (half-third tone)",
+        "輕聲 (ton neutre)",
+        "變調 (changement de ton)",
+        "四聲 (quatrième ton)",
+      ],
+    },
+    {
+      id: "u26-ex10",
+      type: "comprehension",
+      question:
+        "Dans une phrase longue de 10+ syllabes, que se passe-t-il avec les tons individuels ?",
+      correctAnswer:
+        "Les tons se compriment, seul le dernier mot de chaque groupe rythmique garde son ton plein",
+      options: [
+        "Les tons se compriment, seul le dernier mot de chaque groupe rythmique garde son ton plein",
+        "Chaque ton reste parfaitement distinct",
+        "Tous les tons deviennent neutres",
+        "Seuls les tons 1 et 4 sont prononcés",
       ],
     },
   ],

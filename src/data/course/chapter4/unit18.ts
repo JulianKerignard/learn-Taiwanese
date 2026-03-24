@@ -186,6 +186,21 @@ export const unit18: CourseUnit = {
           content:
             "En France, demander l'âge ou le salaire de quelqu'un qu'on vient de rencontrer est impoli. À Taiwan, c'est la norme. L'âge détermine la politesse (vouvoiement en quelque sorte : 你 vs les termes de respect). Le salaire est un sujet de conversation comme un autre. Adaptez-vous : ce qui compte, c'est de rester naturel et ouvert.",
         },
+        {
+          type: "text",
+          content:
+            "À Taiwan, les questions personnelles sont NORMALES et pas considérées comme indiscrètes. On vous demandera votre âge (幾歲), si vous avez un(e) petit(e) ami(e) (有沒有男/女朋友), combien vous gagnez (薪水多少), et pourquoi vous n'êtes pas marié(e). Ne soyez pas offensé — c'est de la curiosité bienveillante. Répondez avec le sourire ou esquivez poliment (秘密 mìmì = c'est un secret).",
+        },
+        {
+          type: "text",
+          content:
+            "Le 語言交換 (language exchange) est LA méthode #1 pour se faire des amis à Taiwan. Comment ça marche : vous trouvez un(e) Taiwanais(e) qui veut pratiquer le français (ou l'anglais), vous vous retrouvez dans un café, 30 minutes en chinois puis 30 minutes en français. Où trouver : l'app HelloTalk, les groupes Facebook 'Language Exchange Taipei', les cafés-langues (世界咖啡館). Conseil : ne vous laissez pas piéger dans le 'tout en anglais' — insistez sur le 50/50.",
+        },
+        {
+          type: "text",
+          content:
+            "Inviter et être invité à Taiwan : 我請你 (c'est ma tournée) est très courant entre amis. La personne qui invite PAIE pour tout le monde. Il y a ensuite une danse de politesse où l'invité essaie de payer (讓我付！) et l'hôte refuse (不用不用，我請你！). Après 2-3 refus, acceptez gracieusement. Les activités sociales populaires : KTV (karaoké en salle privée, 500-800 NT$/personne pour 3h), 火鍋 (hot pot en groupe), 逛夜市 (se promener au marché de nuit), 爬山 (randonnée le weekend).",
+        },
       ],
     },
   ],

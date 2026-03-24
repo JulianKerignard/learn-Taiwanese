@@ -188,6 +188,21 @@ export const unit23: CourseUnit = {
           translation: "Tout le monde a bien travaille, rentrez chez vous",
           content: "辛苦了 est utilise par le superieur pour dire a l'equipe qu'elle peut partir. Attendez ce signal.",
         },
+        {
+          type: "text",
+          content:
+            "Comment écrire un message LINE professionnel en chinois : commencez par le nom + titre (陳經理您好), allez droit au but, terminez par 謝謝 ou 麻煩您了. Pour les emails : 收件人 (destinataire), 主旨 (objet), 附件 (pièce jointe), 請查收 (veuillez vérifier), 如有問題請聯繫我 (n'hésitez pas à me contacter). Les Taiwanais utilisent LINE pour TOUT le pro — même les choses importantes qui seraient par email en France.",
+        },
+        {
+          type: "tip",
+          content:
+            "Vocabulaire de réunion : 開會 (réunion), 議程 (ordre du jour), 簡報 (présentation), 提案 (proposition), 討論 (discussion), 決定 (décision), 記錄 (compte-rendu). Expression clé en réunion : 我有一個建議 (j'ai une suggestion) — toujours formuler comme suggestion, jamais comme critique.",
+        },
+        {
+          type: "text",
+          content:
+            "Le 便當 (bento) est le déjeuner standard au bureau à Taiwan. Chaque quartier a ses restaurants de 便當 qui livrent au bureau. Prix : 70-120 NT$. Le 便當 typique : un riz + une viande/poisson + 3 légumes. On commande ensemble et quelqu'un va chercher ou se fait livrer. C'est un moment social — manger seul à son bureau est triste. Beaucoup de bureaux ont aussi une 午休 (sieste de midi) de 30-60 minutes où les gens dorment littéralement sur leur bureau.",
+        },
       ],
     },
   ],
