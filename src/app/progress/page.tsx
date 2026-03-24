@@ -46,9 +46,17 @@ export default function ProgressPage() {
   });
   const [showReset, setShowReset] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [otherUsers, setOtherUsers] = useState<{ id: number; username: string; unitsCompleted: number; currentStreak: number; totalXP: number; charactersLearned: number; lastStudyDate: string | null }[]>([]);
 
   useEffect(() => {
     reload();
+    // Load other users
+    import("@/lib/basepath").then(({ getBasePath }) => {
+      fetch(`${getBasePath()}/api/users`)
+        .then((r) => r.json())
+        .then((data) => { if (Array.isArray(data)) setOtherUsers(data); })
+        .catch(() => {});
+    });
   }, []);
 
   function reload() {
@@ -328,7 +336,51 @@ export default function ProgressPage() {
         </div>
       </section>
 
-      {/* Section 6: Reset */}
+      {/* Section 6: Les autres */}
+      {otherUsers.length > 0 && (
+        <section>
+          <h2 className="mb-4 text-lg font-semibold text-stone-800 flex items-center gap-2">
+            <Star className="h-5 w-5 text-warning" />
+            L'equipe
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {otherUsers.map((u) => (
+              <div key={u.id} className="card flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-stone-800 capitalize">{u.username}</span>
+                  {u.lastStudyDate && (
+                    <span className="text-xs text-stone-400">
+                      {u.lastStudyDate === new Date().toISOString().split("T")[0]
+                        ? "Actif aujourd'hui"
+                        : `Dernier : ${u.lastStudyDate}`}
+                    </span>
+                  )}
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-center">
+                  <div className="rounded-lg bg-primary/5 px-2 py-1.5">
+                    <p className="text-lg font-bold text-primary">{u.unitsCompleted}</p>
+                    <p className="text-xs text-stone-500">unites</p>
+                  </div>
+                  <div className="rounded-lg bg-warning/10 px-2 py-1.5">
+                    <p className="text-lg font-bold text-warning">{u.currentStreak}</p>
+                    <p className="text-xs text-stone-500">streak</p>
+                  </div>
+                  <div className="rounded-lg bg-accent/10 px-2 py-1.5">
+                    <p className="text-lg font-bold text-accent">{u.totalXP}</p>
+                    <p className="text-xs text-stone-500">XP</p>
+                  </div>
+                  <div className="rounded-lg bg-success/10 px-2 py-1.5">
+                    <p className="text-lg font-bold text-success">{u.charactersLearned}</p>
+                    <p className="text-xs text-stone-500">caracteres</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Section 7: Reset */}
       <section className="card border-danger/30">
         <h2 className="mb-2 text-lg font-semibold text-danger">
           Zone de danger
