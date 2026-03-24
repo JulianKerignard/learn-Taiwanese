@@ -15,7 +15,7 @@ import {
 import { allUnits, chapters, getUnitById } from "@/data/course";
 import type { PathProgress, CourseUnit, Chapter } from "@/types/course";
 
-const TOTAL_UNITS = 20;
+const TOTAL_UNITS = allUnits.length;
 
 interface PlaceholderUnit {
   id: string;
