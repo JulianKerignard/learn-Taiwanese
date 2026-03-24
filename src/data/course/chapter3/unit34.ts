@@ -279,6 +279,12 @@ export const unit34: CourseUnit = {
         "我會去台北。",
         "我要去台北。",
       ],
+      optionsHint: [
+        "wǒ qù guò Táiběi.",
+        "wǒ qù le Táiběi.",
+        "wǒ huì qù Táiběi.",
+        "wǒ yào qù Táiběi.",
+      ],
     },
     {
       id: "u34-ex2",
@@ -290,6 +296,12 @@ export const unit34: CourseUnit = {
         "我早上吃過飯。",
         "我早上會吃飯。",
         "我吃了早上的飯。",
+      ],
+      optionsHint: [
+        "wǒ zǎoshang chī le fàn.",
+        "wǒ zǎoshang chī guò fàn.",
+        "wǒ zǎoshang huì chī fàn.",
+        "wǒ chī le zǎoshang de fàn.",
       ],
     },
     {
@@ -303,6 +315,12 @@ export const unit34: CourseUnit = {
         "明天下過雨。",
         "明天要下雨了。",
       ],
+      optionsHint: [
+        "míngtiān huì xiàyǔ.",
+        "míngtiān xià le yǔ.",
+        "míngtiān xià guò yǔ.",
+        "míngtiān yào xiàyǔ le.",
+      ],
     },
     {
       id: "u34-ex4",
@@ -314,6 +332,12 @@ export const unit34: CourseUnit = {
         "我沒吃了臭豆腐。",
         "我不吃臭豆腐。",
         "我不會吃臭豆腐。",
+      ],
+      optionsHint: [
+        "wǒ méi chī guò chòudòufu.",
+        "wǒ méi chī le chòudòufu.",
+        "wǒ bù chī chòudòufu.",
+        "wǒ bú huì chī chòudòufu.",
       ],
     },
     {
@@ -327,6 +351,12 @@ export const unit34: CourseUnit = {
         "我覺得台灣最漂亮。",
         "台灣和法國一樣漂亮。",
       ],
+      optionsHint: [
+        "wǒ juéde Táiwān bǐ Fǎguó piàoliang.",
+        "Táiwān bǐ Fǎguó gèng piàoliang.",
+        "wǒ juéde Táiwān zuì piàoliang.",
+        "Táiwān hé Fǎguó yīyàng piàoliang.",
+      ],
     },
     {
       id: "u34-ex6",
@@ -338,6 +368,12 @@ export const unit34: CourseUnit = {
         "珍珠奶茶很好喝。",
         "珍珠奶茶比較好喝。",
         "珍珠奶茶更好喝。",
+      ],
+      optionsHint: [
+        "zhēnzhū nǎichá zuì hǎohē.",
+        "zhēnzhū nǎichá hěn hǎohē.",
+        "zhēnzhū nǎichá bǐjiào hǎohē.",
+        "zhēnzhū nǎichá gèng hǎohē.",
       ],
     },
     {
@@ -351,6 +387,12 @@ export const unit34: CourseUnit = {
         "這家餐廳比較便宜。",
         "這家餐廳很便宜。",
       ],
+      optionsHint: [
+        "zhè jiā cāntīng gèng piányi.",
+        "zhè jiā cāntīng zuì piányi.",
+        "zhè jiā cāntīng bǐjiào piányi.",
+        "zhè jiā cāntīng hěn piányi.",
+      ],
     },
     {
       id: "u34-ex8",
@@ -362,6 +404,12 @@ export const unit34: CourseUnit = {
         "下雨了，我不出門。",
         "因為下雨我不出門。",
         "所以下雨，因為不出門。",
+      ],
+      optionsHint: [
+        "yīnwèi xiàyǔ, suǒyǐ wǒ bù chūmén.",
+        "xiàyǔ le, wǒ bù chūmén.",
+        "yīnwèi xiàyǔ wǒ bù chūmén.",
+        "suǒyǐ xiàyǔ, yīnwèi bù chūmén.",
       ],
     },
     {
@@ -375,6 +423,12 @@ export const unit34: CourseUnit = {
         "我沒有錢想去。",
         "可是我想去，沒有錢。",
       ],
+      optionsHint: [
+        "wǒ xiǎng qù, kěshì wǒ méiyǒu qián.",
+        "wǒ xiǎng qù, yīnwèi méiyǒu qián.",
+        "wǒ méiyǒu qián xiǎng qù.",
+        "kěshì wǒ xiǎng qù, méiyǒu qián.",
+      ],
     },
     {
       id: "u34-ex10",
@@ -386,6 +440,12 @@ export const unit34: CourseUnit = {
         "吃飯以後看電影。",
         "先看電影，然後吃飯。",
         "吃飯和看電影。",
+      ],
+      optionsHint: [
+        "xiān chīfàn, ránhòu qù kàn diànyǐng.",
+        "chīfàn yǐhòu kàn diànyǐng.",
+        "xiān kàn diànyǐng, ránhòu chīfàn.",
+        "chīfàn hé kàn diànyǐng.",
       ],
     },
     {
@@ -421,6 +481,7 @@ export const unit34: CourseUnit = {
         "台灣很好玩，___天氣太熱了。(Taiwan c'est fun, MAIS le temps est trop chaud.)",
       correctAnswer: "可是",
       options: ["可是", "所以", "然後", "因為"],
+      optionsHint: ["kěshì", "suǒyǐ", "ránhòu", "yīnwèi"],
       hint: "Quel connecteur exprime l'opposition (mais) ?",
     },
     {
@@ -430,6 +491,7 @@ export const unit34: CourseUnit = {
         "珍珠奶茶___好喝。(Le bubble tea est LE PLUS délicieux.)",
       correctAnswer: "最",
       options: ["最", "更", "比", "很"],
+      optionsHint: ["zuì", "gèng", "bǐ", "hěn"],
       hint: "Quel mot exprime le superlatif (le plus) ?",
     },
   ],

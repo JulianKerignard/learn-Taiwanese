@@ -463,6 +463,7 @@ export const unit07: CourseUnit = {
       question: "Comment dit-on « Combien ça coûte ? » en chinois ?",
       correctAnswer: "多少錢？",
       options: ["多少錢？", "幾個錢？", "什麼錢？", "錢多少？"],
+      optionsHint: ["duōshǎo qián?", "jǐ ge qián?", "shénme qián?", "qián duōshǎo?"],
     },
     {
       id: "u5-ex2",
@@ -470,6 +471,7 @@ export const unit07: CourseUnit = {
       question: "廁所在___？(Où sont les toilettes ?)",
       correctAnswer: "哪裡",
       options: ["哪裡", "什麼", "怎麼", "誰"],
+      optionsHint: ["nǎlǐ", "shénme", "zěnme", "shéi"],
       hint: "Quel mot interrogatif signifie « où » ?",
     },
     {
@@ -524,6 +526,12 @@ export const unit07: CourseUnit = {
         "怎麼去台北車站？",
         "去怎麼台北車站？",
         "怎麼台北車站去？",
+      ],
+      optionsHint: [
+        "Táiběi chēzhàn zěnme qù?",
+        "zěnme qù Táiběi chēzhàn?",
+        "qù zěnme Táiběi chēzhàn?",
+        "zěnme Táiběi chēzhàn qù?",
       ],
     },
   ],

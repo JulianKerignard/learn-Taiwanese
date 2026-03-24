@@ -279,6 +279,7 @@ export const unit13: CourseUnit = {
         "她___老師。(Elle est professeur.) Quel verbe utiliser ?",
       correctAnswer: "是",
       options: ["是", "很", "有", "在"],
+      optionsHint: ["shì", "hěn", "yǒu", "zài"],
       hint: "Pour relier un sujet à un nom (profession), on utilise ce verbe.",
     },
     {
@@ -288,6 +289,7 @@ export const unit13: CourseUnit = {
         "台灣的食物___好吃。(La nourriture de Taiwan est délicieuse.) Quel mot manque ?",
       correctAnswer: "很",
       options: ["很", "是", "不", "太"],
+      optionsHint: ["hěn", "shì", "bù", "tài"],
       hint: "En mandarin, les adjectifs s'utilisent avec ce mot comme lien.",
     },
     {
@@ -339,6 +341,7 @@ export const unit13: CourseUnit = {
       question: "Traduisez : « C'est trop cher ! »",
       correctAnswer: "太貴了！",
       options: ["太貴了！", "很貴了！", "不貴了！", "是貴了！"],
+      optionsHint: ["tài guì le!", "hěn guì le!", "bù guì le!", "shì guì le!"],
     },
     {
       id: "u13-ex10",
@@ -350,6 +353,12 @@ export const unit13: CourseUnit = {
         "你喝茶嗎？",
         "你不喝茶嗎？",
         "你喝不喝茶了？",
+      ],
+      optionsHint: [
+        "nǐ yào bú yào hē chá?",
+        "nǐ hē chá ma?",
+        "nǐ bù hē chá ma?",
+        "nǐ hē bù hē chá le?",
       ],
     },
     {

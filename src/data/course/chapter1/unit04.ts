@@ -512,6 +512,7 @@ export const unit04: CourseUnit = {
       question: "Comment dit-on « Je m'appelle Marie » en chinois ?",
       correctAnswer: "我叫 Marie",
       options: ["我叫 Marie", "我是 Marie", "Marie 叫我", "我的 Marie"],
+      optionsHint: ["wǒ jiào Marie", "wǒ shì Marie", "Marie jiào wǒ", "wǒ de Marie"],
     },
     {
       id: "u3-ex2",
@@ -519,6 +520,7 @@ export const unit04: CourseUnit = {
       question: "你___什麼名字？(Comment tu t'appelles ?)",
       correctAnswer: "叫",
       options: ["叫", "是", "做", "有"],
+      optionsHint: ["jiào", "shì", "zuò", "yǒu"],
       hint: "Quel verbe signifie « s'appeler » ?",
     },
     {
@@ -554,6 +556,7 @@ export const unit04: CourseUnit = {
       question: "我是法國人。你___？(Je suis français. Et toi ?)",
       correctAnswer: "呢",
       options: ["呢", "嗎", "吧", "啊"],
+      optionsHint: ["ne", "ma", "ba", "a"],
       hint: "Quelle particule retourne la question ?",
     },
     {
@@ -562,6 +565,7 @@ export const unit04: CourseUnit = {
       question: "Comment dit-on « Je suis aussi étudiant » ?",
       correctAnswer: "我也是學生",
       options: ["我也是學生", "我是也學生", "也我是學生", "我學生也是"],
+      optionsHint: ["wǒ yě shì xuéshēng", "wǒ shì yě xuéshēng", "yě wǒ shì xuéshēng", "wǒ xuéshēng yě shì"],
     },
   ],
 

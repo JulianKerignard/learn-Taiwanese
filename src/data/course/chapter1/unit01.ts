@@ -576,6 +576,7 @@ export const unit01: CourseUnit = {
       question: "Comment dit-on « Je suis français » en chinois ?",
       correctAnswer: "我是法國人",
       options: ["我是法國人", "我法國人是", "法國人我是", "是我法國人"],
+      optionsHint: ["wǒ shì Fǎguó rén", "wǒ Fǎguó rén shì", "Fǎguó rén wǒ shì", "shì wǒ Fǎguó rén"],
     },
     {
       id: "u1-ex3",
@@ -583,6 +584,7 @@ export const unit01: CourseUnit = {
       question: "我___法國人。(Je suis français.)",
       correctAnswer: "是",
       options: ["是", "不", "好", "來"],
+      optionsHint: ["shì", "bù", "hǎo", "lái"],
       hint: "Quel verbe signifie « être » ?",
     },
     {
@@ -616,6 +618,7 @@ export const unit01: CourseUnit = {
       question: "我___喜歡。(Je n'aime pas.)",
       correctAnswer: "不",
       options: ["不", "是", "嗎", "好"],
+      optionsHint: ["bù", "shì", "ma", "hǎo"],
       hint: "Quel mot exprime la négation ?",
     },
     {
@@ -640,6 +643,12 @@ export const unit01: CourseUnit = {
         "嗎你是法國人？",
         "你是法國人不？",
         "是你法國人嗎？",
+      ],
+      optionsHint: [
+        "nǐ shì Fǎguó rén ma?",
+        "ma nǐ shì Fǎguó rén?",
+        "nǐ shì Fǎguó rén bù?",
+        "shì nǐ Fǎguó rén ma?",
       ],
       hint: "nǐ shì Fǎguó rén",
     },

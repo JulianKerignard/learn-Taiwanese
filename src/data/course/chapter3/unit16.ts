@@ -594,6 +594,7 @@ export const unit16: CourseUnit = {
         "你吃___臭豆腐嗎？(As-tu déjà mangé du tofu puant ?)",
       correctAnswer: "過",
       options: ["過", "了", "會", "在"],
+      optionsHint: ["guò", "le", "huì", "zài"],
       hint: "On demande une expérience de vie, pas un événement spécifique.",
     },
     {
@@ -617,6 +618,7 @@ export const unit16: CourseUnit = {
         "我___說中文。(Je sais parler chinois.)",
       correctAnswer: "會",
       options: ["會", "了", "過", "可以"],
+      optionsHint: ["huì", "le", "guò", "kěyǐ"],
       hint: "Quel mot exprime une capacité acquise ?",
     },
     {
@@ -630,6 +632,12 @@ export const unit16: CourseUnit = {
         "我不吃過小籠包",
         "我不會吃小籠包",
       ],
+      optionsHint: [
+        "wǒ méi chī guò xiǎolóngbāo",
+        "wǒ méi chī le xiǎolóngbāo",
+        "wǒ bù chī guò xiǎolóngbāo",
+        "wǒ bú huì chī xiǎolóngbāo",
+      ],
     },
     {
       id: "u16-ex5",
@@ -638,6 +646,7 @@ export const unit16: CourseUnit = {
         "明天___下雨。(Il pleuvra demain.)",
       correctAnswer: "會",
       options: ["會", "了", "過", "要"],
+      optionsHint: ["huì", "le", "guò", "yào"],
       hint: "Quel mot exprime le futur probable ?",
     },
     {

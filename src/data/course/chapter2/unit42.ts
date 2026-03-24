@@ -514,6 +514,7 @@ export const unit42: CourseUnit = {
       question: "你知道___，這很正常。(Tu sais bien, c'est normal.)",
       correctAnswer: "嘛",
       options: ["嘛", "嗎", "吧", "啦"],
+      optionsHint: ["ma", "ma", "ba", "la"],
       hint: "Quelle particule exprime l'évidence ?",
     },
     {
@@ -546,6 +547,7 @@ export const unit42: CourseUnit = {
       question: "走___ (suggestion d'y aller ensemble)",
       correctAnswer: "吧",
       options: ["吧", "啊", "嘛", "啦"],
+      optionsHint: ["ba", "a", "ma", "la"],
       hint: "Quelle particule exprime une suggestion douce ?",
     },
     {
@@ -554,6 +556,7 @@ export const unit42: CourseUnit = {
       question: "好___！我們去夜市！(Ouais ! On va au marche de nuit !)",
       correctAnswer: "啊",
       options: ["啊", "吧", "嘛", "喔"],
+      optionsHint: ["a", "ba", "ma", "ō"],
       hint: "Quelle particule ajoute de l'enthousiasme ?",
     },
     {

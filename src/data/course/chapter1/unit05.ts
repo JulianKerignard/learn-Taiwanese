@@ -441,6 +441,7 @@ export const unit05: CourseUnit = {
       question: "Comment dit-on 25 en chinois ?",
       correctAnswer: "二十五",
       options: ["二十五", "二五", "十二五", "兩十五"],
+      optionsHint: ["èrshíwǔ", "èr wǔ", "shí èr wǔ", "liǎng shí wǔ"],
     },
     {
       id: "u4-ex2",
@@ -448,6 +449,7 @@ export const unit05: CourseUnit = {
       question: "___個人 (deux personnes)",
       correctAnswer: "兩",
       options: ["兩", "二", "雙", "倆"],
+      optionsHint: ["liǎng", "èr", "shuāng", "liǎ"],
       hint: "Devant un classificateur, on utilise 兩, pas 二.",
     },
     {
@@ -482,6 +484,7 @@ export const unit05: CourseUnit = {
       question: "一___咖啡 (un café — en tasse)",
       correctAnswer: "杯",
       options: ["杯", "個", "碗", "瓶"],
+      optionsHint: ["bēi", "ge", "wǎn", "píng"],
       hint: "Quel classificateur pour les boissons en tasse ?",
     },
     {
@@ -491,6 +494,7 @@ export const unit05: CourseUnit = {
         "Remettez dans l'ordre : 見 / 明天 / 兩點 (À demain à 14h !)",
       correctAnswer: "明天兩點見",
       options: ["明天兩點見", "兩點明天見", "見明天兩點", "明天見兩點"],
+      optionsHint: ["míngtiān liǎng diǎn jiàn", "liǎng diǎn míngtiān jiàn", "jiàn míngtiān liǎng diǎn", "míngtiān jiàn liǎng diǎn"],
     },
   ],
 

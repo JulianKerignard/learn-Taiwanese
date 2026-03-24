@@ -34,6 +34,7 @@ export interface Exercise {
   correctAnswer: string;
   options?: string[];
   hint?: string;
+  optionsHint?: string[];
 }
 
 export interface CourseUnit {

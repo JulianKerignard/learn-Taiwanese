@@ -512,6 +512,7 @@ export const unit10: CourseUnit = {
       question: "Comment demande-t-on le prix de quelque chose ?",
       correctAnswer: "多少錢？",
       options: ["多少錢？", "怎麼賣？", "太貴了？", "幾塊錢？"],
+      optionsHint: ["duōshǎo qián?", "zěnme mài?", "tài guì le?", "jǐ kuài qián?"],
     },
     {
       id: "u8-ex2",
@@ -532,6 +533,7 @@ export const unit10: CourseUnit = {
       question: "太___了！(Trop cher !)",
       correctAnswer: "貴",
       options: ["貴", "便宜", "大", "好"],
+      optionsHint: ["guì", "piányi", "dà", "hǎo"],
       hint: "Quel caractère signifie « cher » ?",
     },
     {
@@ -565,6 +567,7 @@ export const unit10: CourseUnit = {
       question: "可以___一點嗎？(Vous pouvez faire un peu moins cher ?)",
       correctAnswer: "便宜",
       options: ["便宜", "貴", "大", "好"],
+      optionsHint: ["piányi", "guì", "dà", "hǎo"],
       hint: "Quel mot signifie « pas cher » ?",
     },
     {

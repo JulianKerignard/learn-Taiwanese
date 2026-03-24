@@ -163,6 +163,12 @@ export const unit43: CourseUnit = {
         "這個珍珠奶茶兩杯錢？",
         "珍珠奶茶兩杯這多少錢？",
       ],
+      optionsHint: [
+        "zhè liǎng bēi zhēnzhū nǎichá duōshǎo qián?",
+        "liǎng zhēnzhū nǎichá duōshǎo?",
+        "zhège zhēnzhū nǎichá liǎng bēi qián?",
+        "zhēnzhū nǎichá liǎng bēi zhè duōshǎo qián?",
+      ],
     },
     {
       id: "u43-ex2",
@@ -170,6 +176,7 @@ export const unit43: CourseUnit = {
       question: "我要一___滷肉飯。(Je voudrais un bol de lu rou fan.)",
       correctAnswer: "碗",
       options: ["碗", "杯", "瓶", "張"],
+      optionsHint: ["wǎn", "bēi", "píng", "zhāng"],
       hint: "Le lu rou fan se sert dans un bol.",
     },
     {
@@ -178,6 +185,7 @@ export const unit43: CourseUnit = {
       question: "Remettez dans l'ordre : 多少 / 這個 / 錢 (Combien ca coute ?)",
       correctAnswer: "這個多少錢？",
       options: ["這個多少錢？", "多少這個錢？", "錢多少這個？", "這個錢多少？"],
+      optionsHint: ["zhège duōshǎo qián?", "duōshǎo zhège qián?", "qián duōshǎo zhège?", "zhège qián duōshǎo?"],
     },
     {
       id: "u43-ex4",
@@ -202,6 +210,12 @@ export const unit43: CourseUnit = {
         "右邊走，直直去",
         "然後右轉直走",
       ],
+      optionsHint: [
+        "yòu zhuǎn, ránhòu zhí zǒu",
+        "zhí zǒu, ránhòu yòu zhuǎn",
+        "yòubiān zǒu, zhízhí qù",
+        "ránhòu yòu zhuǎn zhí zǒu",
+      ],
     },
     {
       id: "u43-ex6",
@@ -209,6 +223,7 @@ export const unit43: CourseUnit = {
       question: "請問，你們有___有素食的？(Excusez-moi, avez-vous du vegetarien ?)",
       correctAnswer: "沒",
       options: ["沒", "不", "嗎", "了"],
+      optionsHint: ["méi", "bù", "ma", "le"],
       hint: "Question A不A avec le verbe 有.",
     },
     {
@@ -234,6 +249,12 @@ export const unit43: CourseUnit = {
         "外帶我要一碗滷肉飯。",
         "滷肉飯我要一碗外帶。",
       ],
+      optionsHint: [
+        "wǒ yào yì wǎn lǔròufàn, wàidài.",
+        "yì wǎn wǒ yào lǔròufàn wàidài.",
+        "wàidài wǒ yào yì wǎn lǔròufàn.",
+        "lǔròufàn wǒ yào yì wǎn wàidài.",
+      ],
     },
     {
       id: "u43-ex9",
@@ -246,6 +267,12 @@ export const unit43: CourseUnit = {
         "不知道，怎麼辦？",
         "我不會，慢慢來",
       ],
+      optionsHint: [
+        "tīng bù dǒng, kěyǐ shuō màn yìdiǎn ma?",
+        "kàn bù dǒng, zài shuō yí cì",
+        "bù zhīdào, zěnme bàn?",
+        "wǒ bú huì, mànmàn lái",
+      ],
     },
     {
       id: "u43-ex10",
@@ -253,6 +280,7 @@ export const unit43: CourseUnit = {
       question: "三___貓 (trois chats)",
       correctAnswer: "隻",
       options: ["隻", "條", "張", "個"],
+      optionsHint: ["zhī", "tiáo", "zhāng", "ge"],
       hint: "Le classificateur pour les animaux.",
     },
     {
@@ -277,6 +305,12 @@ export const unit43: CourseUnit = {
         "這個狗是你的嗎？",
         "這條狗是你的嗎？",
         "這台狗是你的嗎？",
+      ],
+      optionsHint: [
+        "zhè zhī gǒu shì nǐ de ma?",
+        "zhège gǒu shì nǐ de ma?",
+        "zhè tiáo gǒu shì nǐ de ma?",
+        "zhè tái gǒu shì nǐ de ma?",
       ],
     },
   ],

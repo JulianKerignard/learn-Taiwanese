@@ -463,6 +463,7 @@ export const unit12: CourseUnit = {
       question: "Comment dit-on « J'ai mal à la tête » en chinois ?",
       correctAnswer: "我頭痛",
       options: ["我頭痛", "我肚子痛", "我不舒服", "我感冒了"],
+      optionsHint: ["wǒ tóu tòng", "wǒ dùzi tòng", "wǒ bù shūfu", "wǒ gǎnmào le"],
     },
     {
       id: "u10-ex3",
@@ -470,6 +471,7 @@ export const unit12: CourseUnit = {
       question: "我___了。(J'ai un rhume.)",
       correctAnswer: "感冒",
       options: ["感冒", "發燒", "頭痛", "不舒服"],
+      optionsHint: ["gǎnmào", "fāshāo", "tóu tòng", "bù shūfu"],
       hint: "Quel mot signifie « rhume » ?",
     },
     {
@@ -502,6 +504,7 @@ export const unit12: CourseUnit = {
       question: "我要看___。(Je veux voir un médecin.)",
       correctAnswer: "醫生",
       options: ["醫生", "藥局", "醫院", "護士"],
+      optionsHint: ["yīshēng", "yàojú", "yīyuàn", "hùshi"],
       hint: "Quel mot signifie « médecin » ?",
     },
     {

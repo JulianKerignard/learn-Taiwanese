@@ -196,6 +196,12 @@ export const unit33: CourseUnit = {
         "這個便當要加熱嗎？",
         "我想要便當，請加熱。",
       ],
+      optionsHint: [
+        "wǒ yào zhège biàndāng, kěyǐ jiārè ma?",
+        "wǒ yào yí ge biàndāng, nǐ kěyǐ rè ma?",
+        "zhège biàndāng yào jiārè ma?",
+        "wǒ xiǎng yào biàndāng, qǐng jiārè.",
+      ],
     },
     {
       id: "u33-ex2",
@@ -207,6 +213,12 @@ export const unit33: CourseUnit = {
         "你有包嗎？",
         "袋子在哪裡？",
         "我要袋子。",
+      ],
+      optionsHint: [
+        "nǐmen yǒu dàizi ma?",
+        "nǐ yǒu bāo ma?",
+        "dàizi zài nǎlǐ?",
+        "wǒ yào dàizi.",
       ],
     },
     {
@@ -220,6 +232,12 @@ export const unit33: CourseUnit = {
         "加值五百元好嗎？",
         "請給我五百塊。",
       ],
+      optionsHint: [
+        "wǒ yào jiāzhí wǔbǎi kuài.",
+        "wǒ yào wǔbǎi kuài.",
+        "jiāzhí wǔbǎi yuán hǎo ma?",
+        "qǐng gěi wǒ wǔbǎi kuài.",
+      ],
     },
     {
       id: "u33-ex4",
@@ -231,6 +249,12 @@ export const unit33: CourseUnit = {
         "一碗牛肉麵，不要辣的。",
         "我想吃牛肉麵不辣。",
         "給我牛肉麵，辣的不要。",
+      ],
+      optionsHint: [
+        "wǒ yào yì wǎn niúròu miàn, bú là.",
+        "yì wǎn niúròu miàn, bú yào là de.",
+        "wǒ xiǎng chī niúròu miàn bú là.",
+        "gěi wǒ niúròu miàn, là de bú yào.",
       ],
     },
     {
@@ -244,6 +268,12 @@ export const unit33: CourseUnit = {
         "這個多少？",
         "要付多少？",
       ],
+      optionsHint: [
+        "duōshǎo qián?",
+        "jǐ kuài qián?",
+        "zhège duōshǎo?",
+        "yào fù duōshǎo?",
+      ],
     },
     {
       id: "u33-ex6",
@@ -251,6 +281,7 @@ export const unit33: CourseUnit = {
       question: "Traduisez : « C'est délicieux ! »",
       correctAnswer: "好吃！",
       options: ["好吃！", "很好！", "好喝！", "不錯！"],
+      optionsHint: ["hǎochī!", "hěn hǎo!", "hǎohē!", "búcuò!"],
     },
     {
       id: "u33-ex7",
@@ -262,6 +293,12 @@ export const unit33: CourseUnit = {
         "請問廁所在哪？",
         "對不起，廁所呢？",
         "不好意思，洗手間在哪裡？",
+      ],
+      optionsHint: [
+        "bùhǎoyìsi, cèsuǒ zài nǎlǐ?",
+        "qǐngwèn cèsuǒ zài nǎ?",
+        "duìbuqǐ, cèsuǒ ne?",
+        "bùhǎoyìsi, xǐshǒujiān zài nǎlǐ?",
       ],
     },
     {
@@ -283,6 +320,12 @@ export const unit33: CourseUnit = {
         "出口幾號是台北101？",
         "台北101的出口是什麼？",
       ],
+      optionsHint: [
+        "Táiběi yī líng yī shì jǐ hào chūkǒu?",
+        "Táiběi yī líng yī zài nǎ ge chūkǒu?",
+        "chūkǒu jǐ hào shì Táiběi yī líng yī?",
+        "Táiběi yī líng yī de chūkǒu shì shénme?",
+      ],
     },
     {
       id: "u33-ex10",
@@ -302,6 +345,12 @@ export const unit33: CourseUnit = {
         "幾站到了？",
         "還有多遠？",
         "要坐幾站？",
+      ],
+      optionsHint: [
+        "hái yǒu jǐ zhàn?",
+        "jǐ zhàn dào le?",
+        "hái yǒu duō yuǎn?",
+        "yào zuò jǐ zhàn?",
       ],
     },
     {
@@ -323,6 +372,12 @@ export const unit33: CourseUnit = {
         "我想到台北車站坐捷運。",
         "捷運到台北車站嗎？",
       ],
+      optionsHint: [
+        "wǒ yào zuò jiéyùn dào Táiběi chēzhàn.",
+        "wǒ zuò jiéyùn qù Táiběi chēzhàn.",
+        "wǒ xiǎng dào Táiběi chēzhàn zuò jiéyùn.",
+        "jiéyùn dào Táiběi chēzhàn ma?",
+      ],
     },
     {
       id: "u33-ex14",
@@ -342,6 +397,12 @@ export const unit33: CourseUnit = {
         "這裡加值悠遊卡嗎？",
         "我的悠遊卡要加值。",
         "在這裡可以用悠遊卡嗎？",
+      ],
+      optionsHint: [
+        "Yōuyóu kǎ kěyǐ zài zhèlǐ jiāzhí ma?",
+        "zhèlǐ jiāzhí Yōuyóu kǎ ma?",
+        "wǒ de Yōuyóu kǎ yào jiāzhí.",
+        "zài zhèlǐ kěyǐ yòng Yōuyóu kǎ ma?",
       ],
     },
   ],

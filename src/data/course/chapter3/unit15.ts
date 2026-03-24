@@ -504,6 +504,7 @@ export const unit15: CourseUnit = {
         "我昨天買___兩本書。(J'ai acheté deux livres hier.)",
       correctAnswer: "了",
       options: ["了", "過", "的", "在"],
+      optionsHint: ["le", "guò", "de", "zài"],
       hint: "Quelle particule marque l'accomplissement d'une action ?",
     },
     {
@@ -526,6 +527,7 @@ export const unit15: CourseUnit = {
       question: "她每天___早餐。(Elle mange le petit-déjeuner tous les jours.)",
       correctAnswer: "吃",
       options: ["吃", "吃了", "了吃", "吃過"],
+      optionsHint: ["chī", "chī le", "le chī", "chī guò"],
       hint: "Est-ce une habitude ou un événement ponctuel ?",
     },
     {
@@ -534,6 +536,7 @@ export const unit15: CourseUnit = {
       question: "Comment dit-on « Je n'ai pas mangé » ?",
       correctAnswer: "我沒吃",
       options: ["我沒吃", "我不吃了", "我沒吃了", "我不了吃"],
+      optionsHint: ["wǒ méi chī", "wǒ bù chī le", "wǒ méi chī le", "wǒ bù le chī"],
     },
     {
       id: "u15-ex5",
@@ -546,6 +549,12 @@ export const unit15: CourseUnit = {
         "我沒去學校",
         "我已經去了學校",
       ],
+      optionsHint: [
+        "wǒ méi qù le xuéxiào",
+        "wǒ qù le xuéxiào",
+        "wǒ méi qù xuéxiào",
+        "wǒ yǐjīng qù le xuéxiào",
+      ],
       hint: "沒 et 了 peuvent-ils coexister dans une négation du passé ?",
     },
     {
@@ -554,6 +563,7 @@ export const unit15: CourseUnit = {
       question: "我們看___一部很好看的電影。(Nous avons vu un très bon film.)",
       correctAnswer: "了",
       options: ["了", "過", "是", "在"],
+      optionsHint: ["le", "guò", "shì", "zài"],
       hint: "Événement spécifique accompli → quelle particule ?",
     },
     {
@@ -593,6 +603,7 @@ export const unit15: CourseUnit = {
       question: "Comment dit-on « J'ai mange » ?",
       correctAnswer: "我吃了",
       options: ["我吃了", "我吃過", "我在吃", "我吃"],
+      optionsHint: ["wǒ chī le", "wǒ chī guò", "wǒ zài chī", "wǒ chī"],
     },
     {
       id: "u15-translate-new2",
@@ -600,6 +611,7 @@ export const unit15: CourseUnit = {
       question: "Comment dit-on « Il est parti » ?",
       correctAnswer: "他走了",
       options: ["他走了", "他走過", "他在走", "他沒走了"],
+      optionsHint: ["tā zǒu le", "tā zǒu guò", "tā zài zǒu", "tā méi zǒu le"],
     },
     {
       id: "u15-translate-new3",
@@ -607,6 +619,7 @@ export const unit15: CourseUnit = {
       question: "Comment dit-on « Nous avons achete deux billets » ?",
       correctAnswer: "我們買了兩張票",
       options: ["我們買了兩張票", "我們買兩張票了", "我們沒買了票", "我們在買兩張票"],
+      optionsHint: ["wǒmen mǎi le liǎng zhāng piào", "wǒmen mǎi liǎng zhāng piào le", "wǒmen méi mǎi le piào", "wǒmen zài mǎi liǎng zhāng piào"],
     },
     {
       id: "u15-comp-new1",

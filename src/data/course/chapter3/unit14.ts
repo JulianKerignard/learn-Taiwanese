@@ -549,6 +549,7 @@ export const unit14: CourseUnit = {
       question: "我___台灣的食物很好吃。(Je trouve que la nourriture taiwanaise est délicieuse.)",
       correctAnswer: "覺得",
       options: ["覺得", "喜歡", "想", "比"],
+      optionsHint: ["juéde", "xǐhuān", "xiǎng", "bǐ"],
       hint: "Quel mot signifie « trouver que / penser que » ?",
     },
     {
@@ -557,6 +558,7 @@ export const unit14: CourseUnit = {
       question: "Comment dit-on « Taipei est plus grand que Kaohsiung » ?",
       correctAnswer: "台北比高雄大",
       options: ["台北比高雄大", "台北很高雄大", "台北最高雄大", "台北跟高雄大"],
+      optionsHint: ["Táiběi bǐ Gāoxióng dà", "Táiběi hěn Gāoxióng dà", "Táiběi zuì Gāoxióng dà", "Táiběi gēn Gāoxióng dà"],
     },
     {
       id: "u11-ex3",
@@ -576,6 +578,7 @@ export const unit14: CourseUnit = {
       question: "這家餐廳___好吃。(Ce restaurant est le plus délicieux.)",
       correctAnswer: "最",
       options: ["最", "更", "比", "很"],
+      optionsHint: ["zuì", "gèng", "bǐ", "hěn"],
       hint: "Quel mot exprime le superlatif (le plus) ?",
     },
     {

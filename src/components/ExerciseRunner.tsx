@@ -46,11 +46,15 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
   const correctCount = results.filter((r) => r.correct).length;
 
   // Shuffle options once per question (not on every render)
-  const shuffledOptions = useMemo(() => {
+  // Keep track of original indices for optionsHint mapping
+  const shuffledData = useMemo(() => {
     if (!current?.options) return [];
-    if (current.type === "reorder") return current.options; // Don't shuffle reorder
-    return shuffleArray(current.options);
+    const indexed = current.options.map((opt, i) => ({ opt, origIndex: i }));
+    if (current.type === "reorder") return indexed;
+    return shuffleArray(indexed);
   }, [currentIndex, current?.type]);
+
+  const shuffledOptions = shuffledData.map((d) => d.opt);
 
   const handleAnswer = useCallback(
     (answer: string) => {
@@ -201,7 +205,8 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           </div>
         ) : (
           <div className="grid gap-3 sm:grid-cols-2">
-            {shuffledOptions.map((option) => {
+            {shuffledData.map(({ opt: option, origIndex }) => {
+              const optPinyin = current.optionsHint?.[origIndex];
               const isSelected = selectedAnswer === option;
               const isAnswer = option === current.correctAnswer;
               let optionStyle = "border-stone-200 bg-white hover:border-primary hover:bg-primary/5";
@@ -228,7 +233,12 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 >
                   {showFeedback && isAnswer && <Check className="h-4 w-4 shrink-0 text-success" />}
                   {showFeedback && isSelected && !isAnswer && <X className="h-4 w-4 shrink-0 text-danger" />}
-                  <span className="flex-1">{option}</span>
+                  <span className="flex-1">
+                    <span>{option}</span>
+                    {hasChinese(option) && optPinyin && (
+                      <span className="ml-2 text-xs text-stone-400 italic">{optPinyin}</span>
+                    )}
+                  </span>
                   {hasChinese(option) && (
                     <AudioButton text={option} size="sm" className="shrink-0 opacity-60" />
                   )}

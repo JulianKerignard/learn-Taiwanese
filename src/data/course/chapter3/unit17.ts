@@ -449,6 +449,7 @@ export const unit17: CourseUnit = {
       question: "___冷氣嗎？(Y a-t-il la climatisation ?)",
       correctAnswer: "有",
       options: ["有", "是", "在", "可以"],
+      optionsHint: ["yǒu", "shì", "zài", "kěyǐ"],
       hint: "Quel mot signifie « il y a » ?",
     },
     {
@@ -457,6 +458,7 @@ export const unit17: CourseUnit = {
       question: "Comment demander « Je peux visiter l'appartement ? »",
       correctAnswer: "可以看房嗎？",
       options: ["可以看房嗎？", "有看房嗎？", "要看房嗎？", "想看房嗎？"],
+      optionsHint: ["kěyǐ kàn fáng ma?", "yǒu kàn fáng ma?", "yào kàn fáng ma?", "xiǎng kàn fáng ma?"],
     },
     {
       id: "u13-ex3",
@@ -476,6 +478,7 @@ export const unit17: CourseUnit = {
       question: "房租___水電。(Le loyer inclut eau et électricité.)",
       correctAnswer: "包",
       options: ["包", "有", "是", "要"],
+      optionsHint: ["bāo", "yǒu", "shì", "yào"],
       hint: "Quel mot signifie « inclus » ?",
     },
     {

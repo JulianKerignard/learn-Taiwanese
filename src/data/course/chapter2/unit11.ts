@@ -428,6 +428,12 @@ export const unit11: CourseUnit = {
         "台北車站在哪裡",
         "我坐台北車站",
       ],
+      optionsHint: [
+        "wǒ yào qù Táiběi chēzhàn",
+        "wǒ zài Táiběi chēzhàn",
+        "Táiběi chēzhàn zài nǎlǐ",
+        "wǒ zuò Táiběi chēzhàn",
+      ],
     },
     {
       id: "u9-ex2",
@@ -448,6 +454,7 @@ export const unit11: CourseUnit = {
       question: "我___捷運去。(J'y vais en MRT.)",
       correctAnswer: "坐",
       options: ["坐", "去", "到", "走"],
+      optionsHint: ["zuò", "qù", "dào", "zǒu"],
       hint: "Quel verbe signifie « prendre » un transport ?",
     },
     {
@@ -481,6 +488,7 @@ export const unit11: CourseUnit = {
       question: "___了！(On est arrivé !)",
       correctAnswer: "到",
       options: ["到", "去", "坐", "走"],
+      optionsHint: ["dào", "qù", "zuò", "zǒu"],
       hint: "Quel verbe signifie « arriver » ?",
     },
     {

@@ -599,6 +599,12 @@ export const unit08: CourseUnit = {
         "捷運站去哪裡？",
         "在捷運站哪裡？",
       ],
+      optionsHint: [
+        "jiéyùn zhàn zài nǎlǐ?",
+        "nǎlǐ zài jiéyùn zhàn?",
+        "jiéyùn zhàn qù nǎlǐ?",
+        "zài jiéyùn zhàn nǎlǐ?",
+      ],
     },
     {
       id: "u6-ex2",
@@ -606,6 +612,7 @@ export const unit08: CourseUnit = {
       question: "往___走。(Tournez à gauche.)",
       correctAnswer: "左",
       options: ["左", "右", "前", "後"],
+      optionsHint: ["zuǒ", "yòu", "qián", "hòu"],
       hint: "Quel caractère signifie « gauche » ?",
     },
     {
@@ -651,6 +658,7 @@ export const unit08: CourseUnit = {
       question: "車站在___面。(La gare est devant.)",
       correctAnswer: "前",
       options: ["前", "後", "左", "上"],
+      optionsHint: ["qián", "hòu", "zuǒ", "shàng"],
       hint: "Quel caractère signifie « devant » ?",
     },
     {

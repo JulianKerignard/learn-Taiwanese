@@ -465,6 +465,12 @@ export const unit09: CourseUnit = {
         "我吃牛肉麵",
         "我要一杯牛肉麵",
       ],
+      optionsHint: [
+        "wǒ yào yì wǎn niúròu miàn",
+        "gěi wǒ yì wǎn lǔròufàn",
+        "wǒ chī niúròu miàn",
+        "wǒ yào yì bēi niúròu miàn",
+      ],
     },
     {
       id: "u7-ex2",
@@ -485,6 +491,7 @@ export const unit09: CourseUnit = {
       question: "這個很___！(C'est délicieux !)",
       correctAnswer: "好吃",
       options: ["好吃", "好喝", "好看", "好玩"],
+      optionsHint: ["hǎochī", "hǎohē", "hǎokàn", "hǎowán"],
       hint: "好 + quel verbe pour « manger » ?",
     },
     {
@@ -518,6 +525,7 @@ export const unit09: CourseUnit = {
       question: "不要___，謝謝。(Pas piquant, merci.)",
       correctAnswer: "辣",
       options: ["辣", "甜", "鹹", "酸"],
+      optionsHint: ["là", "tián", "xián", "suān"],
       hint: "Quel caractère signifie « piquant » ?",
     },
     {

@@ -561,6 +561,7 @@ export const unit06: CourseUnit = {
       question: "我要買一___書。(Je veux acheter un livre.)",
       correctAnswer: "本",
       options: ["本", "張", "條", "個"],
+      optionsHint: ["běn", "zhāng", "tiáo", "ge"],
       hint: "Un livre est relié, il a des pages.",
     },
     {
@@ -569,6 +570,7 @@ export const unit06: CourseUnit = {
       question: "桌子上有兩___貓。(Il y a deux chats sur la table.)",
       correctAnswer: "隻",
       options: ["隻", "個", "條", "件"],
+      optionsHint: ["zhī", "ge", "tiáo", "jiàn"],
       hint: "Le chat est un animal.",
     },
     {
@@ -578,6 +580,7 @@ export const unit06: CourseUnit = {
         "我要叫一___計程車。(Je veux appeler un taxi.)",
       correctAnswer: "輛",
       options: ["輛", "台", "個", "隻"],
+      optionsHint: ["liàng", "tái", "ge", "zhī"],
       hint: "Un taxi est un véhicule avec des roues.",
     },
     {
@@ -586,6 +589,7 @@ export const unit06: CourseUnit = {
       question: "請給我一___水。(Donnez-moi une bouteille d'eau.)",
       correctAnswer: "瓶",
       options: ["瓶", "杯", "碗", "個"],
+      optionsHint: ["píng", "bēi", "wǎn", "ge"],
       hint: "L'eau est dans une bouteille.",
     },
     {
@@ -622,6 +626,7 @@ export const unit06: CourseUnit = {
         "這___衣服很好看。(Ce vêtement est joli.)",
       correctAnswer: "件",
       options: ["件", "條", "張", "個"],
+      optionsHint: ["jiàn", "tiáo", "zhāng", "ge"],
       hint: "Les vêtements du haut utilisent ce classificateur.",
     },
     {
@@ -636,6 +641,12 @@ export const unit06: CourseUnit = {
         "我第一本來台灣。",
         "我一次來台灣了。",
       ],
+      optionsHint: [
+        "zhè shì wǒ dì yī cì lái Táiwān.",
+        "zhè shì wǒ yí ge lái Táiwān.",
+        "wǒ dì yī běn lái Táiwān.",
+        "wǒ yí cì lái Táiwān le.",
+      ],
     },
     {
       id: "u6-fill-new1",
@@ -643,6 +654,7 @@ export const unit06: CourseUnit = {
       question: "一___狗 (un chien)",
       correctAnswer: "隻",
       options: ["隻", "條", "個", "輛"],
+      optionsHint: ["zhī", "tiáo", "ge", "liàng"],
       hint: "Le chien est un animal.",
     },
     {
@@ -651,6 +663,7 @@ export const unit06: CourseUnit = {
       question: "三___褲子 (trois pantalons)",
       correctAnswer: "條",
       options: ["條", "件", "張", "個"],
+      optionsHint: ["tiáo", "jiàn", "zhāng", "ge"],
       hint: "Le pantalon a une forme allongee (jambes).",
     },
     {
@@ -659,6 +672,7 @@ export const unit06: CourseUnit = {
       question: "一___照片 (une photo)",
       correctAnswer: "張",
       options: ["張", "本", "片", "個"],
+      optionsHint: ["zhāng", "běn", "piàn", "ge"],
       hint: "Une photo est plate et a une surface.",
     },
     {
@@ -667,6 +681,7 @@ export const unit06: CourseUnit = {
       question: "Comment dit-on « deux verres d'eau » ?",
       correctAnswer: "兩杯水",
       options: ["兩杯水", "兩瓶水", "二個水", "兩碗水"],
+      optionsHint: ["liǎng bēi shuǐ", "liǎng píng shuǐ", "èr ge shuǐ", "liǎng wǎn shuǐ"],
     },
     {
       id: "u6-translate-new2",
@@ -674,6 +689,7 @@ export const unit06: CourseUnit = {
       question: "Comment dit-on « un bol de nouilles » ?",
       correctAnswer: "一碗麵",
       options: ["一碗麵", "一杯麵", "一盤麵", "一個麵"],
+      optionsHint: ["yì wǎn miàn", "yì bēi miàn", "yì pán miàn", "yí ge miàn"],
     },
     {
       id: "u6-translate-new3",
@@ -681,6 +697,7 @@ export const unit06: CourseUnit = {
       question: "Comment dit-on « trois bouteilles de biere » ?",
       correctAnswer: "三瓶啤酒",
       options: ["三瓶啤酒", "三杯啤酒", "三碗啤酒", "三個啤酒"],
+      optionsHint: ["sān píng píjiǔ", "sān bēi píjiǔ", "sān wǎn píjiǔ", "sān ge píjiǔ"],
     },
   ],
 
