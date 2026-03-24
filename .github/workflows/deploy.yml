@@ -40,9 +40,11 @@ jobs:
 
       - name: Deploy public folder
         run: |
-          rsync -az \
-            -e "ssh -i ~/.ssh/deploy_key" \
-            public/ ubuntu@5.196.6.59:/var/www/juliankerignard.fr/taiwan/public/
+          if [ -d "public" ]; then
+            rsync -az \
+              -e "ssh -i ~/.ssh/deploy_key" \
+              public/ ubuntu@5.196.6.59:/var/www/juliankerignard.fr/taiwan/public/
+          fi
 
       - name: Restart app
         run: |
