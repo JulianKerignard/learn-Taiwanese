@@ -53,9 +53,30 @@ export default function UnitContent({ unitId }: UnitContentProps) {
   }, [unitId]);
 
   useEffect(() => {
-    const start = Date.now();
+    let activeTime = 0;
+    let lastTick = Date.now();
+    let visible = true;
+
+    function onVisibilityChange() {
+      if (document.hidden) {
+        // Tab hidden: accumulate time so far
+        activeTime += Date.now() - lastTick;
+        visible = false;
+      } else {
+        // Tab visible again: reset tick
+        lastTick = Date.now();
+        visible = true;
+      }
+    }
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
     return () => {
-      const minutes = Math.round((Date.now() - start) / 60000);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      if (visible) {
+        activeTime += Date.now() - lastTick;
+      }
+      const minutes = Math.round(activeTime / 60000);
       if (minutes > 0) addStudyTime(minutes);
     };
   }, [unitId]);
@@ -128,7 +149,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
   if (!unit) {
     return (
       <div className="flex flex-col items-center gap-4 py-20 text-center">
-        <p className="text-lg text-stone-500">Cette unite n'est pas encore disponible.</p>
+        <p className="text-lg text-stone-500">Cette unité n'est pas encore disponible.</p>
         <Link href="/path" className="btn-primary">
           Retour au parcours
         </Link>
@@ -156,7 +177,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
             <ChevronRight className="h-3 w-3" />
           </>
         )}
-        <span className="text-stone-700">Unite {unit.number}</span>
+        <span className="text-stone-700">Unité {unit.number}</span>
       </nav>
 
       {/* Header */}
@@ -165,7 +186,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
           <span className="text-3xl">{unit.icon}</span>
           <div>
             <h1 className="text-2xl font-bold text-stone-900">
-              Unite {unit.number} — {unit.title}
+              Unité {unit.number} — {unit.title}
             </h1>
             <p className="chinese text-stone-400">{unit.titleZh}</p>
           </div>
@@ -209,7 +230,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
           {unit.keyPoints.length > 0 && (
             <div className="rounded-lg border border-amber-200 bg-amber-50 p-5">
               <h3 className="mb-3 font-semibold text-amber-800">
-                Points cles a retenir
+                Points clés à retenir
               </h3>
               <ul className="flex flex-col gap-2">
                 {unit.keyPoints.map((point, i) => (
@@ -241,7 +262,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
               {vocabAdded ? (
                 <>
                   <Check className="h-4 w-4" />
-                  Ajoute aux flashcards
+                  Ajouté aux flashcards
                 </>
               ) : (
                 <>
@@ -268,8 +289,8 @@ export default function UnitContent({ unitId }: UnitContentProps) {
               </div>
               <h3 className="text-xl font-bold text-stone-800 mb-2">
                 {exerciseResult.passed
-                  ? "Unite validee !"
-                  : "Pas tout a fait..."}
+                  ? "Unité validée !"
+                  : "Pas tout à fait..."}
               </h3>
               <p className="text-stone-600 mb-4">
                 Score : {Math.round(exerciseResult.score * 100)}%
@@ -290,7 +311,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
                 ) : (
                   <button onClick={handleRetry} className="btn-primary gap-1">
                     <RotateCcw className="h-4 w-4" />
-                    Reessayer
+                    Réessayer
                   </button>
                 )}
                 <Link href="/path" className="btn-secondary">
