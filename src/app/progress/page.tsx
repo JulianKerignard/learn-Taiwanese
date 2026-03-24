@@ -71,28 +71,7 @@ export default function ProgressPage() {
 
   if (!loaded) return null;
 
-  // First visit: no data
-  if (
-    !progress?.lastStudyDate &&
-    !gamification?.totalXP &&
-    !pathProgress?.completedUnits.length
-  ) {
-    return (
-      <div className="flex flex-col items-center gap-6 py-20 text-center">
-        <Map className="h-16 w-16 text-primary/40" />
-        <div>
-          <h1 className="text-2xl font-bold text-stone-900">Bienvenue !</h1>
-          <p className="mt-2 text-stone-500">
-            Tu n'as pas encore commence. Lance-toi dans le parcours !
-          </p>
-        </div>
-        <Link href="/path" className="btn-primary gap-2">
-          <Target className="h-4 w-4" />
-          Commencer le parcours
-        </Link>
-      </div>
-    );
-  }
+  const isFirstVisit = !progress?.lastStudyDate && !gamification?.totalXP && !pathProgress?.completedUnits.length;
 
   const levelInfo = getLevelFromTotalXP(gamification?.totalXP ?? 0);
   const xpNeeded = xpForLevel(levelInfo.level);
@@ -113,6 +92,21 @@ export default function ProgressPage() {
           Suis tes avancees et reste motive.
         </p>
       </div>
+
+      {/* Bannière premier accès */}
+      {isFirstVisit && (
+        <div className="card flex items-center gap-4 border-primary/30 bg-primary/5">
+          <Map className="h-10 w-10 text-primary shrink-0" />
+          <div className="flex-1">
+            <p className="font-medium text-stone-800">Tu n'as pas encore commencé</p>
+            <p className="text-sm text-stone-500">Lance-toi dans le parcours pour voir ta progression ici !</p>
+          </div>
+          <Link href="/path" className="btn-primary gap-1 shrink-0">
+            <Target className="h-4 w-4" />
+            Commencer
+          </Link>
+        </div>
+      )}
 
       {/* Section 1: Stats principales */}
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
