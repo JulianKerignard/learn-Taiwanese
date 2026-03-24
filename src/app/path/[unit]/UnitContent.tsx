@@ -12,6 +12,8 @@ import {
   RotateCcw,
 } from "lucide-react";
 import Link from "next/link";
+import { getGamification, saveGamification } from "@/lib/storage";
+import { checkAchievements } from "@/lib/gamification";
 import CourseContent from "@/components/CourseContent";
 import DialogueDisplay from "@/components/DialogueDisplay";
 import CharacterCard from "@/components/CharacterCard";
@@ -60,6 +62,23 @@ export default function UnitContent({ unitId }: UnitContentProps) {
       if (passed) {
         completeUnit(unitId, score, unit, chapters);
         updateStreak();
+
+        // Award XP for completing a unit
+        const gam = getGamification();
+        const xpEarned = Math.round(50 + score * 50); // 50-100 XP based on score
+        gam.totalXP += xpEarned;
+        gam.totalReviews += 1;
+        gam.xpHistory.push({
+          base: xpEarned,
+          modeBonus: 0,
+          streakMultiplier: 1,
+          total: xpEarned,
+          timestamp: new Date().toISOString(),
+        });
+        // Check achievements
+        const newAchievements = checkAchievements(gam);
+        gam.achievements.push(...newAchievements);
+        saveGamification(gam);
       }
     },
     [unit, unitId]
