@@ -4,6 +4,7 @@ import { useState, useCallback, useMemo } from "react";
 import { Check, X, RotateCcw, ArrowRight, Volume2 } from "lucide-react";
 import AudioButton from "./AudioButton";
 import type { Exercise } from "@/types/course";
+import { addMistake } from "@/lib/storage";
 import { cn } from "@/lib/cn";
 import ProgressBar from "./ProgressBar";
 
@@ -67,6 +68,10 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
         ...prev,
         { exerciseId: current.id, correct: isCorrect, answer },
       ]);
+
+      if (!isCorrect) {
+        addMistake(current.correctAnswer);
+      }
     },
     [showFeedback, current]
   );

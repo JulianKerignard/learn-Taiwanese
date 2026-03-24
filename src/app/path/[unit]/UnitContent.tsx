@@ -12,7 +12,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 import Link from "next/link";
-import { getGamification, saveGamification } from "@/lib/storage";
+import { getGamification, saveGamification, addStudyTime } from "@/lib/storage";
 import { checkAchievements } from "@/lib/gamification";
 import CourseContent from "@/components/CourseContent";
 import DialogueDisplay from "@/components/DialogueDisplay";
@@ -50,6 +50,14 @@ export default function UnitContent({ unitId }: UnitContentProps) {
     const u = getUnitById(unitId);
     setUnit(u);
     setLoaded(true);
+  }, [unitId]);
+
+  useEffect(() => {
+    const start = Date.now();
+    return () => {
+      const minutes = Math.round((Date.now() - start) / 60000);
+      if (minutes > 0) addStudyTime(minutes);
+    };
   }, [unitId]);
 
   const chapter = unit ? chapters.find((c) => c.number === unit.chapter) : undefined;

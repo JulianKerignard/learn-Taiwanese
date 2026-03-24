@@ -136,3 +136,30 @@ export function saveGamification(data: GamificationData): void {
   set(KEYS.gamification, data);
 }
 
+// Study time tracking
+const STUDY_TIME_KEY = "taiwan-study-time";
+
+export function getStudyTime(): Record<string, number> {
+  return get<Record<string, number>>(STUDY_TIME_KEY, {});
+}
+
+export function addStudyTime(minutes: number): void {
+  const data = getStudyTime();
+  const today = new Date().toISOString().split("T")[0];
+  data[today] = (data[today] || 0) + minutes;
+  set(STUDY_TIME_KEY, data);
+}
+
+// Mistakes tracking
+const MISTAKES_KEY = "taiwan-mistakes";
+
+export function getMistakes(): Record<string, number> {
+  return get<Record<string, number>>(MISTAKES_KEY, {});
+}
+
+export function addMistake(word: string): void {
+  const data = getMistakes();
+  data[word] = (data[word] || 0) + 1;
+  set(MISTAKES_KEY, data);
+}
+

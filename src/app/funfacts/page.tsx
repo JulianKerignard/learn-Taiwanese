@@ -15,6 +15,8 @@ const categoryColors: Record<Category, { card: string; badge: string }> = {
   culture: { card: "bg-rose-50 border-rose-200", badge: "bg-rose-100 text-rose-700 border-rose-200" },
   nature: { card: "bg-emerald-50 border-emerald-200", badge: "bg-emerald-100 text-emerald-700 border-emerald-200" },
   insolite: { card: "bg-orange-50 border-orange-200", badge: "bg-orange-100 text-orange-700 border-orange-200" },
+  expressions: { card: "bg-cyan-50 border-cyan-200", badge: "bg-cyan-100 text-cyan-700 border-cyan-200" },
+  quotidien: { card: "bg-stone-50 border-stone-200", badge: "bg-stone-100 text-stone-700 border-stone-200" },
 };
 
 export default function FunFactsPage() {

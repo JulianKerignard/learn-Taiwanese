@@ -16,7 +16,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
-import { getProgress, getCards, updateStreak, saveCards } from "@/lib/storage";
+import { getProgress, getCards, updateStreak, saveCards, getStudyTime, getMistakes } from "@/lib/storage";
 import { getPathProgress, getChapterProgress } from "@/lib/progress";
 import {
   getLevelFromTotalXP,
@@ -27,9 +27,24 @@ import { getGamification } from "@/lib/storage";
 import { getStats } from "@/lib/fsrs";
 import { chapters, allUnits } from "@/data/course";
 import { lessons } from "@/data/lessons";
-import type { UserProgress } from "@/types";
+import type { UserProgress, XPEvent } from "@/types";
 import type { GamificationData } from "@/types";
 import type { PathProgress } from "@/types/course";
+
+function getXpByDay(xpHistory: XPEvent[]): { day: string; xp: number; label: string }[] {
+  const days: { day: string; xp: number; label: string }[] = [];
+  const dayNames = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const key = d.toISOString().split("T")[0];
+    const xp = xpHistory
+      .filter((e) => e.timestamp.startsWith(key))
+      .reduce((sum, e) => sum + e.total, 0);
+    days.push({ day: key, xp, label: dayNames[d.getDay()] });
+  }
+  return days;
+}
 
 export default function ProgressPage() {
   const [progress, setProgress] = useState<UserProgress | null>(null);
@@ -44,6 +59,8 @@ export default function ProgressPage() {
     mature: 0,
     newCards: 0,
   });
+  const [studyTime, setStudyTime] = useState<Record<string, number>>({});
+  const [mistakes, setMistakes] = useState<Record<string, number>>({});
   const [showReset, setShowReset] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [otherUsers, setOtherUsers] = useState<{ id: number; username: string; unitsCompleted: number; currentStreak: number; totalXP: number; charactersLearned: number; lastStudyDate: string | null }[]>([]);
@@ -64,6 +81,8 @@ export default function ProgressPage() {
     setGamification(getGamification());
     setPathProgress(getPathProgress());
     setCardStats(getStats(getCards()));
+    setStudyTime(getStudyTime());
+    setMistakes(getMistakes());
     setLoaded(true);
   }
 
@@ -203,6 +222,106 @@ export default function ProgressPage() {
           <Map className="h-4 w-4" />
           Voir le parcours complet
         </Link>
+      </section>
+
+      {/* Section XP Graph (7 last days) */}
+      <section className="card">
+        <h2 className="mb-4 text-lg font-semibold text-stone-800">
+          XP des 7 derniers jours
+        </h2>
+        {(() => {
+          const xpDays = getXpByDay(gamification?.xpHistory ?? []);
+          const maxXp = Math.max(...xpDays.map((d) => d.xp), 1);
+          return (
+            <div className="grid grid-cols-7 gap-2 items-end" style={{ height: 160 }}>
+              {xpDays.map((d) => (
+                <div key={d.day} className="flex flex-col items-center gap-1 h-full justify-end">
+                  <span className="text-xs font-medium text-stone-600">
+                    {d.xp > 0 ? d.xp : ""}
+                  </span>
+                  <div
+                    className={`w-full rounded-t-md ${d.xp > 0 ? "bg-success" : "bg-stone-200"}`}
+                    style={{
+                      height: `${Math.max((d.xp / maxXp) * 100, 8)}%`,
+                      minHeight: 8,
+                    }}
+                  />
+                  <span className="text-xs text-stone-400">{d.label}</span>
+                </div>
+              ))}
+            </div>
+          );
+        })()}
+      </section>
+
+      {/* Section Study Time */}
+      <section>
+        <h2 className="mb-4 text-lg font-semibold text-stone-800">
+          Temps d'etude
+        </h2>
+        {(() => {
+          const today = new Date().toISOString().split("T")[0];
+          const todayMin = studyTime[today] ?? 0;
+          const now = new Date();
+          const startOfWeek = new Date(now);
+          startOfWeek.setDate(now.getDate() - now.getDay());
+          const weekMin = Object.entries(studyTime)
+            .filter(([d]) => d >= startOfWeek.toISOString().split("T")[0])
+            .reduce((sum, [, m]) => sum + m, 0);
+          const totalMin = Object.values(studyTime).reduce((sum, m) => sum + m, 0);
+          const totalH = Math.floor(totalMin / 60);
+          const totalRest = totalMin % 60;
+          return (
+            <div className="grid grid-cols-3 gap-4">
+              <div className="card text-center">
+                <p className="text-2xl font-bold text-stone-800">{todayMin}</p>
+                <p className="text-xs text-stone-500">min aujourd'hui</p>
+              </div>
+              <div className="card text-center">
+                <p className="text-2xl font-bold text-stone-800">{weekMin}</p>
+                <p className="text-xs text-stone-500">min cette semaine</p>
+              </div>
+              <div className="card text-center">
+                <p className="text-2xl font-bold text-stone-800">
+                  {totalH > 0 ? `${totalH}h${totalRest > 0 ? ` ${totalRest}` : ""}` : `${totalMin}`}
+                </p>
+                <p className="text-xs text-stone-500">{totalH > 0 ? "total" : "min total"}</p>
+              </div>
+            </div>
+          );
+        })()}
+      </section>
+
+      {/* Section Mistakes */}
+      <section className="card">
+        <h2 className="mb-4 text-lg font-semibold text-stone-800">
+          Mots les plus rates
+        </h2>
+        {(() => {
+          const sorted = Object.entries(mistakes)
+            .sort(([, a], [, b]) => b - a)
+            .slice(0, 10);
+          if (sorted.length === 0) {
+            return (
+              <p className="text-sm text-stone-400">
+                Aucune erreur ! Continue comme ca.
+              </p>
+            );
+          }
+          return (
+            <ul className="flex flex-col gap-2">
+              {sorted.map(([word, count]) => (
+                <li
+                  key={word}
+                  className="flex items-center justify-between rounded-lg bg-stone-50 px-3 py-2"
+                >
+                  <span className="text-sm font-medium text-stone-700 chinese">{word}</span>
+                  <span className="text-xs text-danger font-medium">{count} erreur{count > 1 ? "s" : ""}</span>
+                </li>
+              ))}
+            </ul>
+          );
+        })()}
       </section>
 
       {/* Section 3: Gamification */}
