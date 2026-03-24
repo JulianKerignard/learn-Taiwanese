@@ -1,8 +1,10 @@
-import { cookies } from "next/headers";
-
 export async function POST() {
-  const cookieStore = await cookies();
-  cookieStore.set({ name: "taiwan-user", value: "", httpOnly: true, maxAge: 0, path: "/taiwan" });
-  cookieStore.set({ name: "taiwan-user", value: "", httpOnly: true, maxAge: 0, path: "/" });
-  return Response.json({ ok: true });
+  return new Response(JSON.stringify({ ok: true }), {
+    status: 200,
+    headers: [
+      ["Content-Type", "application/json"],
+      ["Set-Cookie", "taiwan-user=; Max-Age=0; Path=/taiwan; HttpOnly; SameSite=Lax"],
+      ["Set-Cookie", "taiwan-user=; Max-Age=0; Path=/; HttpOnly; SameSite=Lax"],
+    ],
+  });
 }
