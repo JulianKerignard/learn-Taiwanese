@@ -10,6 +10,7 @@ import {
   Flame,
   Zap,
 } from "lucide-react";
+import Link from "next/link";
 import Flashcard from "./Flashcard";
 import { getDueCards, getNewCards, gradeCard } from "@/lib/fsrs";
 import { calculateXP, checkAchievements, getLevelFromTotalXP, getStreakMultiplier } from "@/lib/gamification";
@@ -191,10 +192,10 @@ export default function ReviewSession() {
           Ajoute du vocabulaire depuis les lecons pour commencer tes sessions de
           revision.
         </p>
-        <a href="/lessons" className="btn-primary gap-2">
+        <Link href="/lessons" className="btn-primary gap-2">
           <BookOpen className="h-4 w-4" />
           Voir les lecons
-        </a>
+        </Link>
       </div>
     );
   }
@@ -312,12 +313,12 @@ export default function ReviewSession() {
         )}
 
         <div className="flex gap-3">
-          <a href="/" className="btn-secondary">
+          <Link href="/" className="btn-secondary">
             Accueil
-          </a>
-          <a href="/lessons" className="btn-primary">
+          </Link>
+          <Link href="/lessons" className="btn-primary">
             Continuer a apprendre
-          </a>
+          </Link>
         </div>
       </div>
     );

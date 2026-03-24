@@ -10,6 +10,7 @@ import {
   ChevronLeft,
   Trophy,
 } from "lucide-react";
+import Link from "next/link";
 import CharacterCard from "@/components/CharacterCard";
 import AudioButton from "@/components/AudioButton";
 import PinyinDisplay from "@/components/PinyinDisplay";
@@ -101,9 +102,9 @@ export default function LessonContent({ slug }: { slug: string }) {
     return (
       <div className="flex flex-col items-center gap-4 py-20">
         <p className="text-lg text-stone-500">Leçon introuvable.</p>
-        <a href="/lessons" className="btn-secondary">
+        <Link href="/lessons" className="btn-secondary">
           Retour aux leçons
-        </a>
+        </Link>
       </div>
     );
   }
@@ -121,12 +122,12 @@ export default function LessonContent({ slug }: { slug: string }) {
     <div className="flex flex-col gap-8">
       {/* Header */}
       <div>
-        <a
+        <Link
           href="/lessons"
           className="mb-4 inline-flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
         >
           <ChevronLeft className="h-4 w-4" /> Retour aux leçons
-        </a>
+        </Link>
         <div className="flex items-center gap-4">
           <span className="text-5xl">{lesson.icon}</span>
           <div>

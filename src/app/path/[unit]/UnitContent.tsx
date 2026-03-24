@@ -11,6 +11,7 @@ import {
   Check,
   RotateCcw,
 } from "lucide-react";
+import Link from "next/link";
 import CourseContent from "@/components/CourseContent";
 import DialogueDisplay from "@/components/DialogueDisplay";
 import CharacterCard from "@/components/CharacterCard";
@@ -100,9 +101,9 @@ export default function UnitContent({ unitId }: UnitContentProps) {
     return (
       <div className="flex flex-col items-center gap-4 py-20 text-center">
         <p className="text-lg text-stone-500">Cette unite n'est pas encore disponible.</p>
-        <a href="/path" className="btn-primary">
+        <Link href="/path" className="btn-primary">
           Retour au parcours
-        </a>
+        </Link>
       </div>
     );
   }
@@ -117,9 +118,9 @@ export default function UnitContent({ unitId }: UnitContentProps) {
     <div className="flex flex-col gap-8">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-stone-400">
-        <a href="/path" className="hover:text-primary transition-colors">
+        <Link href="/path" className="hover:text-primary transition-colors">
           Parcours
-        </a>
+        </Link>
         <ChevronRight className="h-3 w-3" />
         {chapter && (
           <>
@@ -254,19 +255,19 @@ export default function UnitContent({ unitId }: UnitContentProps) {
               />
               <div className="mt-6 flex items-center justify-center gap-3">
                 {exerciseResult.passed && nextUnitId ? (
-                  <a href={`/path/${nextUnitId}`} className="btn-primary gap-1">
+                  <Link href={`/path/${nextUnitId}`} className="btn-primary gap-1">
                     Unite suivante
                     <ChevronRight className="h-4 w-4" />
-                  </a>
+                  </Link>
                 ) : (
                   <button onClick={handleRetry} className="btn-primary gap-1">
                     <RotateCcw className="h-4 w-4" />
                     Reessayer
                   </button>
                 )}
-                <a href="/path" className="btn-secondary">
+                <Link href="/path" className="btn-secondary">
                   Retour au parcours
-                </a>
+                </Link>
               </div>
             </div>
           ) : (
@@ -280,21 +281,21 @@ export default function UnitContent({ unitId }: UnitContentProps) {
 
       {/* Bottom navigation */}
       <div className="flex items-center justify-between border-t border-stone-200 pt-6">
-        <a
+        <Link
           href="/path"
           className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           Retour au parcours
-        </a>
+        </Link>
         {nextUnitId && (
-          <a
+          <Link
             href={`/path/${nextUnitId}`}
             className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
           >
             Unite suivante
             <ChevronRight className="h-4 w-4" />
-          </a>
+          </Link>
         )}
       </div>
     </div>

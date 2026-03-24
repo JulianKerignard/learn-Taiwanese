@@ -10,6 +10,7 @@ import {
   Layers,
   Map,
 } from "lucide-react";
+import Link from "next/link";
 import { getProgress, getCards } from "@/lib/storage";
 import { getStats } from "@/lib/fsrs";
 import { lessons } from "@/data/lessons";
@@ -90,9 +91,9 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
-            <a href="/flashcards" className="btn-primary gap-1">
+            <Link href="/flashcards" className="btn-primary gap-1">
               Réviser <ChevronRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </section>
       )}
@@ -101,15 +102,15 @@ export default function HomePage() {
       <section>
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-stone-800">Leçons</h2>
-          <a href="/lessons" className="text-sm font-medium text-primary hover:underline">
+          <Link href="/lessons" className="text-sm font-medium text-primary hover:underline">
             Voir tout
-          </a>
+          </Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {displayedLessons.map((lesson) => {
             const completed = progress.lessonsCompleted.includes(lesson.id);
             return (
-              <a key={lesson.id} href={`/lessons/${lesson.slug}`} className="card group cursor-pointer">
+              <Link key={lesson.id} href={`/lessons/${lesson.slug}`} className="card group cursor-pointer">
                 <div className="flex items-start gap-3">
                   <span className="text-3xl">{lesson.icon}</span>
                   <div className="flex-1">
@@ -123,7 +124,7 @@ export default function HomePage() {
                     )}
                   </div>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>
@@ -156,13 +157,13 @@ function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
             </p>
           </div>
         </div>
-        <a
+        <Link
           href={hasStarted && currentUnit ? `/path/${currentUnit.id}` : "/path"}
           className="btn-primary gap-1"
         >
           {hasStarted ? "Continuer" : "Commencer"}
           <ChevronRight className="h-4 w-4" />
-        </a>
+        </Link>
       </div>
     </section>
   );

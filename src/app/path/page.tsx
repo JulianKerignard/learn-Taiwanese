@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Check, Lock, ChevronRight, BookOpen, Clock } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
@@ -235,7 +236,7 @@ function UnitNode({
           </div>
 
           {!isPlaceholder && unlocked && (
-            <a
+            <Link
               href={`/path/${unit.id}`}
               className={cn(
                 "shrink-0",
@@ -245,7 +246,7 @@ function UnitNode({
             >
               {completed ? "Refaire" : isCurrent ? "Continuer" : "Commencer"}
               <ChevronRight className="h-4 w-4" />
-            </a>
+            </Link>
           )}
         </div>
       </div>

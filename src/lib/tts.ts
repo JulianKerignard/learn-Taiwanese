@@ -20,7 +20,9 @@ export async function speak(text: string, rate = 0.85): Promise<void> {
       rate: String(rate),
     });
 
-    const response = await fetch(`/api/tts?${params}`);
+    const w = window as unknown as { __NEXT_DATA__?: { basePath?: string } };
+    const basePath = w.__NEXT_DATA__?.basePath ?? "";
+    const response = await fetch(`${basePath}/api/tts?${params}`);
     if (response.ok) {
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);

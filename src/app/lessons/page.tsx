@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { BookOpen } from "lucide-react";
 import { getProgress } from "@/lib/storage";
 import { lessons } from "@/data/lessons";
@@ -39,7 +40,7 @@ export default function LessonsPage() {
           };
 
           return (
-            <a
+            <Link
               key={lesson.id}
               href={`/lessons/${lesson.slug}`}
               className="card group cursor-pointer flex flex-col gap-3"
@@ -67,7 +68,7 @@ export default function LessonsPage() {
                   {lesson.vocabulary.length} mots
                 </span>
               </div>
-            </a>
+            </Link>
           );
         })}
       </div>
