@@ -6,6 +6,9 @@ const SYNC_KEYS = [
   { local: "taiwan-course-progress", remote: "path_progress" },
   { local: "taiwan-gamification", remote: "gamification" },
   { local: "taiwan-settings", remote: "settings" },
+  { local: "taiwan-speed-record", remote: "speed_record" },
+  { local: "taiwan-study-time", remote: "study_time" },
+  { local: "taiwan-mistakes", remote: "mistakes" },
 ];
 
 export async function checkUser(): Promise<{ id: number; username: string } | null> {

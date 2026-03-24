@@ -63,7 +63,7 @@ export default function ProgressPage() {
   const [mistakes, setMistakes] = useState<Record<string, number>>({});
   const [showReset, setShowReset] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [otherUsers, setOtherUsers] = useState<{ id: number; username: string; unitsCompleted: number; currentStreak: number; totalXP: number; charactersLearned: number; lastStudyDate: string | null }[]>([]);
+  const [otherUsers, setOtherUsers] = useState<{ id: number; username: string; unitsCompleted: number; currentStreak: number; totalXP: number; charactersLearned: number; lastStudyDate: string | null; speedRecord: number; totalStudyMinutes: number; level: number }[]>([]);
 
   useEffect(() => {
     reload();
@@ -424,19 +424,27 @@ export default function ProgressPage() {
             L'equipe
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {otherUsers.map((u) => (
-              <div key={u.id} className="card flex flex-col gap-2">
+            {otherUsers
+              .sort((a, b) => b.totalXP - a.totalXP)
+              .map((u, rank) => (
+              <div key={u.id} className="card flex flex-col gap-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-stone-800 capitalize">{u.username}</span>
-                  {u.lastStudyDate && (
-                    <span className="text-xs text-stone-400">
-                      {u.lastStudyDate === new Date().toISOString().split("T")[0]
-                        ? "Actif aujourd'hui"
-                        : `Dernier : ${u.lastStudyDate}`}
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+                      {rank === 0 ? "🥇" : rank === 1 ? "🥈" : rank === 2 ? "🥉" : rank + 1}
                     </span>
-                  )}
+                    <span className="font-semibold text-stone-800 capitalize">{u.username}</span>
+                  </div>
+                  <span className="badge bg-stone-100 text-stone-500">Niv. {u.level}</span>
                 </div>
-                <div className="grid grid-cols-2 gap-2 text-center">
+                {u.lastStudyDate && (
+                  <p className="text-xs text-stone-400">
+                    {u.lastStudyDate === new Date().toISOString().split("T")[0]
+                      ? "Actif aujourd'hui"
+                      : `Dernier : ${u.lastStudyDate}`}
+                  </p>
+                )}
+                <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="rounded-lg bg-primary/5 px-2 py-1.5">
                     <p className="text-lg font-bold text-primary">{u.unitsCompleted}</p>
                     <p className="text-xs text-stone-500">unites</p>
@@ -449,9 +457,19 @@ export default function ProgressPage() {
                     <p className="text-lg font-bold text-accent">{u.totalXP}</p>
                     <p className="text-xs text-stone-500">XP</p>
                   </div>
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="rounded-lg bg-success/10 px-2 py-1.5">
                     <p className="text-lg font-bold text-success">{u.charactersLearned}</p>
                     <p className="text-xs text-stone-500">caracteres</p>
+                  </div>
+                  <div className="rounded-lg bg-amber-50 px-2 py-1.5">
+                    <p className="text-lg font-bold text-amber-600">{u.speedRecord}</p>
+                    <p className="text-xs text-stone-500">speed quiz</p>
+                  </div>
+                  <div className="rounded-lg bg-violet-50 px-2 py-1.5">
+                    <p className="text-lg font-bold text-violet-600">{u.totalStudyMinutes > 60 ? `${Math.floor(u.totalStudyMinutes / 60)}h` : `${u.totalStudyMinutes}m`}</p>
+                    <p className="text-xs text-stone-500">etude</p>
                   </div>
                 </div>
               </div>
