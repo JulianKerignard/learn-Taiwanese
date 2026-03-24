@@ -48,6 +48,7 @@ export default function SpeedQuizPage() {
   const [timeLeft, setTimeLeft] = useState(DURATION);
   const [feedback, setFeedback] = useState<number | null>(null);
   const [record, setRecord] = useState(0);
+  const [showPinyin, setShowPinyin] = useState(true);
   const usedRef = useRef(new Set<string>());
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -85,10 +86,12 @@ export default function SpeedQuizPage() {
     usedRef.current.clear();
     nextQuestion();
 
+    if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           if (timerRef.current) clearInterval(timerRef.current);
+          timerRef.current = null;
           setPhase("result");
           return 0;
         }
@@ -97,22 +100,24 @@ export default function SpeedQuizPage() {
     }, 1000);
   }
 
+  // Save record when game ends
   useEffect(() => {
     if (phase === "result") {
-      setScore((finalScore) => {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        const currentRecord = saved ? Number(saved) : 0;
-        if (finalScore > currentRecord) {
-          localStorage.setItem(STORAGE_KEY, String(finalScore));
-          setRecord(finalScore);
-        }
-        return finalScore;
-      });
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const currentRecord = saved ? Number(saved) : 0;
+      if (score > currentRecord) {
+        localStorage.setItem(STORAGE_KEY, String(score));
+        setRecord(score);
+      }
     }
+  }, [phase, score]);
+
+  // Cleanup timer on unmount only
+  useEffect(() => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [phase]);
+  }, []);
 
   function handleAnswer(index: number) {
     if (!question || feedback !== null) return;
@@ -150,6 +155,10 @@ export default function SpeedQuizPage() {
         <p className="mb-8 text-stone-500">
           Traduis le plus de mots possible en 60 secondes !
         </p>
+        <label className="mb-6 flex items-center justify-center gap-2 text-sm text-stone-600">
+          <input type="checkbox" checked={showPinyin} onChange={(e) => setShowPinyin(e.target.checked)} className="rounded" />
+          Afficher le pinyin
+        </label>
         <button
           onClick={startGame}
           disabled={allWords.length === 0}
@@ -236,9 +245,11 @@ export default function SpeedQuizPage() {
             <span className="chinese text-6xl font-bold text-stone-900">
               {question.word.character}
             </span>
-            <p className="mt-2 text-sm text-stone-400">
-              {question.word.pinyin}
-            </p>
+            {showPinyin && (
+              <p className="mt-2 text-sm text-stone-400 italic">
+                {question.word.pinyin}
+              </p>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-3">

@@ -49,6 +49,7 @@ export default function MatchingPage() {
   const [startTime, setStartTime] = useState<number>(0);
   const [elapsed, setElapsed] = useState(0);
   const [finished, setFinished] = useState(false);
+  const [showPinyin, setShowPinyin] = useState(true);
   const locked = useRef(false);
 
   const initGame = useCallback(() => {
@@ -149,6 +150,10 @@ export default function MatchingPage() {
           &larr; Retour aux jeux
         </Link>
         <div className="flex items-center gap-4 text-sm text-stone-600">
+          <label className="flex items-center gap-1">
+            <input type="checkbox" checked={showPinyin} onChange={(e) => setShowPinyin(e.target.checked)} className="rounded" />
+            Pinyin
+          </label>
           <span>
             Tentatives : <strong>{attempts}</strong>
           </span>
@@ -219,7 +224,10 @@ export default function MatchingPage() {
                     {card.text}
                   </span>
                   {card.type === "character" && (card.flipped || card.matched) && (
-                    <div className="mt-1">
+                    <div className="mt-1 flex flex-col items-center gap-0.5">
+                      {showPinyin && (
+                        <span className="text-xs text-stone-400 italic">{card.word.pinyin}</span>
+                      )}
                       <AudioButton text={card.word.character} size="sm" />
                     </div>
                   )}

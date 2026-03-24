@@ -32,6 +32,7 @@ export default function HangmanPage() {
   const [choices, setChoices] = useState<string[]>([]);
   const [guessed, setGuessed] = useState<Set<string>>(new Set());
   const [errors, setErrors] = useState(0);
+  const [showPinyin, setShowPinyin] = useState(true);
   const [phase, setPhase] = useState<Phase>("playing");
 
   const initGame = useCallback(
@@ -99,6 +100,14 @@ export default function HangmanPage() {
         Pendu Chinois
       </h1>
 
+      {/* Pinyin toggle */}
+      <div className="mb-4 flex justify-end">
+        <label className="flex items-center gap-2 text-sm text-stone-500">
+          <input type="checkbox" checked={showPinyin} onChange={(e) => setShowPinyin(e.target.checked)} className="rounded" />
+          Afficher le pinyin
+        </label>
+      </div>
+
       {/* Question */}
       <div className="mb-6 rounded-xl border border-stone-200 bg-stone-50 p-4 text-center">
         <p className="text-sm text-stone-500">
@@ -107,6 +116,9 @@ export default function HangmanPage() {
         <p className="mt-1 text-xl font-bold text-stone-900">
           {target.french}
         </p>
+        {showPinyin && (
+          <p className="mt-1 text-sm italic text-stone-400">{target.pinyin}</p>
+        )}
       </div>
 
       {/* Error indicators */}
