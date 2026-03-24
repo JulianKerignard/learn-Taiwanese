@@ -27,6 +27,9 @@ function set<T>(key: string, value: T): void {
   if (!isClient()) return;
   try {
     localStorage.setItem(key, JSON.stringify(value));
+    import("@/lib/sync")
+      .then(({ scheduleSync }) => scheduleSync())
+      .catch(() => {});
   } catch {
     // localStorage full or unavailable
   }
