@@ -1,16 +1,16 @@
 import type { Lesson, VocabularyItem } from "@/types";
-import basicsData from "./lessons/basics.json";
-import survivalData from "./lessons/survival.json";
-import restaurantData from "./lessons/restaurant.json";
-import transportData from "./lessons/transport.json";
-import shoppingData from "./lessons/shopping.json";
+import basicsData from "./lessons/basics";
+import survivalData from "./lessons/survival";
+import restaurantData from "./lessons/restaurant";
+import transportData from "./lessons/transport";
+import shoppingData from "./lessons/shopping";
 
 export const lessons: Lesson[] = [
-  basicsData as Lesson,
-  survivalData as Lesson,
-  restaurantData as Lesson,
-  transportData as Lesson,
-  shoppingData as Lesson,
+  basicsData,
+  survivalData,
+  restaurantData,
+  transportData,
+  shoppingData,
 ];
 
 export function getLessonBySlug(slug: string): Lesson | undefined {

@@ -111,6 +111,11 @@ const sections: CourseSection[] = [
         pinyin: "Qǐng bāng wǒ jiào jiùhùchē! Wǒ péngyǒu shòushāng le.",
         translation: "Appelez une ambulance s'il vous plaît ! Mon ami est blessé.",
       },
+      {
+        type: "tip",
+        content:
+          "La phrase MAGIQUE à Taiwan : 不好意思 (bù hǎo yìsi). Ce n'est pas vraiment une excuse — c'est un passe-partout social. On l'utilise pour attirer l'attention de quelqu'un, pour passer devant quelqu'un, pour demander quelque chose, pour s'excuser d'un retard léger. Les Taiwanais le disent probablement 20 fois par jour. Si vous ne deviez retenir qu'une seule expression de cette liste, ce serait celle-ci.",
+      },
     ],
   },
   {
@@ -196,6 +201,11 @@ const sections: CourseSection[] = [
         chinese: "電梯 / 樓梯 / 停車場 / 接待處",
         pinyin: "diàntī / lóutī / tíngchēchǎng / jiēdài chù",
         translation: "ascenseur / escaliers / parking / réception",
+      },
+      {
+        type: "warning",
+        content:
+          "Le panneau le plus important à ne PAS ignorer : 禁止飲食 (jìnzhǐ yǐnshí — interdit de manger et boire) dans le MRT. Amende de 1 500 à 7 500 NT$ (environ 45 à 225€). Oui, même l'eau. Même un chewing-gum. Les agents de sécurité patrouillent et les amendes sont réelles. C'est l'une des règles les plus strictement appliquées à Taiwan.",
       },
     ],
   },
@@ -361,6 +371,37 @@ const sections: CourseSection[] = [
         chinese: "不用急，慢慢來。",
         pinyin: "Bú yòng jí, màn man lái.",
         translation: "Pas besoin de se presser, prends ton temps.",
+      },
+      {
+        type: "tip",
+        content:
+          "慢慢來 (mànmàn lái) est l'expression qui résume le mieux l'attitude taiwanaise. Littéralement « viens lentement ». On vous la dira quand vous cherchez vos mots en chinois, quand vous apprenez quelque chose de nouveau, quand vous êtes stressé. C'est une invitation à la détente, pas une critique de votre vitesse. Si vous ne devez retenir qu'une expression de cette leçon pour vous sentir chez vous à Taiwan, c'est celle-ci.",
+      },
+      {
+        type: "text",
+        content:
+          "聽不懂 (tīng bù dǒng) — « Je ne comprends pas (ce que j'entends) ». C'est l'expression de survie ultime pour un débutant. Quand quelqu'un vous parle en chinois et que vous ne comprenez rien : 聽不懂 (tīng bù dǒng). Littéralement « écouter - ne pas - comprendre ». La plupart des Taiwanais ralentiront immédiatement, simplifieront leur phrase, ou passeront à l'anglais. Variante écrite : 看不懂 (kàn bù dǒng — « je ne comprends pas ce que je lis »), utile quand quelqu'un vous montre un texte.",
+      },
+      {
+        type: "example",
+        content: "聽不懂 — Je ne comprends pas",
+        chinese: "不好意思，我聽不懂。可以說慢一點嗎？",
+        pinyin: "Bù hǎo yìsi, wǒ tīng bù dǒng. Kěyǐ shuō màn yìdiǎn ma?",
+        translation:
+          "Excusez-moi, je ne comprends pas. Pouvez-vous parler plus lentement ?",
+      },
+      {
+        type: "text",
+        content:
+          "沒關係 (méi guānxì) — « Ce n'est pas grave / Pas de souci ». C'est la réponse bienveillante par excellence. Quelqu'un s'excuse auprès de vous ? 沒關係. Vous faites tomber quelque chose dans un magasin ? Le commerçant dira 沒關係. Un ami annule un rendez-vous ? 沒關係. C'est l'expression de la tolérance et de la compréhension — deux valeurs centrales dans la culture taiwanaise.",
+      },
+      {
+        type: "example",
+        content: "沒關係 — Ce n'est pas grave",
+        chinese: "A：不好意思，我遲到了。B：沒關係，沒關係。",
+        pinyin: "A: Bù hǎo yìsi, wǒ chídào le. B: Méi guānxì, méi guānxì.",
+        translation:
+          "A : Excuse-moi, je suis en retard. B : Ce n'est pas grave, ce n'est pas grave.",
       },
     ],
   },
