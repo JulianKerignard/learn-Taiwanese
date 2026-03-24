@@ -80,13 +80,13 @@ export function calculateXP(
 
 // Achievement definitions
 const ACHIEVEMENT_DEFS: Omit<Achievement, "unlockedAt">[] = [
-  { id: "first_char", name: "Premier pas", description: "Apprendre son premier caractere", icon: "sparkles", condition: "characters_1" },
-  { id: "char_10", name: "Debutant", description: "Apprendre 10 caracteres", icon: "book", condition: "characters_10" },
-  { id: "char_50", name: "Apprenti", description: "Apprendre 50 caracteres", icon: "trophy", condition: "characters_50" },
-  { id: "char_100", name: "Centurion", description: "Apprendre 100 caracteres", icon: "star", condition: "characters_100" },
-  { id: "char_500", name: "Erudit", description: "Apprendre 500 caracteres", icon: "crown", condition: "characters_500" },
+  { id: "first_char", name: "Premier pas", description: "Apprendre son premier caractère", icon: "sparkles", condition: "characters_1" },
+  { id: "char_10", name: "Débutant", description: "Apprendre 10 caractères", icon: "book", condition: "characters_10" },
+  { id: "char_50", name: "Apprenti", description: "Apprendre 50 caractères", icon: "trophy", condition: "characters_50" },
+  { id: "char_100", name: "Centurion", description: "Apprendre 100 caractères", icon: "star", condition: "characters_100" },
+  { id: "char_500", name: "Érudit", description: "Apprendre 500 caractères", icon: "crown", condition: "characters_500" },
   { id: "streak_7", name: "Semaine parfaite", description: "Streak de 7 jours", icon: "flame", condition: "streak_7" },
-  { id: "streak_30", name: "Mois dedicace", description: "Streak de 30 jours", icon: "flame", condition: "streak_30" },
+  { id: "streak_30", name: "Mois dédié", description: "Streak de 30 jours", icon: "flame", condition: "streak_30" },
   { id: "streak_100", name: "Centenaire", description: "Streak de 100 jours", icon: "flame", condition: "streak_100" },
   { id: "level_5", name: "Niveau 5", description: "Atteindre le niveau 5", icon: "zap", condition: "level_5" },
   { id: "level_10", name: "Niveau 10", description: "Atteindre le niveau 10", icon: "zap", condition: "level_10" },

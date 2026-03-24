@@ -32,7 +32,7 @@ export async function GET() {
         lastStudyDate: progress?.lastStudyDate ?? null,
         speedRecord: typeof speedRecord === "number" ? speedRecord : 0,
         totalStudyMinutes: totalMinutes,
-        level: gam?.totalXP ? Math.floor((-1 + Math.sqrt(1 + 8 * gam.totalXP / 100)) / 2) + 1 : 1,
+        level: (() => { if (!gam?.totalXP) return 1; let lvl = 1; let acc = 0; while (lvl < 60) { const needed = 100 * lvl; if (acc + needed > gam.totalXP) return lvl; acc += needed; lvl++; } return 60; })(),
       };
     });
 

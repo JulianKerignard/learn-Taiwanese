@@ -86,12 +86,34 @@ export default function ProgressPage() {
     setLoaded(true);
   }
 
-  function handleReset() {
+  async function handleReset() {
     localStorage.removeItem("taiwan-progress");
     localStorage.removeItem("taiwan-cards");
     localStorage.removeItem("taiwan-course-progress");
     localStorage.removeItem("taiwan-gamification");
     localStorage.removeItem("taiwan-settings");
+    localStorage.removeItem("taiwan-speed-record");
+    localStorage.removeItem("taiwan-study-time");
+    localStorage.removeItem("taiwan-mistakes");
+    localStorage.removeItem("taiwan-reading-known-words");
+    // Also reset server-side data if logged in
+    try {
+      const { getBasePath } = await import("@/lib/basepath");
+      await fetch(`${getBasePath()}/api/progress/save`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          cards: [],
+          progress: {},
+          path_progress: { completedUnits: [], unitScores: {}, currentUnit: "unit-01", chapterProgress: {} },
+          gamification: { totalXP: 0, totalReviews: 0, totalCharactersLearned: 0, currentStreak: 0, achievements: [], lastSessionPerfect: false, xpHistory: [] },
+          settings: {},
+          speed_record: 0,
+          study_time: {},
+          mistakes: {},
+        }),
+      });
+    } catch {}
     setShowReset(false);
     window.location.reload();
   }
@@ -116,7 +138,7 @@ export default function ProgressPage() {
       <div>
         <h1 className="text-3xl font-bold text-stone-900">Progression</h1>
         <p className="mt-1 text-stone-500">
-          Suis tes avancees et reste motive.
+          Suis tes avancées et reste motivé.
         </p>
       </div>
 
@@ -257,7 +279,7 @@ export default function ProgressPage() {
       {/* Section Study Time */}
       <section>
         <h2 className="mb-4 text-lg font-semibold text-stone-800">
-          Temps d'etude
+          Temps d'étude
         </h2>
         {(() => {
           const today = new Date().toISOString().split("T")[0];
@@ -295,7 +317,7 @@ export default function ProgressPage() {
       {/* Section Mistakes */}
       <section className="card">
         <h2 className="mb-4 text-lg font-semibold text-stone-800">
-          Mots les plus rates
+          Mots les plus ratés
         </h2>
         {(() => {
           const sorted = Object.entries(mistakes)
@@ -304,7 +326,7 @@ export default function ProgressPage() {
           if (sorted.length === 0) {
             return (
               <p className="text-sm text-stone-400">
-                Aucune erreur ! Continue comme ca.
+                Aucune erreur ! Continue comme ça.
               </p>
             );
           }
@@ -327,7 +349,7 @@ export default function ProgressPage() {
       {/* Section 3: Gamification */}
       <section className="card">
         <h2 className="mb-4 text-lg font-semibold text-stone-800">
-          Niveau et trophees
+          Niveau et trophées
         </h2>
 
         {/* XP bar */}
@@ -351,7 +373,7 @@ export default function ProgressPage() {
 
         {/* Achievements */}
         <h3 className="mb-3 text-sm font-semibold text-stone-700">
-          Trophees debloques
+          Trophées débloqués
         </h3>
         {unlockedAchievements.length > 0 ? (
           <div className="grid gap-3 sm:grid-cols-2">
@@ -376,7 +398,7 @@ export default function ProgressPage() {
           </div>
         ) : (
           <p className="text-sm text-stone-400">
-            Continue a etudier pour debloquer des trophees
+            Continue à étudier pour débloquer des trophées
           </p>
         )}
       </section>
@@ -385,7 +407,7 @@ export default function ProgressPage() {
       <section className="card">
         <h2 className="mb-3 text-lg font-semibold text-stone-800">
           <BookOpen className="mr-2 inline h-5 w-5 text-primary" />
-          Lecons
+          Leçons
         </h2>
         <div className="flex flex-col gap-2">
           {lessons.map((l) => {
@@ -403,11 +425,11 @@ export default function ProgressPage() {
                 </span>
                 {done ? (
                   <span className="badge bg-success/10 text-success text-xs">
-                    Completee
+                    Complétée
                   </span>
                 ) : (
                   <span className="badge bg-stone-100 text-stone-400 text-xs">
-                    A faire
+                    À faire
                   </span>
                 )}
               </div>
@@ -421,7 +443,7 @@ export default function ProgressPage() {
         <section>
           <h2 className="mb-4 text-lg font-semibold text-stone-800 flex items-center gap-2">
             <Star className="h-5 w-5 text-warning" />
-            L'equipe
+            L'équipe
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {otherUsers
@@ -447,7 +469,7 @@ export default function ProgressPage() {
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="rounded-lg bg-primary/5 px-2 py-1.5">
                     <p className="text-lg font-bold text-primary">{u.unitsCompleted}</p>
-                    <p className="text-xs text-stone-500">unites</p>
+                    <p className="text-xs text-stone-500">unités</p>
                   </div>
                   <div className="rounded-lg bg-warning/10 px-2 py-1.5">
                     <p className="text-lg font-bold text-warning">{u.currentStreak}</p>
@@ -461,7 +483,7 @@ export default function ProgressPage() {
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="rounded-lg bg-success/10 px-2 py-1.5">
                     <p className="text-lg font-bold text-success">{u.charactersLearned}</p>
-                    <p className="text-xs text-stone-500">caracteres</p>
+                    <p className="text-xs text-stone-500">caractères</p>
                   </div>
                   <div className="rounded-lg bg-amber-50 px-2 py-1.5">
                     <p className="text-lg font-bold text-amber-600">{u.speedRecord}</p>
@@ -469,7 +491,7 @@ export default function ProgressPage() {
                   </div>
                   <div className="rounded-lg bg-violet-50 px-2 py-1.5">
                     <p className="text-lg font-bold text-violet-600">{u.totalStudyMinutes > 60 ? `${Math.floor(u.totalStudyMinutes / 60)}h` : `${u.totalStudyMinutes}m`}</p>
-                    <p className="text-xs text-stone-500">etude</p>
+                    <p className="text-xs text-stone-500">étude</p>
                   </div>
                 </div>
               </div>
@@ -489,16 +511,16 @@ export default function ProgressPage() {
             className="inline-flex items-center gap-2 rounded-lg border border-danger/30 px-4 py-2 text-sm font-medium text-danger transition-colors hover:bg-danger/5"
           >
             <Trash2 className="h-4 w-4" />
-            Reinitialiser toute la progression
+            Réinitialiser toute la progression
           </button>
         ) : (
           <div className="flex flex-col gap-3 rounded-lg bg-danger/5 p-4">
             <div className="flex items-start gap-2">
               <AlertTriangle className="mt-0.5 h-5 w-5 text-danger" />
               <p className="text-sm text-stone-700">
-                Cette action est irreversible. Toutes tes donnees de
-                progression, flashcards, parcours et parametres seront
-                supprimes.
+                Cette action est irréversible. Toutes tes données de
+                progression, flashcards, parcours et paramètres seront
+                supprimées.
               </p>
             </div>
             <div className="flex gap-3">
@@ -506,7 +528,7 @@ export default function ProgressPage() {
                 onClick={handleReset}
                 className="rounded-lg bg-danger px-4 py-2 text-sm font-medium text-white hover:bg-red-600"
               >
-                Confirmer la reinitialisation
+                Confirmer la réinitialisation
               </button>
               <button
                 onClick={() => setShowReset(false)}

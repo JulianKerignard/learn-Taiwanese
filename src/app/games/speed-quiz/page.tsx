@@ -177,7 +177,7 @@ export default function SpeedQuizPage() {
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-8">
           <div className="mb-2 text-4xl">&#9201;</div>
           <h2 className="mb-4 text-2xl font-bold text-amber-700">
-            Temps ecoule !
+            Temps écoulé !
           </h2>
           <div className="mb-6 text-5xl font-black text-stone-900">
             {score} pts
@@ -192,11 +192,11 @@ export default function SpeedQuizPage() {
               <div className="text-2xl font-bold text-emerald-600">
                 {correct}
               </div>
-              Bonnes reponses
+              Bonnes réponses
             </div>
             <div>
               <div className="text-2xl font-bold text-red-500">{wrong}</div>
-              Mauvaises reponses
+              Mauvaises réponses
             </div>
           </div>
           <p className="mb-6 text-sm text-stone-400">

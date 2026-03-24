@@ -58,12 +58,16 @@ function cardToFSRS(card: SM2Card): FSRSCard {
     };
   }
 
-  // Migration from SM-2: create a new FSRS card
+  // Migration from SM-2: create a new FSRS card preserving difficulty
   if (card.repetitions > 0) {
     const emptyCard = createEmptyCard(new Date());
+    // Map SM-2 easeFactor (1.3-2.5) to FSRS difficulty (1-10): lower ease = higher difficulty
+    const mappedDifficulty = Math.max(1, Math.min(10, Math.round((2.5 - (card.easeFactor || 2.5)) / 0.12 + 1)));
     return {
       ...emptyCard,
       due: new Date(card.nextReview),
+      stability: Math.max(card.interval || 1, 1),
+      difficulty: mappedDifficulty,
       reps: card.repetitions,
       state: card.interval >= 1 ? State.Review : State.Learning,
       last_review: card.lastReview ? new Date(card.lastReview) : undefined,

@@ -187,14 +187,14 @@ export default function ReviewSession() {
     return (
       <div className="flex flex-col items-center gap-6 py-20 text-center">
         <BookOpen className="h-16 w-16 text-stone-300" />
-        <h1 className="text-2xl font-bold text-stone-800">Rien a reviser !</h1>
+        <h1 className="text-2xl font-bold text-stone-800">Rien à réviser !</h1>
         <p className="max-w-md text-stone-500">
-          Ajoute du vocabulaire depuis les lecons pour commencer tes sessions de
-          revision.
+          Ajoute du vocabulaire depuis les leçons pour commencer tes sessions de
+          révision.
         </p>
         <Link href="/lessons" className="btn-primary gap-2">
           <BookOpen className="h-4 w-4" />
-          Voir les lecons
+          Voir les leçons
         </Link>
       </div>
     );
@@ -211,7 +211,7 @@ export default function ReviewSession() {
     return (
       <div className="mx-auto flex max-w-md flex-col items-center gap-6 py-12">
         <CheckCircle2 className="h-16 w-16 text-success" />
-        <h1 className="text-2xl font-bold text-stone-800">Session terminee !</h1>
+        <h1 className="text-2xl font-bold text-stone-800">Session terminée !</h1>
 
         {/* XP and Level */}
         <div className="w-full rounded-xl border border-stone-200 bg-gradient-to-r from-primary/5 to-accent/5 p-4">
@@ -266,7 +266,7 @@ export default function ReviewSession() {
 
         {/* Accuracy per mode */}
         <div className="w-full rounded-xl border border-stone-100 bg-white p-4">
-          <h3 className="text-sm font-semibold text-stone-700 mb-3">Precision par mode</h3>
+          <h3 className="text-sm font-semibold text-stone-700 mb-3">Précision par mode</h3>
           <div className="space-y-2">
             {(["recognize", "recall", "listening", "writing"] as ReviewMode[]).map((m) => {
               const data = sessionResult.accuracy[m];
@@ -275,8 +275,8 @@ export default function ReviewSession() {
               const label = {
                 recognize: "Reconnaissance",
                 recall: "Rappel",
-                listening: "Ecoute",
-                writing: "Ecriture",
+                listening: "Écoute",
+                writing: "Écriture",
               }[m];
 
               return (
@@ -300,7 +300,7 @@ export default function ReviewSession() {
           <div className="w-full rounded-xl border border-warning/30 bg-warning/5 p-4">
             <h3 className="text-sm font-semibold text-warning mb-2 flex items-center gap-1">
               <Trophy className="h-4 w-4" />
-              Nouveau(x) succes !
+              Nouveau(x) succès !
             </h3>
             <div className="space-y-1">
               {newAchievements.map((a) => (
@@ -317,7 +317,7 @@ export default function ReviewSession() {
             Accueil
           </Link>
           <Link href="/lessons" className="btn-primary">
-            Continuer a apprendre
+            Continuer à apprendre
           </Link>
         </div>
       </div>
@@ -336,7 +336,7 @@ export default function ReviewSession() {
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-bold text-stone-900">Revision</h1>
+        <h1 className="text-2xl font-bold text-stone-900">Révision</h1>
         <p className="text-sm text-stone-500">
           Carte {currentIndex + 1} sur {queue.length}
         </p>

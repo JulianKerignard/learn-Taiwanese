@@ -20,8 +20,8 @@ export default function Navbar() {
   }, []);
 
   async function handleLogin() {
-    if (!nameInput.trim() || nameInput.trim().length < 2) {
-      setError("2 caractères minimum");
+    if (!nameInput.trim() || nameInput.trim().length < 3) {
+      setError("3 caractères minimum");
       return;
     }
     setLoading(true);
@@ -137,6 +137,7 @@ export default function Navbar() {
           className="md:hidden flex items-center justify-center rounded-lg p-2 text-stone-600 hover:bg-stone-100 transition-colors"
           onClick={() => setMenuOpen(true)}
           aria-label="Ouvrir le menu"
+          aria-expanded={menuOpen}
         >
           <Menu className="h-6 w-6" />
         </button>
@@ -158,7 +159,7 @@ export default function Navbar() {
               </div>
               <nav className="flex flex-col gap-1 p-4">
                 <Link href="/path" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Parcours</Link>
-                <Link href="/lessons" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Lecons</Link>
+                <Link href="/lessons" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Leçons</Link>
                 <Link href="/tones" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Tons</Link>
                 <Link href="/dictionary" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Dictionnaire</Link>
                 <Link href="/reading" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Lecture</Link>
@@ -173,7 +174,7 @@ export default function Navbar() {
                       <User className="h-4 w-4" />
                       {user.username}
                     </span>
-                    <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="text-stone-400 hover:text-stone-600" title="Deconnexion">
+                    <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="text-stone-400 hover:text-stone-600" title="Déconnexion">
                       <LogOut className="h-4 w-4" />
                     </button>
                   </div>

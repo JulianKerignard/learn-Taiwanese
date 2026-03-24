@@ -35,11 +35,13 @@ export async function login(username: string): Promise<{ id: number; username: s
 
 export async function syncUp(): Promise<boolean> {
   try {
+    // Snapshot all data before async operation to avoid race conditions
     const body: Record<string, unknown> = {};
     for (const { local, remote } of SYNC_KEYS) {
       const raw = localStorage.getItem(local);
       if (raw) { try { body[remote] = JSON.parse(raw); } catch { body[remote] = raw; } }
     }
+    if (Object.keys(body).length === 0) return true;
     const res = await fetch(`${getBasePath()}/api/progress/save`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -79,6 +81,23 @@ export function scheduleSync(): void {
       if (!ok) isConnected = null; // Reset on failure
     }
   }, 3000);
+}
+
+// Ensure final sync before page close
+if (typeof window !== "undefined") {
+  window.addEventListener("beforeunload", () => {
+    if (isConnected) {
+      const body: Record<string, unknown> = {};
+      for (const { local, remote } of SYNC_KEYS) {
+        const raw = localStorage.getItem(local);
+        if (raw) { try { body[remote] = JSON.parse(raw); } catch { body[remote] = raw; } }
+      }
+      navigator.sendBeacon(
+        `${typeof getBasePath === "function" ? getBasePath() : ""}/api/progress/save`,
+        new Blob([JSON.stringify(body)], { type: "application/json" })
+      );
+    }
+  });
 }
 
 // Call this when user logs in

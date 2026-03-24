@@ -127,6 +127,10 @@ export function getSettings(): UserSettings {
   return get<UserSettings>(KEYS.settings, defaultSettings);
 }
 
+export function saveSettings(settings: UserSettings): void {
+  set(KEYS.settings, settings);
+}
+
 // Gamification
 export function getGamification(): GamificationData {
   return get<GamificationData>(KEYS.gamification, getDefaultGamificationData());

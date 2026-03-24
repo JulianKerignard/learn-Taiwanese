@@ -47,8 +47,9 @@ export default function AudioButton({ text, rate = 0.85, size = "md", className 
         className
       )}
       title="Écouter la prononciation"
+      aria-label="Écouter la prononciation"
     >
-      {playing ? <Volume2 size={iconSize} /> : <Volume2 size={iconSize} />}
+      <Volume2 size={iconSize} />
     </button>
   );
 }

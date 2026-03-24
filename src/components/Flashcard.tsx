@@ -136,21 +136,21 @@ function RecallMode({
       >
         <div
           className={cn(
-            "absolute inset-0 rounded-2xl border border-stone-200 bg-white shadow-lg transition-transform duration-500",
+            "absolute inset-0 rounded-2xl border border-stone-200 bg-white shadow-lg transition-transform duration-500 backface-hidden",
             "flex flex-col items-center justify-center gap-3 p-8",
-            flipped && "rotate-y-180 opacity-0"
+            flipped && "rotate-y-180"
           )}
         >
           <p className="text-lg font-medium text-stone-700">{card.back}</p>
           <PinyinDisplay pinyin={card.pinyin} zhuyin={card.zhuyin} mode={displayMode} size="lg" />
-          <p className="mt-2 text-xs text-stone-400">Cliquer pour reveler le caractere</p>
+          <p className="mt-2 text-xs text-stone-400">Cliquer pour révéler le caractère</p>
         </div>
 
         <div
           className={cn(
-            "absolute inset-0 rounded-2xl border border-stone-200 bg-white shadow-lg transition-transform duration-500",
+            "absolute inset-0 rounded-2xl border border-stone-200 bg-white shadow-lg transition-transform duration-500 backface-hidden",
             "flex flex-col items-center justify-center gap-3 p-8",
-            !flipped && "rotate-y-180 opacity-0"
+            !flipped ? "rotate-y-180" : ""
           )}
         >
           <span className="character-display">{card.front}</span>
@@ -208,7 +208,7 @@ function ListeningMode({
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <span className="text-xs font-medium text-orange-600 uppercase tracking-wide">Ecoute</span>
+      <span className="text-xs font-medium text-orange-600 uppercase tracking-wide">Écoute</span>
 
       <button
         onClick={playAudio}
@@ -221,12 +221,12 @@ function ListeningMode({
       </button>
 
       {!audioPlayed && (
-        <p className="text-sm text-stone-500">Appuie pour ecouter</p>
+        <p className="text-sm text-stone-500">Appuie pour écouter</p>
       )}
 
       {audioPlayed && (
         <>
-          <p className="text-sm text-stone-500">Quel caractere entends-tu ?</p>
+          <p className="text-sm text-stone-500">Quel caractère entends-tu ?</p>
           <div className="grid w-full max-w-md grid-cols-2 gap-3">
             {options.map((opt, idx) => (
               <button
@@ -346,7 +346,7 @@ function WritingMode({
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <span className="text-xs font-medium text-emerald-600 uppercase tracking-wide">Ecriture</span>
+      <span className="text-xs font-medium text-emerald-600 uppercase tracking-wide">Écriture</span>
 
       <div className="flex flex-col items-center gap-1">
         <p className="text-lg font-medium text-stone-700">{card.back}</p>
@@ -388,14 +388,14 @@ function WritingMode({
             className="flex items-center gap-1 rounded-lg bg-primary px-3 py-1.5 text-sm text-white hover:bg-primary/90"
           >
             <Eye size={14} />
-            Verifier
+            Vérifier
           </button>
         )}
       </div>
 
       {revealed && (
         <div className="flex flex-col items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 p-4">
-          <p className="text-xs text-stone-500">Caractere correct :</p>
+          <p className="text-xs text-stone-500">Caractère correct :</p>
           <span className="text-5xl font-bold text-stone-900">{card.front}</span>
           <AudioButton text={card.front} size="md" />
         </div>
@@ -416,7 +416,7 @@ function GradeButtons({
 
   return (
     <div className="flex w-full max-w-md flex-col gap-2">
-      <p className="text-center text-sm text-stone-500 mb-1">Comment c&apos;etait ?</p>
+      <p className="text-center text-sm text-stone-500 mb-1">Comment c&apos;était ?</p>
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         {gradeButtons.map((btn) => {
           const intervalLabel = preview[btn.grade]?.interval ?? "";

@@ -117,7 +117,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           {pct >= 70 ? "Bravo !" : "Courage !"}
         </h3>
         <p className="text-stone-600 mb-4">
-          {correctCount}/{exercises.length} bonnes reponses ({pct}%)
+          {correctCount}/{exercises.length} bonnes réponses ({pct}%)
         </p>
         <ProgressBar value={correctCount} max={exercises.length} color={pct >= 70 ? "bg-success" : "bg-warning"} />
       </div>
@@ -150,7 +150,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           {current.type === "listen" && hasChinese(current.question) ? (
             <div className="flex flex-col items-center gap-3">
               <AudioButton text={current.question} size="lg" />
-              <p className="text-sm text-stone-400">Ecoutez et choisissez la bonne reponse</p>
+              <p className="text-sm text-stone-400">Écoutez et choisissez la bonne réponse</p>
             </div>
           ) : (
             <p className="text-lg font-medium text-stone-800">
@@ -268,7 +268,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
               )}
               <div>
                 <span className={cn("text-sm font-medium", isCorrect ? "text-success" : "text-danger")}>
-                  {isCorrect ? "Correct !" : `La bonne reponse etait : ${current.correctAnswer}`}
+                  {isCorrect ? "Correct !" : `La bonne réponse était : ${current.correctAnswer}`}
                 </span>
                 {!isCorrect && hasChinese(current.correctAnswer) && (
                   <div className="flex items-center gap-2 mt-1">
@@ -292,15 +292,15 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
 function exerciseTypeLabel(type: Exercise["type"]): string {
   switch (type) {
     case "comprehension":
-      return "Comprehension";
+      return "Compréhension";
     case "fill-blank":
-      return "Completer la phrase";
+      return "Compléter la phrase";
     case "translate":
       return "Traduction";
     case "reorder":
       return "Remettre dans l'ordre";
     case "listen":
-      return "Ecoute";
+      return "Écoute";
     default:
       return "Exercice";
   }
