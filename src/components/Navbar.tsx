@@ -69,6 +69,9 @@ export default function Navbar() {
           <Link href="/reading" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Lecture
           </Link>
+          <Link href="/funfacts" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+            Fun Facts
+          </Link>
           <Link href="/progress" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Progression
           </Link>
