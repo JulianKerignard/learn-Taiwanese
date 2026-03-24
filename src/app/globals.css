@@ -42,6 +42,6 @@
 
   .character-display {
     font-family: var(--font-chinese);
-    @apply text-6xl font-normal leading-none;
+    @apply text-5xl sm:text-6xl font-normal leading-none;
   }
 }

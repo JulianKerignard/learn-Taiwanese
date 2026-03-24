@@ -236,7 +236,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
         {showFeedback && (
           <div
             className={cn(
-              "mt-4 flex items-center justify-between rounded-lg p-3",
+              "mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between rounded-lg p-3",
               isCorrect ? "bg-success/10" : "bg-danger/10"
             )}
           >

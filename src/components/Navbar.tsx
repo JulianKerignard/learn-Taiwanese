@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { User, LogIn, LogOut } from "lucide-react";
+import { User, LogIn, LogOut, Menu, X } from "lucide-react";
 import { checkUser, login, syncUp, syncDown } from "@/lib/sync";
 import { cn } from "@/lib/cn";
 import { getBasePath } from "@/lib/basepath";
@@ -13,6 +13,7 @@ export default function Navbar() {
   const [nameInput, setNameInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     checkUser().then(setUser);
@@ -51,9 +52,11 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold text-stone-900">
           <span className="chinese text-2xl text-primary">學</span>
-          <span>Taiwan Mandarin</span>
+          <span className="hidden sm:inline">Taiwan Mandarin</span>
         </Link>
-        <div className="flex items-center gap-6">
+
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-6">
           <Link href="/path" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Parcours
           </Link>
@@ -76,7 +79,7 @@ export default function Navbar() {
             Progression
           </Link>
 
-          {/* Auth */}
+          {/* Auth desktop */}
           <div className="relative ml-2">
             {user ? (
               <div className="flex items-center gap-2">
@@ -123,6 +126,64 @@ export default function Navbar() {
             )}
           </div>
         </div>
+
+        {/* Hamburger button */}
+        <button
+          className="md:hidden flex items-center justify-center rounded-lg p-2 text-stone-600 hover:bg-stone-100 transition-colors"
+          onClick={() => setMenuOpen(true)}
+          aria-label="Ouvrir le menu"
+        >
+          <Menu className="h-6 w-6" />
+        </button>
+
+        {/* Mobile drawer */}
+        {menuOpen && (
+          <div className="fixed inset-0 z-50 md:hidden">
+            <div className="absolute inset-0 bg-black/30" onClick={() => setMenuOpen(false)} />
+            <div className="absolute right-0 top-0 h-full w-72 bg-white shadow-xl flex flex-col">
+              <div className="flex items-center justify-between border-b border-stone-200 px-4 py-3">
+                <span className="text-lg font-bold text-stone-900">Menu</span>
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-lg p-1.5 text-stone-500 hover:bg-stone-100"
+                  aria-label="Fermer le menu"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              <nav className="flex flex-col gap-1 p-4">
+                <Link href="/path" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Parcours</Link>
+                <Link href="/lessons" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Lecons</Link>
+                <Link href="/tones" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Tons</Link>
+                <Link href="/dictionary" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Dictionnaire</Link>
+                <Link href="/reading" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Lecture</Link>
+                <Link href="/funfacts" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Fun Facts</Link>
+                <Link href="/progress" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Progression</Link>
+              </nav>
+              <div className="mt-auto border-t border-stone-200 p-4">
+                {user ? (
+                  <div className="flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-sm font-medium text-primary">
+                      <User className="h-4 w-4" />
+                      {user.username}
+                    </span>
+                    <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="text-stone-400 hover:text-stone-600" title="Deconnexion">
+                      <LogOut className="h-4 w-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => { setShowLogin(!showLogin); setMenuOpen(false); }}
+                    className="flex w-full items-center justify-center gap-1 rounded-lg border border-stone-200 px-3 py-2 text-sm font-medium text-stone-600 hover:border-primary hover:text-primary transition-colors"
+                  >
+                    <LogIn className="h-4 w-4" />
+                    Connexion
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

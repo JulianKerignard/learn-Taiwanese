@@ -79,9 +79,9 @@ export default function HomePage() {
       {cardStats.due > 0 && (
         <section>
           <h2 className="mb-4 text-xl font-semibold text-stone-800">Continuer</h2>
-          <div className="card flex items-center justify-between">
+          <div className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
                 <Layers className="h-5 w-5 text-primary" />
               </div>
               <div>
@@ -91,7 +91,7 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
-            <Link href="/flashcards" className="btn-primary gap-1">
+            <Link href="/flashcards" className="btn-primary gap-1 shrink-0">
               Réviser <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
@@ -139,9 +139,9 @@ function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
 
   return (
     <section>
-      <div className="card flex items-center justify-between">
+      <div className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
             <Map className="h-5 w-5 text-primary" />
           </div>
           <div>
@@ -159,7 +159,7 @@ function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
         </div>
         <Link
           href={hasStarted && currentUnit ? `/path/${currentUnit.id}` : "/path"}
-          className="btn-primary gap-1"
+          className="btn-primary gap-1 shrink-0"
         >
           {hasStarted ? "Continuer" : "Commencer"}
           <ChevronRight className="h-4 w-4" />

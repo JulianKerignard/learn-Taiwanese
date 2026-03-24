@@ -153,13 +153,13 @@ export default function UnitContent({ unitId }: UnitContentProps) {
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
             className={cn(
-              "flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors",
+              "flex flex-1 items-center justify-center gap-1 sm:gap-2 rounded-md px-2 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium transition-colors",
               activeTab === tab.key
                 ? "bg-white text-stone-800 shadow-sm"
                 : "text-stone-500 hover:text-stone-700"
             )}
           >
-            {tab.icon}
+            <span className="hidden sm:inline">{tab.icon}</span>
             {tab.label}
           </button>
         ))}

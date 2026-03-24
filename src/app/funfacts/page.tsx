@@ -86,7 +86,7 @@ export default function FunFactsPage() {
           </button>
         ))}
 
-        <div className="ml-auto flex items-center gap-3">
+        <div className="flex w-full items-center gap-3 sm:w-auto sm:ml-auto">
           <span className="text-xs text-stone-400">
             {filtered.length} / {funFacts.length} faits
           </span>

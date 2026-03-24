@@ -129,7 +129,7 @@ function ChapterSection({
         </div>
       </div>
 
-      <div className="relative ml-6 border-l-2 border-stone-200 pl-8">
+      <div className="relative ml-3 pl-5 sm:ml-6 sm:pl-8 border-l-2 border-stone-200">
         {chapterUnits.map((unit, i) => {
           const isPlaceholder = "placeholder" in unit;
           return (
@@ -177,7 +177,7 @@ function UnitNode({
       {/* Circle on the line */}
       <div
         className={cn(
-          "absolute -left-[calc(2rem+1.25rem)] flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm font-bold",
+          "absolute -left-[calc(1.25rem+0.625rem)] sm:-left-[calc(2rem+1.25rem)] flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 text-xs sm:text-sm font-bold",
           circleStyle
         )}
       >
@@ -198,7 +198,7 @@ function UnitNode({
                   : "border-stone-200 bg-white"
         )}
       >
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <div className="flex-1">
             <div className="flex items-center gap-2">
               <h3

@@ -129,9 +129,9 @@ export default function LessonContent({ slug }: { slug: string }) {
           <ChevronLeft className="h-4 w-4" /> Retour aux leçons
         </Link>
         <div className="flex items-center gap-4">
-          <span className="text-5xl">{lesson.icon}</span>
+          <span className="text-4xl sm:text-5xl">{lesson.icon}</span>
           <div>
-            <h1 className="text-3xl font-bold text-stone-900">{lesson.title}</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-stone-900">{lesson.title}</h1>
             <p className="chinese text-lg text-stone-400">{lesson.titleZh}</p>
             <p className="mt-1 text-stone-500">{lesson.description}</p>
           </div>
@@ -171,13 +171,13 @@ export default function LessonContent({ slug }: { slug: string }) {
             key={t.key}
             onClick={() => setTab(t.key)}
             className={cn(
-              "flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors",
+              "flex flex-1 items-center justify-center gap-1 sm:gap-2 rounded-md px-2 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium transition-colors",
               tab === t.key
                 ? "bg-white text-stone-900 shadow-sm"
                 : "text-stone-500 hover:text-stone-700"
             )}
           >
-            {t.icon}
+            <span className="hidden sm:inline">{t.icon}</span>
             {t.label}
           </button>
         ))}

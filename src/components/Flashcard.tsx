@@ -417,7 +417,7 @@ function GradeButtons({
   return (
     <div className="flex w-full max-w-md flex-col gap-2">
       <p className="text-center text-sm text-stone-500 mb-1">Comment c&apos;etait ?</p>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         {gradeButtons.map((btn) => {
           const intervalLabel = preview[btn.grade]?.interval ?? "";
           // Map FSRS grade to SM2Grade for backward compat

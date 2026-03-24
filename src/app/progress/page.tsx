@@ -103,7 +103,7 @@ export default function ProgressPage() {
 
       {/* Bannière premier accès */}
       {isFirstVisit && (
-        <div className="card flex items-center gap-4 border-primary/30 bg-primary/5">
+        <div className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4 border-primary/30 bg-primary/5">
           <Map className="h-10 w-10 text-primary shrink-0" />
           <div className="flex-1">
             <p className="font-medium text-stone-800">Tu n'as pas encore commencé</p>

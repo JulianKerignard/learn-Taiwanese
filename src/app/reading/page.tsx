@@ -73,7 +73,7 @@ export default function ReadingPage() {
         </div>
 
         {/* Progress counters */}
-        <div className="mt-4 flex gap-4">
+        <div className="mt-4 flex flex-wrap gap-3">
           {([1, 2, 3] as const).map((level) => (
             <div
               key={level}
