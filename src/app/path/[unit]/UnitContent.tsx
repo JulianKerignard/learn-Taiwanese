@@ -24,7 +24,7 @@ import {
   isUnitUnlocked,
   completeUnit,
 } from "@/lib/progress";
-import { upsertCard } from "@/lib/storage";
+import { upsertCard, updateStreak } from "@/lib/storage";
 import type { CourseUnit } from "@/types/course";
 import type { SM2Card } from "@/types";
 
@@ -59,6 +59,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
       setExerciseResult({ score, passed });
       if (passed) {
         completeUnit(unitId, score, unit, chapters);
+        updateStreak();
       }
     },
     [unit, unitId]

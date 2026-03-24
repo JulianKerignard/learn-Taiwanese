@@ -17,11 +17,11 @@ const HARD_MODES = new Set(["writing", "recall"]);
 // Level thresholds: level N requires 100 * N XP (cumulative)
 const MAX_LEVEL = 60;
 
-function xpForLevel(level: number): number {
+export function xpForLevel(level: number): number {
   return 100 * level;
 }
 
-function totalXpForLevel(level: number): number {
+export function totalXpForLevel(level: number): number {
   // Sum of 100*1 + 100*2 + ... + 100*level = 100 * level*(level+1)/2
   return 100 * (level * (level + 1)) / 2;
 }

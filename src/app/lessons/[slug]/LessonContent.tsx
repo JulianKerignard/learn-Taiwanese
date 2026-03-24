@@ -82,7 +82,7 @@ export default function LessonContent({ slug }: { slug: string }) {
     const progress = getProgress();
     progress.charactersLearned = Math.max(
       progress.charactersLearned,
-      getCards().length
+      getCards().filter(c => c.repetitions > 0).length
     );
     saveProgress(progress);
     setAddedToFlashcards(true);
