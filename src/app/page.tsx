@@ -150,10 +150,10 @@ function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
             </p>
             <p className="text-sm text-stone-500">
               {hasStarted && currentUnit
-                ? `Prochaine etape : Unite ${currentUnit.number} — ${currentUnit.title}`
+                ? `Prochaine étape : Unité ${currentUnit.number} — ${currentUnit.title}`
                 : hasStarted
-                  ? `${pathProgress.completedUnits.length} unites completees`
-                  : "Apprends le chinois pas a pas"}
+                  ? `${pathProgress.completedUnits.length} unités complétées`
+                  : "Apprends le chinois pas à pas"}
             </p>
           </div>
         </div>

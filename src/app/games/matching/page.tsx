@@ -37,8 +37,15 @@ function buildCards(words: GameWord[]): Card[] {
       matched: false,
     });
   });
-  return cards.sort(() => Math.random() - 0.5);
+  // Fisher-Yates shuffle
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  return cards;
 }
+
+const PAIR_COUNT = 6;
 
 export default function MatchingPage() {
   const [words, setWords] = useState<GameWord[]>([]);
@@ -53,7 +60,7 @@ export default function MatchingPage() {
   const locked = useRef(false);
 
   const initGame = useCallback(() => {
-    const w = getRandomWords(6);
+    const w = getRandomWords(PAIR_COUNT);
     setWords(w);
     setCards(buildCards(w));
     setSelected([]);
@@ -108,7 +115,7 @@ export default function MatchingPage() {
           locked.current = false;
           setMatchedCount((m) => {
             const newCount = m + 1;
-            if (newCount === 6) {
+            if (newCount === PAIR_COUNT) {
               setFinished(true);
             }
             return newCount;
@@ -174,7 +181,7 @@ export default function MatchingPage() {
             Bravo !
           </h2>
           <p className="mb-1 text-stone-600">
-            6 paires trouvees en <strong>{attempts}</strong> tentatives
+            6 paires trouvées en <strong>{attempts}</strong> tentatives
           </p>
           <p className="mb-6 text-stone-600">
             Temps : <strong>{formatTime(elapsed)}</strong>

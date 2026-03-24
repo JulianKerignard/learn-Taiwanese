@@ -9,21 +9,30 @@ type Phase = "playing" | "won" | "lost";
 
 const MAX_ERRORS = 6;
 
+function shuffleArray<T>(arr: T[]): T[] {
+  const s = [...arr];
+  for (let i = s.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [s[i], s[j]] = [s[j], s[i]];
+  }
+  return s;
+}
+
 function buildChoices(target: GameWord, allWords: GameWord[]): string[] {
   const targetChars = [...target.character];
   const pool = new Set<string>(targetChars);
 
   const allChars = allWords.flatMap((w) => [...w.character]);
-  const shuffled = [...new Set(allChars)]
-    .filter((c) => !pool.has(c))
-    .sort(() => Math.random() - 0.5);
+  const shuffled = shuffleArray(
+    [...new Set(allChars)].filter((c) => !pool.has(c))
+  );
 
   const needed = 20 - pool.size;
   for (let i = 0; i < needed && i < shuffled.length; i++) {
     pool.add(shuffled[i]);
   }
 
-  return [...pool].sort(() => Math.random() - 0.5);
+  return shuffleArray([...pool]);
 }
 
 export default function HangmanPage() {
@@ -111,7 +120,7 @@ export default function HangmanPage() {
       {/* Question */}
       <div className="mb-6 rounded-xl border border-stone-200 bg-stone-50 p-4 text-center">
         <p className="text-sm text-stone-500">
-          Quel est le caractere chinois pour :
+          Quel est le caractère chinois pour :
         </p>
         <p className="mt-1 text-xl font-bold text-stone-900">
           {target.french}

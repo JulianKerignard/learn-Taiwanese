@@ -59,7 +59,7 @@ function toneName(tone: number): string {
     case 2: return "2e ton (montant)";
     case 3: return "3e ton (descendant-montant)";
     case 4: return "4e ton (descendant)";
-    case 0: return "Ton neutre (leger)";
+    case 0: return "Ton neutre (léger)";
     default: return "";
   }
 }
@@ -256,7 +256,7 @@ function Exercise({
     <div className="flex flex-col items-center gap-4">
       {mode === "listen" ? (
         <>
-          <p className="text-sm text-stone-500">Ecoutez et identifiez la paire de tons</p>
+          <p className="text-sm text-stone-500">Écoutez et identifiez la paire de tons</p>
           <button
             onClick={handlePlayAudio}
             className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary transition-all hover:bg-primary/20 hover:scale-105"
@@ -267,7 +267,7 @@ function Exercise({
         </>
       ) : (
         <>
-          <p className="text-sm text-stone-500">Quel mot correspond a cette paire de tons ?</p>
+          <p className="text-sm text-stone-500">Quel mot correspond à cette paire de tons ?</p>
           <div className="flex items-center gap-3">
             <ToneVisual tone={pair.tone1} size={48} />
             <span className="text-2xl font-bold text-stone-300">+</span>
@@ -351,9 +351,9 @@ function Exercise({
 function SandhiSection() {
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-bold text-stone-800">Regles de sandhi tonal</h2>
+      <h2 className="text-lg font-bold text-stone-800">Règles de sandhi tonal</h2>
       <p className="text-sm text-stone-500">
-        En mandarin, certains tons changent selon le contexte. Ces regles sont essentielles pour parler naturellement.
+        En mandarin, certains tons changent selon le contexte. Ces règles sont essentielles pour parler naturellement.
       </p>
 
       {sandhiRules.map((rule, i) => (
@@ -427,7 +427,7 @@ export default function TonesPage() {
           <span className="chinese text-primary">聲調</span> Exercice des tons
         </h1>
         <p className="mt-1 text-sm text-stone-500">
-          Maitrisez les 4 tons du mandarin et leurs combinaisons
+          Maîtrisez les 4 tons du mandarin et leurs combinaisons
         </p>
       </div>
 
@@ -436,14 +436,14 @@ export default function TonesPage() {
         <div className="mb-2 flex items-center justify-between text-sm">
           <span className="flex items-center gap-1.5 text-stone-600">
             <Trophy size={16} className="text-amber-500" />
-            Progression : {masteredCount}/{tonePairs.length} maitrisees
+            Progression : {masteredCount}/{tonePairs.length} maîtrisées
           </span>
           <button
             onClick={() => setShowSandhi(!showSandhi)}
             className="flex items-center gap-1 text-xs text-primary hover:underline"
           >
             <Info size={14} />
-            Regles de sandhi
+            Règles de sandhi
           </button>
         </div>
         <div className="h-2 overflow-hidden rounded-full bg-stone-100">
@@ -477,7 +477,7 @@ export default function TonesPage() {
               className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary"
             >
               <ChevronLeft size={18} />
-              Retour a la grille
+              Retour à la grille
             </button>
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-stone-700">

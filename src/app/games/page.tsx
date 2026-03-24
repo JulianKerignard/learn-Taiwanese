@@ -6,7 +6,7 @@ const games = [
   {
     emoji: "\u{1F0CF}",
     name: "Matching",
-    description: "Relie les caracteres a leur traduction",
+    description: "Relie les caractères à leur traduction",
     href: "/games/matching",
     color: "from-violet-500 to-purple-600",
     bg: "bg-violet-50",
@@ -24,7 +24,7 @@ const games = [
   {
     emoji: "\u{1F3AF}",
     name: "Pendu Chinois",
-    description: "Devine le caractere chinois",
+    description: "Devine le caractère chinois",
     href: "/games/hangman",
     color: "from-emerald-500 to-teal-600",
     bg: "bg-emerald-50",
