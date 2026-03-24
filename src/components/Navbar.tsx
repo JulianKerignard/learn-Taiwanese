@@ -43,7 +43,8 @@ export default function Navbar() {
   }
 
   async function handleLogout() {
-    document.cookie = "taiwan-user=; max-age=0; path=/taiwan";
+    await fetch(`${getBasePath()}/api/auth/logout`, { method: "POST" });
+    setConnected(false);
     setUser(null);
     window.location.reload();
   }
