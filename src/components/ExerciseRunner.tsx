@@ -158,7 +158,9 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
         </div>
 
         {current.hint && (
-          <p className="mb-4 text-sm italic text-stone-400">Indice : {current.hint}</p>
+          <p className="mb-4 rounded-lg bg-accent/5 px-3 py-1.5 text-sm italic text-accent">
+            Pinyin : {current.hint}
+          </p>
         )}
 
         {current.type === "reorder" ? (
@@ -226,7 +228,10 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 >
                   {showFeedback && isAnswer && <Check className="h-4 w-4 shrink-0 text-success" />}
                   {showFeedback && isSelected && !isAnswer && <X className="h-4 w-4 shrink-0 text-danger" />}
-                  <span>{option}</span>
+                  <span className="flex-1">{option}</span>
+                  {hasChinese(option) && (
+                    <AudioButton text={option} size="sm" className="shrink-0 opacity-60" />
+                  )}
                 </button>
               );
             })}
@@ -246,9 +251,17 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
               ) : (
                 <X className="h-5 w-5 text-danger" />
               )}
-              <span className={cn("text-sm font-medium", isCorrect ? "text-success" : "text-danger")}>
-                {isCorrect ? "Correct !" : `La bonne reponse etait : ${current.correctAnswer}`}
-              </span>
+              <div>
+                <span className={cn("text-sm font-medium", isCorrect ? "text-success" : "text-danger")}>
+                  {isCorrect ? "Correct !" : `La bonne reponse etait : ${current.correctAnswer}`}
+                </span>
+                {!isCorrect && hasChinese(current.correctAnswer) && (
+                  <div className="flex items-center gap-2 mt-1">
+                    {current.hint && <span className="text-xs text-stone-400 italic">{current.hint}</span>}
+                    <AudioButton text={current.correctAnswer} size="sm" />
+                  </div>
+                )}
+              </div>
             </div>
             <button onClick={handleNext} className="btn-primary gap-1 text-sm">
               {currentIndex + 1 >= exercises.length ? "Terminer" : "Suivant"}
