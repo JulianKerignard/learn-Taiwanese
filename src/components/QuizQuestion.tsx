@@ -1,10 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Check, X } from "lucide-react";
 import AudioButton from "./AudioButton";
 import { cn } from "@/lib/cn";
 import type { QuizItem } from "@/types";
+
+function shuffleArray<T>(arr: T[]): T[] {
+  const s = [...arr];
+  for (let i = s.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [s[i], s[j]] = [s[j], s[i]];
+  }
+  return s;
+}
 
 interface QuizQuestionProps {
   question: QuizItem;
@@ -15,6 +24,11 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
   const [selected, setSelected] = useState<string | null>(null);
   const [answered, setAnswered] = useState(false);
   const isCorrect = selected === question.correctAnswer;
+
+  const shuffledOptions = useMemo(
+    () => shuffleArray(question.options),
+    [question.id]
+  );
 
   function handleSelect(option: string) {
     if (answered) return;
@@ -43,7 +57,7 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
 
       {/* Options */}
       <div className="grid w-full max-w-md grid-cols-2 gap-3">
-        {question.options.map((option) => {
+        {shuffledOptions.map((option) => {
           const isThis = selected === option;
           const isRight = option === question.correctAnswer;
 

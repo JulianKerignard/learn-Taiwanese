@@ -441,6 +441,7 @@ export const unit09: CourseUnit = {
         "Grand ou petit ?",
         "Chaud ou froid ?",
       ],
+      hint: "nèiyòng háishì wàidài",
     },
     {
       id: "u7-ex3",
@@ -461,6 +462,7 @@ export const unit09: CourseUnit = {
         "On peut payer ?",
         "C'est combien ?",
       ],
+      hint: "kěyǐ shìchī ma",
     },
     {
       id: "u7-ex5",
@@ -493,6 +495,7 @@ export const unit09: CourseUnit = {
         "L'addition s'il vous plaît.",
         "C'est délicieux !",
       ],
+      hint: "wǒ yào yì wǎn lǔròufàn, wàidài.",
     },
   ],
 

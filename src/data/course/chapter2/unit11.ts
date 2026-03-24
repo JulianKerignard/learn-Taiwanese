@@ -425,6 +425,7 @@ export const unit11: CourseUnit = {
         "Le bus express",
         "L'avion",
       ],
+      hint: "gāotiě",
     },
     {
       id: "u9-ex3",
@@ -445,6 +446,7 @@ export const unit11: CourseUnit = {
         "Je veux changer de ligne",
         "Je veux descendre",
       ],
+      hint: "wǒ yào jiāzhí",
     },
     {
       id: "u9-ex5",
@@ -477,6 +479,7 @@ export const unit11: CourseUnit = {
         "Où est la sortie ?",
         "Je veux recharger ma carte.",
       ],
+      hint: "qǐngwèn dào Táiběi yī líng yī yào zuò jǐ hào xiàn?",
     },
   ],
 

@@ -589,6 +589,7 @@ export const unit08: CourseUnit = {
         "Où sont les toilettes ?",
         "Comment aller au marché ?",
       ],
+      hint: "qǐngwèn jiéyùn zhàn zài nǎlǐ?",
     },
   ],
 

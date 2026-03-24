@@ -487,6 +487,7 @@ export const unit12: CourseUnit = {
         "Au secours, appelez une ambulance !",
         "Où est la pharmacie la plus proche ?",
       ],
+      hint: "wǒ bù shūfu, wǒ tóu tòng, kěnéng gǎnmào le.",
     },
   ],
 

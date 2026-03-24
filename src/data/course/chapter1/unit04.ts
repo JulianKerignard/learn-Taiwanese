@@ -492,6 +492,7 @@ export const unit04: CourseUnit = {
         "Comment tu t'appelles ?",
         "Où tu vas ?",
       ],
+      hint: "nǐ shì nǎlǐ rén?",
     },
     {
       id: "u3-ex4",

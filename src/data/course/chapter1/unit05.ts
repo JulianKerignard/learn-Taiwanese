@@ -461,6 +461,7 @@ export const unit05: CourseUnit = {
         "Le troisième jour du mois",
         "Samedi",
       ],
+      hint: "xīngqīsān",
     },
     {
       id: "u4-ex4",
@@ -473,6 +474,7 @@ export const unit05: CourseUnit = {
         "Il est trois heures moins le quart",
         "Il est quinze heures",
       ],
+      hint: "xiànzài sān diǎn bàn",
     },
     {
       id: "u4-ex5",

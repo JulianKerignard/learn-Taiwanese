@@ -455,6 +455,7 @@ export const unit10: CourseUnit = {
         "Deux pour le prix de trois",
         "Soldes de fin de saison",
       ],
+      hint: "mǎi yī sòng yī",
     },
     {
       id: "u8-ex3",
@@ -475,6 +476,7 @@ export const unit10: CourseUnit = {
         "Sur place ou à emporter ?",
         "Piquant ou pas piquant ?",
       ],
+      hint: "xiànjīn háishì shuākǎ",
     },
     {
       id: "u8-ex5",
@@ -507,6 +509,7 @@ export const unit10: CourseUnit = {
         "Vous acceptez la carte ?",
         "Où est le 7-Eleven ?",
       ],
+      hint: "zhège duōshǎo qián? tài guì le, kěyǐ piányí yìdiǎn ma?",
     },
   ],
 

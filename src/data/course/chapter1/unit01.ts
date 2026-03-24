@@ -515,6 +515,7 @@ export const unit01: CourseUnit = {
         "Au revoir !",
         "Merci beaucoup !",
       ],
+      hint: "nǐ hǎo ma",
     },
     {
       id: "u1-ex6",
@@ -547,6 +548,7 @@ export const unit01: CourseUnit = {
         "你是法國人不？",
         "是你法國人嗎？",
       ],
+      hint: "nǐ shì Fǎguó rén",
     },
   ],
 

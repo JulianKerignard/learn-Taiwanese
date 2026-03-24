@@ -497,6 +497,7 @@ export const unit07: CourseUnit = {
         "Es-tu français ou chinois ?",
         "Tu es un Français.",
       ],
+      hint: "nǐ shì bú shì Fǎguó rén?",
     },
     {
       id: "u5-ex5",

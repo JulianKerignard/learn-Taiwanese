@@ -1,10 +1,25 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import { Check, X, RotateCcw, ArrowRight } from "lucide-react";
+import { useState, useCallback, useMemo } from "react";
+import { Check, X, RotateCcw, ArrowRight, Volume2 } from "lucide-react";
+import AudioButton from "./AudioButton";
 import type { Exercise } from "@/types/course";
 import { cn } from "@/lib/cn";
 import ProgressBar from "./ProgressBar";
+
+function shuffleArray<T>(arr: T[]): T[] {
+  const s = [...arr];
+  for (let i = s.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [s[i], s[j]] = [s[j], s[i]];
+  }
+  return s;
+}
+
+// Detect if a string contains Chinese characters
+function hasChinese(str: string): boolean {
+  return /[\u4e00-\u9fff\u3400-\u4dbf]/.test(str);
+}
 
 interface ExerciseRunnerProps {
   exercises: Exercise[];
@@ -29,6 +44,13 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
 
   const current = exercises[currentIndex];
   const correctCount = results.filter((r) => r.correct).length;
+
+  // Shuffle options once per question (not on every render)
+  const shuffledOptions = useMemo(() => {
+    if (!current?.options) return [];
+    if (current.type === "reorder") return current.options; // Don't shuffle reorder
+    return shuffleArray(current.options);
+  }, [currentIndex, current?.type]);
 
   const handleAnswer = useCallback(
     (answer: string) => {
@@ -115,9 +137,25 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
         <p className="mb-1 text-xs font-medium uppercase text-stone-400">
           {exerciseTypeLabel(current.type)}
         </p>
-        <p className="text-lg font-medium text-stone-800 chinese mb-6">
-          {current.question}
-        </p>
+        <div className="mb-6">
+          {current.type === "listen" && hasChinese(current.question) ? (
+            <div className="flex flex-col items-center gap-3">
+              <AudioButton text={current.question} size="lg" />
+              <p className="text-sm text-stone-400">Ecoutez et choisissez la bonne reponse</p>
+            </div>
+          ) : (
+            <p className="text-lg font-medium text-stone-800">
+              {hasChinese(current.question) ? (
+                <span className="chinese">{current.question}</span>
+              ) : (
+                current.question
+              )}
+              {hasChinese(current.question) && current.hint && (
+                <span className="ml-2 text-sm text-stone-400 italic">({current.hint})</span>
+              )}
+            </p>
+          )}
+        </div>
 
         {current.hint && (
           <p className="mb-4 text-sm italic text-stone-400">Indice : {current.hint}</p>
@@ -161,7 +199,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           </div>
         ) : (
           <div className="grid gap-3 sm:grid-cols-2">
-            {(current.options ?? []).map((option) => {
+            {shuffledOptions.map((option) => {
               const isSelected = selectedAnswer === option;
               const isAnswer = option === current.correctAnswer;
               let optionStyle = "border-stone-200 bg-white hover:border-primary hover:bg-primary/5";

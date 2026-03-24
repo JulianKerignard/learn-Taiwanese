@@ -481,6 +481,7 @@ export const unit02: CourseUnit = {
         "Ton 3 (descendant puis remontant)",
         "Ton 4 (descendant brusque)",
       ],
+      hint: "mǎi",
     },
     {
       id: "u2-listen-2",
@@ -493,6 +494,7 @@ export const unit02: CourseUnit = {
         "Ton 3 (descendant puis remontant)",
         "Ton 4 (descendant brusque)",
       ],
+      hint: "tāng",
     },
     {
       id: "u2-comp-1",
