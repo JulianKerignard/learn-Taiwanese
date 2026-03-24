@@ -126,6 +126,34 @@ export const unit12: CourseUnit = {
           pinyin: "wǒ duì huāshēng guòmǐn, zhège yǒu huāshēng ma?",
           translation: "Je suis allergique aux cacahuètes, est-ce qu'il y a des cacahuètes ?",
         },
+        {
+          type: "text",
+          content:
+            "Les allergènes les plus courants dans la cuisine taiwanaise : cacahuètes (花生 huāshēng) — dans BEAUCOUP de plats et sauces, souvent cachées dans les sauces satay, les garnitures de nouilles et les desserts. Sésame (芝麻 zhīma) — huile et graines partout. Fruits de mer (海鮮 hǎixiān) — les crevettes séchées sont un condiment très courant, même dans des plats qui ne semblent pas contenir de fruits de mer. Soja (黃豆 huángdòu) — la sauce soja est omniprésente. Gluten (麩質 fúzhì) — difficile à éviter car la sauce soja contient du blé. Pour les intolérances moins sévères : 不要放味精 (bú yào fàng wèijīng — ne mettez pas de glutamate), 我不吃牛肉 (wǒ bù chī niúròu — je ne mange pas de bœuf — restriction courante chez certains bouddhistes taiwanais).",
+        },
+        {
+          type: "text",
+          content:
+            "Taiwan est un PARADIS pour les végétariens. Le végétarisme bouddhiste (素食 sùshí) est profondément ancré dans la culture — environ 13% de la population est végétarienne, un des taux les plus élevés au monde. Il y a des restaurants 素食 partout, et même les convenience stores proposent des bentos végétariens. MAIS attention : le végétarisme bouddhiste exclut aussi les « cinq pungents » (五辛 wǔxīn) : l'ail (蒜 suàn), l'oignon (洋蔥 yángcōng), le poireau (韭菜 jiǔcài), la ciboulette (蔥 cōng), et l'échalote. Si vous dites 素食, on vous servira sans viande NI ail NI oignon. Pour du végétarien « occidental » avec ail et oignon, précisez : 我吃蛋奶素但可以吃蔥蒜 (wǒ chī dàn nǎi sù dàn kěyǐ chī cōng suàn).",
+        },
+        {
+          type: "text",
+          content:
+            "Les niveaux de végétarisme sont officiellement classifiés par le gouvernement taiwanais et légalement obligatoires sur les emballages alimentaires. 全素 (quán sù) ou 純素 (chún sù) : végétalien strict, aucun produit animal, pas de cinq pungents. 蛋素 (dàn sù) : avec œufs. 奶素 (nǎi sù) : avec produits laitiers. 蛋奶素 (dàn nǎi sù) : lacto-ovo-végétarien. 鍋邊素 (guō biān sù) : cuit séparément mais dans la même cuisine que la viande. Cherchez ces symboles sur les emballages dans les convenience stores.",
+        },
+        {
+          type: "example",
+          content: "Dire qu'on est végétarien",
+          chinese: "我吃素。請問有素食的菜嗎？",
+          pinyin: "Wǒ chī sù. Qǐngwèn yǒu sùshí de cài ma?",
+          translation:
+            "Je suis végétarien. Avez-vous des plats végétariens ?",
+        },
+        {
+          type: "tip",
+          content:
+            "L'eau du robinet n'est PAS potable à Taiwan. Ne buvez jamais l'eau du robinet directement. Les restaurants fournissent généralement de l'eau bouillie (開水 kāishuǐ) ou du thé gratuitement. Les fontaines d'eau potable (飲水機 yǐnshuǐ jī) sont courantes dans les parcs, stations de MRT et bâtiments publics — elles distribuent de l'eau filtrée. Apportez toujours une gourde réutilisable.",
+        },
       ],
     },
     {

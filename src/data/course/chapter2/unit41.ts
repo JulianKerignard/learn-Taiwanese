@@ -172,6 +172,89 @@ export const unit41: CourseUnit = {
       ],
     },
     {
+      title: "Les 30 phrases de survie par catégorie",
+      type: "practice",
+      content: [
+        {
+          type: "text",
+          content:
+            "DEMANDER — Toute question à un inconnu doit commencer par 請問 (qǐngwèn). Ce n'est pas simplement « excusez-moi » — c'est une formule qui signifie littéralement « je demande poliment » et qui indique à votre interlocuteur que vous allez lui poser une question. Sans ce préambule, aborder quelqu'un directement peut sembler brusque. Utilisez-la systématiquement.",
+        },
+        {
+          type: "example",
+          content: "Demander un lieu",
+          chinese: "請問，捷運站在哪裡？",
+          pinyin: "Qǐngwèn, jiéyùn zhàn zài nǎlǐ?",
+          translation: "Excusez-moi, où est la station de MRT ?",
+        },
+        {
+          type: "example",
+          content: "Demander un prix",
+          chinese: "請問，這個多少錢？",
+          pinyin: "Qǐngwèn, zhè ge duōshǎo qián?",
+          translation: "Excusez-moi, combien coûte ceci ?",
+        },
+        {
+          type: "text",
+          content:
+            "REMERCIER — 謝謝 (xiè xiè) est universel. Pour « merci beaucoup », dites 非常感謝 (fēicháng gǎnxiè). Chez les jeunes, 3Q (prononcé « sān kyù », transcription taiwanaise de « thank you ») est courant. Quand quelqu'un vous remercie, répondez 不客氣 (bú kèqì, « de rien ») ou 不會 (bú huì, version très taiwanaise et décontractée).",
+        },
+        {
+          type: "example",
+          content: "Remercier — version formelle",
+          chinese: "非常感謝您的幫忙！",
+          pinyin: "Fēicháng gǎnxiè nín de bāngmáng!",
+          translation: "Merci infiniment pour votre aide !",
+        },
+        {
+          type: "text",
+          content:
+            "S'EXCUSER — Trois niveaux : 不好意思 (bù hǎo yìsi, gêne légère — le plus courant au quotidien), 對不起 (duìbùqǐ, vraie excuse chargée de culpabilité), 抱歉 (bàoqiàn, excuse formelle pour les contextes professionnels).",
+        },
+        {
+          type: "text",
+          content:
+            "ACHETER — Au marché : 我要這個 (wǒ yào zhè ge — je veux ceci). Le prix : 多少錢？(duōshǎo qián?). Un sac : 有袋子嗎？(yǒu dàizi ma?). Trop cher : 太貴了 (tài guì le). Négocier : 可以便宜一點嗎？(kěyǐ piányi yìdiǎn ma? — petit rabais ?). Conclure : 好，我要 (hǎo, wǒ yào — ok, je prends).",
+        },
+        {
+          type: "example",
+          content: "Acheter — la transaction complète",
+          chinese: "我要這個。多少錢？",
+          pinyin: "Wǒ yào zhè ge. Duōshǎo qián?",
+          translation: "Je voudrais celui-ci. Combien ça coûte ?",
+        },
+        {
+          type: "text",
+          content:
+            "SE DÉPLACER — 左邊 (zuǒbiān, gauche), 右邊 (yòubiān, droite), 直走 (zhí zǒu, tout droit). Pour demander : ...在哪裡？Pour un taxi : 我要去... (wǒ yào qù...) suivi de l'adresse. Montrez l'adresse sur votre téléphone en dernier recours.",
+        },
+        {
+          type: "example",
+          content: "Prendre un taxi",
+          chinese: "你好，我要去台北車站。",
+          pinyin: "Nǐ hǎo, wǒ yào qù Táiběi chēzhàn.",
+          translation: "Bonjour, je voudrais aller à la gare de Taipei.",
+        },
+        {
+          type: "text",
+          content:
+            "URGENCE — 救命！(jiùmìng! — Au secours !). 請幫幫我 (qǐng bāng bāng wǒ — aidez-moi). 我需要看醫生 (wǒ xūyào kàn yīshēng — j'ai besoin d'un médecin). 請叫救護車 (qǐng jiào jiùhùchē — appelez une ambulance). Urgence médicale : 119. Police : 110. Ces numéros sont l'INVERSE de ceux de la Chine continentale.",
+        },
+        {
+          type: "example",
+          content: "Urgence médicale",
+          chinese: "請幫我叫救護車！我朋友受傷了。",
+          pinyin: "Qǐng bāng wǒ jiào jiùhùchē! Wǒ péngyǒu shòushāng le.",
+          translation: "Appelez une ambulance ! Mon ami est blessé.",
+        },
+        {
+          type: "tip",
+          content:
+            "La phrase MAGIQUE à Taiwan : 不好意思 (bù hǎo yìsi). Ce n'est pas vraiment une excuse — c'est un passe-partout social. On l'utilise pour attirer l'attention, pour passer devant quelqu'un, pour demander quelque chose, pour s'excuser d'un retard léger. Les Taiwanais le disent probablement 20 fois par jour. Si vous ne deviez retenir qu'une seule expression de toute cette unité, ce serait celle-ci.",
+        },
+      ],
+    },
+    {
       title: "Expressions de survie pour débutant",
       type: "practice",
       content: [

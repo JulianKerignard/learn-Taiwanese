@@ -70,6 +70,11 @@ export const unit02: CourseUnit = {
             "Méthode des 5 minutes par jour pour les tons :\n\n1. Choisissez 5 mots du vocabulaire du jour\n2. Prononcez chaque mot 5 fois en exagérant le ton (comme un acteur)\n3. Enregistrez-vous avec votre téléphone\n4. Écoutez et comparez avec l'audio du cours\n5. Recommencez jusqu'à ce que ça colle\n\nFaites ça TOUS LES JOURS pendant les 4 premières semaines. Après, les tons deviennent automatiques.",
         },
         {
+          type: "tip",
+          content:
+            "Astuce mnémotechnique pour les 4 tons : Ton 1 = une ambulance au loin (sirène constante et haute). Ton 2 = un enfant surpris « Ah bon ?! ». Ton 3 = un ado blasé « mouais... ». Ton 4 = un père qui dit « Non ! » à son enfant. Associez chaque ton à cette image et la mémorisation sera instantanée.",
+        },
+        {
           type: "text",
           content:
             "Voici 10 paires de mots où seul le ton change. C'est la preuve que les tons ne sont pas optionnels — ils SONT le mot :\n\n• 買 mǎi (acheter, ton 3) vs 賣 mài (vendre, ton 4) — un caractère d'écart, un monde de différence\n• 問 wèn (demander, ton 4) vs 吻 wěn (embrasser, ton 3) — attention en demandant votre chemin\n• 湯 tāng (soupe, ton 1) vs 糖 táng (sucre, ton 2) — au restaurant, la confusion classique\n• 睡覺 shuìjiào (dormir) vs 水餃 shuǐjiǎo (raviolis) — classique au marché de nuit taiwanais\n• 杯 bēi (verre, ton 1) vs 北 běi (nord, ton 3) — au café ou en donnant des directions\n• 書 shū (livre, ton 1) vs 熟 shú (mûr/familier, ton 2) — en librairie ou au marché\n• 四 sì (quatre, ton 4) vs 十 shí (dix, ton 2) — le cauchemar des débutants quand on paie\n• 是 shì (être, ton 4) vs 師 shī (professeur, ton 1) — dans les présentations\n• 飛 fēi (voler, ton 1) vs 肥 féi (gras, ton 2) — ne confondez pas à table\n• 吃 chī (manger, ton 1) vs 遲 chí (en retard, ton 2) — « je mange » vs « je suis en retard »",

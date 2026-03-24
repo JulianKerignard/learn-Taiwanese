@@ -46,6 +46,16 @@ export const unit04: CourseUnit = {
             "À Taiwan, les gens donnent souvent un nom anglais ou un surnom en plus de leur nom chinois. Ne soyez pas surpris si quelqu'un vous dit « 我叫 Kevin » — c'est très courant. Vous pouvez aussi vous choisir un nom chinois, les Taiwanais adorent ça !",
         },
         {
+          type: "warning",
+          content:
+            "你好 (nǐ hǎo) est un salut neutre et assez formel. Les Taiwanais ne l'utilisent presque jamais entre eux au quotidien. Entre amis et collègues, on dit plutôt 嗨 (hāi, emprunté à « hi ») ou 欸 (èi), ou simplement un sourire et un hochement de tête. 你好 est réservé aux premières rencontres et aux situations formelles. En tant que débutant, utilisez-le — c'est toujours correct. Mais sachez que quand vous progresserez, vous l'utiliserez de moins en moins.",
+        },
+        {
+          type: "warning",
+          content:
+            "你好嗎？(Nǐ hǎo ma? — Comment vas-tu ?) est la phrase que TOUS les manuels de chinois enseignent en premier, mais elle n'est quasiment JAMAIS utilisée dans la conversation courante à Taiwan. Si quelqu'un vous dit 你好嗎？, c'est généralement parce qu'il sait que vous avez été malade ou que vous traversez une période difficile. La façon courante de « saluer » est de commenter ce que fait la personne : 你要去哪裡？(Tu vas où ?) ou 吃飽了嗎？(Tu as mangé ?). Ces questions ne demandent pas de réponse précise — ce sont des formules sociales.",
+        },
+        {
           type: "text",
           content:
             "Les noms taiwanais ont une structure fixe : **NOM DE FAMILLE + PRÉNOM**. Le nom de famille vient TOUJOURS en premier — c'est l'inverse du français. Le nom de famille fait 1 syllabe (Chen 陳, Lin 林, Wang 王, Li 李, Zhang 張 sont les 5 plus courants à Taiwan). Le prénom fait 1 ou 2 syllabes. 陳美玲 (Chén Měilíng) = Chen est le nom de famille, Meiling est le prénom. Au quotidien, on appelle les gens par leur nom complet (pas juste le prénom) ou par leur titre : 陳老師 (Professeur Chen), 林小姐 (Mademoiselle Lin). Appeler quelqu'un par son prénom seul est réservé aux amis proches et à la famille.",
@@ -59,6 +69,36 @@ export const unit04: CourseUnit = {
           type: "warning",
           content:
             "À Taiwan, l'âge détermine le niveau de respect. C'est POURQUOI la question 你幾歲？(quel âge as-tu ?) n'est pas indiscrète — c'est une nécessité sociale pour savoir comment s'adresser à quelqu'un. Quelqu'un de plus âgé = 哥哥/姐姐 (grand frère/grande sœur, même si ce n'est pas votre famille). Quelqu'un de plus jeune = 弟弟/妹妹 (petit frère/petite sœur). Au travail, on ajoute 學長/學姐 pour les anciens. Ne JAMAIS appeler quelqu'un de plus âgé par son prénom sans titre — c'est comme dire 'tu' au lieu de 'vous' à votre patron en France, mais en pire.",
+        },
+      ],
+    },
+    {
+      title: "Votre première conversation — le script",
+      type: "practice",
+      content: [
+        {
+          type: "text",
+          content:
+            "Voici le script pas à pas de votre toute première interaction en mandarin à Taiwan, expliqué mot par mot. L'objectif n'est pas la perfection — c'est d'oser et de communiquer.",
+        },
+        {
+          type: "example",
+          content: "Se présenter — nom et nationalité",
+          chinese: "你好！我叫朱利安，我是法國人。我在學中文。你呢？",
+          pinyin:
+            "Nǐ hǎo! Wǒ jiào Zhūlì'ān, wǒ shì Fǎguó rén. Wǒ zài xué zhōngwén. Nǐ ne?",
+          translation:
+            "Bonjour ! Je m'appelle Julian, je suis français. J'apprends le chinois. Et toi ?",
+        },
+        {
+          type: "text",
+          content:
+            "呢 (ne) est une particule magique qui renvoie la question précédente à l'interlocuteur sans avoir à la reformuler. Si quelqu'un vous demande 你叫什麼名字？et que vous répondez puis ajoutez 你呢？, cela équivaut à « et toi, comment t'appelles-tu ? ». C'est un raccourci conversationnel extrêmement pratique.",
+        },
+        {
+          type: "tip",
+          content:
+            "N'ayez pas peur de mélanger chinois et anglais au début. Les Taiwanais le font eux-mêmes constamment. Dire 我要一個 coffee 是可以的 n'est pas une honte — c'est de la communication pragmatique. Vous affinerez avec le temps.",
         },
       ],
     },

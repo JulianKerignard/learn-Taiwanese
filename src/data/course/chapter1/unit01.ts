@@ -31,6 +31,52 @@ export const unit01: CourseUnit = {
             "Le chinois n'a pas d'alphabet. À la place, il utilise des caractères (漢字 hànzì). Chaque caractère représente une syllabe et porte un sens. Le caractère 山 (shān) signifie « montagne ». Il ne se décompose pas en lettres : c'est un bloc visuel unique.",
         },
         {
+          type: "text",
+          content:
+            "Chaque caractère chinois représente une syllabe et porte un sens. Le mot 電腦 (diànnǎo, ordinateur) se décompose en 電 (diàn, électricité) et 腦 (nǎo, cerveau). Un ordinateur, c'est littéralement un « cerveau électrique ». Cette logique compositionnelle est omniprésente : 火車 (huǒchē, train) = 火 (feu) + 車 (véhicule) — un « véhicule à feu ». Une fois que vous comprenez cette mécanique, apprendre de nouveaux mots devient un jeu de construction logique plutôt qu'un exercice de mémorisation arbitraire.",
+        },
+        {
+          type: "example",
+          content: "La logique des mots composés",
+          chinese: "手機",
+          pinyin: "shǒujī",
+          translation:
+            "Téléphone portable (手 main + 機 machine = « machine de main »)",
+        },
+        {
+          type: "example",
+          content: "Encore un exemple de composition logique",
+          chinese: "大學",
+          pinyin: "dàxué",
+          translation:
+            "Université (大 grand + 學 étude = « grande étude »)",
+        },
+        {
+          type: "tip",
+          content:
+            "Première bonne nouvelle pour les francophones : la grammaire chinoise est si simple qu'un débutant peut former des phrases correctes dès le premier jour. Il suffit de mettre les mots dans le bon ordre — pas besoin de conjuguer quoi que ce soit.",
+        },
+        {
+          type: "tip",
+          content:
+            "Deuxième bonne nouvelle : les caractères suivent une logique. Ce ne sont pas des dessins aléatoires. Les radicaux (composants récurrents) vous donnent des indices sur le sens, et les composants phonétiques sur la prononciation. Plus vous en apprenez, plus les suivants deviennent faciles.",
+        },
+        {
+          type: "text",
+          content:
+            "Troisième bonne nouvelle — et elle est de taille si vous venez à Taiwan : les Taiwanais sont d'une patience et d'une bienveillance remarquables avec les étrangers qui tentent de parler mandarin. Même si votre prononciation est approximative, même si vos tons sont bancals, les gens feront l'effort de vous comprendre, vous encourageront, et se montreront souvent émus que vous fassiez l'effort d'apprendre leur langue.",
+        },
+        {
+          type: "text",
+          content:
+            "Comparaison honnête — ce qui est PLUS SIMPLE en chinois : la grammaire (pas de conjugaison, pas de genre, pas d'articles), la formation des mots (logique compositionnelle), la syntaxe de base (SVO comme en français), les questions (il suffit d'ajouter 嗎 à la fin). Ce qui est PLUS COMPLEXE : l'écriture (des milliers de caractères à mémoriser), la prononciation (les 4 tons), certains sons inexistants en français (zh, ch, sh, r, ü), et les classificateurs (des petits mots qu'on place entre un nombre et un nom).",
+        },
+        {
+          type: "warning",
+          content:
+            "Ne vous laissez pas décourager par les personnes qui vous répondent en anglais quand vous essayez de parler chinois. Ce n'est pas parce que votre chinois est mauvais — c'est souvent parce que les Taiwanais veulent pratiquer leur anglais ou vous faciliter la vie. Insistez poliment en chinois : c'est la meilleure façon de progresser.",
+        },
+        {
           type: "tip",
           content:
             "Bonne nouvelle : l'ordre des mots en chinois est Sujet + Verbe + Objet, exactement comme en français ! « Je mange du riz » = 我吃飯 (wǒ chī fàn), mot pour mot : je + manger + riz.",
@@ -62,6 +108,53 @@ export const unit01: CourseUnit = {
           type: "text",
           content:
             "Chaque caractère est un concept. Certains sont des pictogrammes très anciens : 水 (shuǐ) = eau (on voit des gouttes qui coulent), 火 (huǒ) = feu (on voit des flammes), 人 (rén) = personne (on voit quelqu'un qui marche).",
+        },
+        {
+          type: "text",
+          content:
+            "Un caractère chinois n'est pas un dessin aléatoire. Il est construit selon des règles précises, généralement avec un radical sémantique (qui donne un indice sur le sens) et un composant phonétique (qui donne un indice sur la prononciation). Par exemple, le caractère 媽 (mā, maman) se compose du radical 女 (nǚ, femme) — qui indique que le sens est lié à une femme — et du composant 馬 (mǎ, cheval) qui n'a rien à voir avec le sens mais indique la prononciation approximative « ma ». Cette structure radical + phonétique s'applique à environ 80% des caractères chinois.",
+        },
+        {
+          type: "example",
+          content: "Structure radical + composant phonétique",
+          chinese: "清 晴 請 情",
+          pinyin: "qīng qíng qǐng qíng",
+          translation:
+            "clair/pur, ensoleillé, s'il vous plaît, sentiment — tous partagent le composant phonétique 青 (qīng) mais ont des radicaux différents : 氵(eau), 日(soleil), 言(parole), 忄(coeur)",
+        },
+        {
+          type: "example",
+          content: "Le radical de l'eau 水/氵 dans différents caractères",
+          chinese: "河 海 湖 洗 游 泳 淚 漢",
+          pinyin: "hé hǎi hú xǐ yóu yǒng lèi hàn",
+          translation:
+            "rivière, mer, lac, laver, nager, nager, larmes, Han (chinois) — tous contiennent le radical de l'eau",
+        },
+        {
+          type: "example",
+          content: "Le radical de la bouche 口 dans différents caractères",
+          chinese: "吃 喝 叫 吹 唱 嗎 呢 吧",
+          pinyin: "chī hē jiào chuī chàng ma ne ba",
+          translation:
+            "manger, boire, crier, souffler, chanter, particule interrogative, particule, particule — tous impliquent la bouche",
+        },
+        {
+          type: "text",
+          content:
+            "Les 10 caractères les plus simples à apprendre sont aussi parmi les plus anciens et les plus fréquents. Ils sont issus de pictogrammes : 一 (yī, un) est un simple trait horizontal, 二 (èr, deux) deux traits, 三 (sān, trois) trois traits. 人 (rén, personne) représente une silhouette humaine. 大 (dà, grand) est un humain qui écarte les bras. 小 (xiǎo, petit) montre quelque chose divisé. 日 (rì, soleil) était un cercle avec un point. 月 (yuè, lune) représentait un croissant. 山 (shān, montagne) dessine trois sommets. 水 (shuǐ, eau) évoque des gouttes et un courant.",
+        },
+        {
+          type: "example",
+          content: "Les 10 caractères les plus simples — pictogrammes ancestraux",
+          chinese: "一 二 三 人 大 小 日 月 山 水",
+          pinyin: "yī èr sān rén dà xiǎo rì yuè shān shuǐ",
+          translation:
+            "un, deux, trois, personne, grand, petit, soleil, lune, montagne, eau",
+        },
+        {
+          type: "text",
+          content:
+            "L'étymologie visuelle des caractères aide énormément à la mémorisation. Le caractère 木 (mù) représente un arbre. Deux arbres côte à côte : 林 (lín) signifie « forêt, bosquet ». Trois arbres ? 森 (sēn) signifie « forêt dense ». La femme 女 (nǚ) sous un toit 宀 donne 安 (ān, paix, sécurité). Le caractère 馬 (mǎ, cheval) était à l'origine un dessin d'un cheval avec quatre pattes et une crinière. 魚 (yú, poisson) montrait un poisson avec sa tête et sa queue. Connaître ces origines transforme l'apprentissage : au lieu de mémoriser des traits abstraits, vous voyez des images.",
         },
         {
           type: "tip",

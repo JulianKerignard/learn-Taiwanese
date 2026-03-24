@@ -40,6 +40,21 @@ export const unit31: CourseUnit = {
           content:
             "Le pinyin reste utile pour communiquer avec des non-sinophones, taper sur un clavier configuré en pinyin, ou lire des ressources internationales. Ce n'est pas l'un OU l'autre — c'est l'un ET l'autre. Mais à Taiwan, le zhuyin est la vraie compétence locale.",
         },
+        {
+          type: "text",
+          content:
+            "Les pièges majeurs du pinyin pour un francophone : la lettre « c » ne se prononce pas « k » mais « ts » (comme « tsé-tsé »). Ainsi 菜 (cài, légume) se prononce « tsaï » et non « kaï ». La lettre « q » ne se prononce pas « k » mais approximativement « tch » avec la langue en position haute. 七 (qī, sept) se prononce « tchi » et non « ki ». La lettre « x » ne se prononce pas « ks » mais un son entre le « s » et le « ch » qui n'existe pas en français. 小 (xiǎo, petit) se prononce « ssiao » et non « ksiao ». Le « zh » se prononce comme le « dj » anglais, le « ch » comme le « tch » anglais, et le « sh » comme le « ch » français. Et le « r » initial se prononce comme un « j » français mouillé avec la langue rétroflexe.",
+        },
+        {
+          type: "comparison",
+          content:
+            "Les consonnes piégeuses — Pinyin vs prononciation réelle pour un francophone : c = ts (pas « k »), q = tch (pas « k »), x = entre s et ch (pas « ks »), zh = dj rétroflexe (pas « z »), ch = tch rétroflexe (pas « ch »), sh = ch français (pas « ss »), r = entre « j » et « r » anglais, z = dz (pas « z » français), j = dj palatal (pas « j » français).",
+        },
+        {
+          type: "text",
+          content:
+            "Les sons les plus difficiles pour un francophone : (1) Les rétroflexes zh, ch, sh, r — en français, la langue est toujours plate. Pour ces sons, il faut recourber la pointe de la langue vers le palais. (2) Le « ü » (comme dans 女 nǚ) — ce son existe en français (le « u » de « lune ») mais disparaît en pinyin après j, q, x où il s'écrit juste « u ». Donc 去 (qù, aller) se prononce « tchü » et non « tchou ». (3) Les finales « -eng » et « -ang » — « -ang » est un « an » ouvert, « -eng » est un « ong » fermé. (4) La distinction entre « -in » et « -ing » — le « -ing » a un prolongement nasal postérieur que le « -in » n'a pas.",
+        },
       ],
     },
     {

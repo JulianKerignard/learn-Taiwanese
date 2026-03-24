@@ -185,6 +185,30 @@ export const unit10: CourseUnit = {
         {
           type: "text",
           content:
+            "Au comptoir du convenience store, les caissiers vous poseront systématiquement une série de questions rapides. Les connaître à l'avance vous évitera la panique du débutant : 要加熱嗎？(yào jiārè ma — vous voulez qu'on le réchauffe ?), 要集點嗎？(yào jídiǎn ma — vous voulez les points fidélité ?), 要袋子嗎？(yào dàizi ma — vous voulez un sac ? — payant, 1-2 NT$), 要統編嗎？(yào tǒngbiān ma — numéro fiscal d'entreprise ? — répondez 不用 bùyòng si vous êtes un particulier). Pour toutes ces questions : 好 (hǎo — oui) ou 不用 (bùyòng — non merci). Avec ces deux mots, vous survivrez à n'importe quel passage en caisse.",
+        },
+        {
+          type: "example",
+          chinese: "好，幫我加熱。不用袋子，謝謝。",
+          pinyin: "Hǎo, bāng wǒ jiārè. Bùyòng dàizi, xièxiè.",
+          translation: "Oui, réchauffez-le. Pas besoin de sac, merci.",
+          content: "Le duo 好/不用 est votre kit de survie au comptoir du conbini.",
+        },
+        {
+          type: "text",
+          content:
+            "Le café des convenience stores est une bonne surprise : City Café chez 7-Eleven et Let's Café chez FamilyMart proposent du café fraîchement moulu pour 45-65 NT$ (un americano medium). Les promotions café sont PARTOUT — deuxième tasse à moitié prix (第二杯半價 dì èr bēi bànjià), ou collectionnez des autocollants pour un café gratuit.",
+        },
+        {
+          type: "example",
+          chinese: "我要一杯中杯拿鐵。",
+          pinyin: "Wǒ yào yì bēi zhōng bēi ná tiě.",
+          translation: "Je voudrais un latte taille moyenne.",
+          content: "Les tailles : 小杯 (petit), 中杯 (moyen), 大杯 (grand).",
+        },
+        {
+          type: "text",
+          content:
             "Les convenience stores (便利商店 biànlì shāngdiàn) sont le VRAI centre de la vie taiwanaise. Taiwan a la plus haute densité de convenience stores au monde : plus de 13,000 pour 23 millions d'habitants, soit 1 pour environ 1,700 personnes. Les deux géants : 7-Eleven (統一超商 Tǒngyī chāoshāng, environ 6,600 magasins) et FamilyMart (全家 Quánjiā, environ 4,000 magasins). On trouve aussi Hi-Life (萊爾富) et OK Mart en moindre nombre. Ce qu'on peut y faire (et cette liste n'est PAS exhaustive) : acheter à manger (bento 便當 biàndāng, onigiri 飯糰 fàntuán, sandwichs, salades, boissons chaudes et froides), réchauffer sa nourriture gratuitement au micro-ondes du comptoir, payer ses factures d'eau, d'électricité, de gaz et de téléphone, retirer de l'argent aux distributeurs ATM (qui acceptent les cartes internationales), envoyer et recevoir des colis (寄件 jìjiàn / 取件 qǔjiàn — le système de livraison de colis aux convenience stores est omniprésent à Taiwan), imprimer et scanner des documents sur la borne ibon (7-Eleven) ou FamiPort (FamilyMart), acheter des tickets de concert, de train ou de spectacle, recharger sa EasyCard (悠遊卡 Yōuyóu kǎ) au comptoir ou à la borne, payer des amendes de stationnement ou de circulation, acheter des timbres et envoyer du courrier, commander des billets de bus longue distance (客運 kèyùn), et même réserver certains services. Le 7-Eleven est ouvert 24h/24, 7j/7, 365 jours par an. C'est littéralement le couteau suisse de la vie quotidienne taiwanaise. Pour un étranger qui vient d'arriver, c'est le premier endroit à maîtriser.",
         },
         {
@@ -196,6 +220,51 @@ export const unit10: CourseUnit = {
           type: "warning",
           content:
             "Les pièges du shopping à Taiwan pour les étrangers : 1) Les étiquettes de prix incluent TOUJOURS les taxes — pas de mauvaise surprise à la caisse, contrairement aux États-Unis ou au Canada. Le prix affiché est le prix payé. 2) La loterie des reçus (統一發票 tǒngyī fāpiào) : GARDEZ tous vos reçus ! Chaque facture a un numéro unique à 8 chiffres qui participe à un tirage au sort bimestriel organisé par le gouvernement. Le gros lot : 10 millions NT$ (environ 286,000 euros). Les prix intermédiaires : 2 millions, 200,000, 40,000, 10,000, 4,000, 1,000, et 200 NT$. Vérifiez vos numéros sur l'app 發票存摺 (fāpiào cúnzhé) ou sur le site officiel du Ministère des Finances. Beaucoup de Taiwanais stockent leurs factures numériquement via l'EasyCard ou l'app. 3) Les sacs plastiques sont payants dans toutes les enseignes : 1 à 5 NT$ selon la taille — amenez votre propre sac (環保袋 huánbǎo dài). 4) Le retour et l'échange sont généralement faciles dans les chaînes (7 jours avec le reçu, article non ouvert) mais impossibles dans les marchés et les stands de rue — vérifiez avant d'acheter.",
+        },
+      ],
+    },
+    {
+      title: "Shopping en ligne et loterie des reçus",
+      type: "culture",
+      content: [
+        {
+          type: "text",
+          content:
+            "Le e-commerce est extrêmement développé à Taiwan. La plateforme dominante est 蝦皮 (xiāpí — Shopee), qui combine marketplace et réseau social — on y trouve absolument tout. La spécificité taiwanaise : la livraison au convenience store (超商取貨 chāoshāng qǔhuò) est le mode favori. Vous commandez en ligne, choisissez le 7-Eleven ou FamilyMart le plus proche, et récupérez votre colis quand ça vous arrange (les conbini sont ouverts 24h/24). Pas besoin d'être chez soi.",
+        },
+        {
+          type: "text",
+          content:
+            "Les autres plateformes importantes : PChome 24h est le « Amazon taiwanais » — livraison en 24 heures dans toute l'île. momo (富邦購物 Fùbāng gòuwù) offre un catalogue gigantesque avec des promotions agressives. Pour la livraison de repas : Foodpanda (熊貓 xióngmāo) et UberEats se partagent le marché. Les livreurs en scooter rose (Foodpanda) ou vert (UberEats) font partie du paysage urbain.",
+        },
+        {
+          type: "example",
+          chinese: "我在蝦皮下單了，選超商取貨。",
+          pinyin: "Wǒ zài xiāpí xiàdān le, xuǎn chāoshāng qǔhuò.",
+          translation: "J'ai commandé sur Shopee, avec retrait au convenience store.",
+          content: "下單 = passer commande, 超商取貨 = retrait au conbini.",
+        },
+        {
+          type: "text",
+          content:
+            "Le vocabulaire du shopping en ligne : 下單 (xiàdān — passer commande), 付款 (fùkuǎn — payer), 運費 (yùnfèi — frais de livraison), 免運 (miǎn yùn — livraison gratuite, le graal de tout acheteur), 超商取貨 (chāoshāng qǔhuò — retrait au conbini), 貨到付款 (huò dào fùkuǎn — paiement à la livraison). Sur Shopee, guettez les événements « double jour » (雙11, 雙12) pour des réductions massives. Les vendeurs offrent souvent la livraison gratuite au-dessus d'un certain montant — 免運 est le mot magique à chercher.",
+        },
+        {
+          type: "text",
+          content:
+            "Le système de reçus-loterie (統一發票 tǒngyī fāpiào) est unique au monde. Chaque reçu officiel est automatiquement un billet de loterie — système mis en place en 1951 pour lutter contre l'évasion fiscale. Le tirage a lieu tous les deux mois (les 25 des mois impairs). Chaque reçu porte un numéro à 8 chiffres. Les gains : 3 derniers chiffres = 200 NT$, les 8 chiffres complets pour les gros lots (10 millions NT$ ≈ 280,000 euros, et un prix spécial de 2 millions NT$). L'app indispensable : 發票存摺 (fāpiào cúnzhé — « carnet de reçus »), qui scanne vos reçus papier, stocke vos reçus électroniques, et vérifie automatiquement les numéros gagnants à chaque tirage.",
+        },
+        {
+          type: "example",
+          chinese: "你有沒有對發票？這期有中獎嗎？",
+          pinyin: "Nǐ yǒu méiyǒu duì fāpiào? Zhè qī yǒu zhòngjiǎng ma?",
+          translation: "Tu as vérifié tes reçus ? Tu as gagné cette fois ?",
+          content: "對發票 = vérifier ses reçus. 中獎 = gagner un prix.",
+        },
+        {
+          type: "tip",
+          content:
+            "Pour éviter d'accumuler des montagnes de reçus papier : téléchargez l'app 發票存摺 et configurez les reçus électroniques (電子發票 diànzǐ fāpiào) — vous pouvez enregistrer votre EasyCard ou votre numéro de téléphone comme support. Ou donnez vos reçus papier aux boîtes de collecte (發票捐贈箱) dans les convenience stores — ils sont reversés à des associations caritatives.",
         },
       ],
     },

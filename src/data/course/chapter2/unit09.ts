@@ -97,7 +97,43 @@ export const unit09: CourseUnit = {
         {
           type: "text",
           content:
+            "Le petit-déjeuner taiwanais est une institution à part entière. Les 早餐店 (zǎocān diàn, littéralement « boutique de petit-déjeuner ») sont partout dans chaque quartier. Ce sont des petits restaurants qui ouvrent dès 5h-6h du matin et ferment vers 11h. Le menu typique : 蛋餅 (dàn bǐng, crêpe roulée aux œufs — le classique absolu, souvent garnie de maïs, jambon ou thon), 燒餅油條 (shāobǐng yóutiáo, galette feuilletée avec beignet frit — le petit-déjeuner traditionnel chinois), 飯糰 (fàntuán, boule de riz gluant fourrée — avec 油條, viande séchée, légumes marinés), 豆漿 (dòujiāng, lait de soja — chaud ou froid, sucré 甜 ou salé 鹹), 蘿蔔糕 (luóbo gāo, galette de radis blanc — frite à la poêle, servie avec de la sauce soja). Un petit-déjeuner complet coûte entre 50 et 80 NT$. Les 早餐店 sont un lieu social important : beaucoup de Taiwanais y vont tous les matins et connaissent personnellement le patron.",
+        },
+        {
+          type: "text",
+          content:
+            "Le bubble tea (珍珠奶茶 zhēnzhū nǎichá), inventé à Taichung en 1983 par le salon de thé 春水堂 (Chūn Shuǐ Táng), est une fierté nationale. Les chaînes les plus populaires : 50嵐 (Wǔshí Lán), 清心福全 (Qīngxīn Fúquán), CoCo都可. Quand vous commandez, on vous pose DEUX questions essentielles. Niveau de sucre : 全糖 (quán táng — 100%), 半糖 (bàn táng — 50%), 微糖 (wēi táng — 30%), 無糖 (wú táng — 0%). Niveau de glace : 正常冰 (zhèngcháng bīng — normal), 少冰 (shǎo bīng — peu de glace), 去冰 (qù bīng — sans glace). Les Taiwanais commandent souvent 半糖少冰 ou 微糖去冰. Commandez 半糖少冰 pour votre première fois — c'est le sweet spot.",
+        },
+        {
+          type: "example",
+          chinese: "我要一杯珍珠奶茶，半糖少冰。",
+          pinyin: "Wǒ yào yì bēi zhēnzhū nǎichá, bàn táng shǎo bīng.",
+          translation:
+            "Je voudrais un bubble tea, 50% de sucre et peu de glace.",
+          content: "La commande standard du bubble tea : boisson + sucre + glace.",
+        },
+        {
+          type: "text",
+          content:
+            "Le gâteau à l'ananas (鳳梨酥 fènglísū) est LE souvenir que tout le monde ramène de Taiwan. Un petit sablé fourré de pâte d'ananas (ou mélange ananas-melon d'hiver pour les versions traditionnelles). Les marques les plus réputées : 佳德 (Jiā Dé, Chia Te — longues files d'attente devant leur boutique à Taipei), 微熱山丘 (Wēirè Shānqiū, SunnyHills — 100% ananas, plus acidulé), et 小潘 (Xiǎo Pān — excellent rapport qualité-prix). Un coffret de 12 pièces coûte entre 300 et 500 NT$ selon la marque.",
+        },
+        {
+          type: "text",
+          content:
             "Quelques mots utiles pour vos préférences : 素食 (sùshí) = végétarien, 辣 (là) = piquant, 不辣 (bú là) = pas piquant. La cuisine taiwanaise est généralement moins épicée que la cuisine du Sichuan, mais mieux vaut demander.",
+        },
+        {
+          type: "text",
+          content:
+            "Le hot pot (火鍋 huǒguō) est LA sortie sociale numéro un des Taiwanais — entre amis, en couple, en famille. C'est une fondue chinoise : un bouillon qui mijote au centre de la table, et vous y plongez les ingrédients de votre choix. Première étape : choisir la base de bouillon. Les options classiques : 麻辣 (málà — épicé au poivre du Sichuan), 番茄 (fānqié — tomate), 藥膳 (yàoshàn — herbes médicinales chinoises), 昆布 (kūnbù — algue kombu, léger). Beaucoup de restaurants proposent un pot divisé en deux (鴛鴦鍋 yuānyāng guō — « pot mandarin duck ») pour avoir deux bouillons différents. Ensuite, vous vous servez au buffet d'ingrédients : viandes tranchées fin, légumes, tofu, fruits de mer, nouilles, boulettes.",
+        },
+        {
+          type: "example",
+          chinese: "我們要鴛鴦鍋，一個麻辣，一個番茄。",
+          pinyin: "Wǒmen yào yuānyāng guō, yí ge málà, yí ge fānqié.",
+          translation:
+            "Nous voudrions un pot double, un côté épicé et un côté tomate.",
+          content: "鴛鴦鍋 permet de satisfaire ceux qui aiment le piquant et ceux qui ne l'aiment pas.",
         },
         {
           type: "example",

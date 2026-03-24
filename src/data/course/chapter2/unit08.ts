@@ -92,6 +92,76 @@ export const unit08: CourseUnit = {
         {
           type: "text",
           content:
+            "Lire les panneaux à Taiwan — une cinquantaine de caractères qu'on voit absolument partout. Connaître ces caractères, c'est passer de « je suis complètement perdu » à « je comprends l'essentiel de mon environnement ».",
+        },
+        {
+          type: "example",
+          content: "Panneaux de navigation essentiels",
+          chinese: "出口 / 入口 / 緊急出口",
+          pinyin: "chūkǒu / rùkǒu / jǐnjí chūkǒu",
+          translation: "sortie / entrée / sortie de secours",
+        },
+        {
+          type: "example",
+          content: "Panneaux de toilettes",
+          chinese: "男 / 女 / 廁所 / 洗手間",
+          pinyin: "nán / nǚ / cèsuǒ / xǐshǒujiān",
+          translation:
+            "homme / femme / toilettes / lavabo (terme poli pour toilettes)",
+        },
+        {
+          type: "text",
+          content:
+            "Les panneaux de sécurité et d'interdiction : 禁止 (jìnzhǐ, interdit) apparaît partout : 禁止吸煙 (interdiction de fumer), 禁止拍照 (interdiction de photographier), 禁止飲食 (interdiction de manger et boire — dans le MRT !). 小心 (xiǎoxīn, attention) : 小心地滑 (attention sol glissant), 小心階梯 (attention marches). 危險 (wēixiǎn, danger) est le panneau le plus sérieux — quand vous le voyez, ne passez pas.",
+        },
+        {
+          type: "example",
+          content: "Panneaux de sécurité",
+          chinese: "禁止 / 小心 / 危險 / 請勿",
+          pinyin: "jìnzhǐ / xiǎoxīn / wēixiǎn / qǐng wù",
+          translation:
+            "interdit / attention / danger / veuillez ne pas (formule polie d'interdiction)",
+        },
+        {
+          type: "text",
+          content:
+            "Les panneaux des magasins et restaurants : 營業中 (yíngyè zhōng, ouvert), 休息中 (xiūxí zhōng, fermé/en pause). 打折 (dǎzhé, soldes) et 特價 (tèjià, prix spécial) sont les mots magiques pour les bonnes affaires. 買一送一 (mǎi yī sòng yī, « achetez-en un, un offert ») — une promotion très courante dans les convenience stores taiwanais.",
+        },
+        {
+          type: "example",
+          content: "Panneaux de magasins",
+          chinese: "營業中 / 休息中 / 打折 / 特價 / 買一送一",
+          pinyin:
+            "yíngyè zhōng / xiūxí zhōng / dǎzhé / tèjià / mǎi yī sòng yī",
+          translation:
+            "ouvert / fermé (en pause) / soldes / prix spécial / achetez 1, 1 offert",
+        },
+        {
+          type: "example",
+          content: "Panneaux du MRT",
+          chinese: "月台 / 轉乘 / 悠遊卡 / 儲值 / 售票機",
+          pinyin: "yuètái / zhuǎnchéng / yōuyóu kǎ / chǔzhí / shòupiào jī",
+          translation:
+            "quai / correspondance / carte EasyCard / recharger / distributeur de billets",
+        },
+        {
+          type: "example",
+          content: "Chiffres sur les panneaux de prix",
+          chinese: "元 / 塊 / 免費 / 半價",
+          pinyin: "yuán / kuài / miǎnfèi / bànjià",
+          translation:
+            "dollar NT (formel) / dollar NT (courant) / gratuit / moitié prix",
+        },
+        {
+          type: "example",
+          content: "Panneaux dans les immeubles",
+          chinese: "電梯 / 樓梯 / 停車場 / 接待處",
+          pinyin: "diàntī / lóutī / tíngchēchǎng / jiēdài chù",
+          translation: "ascenseur / escaliers / parking / réception",
+        },
+        {
+          type: "text",
+          content:
             "Le chinois utilise un système spatial basé sur des PAIRES D'OPPOSÉS. Chaque concept de direction a son contraire : 左/右 (gauche/droite), 前/後 (devant/derrière), 上/下 (dessus/dessous), 裡/外 (intérieur/extérieur). Cette structure en paires est fondamentale — elle revient dans le vocabulaire, la grammaire (la question A不A, par exemple 好不好), et même la philosophie chinoise (yin/yang). Quand vous apprenez un mot de direction, apprenez TOUJOURS son opposé en même temps. Si vous retenez 左 (gauche), forcez-vous à retenir 右 (droite) dans la même session. Si vous apprenez 上面 (dessus), apprenez immédiatement 下面 (dessous). Cette habitude doublera votre vocabulaire spatial en moitié moins de temps. Notez aussi que ces paires se combinent avec des suffixes pour créer des variantes : 邊 (biān, côté) donne 左邊/右邊, 面 (miàn, surface/côté) donne 前面/後面, et 裡 (lǐ, intérieur) donne 這裡/那裡. Maîtriser ces suffixes vous permet de former des dizaines de mots de localisation à partir de quelques caractères de base.",
         },
         {
@@ -224,6 +294,11 @@ export const unit08: CourseUnit = {
           type: "tip",
           content:
             "Les sorties (出口 chūkǒu) du MRT sont numérotées et chacune mène à un endroit précis. Avant de sortir, regardez le plan des sorties (qui est affiché sur le quai et dans chaque rame). Google Maps vous dira « Sortie 3 » — c'est beaucoup plus utile qu'une adresse à Taiwan. Dites au taxi : 捷運台北車站三號出口 (jiéyùn Táiběi chēzhàn sānhào chūkǒu — MRT Taipei Main Station sortie 3) et il saura exactement où aller. Les numéros de sortie sont aussi le point de rendez-vous universel : quand un ami vous dit « on se retrouve à la sortie 2 de Zhongxiao Dunhua », c'est aussi précis qu'une adresse GPS. Conseil pratique : téléchargez l'app « 台北捷運 Go » (Taipei Metro Go) pour les horaires en temps réel et la carte interactive.",
+        },
+        {
+          type: "tip",
+          content:
+            "Le tarif du MRT est calculé à la distance : de 20 à 65 NT$ environ. Avec la EasyCard (悠遊卡), vous bénéficiez d'une réduction de 20% par rapport au jeton. Si vous prenez le MRT puis un bus dans l'heure, le transfert est gratuit ou à prix réduit. Pour les bus, l'app '台北等公車' (Taipei Bus Tracker) est indispensable : position des bus en temps réel, temps d'attente, itinéraires. Google Maps intègre aussi les horaires de bus taiwanais et fonctionne très bien pour les trajets multi-modaux (MRT + bus + marche).",
         },
       ],
     },

@@ -113,6 +113,52 @@ export const unit20: CourseUnit = {
       ],
     },
     {
+      title: "Le langage du corps à Taiwan",
+      type: "culture",
+      content: [
+        {
+          type: "text",
+          content:
+            "La communication non-verbale à Taiwan suit des règles différentes de la France. Les gestes, la distance physique, le contact visuel, la façon de donner et recevoir — tout cela a ses propres codes. Comprendre ces codes est aussi important que de connaître les mots.",
+        },
+        {
+          type: "text",
+          content:
+            "POINTER — En France, on pointe du doigt sans y penser. À Taiwan, pointer quelqu'un ou quelque chose avec l'index est considéré comme impoli, voire agressif. Pour indiquer une direction ou une personne, utilisez la main ouverte, paume vers le haut, dans un geste d'invitation. Pour montrer un objet dans un magasin, pointez avec la main ouverte plutôt qu'avec un seul doigt.",
+        },
+        {
+          type: "text",
+          content:
+            "LA TÊTE — Toucher la tête de quelqu'un, même d'un enfant, est un geste à éviter absolument à Taiwan. L'influence bouddhiste considère la tête comme la partie la plus sacrée du corps. Même ébouriffer les cheveux d'un enfant en signe d'affection peut choquer certains Taiwanais. Si vous voulez montrer de l'affection à un enfant, tapotez-lui l'épaule ou le dos.",
+        },
+        {
+          type: "text",
+          content:
+            "DONNER ET RECEVOIR — À Taiwan, donner ou recevoir un objet (carte de visite, argent, cadeau, document) se fait idéalement avec les deux mains. Ce geste exprime le respect et l'attention. Pour l'argent, la même règle s'applique : tendre le billet à deux mains est plus poli. Dans les magasins modernes, vous pouvez poser l'argent dans le petit plateau prévu sur le comptoir.",
+        },
+        {
+          type: "text",
+          content:
+            "LA SALUTATION PHYSIQUE — Oubliez la bise. Oubliez les accolades. À Taiwan, on se salue d'un hochement de tête, parfois accompagné d'un léger sourire. Une poignée de main est acceptable dans un contexte professionnel mais ce n'est pas le réflexe local. Une poignée de main ferme « à la française » peut être perçue comme agressive — la poignée de main taiwanaise est plus souple.",
+        },
+        {
+          type: "warning",
+          content:
+            "Le contact physique entre personnes du même sexe est beaucoup plus décontracté à Taiwan qu'en France. Deux amies se tiennent par le bras, deux amis se tapotent l'épaule — aucune connotation romantique. Inversement, le contact physique entre personnes de sexes différents est plus réservé en public.",
+        },
+        {
+          type: "tip",
+          content:
+            "Quand on vous offre un cadeau à Taiwan, ne l'ouvrez pas immédiatement devant la personne (sauf si elle vous y invite). C'est l'opposé de la culture française. Ouvrir le cadeau en privé évite au donneur un potentiel embarras si le cadeau ne vous plaît pas.",
+        },
+        {
+          type: "warning",
+          content:
+            "Évitez de parler fort en public, surtout dans le MRT. Les Taiwanais sont discrets et considèrent les conversations bruyantes comme une nuisance. Les wagons du MRT sont souvent silencieux — même les téléphones sont en mode vibreur.",
+        },
+      ],
+    },
+    {
       title: "面子 - Sauver la face",
       type: "culture",
       content: [
