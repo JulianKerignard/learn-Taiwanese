@@ -483,7 +483,10 @@ export const unit27: CourseUnit = {
       question: "我吃___小籠包。(J'ai deja mange des xiaolongbao dans ma vie.)",
       correctAnswer: "過",
       options: ["過", "了", "會", "很"],
+      optionsHint: ["guò", "le", "huì", "hěn"],
+      optionsZhuyin: ["ㄍㄨㄛˋ", "ㄌㄜ˙", "ㄏㄨㄟˋ", "ㄏㄣˇ"],
       hint: "Quelle particule indique une experience de vie ?",
+      hintZhuyin: "Quelle particule indique une experience de vie ?",
     },
     {
       id: "u27-ex2",
@@ -491,6 +494,8 @@ export const unit27: CourseUnit = {
       question: "Comment dit-on « Demain j'irai au marche de nuit » ?",
       correctAnswer: "明天我會去夜市",
       options: ["明天我會去夜市", "明天我去了夜市", "明天我去過夜市", "明天我想了夜市"],
+      optionsHint: ["míngtiān wǒ huì qù yèshì", "míngtiān wǒ qù le yèshì", "míngtiān wǒ qù guò yèshì", "míngtiān wǒ xiǎng le yèshì"],
+      optionsZhuyin: ["ㄇㄧㄥˊ ㄊㄧㄢ ㄨㄛˇ ㄏㄨㄟˋ ㄑㄩˋ ㄧㄝˋ ㄕˋ", "ㄇㄧㄥˊ ㄊㄧㄢ ㄨㄛˇ ㄑㄩˋ ㄌㄜ˙ ㄧㄝˋ ㄕˋ", "ㄇㄧㄥˊ ㄊㄧㄢ ㄨㄛˇ ㄑㄩˋ ㄍㄨㄛˋ ㄧㄝˋ ㄕˋ", "ㄇㄧㄥˊ ㄊㄧㄢ ㄨㄛˇ ㄒㄧㄤˇ ㄌㄜ˙ ㄧㄝˋ ㄕˋ"],
     },
     {
       id: "u27-ex3",
@@ -498,7 +503,10 @@ export const unit27: CourseUnit = {
       question: "___下雨，___我不想出門。(Parce qu'il pleut, je ne veux pas sortir.)",
       correctAnswer: "因為...所以",
       options: ["因為...所以", "可是...然後", "然後...所以", "還是...可是"],
+      optionsHint: ["yīnwèi...suǒyǐ", "kěshì...ránhòu", "ránhòu...suǒyǐ", "háishì...kěshì"],
+      optionsZhuyin: ["ㄧㄣ ㄨㄟˋ...ㄙㄨㄛˇ ㄧˇ", "ㄎㄜˇ ㄕˋ...ㄖㄢˊ ㄏㄡˋ", "ㄖㄢˊ ㄏㄡˋ...ㄙㄨㄛˇ ㄧˇ", "ㄏㄞˊ ㄕˋ...ㄎㄜˇ ㄕˋ"],
       hint: "Quelle paire de connecteurs exprime cause et consequence ?",
+      hintZhuyin: "Quelle paire de connecteurs exprime cause et consequence ?",
     },
     {
       id: "u27-ex4",
@@ -518,7 +526,10 @@ export const unit27: CourseUnit = {
       question: "我___吃飯，等一下。(Je suis en train de manger, attends un peu.)",
       correctAnswer: "正在",
       options: ["正在", "已經", "快要", "剛才"],
+      optionsHint: ["zhèngzài", "yǐjīng", "kuàiyào", "gāngcái"],
+      optionsZhuyin: ["ㄓㄥˋ ㄗㄞˋ", "ㄧˇ ㄐㄧㄥ", "ㄎㄨㄞˋ ㄧㄠˋ", "ㄍㄤ ㄘㄞˊ"],
       hint: "Quelle expression signifie « etre en train de » ?",
+      hintZhuyin: "Quelle expression signifie « etre en train de » ?",
     },
     {
       id: "u27-ex6",
@@ -538,7 +549,10 @@ export const unit27: CourseUnit = {
       question: "Remettez dans l'ordre : 然後 / 先 / 吃飯 / 去 / 看電影",
       correctAnswer: "先吃飯然後去看電影",
       options: ["先", "吃飯", "然後", "去", "看電影"],
+      optionsHint: ["xiān", "chīfàn", "ránhòu", "qù", "kàn diànyǐng"],
+      optionsZhuyin: ["ㄒㄧㄢ", "ㄔ ㄈㄢˋ", "ㄖㄢˊ ㄏㄡˋ", "ㄑㄩˋ", "ㄎㄢˋ ㄉㄧㄢˋ ㄧㄥˇ"],
       hint: "Structure : 先 + action1，然後 + action2",
+      hintZhuyin: "Structure : ㄒㄧㄢ + action1，ㄖㄢˊ ㄏㄡˋ + action2",
     },
     {
       id: "u27-reorder-2",
@@ -546,7 +560,10 @@ export const unit27: CourseUnit = {
       question: "Remettez dans l'ordre : 正在 / 我 / 呢 / 看書",
       correctAnswer: "我正在看書呢",
       options: ["我", "正在", "看書", "呢"],
+      optionsHint: ["wǒ", "zhèngzài", "kànshū", "ne"],
+      optionsZhuyin: ["ㄨㄛˇ", "ㄓㄥˋ ㄗㄞˋ", "ㄎㄢˋ ㄕㄨ", "ㄋㄜ˙"],
       hint: "Structure : Sujet + 正在 + Verbe + 呢",
+      hintZhuyin: "Structure : Sujet + ㄓㄥˋ ㄗㄞˋ + Verbe + ㄋㄜ˙",
     },
   ],
 

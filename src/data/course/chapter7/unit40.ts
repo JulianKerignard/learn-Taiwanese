@@ -418,7 +418,10 @@ export const unit40: CourseUnit = {
         "他每天都把房間收拾___。(Il range sa chambre proprement chaque jour.)",
       correctAnswer: "好",
       options: ["好", "完", "到", "了"],
+      optionsHint: ["hǎo", "wán", "dào", "le"],
+      optionsZhuyin: ["ㄏㄠˇ", "ㄨㄢˊ", "ㄉㄠˋ", "ㄌㄜ˙"],
       hint: "Résultatif indiquant que l'action est bien faite.",
+      hintZhuyin: "Résultatif indiquant que l'action est bien faite.",
     },
     {
       id: "u40-ex12",
@@ -427,7 +430,10 @@ export const unit40: CourseUnit = {
         "你的字寫___不太好看，要多練習。(Tu n'écris pas très joliment, il faut plus pratiquer.)",
       correctAnswer: "得",
       options: ["得", "的", "地", "了"],
+      optionsHint: ["de", "de", "de", "le"],
+      optionsZhuyin: ["ㄉㄜ˙", "ㄉㄜ˙", "ㄉㄜ˙", "ㄌㄜ˙"],
       hint: "Particule de complément de degré entre le verbe et l'évaluation.",
+      hintZhuyin: "Particule de complément de degré entre le verbe et l'évaluation.",
     },
     {
       id: "u40-ex13",
@@ -436,7 +442,10 @@ export const unit40: CourseUnit = {
         "我找___半天，終於找到鑰匙了。(J'ai cherché longtemps et j'ai enfin trouvé les clés.)",
       correctAnswer: "了",
       options: ["了", "得", "過", "把"],
+      optionsHint: ["le", "de", "guò", "bǎ"],
+      optionsZhuyin: ["ㄌㄜ˙", "ㄉㄜ˙", "ㄍㄨㄛˋ", "ㄅㄚˇ"],
       hint: "了₁ : action accomplie (chercher → fait).",
+      hintZhuyin: "ㄌㄜ˙₁ : action accomplie (chercher → fait).",
     },
     {
       id: "u40-ex14",
@@ -445,7 +454,10 @@ export const unit40: CourseUnit = {
         "這本書太難了，我看___。(Ce livre est trop dur, je ne le comprends pas.)",
       correctAnswer: "不懂",
       options: ["不懂", "得懂", "不到", "不完"],
+      optionsHint: ["bù dǒng", "de dǒng", "bú dào", "bù wán"],
+      optionsZhuyin: ["ㄅㄨˋ ㄉㄨㄥˇ", "ㄉㄜ˙ ㄉㄨㄥˇ", "ㄅㄨˊ ㄉㄠˋ", "ㄅㄨˋ ㄨㄢˊ"],
       hint: "Résultatif négatif : impossible de comprendre.",
+      hintZhuyin: "Résultatif négatif : impossible de comprendre.",
     },
     {
       id: "u40-ex15",
@@ -454,7 +466,10 @@ export const unit40: CourseUnit = {
         "我___台灣以前，一句中文都不會說。(Avant de venir à Taiwan, je ne savais pas dire un mot de chinois.)",
       correctAnswer: "來",
       options: ["來", "去", "到", "在"],
+      optionsHint: ["lái", "qù", "dào", "zài"],
+      optionsZhuyin: ["ㄌㄞˊ", "ㄑㄩˋ", "ㄉㄠˋ", "ㄗㄞˋ"],
       hint: "Verbe de mouvement vers Taiwan (perspective du locuteur sur place).",
+      hintZhuyin: "Verbe de mouvement vers Taiwan (perspective du locuteur sur place).",
     },
     // --- 5 exercices "comprehension" (textes courts) ---
     {

@@ -360,7 +360,10 @@ export const unit39: CourseUnit = {
       question: "我昨天___三個小時的中文。(J'ai étudié 3h de chinois hier.)",
       correctAnswer: "學了",
       options: ["學了", "學過", "在學", "學會"],
+      optionsHint: ["xué le", "xué guò", "zài xué", "xuéhuì"],
+      optionsZhuyin: ["ㄒㄩㄝˊ ㄌㄜ˙", "ㄒㄩㄝˊ ㄍㄨㄛˋ", "ㄗㄞˋ ㄒㄩㄝˊ", "ㄒㄩㄝˊ ㄏㄨㄟˋ"],
       hint: "Action accomplie dans le passé.",
+      hintZhuyin: "Action accomplie dans le passé.",
     },
     {
       id: "u39-ex12",
@@ -369,7 +372,10 @@ export const unit39: CourseUnit = {
         "他跑得比我___。(Il court plus vite que moi.)",
       correctAnswer: "快",
       options: ["快", "快了", "很快", "最快"],
+      optionsHint: ["kuài", "kuài le", "hěn kuài", "zuì kuài"],
+      optionsZhuyin: ["ㄎㄨㄞˋ", "ㄎㄨㄞˋ ㄌㄜ˙", "ㄏㄣˇ ㄎㄨㄞˋ", "ㄗㄨㄟˋ ㄎㄨㄞˋ"],
       hint: "Comparaison avec 比 : pas de 很 ni de 了.",
+      hintZhuyin: "Comparaison avec ㄅㄧˇ : pas de ㄏㄣˇ ni de ㄌㄜ˙.",
     },
     {
       id: "u39-ex13",
@@ -378,7 +384,10 @@ export const unit39: CourseUnit = {
         "你___去過日本嗎？(Tu es déjà allé au Japon ?)",
       correctAnswer: "有沒有",
       options: ["有沒有", "是不是", "會不會", "要不要"],
+      optionsHint: ["yǒu méiyǒu", "shì bú shì", "huì bú huì", "yào bú yào"],
+      optionsZhuyin: ["ㄧㄡˇ ㄇㄟˊ ㄧㄡˇ", "ㄕˋ ㄅㄨˊ ㄕˋ", "ㄏㄨㄟˋ ㄅㄨˊ ㄏㄨㄟˋ", "ㄧㄠˋ ㄅㄨˊ ㄧㄠˋ"],
       hint: "Question sur l'expérience passée.",
+      hintZhuyin: "Question sur l'expérience passée.",
     },
     {
       id: "u39-ex14",
@@ -387,7 +396,10 @@ export const unit39: CourseUnit = {
         "___天氣不好，我們___不去爬山了。(S'il fait mauvais, on n'ira pas randonner.)",
       correctAnswer: "如果...就",
       options: ["如果...就", "雖然...但是", "因為...所以", "不但...而且"],
+      optionsHint: ["rúguǒ...jiù", "suīrán...dànshì", "yīnwèi...suǒyǐ", "búdàn...érqiě"],
+      optionsZhuyin: ["ㄖㄨˊ ㄍㄨㄛˇ...ㄐㄧㄡˋ", "ㄙㄨㄟ ㄖㄢˊ...ㄉㄢˋ ㄕˋ", "ㄧㄣ ㄨㄟˋ...ㄙㄨㄛˇ ㄧˇ", "ㄅㄨˋ ㄉㄢˋ...ㄦˊ ㄑㄧㄝˇ"],
       hint: "Condition : si... alors...",
+      hintZhuyin: "Condition : si... alors...",
     },
     {
       id: "u39-ex15",
@@ -396,7 +408,10 @@ export const unit39: CourseUnit = {
         "請給我兩___水。(Donnez-moi deux bouteilles d'eau.)",
       correctAnswer: "瓶",
       options: ["瓶", "杯", "碗", "個"],
+      optionsHint: ["píng", "bēi", "wǎn", "ge"],
+      optionsZhuyin: ["ㄆㄧㄥˊ", "ㄅㄟ", "ㄨㄢˇ", "ㄍㄜ˙"],
       hint: "Classificateur pour les bouteilles.",
+      hintZhuyin: "Classificateur pour les bouteilles.",
     },
     // --- 5 exercices "translate" ---
     {

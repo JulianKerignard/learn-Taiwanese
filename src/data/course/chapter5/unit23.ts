@@ -504,6 +504,8 @@ export const unit23: CourseUnit = {
         "Quel verbe modal exprime une obligation absolue (pas le choix) ?",
       correctAnswer: "必須",
       options: ["必須", "應該", "希望", "需要"],
+      optionsHint: ["bìxū", "yīnggāi", "xīwàng", "xūyào"],
+      optionsZhuyin: ["ㄅㄧˋ ㄒㄩ", "ㄧㄥ ㄍㄞ", "ㄒㄧ ㄨㄤˋ", "ㄒㄩ ㄧㄠˋ"],
     },
     {
       id: "u17-ex2",
@@ -511,7 +513,10 @@ export const unit23: CourseUnit = {
       question: "我___你的幫忙。(J'ai besoin de ton aide.)",
       correctAnswer: "需要",
       options: ["需要", "希望", "應該", "必須"],
+      optionsHint: ["xūyào", "xīwàng", "yīnggāi", "bìxū"],
+      optionsZhuyin: ["ㄒㄩ ㄧㄠˋ", "ㄒㄧ ㄨㄤˋ", "ㄧㄥ ㄍㄞ", "ㄅㄧˋ ㄒㄩ"],
       hint: "Quel verbe exprime un besoin ?",
+      hintZhuyin: "Quel verbe exprime un besoin ?",
     },
     {
       id: "u17-ex3",
@@ -531,6 +536,8 @@ export const unit23: CourseUnit = {
       question: "Comment appeler correctement le manager Chen au travail ?",
       correctAnswer: "陳經理",
       options: ["陳經理", "小陳", "陳先生", "阿陳"],
+      optionsHint: ["Chén jīnglǐ", "Xiǎo Chén", "Chén xiānshēng", "Ā Chén"],
+      optionsZhuyin: ["ㄔㄣˊ ㄐㄧㄥ ㄌㄧˇ", "ㄒㄧㄠˇ ㄔㄣˊ", "ㄔㄣˊ ㄒㄧㄢ ㄕㄥ", "ㄚ ㄔㄣˊ"],
     },
     {
       id: "u17-ex5",
@@ -551,7 +558,10 @@ export const unit23: CourseUnit = {
         "你___早點來。(Tu devrais venir plus tôt.)",
       correctAnswer: "應該",
       options: ["應該", "必須", "需要", "希望"],
+      optionsHint: ["yīnggāi", "bìxū", "xūyào", "xīwàng"],
+      optionsZhuyin: ["ㄧㄥ ㄍㄞ", "ㄅㄧˋ ㄒㄩ", "ㄒㄩ ㄧㄠˋ", "ㄒㄧ ㄨㄤˋ"],
       hint: "Quel verbe exprime un conseil ?",
+      hintZhuyin: "Quel verbe exprime un conseil ?",
     },
   ],
 

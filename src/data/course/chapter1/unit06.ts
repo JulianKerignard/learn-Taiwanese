@@ -562,6 +562,7 @@ export const unit06: CourseUnit = {
       correctAnswer: "本",
       options: ["本", "張", "條", "個"],
       optionsHint: ["běn", "zhāng", "tiáo", "ge"],
+      optionsZhuyin: ["ㄅㄣˇ", "ㄓㄤ", "ㄊㄧㄠˊ", "ㄍㄜ"],
       hint: "Un livre est relié, il a des pages.",
     },
     {
@@ -571,6 +572,7 @@ export const unit06: CourseUnit = {
       correctAnswer: "隻",
       options: ["隻", "個", "條", "件"],
       optionsHint: ["zhī", "ge", "tiáo", "jiàn"],
+      optionsZhuyin: ["ㄓ", "ㄍㄜ", "ㄊㄧㄠˊ", "ㄐㄧㄢˋ"],
       hint: "Le chat est un animal.",
     },
     {
@@ -581,6 +583,7 @@ export const unit06: CourseUnit = {
       correctAnswer: "輛",
       options: ["輛", "台", "個", "隻"],
       optionsHint: ["liàng", "tái", "ge", "zhī"],
+      optionsZhuyin: ["ㄌㄧㄤˋ", "ㄊㄞˊ", "ㄍㄜ", "ㄓ"],
       hint: "Un taxi est un véhicule avec des roues.",
     },
     {
@@ -590,6 +593,7 @@ export const unit06: CourseUnit = {
       correctAnswer: "瓶",
       options: ["瓶", "杯", "碗", "個"],
       optionsHint: ["píng", "bēi", "wǎn", "ge"],
+      optionsZhuyin: ["ㄆㄧㄥˊ", "ㄅㄟ", "ㄨㄢˇ", "ㄍㄜ"],
       hint: "L'eau est dans une bouteille.",
     },
     {
@@ -627,6 +631,7 @@ export const unit06: CourseUnit = {
       correctAnswer: "件",
       options: ["件", "條", "張", "個"],
       optionsHint: ["jiàn", "tiáo", "zhāng", "ge"],
+      optionsZhuyin: ["ㄐㄧㄢˋ", "ㄊㄧㄠˊ", "ㄓㄤ", "ㄍㄜ"],
       hint: "Les vêtements du haut utilisent ce classificateur.",
     },
     {
@@ -647,6 +652,7 @@ export const unit06: CourseUnit = {
         "wǒ dì yī běn lái Táiwān.",
         "wǒ yí cì lái Táiwān le.",
       ],
+      optionsZhuyin: ["ㄓㄜˋ ㄕˋ ㄨㄛˇ ㄉㄧˋ ㄧ ㄘˋ ㄌㄞˊ ㄊㄞˊ ㄨㄢ.", "ㄓㄜˋ ㄕˋ ㄨㄛˇ ㄧˊ ㄍㄜ ㄌㄞˊ ㄊㄞˊ ㄨㄢ.", "ㄨㄛˇ ㄉㄧˋ ㄧ ㄅㄣˇ ㄌㄞˊ ㄊㄞˊ ㄨㄢ.", "ㄨㄛˇ ㄧˊ ㄘˋ ㄌㄞˊ ㄊㄞˊ ㄨㄢ ㄌㄜ."],
     },
     {
       id: "u6-fill-new1",
@@ -655,6 +661,7 @@ export const unit06: CourseUnit = {
       correctAnswer: "隻",
       options: ["隻", "條", "個", "輛"],
       optionsHint: ["zhī", "tiáo", "ge", "liàng"],
+      optionsZhuyin: ["ㄓ", "ㄊㄧㄠˊ", "ㄍㄜ", "ㄌㄧㄤˋ"],
       hint: "Le chien est un animal.",
     },
     {
@@ -664,6 +671,7 @@ export const unit06: CourseUnit = {
       correctAnswer: "條",
       options: ["條", "件", "張", "個"],
       optionsHint: ["tiáo", "jiàn", "zhāng", "ge"],
+      optionsZhuyin: ["ㄊㄧㄠˊ", "ㄐㄧㄢˋ", "ㄓㄤ", "ㄍㄜ"],
       hint: "Le pantalon a une forme allongee (jambes).",
     },
     {
@@ -673,6 +681,7 @@ export const unit06: CourseUnit = {
       correctAnswer: "張",
       options: ["張", "本", "片", "個"],
       optionsHint: ["zhāng", "běn", "piàn", "ge"],
+      optionsZhuyin: ["ㄓㄤ", "ㄅㄣˇ", "ㄆㄧㄢˋ", "ㄍㄜ"],
       hint: "Une photo est plate et a une surface.",
     },
     {
@@ -682,6 +691,7 @@ export const unit06: CourseUnit = {
       correctAnswer: "兩杯水",
       options: ["兩杯水", "兩瓶水", "二個水", "兩碗水"],
       optionsHint: ["liǎng bēi shuǐ", "liǎng píng shuǐ", "èr ge shuǐ", "liǎng wǎn shuǐ"],
+      optionsZhuyin: ["ㄌㄧㄤˇ ㄅㄟ ㄕㄨㄟˇ", "ㄌㄧㄤˇ ㄆㄧㄥˊ ㄕㄨㄟˇ", "ㄦˋ ㄍㄜ ㄕㄨㄟˇ", "ㄌㄧㄤˇ ㄨㄢˇ ㄕㄨㄟˇ"],
     },
     {
       id: "u6-translate-new2",
@@ -690,6 +700,7 @@ export const unit06: CourseUnit = {
       correctAnswer: "一碗麵",
       options: ["一碗麵", "一杯麵", "一盤麵", "一個麵"],
       optionsHint: ["yì wǎn miàn", "yì bēi miàn", "yì pán miàn", "yí ge miàn"],
+      optionsZhuyin: ["ㄧˋ ㄨㄢˇ ㄇㄧㄢˋ", "ㄧˋ ㄅㄟ ㄇㄧㄢˋ", "ㄧˋ ㄆㄢˊ ㄇㄧㄢˋ", "ㄧˊ ㄍㄜ ㄇㄧㄢˋ"],
     },
     {
       id: "u6-translate-new3",
@@ -698,6 +709,7 @@ export const unit06: CourseUnit = {
       correctAnswer: "三瓶啤酒",
       options: ["三瓶啤酒", "三杯啤酒", "三碗啤酒", "三個啤酒"],
       optionsHint: ["sān píng píjiǔ", "sān bēi píjiǔ", "sān wǎn píjiǔ", "sān ge píjiǔ"],
+      optionsZhuyin: ["ㄙㄢ ㄆㄧㄥˊ ㄆㄧˊ ㄐㄧㄡˇ", "ㄙㄢ ㄅㄟ ㄆㄧˊ ㄐㄧㄡˇ", "ㄙㄢ ㄨㄢˇ ㄆㄧˊ ㄐㄧㄡˇ", "ㄙㄢ ㄍㄜ ㄆㄧˊ ㄐㄧㄡˇ"],
     },
   ],
 

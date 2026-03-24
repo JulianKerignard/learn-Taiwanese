@@ -651,6 +651,7 @@ export const unit32: CourseUnit = {
         "女 (femme) + 了 (particule)",
       ],
       hint: "Le radical 女 (femme) est à gauche.",
+      hintZhuyin: "Le radical 女 (femme) est à gauche.",
     },
     {
       id: "u32-ex4",
@@ -718,6 +719,7 @@ export const unit32: CourseUnit = {
         "木 (mù — bois)",
       ],
       hint: "Le radical est à gauche du caractère 錢.",
+      hintZhuyin: "Le radical est à gauche du caractère 錢.",
     },
   ],
 

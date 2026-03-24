@@ -605,6 +605,7 @@ export const unit08: CourseUnit = {
         "jiéyùn zhàn qù nǎlǐ?",
         "zài jiéyùn zhàn nǎlǐ?",
       ],
+      optionsZhuyin: ["ㄐㄧㄝˊ ㄩㄣˋ ㄓㄢˋ ㄗㄞˋ ㄋㄚˇ ㄌㄧˇ?", "ㄋㄚˇ ㄌㄧˇ ㄗㄞˋ ㄐㄧㄝˊ ㄩㄣˋ ㄓㄢˋ?", "ㄐㄧㄝˊ ㄩㄣˋ ㄓㄢˋ ㄑㄩˋ ㄋㄚˇ ㄌㄧˇ?", "ㄗㄞˋ ㄐㄧㄝˊ ㄩㄣˋ ㄓㄢˋ ㄋㄚˇ ㄌㄧˇ?"],
     },
     {
       id: "u6-ex2",
@@ -613,6 +614,7 @@ export const unit08: CourseUnit = {
       correctAnswer: "左",
       options: ["左", "右", "前", "後"],
       optionsHint: ["zuǒ", "yòu", "qián", "hòu"],
+      optionsZhuyin: ["ㄗㄨㄛˇ", "ㄧㄡˋ", "ㄑㄧㄢˊ", "ㄏㄡˋ"],
       hint: "Quel caractère signifie « gauche » ?",
     },
     {
@@ -659,6 +661,7 @@ export const unit08: CourseUnit = {
       correctAnswer: "前",
       options: ["前", "後", "左", "上"],
       optionsHint: ["qián", "hòu", "zuǒ", "shàng"],
+      optionsZhuyin: ["ㄑㄧㄢˊ", "ㄏㄡˋ", "ㄗㄨㄛˇ", "ㄕㄤˋ"],
       hint: "Quel caractère signifie « devant » ?",
     },
     {

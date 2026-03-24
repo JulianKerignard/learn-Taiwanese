@@ -389,6 +389,8 @@ export const unit29: CourseUnit = {
       question: "Quelle structure exprime la concession (bien que...mais) ?",
       correctAnswer: "雖然...但是",
       options: ["雖然...但是", "因為...所以", "如果...就", "不但...而且"],
+      optionsHint: ["suīrán...dànshì", "yīnwèi...suǒyǐ", "rúguǒ...jiù", "búdàn...érqiě"],
+      optionsZhuyin: ["ㄙㄨㄟ ㄖㄢˊ...ㄉㄢˋ ㄕˋ", "ㄧㄣ ㄨㄟˋ...ㄙㄨㄛˇ ㄧˇ", "ㄖㄨˊ ㄍㄨㄛˇ...ㄐㄧㄡˋ", "ㄅㄨˋ ㄉㄢˋ...ㄦˊ ㄑㄧㄝˇ"],
     },
     {
       id: "u20-ex2",
@@ -408,7 +410,10 @@ export const unit29: CourseUnit = {
       question: "___他很忙，___他還是來了。(Bien qu'il soit occupé, il est quand même venu.)",
       correctAnswer: "雖然...但是",
       options: ["雖然...但是", "因為...所以", "如果...就", "不但...而且"],
+      optionsHint: ["suīrán...dànshì", "yīnwèi...suǒyǐ", "rúguǒ...jiù", "búdàn...érqiě"],
+      optionsZhuyin: ["ㄙㄨㄟ ㄖㄢˊ...ㄉㄢˋ ㄕˋ", "ㄧㄣ ㄨㄟˋ...ㄙㄨㄛˇ ㄧˇ", "ㄖㄨˊ ㄍㄨㄛˇ...ㄐㄧㄡˋ", "ㄅㄨˋ ㄉㄢˋ...ㄦˊ ㄑㄧㄝˇ"],
       hint: "Concession : bien que... mais...",
+      hintZhuyin: "Concession : bien que... mais...",
     },
     {
       id: "u20-ex4",

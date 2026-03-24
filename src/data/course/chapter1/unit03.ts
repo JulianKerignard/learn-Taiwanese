@@ -676,6 +676,7 @@ export const unit03: CourseUnit = {
         "bǔ (ton 3)",
       ],
       hint: "不 change de ton devant un autre ton 4.",
+      hintZhuyin: "不 change de ton devant un autre ton 4.",
     },
     {
       id: "u3-ex5",

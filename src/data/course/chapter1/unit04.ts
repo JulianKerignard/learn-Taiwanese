@@ -513,6 +513,7 @@ export const unit04: CourseUnit = {
       correctAnswer: "我叫 Marie",
       options: ["我叫 Marie", "我是 Marie", "Marie 叫我", "我的 Marie"],
       optionsHint: ["wǒ jiào Marie", "wǒ shì Marie", "Marie jiào wǒ", "wǒ de Marie"],
+      optionsZhuyin: ["ㄨㄛˇ ㄐㄧㄠˋ ㄇㄚ ㄖ ㄜ", "ㄨㄛˇ ㄕˋ ㄇㄚ ㄖ ㄜ", "ㄇㄚ ㄖ ㄜ ㄐㄧㄠˋ ㄨㄛˇ", "ㄨㄛˇ ㄉㄜ ㄇㄚ ㄖ ㄜ"],
     },
     {
       id: "u3-ex2",
@@ -521,6 +522,7 @@ export const unit04: CourseUnit = {
       correctAnswer: "叫",
       options: ["叫", "是", "做", "有"],
       optionsHint: ["jiào", "shì", "zuò", "yǒu"],
+      optionsZhuyin: ["ㄐㄧㄠˋ", "ㄕˋ", "ㄗㄨㄛˋ", "ㄧㄡˇ"],
       hint: "Quel verbe signifie « s'appeler » ?",
     },
     {
@@ -557,6 +559,7 @@ export const unit04: CourseUnit = {
       correctAnswer: "呢",
       options: ["呢", "嗎", "吧", "啊"],
       optionsHint: ["ne", "ma", "ba", "a"],
+      optionsZhuyin: ["ㄋㄜ", "ㄇㄚ", "ㄅㄚ", "ㄚ"],
       hint: "Quelle particule retourne la question ?",
     },
     {
@@ -566,6 +569,7 @@ export const unit04: CourseUnit = {
       correctAnswer: "我也是學生",
       options: ["我也是學生", "我是也學生", "也我是學生", "我學生也是"],
       optionsHint: ["wǒ yě shì xuéshēng", "wǒ shì yě xuéshēng", "yě wǒ shì xuéshēng", "wǒ xuéshēng yě shì"],
+      optionsZhuyin: ["ㄨㄛˇ ㄧㄝˇ ㄕˋ ㄒㄩㄝˊ ㄕㄥ", "ㄨㄛˇ ㄕˋ ㄧㄝˇ ㄒㄩㄝˊ ㄕㄥ", "ㄧㄝˇ ㄨㄛˇ ㄕˋ ㄒㄩㄝˊ ㄕㄥ", "ㄨㄛˇ ㄒㄩㄝˊ ㄕㄥ ㄧㄝˇ ㄕˋ"],
     },
   ],
 

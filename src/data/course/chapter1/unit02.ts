@@ -474,6 +474,7 @@ export const unit02: CourseUnit = {
         "yǐ (ton 3)",
       ],
       hint: "一 devant les tons 1, 2 et 3 se prononce en ton 4.",
+      hintZhuyin: "一 devant les tons 1, 2 et 3 se prononce en ton 4.",
     },
     {
       id: "u2-listen-1",
@@ -526,6 +527,7 @@ export const unit02: CourseUnit = {
         "Faire la cuisine (燒教, tons 1-4)",
       ],
       hint: "睡覺 (tons 4-4) = dormir. 水餃 (tons 3-3) = raviolis. Ne pas confondre !",
+      hintZhuyin: "睡覺 (tons 4-4) = dormir. 水餃 (tons 3-3) = raviolis. Ne pas confondre !",
     },
     {
       id: "u2-fill-1",

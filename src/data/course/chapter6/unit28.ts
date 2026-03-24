@@ -397,7 +397,10 @@ export const unit28: CourseUnit = {
       question: "我買了一___鞋子。(J'ai acheté une paire de chaussures.)",
       correctAnswer: "雙",
       options: ["雙", "個", "件", "條"],
+      optionsHint: ["shuāng", "ge", "jiàn", "tiáo"],
+      optionsZhuyin: ["ㄕㄨㄤ", "ㄍㄜ˙", "ㄐㄧㄢˋ", "ㄊㄧㄠˊ"],
       hint: "Les chaussures viennent par paires.",
+      hintZhuyin: "Les chaussures viennent par paires.",
     },
     {
       id: "u28-ex2",
@@ -405,7 +408,10 @@ export const unit28: CourseUnit = {
       question: "這___歌很好聽。(Cette chanson est belle.)",
       correctAnswer: "首",
       options: ["首", "個", "條", "片"],
+      optionsHint: ["shǒu", "ge", "tiáo", "piàn"],
+      optionsZhuyin: ["ㄕㄡˇ", "ㄍㄜ˙", "ㄊㄧㄠˊ", "ㄆㄧㄢˋ"],
       hint: "Classificateur pour les chansons et poèmes.",
+      hintZhuyin: "Classificateur pour les chansons et poèmes.",
     },
     {
       id: "u28-ex3",
@@ -413,6 +419,8 @@ export const unit28: CourseUnit = {
       question: "Quel classificateur utilise-t-on pour les plats de cuisine ?",
       correctAnswer: "道",
       options: ["道", "份", "頓", "碗"],
+      optionsHint: ["dào", "fèn", "dùn", "wǎn"],
+      optionsZhuyin: ["ㄉㄠˋ", "ㄈㄣˋ", "ㄉㄨㄣˋ", "ㄨㄢˇ"],
     },
     {
       id: "u28-ex4",
@@ -420,7 +428,10 @@ export const unit28: CourseUnit = {
       question: "他住在那___大樓的第五___。(Il habite dans cet immeuble, au 5e étage.)",
       correctAnswer: "棟...層",
       options: ["棟...層", "間...層", "棟...間", "個...個"],
+      optionsHint: ["dòng...céng", "jiān...céng", "dòng...jiān", "ge...ge"],
+      optionsZhuyin: ["ㄉㄨㄥˋ...ㄘㄥˊ", "ㄐㄧㄢ...ㄘㄥˊ", "ㄉㄨㄥˋ...ㄐㄧㄢ", "ㄍㄜ˙...ㄍㄜ˙"],
       hint: "Bâtiment + étage.",
+      hintZhuyin: "Bâtiment + étage.",
     },
     {
       id: "u28-ex5",
@@ -441,7 +452,10 @@ export const unit28: CourseUnit = {
       question: "請給我一___傘。(Donnez-moi un parapluie.)",
       correctAnswer: "把",
       options: ["把", "支", "條", "個"],
+      optionsHint: ["bǎ", "zhī", "tiáo", "ge"],
+      optionsZhuyin: ["ㄅㄚˇ", "ㄓ", "ㄊㄧㄠˊ", "ㄍㄜ˙"],
       hint: "Objet qu'on tient par une poignée.",
+      hintZhuyin: "Objet qu'on tient par une poignée.",
     },
     {
       id: "u28-ex7",
@@ -456,7 +470,10 @@ export const unit28: CourseUnit = {
       question: "我寫了一___email給老闆。(J'ai écrit un email au patron.)",
       correctAnswer: "封",
       options: ["封", "份", "張", "個"],
+      optionsHint: ["fēng", "fèn", "zhāng", "ge"],
+      optionsZhuyin: ["ㄈㄥ", "ㄈㄣˋ", "ㄓㄤ", "ㄍㄜ˙"],
       hint: "Classificateur pour les lettres et emails.",
+      hintZhuyin: "Classificateur pour les lettres et emails.",
     },
   ],
 

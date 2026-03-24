@@ -471,6 +471,7 @@ export const unit09: CourseUnit = {
         "wǒ chī niúròu miàn",
         "wǒ yào yì bēi niúròu miàn",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄨㄢˇ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ", "ㄍㄟˇ ㄨㄛˇ ㄧˋ ㄨㄢˇ ㄌㄨˇ ㄖㄡˋ ㄈㄢˋ", "ㄨㄛˇ ㄔ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ", "ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄅㄟ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ"],
     },
     {
       id: "u7-ex2",
@@ -492,7 +493,9 @@ export const unit09: CourseUnit = {
       correctAnswer: "好吃",
       options: ["好吃", "好喝", "好看", "好玩"],
       optionsHint: ["hǎochī", "hǎohē", "hǎokàn", "hǎowán"],
+      optionsZhuyin: ["ㄏㄠˇ ㄔ", "ㄏㄠˇ ㄏㄜ", "ㄏㄠˇ ㄎㄢˋ", "ㄏㄠˇ ㄨㄢˊ"],
       hint: "好 + quel verbe pour « manger » ?",
+      hintZhuyin: "好 + quel verbe pour « manger » ?",
     },
     {
       id: "u7-ex4",
@@ -526,6 +529,7 @@ export const unit09: CourseUnit = {
       correctAnswer: "辣",
       options: ["辣", "甜", "鹹", "酸"],
       optionsHint: ["là", "tián", "xián", "suān"],
+      optionsZhuyin: ["ㄌㄚˋ", "ㄊㄧㄢˊ", "ㄒㄧㄢˊ", "ㄙㄨㄢ"],
       hint: "Quel caractère signifie « piquant » ?",
     },
     {

@@ -450,6 +450,7 @@ export const unit17: CourseUnit = {
       correctAnswer: "有",
       options: ["有", "是", "在", "可以"],
       optionsHint: ["yǒu", "shì", "zài", "kěyǐ"],
+      optionsZhuyin: ["ㄧㄡˇ", "ㄕˋ", "ㄗㄞˋ", "ㄎㄜˇ ㄧˇ"],
       hint: "Quel mot signifie « il y a » ?",
     },
     {
@@ -459,6 +460,7 @@ export const unit17: CourseUnit = {
       correctAnswer: "可以看房嗎？",
       options: ["可以看房嗎？", "有看房嗎？", "要看房嗎？", "想看房嗎？"],
       optionsHint: ["kěyǐ kàn fáng ma?", "yǒu kàn fáng ma?", "yào kàn fáng ma?", "xiǎng kàn fáng ma?"],
+      optionsZhuyin: ["ㄎㄜˇ ㄧˇ ㄎㄢˋ ㄈㄤˊ ㄇㄚ?", "ㄧㄡˇ ㄎㄢˋ ㄈㄤˊ ㄇㄚ?", "ㄧㄠˋ ㄎㄢˋ ㄈㄤˊ ㄇㄚ?", "ㄒㄧㄤˇ ㄎㄢˋ ㄈㄤˊ ㄇㄚ?"],
     },
     {
       id: "u13-ex3",
@@ -479,6 +481,7 @@ export const unit17: CourseUnit = {
       correctAnswer: "包",
       options: ["包", "有", "是", "要"],
       optionsHint: ["bāo", "yǒu", "shì", "yào"],
+      optionsZhuyin: ["ㄅㄠ", "ㄧㄡˇ", "ㄕˋ", "ㄧㄠˋ"],
       hint: "Quel mot signifie « inclus » ?",
     },
     {

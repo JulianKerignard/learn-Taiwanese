@@ -550,6 +550,7 @@ export const unit14: CourseUnit = {
       correctAnswer: "覺得",
       options: ["覺得", "喜歡", "想", "比"],
       optionsHint: ["juéde", "xǐhuān", "xiǎng", "bǐ"],
+      optionsZhuyin: ["ㄐㄩㄝˊ ㄉㄜ", "ㄒㄧˇ ㄏㄨㄢ", "ㄒㄧㄤˇ", "ㄅㄧˇ"],
       hint: "Quel mot signifie « trouver que / penser que » ?",
     },
     {
@@ -559,6 +560,7 @@ export const unit14: CourseUnit = {
       correctAnswer: "台北比高雄大",
       options: ["台北比高雄大", "台北很高雄大", "台北最高雄大", "台北跟高雄大"],
       optionsHint: ["Táiběi bǐ Gāoxióng dà", "Táiběi hěn Gāoxióng dà", "Táiběi zuì Gāoxióng dà", "Táiběi gēn Gāoxióng dà"],
+      optionsZhuyin: ["ㄊㄞˊ ㄅㄟˇ ㄅㄧˇ ㄍㄠ ㄒㄩㄥˊ ㄉㄚˋ", "ㄊㄞˊ ㄅㄟˇ ㄏㄣˇ ㄍㄠ ㄒㄩㄥˊ ㄉㄚˋ", "ㄊㄞˊ ㄅㄟˇ ㄗㄨㄟˋ ㄍㄠ ㄒㄩㄥˊ ㄉㄚˋ", "ㄊㄞˊ ㄅㄟˇ ㄍㄣ ㄍㄠ ㄒㄩㄥˊ ㄉㄚˋ"],
     },
     {
       id: "u11-ex3",
@@ -579,6 +581,7 @@ export const unit14: CourseUnit = {
       correctAnswer: "最",
       options: ["最", "更", "比", "很"],
       optionsHint: ["zuì", "gèng", "bǐ", "hěn"],
+      optionsZhuyin: ["ㄗㄨㄟˋ", "ㄍㄥˋ", "ㄅㄧˇ", "ㄏㄣˇ"],
       hint: "Quel mot exprime le superlatif (le plus) ?",
     },
     {

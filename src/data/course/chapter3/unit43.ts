@@ -169,6 +169,7 @@ export const unit43: CourseUnit = {
         "zhège zhēnzhū nǎichá liǎng bēi qián?",
         "zhēnzhū nǎichá liǎng bēi zhè duōshǎo qián?",
       ],
+      optionsZhuyin: ["ㄓㄜˋ ㄌㄧㄤˇ ㄅㄟ ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄌㄧㄤˇ ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄉㄨㄛ ㄕㄠˇ?", "ㄓㄜˋ ㄍㄜ ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄌㄧㄤˇ ㄅㄟ ㄑㄧㄢˊ?", "ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄌㄧㄤˇ ㄅㄟ ㄓㄜˋ ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?"],
     },
     {
       id: "u43-ex2",
@@ -177,6 +178,7 @@ export const unit43: CourseUnit = {
       correctAnswer: "碗",
       options: ["碗", "杯", "瓶", "張"],
       optionsHint: ["wǎn", "bēi", "píng", "zhāng"],
+      optionsZhuyin: ["ㄨㄢˇ", "ㄅㄟ", "ㄆㄧㄥˊ", "ㄓㄤ"],
       hint: "Le lu rou fan se sert dans un bol.",
     },
     {
@@ -186,6 +188,7 @@ export const unit43: CourseUnit = {
       correctAnswer: "這個多少錢？",
       options: ["這個多少錢？", "多少這個錢？", "錢多少這個？", "這個錢多少？"],
       optionsHint: ["zhège duōshǎo qián?", "duōshǎo zhège qián?", "qián duōshǎo zhège?", "zhège qián duōshǎo?"],
+      optionsZhuyin: ["ㄓㄜˋ ㄍㄜ ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄉㄨㄛ ㄕㄠˇ ㄓㄜˋ ㄍㄜ ㄑㄧㄢˊ?", "ㄑㄧㄢˊ ㄉㄨㄛ ㄕㄠˇ ㄓㄜˋ ㄍㄜ?", "ㄓㄜˋ ㄍㄜ ㄑㄧㄢˊ ㄉㄨㄛ ㄕㄠˇ?"],
     },
     {
       id: "u43-ex4",
@@ -216,6 +219,7 @@ export const unit43: CourseUnit = {
         "yòubiān zǒu, zhízhí qù",
         "ránhòu yòu zhuǎn zhí zǒu",
       ],
+      optionsZhuyin: ["ㄧㄡˋ ㄓㄨㄢˇ, ㄖㄢˊ ㄏㄡˋ ㄓˊ ㄗㄡˇ", "ㄓˊ ㄗㄡˇ, ㄖㄢˊ ㄏㄡˋ ㄧㄡˋ ㄓㄨㄢˇ", "ㄧㄡˋ ㄅㄧㄢ ㄗㄡˇ, ㄓˊ ㄓˊ ㄑㄩˋ", "ㄖㄢˊ ㄏㄡˋ ㄧㄡˋ ㄓㄨㄢˇ ㄓˊ ㄗㄡˇ"],
     },
     {
       id: "u43-ex6",
@@ -224,7 +228,9 @@ export const unit43: CourseUnit = {
       correctAnswer: "沒",
       options: ["沒", "不", "嗎", "了"],
       optionsHint: ["méi", "bù", "ma", "le"],
+      optionsZhuyin: ["ㄇㄟˊ", "ㄅㄨˋ", "ㄇㄚ", "ㄌㄜ"],
       hint: "Question A不A avec le verbe 有.",
+      hintZhuyin: "Question A不A avec le verbe 有.",
     },
     {
       id: "u43-ex7",
@@ -255,6 +261,7 @@ export const unit43: CourseUnit = {
         "wàidài wǒ yào yì wǎn lǔròufàn.",
         "lǔròufàn wǒ yào yì wǎn wàidài.",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄨㄢˇ ㄌㄨˇ ㄖㄡˋ ㄈㄢˋ, ㄨㄞˋ ㄉㄞˋ.", "ㄧˋ ㄨㄢˇ ㄨㄛˇ ㄧㄠˋ ㄌㄨˇ ㄖㄡˋ ㄈㄢˋ ㄨㄞˋ ㄉㄞˋ.", "ㄨㄞˋ ㄉㄞˋ ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄨㄢˇ ㄌㄨˇ ㄖㄡˋ ㄈㄢˋ.", "ㄌㄨˇ ㄖㄡˋ ㄈㄢˋ ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄨㄢˇ ㄨㄞˋ ㄉㄞˋ."],
     },
     {
       id: "u43-ex9",
@@ -273,6 +280,7 @@ export const unit43: CourseUnit = {
         "bù zhīdào, zěnme bàn?",
         "wǒ bú huì, mànmàn lái",
       ],
+      optionsZhuyin: ["ㄊㄧㄥ ㄅㄨˋ ㄉㄨㄥˇ, ㄎㄜˇ ㄧˇ ㄕㄨㄛ ㄇㄢˋ ㄧˋ ㄉㄧㄢˇ ㄇㄚ?", "ㄎㄢˋ ㄅㄨˋ ㄉㄨㄥˇ, ㄗㄞˋ ㄕㄨㄛ ㄧˊ ㄘˋ", "ㄅㄨˋ ㄓ ㄉㄠˋ, ㄗㄣˇ ㄇㄜ ㄅㄢˋ?", "ㄨㄛˇ ㄅㄨˊ ㄏㄨㄟˋ, ㄇㄢˋ ㄇㄢˋ ㄌㄞˊ"],
     },
     {
       id: "u43-ex10",
@@ -281,6 +289,7 @@ export const unit43: CourseUnit = {
       correctAnswer: "隻",
       options: ["隻", "條", "張", "個"],
       optionsHint: ["zhī", "tiáo", "zhāng", "ge"],
+      optionsZhuyin: ["ㄓ", "ㄊㄧㄠˊ", "ㄓㄤ", "ㄍㄜ"],
       hint: "Le classificateur pour les animaux.",
     },
     {
@@ -312,6 +321,7 @@ export const unit43: CourseUnit = {
         "zhè tiáo gǒu shì nǐ de ma?",
         "zhè tái gǒu shì nǐ de ma?",
       ],
+      optionsZhuyin: ["ㄓㄜˋ ㄓ ㄍㄡˇ ㄕˋ ㄋㄧˇ ㄉㄜ ㄇㄚ?", "ㄓㄜˋ ㄍㄜ ㄍㄡˇ ㄕˋ ㄋㄧˇ ㄉㄜ ㄇㄚ?", "ㄓㄜˋ ㄊㄧㄠˊ ㄍㄡˇ ㄕˋ ㄋㄧˇ ㄉㄜ ㄇㄚ?", "ㄓㄜˋ ㄊㄞˊ ㄍㄡˇ ㄕˋ ㄋㄧˇ ㄉㄜ ㄇㄚ?"],
     },
   ],
 

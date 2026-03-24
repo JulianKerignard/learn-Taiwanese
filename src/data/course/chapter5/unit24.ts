@@ -425,7 +425,10 @@ export const unit24: CourseUnit = {
       question: "___很熱，___我很開心。(Bien qu'il fasse chaud, je suis content.)",
       correctAnswer: "雖然...但是",
       options: ["雖然...但是", "因為...所以", "如果...就", "不但...而且"],
+      optionsHint: ["suīrán...dànshì", "yīnwèi...suǒyǐ", "rúguǒ...jiù", "búdàn...érqiě"],
+      optionsZhuyin: ["ㄙㄨㄟ ㄖㄢˊ...ㄉㄢˋ ㄕˋ", "ㄧㄣ ㄨㄟˋ...ㄙㄨㄛˇ ㄧˇ", "ㄖㄨˊ ㄍㄨㄛˇ...ㄐㄧㄡˋ", "ㄅㄨˋ ㄉㄢˋ...ㄦˊ ㄑㄧㄝˇ"],
       hint: "Quelle structure exprime la concession ?",
+      hintZhuyin: "Quelle structure exprime la concession ?",
     },
     {
       id: "u18-ex2",
@@ -457,7 +460,10 @@ export const unit24: CourseUnit = {
       question: "外面___了，帶傘吧。(Il pleut dehors, prends un parapluie.)",
       correctAnswer: "下雨",
       options: ["下雨", "下雪", "出太陽", "颱風"],
+      optionsHint: ["xià yǔ", "xià xuě", "chū tàiyáng", "táifēng"],
+      optionsZhuyin: ["ㄒㄧㄚˋ ㄩˇ", "ㄒㄧㄚˋ ㄒㄩㄝˇ", "ㄔㄨ ㄊㄞˋ ㄧㄤˊ", "ㄊㄞˊ ㄈㄥ"],
       hint: "Quel verbe signifie « pleuvoir » ?",
+      hintZhuyin: "Quel verbe signifie « pleuvoir » ?",
     },
     {
       id: "u18-ex5",
@@ -483,6 +489,8 @@ export const unit24: CourseUnit = {
         "今天會下雨嗎？",
         "今天出太陽嗎？",
       ],
+      optionsHint: ["jīntiān tiānqì zěnmeyàng?", "jīntiān jǐ dù?", "jīntiān huì xià yǔ ma?", "jīntiān chū tàiyáng ma?"],
+      optionsZhuyin: ["ㄐㄧㄣ ㄊㄧㄢ ㄊㄧㄢ ㄑㄧˋ ㄗㄣˇ ㄇㄜ˙ ㄧㄤˋ？", "ㄐㄧㄣ ㄊㄧㄢ ㄐㄧˇ ㄉㄨˋ？", "ㄐㄧㄣ ㄊㄧㄢ ㄏㄨㄟˋ ㄒㄧㄚˋ ㄩˇ ㄇㄚ˙？", "ㄐㄧㄣ ㄊㄧㄢ ㄔㄨ ㄊㄞˋ ㄧㄤˊ ㄇㄚ˙？"],
     },
   ],
 

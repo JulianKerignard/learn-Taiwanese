@@ -446,7 +446,10 @@ export const unit18: CourseUnit = {
       question: "你來台灣___了？(Tu es à Taiwan depuis combien de temps ?)",
       correctAnswer: "多久",
       options: ["多久", "多少", "怎麼", "什麼"],
+      optionsHint: ["duōjiǔ", "duōshǎo", "zěnme", "shénme"],
+      optionsZhuyin: ["ㄉㄨㄛ ㄐㄧㄡˇ", "ㄉㄨㄛ ㄕㄠˇ", "ㄗㄣˇ ㄇㄜ˙", "ㄕㄣˊ ㄇㄜ˙"],
       hint: "Quel mot signifie « combien de temps » ?",
+      hintZhuyin: "Quel mot signifie « combien de temps » ?",
     },
     {
       id: "u14-ex2",
@@ -454,6 +457,8 @@ export const unit18: CourseUnit = {
       question: "Comment dit-on « J'aime Taiwan de plus en plus » ?",
       correctAnswer: "我越來越喜歡台灣",
       options: ["我越來越喜歡台灣", "我很喜歡台灣", "我最喜歡台灣", "我比較喜歡台灣"],
+      optionsHint: ["wǒ yuè lái yuè xǐhuān Táiwān", "wǒ hěn xǐhuān Táiwān", "wǒ zuì xǐhuān Táiwān", "wǒ bǐjiào xǐhuān Táiwān"],
+      optionsZhuyin: ["ㄨㄛˇ ㄩㄝˋ ㄌㄞˊ ㄩㄝˋ ㄒㄧˇ ㄏㄨㄢ ㄊㄞˊ ㄨㄢ", "ㄨㄛˇ ㄏㄣˇ ㄒㄧˇ ㄏㄨㄢ ㄊㄞˊ ㄨㄢ", "ㄨㄛˇ ㄗㄨㄟˋ ㄒㄧˇ ㄏㄨㄢ ㄊㄞˊ ㄨㄢ", "ㄨㄛˇ ㄅㄧˇ ㄐㄧㄠˋ ㄒㄧˇ ㄏㄨㄢ ㄊㄞˊ ㄨㄢ"],
     },
     {
       id: "u14-ex3",
@@ -473,7 +478,10 @@ export const unit18: CourseUnit = {
       question: "你___來台灣？(Pourquoi es-tu venu à Taiwan ?)",
       correctAnswer: "為什麼",
       options: ["為什麼", "怎麼樣", "什麼時候", "多久"],
+      optionsHint: ["wèishénme", "zěnmeyàng", "shénme shíhòu", "duōjiǔ"],
+      optionsZhuyin: ["ㄨㄟˋ ㄕㄣˊ ㄇㄜ˙", "ㄗㄣˇ ㄇㄜ˙ ㄧㄤˋ", "ㄕㄣˊ ㄇㄜ˙ ㄕˊ ㄏㄡˋ", "ㄉㄨㄛ ㄐㄧㄡˇ"],
       hint: "Quel mot interrogatif signifie « pourquoi » ?",
+      hintZhuyin: "Quel mot interrogatif signifie « pourquoi » ?",
     },
     {
       id: "u14-ex5",
@@ -493,7 +501,10 @@ export const unit18: CourseUnit = {
       question: "我的___是旅行和拍照。(Mes centres d'intérêt sont le voyage et la photo.)",
       correctAnswer: "興趣",
       options: ["興趣", "喜歡", "想法", "語言"],
+      optionsHint: ["xìngqù", "xǐhuān", "xiǎngfǎ", "yǔyán"],
+      optionsZhuyin: ["ㄒㄧㄥˋ ㄑㄩˋ", "ㄒㄧˇ ㄏㄨㄢ", "ㄒㄧㄤˇ ㄈㄚˇ", "ㄩˇ ㄧㄢˊ"],
       hint: "Quel mot signifie « centres d'intérêt / hobbies » ?",
+      hintZhuyin: "Quel mot signifie « centres d'intérêt / hobbies » ?",
     },
   ],
 

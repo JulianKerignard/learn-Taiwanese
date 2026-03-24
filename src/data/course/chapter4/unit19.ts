@@ -406,7 +406,10 @@ export const unit19: CourseUnit = {
       question: "WiFi的___是什麼？(Quel est le mot de passe WiFi ?)",
       correctAnswer: "密碼",
       options: ["密碼", "號碼", "名字", "電話"],
+      optionsHint: ["mìmǎ", "hàomǎ", "míngzì", "diànhuà"],
+      optionsZhuyin: ["ㄇㄧˋ ㄇㄚˇ", "ㄏㄠˋ ㄇㄚˇ", "ㄇㄧㄥˊ ㄗˋ", "ㄉㄧㄢˋ ㄏㄨㄚˋ"],
       hint: "Quel mot signifie « mot de passe » ?",
+      hintZhuyin: "Quel mot signifie « mot de passe » ?",
     },
     {
       id: "u15-ex2",
@@ -414,6 +417,8 @@ export const unit19: CourseUnit = {
       question: "Comment dit-on « Je voudrais acheter une carte SIM » ?",
       correctAnswer: "我要辦一張SIM卡",
       options: ["我要辦一張SIM卡", "我要買一個手機", "我想打電話", "我需要網路"],
+      optionsHint: ["wǒ yào bàn yì zhāng SIM kǎ", "wǒ yào mǎi yí ge shǒujī", "wǒ xiǎng dǎ diànhuà", "wǒ xūyào wǎnglù"],
+      optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄅㄢˋ ㄧˋ ㄓㄤ SIM ㄎㄚˇ", "ㄨㄛˇ ㄧㄠˋ ㄇㄞˇ ㄧˊ ㄍㄜ˙ ㄕㄡˇ ㄐㄧ", "ㄨㄛˇ ㄒㄧㄤˇ ㄉㄚˇ ㄉㄧㄢˋ ㄏㄨㄚˋ", "ㄨㄛˇ ㄒㄩ ㄧㄠˋ ㄨㄤˇ ㄌㄨˋ"],
     },
     {
       id: "u15-ex3",
@@ -433,7 +438,10 @@ export const unit19: CourseUnit = {
       question: "我的手機沒電了，可以___嗎？(Mon tel n'a plus de batterie, je peux le charger ?)",
       correctAnswer: "充電",
       options: ["充電", "下載", "開通", "打電話"],
+      optionsHint: ["chōngdiàn", "xiàzài", "kāitōng", "dǎ diànhuà"],
+      optionsZhuyin: ["ㄔㄨㄥ ㄉㄧㄢˋ", "ㄒㄧㄚˋ ㄗㄞˋ", "ㄎㄞ ㄊㄨㄥ", "ㄉㄚˇ ㄉㄧㄢˋ ㄏㄨㄚˋ"],
       hint: "Quel mot signifie « charger (la batterie) » ?",
+      hintZhuyin: "Quel mot signifie « charger (la batterie) » ?",
     },
     {
       id: "u15-ex5",

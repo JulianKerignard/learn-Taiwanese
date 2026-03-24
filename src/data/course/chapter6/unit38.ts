@@ -508,6 +508,8 @@ export const unit38: CourseUnit = {
         "把鞋子穿上。",
         "門口有你的鞋子。",
       ],
+      optionsHint: ["bǎ nǐ de xiézi fàng zài ménkǒu.", "nǐ de xiézi zài ménkǒu.", "bǎ xiézi chuānshàng.", "ménkǒu yǒu nǐ de xiézi."],
+      optionsZhuyin: ["ㄅㄚˇ ㄋㄧˇ ㄉㄜ˙ ㄒㄧㄝˊ ㄗ˙ ㄈㄤˋ ㄗㄞˋ ㄇㄣˊ ㄎㄡˇ。", "ㄋㄧˇ ㄉㄜ˙ ㄒㄧㄝˊ ㄗ˙ ㄗㄞˋ ㄇㄣˊ ㄎㄡˇ。", "ㄅㄚˇ ㄒㄧㄝˊ ㄗ˙ ㄔㄨㄢ ㄕㄤˋ。", "ㄇㄣˊ ㄎㄡˇ ㄧㄡˇ ㄋㄧˇ ㄉㄜ˙ ㄒㄧㄝˊ ㄗ˙。"],
     },
     {
       id: "u38-ex2",
@@ -521,6 +523,8 @@ export const unit38: CourseUnit = {
         "你請把放在桌子上杯子",
         "把杯子請你放在桌子上",
       ],
+      optionsHint: ["qǐng nǐ bǎ bēizi fàng zài zhuōzi shàng", "qǐng bǎ nǐ zhuōzi shàng bēizi fàng zài", "nǐ qǐng bǎ fàng zài zhuōzi shàng bēizi", "bǎ bēizi qǐng nǐ fàng zài zhuōzi shàng"],
+      optionsZhuyin: ["ㄑㄧㄥˇ ㄋㄧˇ ㄅㄚˇ ㄅㄟ ㄗ˙ ㄈㄤˋ ㄗㄞˋ ㄓㄨㄛ ㄗ˙ ㄕㄤˋ", "ㄑㄧㄥˇ ㄅㄚˇ ㄋㄧˇ ㄓㄨㄛ ㄗ˙ ㄕㄤˋ ㄅㄟ ㄗ˙ ㄈㄤˋ ㄗㄞˋ", "ㄋㄧˇ ㄑㄧㄥˇ ㄅㄚˇ ㄈㄤˋ ㄗㄞˋ ㄓㄨㄛ ㄗ˙ ㄕㄤˋ ㄅㄟ ㄗ˙", "ㄅㄚˇ ㄅㄟ ㄗ˙ ㄑㄧㄥˇ ㄋㄧˇ ㄈㄤˋ ㄗㄞˋ ㄓㄨㄛ ㄗ˙ ㄕㄤˋ"],
     },
     {
       id: "u38-ex3",
@@ -529,7 +533,10 @@ export const unit38: CourseUnit = {
         "你中文說___很好。(Tu parles très bien chinois.)",
       correctAnswer: "得",
       options: ["得", "的", "地", "了"],
+      optionsHint: ["de", "de", "de", "le"],
+      optionsZhuyin: ["ㄉㄜ˙", "ㄉㄜ˙", "ㄉㄜ˙", "ㄌㄜ˙"],
       hint: "Complément de degré : verbe + __ + adjectif.",
+      hintZhuyin: "Complément ㄉㄜ˙ degré : verbe + __ + adjectif.",
     },
     {
       id: "u38-ex4",
@@ -550,7 +557,10 @@ export const unit38: CourseUnit = {
         "請___，外面很冷。(Entre, dehors il fait très froid.)",
       correctAnswer: "進來",
       options: ["進來", "出去", "上來", "回去"],
+      optionsHint: ["jìnlái", "chūqù", "shànglái", "huíqù"],
+      optionsZhuyin: ["ㄐㄧㄣˋ ㄌㄞˊ", "ㄔㄨ ㄑㄩˋ", "ㄕㄤˋ ㄌㄞˊ", "ㄏㄨㄟˊ ㄑㄩˋ"],
       hint: "Entrer vers le locuteur.",
+      hintZhuyin: "Entrer vers le locuteur.",
     },
     {
       id: "u38-ex6",
@@ -564,6 +574,8 @@ export const unit38: CourseUnit = {
         "把他飯吃完了",
         "他飯把吃完了",
       ],
+      optionsHint: ["tā bǎ fàn chī wán le", "tā chī wán bǎ fàn le", "bǎ tā fàn chī wán le", "tā fàn bǎ chī wán le"],
+      optionsZhuyin: ["ㄊㄚ ㄅㄚˇ ㄈㄢˋ ㄔ ㄨㄢˊ ㄌㄜ˙", "ㄊㄚ ㄔ ㄨㄢˊ ㄅㄚˇ ㄈㄢˋ ㄌㄜ˙", "ㄅㄚˇ ㄊㄚ ㄈㄢˋ ㄔ ㄨㄢˊ ㄌㄜ˙", "ㄊㄚ ㄈㄢˋ ㄅㄚˇ ㄔ ㄨㄢˊ ㄌㄜ˙"],
     },
     {
       id: "u38-ex7",
@@ -572,7 +584,10 @@ export const unit38: CourseUnit = {
         "這本書你看___嗎？(Tu comprends ce livre ?)",
       correctAnswer: "得懂",
       options: ["得懂", "不懂", "得到", "不到"],
+      optionsHint: ["de dǒng", "bù dǒng", "de dào", "bú dào"],
+      optionsZhuyin: ["ㄉㄜ˙ ㄉㄨㄥˇ", "ㄅㄨˋ ㄉㄨㄥˇ", "ㄉㄜ˙ ㄉㄠˋ", "ㄅㄨˊ ㄉㄠˋ"],
       hint: "Forme potentielle positive : verbe + 得 + résultatif.",
+      hintZhuyin: "Forme potentielle positive : verbe + ㄉㄜ˙ + résultatif.",
     },
     {
       id: "u38-ex8",
@@ -586,6 +601,8 @@ export const unit38: CourseUnit = {
         "我馬上回來，等我。",
         "我馬上出去，等我。",
       ],
+      optionsHint: ["wǒ mǎshàng xiàqù, děng wǒ.", "wǒ mǎshàng shànglái, děng wǒ.", "wǒ mǎshàng huílái, děng wǒ.", "wǒ mǎshàng chūqù, děng wǒ."],
+      optionsZhuyin: ["ㄨㄛˇ ㄇㄚˇ ㄕㄤˋ ㄒㄧㄚˋ ㄑㄩˋ，ㄉㄥˇ ㄨㄛˇ。", "ㄨㄛˇ ㄇㄚˇ ㄕㄤˋ ㄕㄤˋ ㄌㄞˊ，ㄉㄥˇ ㄨㄛˇ。", "ㄨㄛˇ ㄇㄚˇ ㄕㄤˋ ㄏㄨㄟˊ ㄌㄞˊ，ㄉㄥˇ ㄨㄛˇ。", "ㄨㄛˇ ㄇㄚˇ ㄕㄤˋ ㄔㄨ ㄑㄩˋ，ㄉㄥˇ ㄨㄛˇ。"],
     },
   ],
 

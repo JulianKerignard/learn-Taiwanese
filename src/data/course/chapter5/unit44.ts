@@ -225,7 +225,10 @@ export const unit44: CourseUnit = {
       question: "台北是台灣___大的城市。(Taipei est la plus grande ville de Taiwan.)",
       correctAnswer: "最",
       options: ["最", "比", "更", "很"],
+      optionsHint: ["zuì", "bǐ", "gèng", "hěn"],
+      optionsZhuyin: ["ㄗㄨㄟˋ", "ㄅㄧˇ", "ㄍㄥˋ", "ㄏㄣˇ"],
       hint: "Quel mot exprime le superlatif ?",
+      hintZhuyin: "Quel mot exprime le superlatif ?",
     },
     {
       id: "u44-ex8",
@@ -238,6 +241,8 @@ export const unit44: CourseUnit = {
         "我沒去了日本",
         "我不會去日本",
       ],
+      optionsHint: ["wǒ méi qù guò Rìběn", "wǒ bú qù guò Rìběn", "wǒ méi qù le Rìběn", "wǒ bú huì qù Rìběn"],
+      optionsZhuyin: ["ㄨㄛˇ ㄇㄟˊ ㄑㄩˋ ㄍㄨㄛˋ ㄖˋ ㄅㄣˇ", "ㄨㄛˇ ㄅㄨˊ ㄑㄩˋ ㄍㄨㄛˋ ㄖˋ ㄅㄣˇ", "ㄨㄛˇ ㄇㄟˊ ㄑㄩˋ ㄌㄜ˙ ㄖˋ ㄅㄣˇ", "ㄨㄛˇ ㄅㄨˊ ㄏㄨㄟˋ ㄑㄩˋ ㄖˋ ㄅㄣˇ"],
     },
     {
       id: "u44-ex9",
@@ -262,6 +267,8 @@ export const unit44: CourseUnit = {
         "會你說英文嗎？",
         "你英文會說嗎？",
       ],
+      optionsHint: ["nǐ huì shuō Yīngwén ma?", "nǐ shuō huì Yīngwén ma?", "huì nǐ shuō Yīngwén ma?", "nǐ Yīngwén huì shuō ma?"],
+      optionsZhuyin: ["ㄋㄧˇ ㄏㄨㄟˋ ㄕㄨㄛ ㄧㄥ ㄨㄣˊ ㄇㄚ˙？", "ㄋㄧˇ ㄕㄨㄛ ㄏㄨㄟˋ ㄧㄥ ㄨㄣˊ ㄇㄚ˙？", "ㄏㄨㄟˋ ㄋㄧˇ ㄕㄨㄛ ㄧㄥ ㄨㄣˊ ㄇㄚ˙？", "ㄋㄧˇ ㄧㄥ ㄨㄣˊ ㄏㄨㄟˋ ㄕㄨㄛ ㄇㄚ˙？"],
     },
     {
       id: "u44-ex11",
@@ -269,7 +276,10 @@ export const unit44: CourseUnit = {
       question: "___，請問這個多少錢？(Excusez-moi, combien ca coute ?)",
       correctAnswer: "不好意思",
       options: ["不好意思", "對不起", "抱歉", "算了"],
+      optionsHint: ["bù hǎo yìsi", "duìbùqǐ", "bàoqiàn", "suàn le"],
+      optionsZhuyin: ["ㄅㄨˋ ㄏㄠˇ ㄧˋ ㄙ˙", "ㄉㄨㄟˋ ㄅㄨˋ ㄑㄧˇ", "ㄅㄠˋ ㄑㄧㄢˋ", "ㄙㄨㄢˋ ㄌㄜ˙"],
       hint: "La formule la plus courante pour deranger poliment.",
+      hintZhuyin: "La formule la plus courante pour deranger poliment.",
     },
     {
       id: "u44-ex12",
@@ -282,6 +292,8 @@ export const unit44: CourseUnit = {
         "台灣住以後，珍珠奶茶喜歡了",
         "我會住台灣喜歡珍珠奶茶",
       ],
+      optionsHint: ["wǒ zhù zài Táiwān yǐhòu, jiù xǐhuān zhēnzhū nǎichá le", "wǒ zhù Táiwān le, xǐhuān le zhēnzhū nǎichá", "Táiwān zhù yǐhòu, zhēnzhū nǎichá xǐhuān le", "wǒ huì zhù Táiwān xǐhuān zhēnzhū nǎichá"],
+      optionsZhuyin: ["ㄨㄛˇ ㄓㄨˋ ㄗㄞˋ ㄊㄞˊ ㄨㄢ ㄧˇ ㄏㄡˋ，ㄐㄧㄡˋ ㄒㄧˇ ㄏㄨㄢ ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄌㄜ˙", "ㄨㄛˇ ㄓㄨˋ ㄊㄞˊ ㄨㄢ ㄌㄜ˙，ㄒㄧˇ ㄏㄨㄢ ㄌㄜ˙ ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ", "ㄊㄞˊ ㄨㄢ ㄓㄨˋ ㄧˇ ㄏㄡˋ，ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄒㄧˇ ㄏㄨㄢ ㄌㄜ˙", "ㄨㄛˇ ㄏㄨㄟˋ ㄓㄨˋ ㄊㄞˊ ㄨㄢ ㄒㄧˇ ㄏㄨㄢ ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ"],
     },
   ],
 

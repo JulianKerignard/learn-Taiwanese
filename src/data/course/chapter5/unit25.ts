@@ -435,7 +435,10 @@ export const unit25: CourseUnit = {
       question: "___我都喝咖啡。(Chaque jour, je bois du café.)",
       correctAnswer: "每天",
       options: ["每天", "今天", "昨天", "明天"],
+      optionsHint: ["měitiān", "jīntiān", "zuótiān", "míngtiān"],
+      optionsZhuyin: ["ㄇㄟˇ ㄊㄧㄢ", "ㄐㄧㄣ ㄊㄧㄢ", "ㄗㄨㄛˊ ㄊㄧㄢ", "ㄇㄧㄥˊ ㄊㄧㄢ"],
       hint: "Quel mot signifie « chaque jour » ?",
+      hintZhuyin: "Quel mot signifie « chaque jour » ?",
     },
     {
       id: "u19-ex2",
@@ -480,7 +483,10 @@ export const unit25: CourseUnit = {
       question: "過年___，全家人會一起吃飯。(Au moment du Nouvel An...)",
       correctAnswer: "的時候",
       options: ["的時候", "以後", "以前", "的話"],
+      optionsHint: ["de shíhòu", "yǐhòu", "yǐqián", "de huà"],
+      optionsZhuyin: ["ㄉㄜ˙ ㄕˊ ㄏㄡˋ", "ㄧˇ ㄏㄡˋ", "ㄧˇ ㄑㄧㄢˊ", "ㄉㄜ˙ ㄏㄨㄚˋ"],
       hint: "Quelle expression signifie « au moment de » ?",
+      hintZhuyin: "Quelle expression signifie « au moment de » ?",
     },
     {
       id: "u19-ex6",

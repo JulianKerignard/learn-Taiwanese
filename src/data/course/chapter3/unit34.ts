@@ -285,6 +285,7 @@ export const unit34: CourseUnit = {
         "wǒ huì qù Táiběi.",
         "wǒ yào qù Táiběi.",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄑㄩˋ ㄍㄨㄛˋ ㄊㄞˊ ㄅㄟˇ.", "ㄨㄛˇ ㄑㄩˋ ㄌㄜ ㄊㄞˊ ㄅㄟˇ.", "ㄨㄛˇ ㄏㄨㄟˋ ㄑㄩˋ ㄊㄞˊ ㄅㄟˇ.", "ㄨㄛˇ ㄧㄠˋ ㄑㄩˋ ㄊㄞˊ ㄅㄟˇ."],
     },
     {
       id: "u34-ex2",
@@ -303,6 +304,7 @@ export const unit34: CourseUnit = {
         "wǒ zǎoshang huì chī fàn.",
         "wǒ chī le zǎoshang de fàn.",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄗㄠˇ ㄕㄤ ㄔ ㄌㄜ ㄈㄢˋ.", "ㄨㄛˇ ㄗㄠˇ ㄕㄤ ㄔ ㄍㄨㄛˋ ㄈㄢˋ.", "ㄨㄛˇ ㄗㄠˇ ㄕㄤ ㄏㄨㄟˋ ㄔ ㄈㄢˋ.", "ㄨㄛˇ ㄔ ㄌㄜ ㄗㄠˇ ㄕㄤ ㄉㄜ ㄈㄢˋ."],
     },
     {
       id: "u34-ex3",
@@ -321,6 +323,7 @@ export const unit34: CourseUnit = {
         "míngtiān xià guò yǔ.",
         "míngtiān yào xiàyǔ le.",
       ],
+      optionsZhuyin: ["ㄇㄧㄥˊ ㄊㄧㄢ ㄏㄨㄟˋ ㄒㄧㄚˋ ㄩˇ.", "ㄇㄧㄥˊ ㄊㄧㄢ ㄒㄧㄚˋ ㄌㄜ ㄩˇ.", "ㄇㄧㄥˊ ㄊㄧㄢ ㄒㄧㄚˋ ㄍㄨㄛˋ ㄩˇ.", "ㄇㄧㄥˊ ㄊㄧㄢ ㄧㄠˋ ㄒㄧㄚˋ ㄩˇ ㄌㄜ."],
     },
     {
       id: "u34-ex4",
@@ -339,6 +342,7 @@ export const unit34: CourseUnit = {
         "wǒ bù chī chòudòufu.",
         "wǒ bú huì chī chòudòufu.",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄇㄟˊ ㄔ ㄍㄨㄛˋ ㄔㄡˋ ㄉㄡˋ ㄈㄨ.", "ㄨㄛˇ ㄇㄟˊ ㄔ ㄌㄜ ㄔㄡˋ ㄉㄡˋ ㄈㄨ.", "ㄨㄛˇ ㄅㄨˋ ㄔ ㄔㄡˋ ㄉㄡˋ ㄈㄨ.", "ㄨㄛˇ ㄅㄨˊ ㄏㄨㄟˋ ㄔ ㄔㄡˋ ㄉㄡˋ ㄈㄨ."],
     },
     {
       id: "u34-ex5",
@@ -357,6 +361,7 @@ export const unit34: CourseUnit = {
         "wǒ juéde Táiwān zuì piàoliang.",
         "Táiwān hé Fǎguó yīyàng piàoliang.",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄐㄩㄝˊ ㄉㄜ ㄊㄞˊ ㄨㄢ ㄅㄧˇ ㄈㄚˇ ㄍㄨㄛˊ ㄆㄧㄠˋ ㄌㄧㄤ.", "ㄊㄞˊ ㄨㄢ ㄅㄧˇ ㄈㄚˇ ㄍㄨㄛˊ ㄍㄥˋ ㄆㄧㄠˋ ㄌㄧㄤ.", "ㄨㄛˇ ㄐㄩㄝˊ ㄉㄜ ㄊㄞˊ ㄨㄢ ㄗㄨㄟˋ ㄆㄧㄠˋ ㄌㄧㄤ.", "ㄊㄞˊ ㄨㄢ ㄏㄜˊ ㄈㄚˇ ㄍㄨㄛˊ ㄧ ㄧㄤˋ ㄆㄧㄠˋ ㄌㄧㄤ."],
     },
     {
       id: "u34-ex6",
@@ -375,6 +380,7 @@ export const unit34: CourseUnit = {
         "zhēnzhū nǎichá bǐjiào hǎohē.",
         "zhēnzhū nǎichá gèng hǎohē.",
       ],
+      optionsZhuyin: ["ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄗㄨㄟˋ ㄏㄠˇ ㄏㄜ.", "ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄏㄣˇ ㄏㄠˇ ㄏㄜ.", "ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄅㄧˇ ㄐㄧㄠˋ ㄏㄠˇ ㄏㄜ.", "ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄍㄥˋ ㄏㄠˇ ㄏㄜ."],
     },
     {
       id: "u34-ex7",
@@ -393,6 +399,7 @@ export const unit34: CourseUnit = {
         "zhè jiā cāntīng bǐjiào piányi.",
         "zhè jiā cāntīng hěn piányi.",
       ],
+      optionsZhuyin: ["ㄓㄜˋ ㄐㄧㄚ ㄘㄢ ㄊㄧㄥ ㄍㄥˋ ㄆㄧㄢˊ ㄧ.", "ㄓㄜˋ ㄐㄧㄚ ㄘㄢ ㄊㄧㄥ ㄗㄨㄟˋ ㄆㄧㄢˊ ㄧ.", "ㄓㄜˋ ㄐㄧㄚ ㄘㄢ ㄊㄧㄥ ㄅㄧˇ ㄐㄧㄠˋ ㄆㄧㄢˊ ㄧ.", "ㄓㄜˋ ㄐㄧㄚ ㄘㄢ ㄊㄧㄥ ㄏㄣˇ ㄆㄧㄢˊ ㄧ."],
     },
     {
       id: "u34-ex8",
@@ -411,6 +418,7 @@ export const unit34: CourseUnit = {
         "yīnwèi xiàyǔ wǒ bù chūmén.",
         "suǒyǐ xiàyǔ, yīnwèi bù chūmén.",
       ],
+      optionsZhuyin: ["ㄧㄣ ㄨㄟˋ ㄒㄧㄚˋ ㄩˇ, ㄙㄨㄛˇ ㄧˇ ㄨㄛˇ ㄅㄨˋ ㄔㄨ ㄇㄣˊ.", "ㄒㄧㄚˋ ㄩˇ ㄌㄜ, ㄨㄛˇ ㄅㄨˋ ㄔㄨ ㄇㄣˊ.", "ㄧㄣ ㄨㄟˋ ㄒㄧㄚˋ ㄩˇ ㄨㄛˇ ㄅㄨˋ ㄔㄨ ㄇㄣˊ.", "ㄙㄨㄛˇ ㄧˇ ㄒㄧㄚˋ ㄩˇ, ㄧㄣ ㄨㄟˋ ㄅㄨˋ ㄔㄨ ㄇㄣˊ."],
     },
     {
       id: "u34-ex9",
@@ -429,6 +437,7 @@ export const unit34: CourseUnit = {
         "wǒ méiyǒu qián xiǎng qù.",
         "kěshì wǒ xiǎng qù, méiyǒu qián.",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄒㄧㄤˇ ㄑㄩˋ, ㄎㄜˇ ㄕˋ ㄨㄛˇ ㄇㄟˊ ㄧㄡˇ ㄑㄧㄢˊ.", "ㄨㄛˇ ㄒㄧㄤˇ ㄑㄩˋ, ㄧㄣ ㄨㄟˋ ㄇㄟˊ ㄧㄡˇ ㄑㄧㄢˊ.", "ㄨㄛˇ ㄇㄟˊ ㄧㄡˇ ㄑㄧㄢˊ ㄒㄧㄤˇ ㄑㄩˋ.", "ㄎㄜˇ ㄕˋ ㄨㄛˇ ㄒㄧㄤˇ ㄑㄩˋ, ㄇㄟˊ ㄧㄡˇ ㄑㄧㄢˊ."],
     },
     {
       id: "u34-ex10",
@@ -447,6 +456,7 @@ export const unit34: CourseUnit = {
         "xiān kàn diànyǐng, ránhòu chīfàn.",
         "chīfàn hé kàn diànyǐng.",
       ],
+      optionsZhuyin: ["ㄒㄧㄢ ㄔ ㄈㄢˋ, ㄖㄢˊ ㄏㄡˋ ㄑㄩˋ ㄎㄢˋ ㄉㄧㄢˋ ㄧㄥˇ.", "ㄔ ㄈㄢˋ ㄧˇ ㄏㄡˋ ㄎㄢˋ ㄉㄧㄢˋ ㄧㄥˇ.", "ㄒㄧㄢ ㄎㄢˋ ㄉㄧㄢˋ ㄧㄥˇ, ㄖㄢˊ ㄏㄡˋ ㄔ ㄈㄢˋ.", "ㄔ ㄈㄢˋ ㄏㄜˊ ㄎㄢˋ ㄉㄧㄢˋ ㄧㄥˇ."],
     },
     {
       id: "u34-ex11",
@@ -455,6 +465,7 @@ export const unit34: CourseUnit = {
       correctAnswer: "我覺得台灣比法國漂亮",
       options: ["我", "覺得", "台灣", "比", "法國", "漂亮"],
       hint: "Structure : Sujet + 覺得 + A + 比 + B + Adjectif",
+      hintZhuyin: "Structure : Sujet + 覺得 + A + 比 + B + Adjectif",
     },
     {
       id: "u34-ex12",
@@ -464,6 +475,7 @@ export const unit34: CourseUnit = {
       correctAnswer: "先吃飯然後去看電影",
       options: ["先", "吃飯", "然後", "去", "看電影"],
       hint: "Structure : 先 + Action 1，然後 + Action 2",
+      hintZhuyin: "Structure : 先 + Action 1，然後 + Action 2",
     },
     {
       id: "u34-ex13",
@@ -482,6 +494,7 @@ export const unit34: CourseUnit = {
       correctAnswer: "可是",
       options: ["可是", "所以", "然後", "因為"],
       optionsHint: ["kěshì", "suǒyǐ", "ránhòu", "yīnwèi"],
+      optionsZhuyin: ["ㄎㄜˇ ㄕˋ", "ㄙㄨㄛˇ ㄧˇ", "ㄖㄢˊ ㄏㄡˋ", "ㄧㄣ ㄨㄟˋ"],
       hint: "Quel connecteur exprime l'opposition (mais) ?",
     },
     {
@@ -492,6 +505,7 @@ export const unit34: CourseUnit = {
       correctAnswer: "最",
       options: ["最", "更", "比", "很"],
       optionsHint: ["zuì", "gèng", "bǐ", "hěn"],
+      optionsZhuyin: ["ㄗㄨㄟˋ", "ㄍㄥˋ", "ㄅㄧˇ", "ㄏㄣˇ"],
       hint: "Quel mot exprime le superlatif (le plus) ?",
     },
   ],

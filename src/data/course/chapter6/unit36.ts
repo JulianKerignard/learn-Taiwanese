@@ -128,6 +128,7 @@ export const unit36: CourseUnit = {
       question: "Traduis en chinois : « J'ai mal à la tête depuis hier. »",
       correctAnswer: "我從昨天開始頭痛",
       hint: "從 + moment + 開始 + symptôme",
+      hintZhuyin: "ㄘㄨㄥˊ + moment + ㄎㄞ ㄕˇ + symptôme",
     },
     {
       id: "u36-ex2",
@@ -135,6 +136,7 @@ export const unit36: CourseUnit = {
       question: "Traduis en chinois : « Je n'ai pas de fièvre. »",
       correctAnswer: "我沒有發燒",
       hint: "沒有 pour nier un état",
+      hintZhuyin: "ㄇㄟˊ ㄧㄡˇ pour nier un état",
     },
     {
       id: "u36-ex3",
@@ -142,6 +144,7 @@ export const unit36: CourseUnit = {
       question: "Traduis en chinois : « Je suis allergique aux cacahuètes. »",
       correctAnswer: "我對花生過敏",
       hint: "我對 + chose + 過敏",
+      hintZhuyin: "ㄨㄛˇ ㄉㄨㄟˋ + chose + ㄍㄨㄛˋ ㄇㄧㄣˇ",
     },
     {
       id: "u36-ex4",
@@ -150,6 +153,7 @@ export const unit36: CourseUnit = {
         "Traduis en chinois : « Je suis en train d'apprendre le chinois. »",
       correctAnswer: "我正在學中文",
       hint: "正在 + verbe = en train de",
+      hintZhuyin: "ㄓㄥˋ ㄗㄞˋ + verbe = en train de",
     },
     {
       id: "u36-ex5",
@@ -157,6 +161,7 @@ export const unit36: CourseUnit = {
       question: "Traduis en chinois : « Je suis à Taiwan depuis trois mois. »",
       correctAnswer: "我來台灣三個月了",
       hint: "來 + lieu + durée + 了",
+      hintZhuyin: "來 + lieu + durée + ㄌㄜ˙",
     },
     {
       id: "u36-ex6",
@@ -165,6 +170,7 @@ export const unit36: CourseUnit = {
         "Traduis en chinois : « Mon chinois n'est pas encore très bon. »",
       correctAnswer: "我的中文還不太好",
       hint: "還不太 + adjectif",
+      hintZhuyin: "ㄏㄞˊ ㄅㄨˋ ㄊㄞˋ + adjectif",
     },
     {
       id: "u36-ex7",
@@ -173,6 +179,7 @@ export const unit36: CourseUnit = {
         "Traduis en chinois : « Tu parles vraiment bien français ! »",
       correctAnswer: "你法文說得很好！",
       hint: "Sujet + langue + 說得 + adverbe",
+      hintZhuyin: "Sujet + langue + ㄕㄨㄛ ㄉㄜ˙ + adverbe",
     },
     {
       id: "u36-ex8",
@@ -181,6 +188,7 @@ export const unit36: CourseUnit = {
         "Traduis en chinois : « Est-ce que le loyer inclut l'eau et l'électricité ? »",
       correctAnswer: "房租包水電嗎？",
       hint: "包 = inclure",
+      hintZhuyin: "ㄅㄠ = inclure",
     },
     {
       id: "u36-ex9",
@@ -189,6 +197,7 @@ export const unit36: CourseUnit = {
         "Traduis en chinois : « C'est un peu trop cher, on peut faire moins ? »",
       correctAnswer: "有點貴，可以便宜一點嗎？",
       hint: "有點 + adj / 可以 + adj + 一點 + 嗎",
+      hintZhuyin: "ㄧㄡˇ ㄉㄧㄢˇ + adj / ㄎㄜˇ ㄧˇ + adj + ㄧˋ ㄉㄧㄢˇ + ㄇㄚ˙",
     },
     {
       id: "u36-ex10",
@@ -196,6 +205,7 @@ export const unit36: CourseUnit = {
       question: "Traduis en chinois : « Il y a la climatisation ? »",
       correctAnswer: "有冷氣嗎？",
       hint: "有 + objet + 嗎",
+      hintZhuyin: "ㄧㄡˇ + objet + ㄇㄚ˙",
     },
     {
       id: "u36-ex11",
@@ -204,6 +214,7 @@ export const unit36: CourseUnit = {
         "Traduis en chinois : « Je voudrais signer un contrat de 6 mois. »",
       correctAnswer: "我想簽半年的合約",
       hint: "想 + verbe / 半年 = 6 mois",
+      hintZhuyin: "ㄒㄧㄤˇ + verbe / ㄅㄢˋ ㄋㄧㄢˊ = 6 mois",
     },
     {
       id: "u36-ex12",
@@ -211,6 +222,7 @@ export const unit36: CourseUnit = {
       question: "Traduis en chinois : « Depuis quand as-tu mal au ventre ? »",
       correctAnswer: "你從什麼時候開始肚子痛？",
       hint: "從什麼時候開始 = depuis quand",
+      hintZhuyin: "ㄘㄨㄥˊ ㄕㄣˊ ㄇㄜ˙ ㄕˊ ㄏㄡˋ ㄎㄞ ㄕˇ = depuis quand",
     },
     {
       id: "u36-ex13",
@@ -219,6 +231,7 @@ export const unit36: CourseUnit = {
         "Traduis en chinois : « J'apprends le chinois depuis un an. »",
       correctAnswer: "我學中文學了一年了",
       hint: "Verbe + durée + 了 (action qui dure)",
+      hintZhuyin: "Verbe + durée + ㄌㄜ˙ (action qui dure)",
     },
     {
       id: "u36-ex14",
@@ -226,6 +239,7 @@ export const unit36: CourseUnit = {
       question: "Traduis en chinois : « On peut visiter la chambre ? »",
       correctAnswer: "可以看房間嗎？",
       hint: "可以 + verbe + 嗎",
+      hintZhuyin: "ㄎㄜˇ ㄧˇ + verbe + ㄇㄚ˙",
     },
     {
       id: "u36-ex15",
@@ -234,6 +248,7 @@ export const unit36: CourseUnit = {
         "Traduis en chinois : « La caution, c'est combien de mois ? »",
       correctAnswer: "押金是幾個月？",
       hint: "幾 + classificateur = combien de",
+      hintZhuyin: "ㄐㄧˇ + classificateur = combien de",
     },
   ],
 

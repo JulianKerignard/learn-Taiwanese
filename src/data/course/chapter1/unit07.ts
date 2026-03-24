@@ -464,6 +464,7 @@ export const unit07: CourseUnit = {
       correctAnswer: "多少錢？",
       options: ["多少錢？", "幾個錢？", "什麼錢？", "錢多少？"],
       optionsHint: ["duōshǎo qián?", "jǐ ge qián?", "shénme qián?", "qián duōshǎo?"],
+      optionsZhuyin: ["ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄐㄧˇ ㄍㄜ ㄑㄧㄢˊ?", "ㄕㄣˊ ㄇㄜ ㄑㄧㄢˊ?", "ㄑㄧㄢˊ ㄉㄨㄛ ㄕㄠˇ?"],
     },
     {
       id: "u5-ex2",
@@ -472,6 +473,7 @@ export const unit07: CourseUnit = {
       correctAnswer: "哪裡",
       options: ["哪裡", "什麼", "怎麼", "誰"],
       optionsHint: ["nǎlǐ", "shénme", "zěnme", "shéi"],
+      optionsZhuyin: ["ㄋㄚˇ ㄌㄧˇ", "ㄕㄣˊ ㄇㄜ", "ㄗㄣˇ ㄇㄜ", "ㄕㄟˊ"],
       hint: "Quel mot interrogatif signifie « où » ?",
     },
     {
@@ -533,6 +535,7 @@ export const unit07: CourseUnit = {
         "qù zěnme Táiběi chēzhàn?",
         "zěnme Táiběi chēzhàn qù?",
       ],
+      optionsZhuyin: ["ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ ㄗㄣˇ ㄇㄜ ㄑㄩˋ?", "ㄗㄣˇ ㄇㄜ ㄑㄩˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ?", "ㄑㄩˋ ㄗㄣˇ ㄇㄜ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ?", "ㄗㄣˇ ㄇㄜ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ ㄑㄩˋ?"],
     },
   ],
 

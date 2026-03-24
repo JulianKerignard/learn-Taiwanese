@@ -202,6 +202,7 @@ export const unit33: CourseUnit = {
         "zhège biàndāng yào jiārè ma?",
         "wǒ xiǎng yào biàndāng, qǐng jiārè.",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄓㄜˋ ㄍㄜ ㄅㄧㄢˋ ㄉㄤ, ㄎㄜˇ ㄧˇ ㄐㄧㄚ ㄖㄜˋ ㄇㄚ?", "ㄨㄛˇ ㄧㄠˋ ㄧˊ ㄍㄜ ㄅㄧㄢˋ ㄉㄤ, ㄋㄧˇ ㄎㄜˇ ㄧˇ ㄖㄜˋ ㄇㄚ?", "ㄓㄜˋ ㄍㄜ ㄅㄧㄢˋ ㄉㄤ ㄧㄠˋ ㄐㄧㄚ ㄖㄜˋ ㄇㄚ?", "ㄨㄛˇ ㄒㄧㄤˇ ㄧㄠˋ ㄅㄧㄢˋ ㄉㄤ, ㄑㄧㄥˇ ㄐㄧㄚ ㄖㄜˋ."],
     },
     {
       id: "u33-ex2",
@@ -220,6 +221,7 @@ export const unit33: CourseUnit = {
         "dàizi zài nǎlǐ?",
         "wǒ yào dàizi.",
       ],
+      optionsZhuyin: ["ㄋㄧˇ ㄇㄣ ㄧㄡˇ ㄉㄞˋ ㄗ ㄇㄚ?", "ㄋㄧˇ ㄧㄡˇ ㄅㄠ ㄇㄚ?", "ㄉㄞˋ ㄗ ㄗㄞˋ ㄋㄚˇ ㄌㄧˇ?", "ㄨㄛˇ ㄧㄠˋ ㄉㄞˋ ㄗ."],
     },
     {
       id: "u33-ex3",
@@ -238,6 +240,7 @@ export const unit33: CourseUnit = {
         "jiāzhí wǔbǎi yuán hǎo ma?",
         "qǐng gěi wǒ wǔbǎi kuài.",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄐㄧㄚ ㄓˊ ㄨˇ ㄅㄞˇ ㄎㄨㄞˋ.", "ㄨㄛˇ ㄧㄠˋ ㄨˇ ㄅㄞˇ ㄎㄨㄞˋ.", "ㄐㄧㄚ ㄓˊ ㄨˇ ㄅㄞˇ ㄩㄢˊ ㄏㄠˇ ㄇㄚ?", "ㄑㄧㄥˇ ㄍㄟˇ ㄨㄛˇ ㄨˇ ㄅㄞˇ ㄎㄨㄞˋ."],
     },
     {
       id: "u33-ex4",
@@ -256,6 +259,7 @@ export const unit33: CourseUnit = {
         "wǒ xiǎng chī niúròu miàn bú là.",
         "gěi wǒ niúròu miàn, là de bú yào.",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄨㄢˇ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ, ㄅㄨˊ ㄌㄚˋ.", "ㄧˋ ㄨㄢˇ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ, ㄅㄨˊ ㄧㄠˋ ㄌㄚˋ ㄉㄜ.", "ㄨㄛˇ ㄒㄧㄤˇ ㄔ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ ㄅㄨˊ ㄌㄚˋ.", "ㄍㄟˇ ㄨㄛˇ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ, ㄌㄚˋ ㄉㄜ ㄅㄨˊ ㄧㄠˋ."],
     },
     {
       id: "u33-ex5",
@@ -274,6 +278,7 @@ export const unit33: CourseUnit = {
         "zhège duōshǎo?",
         "yào fù duōshǎo?",
       ],
+      optionsZhuyin: ["ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄐㄧˇ ㄎㄨㄞˋ ㄑㄧㄢˊ?", "ㄓㄜˋ ㄍㄜ ㄉㄨㄛ ㄕㄠˇ?", "ㄧㄠˋ ㄈㄨˋ ㄉㄨㄛ ㄕㄠˇ?"],
     },
     {
       id: "u33-ex6",
@@ -282,6 +287,7 @@ export const unit33: CourseUnit = {
       correctAnswer: "好吃！",
       options: ["好吃！", "很好！", "好喝！", "不錯！"],
       optionsHint: ["hǎochī!", "hěn hǎo!", "hǎohē!", "búcuò!"],
+      optionsZhuyin: ["ㄏㄠˇ ㄔ!", "ㄏㄣˇ ㄏㄠˇ!", "ㄏㄠˇ ㄏㄜ!", "ㄅㄨˊ ㄘㄨㄛˋ!"],
     },
     {
       id: "u33-ex7",
@@ -300,6 +306,7 @@ export const unit33: CourseUnit = {
         "duìbuqǐ, cèsuǒ ne?",
         "bùhǎoyìsi, xǐshǒujiān zài nǎlǐ?",
       ],
+      optionsZhuyin: ["ㄅㄨˋ ㄏㄠˇ ㄧˋ ㄙ, ㄘㄜˋ ㄙㄨㄛˇ ㄗㄞˋ ㄋㄚˇ ㄌㄧˇ?", "ㄑㄧㄥˇ ㄨㄣˋ ㄘㄜˋ ㄙㄨㄛˇ ㄗㄞˋ ㄋㄚˇ?", "ㄉㄨㄟˋ ㄅㄨˋ ㄑㄧˇ, ㄘㄜˋ ㄙㄨㄛˇ ㄋㄜ?", "ㄅㄨˋ ㄏㄠˇ ㄧˋ ㄙ, ㄒㄧˇ ㄕㄡˇ ㄐㄧㄢ ㄗㄞˋ ㄋㄚˇ ㄌㄧˇ?"],
     },
     {
       id: "u33-ex8",
@@ -308,6 +315,7 @@ export const unit33: CourseUnit = {
       correctAnswer: "我要坐捷運到台北101",
       options: ["我", "要", "坐", "捷運", "到", "台北101"],
       hint: "Structure : Sujet + 要 + Verbe + Transport + 到 + Destination",
+      hintZhuyin: "Structure : Sujet + 要 + Verbe + Transport + 到 + Destination",
     },
     {
       id: "u33-ex9",
@@ -326,6 +334,7 @@ export const unit33: CourseUnit = {
         "chūkǒu jǐ hào shì Táiběi yī líng yī?",
         "Táiběi yī líng yī de chūkǒu shì shénme?",
       ],
+      optionsZhuyin: ["ㄊㄞˊ ㄅㄟˇ ㄧ ㄌㄧㄥˊ ㄧ ㄕˋ ㄐㄧˇ ㄏㄠˋ ㄔㄨ ㄎㄡˇ?", "ㄊㄞˊ ㄅㄟˇ ㄧ ㄌㄧㄥˊ ㄧ ㄗㄞˋ ㄋㄚˇ ㄍㄜ ㄔㄨ ㄎㄡˇ?", "ㄔㄨ ㄎㄡˇ ㄐㄧˇ ㄏㄠˋ ㄕˋ ㄊㄞˊ ㄅㄟˇ ㄧ ㄌㄧㄥˊ ㄧ?", "ㄊㄞˊ ㄅㄟˇ ㄧ ㄌㄧㄥˊ ㄧ ㄉㄜ ㄔㄨ ㄎㄡˇ ㄕˋ ㄕㄣˊ ㄇㄜ?"],
     },
     {
       id: "u33-ex10",
@@ -334,6 +343,7 @@ export const unit33: CourseUnit = {
       correctAnswer: "這個便當可以加熱嗎",
       options: ["這個", "便當", "可以", "加熱", "嗎"],
       hint: "Structure : Sujet + 可以 + Verbe + 嗎",
+      hintZhuyin: "Structure : Sujet + 可以 + Verbe + 嗎",
     },
     {
       id: "u33-ex11",
@@ -352,6 +362,7 @@ export const unit33: CourseUnit = {
         "hái yǒu duō yuǎn?",
         "yào zuò jǐ zhàn?",
       ],
+      optionsZhuyin: ["ㄏㄞˊ ㄧㄡˇ ㄐㄧˇ ㄓㄢˋ?", "ㄐㄧˇ ㄓㄢˋ ㄉㄠˋ ㄌㄜ?", "ㄏㄞˊ ㄧㄡˇ ㄉㄨㄛ ㄩㄢˇ?", "ㄧㄠˋ ㄗㄨㄛˋ ㄐㄧˇ ㄓㄢˋ?"],
     },
     {
       id: "u33-ex12",
@@ -360,6 +371,7 @@ export const unit33: CourseUnit = {
       correctAnswer: "不好意思廁所在哪裡",
       options: ["不好意思", "廁所", "在", "哪裡"],
       hint: "Structure : Formule de politesse + Sujet + 在 + 哪裡",
+      hintZhuyin: "Structure : Formule de politesse + Sujet + 在 + 哪裡",
     },
     {
       id: "u33-ex13",
@@ -378,6 +390,7 @@ export const unit33: CourseUnit = {
         "wǒ xiǎng dào Táiběi chēzhàn zuò jiéyùn.",
         "jiéyùn dào Táiběi chēzhàn ma?",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄗㄨㄛˋ ㄐㄧㄝˊ ㄩㄣˋ ㄉㄠˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ.", "ㄨㄛˇ ㄗㄨㄛˋ ㄐㄧㄝˊ ㄩㄣˋ ㄑㄩˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ.", "ㄨㄛˇ ㄒㄧㄤˇ ㄉㄠˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ ㄗㄨㄛˋ ㄐㄧㄝˊ ㄩㄣˋ.", "ㄐㄧㄝˊ ㄩㄣˋ ㄉㄠˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ ㄇㄚ?"],
     },
     {
       id: "u33-ex14",
@@ -386,6 +399,7 @@ export const unit33: CourseUnit = {
       correctAnswer: "我要一碗牛肉麵不辣",
       options: ["我", "要", "一碗", "牛肉麵", "不辣"],
       hint: "Structure : Sujet + 要 + Quantité + Nom + Spécification",
+      hintZhuyin: "Structure : Sujet + 要 + Quantité + Nom + Spécification",
     },
     {
       id: "u33-ex15",
@@ -404,6 +418,7 @@ export const unit33: CourseUnit = {
         "wǒ de Yōuyóu kǎ yào jiāzhí.",
         "zài zhèlǐ kěyǐ yòng Yōuyóu kǎ ma?",
       ],
+      optionsZhuyin: ["ㄧㄡ ㄧㄡˊ ㄎㄚˇ ㄎㄜˇ ㄧˇ ㄗㄞˋ ㄓㄜˋ ㄌㄧˇ ㄐㄧㄚ ㄓˊ ㄇㄚ?", "ㄓㄜˋ ㄌㄧˇ ㄐㄧㄚ ㄓˊ ㄧㄡ ㄧㄡˊ ㄎㄚˇ ㄇㄚ?", "ㄨㄛˇ ㄉㄜ ㄧㄡ ㄧㄡˊ ㄎㄚˇ ㄧㄠˋ ㄐㄧㄚ ㄓˊ.", "ㄗㄞˋ ㄓㄜˋ ㄌㄧˇ ㄎㄜˇ ㄧˇ ㄩㄥˋ ㄧㄡ ㄧㄡˊ ㄎㄚˇ ㄇㄚ?"],
     },
   ],
 

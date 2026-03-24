@@ -595,6 +595,7 @@ export const unit16: CourseUnit = {
       correctAnswer: "過",
       options: ["過", "了", "會", "在"],
       optionsHint: ["guò", "le", "huì", "zài"],
+      optionsZhuyin: ["ㄍㄨㄛˋ", "ㄌㄜ", "ㄏㄨㄟˋ", "ㄗㄞˋ"],
       hint: "On demande une expérience de vie, pas un événement spécifique.",
     },
     {
@@ -619,6 +620,7 @@ export const unit16: CourseUnit = {
       correctAnswer: "會",
       options: ["會", "了", "過", "可以"],
       optionsHint: ["huì", "le", "guò", "kěyǐ"],
+      optionsZhuyin: ["ㄏㄨㄟˋ", "ㄌㄜ", "ㄍㄨㄛˋ", "ㄎㄜˇ ㄧˇ"],
       hint: "Quel mot exprime une capacité acquise ?",
     },
     {
@@ -638,6 +640,7 @@ export const unit16: CourseUnit = {
         "wǒ bù chī guò xiǎolóngbāo",
         "wǒ bú huì chī xiǎolóngbāo",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄇㄟˊ ㄔ ㄍㄨㄛˋ ㄒㄧㄠˇ ㄌㄨㄥˊ ㄅㄠ", "ㄨㄛˇ ㄇㄟˊ ㄔ ㄌㄜ ㄒㄧㄠˇ ㄌㄨㄥˊ ㄅㄠ", "ㄨㄛˇ ㄅㄨˋ ㄔ ㄍㄨㄛˋ ㄒㄧㄠˇ ㄌㄨㄥˊ ㄅㄠ", "ㄨㄛˇ ㄅㄨˊ ㄏㄨㄟˋ ㄔ ㄒㄧㄠˇ ㄌㄨㄥˊ ㄅㄠ"],
     },
     {
       id: "u16-ex5",
@@ -647,6 +650,7 @@ export const unit16: CourseUnit = {
       correctAnswer: "會",
       options: ["會", "了", "過", "要"],
       optionsHint: ["huì", "le", "guò", "yào"],
+      optionsZhuyin: ["ㄏㄨㄟˋ", "ㄌㄜ", "ㄍㄨㄛˋ", "ㄧㄠˋ"],
       hint: "Quel mot exprime le futur probable ?",
     },
     {
@@ -692,6 +696,7 @@ export const unit16: CourseUnit = {
       correctAnswer: "你去過日本嗎",
       options: ["你", "去", "過", "日本", "嗎"],
       hint: "Structure : Sujet + Verbe + 過 + Complément + 嗎",
+      hintZhuyin: "Structure : Sujet + Verbe + 過 + Complément + 嗎",
     },
     {
       id: "u16-reorder-2",
@@ -701,6 +706,7 @@ export const unit16: CourseUnit = {
       correctAnswer: "我覺得明天不會下雨",
       options: ["我", "覺得", "明天", "不", "會", "下雨"],
       hint: "Structure : Sujet + 覺得 + Temps + 不會 + Verbe",
+      hintZhuyin: "Structure : Sujet + 覺得 + Temps + 不會 + Verbe",
     },
   ],
 

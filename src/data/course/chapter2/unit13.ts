@@ -280,6 +280,7 @@ export const unit13: CourseUnit = {
       correctAnswer: "是",
       options: ["是", "很", "有", "在"],
       optionsHint: ["shì", "hěn", "yǒu", "zài"],
+      optionsZhuyin: ["ㄕˋ", "ㄏㄣˇ", "ㄧㄡˇ", "ㄗㄞˋ"],
       hint: "Pour relier un sujet à un nom (profession), on utilise ce verbe.",
     },
     {
@@ -290,6 +291,7 @@ export const unit13: CourseUnit = {
       correctAnswer: "很",
       options: ["很", "是", "不", "太"],
       optionsHint: ["hěn", "shì", "bù", "tài"],
+      optionsZhuyin: ["ㄏㄣˇ", "ㄕˋ", "ㄅㄨˋ", "ㄊㄞˋ"],
       hint: "En mandarin, les adjectifs s'utilisent avec ce mot comme lien.",
     },
     {
@@ -342,6 +344,7 @@ export const unit13: CourseUnit = {
       correctAnswer: "太貴了！",
       options: ["太貴了！", "很貴了！", "不貴了！", "是貴了！"],
       optionsHint: ["tài guì le!", "hěn guì le!", "bù guì le!", "shì guì le!"],
+      optionsZhuyin: ["ㄊㄞˋ ㄍㄨㄟˋ ㄌㄜ!", "ㄏㄣˇ ㄍㄨㄟˋ ㄌㄜ!", "ㄅㄨˋ ㄍㄨㄟˋ ㄌㄜ!", "ㄕˋ ㄍㄨㄟˋ ㄌㄜ!"],
     },
     {
       id: "u13-ex10",
@@ -360,6 +363,7 @@ export const unit13: CourseUnit = {
         "nǐ bù hē chá ma?",
         "nǐ hē bù hē chá le?",
       ],
+      optionsZhuyin: ["ㄋㄧˇ ㄧㄠˋ ㄅㄨˊ ㄧㄠˋ ㄏㄜ ㄔㄚˊ?", "ㄋㄧˇ ㄏㄜ ㄔㄚˊ ㄇㄚ?", "ㄋㄧˇ ㄅㄨˋ ㄏㄜ ㄔㄚˊ ㄇㄚ?", "ㄋㄧˇ ㄏㄜ ㄅㄨˋ ㄏㄜ ㄔㄚˊ ㄌㄜ?"],
     },
     {
       id: "u13-ex11",

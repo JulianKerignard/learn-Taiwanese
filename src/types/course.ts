@@ -34,7 +34,9 @@ export interface Exercise {
   correctAnswer: string;
   options?: string[];
   hint?: string;
+  hintZhuyin?: string;
   optionsHint?: string[];
+  optionsZhuyin?: string[];
 }
 
 export interface CourseUnit {

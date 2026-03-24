@@ -434,6 +434,7 @@ export const unit11: CourseUnit = {
         "Táiběi chēzhàn zài nǎlǐ",
         "wǒ zuò Táiběi chēzhàn",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄑㄩˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ", "ㄨㄛˇ ㄗㄞˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ", "ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ ㄗㄞˋ ㄋㄚˇ ㄌㄧˇ", "ㄨㄛˇ ㄗㄨㄛˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ"],
     },
     {
       id: "u9-ex2",
@@ -455,6 +456,7 @@ export const unit11: CourseUnit = {
       correctAnswer: "坐",
       options: ["坐", "去", "到", "走"],
       optionsHint: ["zuò", "qù", "dào", "zǒu"],
+      optionsZhuyin: ["ㄗㄨㄛˋ", "ㄑㄩˋ", "ㄉㄠˋ", "ㄗㄡˇ"],
       hint: "Quel verbe signifie « prendre » un transport ?",
     },
     {
@@ -489,6 +491,7 @@ export const unit11: CourseUnit = {
       correctAnswer: "到",
       options: ["到", "去", "坐", "走"],
       optionsHint: ["dào", "qù", "zuò", "zǒu"],
+      optionsZhuyin: ["ㄉㄠˋ", "ㄑㄩˋ", "ㄗㄨㄛˋ", "ㄗㄡˇ"],
       hint: "Quel verbe signifie « arriver » ?",
     },
     {

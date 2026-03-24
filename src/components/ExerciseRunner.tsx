@@ -166,9 +166,11 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           )}
         </div>
 
-        {current.hint && (
+        {(current.hint || current.hintZhuyin) && (
           <p className="mb-4 rounded-lg bg-accent/5 px-3 py-1.5 text-sm italic text-accent">
-            Pinyin : {current.hint}
+            {current.hint && <span>{current.hint}</span>}
+            {current.hint && current.hintZhuyin && <span className="mx-1.5 text-stone-300">|</span>}
+            {current.hintZhuyin && <span className="chinese">{current.hintZhuyin}</span>}
           </p>
         )}
 
@@ -212,6 +214,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           <div className="grid gap-3 sm:grid-cols-2">
             {shuffledData.map(({ opt: option, origIndex }) => {
               const optPinyin = current.optionsHint?.[origIndex];
+              const optZhuyin = current.optionsZhuyin?.[origIndex];
               const isSelected = selectedAnswer === option;
               const isAnswer = option === current.correctAnswer;
               let optionStyle = "border-stone-200 bg-white hover:border-primary hover:bg-primary/5";
@@ -240,8 +243,12 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                   {showFeedback && isSelected && !isAnswer && <X className="h-4 w-4 shrink-0 text-danger" />}
                   <span className="flex-1">
                     <span>{option}</span>
-                    {hasChinese(option) && optPinyin && (
-                      <span className="ml-2 text-xs text-stone-400 italic">{optPinyin}</span>
+                    {hasChinese(option) && (optPinyin || optZhuyin) && (
+                      <span className="ml-2 text-xs text-stone-400 italic">
+                        {optPinyin}
+                        {optPinyin && optZhuyin && <span className="mx-1 text-stone-300">|</span>}
+                        {optZhuyin && <span className="chinese">{optZhuyin}</span>}
+                      </span>
                     )}
                   </span>
                   {hasChinese(option) && (

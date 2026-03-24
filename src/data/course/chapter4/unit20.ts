@@ -524,6 +524,8 @@ export const unit20: CourseUnit = {
         "Quelle expression utiliseriez-vous pour demander votre chemin à un inconnu ?",
       correctAnswer: "不好意思",
       options: ["不好意思", "對不起", "抱歉", "幹嘛"],
+      optionsHint: ["bù hǎo yìsi", "duìbùqǐ", "bàoqiàn", "gànma"],
+      optionsZhuyin: ["ㄅㄨˋ ㄏㄠˇ ㄧˋ ㄙ˙", "ㄉㄨㄟˋ ㄅㄨˋ ㄑㄧˇ", "ㄅㄠˋ ㄑㄧㄢˋ", "ㄍㄢˋ ㄇㄚˊ"],
     },
     {
       id: "u16-ex2",
@@ -543,7 +545,10 @@ export const unit20: CourseUnit = {
       question: "___，請問洗手間在哪裡？(Excusez-moi, où sont les toilettes ?)",
       correctAnswer: "不好意思",
       options: ["不好意思", "對不起", "抱歉", "謝謝"],
+      optionsHint: ["bù hǎo yìsi", "duìbùqǐ", "bàoqiàn", "xièxie"],
+      optionsZhuyin: ["ㄅㄨˋ ㄏㄠˇ ㄧˋ ㄙ˙", "ㄉㄨㄟˋ ㄅㄨˋ ㄑㄧˇ", "ㄅㄠˋ ㄑㄧㄢˋ", "ㄒㄧㄝˋ ㄒㄧㄝˋ"],
       hint: "Quelle expression pour déranger poliment quelqu'un ?",
+      hintZhuyin: "Quelle expression pour déranger poliment quelqu'un ?",
     },
     {
       id: "u16-ex4",
@@ -564,6 +569,8 @@ export const unit20: CourseUnit = {
       question: "Comment répondre poliment à un compliment sur votre chinois ?",
       correctAnswer: "哪裡哪裡",
       options: ["哪裡哪裡", "謝謝", "對啊", "我知道"],
+      optionsHint: ["nǎlǐ nǎlǐ", "xièxie", "duì a", "wǒ zhīdào"],
+      optionsZhuyin: ["ㄋㄚˇ ㄌㄧˇ ㄋㄚˇ ㄌㄧˇ", "ㄒㄧㄝˋ ㄒㄧㄝˋ", "ㄉㄨㄟˋ ㄚ˙", "ㄨㄛˇ ㄓ ㄉㄠˋ"],
     },
     {
       id: "u16-ex6",

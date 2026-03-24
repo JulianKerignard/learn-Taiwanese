@@ -515,6 +515,7 @@ export const unit42: CourseUnit = {
       correctAnswer: "嘛",
       options: ["嘛", "嗎", "吧", "啦"],
       optionsHint: ["ma", "ma", "ba", "la"],
+      optionsZhuyin: ["ㄇㄚ", "ㄇㄚ", "ㄅㄚ", "ㄌㄚ"],
       hint: "Quelle particule exprime l'évidence ?",
     },
     {
@@ -548,6 +549,7 @@ export const unit42: CourseUnit = {
       correctAnswer: "吧",
       options: ["吧", "啊", "嘛", "啦"],
       optionsHint: ["ba", "a", "ma", "la"],
+      optionsZhuyin: ["ㄅㄚ", "ㄚ", "ㄇㄚ", "ㄌㄚ"],
       hint: "Quelle particule exprime une suggestion douce ?",
     },
     {
@@ -557,6 +559,7 @@ export const unit42: CourseUnit = {
       correctAnswer: "啊",
       options: ["啊", "吧", "嘛", "喔"],
       optionsHint: ["a", "ba", "ma", "ō"],
+      optionsZhuyin: ["ㄚ", "ㄅㄚ", "ㄇㄚ", "ㄛ"],
       hint: "Quelle particule ajoute de l'enthousiasme ?",
     },
     {

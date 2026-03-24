@@ -163,7 +163,10 @@ export const unit22: CourseUnit = {
       question: "我___三碗飯了。(J'ai mangé 3 bols de riz.)",
       correctAnswer: "吃了",
       options: ["吃了", "吃過", "會吃", "吃的"],
+      optionsHint: ["chī le", "chī guò", "huì chī", "chī de"],
+      optionsZhuyin: ["ㄔ ㄌㄜ˙", "ㄔ ㄍㄨㄛˋ", "ㄏㄨㄟˋ ㄔ", "ㄔ ㄉㄜ˙"],
       hint: "Action accomplie.",
+      hintZhuyin: "Action accomplie.",
     },
     {
       id: "u22-ex2",
@@ -184,7 +187,10 @@ export const unit22: CourseUnit = {
       question: "明天___下雨嗎？(Est-ce qu'il pleuvra demain ?)",
       correctAnswer: "會",
       options: ["會", "了", "過", "在"],
+      optionsHint: ["huì", "le", "guò", "zài"],
+      optionsZhuyin: ["ㄏㄨㄟˋ", "ㄌㄜ˙", "ㄍㄨㄛˋ", "ㄗㄞˋ"],
       hint: "Futur.",
+      hintZhuyin: "Futur.",
     },
     {
       id: "u22-ex4",
@@ -205,6 +211,8 @@ export const unit22: CourseUnit = {
         "Quelle expression utiliseriez-vous pour demander un renseignement à un inconnu ?",
       correctAnswer: "不好意思",
       options: ["不好意思", "對不起", "抱歉", "算了"],
+      optionsHint: ["bù hǎo yìsi", "duìbùqǐ", "bàoqiàn", "suàn le"],
+      optionsZhuyin: ["ㄅㄨˋ ㄏㄠˇ ㄧˋ ㄙ˙", "ㄉㄨㄟˋ ㄅㄨˋ ㄑㄧˇ", "ㄅㄠˋ ㄑㄧㄢˋ", "ㄙㄨㄢˋ ㄌㄜ˙"],
     },
     {
       id: "u22-ex6",
@@ -212,7 +220,10 @@ export const unit22: CourseUnit = {
       question: "台北是台灣___大的城市。(Taipei est la plus grande ville.)",
       correctAnswer: "最",
       options: ["最", "很", "更", "比"],
+      optionsHint: ["zuì", "hěn", "gèng", "bǐ"],
+      optionsZhuyin: ["ㄗㄨㄟˋ", "ㄏㄣˇ", "ㄍㄥˋ", "ㄅㄧˇ"],
       hint: "Superlatif.",
+      hintZhuyin: "Superlatif.",
     },
     {
       id: "u22-ex7",
@@ -246,7 +257,10 @@ export const unit22: CourseUnit = {
         "這家餐廳___那家___好吃。(Ce restaurant est meilleur que celui-là.)",
       correctAnswer: "比...更",
       options: ["比...更", "和...一樣", "沒有...那麼", "不是...而是"],
+      optionsHint: ["bǐ...gèng", "hé...yíyàng", "méiyǒu...nàme", "búshì...érshì"],
+      optionsZhuyin: ["ㄅㄧˇ...ㄍㄥˋ", "ㄏㄜˊ...ㄧˊ ㄧㄤˋ", "ㄇㄟˊ ㄧㄡˇ...ㄋㄚˋ ㄇㄜ˙", "ㄅㄨˊ ㄕˋ...ㄦˊ ㄕˋ"],
       hint: "Comparaison renforcée.",
+      hintZhuyin: "Comparaison renforcée.",
     },
     {
       id: "u22-ex10",
@@ -266,6 +280,8 @@ export const unit22: CourseUnit = {
       question: "Comment dit-on « Enchanté de faire ta connaissance » ?",
       correctAnswer: "很高興認識你",
       options: ["很高興認識你", "你好嗎", "再見", "謝謝你"],
+      optionsHint: ["hěn gāoxìng rènshì nǐ", "nǐ hǎo ma", "zàijiàn", "xièxie nǐ"],
+      optionsZhuyin: ["ㄏㄣˇ ㄍㄠ ㄒㄧㄥˋ ㄖㄣˋ ㄕˋ ㄋㄧˇ", "ㄋㄧˇ ㄏㄠˇ ㄇㄚ˙", "ㄗㄞˋ ㄐㄧㄢˋ", "ㄒㄧㄝˋ ㄒㄧㄝˋ ㄋㄧˇ"],
     },
     {
       id: "u22-ex12",
@@ -274,6 +290,7 @@ export const unit22: CourseUnit = {
       correctAnswer: "LINE",
       options: ["LINE", "電話", "地址", "名字"],
       hint: "L'application de messagerie la plus utilisée à Taiwan.",
+      hintZhuyin: "L'application ㄉㄜ˙ messagerie ㄌㄚ˙ plus utilisée à Taiwan.",
     },
   ],
 

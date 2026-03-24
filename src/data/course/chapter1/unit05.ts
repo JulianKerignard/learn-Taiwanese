@@ -442,6 +442,7 @@ export const unit05: CourseUnit = {
       correctAnswer: "二十五",
       options: ["二十五", "二五", "十二五", "兩十五"],
       optionsHint: ["èrshíwǔ", "èr wǔ", "shí èr wǔ", "liǎng shí wǔ"],
+      optionsZhuyin: ["ㄦˋ ㄕˊ ㄨˇ", "ㄦˋ ㄨˇ", "ㄕˊ ㄦˋ ㄨˇ", "ㄌㄧㄤˇ ㄕˊ ㄨˇ"],
     },
     {
       id: "u4-ex2",
@@ -450,7 +451,9 @@ export const unit05: CourseUnit = {
       correctAnswer: "兩",
       options: ["兩", "二", "雙", "倆"],
       optionsHint: ["liǎng", "èr", "shuāng", "liǎ"],
+      optionsZhuyin: ["ㄌㄧㄤˇ", "ㄦˋ", "ㄕㄨㄤ", "ㄌㄧㄚˇ"],
       hint: "Devant un classificateur, on utilise 兩, pas 二.",
+      hintZhuyin: "Devant un classificateur, on utilise 兩, pas 二.",
     },
     {
       id: "u4-ex3",
@@ -485,6 +488,7 @@ export const unit05: CourseUnit = {
       correctAnswer: "杯",
       options: ["杯", "個", "碗", "瓶"],
       optionsHint: ["bēi", "ge", "wǎn", "píng"],
+      optionsZhuyin: ["ㄅㄟ", "ㄍㄜ", "ㄨㄢˇ", "ㄆㄧㄥˊ"],
       hint: "Quel classificateur pour les boissons en tasse ?",
     },
     {
@@ -495,6 +499,7 @@ export const unit05: CourseUnit = {
       correctAnswer: "明天兩點見",
       options: ["明天兩點見", "兩點明天見", "見明天兩點", "明天見兩點"],
       optionsHint: ["míngtiān liǎng diǎn jiàn", "liǎng diǎn míngtiān jiàn", "jiàn míngtiān liǎng diǎn", "míngtiān jiàn liǎng diǎn"],
+      optionsZhuyin: ["ㄇㄧㄥˊ ㄊㄧㄢ ㄌㄧㄤˇ ㄉㄧㄢˇ ㄐㄧㄢˋ", "ㄌㄧㄤˇ ㄉㄧㄢˇ ㄇㄧㄥˊ ㄊㄧㄢ ㄐㄧㄢˋ", "ㄐㄧㄢˋ ㄇㄧㄥˊ ㄊㄧㄢ ㄌㄧㄤˇ ㄉㄧㄢˇ", "ㄇㄧㄥˊ ㄊㄧㄢ ㄐㄧㄢˋ ㄌㄧㄤˇ ㄉㄧㄢˇ"],
     },
   ],
 

@@ -577,6 +577,7 @@ export const unit01: CourseUnit = {
       correctAnswer: "我是法國人",
       options: ["我是法國人", "我法國人是", "法國人我是", "是我法國人"],
       optionsHint: ["wǒ shì Fǎguó rén", "wǒ Fǎguó rén shì", "Fǎguó rén wǒ shì", "shì wǒ Fǎguó rén"],
+      optionsZhuyin: ["ㄨㄛˇ ㄕˋ ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ", "ㄨㄛˇ ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ ㄕˋ", "ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ ㄨㄛˇ ㄕˋ", "ㄕˋ ㄨㄛˇ ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ"],
     },
     {
       id: "u1-ex3",
@@ -585,6 +586,7 @@ export const unit01: CourseUnit = {
       correctAnswer: "是",
       options: ["是", "不", "好", "來"],
       optionsHint: ["shì", "bù", "hǎo", "lái"],
+      optionsZhuyin: ["ㄕˋ", "ㄅㄨˋ", "ㄏㄠˇ", "ㄌㄞˊ"],
       hint: "Quel verbe signifie « être » ?",
     },
     {
@@ -619,6 +621,7 @@ export const unit01: CourseUnit = {
       correctAnswer: "不",
       options: ["不", "是", "嗎", "好"],
       optionsHint: ["bù", "shì", "ma", "hǎo"],
+      optionsZhuyin: ["ㄅㄨˋ", "ㄕˋ", "ㄇㄚ", "ㄏㄠˇ"],
       hint: "Quel mot exprime la négation ?",
     },
     {
@@ -650,6 +653,7 @@ export const unit01: CourseUnit = {
         "nǐ shì Fǎguó rén bù?",
         "shì nǐ Fǎguó rén ma?",
       ],
+      optionsZhuyin: ["ㄋㄧˇ ㄕˋ ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ ㄇㄚ?", "ㄇㄚ ㄋㄧˇ ㄕˋ ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ?", "ㄋㄧˇ ㄕˋ ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ ㄅㄨˋ?", "ㄕˋ ㄋㄧˇ ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ ㄇㄚ?"],
       hint: "nǐ shì Fǎguó rén",
     },
   ],

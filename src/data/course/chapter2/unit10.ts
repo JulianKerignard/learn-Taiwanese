@@ -513,6 +513,7 @@ export const unit10: CourseUnit = {
       correctAnswer: "多少錢？",
       options: ["多少錢？", "怎麼賣？", "太貴了？", "幾塊錢？"],
       optionsHint: ["duōshǎo qián?", "zěnme mài?", "tài guì le?", "jǐ kuài qián?"],
+      optionsZhuyin: ["ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄗㄣˇ ㄇㄜ ㄇㄞˋ?", "ㄊㄞˋ ㄍㄨㄟˋ ㄌㄜ?", "ㄐㄧˇ ㄎㄨㄞˋ ㄑㄧㄢˊ?"],
     },
     {
       id: "u8-ex2",
@@ -534,6 +535,7 @@ export const unit10: CourseUnit = {
       correctAnswer: "貴",
       options: ["貴", "便宜", "大", "好"],
       optionsHint: ["guì", "piányi", "dà", "hǎo"],
+      optionsZhuyin: ["ㄍㄨㄟˋ", "ㄆㄧㄢˊ ㄧ", "ㄉㄚˋ", "ㄏㄠˇ"],
       hint: "Quel caractère signifie « cher » ?",
     },
     {
@@ -568,6 +570,7 @@ export const unit10: CourseUnit = {
       correctAnswer: "便宜",
       options: ["便宜", "貴", "大", "好"],
       optionsHint: ["piányi", "guì", "dà", "hǎo"],
+      optionsZhuyin: ["ㄆㄧㄢˊ ㄧ", "ㄍㄨㄟˋ", "ㄉㄚˋ", "ㄏㄠˇ"],
       hint: "Quel mot signifie « pas cher » ?",
     },
     {

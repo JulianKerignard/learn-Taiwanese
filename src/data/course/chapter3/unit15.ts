@@ -505,6 +505,7 @@ export const unit15: CourseUnit = {
       correctAnswer: "了",
       options: ["了", "過", "的", "在"],
       optionsHint: ["le", "guò", "de", "zài"],
+      optionsZhuyin: ["ㄌㄜ", "ㄍㄨㄛˋ", "ㄉㄜ", "ㄗㄞˋ"],
       hint: "Quelle particule marque l'accomplissement d'une action ?",
     },
     {
@@ -528,6 +529,7 @@ export const unit15: CourseUnit = {
       correctAnswer: "吃",
       options: ["吃", "吃了", "了吃", "吃過"],
       optionsHint: ["chī", "chī le", "le chī", "chī guò"],
+      optionsZhuyin: ["ㄔ", "ㄔ ㄌㄜ", "ㄌㄜ ㄔ", "ㄔ ㄍㄨㄛˋ"],
       hint: "Est-ce une habitude ou un événement ponctuel ?",
     },
     {
@@ -537,6 +539,7 @@ export const unit15: CourseUnit = {
       correctAnswer: "我沒吃",
       options: ["我沒吃", "我不吃了", "我沒吃了", "我不了吃"],
       optionsHint: ["wǒ méi chī", "wǒ bù chī le", "wǒ méi chī le", "wǒ bù le chī"],
+      optionsZhuyin: ["ㄨㄛˇ ㄇㄟˊ ㄔ", "ㄨㄛˇ ㄅㄨˋ ㄔ ㄌㄜ", "ㄨㄛˇ ㄇㄟˊ ㄔ ㄌㄜ", "ㄨㄛˇ ㄅㄨˋ ㄌㄜ ㄔ"],
     },
     {
       id: "u15-ex5",
@@ -555,7 +558,9 @@ export const unit15: CourseUnit = {
         "wǒ méi qù xuéxiào",
         "wǒ yǐjīng qù le xuéxiào",
       ],
+      optionsZhuyin: ["ㄨㄛˇ ㄇㄟˊ ㄑㄩˋ ㄌㄜ ㄒㄩㄝˊ ㄒㄧㄠˋ", "ㄨㄛˇ ㄑㄩˋ ㄌㄜ ㄒㄩㄝˊ ㄒㄧㄠˋ", "ㄨㄛˇ ㄇㄟˊ ㄑㄩˋ ㄒㄩㄝˊ ㄒㄧㄠˋ", "ㄨㄛˇ ㄧˇ ㄐㄧㄥ ㄑㄩˋ ㄌㄜ ㄒㄩㄝˊ ㄒㄧㄠˋ"],
       hint: "沒 et 了 peuvent-ils coexister dans une négation du passé ?",
+      hintZhuyin: "沒 et 了 peuvent-ils coexister dans une négation du passé ?",
     },
     {
       id: "u15-ex6",
@@ -564,6 +569,7 @@ export const unit15: CourseUnit = {
       correctAnswer: "了",
       options: ["了", "過", "是", "在"],
       optionsHint: ["le", "guò", "shì", "zài"],
+      optionsZhuyin: ["ㄌㄜ", "ㄍㄨㄛˋ", "ㄕˋ", "ㄗㄞˋ"],
       hint: "Événement spécifique accompli → quelle particule ?",
     },
     {
@@ -587,6 +593,7 @@ export const unit15: CourseUnit = {
       correctAnswer: "我吃了三碗飯",
       options: ["我", "吃", "了", "三碗", "飯"],
       hint: "Structure : Sujet + Verbe + 了 + Quantité + Nom",
+      hintZhuyin: "Structure : Sujet + Verbe + 了 + Quantité + Nom",
     },
     {
       id: "u15-reorder-2",
@@ -596,6 +603,7 @@ export const unit15: CourseUnit = {
       correctAnswer: "她買了一件衣服",
       options: ["她", "買", "了", "一件", "衣服"],
       hint: "Structure : Sujet + Verbe + 了 + Quantité + Nom",
+      hintZhuyin: "Structure : Sujet + Verbe + 了 + Quantité + Nom",
     },
     {
       id: "u15-translate-new1",
@@ -604,6 +612,7 @@ export const unit15: CourseUnit = {
       correctAnswer: "我吃了",
       options: ["我吃了", "我吃過", "我在吃", "我吃"],
       optionsHint: ["wǒ chī le", "wǒ chī guò", "wǒ zài chī", "wǒ chī"],
+      optionsZhuyin: ["ㄨㄛˇ ㄔ ㄌㄜ", "ㄨㄛˇ ㄔ ㄍㄨㄛˋ", "ㄨㄛˇ ㄗㄞˋ ㄔ", "ㄨㄛˇ ㄔ"],
     },
     {
       id: "u15-translate-new2",
@@ -612,6 +621,7 @@ export const unit15: CourseUnit = {
       correctAnswer: "他走了",
       options: ["他走了", "他走過", "他在走", "他沒走了"],
       optionsHint: ["tā zǒu le", "tā zǒu guò", "tā zài zǒu", "tā méi zǒu le"],
+      optionsZhuyin: ["ㄊㄚ ㄗㄡˇ ㄌㄜ", "ㄊㄚ ㄗㄡˇ ㄍㄨㄛˋ", "ㄊㄚ ㄗㄞˋ ㄗㄡˇ", "ㄊㄚ ㄇㄟˊ ㄗㄡˇ ㄌㄜ"],
     },
     {
       id: "u15-translate-new3",
@@ -620,6 +630,7 @@ export const unit15: CourseUnit = {
       correctAnswer: "我們買了兩張票",
       options: ["我們買了兩張票", "我們買兩張票了", "我們沒買了票", "我們在買兩張票"],
       optionsHint: ["wǒmen mǎi le liǎng zhāng piào", "wǒmen mǎi liǎng zhāng piào le", "wǒmen méi mǎi le piào", "wǒmen zài mǎi liǎng zhāng piào"],
+      optionsZhuyin: ["ㄨㄛˇ ㄇㄣ ㄇㄞˇ ㄌㄜ ㄌㄧㄤˇ ㄓㄤ ㄆㄧㄠˋ", "ㄨㄛˇ ㄇㄣ ㄇㄞˇ ㄌㄧㄤˇ ㄓㄤ ㄆㄧㄠˋ ㄌㄜ", "ㄨㄛˇ ㄇㄣ ㄇㄟˊ ㄇㄞˇ ㄌㄜ ㄆㄧㄠˋ", "ㄨㄛˇ ㄇㄣ ㄗㄞˋ ㄇㄞˇ ㄌㄧㄤˇ ㄓㄤ ㄆㄧㄠˋ"],
     },
     {
       id: "u15-comp-new1",
