@@ -80,6 +80,9 @@ export default function Navbar() {
           <Link href="/games" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Jeux
           </Link>
+          <Link href="/tests" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+            Tests
+          </Link>
           <Link href="/progress" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Progression
           </Link>
@@ -165,6 +168,7 @@ export default function Navbar() {
                 <Link href="/reading" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Lecture</Link>
                 <Link href="/funfacts" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Fun Facts</Link>
                 <Link href="/games" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Jeux</Link>
+                <Link href="/tests" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Tests</Link>
                 <Link href="/progress" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Progression</Link>
               </nav>
               <div className="mt-auto border-t border-stone-200 p-4">
