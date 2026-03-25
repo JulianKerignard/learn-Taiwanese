@@ -70,6 +70,11 @@ Two type files in `src/types/`:
 - `index.ts`: Core domain types (VocabularyItem, Lesson, FSRSCardState, SM2Card, ReviewMode, UserProgress, UserSettings, GamificationData)
 - `course.ts`: Course-specific types (CourseUnit, Chapter, Exercise, ContentBlock, DialogueLine, PathProgress)
 
+## Git
+
+- **Ne JAMAIS inclure de référence à Claude ou Anthropic dans les commits** (pas de `Co-Authored-By`, pas de mention Claude/Anthropic dans les messages de commit).
+- Commits en français avec des messages conventionnels (`feat:`, `fix:`, `refactor:`, etc.).
+
 ## Conventions
 
 - Path alias: `@/*` maps to `./src/*`
