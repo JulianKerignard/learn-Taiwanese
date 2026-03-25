@@ -15,7 +15,8 @@ import { getProgress, getCards } from "@/lib/storage";
 import { getStats } from "@/lib/fsrs";
 import { lessons } from "@/data/lessons";
 import { getPathProgress } from "@/lib/progress";
-import { getUnitById } from "@/data/course";
+import { getUnitById, hskLevels, allUnits } from "@/data/course";
+import { getCurrentHSKLevel } from "@/lib/progress";
 import type { UserProgress } from "@/types";
 import type { PathProgress } from "@/types/course";
 
@@ -136,6 +137,7 @@ export default function HomePage() {
 function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
   const currentUnit = getUnitById(pathProgress.currentUnit);
   const hasStarted = pathProgress.completedUnits.length > 0;
+  const currentLevel = getCurrentHSKLevel(pathProgress, allUnits, hskLevels);
 
   return (
     <section>
@@ -150,7 +152,7 @@ function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
             </p>
             <p className="text-sm text-stone-500">
               {hasStarted && currentUnit
-                ? `Prochaine étape : Unité ${currentUnit.number} — ${currentUnit.title}`
+                ? `HSK ${currentLevel?.level ?? ""} — Unité ${currentUnit.number} : ${currentUnit.title}`
                 : hasStarted
                   ? `${pathProgress.completedUnits.length} unités complétées`
                   : "Apprends le chinois pas à pas"}

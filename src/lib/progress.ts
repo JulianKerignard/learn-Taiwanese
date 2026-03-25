@@ -1,4 +1,4 @@
-import type { PathProgress, CourseUnit, Chapter } from "@/types/course";
+import type { PathProgress, CourseUnit, Chapter, HSKLevel } from "@/types/course";
 import { storageGet, storageSet } from "@/lib/storage";
 
 const STORAGE_KEY = "taiwan-course-progress";
@@ -72,4 +72,30 @@ export function getChapterProgress(chapter: Chapter, progress: PathProgress): nu
 
 export function getOverallProgress(totalUnits: number, progress: PathProgress): number {
   return totalUnits > 0 ? progress.completedUnits.length / totalUnits : 0;
+}
+
+// ── HSK Level helpers ──────────────────────────────────────────────
+
+export function getHSKLevelProgress(level: HSKLevel, unitIds: string[], progress: PathProgress): number {
+  if (unitIds.length === 0) return 0;
+  const completed = unitIds.filter((id) => progress.completedUnits.includes(id)).length;
+  return completed / unitIds.length;
+}
+
+export function getHSKLevelCompletedCount(unitIds: string[], progress: PathProgress): number {
+  return unitIds.filter((id) => progress.completedUnits.includes(id)).length;
+}
+
+export function getCurrentHSKLevel(progress: PathProgress, allUnits: CourseUnit[], hskLevels: HSKLevel[]): HSKLevel | undefined {
+  const currentUnit = allUnits.find((u) => u.id === progress.currentUnit);
+  if (!currentUnit) return hskLevels[0];
+  return hskLevels.find((l) => l.chapterNumbers.includes(currentUnit.chapter));
+}
+
+export function findNextUnitInLevel(unitId: string, levelUnitIds: string[]): string | null {
+  const idx = levelUnitIds.indexOf(unitId);
+  if (idx >= 0 && idx < levelUnitIds.length - 1) {
+    return levelUnitIds[idx + 1];
+  }
+  return null;
 }

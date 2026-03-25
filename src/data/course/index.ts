@@ -1,4 +1,4 @@
-import type { CourseUnit, Chapter } from "@/types/course";
+import type { CourseUnit, Chapter, HSKLevel } from "@/types/course";
 
 // Chapter 1 - Fondations
 import { unit01 } from "./chapter1/unit01";
@@ -138,10 +138,69 @@ export function getChapter(num: number): Chapter | undefined {
   return chapters.find((c) => c.number === num);
 }
 
-function getChapterUnits(chapterNumber: number): CourseUnit[] {
+export function getChapterUnits(chapterNumber: number): CourseUnit[] {
   const chapter = getChapter(chapterNumber);
   if (!chapter) return [];
   return chapter.unitIds
     .map((id) => allUnits.find((u) => u.id === id))
     .filter((u): u is CourseUnit => u !== undefined);
+}
+
+// ── HSK / TOCFL Levels ──────────────────────────────────────────────
+
+export const hskLevels: HSKLevel[] = [
+  {
+    level: 1,
+    slug: "hsk-1",
+    title: "Fondations",
+    titleZh: "基礎",
+    tocflLabel: "TOCFL Niveau 1 (入門級)",
+    description: "Prononciation, tons, bases de la grammaire et premiers mots",
+    chapterNumbers: [1],
+  },
+  {
+    level: 2,
+    slug: "hsk-2",
+    title: "Survie",
+    titleZh: "初級",
+    tocflLabel: "TOCFL Niveau 2 (基礎級)",
+    description: "Conversations essentielles pour la vie quotidienne à Taiwan",
+    chapterNumbers: [2],
+  },
+  {
+    level: 3,
+    slug: "hsk-3",
+    title: "Communication",
+    titleZh: "中級",
+    tocflLabel: "TOCFL Niveau 3 (進階級)",
+    description: "Construction de phrases, vie sociale et culture taiwanaise",
+    chapterNumbers: [3, 4],
+  },
+  {
+    level: 4,
+    slug: "hsk-4",
+    title: "Approfondissement",
+    titleZh: "進階",
+    tocflLabel: "TOCFL Niveau 4 (高階級)",
+    description: "Grammaire avancée, pratique intensive et préparation aux certifications",
+    chapterNumbers: [5, 6, 7, 8],
+  },
+];
+
+export function getHSKLevel(levelNumber: number): HSKLevel | undefined {
+  return hskLevels.find((l) => l.level === levelNumber);
+}
+
+export function getHSKLevelForUnit(unit: CourseUnit): HSKLevel | undefined {
+  return hskLevels.find((l) => l.chapterNumbers.includes(unit.chapter));
+}
+
+export function getHSKLevelUnits(level: HSKLevel): CourseUnit[] {
+  return level.chapterNumbers.flatMap((n) => getChapterUnits(n));
+}
+
+export function getHSKLevelChapters(level: HSKLevel): Chapter[] {
+  return level.chapterNumbers
+    .map((n) => getChapter(n))
+    .filter((c): c is Chapter => c !== undefined);
 }

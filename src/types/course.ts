@@ -67,6 +67,16 @@ export interface Chapter {
   unitIds: string[];
 }
 
+export interface HSKLevel {
+  level: number;
+  slug: string;
+  title: string;
+  titleZh: string;
+  tocflLabel: string;
+  description: string;
+  chapterNumbers: number[];
+}
+
 export interface PathProgress {
   completedUnits: string[];
   unitScores: Record<string, number>;

@@ -20,7 +20,7 @@ import CharacterCard from "@/components/CharacterCard";
 import ExerciseRunner from "@/components/ExerciseRunner";
 import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
-import { getUnitById, chapters } from "@/data/course";
+import { getUnitById, chapters, getHSKLevelForUnit, getHSKLevelUnits } from "@/data/course";
 import {
   getPathProgress,
   isUnitUnlocked,
@@ -82,6 +82,9 @@ export default function UnitContent({ unitId }: UnitContentProps) {
   }, [unitId]);
 
   const chapter = unit ? chapters.find((c) => c.number === unit.chapter) : undefined;
+  const hskLevel = unit ? getHSKLevelForUnit(unit) : undefined;
+  const levelUnits = hskLevel ? getHSKLevelUnits(hskLevel) : [];
+  const levelUnitIds = levelUnits.map((u) => u.id);
 
   const handleExerciseComplete = useCallback(
     (score: number) => {
@@ -138,11 +141,12 @@ export default function UnitContent({ unitId }: UnitContentProps) {
     setExerciseResult(null);
   };
 
-  const allOrderedIds = chapters.flatMap((ch) => ch.unitIds);
-  const currentIdx = allOrderedIds.indexOf(unitId);
-  const nextUnitId = currentIdx >= 0 && currentIdx < allOrderedIds.length - 1
-    ? allOrderedIds[currentIdx + 1]
+  // Next unit within same HSK level
+  const levelIdx = levelUnitIds.indexOf(unitId);
+  const nextUnitId = levelIdx >= 0 && levelIdx < levelUnitIds.length - 1
+    ? levelUnitIds[levelIdx + 1]
     : null;
+  const isLastInLevel = levelIdx === levelUnitIds.length - 1;
 
   if (!loaded) return null;
 
@@ -171,6 +175,14 @@ export default function UnitContent({ unitId }: UnitContentProps) {
           Parcours
         </Link>
         <ChevronRight className="h-3 w-3" />
+        {hskLevel && (
+          <>
+            <Link href={`/path/${hskLevel.slug}`} className="hover:text-primary transition-colors">
+              HSK {hskLevel.level}
+            </Link>
+            <ChevronRight className="h-3 w-3" />
+          </>
+        )}
         {chapter && (
           <>
             <span>Chapitre {chapter.number}</span>
@@ -305,7 +317,12 @@ export default function UnitContent({ unitId }: UnitContentProps) {
               <div className="mt-6 flex items-center justify-center gap-3">
                 {exerciseResult.passed && nextUnitId ? (
                   <Link href={`/path/${nextUnitId}`} className="btn-primary gap-1">
-                    Unite suivante
+                    Unité suivante
+                    <ChevronRight className="h-4 w-4" />
+                  </Link>
+                ) : exerciseResult.passed && isLastInLevel && hskLevel ? (
+                  <Link href={`/path/${hskLevel.slug}`} className="btn-primary gap-1">
+                    Niveau terminé !
                     <ChevronRight className="h-4 w-4" />
                   </Link>
                 ) : (
@@ -314,7 +331,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
                     Réessayer
                   </button>
                 )}
-                <Link href="/path" className="btn-secondary">
+                <Link href={hskLevel ? `/path/${hskLevel.slug}` : "/path"} className="btn-secondary">
                   Retour au parcours
                 </Link>
               </div>
@@ -331,18 +348,18 @@ export default function UnitContent({ unitId }: UnitContentProps) {
       {/* Bottom navigation */}
       <div className="flex items-center justify-between border-t border-stone-200 pt-6">
         <Link
-          href="/path"
+          href={hskLevel ? `/path/${hskLevel.slug}` : "/path"}
           className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
-          Retour au parcours
+          Retour au HSK {hskLevel?.level ?? "parcours"}
         </Link>
         {nextUnitId && (
           <Link
             href={`/path/${nextUnitId}`}
             className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
           >
-            Unite suivante
+            Unité suivante
             <ChevronRight className="h-4 w-4" />
           </Link>
         )}

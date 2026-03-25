@@ -2,20 +2,26 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Check, Lock, ChevronRight, BookOpen } from "lucide-react";
+import { ChevronRight, Check } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
 import {
   getPathProgress,
-  isUnitUnlocked,
-  isUnitCompleted,
-  getChapterProgress,
   getOverallProgress,
+  getHSKLevelCompletedCount,
+  getCurrentHSKLevel,
 } from "@/lib/progress";
-import { allUnits, chapters, getUnitById } from "@/data/course";
-import type { PathProgress, CourseUnit, Chapter } from "@/types/course";
+import { allUnits, hskLevels, getHSKLevelUnits } from "@/data/course";
+import type { PathProgress } from "@/types/course";
 
 const TOTAL_UNITS = allUnits.length;
+
+const LEVEL_COLORS = [
+  { bg: "from-emerald-500 to-teal-600", light: "bg-emerald-50 border-emerald-200", text: "text-emerald-700" },
+  { bg: "from-sky-500 to-blue-600", light: "bg-sky-50 border-sky-200", text: "text-sky-700" },
+  { bg: "from-violet-500 to-purple-600", light: "bg-violet-50 border-violet-200", text: "text-violet-700" },
+  { bg: "from-rose-500 to-red-600", light: "bg-rose-50 border-rose-200", text: "text-rose-700" },
+];
 
 export default function PathPage() {
   const [progress, setProgress] = useState<PathProgress | null>(null);
@@ -27,7 +33,7 @@ export default function PathPage() {
   if (!progress) return null;
 
   const completedCount = progress.completedUnits.length;
-  const overallPct = getOverallProgress(TOTAL_UNITS, progress);
+  const currentLevel = getCurrentHSKLevel(progress, allUnits, hskLevels);
 
   return (
     <div className="flex flex-col gap-10">
@@ -35,176 +41,79 @@ export default function PathPage() {
       <section className="text-center">
         <h1 className="text-3xl font-bold text-stone-900">Ton parcours</h1>
         <p className="mt-1 text-stone-500">
-          {completedCount}/{TOTAL_UNITS} unités complétées
+          Choisis ton niveau et progresse à ton rythme
         </p>
         <div className="mx-auto mt-4 max-w-md">
           <ProgressBar
             value={completedCount}
             max={TOTAL_UNITS}
-            label={`Progression globale`}
+            label={`${completedCount}/${TOTAL_UNITS} unités complétées`}
           />
         </div>
       </section>
 
-      {/* Chapters */}
-      <div className="flex flex-col gap-12">
-        {(() => {
-          let globalIndex = 0;
-          return chapters.map((chapter) => {
-            const startIndex = globalIndex;
-            globalIndex += chapter.unitIds.length;
-            return (
-              <ChapterSection
-                key={chapter.number}
-                chapter={chapter}
-                progress={progress}
-                startIndex={startIndex}
-              />
-            );
-          });
-        })()}
-      </div>
-    </div>
-  );
-}
+      {/* Level cards */}
+      <div className="grid gap-6 sm:grid-cols-2">
+        {hskLevels.map((level) => {
+          const units = getHSKLevelUnits(level);
+          const unitIds = units.map((u) => u.id);
+          const completed = getHSKLevelCompletedCount(unitIds, progress);
+          const total = units.length;
+          const isCurrent = currentLevel?.level === level.level;
+          const isComplete = completed === total && total > 0;
+          const colors = LEVEL_COLORS[level.level - 1] || LEVEL_COLORS[0];
 
-function ChapterSection({
-  chapter,
-  progress,
-  startIndex,
-}: {
-  chapter: Chapter;
-  progress: PathProgress;
-  startIndex: number;
-}) {
-  const chapterPct = getChapterProgress(chapter, progress);
-
-  const chapterUnits = chapter.unitIds
-    .map((id) => getUnitById(id))
-    .filter((u): u is CourseUnit => u !== undefined);
-
-  return (
-    <section>
-      <div className="mb-6">
-        <h2 className="text-xl font-bold text-stone-800">
-          Chapitre {chapter.number} — {chapter.title}
-        </h2>
-        <p className="chinese text-sm text-stone-400">{chapter.titleZh}</p>
-        <p className="mt-1 text-sm text-stone-500">{chapter.description}</p>
-        <div className="mt-3 max-w-xs">
-          <ProgressBar value={Math.round(chapterPct * 100)} max={100} />
-        </div>
-      </div>
-
-      <div className="relative ml-3 pl-5 sm:ml-6 sm:pl-8 border-l-2 border-stone-200">
-        {chapterUnits.map((unit, i) => (
-          <UnitNode
-            key={unit.id}
-            unit={unit}
-            displayNumber={startIndex + i + 1}
-            progress={progress}
-            isLast={i === chapterUnits.length - 1}
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function UnitNode({
-  unit,
-  displayNumber,
-  progress,
-  isLast,
-}: {
-  unit: CourseUnit;
-  displayNumber: number;
-  progress: PathProgress;
-  isLast: boolean;
-}) {
-  const completed = isUnitCompleted(unit.id, progress);
-  const unlocked = isUnitUnlocked(unit.id, unit, progress);
-  const isCurrent = progress.currentUnit === unit.id;
-  const score = progress.unitScores[unit.id];
-
-  let circleStyle = "border-stone-300 bg-white text-stone-400";
-  if (completed) {
-    circleStyle = "border-success bg-success text-white";
-  } else if (isCurrent) {
-    circleStyle = "border-primary bg-primary/10 text-primary ring-2 ring-primary/30";
-  } else if (!unlocked) {
-    circleStyle = "border-stone-200 bg-stone-100 text-stone-300";
-  }
-
-  return (
-    <div className={cn("relative pb-8", isLast && "pb-0")}>
-      {/* Circle on the line */}
-      <div
-        className={cn(
-          "absolute -left-[calc(1.25rem+0.625rem)] sm:-left-[calc(2rem+1.25rem)] flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 text-xs sm:text-sm font-bold",
-          circleStyle
-        )}
-      >
-        {completed ? <Check className="h-5 w-5" /> : displayNumber}
-      </div>
-
-      <div
-        className={cn(
-          "rounded-lg border p-4 transition-colors",
-          isCurrent
-            ? "border-primary/30 bg-white shadow-sm"
-            : completed
-              ? "border-stone-200 bg-white"
-              : !unlocked
-                ? "border-stone-100 bg-stone-50"
-                : "border-stone-200 bg-white"
-        )}
-      >
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-          <div className="flex-1">
-            <div className="flex items-center gap-2">
-              <h3
-                className={cn(
-                  "font-semibold",
-                  !unlocked ? "text-stone-400" : "text-stone-800"
-                )}
-              >
-                Unité {displayNumber} — {unit.title}
-              </h3>
-              {!unlocked && !completed && <Lock className="h-4 w-4 text-stone-300" />}
-            </div>
-            {unit.titleZh && (
-              <p className="chinese text-sm text-stone-400">{unit.titleZh}</p>
-            )}
-            <p
-              className={cn(
-                "mt-1 text-sm",
-                !unlocked ? "text-stone-300" : "text-stone-500"
-              )}
-            >
-              {unit.description}
-            </p>
-            {completed && score !== undefined && (
-              <span className="badge mt-2 bg-success/10 text-success">
-                Score : {Math.round(score * 100)}%
-              </span>
-            )}
-          </div>
-
-          {unlocked && (
+          return (
             <Link
-              href={`/path/${unit.id}`}
+              key={level.level}
+              href={`/path/${level.slug}`}
               className={cn(
-                "shrink-0",
-                completed ? "btn-secondary" : "btn-primary",
-                "gap-1 text-sm"
+                "card group relative overflow-hidden transition-all hover:shadow-lg hover:-translate-y-0.5",
+                isCurrent && "ring-2 ring-primary/40"
               )}
             >
-              {completed ? "Refaire" : isCurrent ? "Continuer" : "Commencer"}
-              <ChevronRight className="h-4 w-4" />
+              {/* Level badge */}
+              <div className="flex items-start gap-4">
+                <div className={cn(
+                  "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br text-2xl font-black text-white shadow-sm",
+                  colors.bg
+                )}>
+                  {isComplete ? <Check className="h-7 w-7" /> : level.level}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-lg font-bold text-stone-800 group-hover:text-primary transition-colors">
+                      HSK {level.level} — {level.title}
+                    </h2>
+                    {isCurrent && (
+                      <span className="badge bg-primary/10 text-primary text-xs">En cours</span>
+                    )}
+                  </div>
+                  <p className="chinese text-sm text-stone-400">{level.titleZh}</p>
+                  <p className="mt-1 text-sm text-stone-500">{level.description}</p>
+                  <p className={cn("mt-1 text-xs font-medium", colors.text)}>
+                    {level.tocflLabel}
+                  </p>
+                </div>
+                <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 group-hover:text-primary transition-colors mt-1" />
+              </div>
+
+              {/* Progress */}
+              <div className="mt-4">
+                <div className="flex items-center justify-between text-xs text-stone-500 mb-1">
+                  <span>{completed}/{total} unités</span>
+                  <span>{total > 0 ? Math.round((completed / total) * 100) : 0}%</span>
+                </div>
+                <div className="h-2 w-full overflow-hidden rounded-full bg-stone-100">
+                  <div
+                    className={cn("h-full rounded-full bg-gradient-to-r transition-all", colors.bg)}
+                    style={{ width: `${total > 0 ? (completed / total) * 100 : 0}%` }}
+                  />
+                </div>
+              </div>
             </Link>
-          )}
-        </div>
+          );
+        })}
       </div>
     </div>
   );
