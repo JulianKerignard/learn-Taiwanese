@@ -28,6 +28,27 @@ export default function HSKLevelContent({ level }: { level: number }) {
   if (!hskLevel) return null;
   if (!progress) return null;
 
+  if (hskLevel.comingSoon) {
+    return (
+      <div className="flex flex-col gap-10">
+        <Link href="/path" className="flex items-center gap-1 text-sm text-stone-400 hover:text-primary transition-colors">
+          <ArrowLeft className="h-4 w-4" />
+          Tous les niveaux
+        </Link>
+        <div className="card text-center py-16">
+          <div className="text-5xl mb-4">🚧</div>
+          <h1 className="text-2xl font-bold text-stone-800 mb-2">HSK {level} — {hskLevel.title}</h1>
+          <p className="text-stone-500 mb-1">{hskLevel.description}</p>
+          <p className="text-sm text-stone-400">{hskLevel.tocflLabel}</p>
+          <p className="mt-6 text-stone-500">Ce niveau est en cours de préparation. Reviens bientôt !</p>
+          <Link href="/path" className="btn-primary mt-6 inline-flex">
+            Retour aux niveaux
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   const levelChapters = getHSKLevelChapters(hskLevel);
   const levelUnits = getHSKLevelUnits(hskLevel);
   const unitIds = levelUnits.map((u) => u.id);

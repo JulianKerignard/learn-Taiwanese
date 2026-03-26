@@ -75,6 +75,7 @@ export interface HSKLevel {
   tocflLabel: string;
   description: string;
   chapterNumbers: number[];
+  comingSoon?: boolean;
 }
 
 export interface PathProgress {

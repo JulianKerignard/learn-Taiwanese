@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronRight, Check } from "lucide-react";
+import { ChevronRight, Check, Lock } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
 import {
@@ -59,9 +59,44 @@ export default function PathPage() {
           const unitIds = units.map((u) => u.id);
           const completed = getHSKLevelCompletedCount(unitIds, progress);
           const total = units.length;
-          const isCurrent = currentLevel?.level === level.level;
+          const isCurrent = currentLevel?.level === level.level && !level.comingSoon;
           const isComplete = completed === total && total > 0;
           const colors = LEVEL_COLORS[level.level - 1] || LEVEL_COLORS[0];
+
+          if (level.comingSoon) {
+            return (
+              <div
+                key={level.level}
+                className="card relative overflow-hidden opacity-60 cursor-not-allowed"
+              >
+                <div className="flex items-start gap-4">
+                  <div className={cn(
+                    "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br text-2xl font-black text-white shadow-sm opacity-50",
+                    colors.bg
+                  )}>
+                    {level.level}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h2 className="text-lg font-bold text-stone-500">
+                        HSK {level.level} — {level.title}
+                      </h2>
+                      <Lock className="h-4 w-4 text-stone-400" />
+                    </div>
+                    <p className="chinese text-sm text-stone-300">{level.titleZh}</p>
+                    <p className="mt-1 text-sm text-stone-400">{level.description}</p>
+                    <p className="mt-1 text-xs font-medium text-stone-400">
+                      {level.tocflLabel}
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-4 flex items-center justify-between text-xs text-stone-400">
+                  <span>{total > 0 ? `${total} unités` : "Contenu en préparation"}</span>
+                  <span className="badge bg-stone-100 text-stone-400">Bientôt disponible</span>
+                </div>
+              </div>
+            );
+          }
 
           return (
             <Link
@@ -72,7 +107,6 @@ export default function PathPage() {
                 isCurrent && "ring-2 ring-primary/40"
               )}
             >
-              {/* Level badge */}
               <div className="flex items-start gap-4">
                 <div className={cn(
                   "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br text-2xl font-black text-white shadow-sm",
@@ -98,7 +132,6 @@ export default function PathPage() {
                 <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 group-hover:text-primary transition-colors mt-1" />
               </div>
 
-              {/* Progress */}
               <div className="mt-4">
                 <div className="flex items-center justify-between text-xs text-stone-500 mb-1">
                   <span>{completed}/{total} unités</span>
