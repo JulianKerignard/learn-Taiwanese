@@ -1,18 +1,23 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { cn } from "@/lib/cn";
 import { speak } from "@/lib/tts";
 import { createCard } from "@/lib/fsrs";
-import { getCards, upsertCard, storageGet, storageSet } from "@/lib/storage";
+import { getCards, upsertCard, storageGet, storageSet, getSettings } from "@/lib/storage";
 import AudioButton from "@/components/AudioButton";
 import RubyText from "@/components/RubyText";
 import type { GradedText } from "@/data/readings";
 import { Eye, EyeOff, ChevronLeft, ChevronRight, BookOpen, Plus, Volume2 } from "lucide-react";
 
-// ─── localStorage helpers ───
+// ─── Constants ───
 
 const KNOWN_WORDS_KEY = "taiwan-reading-known-words";
+const TOOLTIP_DISMISS_MS = 200;
+const FLASHCARD_TOAST_MS = 2000;
+const SPEECH_RATE = 0.75;
+
+// ─── localStorage helpers ───
 
 function getKnownWords(): Set<string> {
   const arr = storageGet<string[]>(KNOWN_WORDS_KEY, []);
@@ -23,7 +28,7 @@ function saveKnownWords(words: Set<string>) {
   storageSet(KNOWN_WORDS_KEY, [...words]);
 }
 
-function addToFlashcards(vocab: { character: string; pinyin: string; french: string }): boolean {
+function addToFlashcards(vocab: { character: string; pinyin: string; zhuyin?: string; french: string }): boolean {
   try {
     const existingCards = getCards();
     if (existingCards.some((c) => c.front === vocab.character)) return false;
@@ -32,7 +37,7 @@ function addToFlashcards(vocab: { character: string; pinyin: string; french: str
       front: vocab.character,
       back: vocab.french,
       pinyin: vocab.pinyin,
-      zhuyin: "",
+      zhuyin: vocab.zhuyin || "",
       type: "vocabulary",
     });
     upsertCard(card);
@@ -42,11 +47,12 @@ function addToFlashcards(vocab: { character: string; pinyin: string; french: str
   }
 }
 
-// ─── Tooltip for character hover ───
+// ─── Tooltip ───
 
 interface TooltipData {
   character: string;
   pinyin: string;
+  zhuyin?: string;
   french: string;
   x: number;
   y: number;
@@ -54,10 +60,14 @@ interface TooltipData {
 
 function CharTooltip({
   data,
+  displayMode,
   onAddFlashcard,
+  onDismiss,
 }: {
   data: TooltipData;
+  displayMode: "pinyin" | "zhuyin" | "both";
   onAddFlashcard: (char: string, pinyin: string, french: string) => void;
+  onDismiss: () => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState({ left: data.x, top: data.y });
@@ -78,26 +88,38 @@ function CharTooltip({
     setPos({ left, top });
   }, [data.x, data.y]);
 
+  const showPinyin = displayMode === "pinyin" || displayMode === "both";
+  const showZhuyin = (displayMode === "zhuyin" || displayMode === "both") && data.zhuyin;
+
   return (
-    <div
-      ref={ref}
-      className="fixed z-[100] rounded-lg border border-stone-200 bg-white p-3 shadow-lg"
-      style={{ left: pos.left, top: pos.top }}
-    >
-      <div className="flex items-center gap-2">
-        <span className="chinese text-2xl font-medium text-stone-900">{data.character}</span>
-        <AudioButton text={data.character} size="sm" />
-      </div>
-      <p className="mt-1 text-sm italic text-stone-500">{data.pinyin}</p>
-      <p className="text-sm text-stone-700">{data.french}</p>
-      <button
-        onClick={() => onAddFlashcard(data.character, data.pinyin, data.french)}
-        className="mt-2 flex items-center gap-1 rounded bg-primary/10 px-2 py-1 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
+    <>
+      {/* Transparent overlay to dismiss on touch/click outside */}
+      <div className="fixed inset-0 z-[99]" onClick={onDismiss} />
+      <div
+        ref={ref}
+        className="fixed z-[100] rounded-lg border border-stone-200 bg-white p-3 shadow-lg"
+        style={{ left: pos.left, top: pos.top }}
       >
-        <Plus size={12} />
-        Ajouter aux flashcards
-      </button>
-    </div>
+        <div className="flex items-center gap-2">
+          <span className="chinese text-2xl font-medium text-stone-900">{data.character}</span>
+          <AudioButton text={data.character} size="sm" />
+        </div>
+        {showPinyin && (
+          <p className="mt-1 text-sm italic text-stone-500">{data.pinyin}</p>
+        )}
+        {showZhuyin && (
+          <p className="mt-0.5 text-sm text-stone-400 chinese">{data.zhuyin}</p>
+        )}
+        <p className="text-sm text-stone-700">{data.french}</p>
+        <button
+          onClick={() => onAddFlashcard(data.character, data.pinyin, data.french)}
+          className="mt-2 flex items-center gap-1 rounded bg-primary/10 px-2 py-1 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
+        >
+          <Plus size={12} />
+          Ajouter aux flashcards
+        </button>
+      </div>
+    </>
   );
 }
 
@@ -116,61 +138,103 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
   const [knownWords, setKnownWords] = useState<Set<string>>(new Set());
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const [flashcardAdded, setFlashcardAdded] = useState<string | null>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const tooltipTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const displayMode = getSettings().displayMode;
 
   useEffect(() => {
     setKnownWords(getKnownWords());
   }, []);
 
-  // Build a lookup map: character -> vocab info
-  const vocabMap = useRef(
-    new Map(reading.vocabulary.map((v) => [v.character, v]))
+  // Detect touch device
+  useEffect(() => {
+    function onTouchStart() {
+      setIsTouchDevice(true);
+      window.removeEventListener("touchstart", onTouchStart);
+    }
+    window.addEventListener("touchstart", onTouchStart, { once: true });
+    return () => window.removeEventListener("touchstart", onTouchStart);
+  }, []);
+
+  // Cleanup tooltip timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (tooltipTimeout.current) clearTimeout(tooltipTimeout.current);
+    };
+  }, []);
+
+  // Optimized vocab lookup: character → vocab item (O(1) instead of O(n²))
+  const vocabMap = useMemo(
+    () => new Map(reading.vocabulary.map((v) => [v.character, v])),
+    [reading.vocabulary]
   );
 
-  const handleCharHover = useCallback(
+  // Reverse index: single char → vocab item (for character-level lookup)
+  const charIndex = useMemo(() => {
+    const map = new Map<string, (typeof reading.vocabulary)[0]>();
+    for (const v of reading.vocabulary) {
+      for (const ch of v.character) {
+        if (!map.has(ch)) map.set(ch, v);
+      }
+    }
+    return map;
+  }, [reading.vocabulary]);
+
+  const findVocabForChar = useCallback(
+    (char: string) => vocabMap.get(char) || charIndex.get(char) || null,
+    [vocabMap, charIndex]
+  );
+
+  const showTooltipForChar = useCallback(
     (char: string, rect: DOMRect) => {
       if (tooltipTimeout.current) clearTimeout(tooltipTimeout.current);
-
-      // Try to find the character or any vocabulary word that contains it
-      let match = vocabMap.current.get(char);
-      if (!match) {
-        for (const [key, val] of vocabMap.current) {
-          if (key.includes(char)) {
-            match = val;
-            break;
-          }
-        }
-      }
+      const match = findVocabForChar(char);
       if (!match) return;
 
       setTooltip({
         character: match.character,
         pinyin: match.pinyin,
+        zhuyin: match.zhuyin,
         french: match.french,
         x: rect.left,
         y: rect.bottom + 8,
       });
     },
-    []
+    [findVocabForChar]
+  );
+
+  const handleCharInteraction = useCallback(
+    (char: string, e: React.MouseEvent | React.TouchEvent) => {
+      const rect = (e.currentTarget as HTMLSpanElement).getBoundingClientRect();
+      showTooltipForChar(char, rect);
+    },
+    [showTooltipForChar]
   );
 
   const handleCharLeave = useCallback(() => {
-    tooltipTimeout.current = setTimeout(() => setTooltip(null), 200);
+    if (isTouchDevice) return; // Touch devices dismiss via overlay click
+    tooltipTimeout.current = setTimeout(() => setTooltip(null), TOOLTIP_DISMISS_MS);
+  }, [isTouchDevice]);
+
+  const dismissTooltip = useCallback(() => {
+    setTooltip(null);
   }, []);
 
   const handleAddFlashcard = useCallback(
     (character: string, pinyin: string, french: string) => {
-      const added = addToFlashcards({ character, pinyin, french });
+      const vocab = vocabMap.get(character) || charIndex.get(character);
+      const added = addToFlashcards({ character, pinyin, zhuyin: vocab?.zhuyin, french });
       if (added) {
         const updated = new Set(knownWords);
         updated.add(character);
         setKnownWords(updated);
         saveKnownWords(updated);
         setFlashcardAdded(character);
-        setTimeout(() => setFlashcardAdded(null), 2000);
+        setTimeout(() => setFlashcardAdded(null), FLASHCARD_TOAST_MS);
       }
     },
-    [knownWords]
+    [knownWords, vocabMap, charIndex]
   );
 
   const toggleTranslation = useCallback((idx: number) => {
@@ -184,11 +248,23 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
 
   const isNewWord = useCallback(
     (char: string): boolean => {
-      const vocab = vocabMap.current.get(char);
+      const vocab = charIndex.get(char);
       if (!vocab) return false;
-      return vocab.isNew && !knownWords.has(char);
+      return vocab.isNew && !knownWords.has(vocab.character);
     },
-    [knownWords]
+    [knownWords, charIndex]
+  );
+
+  const getPinyinForChar = useCallback(
+    (char: string): string => {
+      const vocab = charIndex.get(char);
+      if (!vocab) return "";
+      const idx = vocab.character.indexOf(char);
+      if (idx === -1) return vocab.pinyin;
+      const syllables = vocab.pinyin.split(/[\s]+/);
+      return syllables[idx] || vocab.pinyin;
+    },
+    [charIndex]
   );
 
   const levelColor = {
@@ -259,11 +335,11 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
                 Phrase {currentSentence + 1} / {reading.sentences.length}
               </span>
               <button
-                onClick={() => speak(reading.sentences[currentSentence].chinese, 0.75)}
+                onClick={() => speak(reading.sentences[currentSentence].chinese, SPEECH_RATE)}
                 className="btn-secondary gap-1.5 text-xs"
               >
                 <Volume2 size={14} />
-                Ecouter
+                Écouter
               </button>
             </div>
 
@@ -302,6 +378,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
                   <button
                     key={i}
                     onClick={() => setCurrentSentence(i)}
+                    aria-label={`Phrase ${i + 1}`}
                     className={cn(
                       "h-2 w-2 rounded-full transition-colors",
                       i === currentSentence ? "bg-primary" : "bg-stone-200"
@@ -335,14 +412,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
                 }
 
                 const isNew = isNewWord(char);
-                // Check if char is part of any vocab word
-                let partOfVocab = false;
-                for (const [key] of vocabMap.current) {
-                  if (key.includes(char)) {
-                    partOfVocab = true;
-                    break;
-                  }
-                }
+                const partOfVocab = charIndex.has(char);
 
                 return (
                   <span
@@ -352,26 +422,13 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
                       partOfVocab && "hover:bg-primary/10",
                       isNew && "bg-amber-50 text-amber-900"
                     )}
-                    onMouseEnter={(e) => {
-                      const rect = (e.target as HTMLElement).getBoundingClientRect();
-                      handleCharHover(char, rect);
-                    }}
+                    onMouseEnter={isTouchDevice ? undefined : (e) => handleCharInteraction(char, e)}
+                    onClick={isTouchDevice ? (e) => handleCharInteraction(char, e) : undefined}
                   >
                     {showPinyin ? (
                       <RubyText
                         chinese={char}
-                        pinyin={
-                          (() => {
-                            for (const [key, val] of vocabMap.current) {
-                              const idx = key.indexOf(char);
-                              if (idx !== -1) {
-                                const syllables = val.pinyin.split(/[\s]+/);
-                                return syllables[idx] || val.pinyin;
-                              }
-                            }
-                            return "";
-                          })()
-                        }
+                        pinyin={getPinyinForChar(char)}
                         showPinyin={showPinyin}
                         pinyinSize="xs"
                       />
@@ -431,7 +488,12 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
                 <AudioButton text={v.character} size="sm" />
                 <div className="min-w-0 flex-1">
                   <span className="chinese font-medium text-stone-900">{v.character}</span>
-                  <span className="ml-1 text-xs text-stone-400 italic">{v.pinyin}</span>
+                  {(displayMode === "pinyin" || displayMode === "both") && (
+                    <span className="ml-1 text-xs text-stone-400 italic">{v.pinyin}</span>
+                  )}
+                  {(displayMode === "zhuyin" || displayMode === "both") && v.zhuyin && (
+                    <span className="ml-1 text-xs text-stone-400 chinese">{v.zhuyin}</span>
+                  )}
                   <p className="truncate text-xs text-stone-500">{v.french}</p>
                 </div>
                 {v.isNew && !knownWords.has(v.character) && (
@@ -461,7 +523,9 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
       {tooltip && (
         <CharTooltip
           data={tooltip}
+          displayMode={displayMode}
           onAddFlashcard={handleAddFlashcard}
+          onDismiss={dismissTooltip}
         />
       )}
     </div>

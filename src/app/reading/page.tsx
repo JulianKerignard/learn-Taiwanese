@@ -5,7 +5,7 @@ import { cn } from "@/lib/cn";
 import { storageGet, storageSet } from "@/lib/storage";
 import { gradedTexts } from "@/data/readings";
 import ReadingText from "@/components/ReadingText";
-import { BookOpen, Check, Filter } from "lucide-react";
+import { BookOpen, Check, ChevronRight, Filter } from "lucide-react";
 
 const READ_KEY = "taiwan-reading-completed";
 
@@ -96,7 +96,27 @@ export default function ReadingPage() {
             reading={activeText}
             onClose={() => setActiveReading(null)}
           />
-          <div className="flex justify-end">
+          <div className="flex items-center justify-between">
+            {/* Suggest next text */}
+            {(() => {
+              const sameLevel = gradedTexts.filter(
+                (t) => t.level === activeText.level && t.id !== activeText.id && !readTexts.has(t.id)
+              );
+              const nextLevel = gradedTexts.filter(
+                (t) => t.level === activeText.level + 1 && !readTexts.has(t.id)
+              );
+              const suggestion = sameLevel[0] || nextLevel[0];
+              if (!suggestion) return <div />;
+              return (
+                <button
+                  onClick={() => setActiveReading(suggestion.id)}
+                  className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
+                >
+                  Texte suivant
+                  <ChevronRight size={14} />
+                </button>
+              );
+            })()}
             <button
               onClick={() => markAsRead(activeText.id)}
               className={cn(
