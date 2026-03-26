@@ -4,16 +4,8 @@ import { useState, useMemo } from "react";
 import { Check, X } from "lucide-react";
 import AudioButton from "./AudioButton";
 import { cn } from "@/lib/cn";
+import { shuffleArray } from "@/lib/utils";
 import type { QuizItem } from "@/types";
-
-function shuffleArray<T>(arr: T[]): T[] {
-  const s = [...arr];
-  for (let i = s.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [s[i], s[j]] = [s[j], s[i]];
-  }
-  return s;
-}
 
 interface QuizQuestionProps {
   question: QuizItem;

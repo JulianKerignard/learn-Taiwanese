@@ -4,19 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { getRandomWords, getAllGameWords, type GameWord } from "@/lib/game-data";
 import AudioButton from "@/components/AudioButton";
+import { shuffleArray } from "@/lib/utils";
 
 type Phase = "playing" | "won" | "lost";
 
 const MAX_ERRORS = 6;
-
-function shuffleArray<T>(arr: T[]): T[] {
-  const s = [...arr];
-  for (let i = s.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [s[i], s[j]] = [s[j], s[i]];
-  }
-  return s;
-}
 
 function buildChoices(target: GameWord, allWords: GameWord[]): string[] {
   const targetChars = [...target.character];

@@ -10,11 +10,16 @@ export async function GET(request: NextRequest) {
   const voice = searchParams.get("voice") || "zh-TW-HsiaoChenNeural";
   const rate = searchParams.get("rate") || "0.85";
 
+  const ALLOWED_VOICES = ["zh-TW-HsiaoChenNeural", "zh-TW-YunJheNeural"];
+  const safeVoice = ALLOWED_VOICES.includes(voice) ? voice : "zh-TW-HsiaoChenNeural";
+  const rateNum = parseFloat(rate);
+  const safeRate = (!isNaN(rateNum) && rateNum >= 0.5 && rateNum <= 2.0) ? rate : "0.85";
+
   if (!text || text.length > 500) {
     return Response.json({ error: "Invalid text" }, { status: 400 });
   }
 
-  const cacheKey = `${voice}:${rate}:${text}`;
+  const cacheKey = `${safeVoice}:${safeRate}:${text}`;
 
   const cached = audioCache.get(cacheKey);
   if (cached) {
@@ -27,10 +32,10 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const ratePercent = Math.round((parseFloat(rate) - 1) * 100);
+    const ratePercent = Math.round((parseFloat(safeRate) - 1) * 100);
     const rateStr = ratePercent >= 0 ? `+${ratePercent}%` : `${ratePercent}%`;
 
-    const tts = new EdgeTTS(text, voice, { rate: rateStr });
+    const tts = new EdgeTTS(text, safeVoice, { rate: rateStr });
     const result = await tts.synthesize();
     const arrayBuffer = await result.audio.arrayBuffer();
 

@@ -7,7 +7,15 @@ const KEYS = {
   settings: "taiwan-settings",
   favorites: "taiwan-favorites",
   gamification: "taiwan-gamification",
+  studyTime: "taiwan-study-time",
+  mistakes: "taiwan-mistakes",
+  courseProgress: "taiwan-course-progress",
+  speedRecord: "taiwan-speed-record",
+  readingKnownWords: "taiwan-reading-known-words",
+  testResults: "taiwan-test-results",
 } as const;
+
+export { KEYS };
 
 function isClient(): boolean {
   return typeof window !== "undefined";
@@ -141,29 +149,32 @@ export function saveGamification(data: GamificationData): void {
 }
 
 // Study time tracking
-const STUDY_TIME_KEY = "taiwan-study-time";
-
 export function getStudyTime(): Record<string, number> {
-  return get<Record<string, number>>(STUDY_TIME_KEY, {});
+  return get<Record<string, number>>(KEYS.studyTime, {});
 }
 
 export function addStudyTime(minutes: number): void {
   const data = getStudyTime();
   const today = new Date().toISOString().split("T")[0];
   data[today] = (data[today] || 0) + minutes;
-  set(STUDY_TIME_KEY, data);
+  set(KEYS.studyTime, data);
 }
 
 // Mistakes tracking
-const MISTAKES_KEY = "taiwan-mistakes";
-
 export function getMistakes(): Record<string, number> {
-  return get<Record<string, number>>(MISTAKES_KEY, {});
+  return get<Record<string, number>>(KEYS.mistakes, {});
 }
 
 export function addMistake(word: string): void {
   const data = getMistakes();
   data[word] = (data[word] || 0) + 1;
-  set(MISTAKES_KEY, data);
+  set(KEYS.mistakes, data);
+}
+
+export function resetAllData(): void {
+  if (!isClient()) return;
+  for (const key of Object.values(KEYS)) {
+    localStorage.removeItem(key);
+  }
 }
 

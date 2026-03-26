@@ -27,8 +27,8 @@ import {
   completeUnit,
 } from "@/lib/progress";
 import { upsertCard, updateStreak } from "@/lib/storage";
+import { createCard } from "@/lib/fsrs";
 import type { CourseUnit } from "@/types/course";
-import type { SM2Card } from "@/types";
 
 interface UnitContentProps {
   unitId: string;
@@ -119,7 +119,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
   const handleAddAllVocab = useCallback(() => {
     if (!unit) return;
     for (const item of unit.vocabulary) {
-      const card: SM2Card = {
+      const card = createCard({
         id: `course-${unitId}-${item.character}`,
         front: item.character,
         back: item.french,
@@ -127,11 +127,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
         zhuyin: item.zhuyin,
         type: "vocabulary",
         lessonId: unitId,
-        easeFactor: 2.5,
-        interval: 0,
-        repetitions: 0,
-        nextReview: new Date().toISOString(),
-      };
+      });
       upsertCard(card);
     }
     setVocabAdded(true);

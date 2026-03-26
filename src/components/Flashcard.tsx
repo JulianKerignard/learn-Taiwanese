@@ -7,6 +7,7 @@ import PinyinDisplay from "./PinyinDisplay";
 import { speak } from "@/lib/tts";
 import { cn } from "@/lib/cn";
 import { Rating, Grades, previewScheduling } from "@/lib/fsrs";
+import { shuffleArray } from "@/lib/utils";
 import type { SM2Card, SM2Grade, ReviewMode } from "@/types";
 import type { Grade } from "ts-fsrs";
 
@@ -24,15 +25,6 @@ const gradeButtons: { grade: Grade; label: string; color: string }[] = [
   { grade: Rating.Good, label: "Correct", color: "bg-accent text-white" },
   { grade: Rating.Easy, label: "Facile", color: "bg-success text-white" },
 ];
-
-function shuffleArray<T>(arr: T[]): T[] {
-  const shuffled = [...arr];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
 
 // ------- Recognize Mode -------
 function RecognizeMode({

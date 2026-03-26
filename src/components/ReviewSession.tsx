@@ -24,18 +24,10 @@ import {
   getGamification,
   saveGamification,
 } from "@/lib/storage";
+import { shuffleArray } from "@/lib/utils";
 import type { SM2Card, SM2Grade, ReviewMode, SessionResult, Achievement } from "@/types";
 
 const REVIEW_MODES: ReviewMode[] = ["recognize", "recall", "listening", "writing"];
-
-function shuffleArray<T>(arr: T[]): T[] {
-  const s = [...arr];
-  for (let i = s.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [s[i], s[j]] = [s[j], s[i]];
-  }
-  return s;
-}
 
 function pickMode(index: number): ReviewMode {
   return REVIEW_MODES[index % REVIEW_MODES.length];

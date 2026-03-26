@@ -16,7 +16,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
-import { getProgress, getCards, updateStreak, saveCards, getStudyTime, getMistakes } from "@/lib/storage";
+import { getProgress, getCards, updateStreak, saveCards, getStudyTime, getMistakes, resetAllData } from "@/lib/storage";
 import { getPathProgress, getChapterProgress } from "@/lib/progress";
 import {
   getLevelFromTotalXP,
@@ -87,15 +87,7 @@ export default function ProgressPage() {
   }
 
   async function handleReset() {
-    localStorage.removeItem("taiwan-progress");
-    localStorage.removeItem("taiwan-cards");
-    localStorage.removeItem("taiwan-course-progress");
-    localStorage.removeItem("taiwan-gamification");
-    localStorage.removeItem("taiwan-settings");
-    localStorage.removeItem("taiwan-speed-record");
-    localStorage.removeItem("taiwan-study-time");
-    localStorage.removeItem("taiwan-mistakes");
-    localStorage.removeItem("taiwan-reading-known-words");
+    resetAllData();
     // Also reset server-side data if logged in
     try {
       const { getBasePath } = await import("@/lib/basepath");
@@ -113,7 +105,7 @@ export default function ProgressPage() {
           mistakes: {},
         }),
       });
-    } catch {}
+    } catch (e) { console.error("Reset server error:", e); }
     setShowReset(false);
     window.location.reload();
   }
@@ -562,19 +554,3 @@ function StatCard({
   );
 }
 
-function MiniStat({
-  label,
-  value,
-  color = "text-stone-800",
-}: {
-  label: string;
-  value: number;
-  color?: string;
-}) {
-  return (
-    <div className="flex flex-col items-center">
-      <p className={`text-xl font-bold ${color}`}>{value}</p>
-      <p className="text-xs text-stone-500">{label}</p>
-    </div>
-  );
-}

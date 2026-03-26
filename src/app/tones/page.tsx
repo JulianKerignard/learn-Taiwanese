@@ -14,15 +14,7 @@ import { cn } from "@/lib/cn";
 import { storageGet, storageSet } from "@/lib/storage";
 import { speak, initVoices } from "@/lib/tts";
 import { tonePairs, sandhiRules, type TonePair, type TonePairWord } from "@/data/tone-pairs";
-
-function shuffleArray<T>(arr: T[]): T[] {
-  const s = [...arr];
-  for (let i = s.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [s[i], s[j]] = [s[j], s[i]];
-  }
-  return s;
-}
+import { shuffleArray } from "@/lib/utils";
 
 type ExerciseMode = "listen" | "reverse";
 

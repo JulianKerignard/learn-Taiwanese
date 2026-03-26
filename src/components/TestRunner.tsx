@@ -17,13 +17,10 @@ import { saveTestResult } from "@/lib/test-storage";
 import AudioButton from "@/components/AudioButton";
 import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
+import { hasChinese } from "@/lib/utils";
 
 interface TestRunnerProps {
   test: MockTest;
-}
-
-function hasChinese(str: string): boolean {
-  return /[\u4e00-\u9fff\u3400-\u4dbf]/.test(str);
 }
 
 export default function TestRunner({ test }: TestRunnerProps) {
