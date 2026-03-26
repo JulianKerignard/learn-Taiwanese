@@ -11,6 +11,11 @@ import { unit06 } from "./chapter1/unit06";
 import { unit32 } from "./chapter1/unit32";
 import { unit51 } from "./chapter1/unit51";
 import { unit52 } from "./chapter1/unit52";
+import { unit56 } from "./chapter1/unit56";
+import { unit57 } from "./chapter1/unit57";
+import { unit58 } from "./chapter1/unit58";
+import { unit59 } from "./chapter1/unit59";
+import { unit60 } from "./chapter1/unit60";
 import { unit07 } from "./chapter1/unit07";
 
 // Chapter 2 - Survivre à Taiwan
@@ -27,6 +32,17 @@ import { unit45 } from "./chapter2/unit45";
 import { unit46 } from "./chapter2/unit46";
 import { unit47 } from "./chapter2/unit47";
 import { unit53 } from "./chapter2/unit53";
+import { unit61 } from "./chapter2/unit61";
+import { unit62 } from "./chapter2/unit62";
+import { unit63 } from "./chapter2/unit63";
+import { unit64 } from "./chapter2/unit64";
+import { unit65 } from "./chapter2/unit65";
+import { unit66 } from "./chapter2/unit66";
+import { unit67 } from "./chapter2/unit67";
+import { unit68 } from "./chapter2/unit68";
+import { unit69 } from "./chapter2/unit69";
+import { unit70 } from "./chapter2/unit70";
+import { unit71 } from "./chapter2/unit71";
 
 // Chapter 3 - Construire des phrases
 import { unit14 } from "./chapter3/unit14";
@@ -77,14 +93,14 @@ export const chapters: Chapter[] = [
     title: "Prononciation et fondations",
     titleZh: "發音與基礎",
     description: "Comprendre comment le chinois fonctionne",
-    unitIds: ["unit-01", "unit-02", "unit-03", "unit-31", "unit-04", "unit-05", "unit-06", "unit-51", "unit-52", "unit-32", "unit-07"],
+    unitIds: ["unit-01", "unit-02", "unit-03", "unit-31", "unit-04", "unit-05", "unit-06", "unit-51", "unit-52", "unit-56", "unit-57", "unit-58", "unit-59", "unit-60", "unit-32", "unit-07"],
   },
   {
     number: 2,
     title: "Survivre à Taiwan",
     titleZh: "生存",
     description: "Conversations essentielles pour le quotidien",
-    unitIds: ["unit-08", "unit-09", "unit-10", "unit-11", "unit-12", "unit-13", "unit-33", "unit-41", "unit-42", "unit-45", "unit-46", "unit-47", "unit-53"],
+    unitIds: ["unit-08", "unit-09", "unit-10", "unit-11", "unit-12", "unit-13", "unit-33", "unit-41", "unit-42", "unit-45", "unit-46", "unit-47", "unit-53", "unit-61", "unit-62", "unit-63", "unit-64", "unit-65", "unit-66", "unit-67", "unit-68", "unit-69", "unit-70", "unit-71"],
   },
   {
     number: 3,
@@ -131,8 +147,8 @@ export const chapters: Chapter[] = [
 ];
 
 export const allUnits: CourseUnit[] = [
-  unit01, unit02, unit03, unit31, unit04, unit05, unit06, unit51, unit52, unit32, unit07,
-  unit08, unit09, unit10, unit11, unit12, unit13, unit33, unit41, unit42, unit45, unit46, unit47, unit53,
+  unit01, unit02, unit03, unit31, unit04, unit05, unit06, unit51, unit52, unit56, unit57, unit58, unit59, unit60, unit32, unit07,
+  unit08, unit09, unit10, unit11, unit12, unit13, unit33, unit41, unit42, unit45, unit46, unit47, unit53, unit61, unit62, unit63, unit64, unit65, unit66, unit67, unit68, unit69, unit70, unit71,
   unit14, unit15, unit16, unit34, unit43, unit17,
   unit18, unit19, unit20, unit21, unit22, unit35, unit54,
   unit23, unit24, unit25, unit26, unit27, unit44, unit48, unit49, unit50, unit55,
