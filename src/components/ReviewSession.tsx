@@ -45,7 +45,12 @@ function shuffleForDistractors(cards: SM2Card[], current: SM2Card): SM2Card[] {
   return shuffleArray(cards.filter((c) => c.id !== current.id)).slice(0, 3);
 }
 
-export default function ReviewSession() {
+interface ReviewSessionProps {
+  cardFilter?: (cards: SM2Card[]) => SM2Card[];
+  topicLabel?: string;
+}
+
+export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionProps = {}) {
   const [queue, setQueue] = useState<SM2Card[]>([]);
   const [allCards, setAllCards] = useState<SM2Card[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -69,15 +74,16 @@ export default function ReviewSession() {
   const [newAchievements, setNewAchievements] = useState<Achievement[]>([]);
 
   useEffect(() => {
-    const cards = getCards();
+    const allStoredCards = getCards();
     const settings = getSettings();
-    const due = getDueCards(cards);
-    const newCards = getNewCards(cards, settings.dailyNewCards);
+    const pool = cardFilter ? cardFilter(allStoredCards) : allStoredCards;
+    const due = getDueCards(pool);
+    const newCards = getNewCards(pool, settings.dailyNewCards);
 
     const dueIds = new Set(due.map((c) => c.id));
     const combined = [...due, ...newCards.filter((c) => !dueIds.has(c.id))];
 
-    setAllCards(cards);
+    setAllCards(pool);
     setQueue(combined);
     setLoaded(true);
     startTimeRef.current = Date.now();

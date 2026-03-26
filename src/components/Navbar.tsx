@@ -65,6 +65,9 @@ export default function Navbar() {
           <Link href="/lessons" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Leçons
           </Link>
+          <Link href="/revision" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+            Révision
+          </Link>
           <Link href="/tones" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Tons
           </Link>
@@ -163,6 +166,7 @@ export default function Navbar() {
               <nav className="flex flex-col gap-1 p-4">
                 <Link href="/path" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Parcours</Link>
                 <Link href="/lessons" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Leçons</Link>
+                <Link href="/revision" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Révision</Link>
                 <Link href="/tones" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Tons</Link>
                 <Link href="/dictionary" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Dictionnaire</Link>
                 <Link href="/reading" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Lecture</Link>
