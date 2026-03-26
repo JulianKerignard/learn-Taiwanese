@@ -9,6 +9,7 @@ import { unit04 } from "./chapter1/unit04";
 import { unit05 } from "./chapter1/unit05";
 import { unit06 } from "./chapter1/unit06";
 import { unit32 } from "./chapter1/unit32";
+import { unit51 } from "./chapter1/unit51";
 import { unit07 } from "./chapter1/unit07";
 
 // Chapter 2 - Survivre à Taiwan
@@ -72,7 +73,7 @@ export const chapters: Chapter[] = [
     title: "Prononciation et fondations",
     titleZh: "發音與基礎",
     description: "Comprendre comment le chinois fonctionne",
-    unitIds: ["unit-01", "unit-02", "unit-03", "unit-31", "unit-04", "unit-05", "unit-06", "unit-32", "unit-07"],
+    unitIds: ["unit-01", "unit-02", "unit-03", "unit-31", "unit-04", "unit-05", "unit-06", "unit-51", "unit-32", "unit-07"],
   },
   {
     number: 2,
@@ -126,7 +127,7 @@ export const chapters: Chapter[] = [
 ];
 
 export const allUnits: CourseUnit[] = [
-  unit01, unit02, unit03, unit31, unit04, unit05, unit06, unit32, unit07,
+  unit01, unit02, unit03, unit31, unit04, unit05, unit06, unit51, unit32, unit07,
   unit08, unit09, unit10, unit11, unit12, unit13, unit33, unit41, unit42, unit45, unit46, unit47,
   unit14, unit15, unit16, unit34, unit43, unit17,
   unit18, unit19, unit20, unit21, unit22, unit35,
