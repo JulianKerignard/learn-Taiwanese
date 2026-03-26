@@ -1,7 +1,7 @@
-import { storageGet, storageSet } from "@/lib/storage";
+import { storageGet, storageSet, KEYS } from "@/lib/storage";
 import type { TestResult } from "@/types/test";
 
-const TEST_RESULTS_KEY = "taiwan-test-results";
+const TEST_RESULTS_KEY = KEYS.testResults;
 
 export function getTestResults(): TestResult[] {
   return storageGet<TestResult[]>(TEST_RESULTS_KEY, []);

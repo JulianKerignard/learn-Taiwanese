@@ -1,7 +1,7 @@
 import type { PathProgress, CourseUnit, Chapter, HSKLevel } from "@/types/course";
-import { storageGet, storageSet } from "@/lib/storage";
+import { storageGet, storageSet, KEYS } from "@/lib/storage";
 
-const STORAGE_KEY = "taiwan-course-progress";
+const STORAGE_KEY = KEYS.courseProgress;
 
 const defaultProgress: PathProgress = {
   completedUnits: [],
@@ -92,10 +92,3 @@ export function getCurrentHSKLevel(progress: PathProgress, allUnits: CourseUnit[
   return hskLevels.find((l) => l.chapterNumbers.includes(currentUnit.chapter));
 }
 
-export function findNextUnitInLevel(unitId: string, levelUnitIds: string[]): string | null {
-  const idx = levelUnitIds.indexOf(unitId);
-  if (idx >= 0 && idx < levelUnitIds.length - 1) {
-    return levelUnitIds[idx + 1];
-  }
-  return null;
-}

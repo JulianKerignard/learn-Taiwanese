@@ -1,7 +1,7 @@
 import type { SM2Card, UserProgress, UserSettings, GamificationData } from "@/types";
 import { getDefaultGamificationData } from "@/lib/gamification";
 
-const KEYS = {
+export const KEYS = {
   cards: "taiwan-cards",
   progress: "taiwan-progress",
   settings: "taiwan-settings",
@@ -12,10 +12,10 @@ const KEYS = {
   courseProgress: "taiwan-course-progress",
   speedRecord: "taiwan-speed-record",
   readingKnownWords: "taiwan-reading-known-words",
+  readingCompleted: "taiwan-reading-completed",
   testResults: "taiwan-test-results",
+  toneDrillProgress: "tone-drill-progress",
 } as const;
-
-export { KEYS };
 
 function isClient(): boolean {
   return typeof window !== "undefined";

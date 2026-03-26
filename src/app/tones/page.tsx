@@ -15,7 +15,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { storageGet, storageSet } from "@/lib/storage";
+import { storageGet, storageSet, KEYS } from "@/lib/storage";
 import { speak, initVoices } from "@/lib/tts";
 import { tonePairs, sandhiRules, type TonePair, type TonePairWord } from "@/data/tone-pairs";
 import { shuffleArray } from "@/lib/utils";
@@ -478,7 +478,7 @@ export default function TonesPage() {
 
   useEffect(() => {
     initVoices();
-    const parsed = storageGet<Record<string, PairProgress>>("tone-drill-progress", {});
+    const parsed = storageGet<Record<string, PairProgress>>(KEYS.toneDrillProgress, {});
     if (Object.keys(parsed).length > 0) {
       setProgress(new Map(Object.entries(parsed)));
     }
@@ -486,7 +486,7 @@ export default function TonesPage() {
 
   function saveProgress(updated: Map<string, PairProgress>) {
     setProgress(updated);
-    storageSet("tone-drill-progress", Object.fromEntries(updated));
+    storageSet(KEYS.toneDrillProgress, Object.fromEntries(updated));
   }
 
   function handleResult(correct: boolean) {

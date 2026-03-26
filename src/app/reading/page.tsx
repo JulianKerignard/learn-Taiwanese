@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/cn";
-import { storageGet, storageSet } from "@/lib/storage";
+import { storageGet, storageSet, KEYS } from "@/lib/storage";
 import { gradedTexts } from "@/data/readings";
 import ReadingText from "@/components/ReadingText";
 import { BookOpen, Check, ChevronRight, Filter } from "lucide-react";
 
-const READ_KEY = "taiwan-reading-completed";
+const READ_KEY = KEYS.readingCompleted;
 
 function getReadTexts(): Set<string> {
   const arr = storageGet<string[]>(READ_KEY, []);

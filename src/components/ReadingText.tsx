@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { cn } from "@/lib/cn";
 import { speak } from "@/lib/tts";
 import { createCard } from "@/lib/fsrs";
-import { getCards, upsertCard, storageGet, storageSet, getSettings } from "@/lib/storage";
+import { getCards, upsertCard, storageGet, storageSet, getSettings, KEYS } from "@/lib/storage";
 import AudioButton from "@/components/AudioButton";
 import RubyText from "@/components/RubyText";
 import type { GradedText } from "@/data/readings";
@@ -12,7 +12,7 @@ import { Eye, EyeOff, ChevronLeft, ChevronRight, BookOpen, Plus, Volume2 } from 
 
 // ─── Constants ───
 
-const KNOWN_WORDS_KEY = "taiwan-reading-known-words";
+const KNOWN_WORDS_KEY = KEYS.readingKnownWords;
 const TOOLTIP_DISMISS_MS = 200;
 const FLASHCARD_TOAST_MS = 2000;
 const SPEECH_RATE = 0.75;

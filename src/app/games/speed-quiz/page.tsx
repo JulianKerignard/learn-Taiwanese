@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { getAllGameWords, type GameWord } from "@/lib/game-data";
+import { KEYS } from "@/lib/storage";
 
 type Phase = "ready" | "playing" | "result";
 
@@ -35,7 +36,7 @@ function generateQuestion(
 }
 
 const DURATION = 60;
-const STORAGE_KEY = "taiwan-speed-record";
+const STORAGE_KEY = KEYS.speedRecord;
 
 export default function SpeedQuizPage() {
   const [phase, setPhase] = useState<Phase>("ready");

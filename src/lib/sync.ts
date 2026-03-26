@@ -1,14 +1,15 @@
 import { getBasePath } from "@/lib/basepath";
+import { KEYS } from "@/lib/storage";
 
 const SYNC_KEYS = [
-  { local: "taiwan-cards", remote: "cards" },
-  { local: "taiwan-progress", remote: "progress" },
-  { local: "taiwan-course-progress", remote: "path_progress" },
-  { local: "taiwan-gamification", remote: "gamification" },
-  { local: "taiwan-settings", remote: "settings" },
-  { local: "taiwan-speed-record", remote: "speed_record" },
-  { local: "taiwan-study-time", remote: "study_time" },
-  { local: "taiwan-mistakes", remote: "mistakes" },
+  { local: KEYS.cards, remote: "cards" },
+  { local: KEYS.progress, remote: "progress" },
+  { local: KEYS.courseProgress, remote: "path_progress" },
+  { local: KEYS.gamification, remote: "gamification" },
+  { local: KEYS.settings, remote: "settings" },
+  { local: KEYS.speedRecord, remote: "speed_record" },
+  { local: KEYS.studyTime, remote: "study_time" },
+  { local: KEYS.mistakes, remote: "mistakes" },
 ];
 
 export async function checkUser(): Promise<{ id: number; username: string } | null> {

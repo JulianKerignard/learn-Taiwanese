@@ -1,10 +1,11 @@
 import { cookies } from "next/headers";
 import { getDb } from "@/lib/db";
+import { COOKIE_NAME } from "@/lib/constants";
 
 export async function GET() {
   try {
     const cookieStore = await cookies();
-    const userId = cookieStore.get("taiwan-user")?.value;
+    const userId = cookieStore.get(COOKIE_NAME)?.value;
     const id = Number(userId);
     if (!userId || isNaN(id)) return Response.json({ user: null });
     const db = getDb();

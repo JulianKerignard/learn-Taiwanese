@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import { getDb } from "@/lib/db";
+import { COOKIE_NAME } from "@/lib/constants";
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,7 +14,7 @@ export async function POST(request: NextRequest) {
     db.prepare("INSERT OR IGNORE INTO users (username) VALUES (?)").run(name);
     const row = db.prepare("SELECT id, username FROM users WHERE username = ?").get(name) as { id: number; username: string };
     const cookieStore = await cookies();
-    cookieStore.set({ name: "taiwan-user", value: String(row.id), httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", maxAge: 365 * 24 * 60 * 60, path: "/taiwan" });
+    cookieStore.set({ name: COOKIE_NAME, value: String(row.id), httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", maxAge: 365 * 24 * 60 * 60, path: "/taiwan" });
     return Response.json({ user: { id: row.id, username: row.username } });
   } catch (error) {
     console.error("Login error:", error);

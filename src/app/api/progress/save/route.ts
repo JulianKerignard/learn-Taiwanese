@@ -1,11 +1,12 @@
 import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import { getDb } from "@/lib/db";
+import { COOKIE_NAME } from "@/lib/constants";
 
 export async function POST(request: NextRequest) {
   try {
     const cookieStore = await cookies();
-    const userId = cookieStore.get("taiwan-user")?.value;
+    const userId = cookieStore.get(COOKIE_NAME)?.value;
     if (!userId) return Response.json({ error: "Non connecté" }, { status: 401 });
     const body = await request.json();
     const ALLOWED_KEYS = new Set(["cards", "progress", "path_progress", "gamification", "settings", "speed_record", "study_time", "mistakes"]);
