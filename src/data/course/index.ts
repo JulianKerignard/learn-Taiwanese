@@ -51,6 +51,12 @@ import { unit16 } from "./chapter3/unit16";
 import { unit34 } from "./chapter3/unit34";
 import { unit43 } from "./chapter3/unit43";
 import { unit17 } from "./chapter3/unit17";
+import { unit72 } from "./chapter3/unit72";
+import { unit73 } from "./chapter3/unit73";
+import { unit74 } from "./chapter3/unit74";
+import { unit75 } from "./chapter3/unit75";
+import { unit76 } from "./chapter3/unit76";
+import { unit77 } from "./chapter3/unit77";
 
 // Chapter 4 - Vie sociale
 import { unit18 } from "./chapter4/unit18";
@@ -60,6 +66,12 @@ import { unit21 } from "./chapter4/unit21";
 import { unit22 } from "./chapter4/unit22";
 import { unit35 } from "./chapter4/unit35";
 import { unit54 } from "./chapter4/unit54";
+import { unit78 } from "./chapter4/unit78";
+import { unit79 } from "./chapter4/unit79";
+import { unit80 } from "./chapter4/unit80";
+import { unit81 } from "./chapter4/unit81";
+import { unit82 } from "./chapter4/unit82";
+import { unit83 } from "./chapter4/unit83";
 
 // Chapter 5 - Approfondir
 import { unit23 } from "./chapter5/unit23";
@@ -72,6 +84,11 @@ import { unit48 } from "./chapter5/unit48";
 import { unit49 } from "./chapter5/unit49";
 import { unit50 } from "./chapter5/unit50";
 import { unit55 } from "./chapter5/unit55";
+import { unit84 } from "./chapter5/unit84";
+import { unit85 } from "./chapter5/unit85";
+import { unit86 } from "./chapter5/unit86";
+import { unit87 } from "./chapter5/unit87";
+import { unit88 } from "./chapter5/unit88";
 
 // Chapter 6 - Pratique avancée
 import { unit36 } from "./chapter6/unit36";
@@ -107,21 +124,21 @@ export const chapters: Chapter[] = [
     title: "Construire des phrases",
     titleZh: "造句",
     description: "Grammaire essentielle et particules",
-    unitIds: ["unit-14", "unit-15", "unit-16", "unit-34", "unit-43", "unit-17"],
+    unitIds: ["unit-14", "unit-15", "unit-16", "unit-34", "unit-43", "unit-17", "unit-72", "unit-73", "unit-74", "unit-75", "unit-76", "unit-77"],
   },
   {
     number: 4,
     title: "Vie sociale",
     titleZh: "社交",
     description: "Vie sociale et culture taiwanaise",
-    unitIds: ["unit-18", "unit-19", "unit-20", "unit-21", "unit-22", "unit-35", "unit-54"],
+    unitIds: ["unit-18", "unit-19", "unit-20", "unit-21", "unit-22", "unit-35", "unit-54", "unit-78", "unit-79", "unit-80", "unit-81", "unit-82", "unit-83"],
   },
   {
     number: 5,
     title: "Approfondir",
     titleZh: "深入",
     description: "Grammaire avancée et nuances culturelles",
-    unitIds: ["unit-23", "unit-24", "unit-25", "unit-26", "unit-27", "unit-44", "unit-48", "unit-49", "unit-50", "unit-55"],
+    unitIds: ["unit-23", "unit-24", "unit-25", "unit-26", "unit-27", "unit-44", "unit-48", "unit-49", "unit-50", "unit-55", "unit-84", "unit-85", "unit-86", "unit-87", "unit-88"],
   },
   {
     number: 6,
@@ -149,9 +166,9 @@ export const chapters: Chapter[] = [
 export const allUnits: CourseUnit[] = [
   unit01, unit02, unit03, unit31, unit04, unit05, unit06, unit51, unit52, unit56, unit57, unit58, unit59, unit60, unit32, unit07,
   unit08, unit09, unit10, unit11, unit12, unit13, unit33, unit41, unit42, unit45, unit46, unit47, unit53, unit61, unit62, unit63, unit64, unit65, unit66, unit67, unit68, unit69, unit70, unit71,
-  unit14, unit15, unit16, unit34, unit43, unit17,
-  unit18, unit19, unit20, unit21, unit22, unit35, unit54,
-  unit23, unit24, unit25, unit26, unit27, unit44, unit48, unit49, unit50, unit55,
+  unit14, unit15, unit16, unit34, unit43, unit17, unit72, unit73, unit74, unit75, unit76, unit77,
+  unit18, unit19, unit20, unit21, unit22, unit35, unit54, unit78, unit79, unit80, unit81, unit82, unit83,
+  unit23, unit24, unit25, unit26, unit27, unit44, unit48, unit49, unit50, unit55, unit84, unit85, unit86, unit87, unit88,
   unit36, unit37, unit38, unit28,
   unit29, unit30,
   unit39, unit40,
