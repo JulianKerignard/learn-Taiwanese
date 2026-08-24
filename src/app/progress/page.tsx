@@ -8,19 +8,16 @@ import {
   GraduationCap,
   BookOpen,
   Star,
-  RotateCcw,
-  Layers,
   Map,
   Target,
   Trash2,
   AlertTriangle,
 } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
-import { getProgress, getCards, updateStreak, saveCards, getStudyTime, getMistakes, resetAllData } from "@/lib/storage";
-import { getPathProgress, getChapterProgress } from "@/lib/progress";
+import { getProgress, getCards, getStudyTime, getMistakes, resetAllData } from "@/lib/storage";
+import { getPathProgress } from "@/lib/progress";
 import {
   getLevelFromTotalXP,
-  totalXpForLevel,
   xpForLevel,
 } from "@/lib/gamification";
 import { getGamification } from "@/lib/storage";

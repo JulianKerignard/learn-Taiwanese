@@ -209,7 +209,7 @@ export const unit50: CourseUnit = {
   exercises: [
     // --- 3 LISTEN exercises ---
     {
-      id: "u50-listen-1",
+      id: "unit-50-ex1",
       type: "listen",
       question:
         "Écoute et choisis la bonne traduction de : 我已經吃過臭豆腐了，還不錯。",
@@ -222,7 +222,7 @@ export const unit50: CourseUnit = {
       ],
     },
     {
-      id: "u50-listen-2",
+      id: "unit-50-ex2",
       type: "listen",
       question:
         "Écoute et choisis la bonne traduction de : 如果你明天有空，我們一起去爬山吧。",
@@ -236,7 +236,7 @@ export const unit50: CourseUnit = {
       ],
     },
     {
-      id: "u50-listen-3",
+      id: "unit-50-ex3",
       type: "listen",
       question:
         "Écoute et choisis la bonne traduction de : 他比我高，但是我跑得比他快。",
@@ -252,7 +252,7 @@ export const unit50: CourseUnit = {
 
     // --- 3 COMPREHENSION exercises ---
     {
-      id: "u50-comp-1",
+      id: "unit-50-ex4",
       type: "comprehension",
       question:
         "小華在台灣住了一年了。她覺得台灣人很友善，食物很好吃。她打算再住一年，因為她還想學更多中文。— Pourquoi Xiaohua veut-elle rester un an de plus ?",
@@ -265,7 +265,7 @@ export const unit50: CourseUnit = {
       ],
     },
     {
-      id: "u50-comp-2",
+      id: "unit-50-ex5",
       type: "comprehension",
       question:
         "昨天我和朋友去了夜市。我吃了臭豆腐，他吃了蚵仔煎。他覺得蚵仔煎比臭豆腐好吃，可是我不同意。— Sur quoi les deux amis ne sont-ils pas d'accord ?",
@@ -278,7 +278,7 @@ export const unit50: CourseUnit = {
       ],
     },
     {
-      id: "u50-comp-3",
+      id: "unit-50-ex6",
       type: "comprehension",
       question:
         "雖然今天下雨了，但是小明還是騎腳踏車去上班了。他的同事都覺得他很厲害。— Pourquoi les collègues trouvent-ils Xiaoming impressionnant ?",
@@ -294,7 +294,7 @@ export const unit50: CourseUnit = {
 
     // --- 3 FILL-BLANK exercises ---
     {
-      id: "u50-fill-1",
+      id: "unit-50-ex7",
       type: "fill-blank",
       question:
         "你去___台灣嗎？沒有，我沒去___。(Tu es déjà allé à Taiwan ? Non, je n'y suis jamais allé.)",
@@ -310,7 +310,7 @@ export const unit50: CourseUnit = {
       hint: "Pour parler d'une expérience (être déjà allé), on utilise cette particule.",
     },
     {
-      id: "u50-fill-2",
+      id: "unit-50-ex8",
       type: "fill-blank",
       question:
         "台北___台南大。(Taipei est plus grand que Tainan.)",
@@ -321,7 +321,7 @@ export const unit50: CourseUnit = {
       hint: "Quel mot introduit une comparaison (A ___ B + adjectif) ?",
     },
     {
-      id: "u50-fill-3",
+      id: "unit-50-ex9",
       type: "fill-blank",
       question:
         "___明天下雨，我___不去了。(S'il pleut demain, je n'irai pas.)",
@@ -344,7 +344,7 @@ export const unit50: CourseUnit = {
 
     // --- 3 TRANSLATE exercises ---
     {
-      id: "u50-trad-1",
+      id: "unit-50-ex10",
       type: "translate",
       question:
         "Traduisez en chinois : « Je trouve que le chinois est difficile mais intéressant. »",
@@ -363,7 +363,7 @@ export const unit50: CourseUnit = {
       ],
     },
     {
-      id: "u50-trad-2",
+      id: "unit-50-ex11",
       type: "translate",
       question:
         "Traduisez en chinois : « J'étudie le chinois depuis trois mois. »",
@@ -382,7 +382,7 @@ export const unit50: CourseUnit = {
       ],
     },
     {
-      id: "u50-trad-3",
+      id: "unit-50-ex12",
       type: "translate",
       question:
         "Traduisez en chinois : « Bien qu'il pleuve, je suis quand même allé au marché de nuit. »",
@@ -403,7 +403,7 @@ export const unit50: CourseUnit = {
 
     // --- 3 REORDER exercises ---
     {
-      id: "u50-reorder-1",
+      id: "unit-50-ex13",
       type: "reorder",
       question: "Remettez dans l'ordre : 讓 / 這首歌 / 難過 / 很 / 我",
       correctAnswer: "這首歌讓我很難過",
@@ -419,7 +419,7 @@ export const unit50: CourseUnit = {
       hint: "Structure : cause + 讓 + personne + 很 + émotion",
     },
     {
-      id: "u50-reorder-2",
+      id: "unit-50-ex14",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 中文 / 比 / 法文 / 難 / 我覺得",
@@ -436,7 +436,7 @@ export const unit50: CourseUnit = {
       hint: "Structure : opinion + A + 比 + B + adjectif",
     },
     {
-      id: "u50-reorder-3",
+      id: "unit-50-ex15",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 就 / 如果 / 一起去 / 你有空 / 我們",

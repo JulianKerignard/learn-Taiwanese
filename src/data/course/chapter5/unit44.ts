@@ -152,7 +152,7 @@ export const unit44: CourseUnit = {
 
   exercises: [
     {
-      id: "u44-ex1",
+      id: "unit-44-ex1",
       type: "translate",
       question: "Comment dit-on « C'est devenu plus cher qu'avant, non ? »",
       correctAnswer: "比以前貴了吧？",
@@ -164,7 +164,7 @@ export const unit44: CourseUnit = {
       ],
     },
     {
-      id: "u44-ex2",
+      id: "unit-44-ex2",
       type: "fill-blank",
       question: "我吃___臭豆腐。(J'ai deja mange du tofu puant dans ma vie.)",
       correctAnswer: "過",
@@ -172,7 +172,7 @@ export const unit44: CourseUnit = {
       hint: "Quelle particule marque l'experience ?",
     },
     {
-      id: "u44-ex3",
+      id: "unit-44-ex3",
       type: "comprehension",
       question: "Quelle est la difference entre « 我不吃了 » et « 我沒吃 » ?",
       correctAnswer: "我不吃了 = je ne mange plus (changement). 我沒吃 = je n'ai pas mange (negation du passe).",
@@ -184,7 +184,7 @@ export const unit44: CourseUnit = {
       ],
     },
     {
-      id: "u44-ex4",
+      id: "unit-44-ex4",
       type: "translate",
       question: "Comment dit-on « Je trouve que Taiwan est plus amusant que le Japon » ?",
       correctAnswer: "我覺得台灣比日本好玩",
@@ -196,9 +196,9 @@ export const unit44: CourseUnit = {
       ],
     },
     {
-      id: "u44-ex5",
-      type: "reorder",
-      question: "Remettez dans l'ordre : 了 / 六個月 / 學 / 我 / 中文 / 的 / 了 (J'apprends le chinois depuis 6 mois.)",
+      id: "unit-44-ex5",
+      type: "comprehension",
+      question: "Quelle phrase est correcte ? (J'apprends le chinois depuis 6 mois.)",
       correctAnswer: "我學了六個月的中文了",
       options: [
         "我學了六個月的中文了",
@@ -208,7 +208,7 @@ export const unit44: CourseUnit = {
       ],
     },
     {
-      id: "u44-ex6",
+      id: "unit-44-ex6",
       type: "comprehension",
       question: "Un Taiwanais vous dit « 可能不行 ». Que veut-il dire ?",
       correctAnswer: "C'est un refus poli — il dit non sans le dire directement",
@@ -220,7 +220,7 @@ export const unit44: CourseUnit = {
       ],
     },
     {
-      id: "u44-ex7",
+      id: "unit-44-ex7",
       type: "fill-blank",
       question: "台北是台灣___大的城市。(Taipei est la plus grande ville de Taiwan.)",
       correctAnswer: "最",
@@ -231,7 +231,7 @@ export const unit44: CourseUnit = {
       hintZhuyin: "Quel mot exprime le superlatif ?",
     },
     {
-      id: "u44-ex8",
+      id: "unit-44-ex8",
       type: "translate",
       question: "Comment dit-on « Je ne suis jamais alle au Japon » ?",
       correctAnswer: "我沒去過日本",
@@ -245,7 +245,7 @@ export const unit44: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄇㄟˊ ㄑㄩˋ ㄍㄨㄛˋ ㄖˋ ㄅㄣˇ", "ㄨㄛˇ ㄅㄨˊ ㄑㄩˋ ㄍㄨㄛˋ ㄖˋ ㄅㄣˇ", "ㄨㄛˇ ㄇㄟˊ ㄑㄩˋ ㄌㄜ˙ ㄖˋ ㄅㄣˇ", "ㄨㄛˇ ㄅㄨˊ ㄏㄨㄟˋ ㄑㄩˋ ㄖˋ ㄅㄣˇ"],
     },
     {
-      id: "u44-ex9",
+      id: "unit-44-ex9",
       type: "comprehension",
       question: "La phrase « 天氣冷了 » signifie :",
       correctAnswer: "Le temps est devenu froid (changement de situation avec 了₂)",
@@ -257,9 +257,9 @@ export const unit44: CourseUnit = {
       ],
     },
     {
-      id: "u44-ex10",
-      type: "reorder",
-      question: "Remettez dans l'ordre : 嗎 / 說 / 你 / 英文 / 會 (Tu parles anglais ?)",
+      id: "unit-44-ex10",
+      type: "comprehension",
+      question: "Quelle phrase est correcte ? (Tu parles anglais ?)",
       correctAnswer: "你會說英文嗎？",
       options: [
         "你會說英文嗎？",
@@ -271,7 +271,7 @@ export const unit44: CourseUnit = {
       optionsZhuyin: ["ㄋㄧˇ ㄏㄨㄟˋ ㄕㄨㄛ ㄧㄥ ㄨㄣˊ ㄇㄚ˙？", "ㄋㄧˇ ㄕㄨㄛ ㄏㄨㄟˋ ㄧㄥ ㄨㄣˊ ㄇㄚ˙？", "ㄏㄨㄟˋ ㄋㄧˇ ㄕㄨㄛ ㄧㄥ ㄨㄣˊ ㄇㄚ˙？", "ㄋㄧˇ ㄧㄥ ㄨㄣˊ ㄏㄨㄟˋ ㄕㄨㄛ ㄇㄚ˙？"],
     },
     {
-      id: "u44-ex11",
+      id: "unit-44-ex11",
       type: "fill-blank",
       question: "___，請問這個多少錢？(Excusez-moi, combien ca coute ?)",
       correctAnswer: "不好意思",
@@ -282,7 +282,7 @@ export const unit44: CourseUnit = {
       hintZhuyin: "La formule la plus courante pour deranger poliment.",
     },
     {
-      id: "u44-ex12",
+      id: "unit-44-ex12",
       type: "translate",
       question: "Comment dit-on « Depuis que j'habite a Taiwan, j'aime le bubble tea » ?",
       correctAnswer: "我住在台灣以後，就喜歡珍珠奶茶了",

@@ -133,7 +133,7 @@ export const unit51: CourseUnit = {
 
   exercises: [
     {
-      id: "ck1-01",
+      id: "unit-51-ex1",
       type: "listen",
       question: "你好嗎？",
       correctAnswer: "Comment vas-tu ?",
@@ -141,7 +141,7 @@ export const unit51: CourseUnit = {
       hint: "nǐ hǎo ma?",
     },
     {
-      id: "ck1-02",
+      id: "unit-51-ex2",
       type: "listen",
       question: "這個多少錢？",
       correctAnswer: "Combien ça coûte ?",
@@ -149,7 +149,7 @@ export const unit51: CourseUnit = {
       hint: "zhège duōshǎo qián?",
     },
     {
-      id: "ck1-03",
+      id: "unit-51-ex3",
       type: "listen",
       question: "我要一杯珍珠奶茶。",
       correctAnswer: "Je veux un bubble tea.",
@@ -157,7 +157,7 @@ export const unit51: CourseUnit = {
       hint: "wǒ yào yì bēi zhēnzhū nǎichá.",
     },
     {
-      id: "ck1-04",
+      id: "unit-51-ex4",
       type: "comprehension",
       question: "我是法國人，我在台北學中文。我很喜歡台灣的夜市。\n\nCette personne :",
       correctAnswer: "Est française et étudie le chinois à Taipei",
@@ -170,7 +170,7 @@ export const unit51: CourseUnit = {
       hint: "wǒ shì fàguó rén, wǒ zài táiběi xué zhōngwén.",
     },
     {
-      id: "ck1-05",
+      id: "unit-51-ex5",
       type: "comprehension",
       question: "他有三個哥哥，沒有姐姐。\n\nQue sait-on de cette personne ?",
       correctAnswer: "Il a trois grands frères et aucune grande sœur",
@@ -183,7 +183,7 @@ export const unit51: CourseUnit = {
       hint: "tā yǒu sān gè gēge, méiyǒu jiějie.",
     },
     {
-      id: "ck1-06",
+      id: "unit-51-ex6",
       type: "fill-blank",
       question: "你___學生嗎？",
       correctAnswer: "是",
@@ -191,7 +191,7 @@ export const unit51: CourseUnit = {
       hint: "nǐ ___ xuéshēng ma?",
     },
     {
-      id: "ck1-07",
+      id: "unit-51-ex7",
       type: "fill-blank",
       question: "我___兩個弟弟。",
       correctAnswer: "有",
@@ -199,7 +199,7 @@ export const unit51: CourseUnit = {
       hint: "wǒ ___ liǎng gè dìdi.",
     },
     {
-      id: "ck1-08",
+      id: "unit-51-ex8",
       type: "fill-blank",
       question: "她___喝咖啡，她喝茶。",
       correctAnswer: "不",
@@ -207,7 +207,7 @@ export const unit51: CourseUnit = {
       hint: "tā ___ hē kāfēi, tā hē chá.",
     },
     {
-      id: "ck1-09",
+      id: "unit-51-ex9",
       type: "translate",
       question: "Je voudrais un bol de nouilles, s'il vous plaît.",
       correctAnswer: "我要一碗麵，謝謝。",
@@ -215,7 +215,7 @@ export const unit51: CourseUnit = {
       hint: "wǒ yào yì wǎn miàn, xièxie.",
     },
     {
-      id: "ck1-10",
+      id: "unit-51-ex10",
       type: "translate",
       question: "Où sont les toilettes ?",
       correctAnswer: "廁所在哪裡？",
@@ -223,7 +223,7 @@ export const unit51: CourseUnit = {
       hint: "cèsuǒ zài nǎlǐ?",
     },
     {
-      id: "ck1-11",
+      id: "unit-51-ex11",
       type: "translate",
       question: "Je suis français, enchanté.",
       correctAnswer: "我是法國人，你好。",
@@ -231,7 +231,7 @@ export const unit51: CourseUnit = {
       hint: "wǒ shì fàguó rén, nǐ hǎo.",
     },
     {
-      id: "ck1-12",
+      id: "unit-51-ex12",
       type: "listen",
       question: "請問，捷運站在哪裡？",
       correctAnswer: "Excusez-moi, où est la station de MRT ?",
@@ -244,7 +244,7 @@ export const unit51: CourseUnit = {
       hint: "qǐngwèn, jiéyùn zhàn zài nǎlǐ?",
     },
     {
-      id: "ck1-13",
+      id: "unit-51-ex13",
       type: "fill-blank",
       question: "我要三___書。",
       correctAnswer: "本",
@@ -252,7 +252,7 @@ export const unit51: CourseUnit = {
       hint: "wǒ yào sān ___ shū. (classificateur pour les livres)",
     },
     {
-      id: "ck1-14",
+      id: "unit-51-ex14",
       type: "comprehension",
       question: "今天星期六，明天是我的生日。我想去夜市吃好吃的東西。\n\nQuand est l'anniversaire de cette personne ?",
       correctAnswer: "Dimanche",
@@ -260,7 +260,7 @@ export const unit51: CourseUnit = {
       hint: "jīntiān xīngqīliù, míngtiān shì wǒ de shēngrì.",
     },
     {
-      id: "ck1-15",
+      id: "unit-51-ex15",
       type: "listen",
       question: "我的媽媽是老師，爸爸是醫生。",
       correctAnswer: "Ma mère est professeur, mon père est médecin.",

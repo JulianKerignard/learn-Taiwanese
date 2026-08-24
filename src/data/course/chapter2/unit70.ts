@@ -178,7 +178,7 @@ export const unit70: CourseUnit = {
   exercises: [
     // --- 3 LISTEN exercises ---
     {
-      id: "u70-listen-1",
+      id: "unit-70-ex1",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 今天天氣很熱，我不想出去。",
       correctAnswer: "Il fait très chaud aujourd'hui, je ne veux pas sortir.",
@@ -190,7 +190,7 @@ export const unit70: CourseUnit = {
       ],
     },
     {
-      id: "u70-listen-2",
+      id: "unit-70-ex2",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 超商在學校的旁邊，你往左走就到了。",
       correctAnswer: "Le convenience store est à côté de l'école, allez à gauche et vous y êtes.",
@@ -202,7 +202,7 @@ export const unit70: CourseUnit = {
       ],
     },
     {
-      id: "u70-listen-3",
+      id: "unit-70-ex3",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 她每天早上六點起床，先喝咖啡，然後去上班。",
       correctAnswer: "Elle se lève à 6 heures chaque matin, boit d'abord un café, puis va au travail.",
@@ -216,7 +216,7 @@ export const unit70: CourseUnit = {
 
     // --- 3 COMPREHENSION exercises ---
     {
-      id: "u70-comp-1",
+      id: "unit-70-ex4",
       type: "comprehension",
       question:
         "小明有兩隻貓和一隻狗。貓喜歡在椅子上面睡覺，狗喜歡在桌子下面。— Les chats de Xiaoming dorment où ?",
@@ -229,7 +229,7 @@ export const unit70: CourseUnit = {
       ],
     },
     {
-      id: "u70-comp-2",
+      id: "unit-70-ex5",
       type: "comprehension",
       question:
         "今天很冷，我穿了一件外套和一條褲子。媽媽說：「你要不要戴帽子？」我說：「好，謝謝媽媽。」— Que propose la maman ?",
@@ -242,7 +242,7 @@ export const unit70: CourseUnit = {
       ],
     },
     {
-      id: "u70-comp-3",
+      id: "unit-70-ex6",
       type: "comprehension",
       question:
         "我去超商買了一瓶水和一個飯糰，一共五十五塊。我用悠遊卡付錢。— Combien a-t-il payé ?",
@@ -257,7 +257,7 @@ export const unit70: CourseUnit = {
 
     // --- 3 FILL-BLANK exercises ---
     {
-      id: "u70-fill-1",
+      id: "unit-70-ex7",
       type: "fill-blank",
       question: "她___老師，她是學生。(Elle n'est pas professeur, elle est étudiante.)",
       correctAnswer: "不是",
@@ -272,7 +272,7 @@ export const unit70: CourseUnit = {
       hint: "Négation de 是 : on utilise 不, jamais 沒.",
     },
     {
-      id: "u70-fill-2",
+      id: "unit-70-ex8",
       type: "fill-blank",
       question: "我昨天___去學校。(Je ne suis pas allé à l'école hier.)",
       correctAnswer: "沒",
@@ -282,7 +282,7 @@ export const unit70: CourseUnit = {
       hint: "Pour nier une action passée (hier), on utilise 沒, pas 不.",
     },
     {
-      id: "u70-fill-3",
+      id: "unit-70-ex9",
       type: "fill-blank",
       question: "你喜歡吃什麼水果？我喜歡吃蘋果，你___？(Et toi ?)",
       correctAnswer: "呢",
@@ -294,7 +294,7 @@ export const unit70: CourseUnit = {
 
     // --- 2 TRANSLATE exercises ---
     {
-      id: "u70-trad-1",
+      id: "unit-70-ex10",
       type: "translate",
       question: "Traduisez en chinois : « Ma maison a trois chambres et une cuisine. »",
       correctAnswer: "我家有三個房間和一個廚房。",
@@ -312,7 +312,7 @@ export const unit70: CourseUnit = {
       ],
     },
     {
-      id: "u70-trad-2",
+      id: "unit-70-ex11",
       type: "translate",
       question: "Traduisez en chinois : « Excusez-moi, est-ce que je peux payer par carte ? »",
       correctAnswer: "請問，可以刷卡嗎？",
@@ -332,7 +332,7 @@ export const unit70: CourseUnit = {
 
     // --- 2 REORDER exercises ---
     {
-      id: "u70-reorder-1",
+      id: "unit-70-ex12",
       type: "reorder",
       question: "Remettez dans l'ordre : 先 / 然後 / 吃早餐 / 我 / 去上班",
       correctAnswer: "我先吃早餐然後去上班",
@@ -348,7 +348,7 @@ export const unit70: CourseUnit = {
       hint: "Structure : sujet + 先 + action 1 + 然後 + action 2.",
     },
     {
-      id: "u70-reorder-2",
+      id: "unit-70-ex13",
       type: "reorder",
       question: "Remettez dans l'ordre : 的 / 在 / 旁邊 / 銀行 / 超商",
       correctAnswer: "銀行在超商的旁邊",

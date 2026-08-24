@@ -449,7 +449,7 @@ export const unit48: CourseUnit = {
 
   exercises: [
     {
-      id: "u48-ex1",
+      id: "unit-48-ex1",
       type: "comprehension",
       question: "Que signifie la phrase 這件事讓我很擔心 ?",
       correctAnswer: "Cette affaire me rend très inquiet",
@@ -461,7 +461,7 @@ export const unit48: CourseUnit = {
       ],
     },
     {
-      id: "u48-ex2",
+      id: "unit-48-ex2",
       type: "fill-blank",
       question: "我___很開心。(Je me sens très content.)",
       correctAnswer: "覺得",
@@ -472,7 +472,7 @@ export const unit48: CourseUnit = {
       hintZhuyin: "Quel verbe exprime un ressenti personnel et subjectif ?",
     },
     {
-      id: "u48-ex3",
+      id: "unit-48-ex3",
       type: "translate",
       question: "Comment dit-on « Tes paroles m'ont rendu triste » ?",
       correctAnswer: "你的話讓我很難過",
@@ -481,7 +481,7 @@ export const unit48: CourseUnit = {
       optionsZhuyin: ["ㄋㄧˇ ㄉㄜ˙ ㄏㄨㄚˋ ㄖㄤˋ ㄨㄛˇ ㄏㄣˇ ㄋㄢˊ ㄍㄨㄛˋ", "ㄨㄛˇ ㄐㄩㄝˊ ㄉㄜ˙ ㄋㄧˇ ㄉㄜ˙ ㄏㄨㄚˋ ㄋㄢˊ ㄍㄨㄛˋ", "ㄋㄧˇ ㄉㄜ˙ ㄏㄨㄚˋ ㄨㄛˇ ㄏㄣˇ ㄋㄢˊ ㄍㄨㄛˋ", "ㄨㄛˇ ㄖㄤˋ ㄋㄧˇ ㄉㄜ˙ ㄏㄨㄚˋ ㄏㄣˇ ㄋㄢˊ ㄍㄨㄛˋ"],
     },
     {
-      id: "u48-ex4",
+      id: "unit-48-ex4",
       type: "fill-blank",
       question: "___考試快到了，___我很緊張。(Parce que l'examen approche, je suis nerveux.)",
       correctAnswer: "因為...所以",
@@ -492,7 +492,7 @@ export const unit48: CourseUnit = {
       hintZhuyin: "Quelle paire de connecteurs exprime cause et conséquence ?",
     },
     {
-      id: "u48-ex5",
+      id: "unit-48-ex5",
       type: "comprehension",
       question: "Dans la culture taïwanaise, comment un parent montre-t-il généralement son amour ?",
       correctAnswer: "Par des actes concrets comme préparer un repas ou demander si l'enfant a mangé",
@@ -504,7 +504,7 @@ export const unit48: CourseUnit = {
       ],
     },
     {
-      id: "u48-ex6",
+      id: "unit-48-ex6",
       type: "translate",
       question: "Comment dit-on « Je regrette de ne pas y être allé » ?",
       correctAnswer: "我很後悔沒去",
@@ -513,7 +513,7 @@ export const unit48: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄏㄣˇ ㄏㄡˋ ㄏㄨㄟˇ ㄇㄟˊ ㄑㄩˋ", "ㄨㄛˇ ㄇㄟˊ ㄏㄡˋ ㄏㄨㄟˇ ㄑㄩˋ ㄌㄜ˙", "ㄨㄛˇ ㄑㄩˋ ㄌㄜ˙ ㄏㄣˇ ㄏㄡˋ ㄏㄨㄟˇ", "ㄨㄛˇ ㄏㄡˋ ㄏㄨㄟˇ ㄌㄜ˙ ㄇㄟˊ ㄑㄩˋ"],
     },
     {
-      id: "u48-reorder-1",
+      id: "unit-48-ex7",
       type: "reorder",
       question: "Remettez dans l'ordre : 讓 / 這個消息 / 興奮 / 很 / 我",
       correctAnswer: "這個消息讓我很興奮",
@@ -524,7 +524,7 @@ export const unit48: CourseUnit = {
       hintZhuyin: "Structure : cause + ㄖㄤˋ + personne + ㄏㄣˇ + émotion",
     },
     {
-      id: "u48-reorder-2",
+      id: "unit-48-ex8",
       type: "reorder",
       question: "Remettez dans l'ordre : 覺得 / 怎麼樣 / 你",
       correctAnswer: "你覺得怎麼樣",

@@ -418,7 +418,7 @@ export const unit63: CourseUnit = {
 
   exercises: [
     {
-      id: "u63-ex1",
+      id: "unit-63-ex1",
       type: "comprehension",
       question:
         "Comment dit-on « J'ai mal à la tête » en chinois ?",
@@ -431,7 +431,7 @@ export const unit63: CourseUnit = {
       ],
     },
     {
-      id: "u63-ex2",
+      id: "unit-63-ex2",
       type: "fill-blank",
       question: "___手寫字。(Écrire avec la main.)",
       correctAnswer: "用",
@@ -441,7 +441,7 @@ export const unit63: CourseUnit = {
       hint: "Quel mot signifie « utiliser / avec » pour un instrument ?",
     },
     {
-      id: "u63-ex3",
+      id: "unit-63-ex3",
       type: "translate",
       question: "Que signifie 你哪裡不舒服？",
       correctAnswer: "Où avez-vous mal ? / Qu'est-ce qui ne va pas ?",
@@ -453,7 +453,7 @@ export const unit63: CourseUnit = {
       ],
     },
     {
-      id: "u63-ex4",
+      id: "unit-63-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 我的肚子很痛。",
       correctAnswer: "J'ai très mal au ventre.",
@@ -465,7 +465,7 @@ export const unit63: CourseUnit = {
       ],
     },
     {
-      id: "u63-ex5",
+      id: "unit-63-ex5",
       type: "comprehension",
       question: "Qu'est-ce que 中醫 (zhōngyī) ?",
       correctAnswer:
@@ -478,7 +478,7 @@ export const unit63: CourseUnit = {
       ],
     },
     {
-      id: "u63-ex6",
+      id: "unit-63-ex6",
       type: "fill-blank",
       question: "我的牙齒___，要看牙醫。(J'ai mal aux dents, je dois aller chez le dentiste.)",
       correctAnswer: "痛",
@@ -488,7 +488,7 @@ export const unit63: CourseUnit = {
       hint: "Quel adjectif signifie « douloureux / avoir mal » ?",
     },
     {
-      id: "u63-ex7",
+      id: "unit-63-ex7",
       type: "translate",
       question: "Comment dire « Ouvrez la bouche » ?",
       correctAnswer: "張開嘴巴。",
@@ -500,7 +500,7 @@ export const unit63: CourseUnit = {
       ],
     },
     {
-      id: "u63-ex8",
+      id: "unit-63-ex8",
       type: "comprehension",
       question:
         "Pourquoi les Taiwanais disent-ils 痛才有效 à propos du massage des pieds ?",

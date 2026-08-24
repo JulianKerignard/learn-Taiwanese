@@ -478,7 +478,7 @@ export const unit27: CourseUnit = {
 
   exercises: [
     {
-      id: "u27-ex1",
+      id: "unit-27-ex1",
       type: "fill-blank",
       question: "我吃___小籠包。(J'ai deja mange des xiaolongbao dans ma vie.)",
       correctAnswer: "過",
@@ -489,7 +489,7 @@ export const unit27: CourseUnit = {
       hintZhuyin: "Quelle particule indique une experience de vie ?",
     },
     {
-      id: "u27-ex2",
+      id: "unit-27-ex2",
       type: "translate",
       question: "Comment dit-on « Demain j'irai au marche de nuit » ?",
       correctAnswer: "明天我會去夜市",
@@ -498,7 +498,7 @@ export const unit27: CourseUnit = {
       optionsZhuyin: ["ㄇㄧㄥˊ ㄊㄧㄢ ㄨㄛˇ ㄏㄨㄟˋ ㄑㄩˋ ㄧㄝˋ ㄕˋ", "ㄇㄧㄥˊ ㄊㄧㄢ ㄨㄛˇ ㄑㄩˋ ㄌㄜ˙ ㄧㄝˋ ㄕˋ", "ㄇㄧㄥˊ ㄊㄧㄢ ㄨㄛˇ ㄑㄩˋ ㄍㄨㄛˋ ㄧㄝˋ ㄕˋ", "ㄇㄧㄥˊ ㄊㄧㄢ ㄨㄛˇ ㄒㄧㄤˇ ㄌㄜ˙ ㄧㄝˋ ㄕˋ"],
     },
     {
-      id: "u27-ex3",
+      id: "unit-27-ex3",
       type: "fill-blank",
       question: "___下雨，___我不想出門。(Parce qu'il pleut, je ne veux pas sortir.)",
       correctAnswer: "因為...所以",
@@ -509,7 +509,7 @@ export const unit27: CourseUnit = {
       hintZhuyin: "Quelle paire de connecteurs exprime cause et consequence ?",
     },
     {
-      id: "u27-ex4",
+      id: "unit-27-ex4",
       type: "translate",
       question: "Que signifie 你吃了嗎？ dans la vie quotidienne a Taiwan ?",
       correctAnswer: "C'est une salutation (= Ca va ?), pas une vraie question sur le repas",
@@ -521,7 +521,7 @@ export const unit27: CourseUnit = {
       ],
     },
     {
-      id: "u27-ex5",
+      id: "unit-27-ex5",
       type: "fill-blank",
       question: "我___吃飯，等一下。(Je suis en train de manger, attends un peu.)",
       correctAnswer: "正在",
@@ -532,7 +532,7 @@ export const unit27: CourseUnit = {
       hintZhuyin: "Quelle expression signifie « etre en train de » ?",
     },
     {
-      id: "u27-ex6",
+      id: "unit-27-ex6",
       type: "comprehension",
       question: "Que signifie le complement resultatif 聽懂 ?",
       correctAnswer: "Ecouter et comprendre (le resultat de l'ecoute est la comprehension)",
@@ -544,7 +544,7 @@ export const unit27: CourseUnit = {
       ],
     },
     {
-      id: "u27-reorder-1",
+      id: "unit-27-ex7",
       type: "reorder",
       question: "Remettez dans l'ordre : 然後 / 先 / 吃飯 / 去 / 看電影",
       correctAnswer: "先吃飯然後去看電影",
@@ -555,7 +555,7 @@ export const unit27: CourseUnit = {
       hintZhuyin: "Structure : ㄒㄧㄢ + action1，ㄖㄢˊ ㄏㄡˋ + action2",
     },
     {
-      id: "u27-reorder-2",
+      id: "unit-27-ex8",
       type: "reorder",
       question: "Remettez dans l'ordre : 正在 / 我 / 呢 / 看書",
       correctAnswer: "我正在看書呢",

@@ -7,7 +7,11 @@ export interface GameWord {
   pinyin: string;
 }
 
+let _cachedWords: GameWord[] | null = null;
+
 export function getAllGameWords(): GameWord[] {
+  if (_cachedWords) return _cachedWords;
+
   const words = new Map<string, GameWord>();
 
   for (const unit of allUnits) {
@@ -34,7 +38,8 @@ export function getAllGameWords(): GameWord[] {
     }
   }
 
-  return [...words.values()];
+  _cachedWords = [...words.values()];
+  return _cachedWords;
 }
 
 export function getRandomWords(count: number): GameWord[] {

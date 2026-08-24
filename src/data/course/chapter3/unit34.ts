@@ -269,7 +269,7 @@ export const unit34: CourseUnit = {
 
   exercises: [
     {
-      id: "u34-ex1",
+      id: "unit-34-ex1",
       type: "translate",
       question: "Traduisez : « J'ai déjà visité Taipei. »",
       correctAnswer: "我去過台北。",
@@ -288,7 +288,7 @@ export const unit34: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄑㄩˋ ㄍㄨㄛˋ ㄊㄞˊ ㄅㄟˇ.", "ㄨㄛˇ ㄑㄩˋ ㄌㄜ ㄊㄞˊ ㄅㄟˇ.", "ㄨㄛˇ ㄏㄨㄟˋ ㄑㄩˋ ㄊㄞˊ ㄅㄟˇ.", "ㄨㄛˇ ㄧㄠˋ ㄑㄩˋ ㄊㄞˊ ㄅㄟˇ."],
     },
     {
-      id: "u34-ex2",
+      id: "unit-34-ex2",
       type: "translate",
       question: "Traduisez : « J'ai mangé ce matin. »",
       correctAnswer: "我早上吃了飯。",
@@ -307,7 +307,7 @@ export const unit34: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄗㄠˇ ㄕㄤ ㄔ ㄌㄜ ㄈㄢˋ.", "ㄨㄛˇ ㄗㄠˇ ㄕㄤ ㄔ ㄍㄨㄛˋ ㄈㄢˋ.", "ㄨㄛˇ ㄗㄠˇ ㄕㄤ ㄏㄨㄟˋ ㄔ ㄈㄢˋ.", "ㄨㄛˇ ㄔ ㄌㄜ ㄗㄠˇ ㄕㄤ ㄉㄜ ㄈㄢˋ."],
     },
     {
-      id: "u34-ex3",
+      id: "unit-34-ex3",
       type: "translate",
       question: "Traduisez : « Demain il va pleuvoir. »",
       correctAnswer: "明天會下雨。",
@@ -326,7 +326,7 @@ export const unit34: CourseUnit = {
       optionsZhuyin: ["ㄇㄧㄥˊ ㄊㄧㄢ ㄏㄨㄟˋ ㄒㄧㄚˋ ㄩˇ.", "ㄇㄧㄥˊ ㄊㄧㄢ ㄒㄧㄚˋ ㄌㄜ ㄩˇ.", "ㄇㄧㄥˊ ㄊㄧㄢ ㄒㄧㄚˋ ㄍㄨㄛˋ ㄩˇ.", "ㄇㄧㄥˊ ㄊㄧㄢ ㄧㄠˋ ㄒㄧㄚˋ ㄩˇ ㄌㄜ."],
     },
     {
-      id: "u34-ex4",
+      id: "unit-34-ex4",
       type: "translate",
       question: "Traduisez : « Je n'ai jamais mangé de tofu puant. »",
       correctAnswer: "我沒吃過臭豆腐。",
@@ -345,7 +345,7 @@ export const unit34: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄇㄟˊ ㄔ ㄍㄨㄛˋ ㄔㄡˋ ㄉㄡˋ ㄈㄨ.", "ㄨㄛˇ ㄇㄟˊ ㄔ ㄌㄜ ㄔㄡˋ ㄉㄡˋ ㄈㄨ.", "ㄨㄛˇ ㄅㄨˋ ㄔ ㄔㄡˋ ㄉㄡˋ ㄈㄨ.", "ㄨㄛˇ ㄅㄨˊ ㄏㄨㄟˋ ㄔ ㄔㄡˋ ㄉㄡˋ ㄈㄨ."],
     },
     {
-      id: "u34-ex5",
+      id: "unit-34-ex5",
       type: "translate",
       question: "Traduisez : « Je pense que Taiwan est plus beau que la France. »",
       correctAnswer: "我覺得台灣比法國漂亮。",
@@ -364,7 +364,7 @@ export const unit34: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄐㄩㄝˊ ㄉㄜ ㄊㄞˊ ㄨㄢ ㄅㄧˇ ㄈㄚˇ ㄍㄨㄛˊ ㄆㄧㄠˋ ㄌㄧㄤ.", "ㄊㄞˊ ㄨㄢ ㄅㄧˇ ㄈㄚˇ ㄍㄨㄛˊ ㄍㄥˋ ㄆㄧㄠˋ ㄌㄧㄤ.", "ㄨㄛˇ ㄐㄩㄝˊ ㄉㄜ ㄊㄞˊ ㄨㄢ ㄗㄨㄟˋ ㄆㄧㄠˋ ㄌㄧㄤ.", "ㄊㄞˊ ㄨㄢ ㄏㄜˊ ㄈㄚˇ ㄍㄨㄛˊ ㄧ ㄧㄤˋ ㄆㄧㄠˋ ㄌㄧㄤ."],
     },
     {
-      id: "u34-ex6",
+      id: "unit-34-ex6",
       type: "translate",
       question: "Traduisez : « Le bubble tea est le plus délicieux. »",
       correctAnswer: "珍珠奶茶最好喝。",
@@ -383,7 +383,7 @@ export const unit34: CourseUnit = {
       optionsZhuyin: ["ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄗㄨㄟˋ ㄏㄠˇ ㄏㄜ.", "ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄏㄣˇ ㄏㄠˇ ㄏㄜ.", "ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄅㄧˇ ㄐㄧㄠˋ ㄏㄠˇ ㄏㄜ.", "ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄍㄥˋ ㄏㄠˇ ㄏㄜ."],
     },
     {
-      id: "u34-ex7",
+      id: "unit-34-ex7",
       type: "translate",
       question: "Traduisez : « Ce restaurant est encore moins cher. »",
       correctAnswer: "這家餐廳更便宜。",
@@ -402,7 +402,7 @@ export const unit34: CourseUnit = {
       optionsZhuyin: ["ㄓㄜˋ ㄐㄧㄚ ㄘㄢ ㄊㄧㄥ ㄍㄥˋ ㄆㄧㄢˊ ㄧ.", "ㄓㄜˋ ㄐㄧㄚ ㄘㄢ ㄊㄧㄥ ㄗㄨㄟˋ ㄆㄧㄢˊ ㄧ.", "ㄓㄜˋ ㄐㄧㄚ ㄘㄢ ㄊㄧㄥ ㄅㄧˇ ㄐㄧㄠˋ ㄆㄧㄢˊ ㄧ.", "ㄓㄜˋ ㄐㄧㄚ ㄘㄢ ㄊㄧㄥ ㄏㄣˇ ㄆㄧㄢˊ ㄧ."],
     },
     {
-      id: "u34-ex8",
+      id: "unit-34-ex8",
       type: "translate",
       question: "Traduisez : « Parce qu'il pleut, je ne sors pas. »",
       correctAnswer: "因為下雨，所以我不出門。",
@@ -421,7 +421,7 @@ export const unit34: CourseUnit = {
       optionsZhuyin: ["ㄧㄣ ㄨㄟˋ ㄒㄧㄚˋ ㄩˇ, ㄙㄨㄛˇ ㄧˇ ㄨㄛˇ ㄅㄨˋ ㄔㄨ ㄇㄣˊ.", "ㄒㄧㄚˋ ㄩˇ ㄌㄜ, ㄨㄛˇ ㄅㄨˋ ㄔㄨ ㄇㄣˊ.", "ㄧㄣ ㄨㄟˋ ㄒㄧㄚˋ ㄩˇ ㄨㄛˇ ㄅㄨˋ ㄔㄨ ㄇㄣˊ.", "ㄙㄨㄛˇ ㄧˇ ㄒㄧㄚˋ ㄩˇ, ㄧㄣ ㄨㄟˋ ㄅㄨˋ ㄔㄨ ㄇㄣˊ."],
     },
     {
-      id: "u34-ex9",
+      id: "unit-34-ex9",
       type: "translate",
       question: "Traduisez : « Je veux y aller mais je n'ai pas d'argent. »",
       correctAnswer: "我想去，可是我沒有錢。",
@@ -440,7 +440,7 @@ export const unit34: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄒㄧㄤˇ ㄑㄩˋ, ㄎㄜˇ ㄕˋ ㄨㄛˇ ㄇㄟˊ ㄧㄡˇ ㄑㄧㄢˊ.", "ㄨㄛˇ ㄒㄧㄤˇ ㄑㄩˋ, ㄧㄣ ㄨㄟˋ ㄇㄟˊ ㄧㄡˇ ㄑㄧㄢˊ.", "ㄨㄛˇ ㄇㄟˊ ㄧㄡˇ ㄑㄧㄢˊ ㄒㄧㄤˇ ㄑㄩˋ.", "ㄎㄜˇ ㄕˋ ㄨㄛˇ ㄒㄧㄤˇ ㄑㄩˋ, ㄇㄟˊ ㄧㄡˇ ㄑㄧㄢˊ."],
     },
     {
-      id: "u34-ex10",
+      id: "unit-34-ex10",
       type: "translate",
       question: "Traduisez : « D'abord manger, ensuite aller voir un film. »",
       correctAnswer: "先吃飯，然後去看電影。",
@@ -459,7 +459,7 @@ export const unit34: CourseUnit = {
       optionsZhuyin: ["ㄒㄧㄢ ㄔ ㄈㄢˋ, ㄖㄢˊ ㄏㄡˋ ㄑㄩˋ ㄎㄢˋ ㄉㄧㄢˋ ㄧㄥˇ.", "ㄔ ㄈㄢˋ ㄧˇ ㄏㄡˋ ㄎㄢˋ ㄉㄧㄢˋ ㄧㄥˇ.", "ㄒㄧㄢ ㄎㄢˋ ㄉㄧㄢˋ ㄧㄥˇ, ㄖㄢˊ ㄏㄡˋ ㄔ ㄈㄢˋ.", "ㄔ ㄈㄢˋ ㄏㄜˊ ㄎㄢˋ ㄉㄧㄢˋ ㄧㄥˇ."],
     },
     {
-      id: "u34-ex11",
+      id: "unit-34-ex11",
       type: "reorder",
       question: "Remettez dans l'ordre : 比 / 漂亮 / 覺得 / 法國 / 我 / 台灣",
       correctAnswer: "我覺得台灣比法國漂亮",
@@ -468,7 +468,7 @@ export const unit34: CourseUnit = {
       hintZhuyin: "Structure : Sujet + 覺得 + A + 比 + B + Adjectif",
     },
     {
-      id: "u34-ex12",
+      id: "unit-34-ex12",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 然後 / 先 / 看電影 / 去 / 吃飯",
@@ -478,7 +478,7 @@ export const unit34: CourseUnit = {
       hintZhuyin: "Structure : 先 + Action 1，然後 + Action 2",
     },
     {
-      id: "u34-ex13",
+      id: "unit-34-ex13",
       type: "fill-blank",
       question:
         "___下雨了，___我沒出門。(Parce qu'il a plu, je ne suis pas sorti.)",
@@ -487,7 +487,7 @@ export const unit34: CourseUnit = {
       hint: "Quelle paire de connecteurs exprime la cause et la conséquence ?",
     },
     {
-      id: "u34-ex14",
+      id: "unit-34-ex14",
       type: "fill-blank",
       question:
         "台灣很好玩，___天氣太熱了。(Taiwan c'est fun, MAIS le temps est trop chaud.)",
@@ -498,7 +498,7 @@ export const unit34: CourseUnit = {
       hint: "Quel connecteur exprime l'opposition (mais) ?",
     },
     {
-      id: "u34-ex15",
+      id: "unit-34-ex15",
       type: "fill-blank",
       question:
         "珍珠奶茶___好喝。(Le bubble tea est LE PLUS délicieux.)",

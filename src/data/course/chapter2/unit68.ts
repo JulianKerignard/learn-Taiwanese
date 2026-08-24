@@ -182,7 +182,7 @@ export const unit68: CourseUnit = {
 
   exercises: [
     {
-      id: "u68-ex1",
+      id: "unit-68-ex1",
       type: "translate",
       question: "Traduisez : « Je voudrais un riz sauté et un bol de soupe. »",
       correctAnswer: "我要一個炒飯和一碗湯。",
@@ -206,7 +206,7 @@ export const unit68: CourseUnit = {
       ],
     },
     {
-      id: "u68-ex2",
+      id: "unit-68-ex2",
       type: "comprehension",
       question:
         "Vous êtes dans un restaurant et le serveur dit : 「你要吃什麼？」 Que vous demande-t-il ?",
@@ -219,15 +219,18 @@ export const unit68: CourseUnit = {
       ],
     },
     {
-      id: "u68-ex3",
+      id: "unit-68-ex3",
       type: "fill-blank",
       question: "Je suis végétarien : 我___素。",
       correctAnswer: "吃",
+      options: ["吃", "喝", "買", "要"],
+      optionsHint: ["chī", "hē", "mǎi", "yào"],
+      optionsZhuyin: ["ㄔ", "ㄏㄜ", "ㄇㄞˇ", "ㄧㄠˋ"],
       hint: "Le verbe « manger » en chinois.",
       hintZhuyin: "ㄔ",
     },
     {
-      id: "u68-ex4",
+      id: "unit-68-ex4",
       type: "listen",
       question: "Écoutez et choisissez la bonne traduction de : 買單，謝謝。",
       correctAnswer: "L'addition, merci.",
@@ -239,7 +242,7 @@ export const unit68: CourseUnit = {
       ],
     },
     {
-      id: "u68-ex5",
+      id: "unit-68-ex5",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 走 / 赤崁樓 / 怎麼 / 請問 / 不好意思",
@@ -249,7 +252,7 @@ export const unit68: CourseUnit = {
       hintZhuyin: "Structure : Politesse + 請問 + Lieu + 怎麼走",
     },
     {
-      id: "u68-ex6",
+      id: "unit-68-ex6",
       type: "translate",
       question: "Traduisez : « Monsieur le chauffeur, je veux aller à la gare. »",
       correctAnswer: "司機先生，我要去火車站。",
@@ -273,7 +276,7 @@ export const unit68: CourseUnit = {
       ],
     },
     {
-      id: "u68-ex7",
+      id: "unit-68-ex7",
       type: "comprehension",
       question:
         "Un vendeur de fruits vous dit : 「一斤五十塊。」 Que signifie cette phrase ?",
@@ -286,16 +289,19 @@ export const unit68: CourseUnit = {
       ],
     },
     {
-      id: "u68-ex8",
+      id: "unit-68-ex8",
       type: "fill-blank",
       question:
         "Pour réserver au restaurant : 我想___位，明天晚上兩個人。",
       correctAnswer: "訂",
+      options: ["訂", "坐", "找", "買"],
+      optionsHint: ["dìng", "zuò", "zhǎo", "mǎi"],
+      optionsZhuyin: ["ㄉㄧㄥˋ", "ㄗㄨㄛˋ", "ㄓㄠˇ", "ㄇㄞˇ"],
       hint: "Le verbe « réserver » en chinois.",
       hintZhuyin: "ㄉㄧㄥˋ",
     },
     {
-      id: "u68-ex9",
+      id: "unit-68-ex9",
       type: "translate",
       question:
         "Traduisez : « Allô, tu es occupé ? On va prendre un café cet après-midi, d'accord ? »",
@@ -320,7 +326,7 @@ export const unit68: CourseUnit = {
       ],
     },
     {
-      id: "u68-ex10",
+      id: "unit-68-ex10",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 電話 / 的時候 / 回 / 我 / 方便 / 你",
@@ -330,7 +336,7 @@ export const unit68: CourseUnit = {
       hintZhuyin: "Structure : Sujet + Condition temporelle + Verbe + Complément",
     },
     {
-      id: "u68-ex11",
+      id: "unit-68-ex11",
       type: "listen",
       question:
         "Écoutez et choisissez la bonne traduction de : 這個芒果怎麼賣？",
@@ -343,11 +349,14 @@ export const unit68: CourseUnit = {
       ],
     },
     {
-      id: "u68-ex12",
+      id: "unit-68-ex12",
       type: "fill-blank",
       question:
         "Pour demander si un plat contient de la viande : 這個有___嗎？",
       correctAnswer: "肉",
+      options: ["肉", "菜", "飯", "湯"],
+      optionsHint: ["ròu", "cài", "fàn", "tāng"],
+      optionsZhuyin: ["ㄖㄡˋ", "ㄘㄞˋ", "ㄈㄢˋ", "ㄊㄤ"],
       hint: "Le caractère qui signifie « viande ».",
       hintZhuyin: "ㄖㄡˋ",
     },

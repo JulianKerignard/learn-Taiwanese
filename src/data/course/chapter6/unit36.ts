@@ -123,7 +123,7 @@ export const unit36: CourseUnit = {
 
   exercises: [
     {
-      id: "u36-ex1",
+      id: "unit-36-ex1",
       type: "translate",
       question: "Traduis en chinois : « J'ai mal à la tête depuis hier. »",
       correctAnswer: "我從昨天開始頭痛",
@@ -131,7 +131,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "ㄘㄨㄥˊ + moment + ㄎㄞ ㄕˇ + symptôme",
     },
     {
-      id: "u36-ex2",
+      id: "unit-36-ex2",
       type: "translate",
       question: "Traduis en chinois : « Je n'ai pas de fièvre. »",
       correctAnswer: "我沒有發燒",
@@ -139,7 +139,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "ㄇㄟˊ ㄧㄡˇ pour nier un état",
     },
     {
-      id: "u36-ex3",
+      id: "unit-36-ex3",
       type: "translate",
       question: "Traduis en chinois : « Je suis allergique aux cacahuètes. »",
       correctAnswer: "我對花生過敏",
@@ -147,7 +147,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "ㄨㄛˇ ㄉㄨㄟˋ + chose + ㄍㄨㄛˋ ㄇㄧㄣˇ",
     },
     {
-      id: "u36-ex4",
+      id: "unit-36-ex4",
       type: "translate",
       question:
         "Traduis en chinois : « Je suis en train d'apprendre le chinois. »",
@@ -156,7 +156,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "ㄓㄥˋ ㄗㄞˋ + verbe = en train de",
     },
     {
-      id: "u36-ex5",
+      id: "unit-36-ex5",
       type: "translate",
       question: "Traduis en chinois : « Je suis à Taiwan depuis trois mois. »",
       correctAnswer: "我來台灣三個月了",
@@ -164,7 +164,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "來 + lieu + durée + ㄌㄜ˙",
     },
     {
-      id: "u36-ex6",
+      id: "unit-36-ex6",
       type: "translate",
       question:
         "Traduis en chinois : « Mon chinois n'est pas encore très bon. »",
@@ -173,7 +173,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "ㄏㄞˊ ㄅㄨˋ ㄊㄞˋ + adjectif",
     },
     {
-      id: "u36-ex7",
+      id: "unit-36-ex7",
       type: "translate",
       question:
         "Traduis en chinois : « Tu parles vraiment bien français ! »",
@@ -182,7 +182,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "Sujet + langue + ㄕㄨㄛ ㄉㄜ˙ + adverbe",
     },
     {
-      id: "u36-ex8",
+      id: "unit-36-ex8",
       type: "translate",
       question:
         "Traduis en chinois : « Est-ce que le loyer inclut l'eau et l'électricité ? »",
@@ -191,7 +191,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "ㄅㄠ = inclure",
     },
     {
-      id: "u36-ex9",
+      id: "unit-36-ex9",
       type: "translate",
       question:
         "Traduis en chinois : « C'est un peu trop cher, on peut faire moins ? »",
@@ -200,7 +200,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "ㄧㄡˇ ㄉㄧㄢˇ + adj / ㄎㄜˇ ㄧˇ + adj + ㄧˋ ㄉㄧㄢˇ + ㄇㄚ˙",
     },
     {
-      id: "u36-ex10",
+      id: "unit-36-ex10",
       type: "translate",
       question: "Traduis en chinois : « Il y a la climatisation ? »",
       correctAnswer: "有冷氣嗎？",
@@ -208,7 +208,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "ㄧㄡˇ + objet + ㄇㄚ˙",
     },
     {
-      id: "u36-ex11",
+      id: "unit-36-ex11",
       type: "translate",
       question:
         "Traduis en chinois : « Je voudrais signer un contrat de 6 mois. »",
@@ -217,7 +217,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "ㄒㄧㄤˇ + verbe / ㄅㄢˋ ㄋㄧㄢˊ = 6 mois",
     },
     {
-      id: "u36-ex12",
+      id: "unit-36-ex12",
       type: "translate",
       question: "Traduis en chinois : « Depuis quand as-tu mal au ventre ? »",
       correctAnswer: "你從什麼時候開始肚子痛？",
@@ -225,7 +225,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "ㄘㄨㄥˊ ㄕㄣˊ ㄇㄜ˙ ㄕˊ ㄏㄡˋ ㄎㄞ ㄕˇ = depuis quand",
     },
     {
-      id: "u36-ex13",
+      id: "unit-36-ex13",
       type: "translate",
       question:
         "Traduis en chinois : « J'apprends le chinois depuis un an. »",
@@ -234,7 +234,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "Verbe + durée + ㄌㄜ˙ (action qui dure)",
     },
     {
-      id: "u36-ex14",
+      id: "unit-36-ex14",
       type: "translate",
       question: "Traduis en chinois : « On peut visiter la chambre ? »",
       correctAnswer: "可以看房間嗎？",
@@ -242,7 +242,7 @@ export const unit36: CourseUnit = {
       hintZhuyin: "ㄎㄜˇ ㄧˇ + verbe + ㄇㄚ˙",
     },
     {
-      id: "u36-ex15",
+      id: "unit-36-ex15",
       type: "translate",
       question:
         "Traduis en chinois : « La caution, c'est combien de mois ? »",

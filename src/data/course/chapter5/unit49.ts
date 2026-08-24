@@ -431,7 +431,7 @@ export const unit49: CourseUnit = {
 
   exercises: [
     {
-      id: "u49-ex1",
+      id: "unit-49-ex1",
       type: "fill-blank",
       question: "我___明年去台灣學中文。(J'ai l'intention d'aller à Taïwan apprendre le chinois l'année prochaine.)",
       correctAnswer: "打算",
@@ -442,7 +442,7 @@ export const unit49: CourseUnit = {
       hintZhuyin: "Quel verbe exprime une intention concrète, un plan réfléchi ?",
     },
     {
-      id: "u49-ex2",
+      id: "unit-49-ex2",
       type: "comprehension",
       question: "Quelle est la différence entre 打算 et 希望 ?",
       correctAnswer: "打算 exprime une intention concrète, 希望 exprime un souhait ou un espoir",
@@ -454,7 +454,7 @@ export const unit49: CourseUnit = {
       ],
     },
     {
-      id: "u49-ex3",
+      id: "unit-49-ex3",
       type: "translate",
       question: "Comment dit-on « S'il pleut demain, je ne sortirai pas » ?",
       correctAnswer: "如果明天下雨，我就不出門",
@@ -463,7 +463,7 @@ export const unit49: CourseUnit = {
       optionsZhuyin: ["ㄖㄨˊ ㄍㄨㄛˇ ㄇㄧㄥˊ ㄊㄧㄢ ㄒㄧㄚˋ ㄩˇ，ㄨㄛˇ ㄐㄧㄡˋ ㄅㄨˋ ㄔㄨ ㄇㄣˊ", "ㄇㄧㄥˊ ㄊㄧㄢ ㄒㄧㄚˋ ㄩˇ，ㄖㄨˊ ㄍㄨㄛˇ ㄨㄛˇ ㄅㄨˋ ㄔㄨ ㄇㄣˊ", "ㄨㄛˇ ㄐㄧㄡˋ ㄅㄨˋ ㄔㄨ ㄇㄣˊ，ㄖㄨˊ ㄍㄨㄛˇ ㄇㄧㄥˊ ㄊㄧㄢ ㄒㄧㄚˋ ㄩˇ", "ㄇㄧㄥˊ ㄊㄧㄢ ㄖㄨˊ ㄍㄨㄛˇ ㄒㄧㄚˋ ㄩˇ ㄅㄨˋ ㄔㄨ ㄇㄣˊ ㄨㄛˇ ㄐㄧㄡˋ"],
     },
     {
-      id: "u49-ex4",
+      id: "unit-49-ex4",
       type: "fill-blank",
       question: "我___有一天能去台灣旅行。(J'espère pouvoir voyager à Taïwan un jour.)",
       correctAnswer: "希望",
@@ -474,7 +474,7 @@ export const unit49: CourseUnit = {
       hintZhuyin: "Quel verbe exprime un souhait, un espoir ?",
     },
     {
-      id: "u49-ex5",
+      id: "unit-49-ex5",
       type: "translate",
       question: "Comment dit-on « L'échec est la mère du succès » ?",
       correctAnswer: "失敗是成功之母",
@@ -483,7 +483,7 @@ export const unit49: CourseUnit = {
       optionsZhuyin: ["ㄕ ㄅㄞˋ ㄕˋ ㄔㄥˊ ㄍㄨㄥ ㄓ ㄇㄨˇ", "ㄔㄥˊ ㄍㄨㄥ ㄕˋ ㄕ ㄅㄞˋ ㄓ ㄇㄨˇ", "ㄕ ㄅㄞˋ ㄍㄣ ㄔㄥˊ ㄍㄨㄥ ㄧˊ ㄧㄤˋ", "ㄔㄥˊ ㄍㄨㄥ ㄧˇ ㄏㄡˋ ㄏㄨㄟˋ ㄕ ㄅㄞˋ"],
     },
     {
-      id: "u49-ex6",
+      id: "unit-49-ex6",
       type: "comprehension",
       question: "Que sont les 補習班 (bǔxíbān) à Taïwan ?",
       correctAnswer: "Des cours du soir / cours de soutien très répandus pour les étudiants",
@@ -495,7 +495,7 @@ export const unit49: CourseUnit = {
       ],
     },
     {
-      id: "u49-reorder-1",
+      id: "unit-49-ex7",
       type: "reorder",
       question: "Remettez dans l'ordre : 就 / 努力 / 如果 / 會 / 你 / 成功 / 一定",
       correctAnswer: "如果你努力就一定會成功",
@@ -506,7 +506,7 @@ export const unit49: CourseUnit = {
       hintZhuyin: "Structure : ㄖㄨˊ ㄍㄨㄛˇ + condition，ㄐㄧㄡˋ + conséquence",
     },
     {
-      id: "u49-reorder-2",
+      id: "unit-49-ex8",
       type: "reorder",
       question: "Remettez dans l'ordre : 打算 / 以後 / 做 / 你 / 什麼",
       correctAnswer: "你以後打算做什麼",

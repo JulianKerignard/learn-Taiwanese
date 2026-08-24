@@ -151,8 +151,6 @@ export const unit85: CourseUnit = {
     },
   ],
 
-  dialogue: undefined,
-
   keyPoints: [
     "請你吃飯 = inviter à manger (= payer le repas). C'est une manière courante de remercier quelqu'un à Taïwan.",
     "Pour refuser poliment : donner une raison + proposer une alternative. Ne jamais dire non directement.",
@@ -165,7 +163,7 @@ export const unit85: CourseUnit = {
 
   exercises: [
     {
-      id: "u85-ex1",
+      id: "unit-85-ex1",
       type: "translate",
       question: "Comment dit-on « Je voudrais t'inviter à manger ce week-end » ?",
       correctAnswer: "這個週末我想請你吃飯",
@@ -189,7 +187,7 @@ export const unit85: CourseUnit = {
       ],
     },
     {
-      id: "u85-ex2",
+      id: "unit-85-ex2",
       type: "reorder",
       question: "Remettez dans l'ordre : « Désolé, ce week-end j'ai déjà quelque chose. »",
       correctAnswer: "不好意思，這個週末我已經有事了",
@@ -219,7 +217,7 @@ export const unit85: CourseUnit = {
       ],
     },
     {
-      id: "u85-ex3",
+      id: "unit-85-ex3",
       type: "translate",
       question: "Comment dit-on « C'est encore meilleur que ce qu'on achète dehors » ?",
       correctAnswer: "比外面賣的還好吃",
@@ -243,7 +241,7 @@ export const unit85: CourseUnit = {
       ],
     },
     {
-      id: "u85-ex4",
+      id: "unit-85-ex4",
       type: "translate",
       question: "Comment dit-on « La clim de ma chambre est cassée » ?",
       correctAnswer: "我房間的冷氣壞了",
@@ -267,7 +265,7 @@ export const unit85: CourseUnit = {
       ],
     },
     {
-      id: "u85-ex5",
+      id: "unit-85-ex5",
       type: "reorder",
       question: "Remettez dans l'ordre : « Si j'en prends deux, vous pouvez faire un prix ? »",
       correctAnswer: "如果我買兩件，可不可以算便宜一點",
@@ -291,7 +289,7 @@ export const unit85: CourseUnit = {
       ],
     },
     {
-      id: "u85-ex6",
+      id: "unit-85-ex6",
       type: "translate",
       question: "Comment commander « Un grand bubble tea, mi-sucré, peu de glace » ?",
       correctAnswer: "一杯大杯的珍珠奶茶，半糖少冰",
@@ -315,7 +313,7 @@ export const unit85: CourseUnit = {
       ],
     },
     {
-      id: "u85-ex7",
+      id: "unit-85-ex7",
       type: "reorder",
       question: "Remettez dans l'ordre : « J'espère que vous prendrez soin de moi à l'avenir ! »",
       correctAnswer: "以後請多多關照",
@@ -339,7 +337,7 @@ export const unit85: CourseUnit = {
       ],
     },
     {
-      id: "u85-ex8",
+      id: "unit-85-ex8",
       type: "translate",
       question: "Comment dit-on « Je voudrais vous demander un jour de congé » ?",
       correctAnswer: "我想跟你請一天假",
@@ -363,7 +361,7 @@ export const unit85: CourseUnit = {
       ],
     },
     {
-      id: "u85-ex9",
+      id: "unit-85-ex9",
       type: "translate",
       question: "Comment dit-on « Vous pouvez envoyer quelqu'un pour la réparer ? » ?",
       correctAnswer: "你可以找人來修嗎",
@@ -387,7 +385,7 @@ export const unit85: CourseUnit = {
       ],
     },
     {
-      id: "u85-ex10",
+      id: "unit-85-ex10",
       type: "reorder",
       question: "Remettez dans l'ordre : « Je finirai d'abord le travail en cours. »",
       correctAnswer: "我會把手上的工作先做完",
@@ -414,7 +412,7 @@ export const unit85: CourseUnit = {
       ],
     },
     {
-      id: "u85-ex11",
+      id: "unit-85-ex11",
       type: "translate",
       question: "Comment dit-on « La dernière fois tu m'as beaucoup aidé » ?",
       correctAnswer: "上次你幫了我很多忙",
@@ -438,7 +436,7 @@ export const unit85: CourseUnit = {
       ],
     },
     {
-      id: "u85-ex12",
+      id: "unit-85-ex12",
       type: "reorder",
       question: "Remettez dans l'ordre : « Si je fais des erreurs, n'hésitez pas à me corriger. »",
       correctAnswer: "如果我說錯了，請大家多多指教",

@@ -445,7 +445,7 @@ export const unit42: CourseUnit = {
 
   exercises: [
     {
-      id: "u42-ex1",
+      id: "unit-42-ex1",
       type: "comprehension",
       question:
         "Quelle particule utiliserais-tu pour faire une suggestion douce, comme « on y va ? » ?",
@@ -458,7 +458,7 @@ export const unit42: CourseUnit = {
       ],
     },
     {
-      id: "u42-ex2",
+      id: "unit-42-ex2",
       type: "translate",
       question: "Que signifie 沒有啦 quand quelqu'un te fait un compliment ?",
       correctAnswer: "Mais non ! (modestie — je refuse le compliment poliment)",
@@ -470,7 +470,7 @@ export const unit42: CourseUnit = {
       ],
     },
     {
-      id: "u42-ex3",
+      id: "unit-42-ex3",
       type: "comprehension",
       question:
         "Quelle est la différence entre 好, 好吧, 好啊, et 好啦 ?",
@@ -484,7 +484,7 @@ export const unit42: CourseUnit = {
       ],
     },
     {
-      id: "u42-ex4",
+      id: "unit-42-ex4",
       type: "translate",
       question: "Comment traduirais-tu 蛤？你說什麼？",
       correctAnswer: "Hein ?! T'as dit quoi ?",
@@ -496,7 +496,7 @@ export const unit42: CourseUnit = {
       ],
     },
     {
-      id: "u42-ex5",
+      id: "unit-42-ex5",
       type: "comprehension",
       question: "Pourquoi 啦 est-elle considérée comme LA particule taiwanaise ?",
       correctAnswer:
@@ -509,7 +509,7 @@ export const unit42: CourseUnit = {
       ],
     },
     {
-      id: "u42-ex6",
+      id: "unit-42-ex6",
       type: "fill-blank",
       question: "你知道___，這很正常。(Tu sais bien, c'est normal.)",
       correctAnswer: "嘛",
@@ -519,7 +519,7 @@ export const unit42: CourseUnit = {
       hint: "Quelle particule exprime l'évidence ?",
     },
     {
-      id: "u42-ex7",
+      id: "unit-42-ex7",
       type: "translate",
       question: "Que signifie 喔 quand quelqu'un te donne une information ?",
       correctAnswer: "Ah d'accord / Je vois (réaction de compréhension)",
@@ -531,7 +531,7 @@ export const unit42: CourseUnit = {
       ],
     },
     {
-      id: "u42-ex8",
+      id: "unit-42-ex8",
       type: "comprehension",
       question: "Dans quel contexte NE PAS utiliser les particules comme 啦, 啊, 嘛 ?",
       correctAnswer: "Dans des contextes formels : emails professionnels, discours officiels, conversations avec des supérieurs",
@@ -543,7 +543,7 @@ export const unit42: CourseUnit = {
       ],
     },
     {
-      id: "u42-fill-new1",
+      id: "unit-42-ex9",
       type: "fill-blank",
       question: "走___ (suggestion d'y aller ensemble)",
       correctAnswer: "吧",
@@ -553,7 +553,7 @@ export const unit42: CourseUnit = {
       hint: "Quelle particule exprime une suggestion douce ?",
     },
     {
-      id: "u42-fill-new2",
+      id: "unit-42-ex10",
       type: "fill-blank",
       question: "好___！我們去夜市！(Ouais ! On va au marche de nuit !)",
       correctAnswer: "啊",
@@ -563,7 +563,7 @@ export const unit42: CourseUnit = {
       hint: "Quelle particule ajoute de l'enthousiasme ?",
     },
     {
-      id: "u42-comp-new1",
+      id: "unit-42-ex11",
       type: "comprehension",
       question: "Quelle emotion exprime 耶 dans « 放假了耶！ » ?",
       correctAnswer: "Joie et excitation (c'est les vacances !)",
@@ -575,7 +575,7 @@ export const unit42: CourseUnit = {
       ],
     },
     {
-      id: "u42-comp-new2",
+      id: "unit-42-ex12",
       type: "comprehension",
       question: "Quelle emotion exprime 好吧 par rapport a 好啊 ?",
       correctAnswer: "好吧 = resignation (bon, d'accord...) / 好啊 = enthousiasme (ouais !)",

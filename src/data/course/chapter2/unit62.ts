@@ -408,7 +408,7 @@ export const unit62: CourseUnit = {
 
   exercises: [
     {
-      id: "u62-ex1",
+      id: "unit-62-ex1",
       type: "comprehension",
       question:
         "Comment dit-on « Aujourd'hui il fait très chaud » en chinois ?",
@@ -421,7 +421,7 @@ export const unit62: CourseUnit = {
       ],
     },
     {
-      id: "u62-ex2",
+      id: "unit-62-ex2",
       type: "fill-blank",
       question: "明天___下雨。(Demain il va pleuvoir.)",
       correctAnswer: "會",
@@ -431,7 +431,7 @@ export const unit62: CourseUnit = {
       hint: "Quel mot exprime une prédiction future ?",
     },
     {
-      id: "u62-ex3",
+      id: "unit-62-ex3",
       type: "translate",
       question: "Que signifie 天氣越來越冷了 ?",
       correctAnswer: "Le temps devient de plus en plus froid.",
@@ -443,7 +443,7 @@ export const unit62: CourseUnit = {
       ],
     },
     {
-      id: "u62-ex4",
+      id: "unit-62-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 外面在下雨。",
       correctAnswer: "Il pleut dehors.",
@@ -455,7 +455,7 @@ export const unit62: CourseUnit = {
       ],
     },
     {
-      id: "u62-ex5",
+      id: "unit-62-ex5",
       type: "comprehension",
       question: "Qu'est-ce que la 梅雨 (méiyǔ) ?",
       correctAnswer:
@@ -468,7 +468,7 @@ export const unit62: CourseUnit = {
       ],
     },
     {
-      id: "u62-ex6",
+      id: "unit-62-ex6",
       type: "fill-blank",
       question: "太陽很___。(Le soleil tape fort.)",
       correctAnswer: "大",
@@ -478,7 +478,7 @@ export const unit62: CourseUnit = {
       hint: "En chinois, le soleil est « grand » quand il brille fort.",
     },
     {
-      id: "u62-ex7",
+      id: "unit-62-ex7",
       type: "translate",
       question: "Comment dire « Demain il ne va pas pleuvoir » ?",
       correctAnswer: "明天不會下雨。",
@@ -490,7 +490,7 @@ export const unit62: CourseUnit = {
       ],
     },
     {
-      id: "u62-ex8",
+      id: "unit-62-ex8",
       type: "comprehension",
       question:
         "Qu'est-ce qu'un 颱風假 (táifēng jià) ?",

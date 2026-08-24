@@ -407,7 +407,7 @@ export const unit72: CourseUnit = {
 
   exercises: [
     {
-      id: "u72-ex1",
+      id: "unit-72-ex1",
       type: "fill-blank",
       question: "我___了他，他在那邊。(Je l'ai vu, il est la-bas.)",
       correctAnswer: "看到",
@@ -417,7 +417,7 @@ export const unit72: CourseUnit = {
       hint: "Regarder + atteindre = avoir vu.",
     },
     {
-      id: "u72-ex2",
+      id: "unit-72-ex2",
       type: "comprehension",
       question: "Quelle est la difference entre 找 et 找到 ?",
       correctAnswer: "找 = chercher (sans resultat garanti), 找到 = trouver (succes)",
@@ -441,7 +441,7 @@ export const unit72: CourseUnit = {
       ],
     },
     {
-      id: "u72-ex3",
+      id: "unit-72-ex3",
       type: "translate",
       question: "Comment dit-on « Je ne comprends pas (en ecoutant) » ?",
       correctAnswer: "我聽不懂。",
@@ -460,7 +460,7 @@ export const unit72: CourseUnit = {
       ],
     },
     {
-      id: "u72-ex4",
+      id: "unit-72-ex4",
       type: "fill-blank",
       question: "作業做___了嗎？(Tu as fini tes devoirs ?)",
       correctAnswer: "完",
@@ -470,7 +470,7 @@ export const unit72: CourseUnit = {
       hint: "Le resultat est l'achevement complet.",
     },
     {
-      id: "u72-ex5",
+      id: "unit-72-ex5",
       type: "translate",
       question: "Comment dit-on « Je ne trouve pas l'arret de bus » ?",
       correctAnswer: "我找不到公車站。",
@@ -494,7 +494,7 @@ export const unit72: CourseUnit = {
       ],
     },
     {
-      id: "u72-ex6",
+      id: "unit-72-ex6",
       type: "comprehension",
       question: "Quelle est la difference entre 聽不懂 et 聽不到 ?",
       correctAnswer: "聽不懂 = ne comprend pas le sens, 聽不到 = n'entend pas le son",
@@ -518,7 +518,7 @@ export const unit72: CourseUnit = {
       ],
     },
     {
-      id: "u72-ex7",
+      id: "unit-72-ex7",
       type: "fill-blank",
       question: "中文你學___了嗎？(Tu as appris/maitrises le chinois ?)",
       correctAnswer: "會",
@@ -528,7 +528,7 @@ export const unit72: CourseUnit = {
       hint: "Le resultat est la maitrise, savoir faire.",
     },
     {
-      id: "u72-ex8",
+      id: "unit-72-ex8",
       type: "translate",
       question: "Comment dit-on « Les billets de concert sont impossibles a acheter » ?",
       correctAnswer: "演唱會的票買不到。",

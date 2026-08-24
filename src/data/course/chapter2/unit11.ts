@@ -418,7 +418,7 @@ export const unit11: CourseUnit = {
 
   exercises: [
     {
-      id: "u9-ex1",
+      id: "unit-11-ex1",
       type: "translate",
       question: "Comment dit-on « Je veux aller à la gare de Taipei » ?",
       correctAnswer: "我要去台北車站",
@@ -437,7 +437,7 @@ export const unit11: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄑㄩˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ", "ㄨㄛˇ ㄗㄞˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ", "ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ ㄗㄞˋ ㄋㄚˇ ㄌㄧˇ", "ㄨㄛˇ ㄗㄨㄛˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ"],
     },
     {
-      id: "u9-ex2",
+      id: "unit-11-ex2",
       type: "comprehension",
       question: "Que signifie 高鐵 ?",
       correctAnswer: "Le train à grande vitesse (TGV taiwanais)",
@@ -450,7 +450,7 @@ export const unit11: CourseUnit = {
       hint: "gāotiě",
     },
     {
-      id: "u9-ex3",
+      id: "unit-11-ex3",
       type: "fill-blank",
       question: "我___捷運去。(J'y vais en MRT.)",
       correctAnswer: "坐",
@@ -460,7 +460,7 @@ export const unit11: CourseUnit = {
       hint: "Quel verbe signifie « prendre » un transport ?",
     },
     {
-      id: "u9-ex4",
+      id: "unit-11-ex4",
       type: "translate",
       question: "Que signifie 我要加值 ?",
       correctAnswer: "Je veux recharger (ma carte)",
@@ -473,7 +473,7 @@ export const unit11: CourseUnit = {
       hint: "wǒ yào jiāzhí",
     },
     {
-      id: "u9-ex5",
+      id: "unit-11-ex5",
       type: "comprehension",
       question: "Que peut-on faire avec une 悠遊卡 ?",
       correctAnswer: "Payer le MRT, le bus, les convenience stores et le YouBike",
@@ -485,7 +485,7 @@ export const unit11: CourseUnit = {
       ],
     },
     {
-      id: "u9-ex6",
+      id: "unit-11-ex6",
       type: "fill-blank",
       question: "___了！(On est arrivé !)",
       correctAnswer: "到",
@@ -495,7 +495,7 @@ export const unit11: CourseUnit = {
       hint: "Quel verbe signifie « arriver » ?",
     },
     {
-      id: "u09-listen",
+      id: "unit-11-ex7",
       type: "listen",
       question: "請問到台北101要坐幾號線？",
       correctAnswer: "Pour aller à Taipei 101, quelle ligne je prends ?",

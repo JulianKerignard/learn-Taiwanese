@@ -238,7 +238,7 @@ export const unit81: CourseUnit = {
   vocabulary: [
     {
       character: "衣服",
-      pinyin: "yīfu",
+      pinyin: "yīfú",
       zhuyin: "ㄧ ㄈㄨˊ",
       french: "Vêtement(s)",
       english: "Clothes",
@@ -251,7 +251,7 @@ export const unit81: CourseUnit = {
     {
       character: "褲子",
       pinyin: "kùzi",
-      zhuyin: "ㄎㄨˋ ㄗ˙",
+      zhuyin: "ㄎㄨˋ ˙ㄗ",
       french: "Pantalon",
       english: "Pants, trousers",
       example: {
@@ -263,7 +263,7 @@ export const unit81: CourseUnit = {
     {
       character: "裙子",
       pinyin: "qúnzi",
-      zhuyin: "ㄑㄩㄣˊ ㄗ˙",
+      zhuyin: "ㄑㄩㄣˊ ˙ㄗ",
       french: "Jupe",
       english: "Skirt",
       example: {
@@ -275,7 +275,7 @@ export const unit81: CourseUnit = {
     {
       character: "鞋子",
       pinyin: "xiézi",
-      zhuyin: "ㄒㄧㄝˊ ㄗ˙",
+      zhuyin: "ㄒㄧㄝˊ ˙ㄗ",
       french: "Chaussures",
       english: "Shoes",
       example: {
@@ -287,7 +287,7 @@ export const unit81: CourseUnit = {
     {
       character: "帽子",
       pinyin: "màozi",
-      zhuyin: "ㄇㄠˋ ㄗ˙",
+      zhuyin: "ㄇㄠˋ ˙ㄗ",
       french: "Chapeau, casquette",
       english: "Hat, cap",
       example: {
@@ -420,7 +420,7 @@ export const unit81: CourseUnit = {
 
   exercises: [
     {
-      id: "u81-ex1",
+      id: "unit-81-ex1",
       type: "comprehension",
       question: "Pourquoi est-ce que commenter le physique de quelqu'un est normal à Taiwan ?",
       correctAnswer: "C'est considéré comme une observation amicale, pas une critique",
@@ -432,7 +432,7 @@ export const unit81: CourseUnit = {
       ],
     },
     {
-      id: "u81-ex2",
+      id: "unit-81-ex2",
       type: "fill-blank",
       question: "她___得很漂亮。(Elle est très jolie.)",
       correctAnswer: "長",
@@ -443,7 +443,7 @@ export const unit81: CourseUnit = {
       hintZhuyin: "Le verbe utilisé dans la structure de description physique : ...得很...",
     },
     {
-      id: "u81-ex3",
+      id: "unit-81-ex3",
       type: "translate",
       question: "Comment dit-on « Est-ce que je peux essayer ce vêtement ? » ?",
       correctAnswer: "我可以試穿這件衣服嗎？",
@@ -467,7 +467,7 @@ export const unit81: CourseUnit = {
       ],
     },
     {
-      id: "u81-ex4",
+      id: "unit-81-ex4",
       type: "comprehension",
       question: "Quel classificateur utilise-t-on pour les pantalons ?",
       correctAnswer: "條 (tiáo)",
@@ -476,7 +476,7 @@ export const unit81: CourseUnit = {
       optionsZhuyin: ["ㄊㄧㄠˊ", "ㄐㄧㄢˋ", "ㄕㄨㄤ", "ㄉㄧㄥˇ"],
     },
     {
-      id: "u81-ex5",
+      id: "unit-81-ex5",
       type: "fill-blank",
       question: "你穿___色的衣服很好看。(Tu es très bien en rouge.)",
       correctAnswer: "紅",
@@ -487,7 +487,7 @@ export const unit81: CourseUnit = {
       hintZhuyin: "La couleur porte-bonheur en Chine et à Taiwan.",
     },
     {
-      id: "u81-ex6",
+      id: "unit-81-ex6",
       type: "translate",
       question: "Comment dit-on « Ce pantalon est trop petit, vous avez plus grand ? » ?",
       correctAnswer: "這條褲子太小了，有沒有大一點的？",
@@ -504,14 +504,14 @@ export const unit81: CourseUnit = {
         "yǒu méiyǒu kùzi tài xiǎo le?",
       ],
       optionsZhuyin: [
-        "ㄓㄜˋ ㄊㄧㄠˊ ㄎㄨˋ ㄗ˙ ㄊㄞˋ ㄒㄧㄠˇ ㄌㄜ˙ ㄧㄡˇ ㄇㄟˊ ㄧㄡˇ ㄉㄚˋ ㄧˋ ㄉㄧㄢˇ ㄉㄜ˙",
-        "ㄎㄨˋ ㄗ˙ ㄊㄞˋ ㄉㄚˋ ㄌㄜ˙ ㄧㄡˇ ㄒㄧㄠˇ ㄧˋ ㄉㄧㄢˇ ㄉㄜ˙ ㄇㄚ˙",
-        "ㄨㄛˇ ㄒㄧㄤˇ ㄧㄠˋ ㄉㄚˋ ㄎㄨˋ ㄗ˙ ㄊㄞˋ ㄒㄧㄠˇ ㄌㄜ˙",
-        "ㄧㄡˇ ㄇㄟˊ ㄧㄡˇ ㄎㄨˋ ㄗ˙ ㄊㄞˋ ㄒㄧㄠˇ ㄌㄜ˙",
+        "ㄓㄜˋ ㄊㄧㄠˊ ㄎㄨˋ ˙ㄗ ㄊㄞˋ ㄒㄧㄠˇ ㄌㄜ˙ ㄧㄡˇ ㄇㄟˊ ㄧㄡˇ ㄉㄚˋ ㄧˋ ㄉㄧㄢˇ ㄉㄜ˙",
+        "ㄎㄨˋ ˙ㄗ ㄊㄞˋ ㄉㄚˋ ㄌㄜ˙ ㄧㄡˇ ㄒㄧㄠˇ ㄧˋ ㄉㄧㄢˇ ㄉㄜ˙ ㄇㄚ˙",
+        "ㄨㄛˇ ㄒㄧㄤˇ ㄧㄠˋ ㄉㄚˋ ㄎㄨˋ ˙ㄗ ㄊㄞˋ ㄒㄧㄠˇ ㄌㄜ˙",
+        "ㄧㄡˇ ㄇㄟˊ ㄧㄡˇ ㄎㄨˋ ˙ㄗ ㄊㄞˋ ㄒㄧㄠˇ ㄌㄜ˙",
       ],
     },
     {
-      id: "u81-ex7",
+      id: "unit-81-ex7",
       type: "listen",
       question: "Écoutez et choisissez la bonne traduction de : 他以前很瘦，現在比較胖了。",
       correctAnswer: "Il était mince avant, maintenant il est un peu plus gros.",
@@ -523,7 +523,7 @@ export const unit81: CourseUnit = {
       ],
     },
     {
-      id: "u81-ex8",
+      id: "unit-81-ex8",
       type: "fill-blank",
       question: "我需要一___新鞋子。(J'ai besoin d'une paire de chaussures neuves.)",
       correctAnswer: "雙",

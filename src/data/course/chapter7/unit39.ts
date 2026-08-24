@@ -223,7 +223,7 @@ export const unit39: CourseUnit = {
   exercises: [
     // --- 5 exercices "listen" ---
     {
-      id: "u39-ex1",
+      id: "unit-39-ex1",
       type: "listen",
       question:
         "Écoute : 「請問，捷運站怎麼走？」— Que demande cette personne ?",
@@ -236,7 +236,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex2",
+      id: "unit-39-ex2",
       type: "listen",
       question:
         "Écoute : 「我想要一杯珍珠奶茶，半糖少冰。」— Que commande cette personne ?",
@@ -249,7 +249,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex3",
+      id: "unit-39-ex3",
       type: "listen",
       question:
         "Écoute : 「他昨天沒來上班，因為他生病了。」— Pourquoi est-il absent ?",
@@ -262,7 +262,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex4",
+      id: "unit-39-ex4",
       type: "listen",
       question:
         "Écoute : 「這件衣服太小了，有沒有大一點的？」— Que veut cette personne ?",
@@ -275,7 +275,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex5",
+      id: "unit-39-ex5",
       type: "listen",
       question:
         "Écoute : 「你會說中文嗎？」「會，但是說得不太好。」— Que dit cette personne sur son niveau ?",
@@ -289,7 +289,7 @@ export const unit39: CourseUnit = {
     },
     // --- 5 exercices "comprehension" ---
     {
-      id: "u39-ex6",
+      id: "unit-39-ex6",
       type: "comprehension",
       question:
         "Texte : 「小明每天早上七點起床，先吃早餐，再坐捷運去上班。他的公司在台北101旁邊。」\n\nQuestion : 小明怎麼去上班？",
@@ -302,7 +302,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex7",
+      id: "unit-39-ex7",
       type: "comprehension",
       question:
         "Texte : 「今天是星期六，天氣很好。我跟朋友約好下午去爬山，晚上一起去夜市吃東西。」\n\nQuestion : 他們晚上做什麼？",
@@ -315,7 +315,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex8",
+      id: "unit-39-ex8",
       type: "comprehension",
       question:
         "Texte : 「醫生說我感冒了，要多喝水、多休息，不可以吃太辣的東西。」\n\nQuestion : 醫生說不可以做什麼？",
@@ -328,7 +328,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex9",
+      id: "unit-39-ex9",
       type: "comprehension",
       question:
         "Texte : 「這家餐廳的牛肉麵很有名，可是要排隊一個小時。我覺得太久了，我們去別家吧。」\n\nQuestion : 為什麼不去這家？",
@@ -341,7 +341,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex10",
+      id: "unit-39-ex10",
       type: "comprehension",
       question:
         "Texte : 「我在台灣住了兩年，去過台南三次。台南的小吃比台北便宜，而且更好吃。」\n\nQuestion : 他覺得台南的小吃怎麼樣？",
@@ -355,7 +355,7 @@ export const unit39: CourseUnit = {
     },
     // --- 5 exercices "fill-blank" ---
     {
-      id: "u39-ex11",
+      id: "unit-39-ex11",
       type: "fill-blank",
       question: "我昨天___三個小時的中文。(J'ai étudié 3h de chinois hier.)",
       correctAnswer: "學了",
@@ -366,7 +366,7 @@ export const unit39: CourseUnit = {
       hintZhuyin: "Action accomplie dans le passé.",
     },
     {
-      id: "u39-ex12",
+      id: "unit-39-ex12",
       type: "fill-blank",
       question:
         "他跑得比我___。(Il court plus vite que moi.)",
@@ -378,7 +378,7 @@ export const unit39: CourseUnit = {
       hintZhuyin: "Comparaison avec ㄅㄧˇ : pas de ㄏㄣˇ ni de ㄌㄜ˙.",
     },
     {
-      id: "u39-ex13",
+      id: "unit-39-ex13",
       type: "fill-blank",
       question:
         "你___去過日本嗎？(Tu es déjà allé au Japon ?)",
@@ -390,7 +390,7 @@ export const unit39: CourseUnit = {
       hintZhuyin: "Question sur l'expérience passée.",
     },
     {
-      id: "u39-ex14",
+      id: "unit-39-ex14",
       type: "fill-blank",
       question:
         "___天氣不好，我們___不去爬山了。(S'il fait mauvais, on n'ira pas randonner.)",
@@ -402,7 +402,7 @@ export const unit39: CourseUnit = {
       hintZhuyin: "Condition : si... alors...",
     },
     {
-      id: "u39-ex15",
+      id: "unit-39-ex15",
       type: "fill-blank",
       question:
         "請給我兩___水。(Donnez-moi deux bouteilles d'eau.)",
@@ -415,7 +415,7 @@ export const unit39: CourseUnit = {
     },
     // --- 5 exercices "translate" ---
     {
-      id: "u39-ex16",
+      id: "unit-39-ex16",
       type: "translate",
       question:
         "Traduis en chinois : « Bien que ce restaurant soit cher, la nourriture est très bonne. »",
@@ -428,7 +428,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex17",
+      id: "unit-39-ex17",
       type: "translate",
       question:
         "Traduis en chinois : « Je suis à Taiwan depuis six mois. »",
@@ -441,7 +441,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex18",
+      id: "unit-39-ex18",
       type: "translate",
       question:
         "Traduis en chinois : « Ce plat est le plus épicé du menu. »",
@@ -454,7 +454,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex19",
+      id: "unit-39-ex19",
       type: "translate",
       question:
         "Traduis en chinois : « Il ne faut pas oublier de prendre un parapluie. »",
@@ -467,7 +467,7 @@ export const unit39: CourseUnit = {
       ],
     },
     {
-      id: "u39-ex20",
+      id: "unit-39-ex20",
       type: "translate",
       question:
         "Traduis en chinois : « Je voudrais aller à la gare, combien ça coûte en taxi ? »",

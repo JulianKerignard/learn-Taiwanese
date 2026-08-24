@@ -192,7 +192,7 @@ export const unit35: CourseUnit = {
 
   exercises: [
     {
-      id: "u35-ex1",
+      id: "unit-35-ex1",
       type: "comprehension",
       question: "Dans le message LINE, où veut aller l'ami ?",
       correctAnswer: "À Jiufen (九份)",
@@ -204,7 +204,7 @@ export const unit35: CourseUnit = {
       ],
     },
     {
-      id: "u35-ex2",
+      id: "unit-35-ex2",
       type: "comprehension",
       question:
         "Comment proposent-ils d'aller à Jiufen ?",
@@ -217,7 +217,7 @@ export const unit35: CourseUnit = {
       ],
     },
     {
-      id: "u35-ex3",
+      id: "unit-35-ex3",
       type: "comprehension",
       question: "À quelle heure veut-il partir ?",
       correctAnswer: "14h (下午兩點)",
@@ -229,7 +229,7 @@ export const unit35: CourseUnit = {
       ],
     },
     {
-      id: "u35-ex4",
+      id: "unit-35-ex4",
       type: "comprehension",
       question: "Dans l'annonce 591, combien coûte le loyer par mois ?",
       correctAnswer: "8 000 NT$, eau et électricité incluses",
@@ -241,7 +241,7 @@ export const unit35: CourseUnit = {
       ],
     },
     {
-      id: "u35-ex5",
+      id: "unit-35-ex5",
       type: "comprehension",
       question: "Dans l'annonce 591, peut-on avoir un animal de compagnie ?",
       correctAnswer: "Oui, les animaux sont autorisés (可以養寵物)",
@@ -253,7 +253,7 @@ export const unit35: CourseUnit = {
       ],
     },
     {
-      id: "u35-ex6",
+      id: "unit-35-ex6",
       type: "comprehension",
       question: "Dans le post Instagram, qu'ont-ils fait EN PREMIER à Tamsui ?",
       correctAnswer: "Ils ont mangé du agei (先吃了阿給)",
@@ -265,7 +265,7 @@ export const unit35: CourseUnit = {
       ],
     },
     {
-      id: "u35-ex7",
+      id: "unit-35-ex7",
       type: "comprehension",
       question:
         "Dans le post Instagram, que signifie 超漂亮的 ?",
@@ -278,7 +278,7 @@ export const unit35: CourseUnit = {
       ],
     },
     {
-      id: "u35-ex8",
+      id: "unit-35-ex8",
       type: "comprehension",
       question: "Dans l'email, pourquoi Xiao Lin est-il absent ?",
       correctAnswer: "Il ne se sent pas bien, il a probablement un rhume (身體不舒服，可能感冒了)",
@@ -290,7 +290,7 @@ export const unit35: CourseUnit = {
       ],
     },
     {
-      id: "u35-ex9",
+      id: "unit-35-ex9",
       type: "comprehension",
       question: "Où est le rapport mentionné dans l'email ?",
       correctAnswer: "Sur le bureau du manager Wang (放在您的桌上)",
@@ -302,7 +302,7 @@ export const unit35: CourseUnit = {
       ],
     },
     {
-      id: "u35-ex10",
+      id: "unit-35-ex10",
       type: "comprehension",
       question:
         "Quelle est la surface approximative du studio dans l'annonce 591, en mètres carrés ?",

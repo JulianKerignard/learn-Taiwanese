@@ -248,7 +248,7 @@ export const unit13: CourseUnit = {
 
   exercises: [
     {
-      id: "u13-ex1",
+      id: "unit-13-ex1",
       type: "comprehension",
       question: "Quelle est la structure de base d'une phrase en mandarin ?",
       correctAnswer: "SVO (Sujet-Verbe-Objet), comme en français",
@@ -260,7 +260,7 @@ export const unit13: CourseUnit = {
       ],
     },
     {
-      id: "u13-ex2",
+      id: "unit-13-ex2",
       type: "comprehension",
       question: "Quelle est la différence entre 不 et 沒 ?",
       correctAnswer:
@@ -273,7 +273,7 @@ export const unit13: CourseUnit = {
       ],
     },
     {
-      id: "u13-ex3",
+      id: "unit-13-ex3",
       type: "fill-blank",
       question:
         "她___老師。(Elle est professeur.) Quel verbe utiliser ?",
@@ -284,7 +284,7 @@ export const unit13: CourseUnit = {
       hint: "Pour relier un sujet à un nom (profession), on utilise ce verbe.",
     },
     {
-      id: "u13-ex4",
+      id: "unit-13-ex4",
       type: "fill-blank",
       question:
         "台灣的食物___好吃。(La nourriture de Taiwan est délicieuse.) Quel mot manque ?",
@@ -295,7 +295,7 @@ export const unit13: CourseUnit = {
       hint: "En mandarin, les adjectifs s'utilisent avec ce mot comme lien.",
     },
     {
-      id: "u13-ex5",
+      id: "unit-13-ex5",
       type: "comprehension",
       question:
         "Comment forme-t-on une question A不A avec le verbe 要 ?",
@@ -308,7 +308,7 @@ export const unit13: CourseUnit = {
       ],
     },
     {
-      id: "u13-ex6",
+      id: "unit-13-ex6",
       type: "comprehension",
       question:
         "Comment se prononce 不要 (bùyào) à cause du sandhi ?",
@@ -321,7 +321,7 @@ export const unit13: CourseUnit = {
       ],
     },
     {
-      id: "u13-ex7",
+      id: "unit-13-ex7",
       type: "fill-blank",
       question: "我要買兩___書和三___筆。(Je veux acheter 2 livres et 3 stylos.)",
       correctAnswer: "本 / 枝",
@@ -329,7 +329,7 @@ export const unit13: CourseUnit = {
       hint: "Les livres sont reliés, les stylos sont fins et longs.",
     },
     {
-      id: "u13-ex8",
+      id: "unit-13-ex8",
       type: "fill-blank",
       question:
         "一___計程車 / 一___貓 / 一___衣服 (un taxi / un chat / un vêtement)",
@@ -338,7 +338,7 @@ export const unit13: CourseUnit = {
       hint: "Véhicule / animal / vêtement.",
     },
     {
-      id: "u13-ex9",
+      id: "unit-13-ex9",
       type: "translate",
       question: "Traduisez : « C'est trop cher ! »",
       correctAnswer: "太貴了！",
@@ -347,7 +347,7 @@ export const unit13: CourseUnit = {
       optionsZhuyin: ["ㄊㄞˋ ㄍㄨㄟˋ ㄌㄜ!", "ㄏㄣˇ ㄍㄨㄟˋ ㄌㄜ!", "ㄅㄨˋ ㄍㄨㄟˋ ㄌㄜ!", "ㄕˋ ㄍㄨㄟˋ ㄌㄜ!"],
     },
     {
-      id: "u13-ex10",
+      id: "unit-13-ex10",
       type: "translate",
       question: "Traduisez : « Tu veux ou tu ne veux pas boire du thé ? »",
       correctAnswer: "你要不要喝茶？",
@@ -366,7 +366,7 @@ export const unit13: CourseUnit = {
       optionsZhuyin: ["ㄋㄧˇ ㄧㄠˋ ㄅㄨˊ ㄧㄠˋ ㄏㄜ ㄔㄚˊ?", "ㄋㄧˇ ㄏㄜ ㄔㄚˊ ㄇㄚ?", "ㄋㄧˇ ㄅㄨˋ ㄏㄜ ㄔㄚˊ ㄇㄚ?", "ㄋㄧˇ ㄏㄜ ㄅㄨˋ ㄏㄜ ㄔㄚˊ ㄌㄜ?"],
     },
     {
-      id: "u13-ex11",
+      id: "unit-13-ex11",
       type: "comprehension",
       question:
         "Quel classificateur utiliser pour commander un bubble tea ?",
@@ -379,7 +379,7 @@ export const unit13: CourseUnit = {
       ],
     },
     {
-      id: "u13-ex12",
+      id: "unit-13-ex12",
       type: "comprehension",
       question:
         "Quand 一 (yī) se prononce-t-il au ton 2 (yí) ?",

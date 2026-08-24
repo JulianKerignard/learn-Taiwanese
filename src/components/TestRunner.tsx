@@ -7,7 +7,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Check,
-  X,
   RotateCcw,
   Trophy,
   AlertTriangle,

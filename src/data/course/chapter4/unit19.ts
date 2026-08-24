@@ -401,7 +401,7 @@ export const unit19: CourseUnit = {
 
   exercises: [
     {
-      id: "u15-ex1",
+      id: "unit-19-ex1",
       type: "fill-blank",
       question: "WiFi的___是什麼？(Quel est le mot de passe WiFi ?)",
       correctAnswer: "密碼",
@@ -412,7 +412,7 @@ export const unit19: CourseUnit = {
       hintZhuyin: "Quel mot signifie « mot de passe » ?",
     },
     {
-      id: "u15-ex2",
+      id: "unit-19-ex2",
       type: "translate",
       question: "Comment dit-on « Je voudrais acheter une carte SIM » ?",
       correctAnswer: "我要辦一張SIM卡",
@@ -421,7 +421,7 @@ export const unit19: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄅㄢˋ ㄧˋ ㄓㄤ SIM ㄎㄚˇ", "ㄨㄛˇ ㄧㄠˋ ㄇㄞˇ ㄧˊ ㄍㄜ˙ ㄕㄡˇ ㄐㄧ", "ㄨㄛˇ ㄒㄧㄤˇ ㄉㄚˇ ㄉㄧㄢˋ ㄏㄨㄚˋ", "ㄨㄛˇ ㄒㄩ ㄧㄠˋ ㄨㄤˇ ㄌㄨˋ"],
     },
     {
-      id: "u15-ex3",
+      id: "unit-19-ex3",
       type: "comprehension",
       question: "Que signifie 吃到飽 dans le contexte d'un forfait téléphone ?",
       correctAnswer: "Data illimitée (littéralement : manger jusqu'à satiété)",
@@ -433,7 +433,7 @@ export const unit19: CourseUnit = {
       ],
     },
     {
-      id: "u15-ex4",
+      id: "unit-19-ex4",
       type: "fill-blank",
       question: "我的手機沒電了，可以___嗎？(Mon tel n'a plus de batterie, je peux le charger ?)",
       correctAnswer: "充電",
@@ -444,7 +444,7 @@ export const unit19: CourseUnit = {
       hintZhuyin: "Quel mot signifie « charger (la batterie) » ?",
     },
     {
-      id: "u15-ex5",
+      id: "unit-19-ex5",
       type: "comprehension",
       question: "Pourquoi LINE est-il indispensable à Taiwan ?",
       correctAnswer: "Il remplace tout : messages, appels, paiement, et même la communication professionnelle",
@@ -456,7 +456,7 @@ export const unit19: CourseUnit = {
       ],
     },
     {
-      id: "u15-ex6",
+      id: "unit-19-ex6",
       type: "translate",
       question: "Que signifie 你有LINE嗎？加一下 ?",
       correctAnswer: "Tu as LINE ? Ajoutons-nous",

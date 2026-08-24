@@ -498,7 +498,7 @@ export const unit15: CourseUnit = {
 
   exercises: [
     {
-      id: "u15-ex1",
+      id: "unit-15-ex1",
       type: "fill-blank",
       question:
         "我昨天買___兩本書。(J'ai acheté deux livres hier.)",
@@ -509,7 +509,7 @@ export const unit15: CourseUnit = {
       hint: "Quelle particule marque l'accomplissement d'une action ?",
     },
     {
-      id: "u15-ex2",
+      id: "unit-15-ex2",
       type: "comprehension",
       question:
         "Pourquoi la phrase « 你吃了飯再去 » utilise 了 alors qu'il s'agit du futur ?",
@@ -523,7 +523,7 @@ export const unit15: CourseUnit = {
       ],
     },
     {
-      id: "u15-ex3",
+      id: "unit-15-ex3",
       type: "fill-blank",
       question: "她每天___早餐。(Elle mange le petit-déjeuner tous les jours.)",
       correctAnswer: "吃",
@@ -533,7 +533,7 @@ export const unit15: CourseUnit = {
       hint: "Est-ce une habitude ou un événement ponctuel ?",
     },
     {
-      id: "u15-ex4",
+      id: "unit-15-ex4",
       type: "translate",
       question: "Comment dit-on « Je n'ai pas mangé » ?",
       correctAnswer: "我沒吃",
@@ -542,7 +542,7 @@ export const unit15: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄇㄟˊ ㄔ", "ㄨㄛˇ ㄅㄨˋ ㄔ ㄌㄜ", "ㄨㄛˇ ㄇㄟˊ ㄔ ㄌㄜ", "ㄨㄛˇ ㄅㄨˋ ㄌㄜ ㄔ"],
     },
     {
-      id: "u15-ex5",
+      id: "unit-15-ex5",
       type: "comprehension",
       question: "Quelle phrase est INCORRECTE ?",
       correctAnswer: "我沒去了學校",
@@ -563,7 +563,7 @@ export const unit15: CourseUnit = {
       hintZhuyin: "沒 et 了 peuvent-ils coexister dans une négation du passé ?",
     },
     {
-      id: "u15-ex6",
+      id: "unit-15-ex6",
       type: "fill-blank",
       question: "我們看___一部很好看的電影。(Nous avons vu un très bon film.)",
       correctAnswer: "了",
@@ -573,7 +573,7 @@ export const unit15: CourseUnit = {
       hint: "Événement spécifique accompli → quelle particule ?",
     },
     {
-      id: "u15-ex7",
+      id: "unit-15-ex7",
       type: "translate",
       question: "Que signifie « 我是法國人 » et pourquoi n'y a-t-il pas de 了 ?",
       correctAnswer:
@@ -586,7 +586,7 @@ export const unit15: CourseUnit = {
       ],
     },
     {
-      id: "u15-ex8",
+      id: "unit-15-ex8",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 了 / 三碗 / 飯 / 我 / 吃",
@@ -596,7 +596,7 @@ export const unit15: CourseUnit = {
       hintZhuyin: "Structure : Sujet + Verbe + 了 + Quantité + Nom",
     },
     {
-      id: "u15-reorder-2",
+      id: "unit-15-ex9",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 買 / 了 / 她 / 一件 / 衣服",
@@ -606,7 +606,7 @@ export const unit15: CourseUnit = {
       hintZhuyin: "Structure : Sujet + Verbe + 了 + Quantité + Nom",
     },
     {
-      id: "u15-translate-new1",
+      id: "unit-15-ex10",
       type: "translate",
       question: "Comment dit-on « J'ai mange » ?",
       correctAnswer: "我吃了",
@@ -615,7 +615,7 @@ export const unit15: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄔ ㄌㄜ", "ㄨㄛˇ ㄔ ㄍㄨㄛˋ", "ㄨㄛˇ ㄗㄞˋ ㄔ", "ㄨㄛˇ ㄔ"],
     },
     {
-      id: "u15-translate-new2",
+      id: "unit-15-ex11",
       type: "translate",
       question: "Comment dit-on « Il est parti » ?",
       correctAnswer: "他走了",
@@ -624,7 +624,7 @@ export const unit15: CourseUnit = {
       optionsZhuyin: ["ㄊㄚ ㄗㄡˇ ㄌㄜ", "ㄊㄚ ㄗㄡˇ ㄍㄨㄛˋ", "ㄊㄚ ㄗㄞˋ ㄗㄡˇ", "ㄊㄚ ㄇㄟˊ ㄗㄡˇ ㄌㄜ"],
     },
     {
-      id: "u15-translate-new3",
+      id: "unit-15-ex12",
       type: "translate",
       question: "Comment dit-on « Nous avons achete deux billets » ?",
       correctAnswer: "我們買了兩張票",
@@ -633,7 +633,7 @@ export const unit15: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄇㄣ ㄇㄞˇ ㄌㄜ ㄌㄧㄤˇ ㄓㄤ ㄆㄧㄠˋ", "ㄨㄛˇ ㄇㄣ ㄇㄞˇ ㄌㄧㄤˇ ㄓㄤ ㄆㄧㄠˋ ㄌㄜ", "ㄨㄛˇ ㄇㄣ ㄇㄟˊ ㄇㄞˇ ㄌㄜ ㄆㄧㄠˋ", "ㄨㄛˇ ㄇㄣ ㄗㄞˋ ㄇㄞˇ ㄌㄧㄤˇ ㄓㄤ ㄆㄧㄠˋ"],
     },
     {
-      id: "u15-comp-new1",
+      id: "unit-15-ex13",
       type: "comprehension",
       question: "La phrase « 我每天吃了早餐 » est-elle correcte ?",
       correctAnswer: "Non — 每天 indique une habitude, donc pas de 了. Correct : 我每天吃早餐",
@@ -645,7 +645,7 @@ export const unit15: CourseUnit = {
       ],
     },
     {
-      id: "u15-comp-new2",
+      id: "unit-15-ex14",
       type: "comprehension",
       question: "La phrase « 她喜歡了台灣 » est-elle correcte pour dire « elle aime Taiwan » ?",
       correctAnswer: "Non — 喜歡 est un verbe d'etat, pas de 了 sauf changement de situation",
@@ -657,7 +657,7 @@ export const unit15: CourseUnit = {
       ],
     },
     {
-      id: "u15-comp-new3",
+      id: "unit-15-ex15",
       type: "comprehension",
       question: "La phrase « 我沒有去了學校 » est-elle correcte ?",
       correctAnswer: "Non — 沒有 et 了 s'excluent. Correct : 我沒有去學校",

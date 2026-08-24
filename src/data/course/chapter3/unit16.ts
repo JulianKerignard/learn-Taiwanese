@@ -588,7 +588,7 @@ export const unit16: CourseUnit = {
 
   exercises: [
     {
-      id: "u16-ex1",
+      id: "unit-16-ex1",
       type: "fill-blank",
       question:
         "你吃___臭豆腐嗎？(As-tu déjà mangé du tofu puant ?)",
@@ -599,7 +599,7 @@ export const unit16: CourseUnit = {
       hint: "On demande une expérience de vie, pas un événement spécifique.",
     },
     {
-      id: "u16-ex2",
+      id: "unit-16-ex2",
       type: "comprehension",
       question:
         "Quelle est la différence entre 我吃了臭豆腐 et 我吃過臭豆腐 ?",
@@ -613,7 +613,7 @@ export const unit16: CourseUnit = {
       ],
     },
     {
-      id: "u16-ex3",
+      id: "unit-16-ex3",
       type: "fill-blank",
       question:
         "我___說中文。(Je sais parler chinois.)",
@@ -624,7 +624,7 @@ export const unit16: CourseUnit = {
       hint: "Quel mot exprime une capacité acquise ?",
     },
     {
-      id: "u16-ex4",
+      id: "unit-16-ex4",
       type: "translate",
       question: "Comment dit-on « Je n'ai jamais mangé de xiaolongbao » ?",
       correctAnswer: "我沒吃過小籠包",
@@ -643,7 +643,7 @@ export const unit16: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄇㄟˊ ㄔ ㄍㄨㄛˋ ㄒㄧㄠˇ ㄌㄨㄥˊ ㄅㄠ", "ㄨㄛˇ ㄇㄟˊ ㄔ ㄌㄜ ㄒㄧㄠˇ ㄌㄨㄥˊ ㄅㄠ", "ㄨㄛˇ ㄅㄨˋ ㄔ ㄍㄨㄛˋ ㄒㄧㄠˇ ㄌㄨㄥˊ ㄅㄠ", "ㄨㄛˇ ㄅㄨˊ ㄏㄨㄟˋ ㄔ ㄒㄧㄠˇ ㄌㄨㄥˊ ㄅㄠ"],
     },
     {
-      id: "u16-ex5",
+      id: "unit-16-ex5",
       type: "fill-blank",
       question:
         "明天___下雨。(Il pleuvra demain.)",
@@ -654,7 +654,7 @@ export const unit16: CourseUnit = {
       hint: "Quel mot exprime le futur probable ?",
     },
     {
-      id: "u16-ex6",
+      id: "unit-16-ex6",
       type: "comprehension",
       question:
         "Dans la phrase 我去過日本，上次去了東京，下次會去大阪, pourquoi trois particules différentes ?",
@@ -668,7 +668,7 @@ export const unit16: CourseUnit = {
       ],
     },
     {
-      id: "u16-ex7",
+      id: "unit-16-ex7",
       type: "fill-blank",
       question:
         "___下雨了，___我沒出門。(Parce qu'il a plu, je ne suis pas sorti.)",
@@ -677,7 +677,7 @@ export const unit16: CourseUnit = {
       hint: "Quelle structure exprime cause-conséquence ?",
     },
     {
-      id: "u16-ex8",
+      id: "unit-16-ex8",
       type: "translate",
       question: "Que signifie 我不會開車 ?",
       correctAnswer: "Je ne sais pas conduire",
@@ -689,7 +689,7 @@ export const unit16: CourseUnit = {
       ],
     },
     {
-      id: "u16-reorder-1",
+      id: "unit-16-ex9",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 過 / 你 / 嗎 / 去 / 日本",
@@ -699,7 +699,7 @@ export const unit16: CourseUnit = {
       hintZhuyin: "Structure : Sujet + Verbe + 過 + Complément + 嗎",
     },
     {
-      id: "u16-reorder-2",
+      id: "unit-16-ex10",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 會 / 明天 / 下雨 / 我 / 不 / 覺得",

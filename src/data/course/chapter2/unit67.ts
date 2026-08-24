@@ -431,7 +431,7 @@ export const unit67: CourseUnit = {
 
   exercises: [
     {
-      id: "u67-ex1",
+      id: "unit-67-ex1",
       type: "comprehension",
       question:
         "Un caissier vous demande 要不要加熱？. Que vous propose-t-il ?",
@@ -444,7 +444,7 @@ export const unit67: CourseUnit = {
       ],
     },
     {
-      id: "u67-ex2",
+      id: "unit-67-ex2",
       type: "fill-blank",
       question: "請___我加熱這個便當。(S'il vous plaît, réchauffez-moi ce bento.)",
       correctAnswer: "幫",
@@ -454,7 +454,7 @@ export const unit67: CourseUnit = {
       hint: "Quel verbe signifie « aider » et s'utilise pour demander un service ?",
     },
     {
-      id: "u67-ex3",
+      id: "unit-67-ex3",
       type: "translate",
       question: "Que signifie 一共多少錢？",
       correctAnswer: "Combien ça coûte au total ?",
@@ -466,7 +466,7 @@ export const unit67: CourseUnit = {
       ],
     },
     {
-      id: "u67-ex4",
+      id: "unit-67-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 發票要不要？",
       correctAnswer: "Vous voulez le reçu ?",
@@ -478,7 +478,7 @@ export const unit67: CourseUnit = {
       ],
     },
     {
-      id: "u67-ex5",
+      id: "unit-67-ex5",
       type: "comprehension",
       question:
         "Pourquoi les Taiwanais gardent-ils précieusement leurs 發票 (reçus) ?",
@@ -492,7 +492,7 @@ export const unit67: CourseUnit = {
       ],
     },
     {
-      id: "u67-ex6",
+      id: "unit-67-ex6",
       type: "fill-blank",
       question: "你要___個茶葉蛋？(Tu veux combien d'œufs au thé ?)",
       correctAnswer: "幾",
@@ -502,7 +502,7 @@ export const unit67: CourseUnit = {
       hint: "Quel mot interrogatif s'utilise avec un classificateur pour les petites quantités ?",
     },
     {
-      id: "u67-ex7",
+      id: "unit-67-ex7",
       type: "translate",
       question: "Comment dire « Je veux récupérer un colis au convenience store » ?",
       correctAnswer: "我要在超商取件。",
@@ -514,7 +514,7 @@ export const unit67: CourseUnit = {
       ],
     },
     {
-      id: "u67-ex8",
+      id: "unit-67-ex8",
       type: "comprehension",
       question:
         "Lequel de ces services ne peut PAS être fait dans un convenience store taiwanais ?",

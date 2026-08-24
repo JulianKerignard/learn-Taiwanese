@@ -411,7 +411,7 @@ export const unit02: CourseUnit = {
 
   exercises: [
     {
-      id: "u2-ex1",
+      id: "unit-02-ex1",
       type: "comprehension",
       question: "Combien de tons principaux a le mandarin ?",
       correctAnswer: "4 tons principaux + 1 ton neutre",
@@ -423,14 +423,14 @@ export const unit02: CourseUnit = {
       ],
     },
     {
-      id: "u2-ex2",
+      id: "unit-02-ex2",
       type: "comprehension",
       question: "Que signifie mǎ (ton 3) ?",
       correctAnswer: "Cheval",
       options: ["Cheval", "Maman", "Chanvre", "Insulter"],
     },
     {
-      id: "u2-ex3",
+      id: "unit-02-ex3",
       type: "comprehension",
       question:
         "Comment se prononce réellement 你好 (nǐ hǎo) à cause du sandhi tonal ?",
@@ -443,14 +443,14 @@ export const unit02: CourseUnit = {
       ],
     },
     {
-      id: "u2-ex4",
+      id: "unit-02-ex4",
       type: "comprehension",
       question: "Comment se prononce 不 devant un ton 4 (comme dans 不是) ?",
       correctAnswer: "bú (ton 2)",
       options: ["bú (ton 2)", "bù (ton 4)", "bū (ton 1)", "bǔ (ton 3)"],
     },
     {
-      id: "u2-ex5",
+      id: "unit-02-ex5",
       type: "translate",
       question: "Quelle est la différence entre 買 (mǎi) et 賣 (mài) ?",
       correctAnswer: "買 = acheter (ton 3), 賣 = vendre (ton 4)",
@@ -462,7 +462,7 @@ export const unit02: CourseUnit = {
       ],
     },
     {
-      id: "u2-ex6",
+      id: "unit-02-ex6",
       type: "fill-blank",
       question:
         "我要___杯水。(Je veux un verre d'eau.) — Comment se prononce 一 ici ?",
@@ -477,7 +477,7 @@ export const unit02: CourseUnit = {
       hintZhuyin: "一 devant les tons 1, 2 et 3 se prononce en ton 4.",
     },
     {
-      id: "u2-listen-1",
+      id: "unit-02-ex7",
       type: "listen",
       question: "買 — Quel ton entendez-vous ?",
       correctAnswer: "Ton 3 (descendant puis remontant)",
@@ -490,7 +490,7 @@ export const unit02: CourseUnit = {
       hint: "mǎi",
     },
     {
-      id: "u2-listen-2",
+      id: "unit-02-ex8",
       type: "listen",
       question: "湯 — Quel ton entendez-vous ?",
       correctAnswer: "Ton 1 (haut et plat)",
@@ -503,7 +503,7 @@ export const unit02: CourseUnit = {
       hint: "tāng",
     },
     {
-      id: "u2-comp-1",
+      id: "unit-02-ex9",
       type: "comprehension",
       question: "Quelle phrase est correcte pour dire « acheter » ?",
       correctAnswer: "買 mǎi (ton 3)",
@@ -516,7 +516,7 @@ export const unit02: CourseUnit = {
       hint: "Attention a ne pas confondre acheter et vendre — seul le ton change.",
     },
     {
-      id: "u2-comp-2",
+      id: "unit-02-ex10",
       type: "comprehension",
       question: "Vous entendez « shuìjiào ». Que signifie ce mot ?",
       correctAnswer: "Dormir (睡覺, tons 4-4)",
@@ -530,7 +530,7 @@ export const unit02: CourseUnit = {
       hintZhuyin: "睡覺 (tons 4-4) = dormir. 水餃 (tons 3-3) = raviolis. Ne pas confondre !",
     },
     {
-      id: "u2-fill-1",
+      id: "unit-02-ex11",
       type: "fill-blank",
       question: "Je veux ___ (acheter) un cafe. Quel est le bon ton ?",
       correctAnswer: "買 mǎi (ton 3)",
@@ -543,7 +543,7 @@ export const unit02: CourseUnit = {
       hint: "Acheter = ton 3. Vendre = ton 4.",
     },
     {
-      id: "u2-fill-2",
+      id: "unit-02-ex12",
       type: "fill-blank",
       question: "Je voudrais une ___ (soupe). Quel est le bon ton ?",
       correctAnswer: "湯 tāng (ton 1)",

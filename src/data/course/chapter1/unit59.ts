@@ -228,7 +228,7 @@ export const unit59: CourseUnit = {
     {
       character: "褲子",
       pinyin: "kùzi",
-      zhuyin: "ㄎㄨˋ ㄗˇ",
+      zhuyin: "ㄎㄨˋ ˙ㄗ",
       french: "Pantalon",
       english: "Pants / Trousers",
       example: {
@@ -240,7 +240,7 @@ export const unit59: CourseUnit = {
     {
       character: "裙子",
       pinyin: "qúnzi",
-      zhuyin: "ㄑㄩㄣˊ ㄗˇ",
+      zhuyin: "ㄑㄩㄣˊ ˙ㄗ",
       french: "Jupe",
       english: "Skirt",
       example: {
@@ -252,7 +252,7 @@ export const unit59: CourseUnit = {
     {
       character: "鞋子",
       pinyin: "xiézi",
-      zhuyin: "ㄒㄧㄝˊ ㄗˇ",
+      zhuyin: "ㄒㄧㄝˊ ˙ㄗ",
       french: "Chaussures",
       english: "Shoes",
       example: {
@@ -264,7 +264,7 @@ export const unit59: CourseUnit = {
     {
       character: "帽子",
       pinyin: "màozi",
-      zhuyin: "ㄇㄠˋ ㄗˇ",
+      zhuyin: "ㄇㄠˋ ˙ㄗ",
       french: "Chapeau / Casquette",
       english: "Hat / Cap",
       example: {
@@ -397,7 +397,7 @@ export const unit59: CourseUnit = {
 
   exercises: [
     {
-      id: "u59-ex1",
+      id: "unit-59-ex1",
       type: "comprehension",
       question:
         "Quelle est la différence entre 穿 (chuān) et 戴 (dài) ?",
@@ -411,7 +411,7 @@ export const unit59: CourseUnit = {
       ],
     },
     {
-      id: "u59-ex2",
+      id: "unit-59-ex2",
       type: "fill-blank",
       question: "她___一件紅色的裙子。(Elle porte une jupe rouge.)",
       correctAnswer: "穿",
@@ -421,7 +421,7 @@ export const unit59: CourseUnit = {
       hint: "Quel verbe utilise-t-on pour les vêtements qu'on enfile ?",
     },
     {
-      id: "u59-ex3",
+      id: "unit-59-ex3",
       type: "translate",
       question: "Que signifie 我可以試穿嗎 ?",
       correctAnswer: "Est-ce que je peux essayer (ce vêtement) ?",
@@ -433,7 +433,7 @@ export const unit59: CourseUnit = {
       ],
     },
     {
-      id: "u59-ex4",
+      id: "unit-59-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 他戴眼鏡。",
       correctAnswer: "Il porte des lunettes.",
@@ -445,7 +445,7 @@ export const unit59: CourseUnit = {
       ],
     },
     {
-      id: "u59-ex5",
+      id: "unit-59-ex5",
       type: "fill-blank",
       question: "我要買一___褲子。(Je veux acheter un pantalon.)",
       correctAnswer: "條",
@@ -455,7 +455,7 @@ export const unit59: CourseUnit = {
       hint: "Quel classificateur utilise-t-on pour les pantalons (vêtements longs) ?",
     },
     {
-      id: "u59-ex6",
+      id: "unit-59-ex6",
       type: "comprehension",
       question:
         "Quel classificateur utilise-t-on pour compter les chaussures ?",
@@ -468,7 +468,7 @@ export const unit59: CourseUnit = {
       ],
     },
     {
-      id: "u59-ex7",
+      id: "unit-59-ex7",
       type: "translate",
       question: "Comment dire « Il fait froid aujourd'hui, tu dois porter un manteau » ?",
       correctAnswer: "今天很冷，你要穿外套。",
@@ -480,7 +480,7 @@ export const unit59: CourseUnit = {
       ],
     },
     {
-      id: "u59-ex8",
+      id: "unit-59-ex8",
       type: "comprehension",
       question:
         "Dans le dialogue, que propose la vendeuse à Lucas à la fin ?",

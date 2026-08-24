@@ -124,8 +124,6 @@ export const unit86: CourseUnit = {
     },
   ],
 
-  dialogue: undefined,
-
   keyPoints: [
     "L'ordre des mots chinois : Temps + Lieu + Sujet + Verbe + Objet. Les compléments de temps se placent AVANT le verbe.",
     "Avec 把, le verbe doit toujours être suivi d'un complément (résultatif, directionnel, 了).",
@@ -138,7 +136,7 @@ export const unit86: CourseUnit = {
 
   exercises: [
     {
-      id: "u86-ex1",
+      id: "unit-86-ex1",
       type: "translate",
       question: "Traduisez : « Je ne mange pas de viande, je suis végétarien. »",
       correctAnswer: "我不吃肉，我吃素",
@@ -162,7 +160,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex2",
+      id: "unit-86-ex2",
       type: "translate",
       question: "Traduisez : « Est-ce que tu sais où est la station de MRT la plus proche ? »",
       correctAnswer: "你知道最近的捷運站在哪裡嗎",
@@ -186,7 +184,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex3",
+      id: "unit-86-ex3",
       type: "translate",
       question: "Traduisez : « Hier soir j'ai regardé un film taiwanais très intéressant. »",
       correctAnswer: "昨天晚上我看了一部很有意思的台灣電影",
@@ -210,7 +208,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex4",
+      id: "unit-86-ex4",
       type: "translate",
       question: "Traduisez : « Il fait plus chaud à Taïwan qu'en France. »",
       correctAnswer: "台灣比法國熱",
@@ -234,7 +232,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex5",
+      id: "unit-86-ex5",
       type: "translate",
       question: "Traduisez : « J'étudie le chinois depuis un an. »",
       correctAnswer: "我學中文學了一年了",
@@ -258,7 +256,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex6",
+      id: "unit-86-ex6",
       type: "translate",
       question: "Traduisez : « As-tu déjà goûté du tofu puant ? »",
       correctAnswer: "你吃過臭豆腐嗎",
@@ -282,7 +280,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex7",
+      id: "unit-86-ex7",
       type: "translate",
       question: "Traduisez : « Range tes affaires dans le sac s'il te plaît. »",
       correctAnswer: "請你把東西放進包包裡",
@@ -306,7 +304,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex8",
+      id: "unit-86-ex8",
       type: "translate",
       question: "Traduisez : « Mon téléphone a été volé par quelqu'un dans le MRT. »",
       correctAnswer: "我的手機在捷運上被人偷了",
@@ -330,7 +328,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex9",
+      id: "unit-86-ex9",
       type: "translate",
       question: "Traduisez : « Bien que ce restaurant soit petit, la nourriture est très bonne. »",
       correctAnswer: "雖然這家餐廳很小，但是東西很好吃",
@@ -354,7 +352,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex10",
+      id: "unit-86-ex10",
       type: "translate",
       question: "Traduisez : « Du moment que tu arrives avant 8 heures, tu peux entrer. »",
       correctAnswer: "只要你八點以前到，就可以進去",
@@ -378,7 +376,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex11",
+      id: "unit-86-ex11",
       type: "translate",
       question: "Traduisez : « Non seulement il parle chinois, mais en plus il sait écrire des caractères. »",
       correctAnswer: "他不但會說中文，而且還會寫字",
@@ -402,7 +400,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex12",
+      id: "unit-86-ex12",
       type: "translate",
       question: "Traduisez : « Je n'arrive pas à comprendre ce qu'il dit. »",
       correctAnswer: "我聽不懂他說什麼",
@@ -426,7 +424,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex13",
+      id: "unit-86-ex13",
       type: "translate",
       question: "Traduisez : « Le bus va bientôt arriver, dépêche-toi ! »",
       correctAnswer: "公車快要來了，你快一點",
@@ -450,7 +448,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex14",
+      id: "unit-86-ex14",
       type: "translate",
       question: "Traduisez : « Parce que j'ai trop mangé hier soir, j'ai mal au ventre ce matin. »",
       correctAnswer: "因為昨天晚上吃太多了，所以今天早上肚子痛",
@@ -474,7 +472,7 @@ export const unit86: CourseUnit = {
       ],
     },
     {
-      id: "u86-ex15",
+      id: "unit-86-ex15",
       type: "translate",
       question: "Traduisez : « Il pleut, prends ton parapluie en sortant. »",
       correctAnswer: "下雨了，出門的時候帶雨傘",

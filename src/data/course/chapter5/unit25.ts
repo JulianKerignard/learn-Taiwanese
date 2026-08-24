@@ -430,7 +430,7 @@ export const unit25: CourseUnit = {
 
   exercises: [
     {
-      id: "u19-ex1",
+      id: "unit-25-ex1",
       type: "fill-blank",
       question: "___我都喝咖啡。(Chaque jour, je bois du café.)",
       correctAnswer: "每天",
@@ -441,7 +441,7 @@ export const unit25: CourseUnit = {
       hintZhuyin: "Quel mot signifie « chaque jour » ?",
     },
     {
-      id: "u19-ex2",
+      id: "unit-25-ex2",
       type: "comprehension",
       question: "Quelle est la spécialité taiwanaise pendant la Fête de la Lune ?",
       correctAnswer: "Faire un barbecue (烤肉)",
@@ -453,7 +453,7 @@ export const unit25: CourseUnit = {
       ],
     },
     {
-      id: "u19-ex3",
+      id: "unit-25-ex3",
       type: "translate",
       question: "Que signifie 我們一起去吧 ?",
       correctAnswer: "Allons-y ensemble",
@@ -465,7 +465,7 @@ export const unit25: CourseUnit = {
       ],
     },
     {
-      id: "u19-ex4",
+      id: "unit-25-ex4",
       type: "comprehension",
       question:
         "Pourquoi ne faut-il jamais donner un 紅包 de 400 NT$ ?",
@@ -478,7 +478,7 @@ export const unit25: CourseUnit = {
       ],
     },
     {
-      id: "u19-ex5",
+      id: "unit-25-ex5",
       type: "fill-blank",
       question: "過年___，全家人會一起吃飯。(Au moment du Nouvel An...)",
       correctAnswer: "的時候",
@@ -489,7 +489,7 @@ export const unit25: CourseUnit = {
       hintZhuyin: "Quelle expression signifie « au moment de » ?",
     },
     {
-      id: "u19-ex6",
+      id: "unit-25-ex6",
       type: "translate",
       question: "Que signifie 拜拜 dans le contexte des temples ?",
       correctAnswer: "Prier / faire des offrandes",

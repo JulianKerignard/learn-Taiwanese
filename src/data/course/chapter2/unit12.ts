@@ -451,14 +451,14 @@ export const unit12: CourseUnit = {
 
   exercises: [
     {
-      id: "u10-ex1",
+      id: "unit-12-ex1",
       type: "comprehension",
       question: "Quel numéro appeler en cas d'urgence médicale à Taiwan ?",
       correctAnswer: "119",
       options: ["119", "110", "112", "911"],
     },
     {
-      id: "u10-ex2",
+      id: "unit-12-ex2",
       type: "translate",
       question: "Comment dit-on « J'ai mal à la tête » en chinois ?",
       correctAnswer: "我頭痛",
@@ -467,7 +467,7 @@ export const unit12: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄊㄡˊ ㄊㄨㄥˋ", "ㄨㄛˇ ㄉㄨˋ ㄗ ㄊㄨㄥˋ", "ㄨㄛˇ ㄅㄨˋ ㄕㄨ ㄈㄨ", "ㄨㄛˇ ㄍㄢˇ ㄇㄠˋ ㄌㄜ"],
     },
     {
-      id: "u10-ex3",
+      id: "unit-12-ex3",
       type: "fill-blank",
       question: "我___了。(J'ai un rhume.)",
       correctAnswer: "感冒",
@@ -477,7 +477,7 @@ export const unit12: CourseUnit = {
       hint: "Quel mot signifie « rhume » ?",
     },
     {
-      id: "u10-ex4",
+      id: "unit-12-ex4",
       type: "comprehension",
       question: "Où aller pour acheter des médicaments sans ordonnance ?",
       correctAnswer: "藥局 (pharmacie)",
@@ -489,7 +489,7 @@ export const unit12: CourseUnit = {
       ],
     },
     {
-      id: "u10-ex5",
+      id: "unit-12-ex5",
       type: "translate",
       question: "Que signifie 多喝水 ?",
       correctAnswer: "Boire beaucoup d'eau",
@@ -501,7 +501,7 @@ export const unit12: CourseUnit = {
       ],
     },
     {
-      id: "u10-ex6",
+      id: "unit-12-ex6",
       type: "fill-blank",
       question: "我要看___。(Je veux voir un médecin.)",
       correctAnswer: "醫生",
@@ -511,7 +511,7 @@ export const unit12: CourseUnit = {
       hint: "Quel mot signifie « médecin » ?",
     },
     {
-      id: "u10-listen",
+      id: "unit-12-ex7",
       type: "listen",
       question: "我不舒服，我頭痛，可能感冒了。",
       correctAnswer: "Je ne me sens pas bien, j'ai mal à la tête, j'ai peut-être un rhume.",

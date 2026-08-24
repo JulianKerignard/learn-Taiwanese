@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
-import { RotateCcw, Pencil, Volume2, Eye } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { RotateCcw, Volume2, Eye } from "lucide-react";
 import AudioButton from "./AudioButton";
 import PinyinDisplay from "./PinyinDisplay";
 import { speak } from "@/lib/tts";
 import { cn } from "@/lib/cn";
-import { Rating, Grades, previewScheduling } from "@/lib/fsrs";
+import { Rating, previewScheduling } from "@/lib/fsrs";
 import { shuffleArray } from "@/lib/utils";
 import type { SM2Card, SM2Grade, ReviewMode } from "@/types";
 import type { Grade } from "ts-fsrs";

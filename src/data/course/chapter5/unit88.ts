@@ -120,8 +120,6 @@ export const unit88: CourseUnit = {
     },
   ],
 
-  dialogue: undefined,
-
   keyPoints: [
     "HSK 2 = ~1000 mots, 10 structures grammaticales essentielles, TOCFL Band A2.",
     "Vous pouvez gerer la plupart des situations quotidiennes a Taiwan de maniere autonome.",
@@ -255,7 +253,7 @@ export const unit88: CourseUnit = {
 
   exercises: [
     {
-      id: "u88-ex1",
+      id: "unit-88-ex1",
       type: "translate",
       question: "Traduisez : « Je viens d'arriver a Taiwan, je ne comprends pas encore tres bien le chinois. »",
       correctAnswer: "我剛到台灣，中文還聽不太懂",
@@ -279,7 +277,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex2",
+      id: "unit-88-ex2",
       type: "translate",
       question: "Traduisez : « Non seulement il sait parler chinois, mais en plus il sait ecrire des caracteres traditionnels. »",
       correctAnswer: "他不但會說中文，而且還會寫繁體字",
@@ -303,7 +301,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex3",
+      id: "unit-88-ex3",
       type: "translate",
       question: "Traduisez : « La soupe de boeuf de ce restaurant est la meilleure que j'aie jamais goutee. »",
       correctAnswer: "這家餐廳的牛肉麵是我吃過最好吃的",
@@ -327,7 +325,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex4",
+      id: "unit-88-ex4",
       type: "translate",
       question: "Traduisez : « Range ton telephone dans ton sac, le professeur arrive. »",
       correctAnswer: "把手機放進包包裡，老師快來了",
@@ -351,7 +349,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex5",
+      id: "unit-88-ex5",
       type: "translate",
       question: "Traduisez : « Du moment que tu perseveres, tu reussiras. »",
       correctAnswer: "只要你堅持，就一定會成功",
@@ -375,7 +373,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex6",
+      id: "unit-88-ex6",
       type: "comprehension",
       question: "Que signifie 加油 en chinois ?",
       correctAnswer: "C'est un encouragement qui signifie « Courage ! / Allez ! », litteralement « ajoute de l'huile »",
@@ -387,7 +385,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex7",
+      id: "unit-88-ex7",
       type: "comprehension",
       question: "Quel est l'equivalent du HSK 2 dans le systeme TOCFL taiwanais ?",
       correctAnswer: "TOCFL Band A2",
@@ -399,7 +397,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex8",
+      id: "unit-88-ex8",
       type: "comprehension",
       question: "Quelle est la meilleure facon de progresser apres le HSK 2 a Taiwan ?",
       correctAnswer: "S'inscrire dans un Mandarin Training Center (MTC), regarder des series taiwanaises, et pratiquer chaque jour",
@@ -411,7 +409,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex9",
+      id: "unit-88-ex9",
       type: "comprehension",
       question: "Combien de mots environ maîtrise-t-on au niveau HSK 2 ?",
       correctAnswer: "Environ 1000 mots",
@@ -423,7 +421,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex10",
+      id: "unit-88-ex10",
       type: "comprehension",
       question: "Que signifie la phrase 學中文的路很長，但是只要你不放棄，你一定會成功的 ?",
       correctAnswer: "Le chemin de l'apprentissage du chinois est long, mais du moment que tu n'abandonnes pas, tu reussiras forcement",
@@ -435,7 +433,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex11",
+      id: "unit-88-ex11",
       type: "fill-blank",
       question: "我的___是在台灣工作和生活。(Mon reve est de travailler et vivre a Taiwan.)",
       correctAnswer: "夢想",
@@ -446,7 +444,7 @@ export const unit88: CourseUnit = {
       hintZhuyin: "Quel mot signifie 'reve, aspiration' ?",
     },
     {
-      id: "u88-ex12",
+      id: "unit-88-ex12",
       type: "fill-blank",
       question: "你的中文___很多，比上個月好多了！(Ton chinois a beaucoup progresse, c'est bien mieux que le mois dernier !)",
       correctAnswer: "進步",
@@ -457,7 +455,7 @@ export const unit88: CourseUnit = {
       hintZhuyin: "Quel mot signifie 'progresser' ?",
     },
     {
-      id: "u88-ex13",
+      id: "unit-88-ex13",
       type: "fill-blank",
       question: "學語言最重要的是___，不要放棄。(Le plus important pour apprendre une langue est de perseverer, ne pas abandonner.)",
       correctAnswer: "堅持",
@@ -468,7 +466,7 @@ export const unit88: CourseUnit = {
       hintZhuyin: "Quel mot signifie 'perseverer, tenir bon' ?",
     },
     {
-      id: "u88-ex14",
+      id: "unit-88-ex14",
       type: "reorder",
       question: "Remettez dans l'ordre : « Bien qu'apprendre le chinois soit difficile, je ne vais pas abandonner. »",
       correctAnswer: "雖然學中文很難，但是我不會放棄",
@@ -498,7 +496,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex15",
+      id: "unit-88-ex15",
       type: "reorder",
       question: "Remettez dans l'ordre : « Felicitations, tu as termine le HSK 2, continue tes efforts ! »",
       correctAnswer: "恭喜你HSK二級畢業了，繼續努力",
@@ -525,7 +523,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex16",
+      id: "unit-88-ex16",
       type: "translate",
       question: "Traduisez : « Mon objectif est de reussir le HSK 3 l'annee prochaine. »",
       correctAnswer: "我的目標是明年通過HSK三級",
@@ -549,7 +547,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex17",
+      id: "unit-88-ex17",
       type: "translate",
       question: "Traduisez : « Il faut avoir confiance en soi quand on parle chinois. »",
       correctAnswer: "說中文的時候要有自信",
@@ -573,7 +571,7 @@ export const unit88: CourseUnit = {
       ],
     },
     {
-      id: "u88-ex18",
+      id: "unit-88-ex18",
       type: "fill-blank",
       question: "恭喜你HSK二級___了！(Felicitations pour avoir termine le HSK 2 !)",
       correctAnswer: "畢業",
@@ -584,7 +582,7 @@ export const unit88: CourseUnit = {
       hintZhuyin: "Quel mot signifie 'terminer ses etudes / obtenir son diplome' ?",
     },
     {
-      id: "u88-ex19",
+      id: "unit-88-ex19",
       type: "fill-blank",
       question: "請___加油，不要放棄！(Continue tes efforts, n'abandonne pas !)",
       correctAnswer: "繼續",
@@ -595,7 +593,7 @@ export const unit88: CourseUnit = {
       hintZhuyin: "Quel mot signifie 'continuer' ?",
     },
     {
-      id: "u88-ex20",
+      id: "unit-88-ex20",
       type: "reorder",
       question: "Remettez dans l'ordre : « Chaque jour progresse un petit peu, tu reussiras forcement. »",
       correctAnswer: "每天進步一點點，你一定會成功的",

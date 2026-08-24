@@ -240,7 +240,7 @@ export const unit45: CourseUnit = {
     {
       character: "媽媽",
       pinyin: "māma",
-      zhuyin: "ㄇㄚ ㄇㄚ˙",
+      zhuyin: "ㄇㄚ ˙ㄇㄚ",
       french: "Maman",
       english: "Mom",
       example: {
@@ -409,7 +409,7 @@ export const unit45: CourseUnit = {
 
   exercises: [
     {
-      id: "u45-ex1",
+      id: "unit-45-ex1",
       type: "comprehension",
       question:
         "Comment dit-on « J'ai deux grands frères » en chinois ? Attention au mot pour « deux ».",
@@ -422,7 +422,7 @@ export const unit45: CourseUnit = {
       ],
     },
     {
-      id: "u45-ex2",
+      id: "unit-45-ex2",
       type: "fill-blank",
       question: "你有___弟弟？(Est-ce que tu as un petit frère ?)",
       correctAnswer: "沒有",
@@ -432,7 +432,7 @@ export const unit45: CourseUnit = {
       hint: "Quelle est la forme correcte pour nier 有 ?",
     },
     {
-      id: "u45-ex3",
+      id: "unit-45-ex3",
       type: "translate",
       question: "Que signifie 你家有幾個人？",
       correctAnswer: "Combien de personnes y a-t-il dans ta famille ?",
@@ -444,7 +444,7 @@ export const unit45: CourseUnit = {
       ],
     },
     {
-      id: "u45-ex4",
+      id: "unit-45-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 我沒有妹妹。",
       correctAnswer: "Je n'ai pas de petite sœur.",
@@ -456,7 +456,7 @@ export const unit45: CourseUnit = {
       ],
     },
     {
-      id: "u45-ex5",
+      id: "unit-45-ex5",
       type: "comprehension",
       question: "Quelle est la différence entre 哥哥 et 弟弟 ?",
       correctAnswer:
@@ -469,7 +469,7 @@ export const unit45: CourseUnit = {
       ],
     },
     {
-      id: "u45-ex6",
+      id: "unit-45-ex6",
       type: "fill-blank",
       question: "我家有五___人。(Ma famille a cinq personnes.)",
       correctAnswer: "個",
@@ -479,7 +479,7 @@ export const unit45: CourseUnit = {
       hint: "Quel est le classificateur le plus courant pour les personnes ?",
     },
     {
-      id: "u45-ex7",
+      id: "unit-45-ex7",
       type: "translate",
       question: "Comment dire « Mon mari est professeur » ?",
       correctAnswer: "我先生是老師。",
@@ -491,7 +491,7 @@ export const unit45: CourseUnit = {
       ],
     },
     {
-      id: "u45-ex8",
+      id: "unit-45-ex8",
       type: "comprehension",
       question:
         "Pourquoi un Taiwanais pourrait-il appeler un ami plus âgé 哥 ou 姐 ?",

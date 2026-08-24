@@ -174,16 +174,19 @@ export const unit69: CourseUnit = {
 
   exercises: [
     {
-      id: "u69-ex1",
+      id: "unit-69-ex1",
       type: "fill-blank",
       question:
         "Il fait très chaud, je veux boire une boisson glacée : 今天很熱，我想喝___的飲料。",
       correctAnswer: "冰",
+      options: ["冰", "熱", "甜", "大"],
+      optionsHint: ["bīng", "rè", "tián", "dà"],
+      optionsZhuyin: ["ㄅㄧㄥ", "ㄖㄜˋ", "ㄊㄧㄢˊ", "ㄉㄚˋ"],
       hint: "Le caractère qui signifie « glace / glacé ».",
       hintZhuyin: "ㄅㄧㄥ",
     },
     {
-      id: "u69-ex2",
+      id: "unit-69-ex2",
       type: "translate",
       question: "Traduisez : « J'ai trop mangé, j'ai très mal à la tête. »",
       correctAnswer: "我吃太多了，頭很痛。",
@@ -207,7 +210,7 @@ export const unit69: CourseUnit = {
       ],
     },
     {
-      id: "u69-ex3",
+      id: "unit-69-ex3",
       type: "comprehension",
       question:
         "Votre ami dit : 「下雨了，你有沒有帶傘？」 Que vous demande-t-il ?",
@@ -220,7 +223,7 @@ export const unit69: CourseUnit = {
       ],
     },
     {
-      id: "u69-ex4",
+      id: "unit-69-ex4",
       type: "listen",
       question:
         "Écoutez et choisissez la bonne traduction de : 有沒有大一點的？我要藍色的。",
@@ -233,7 +236,7 @@ export const unit69: CourseUnit = {
       ],
     },
     {
-      id: "u69-ex5",
+      id: "unit-69-ex5",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 好吃 / 那家 / 可是 / 便宜 / 比較 / 這家 / 比較",
@@ -243,15 +246,18 @@ export const unit69: CourseUnit = {
       hintZhuyin: "Structure : A + 比較 + Adj1 + 可是 + B + 比較 + Adj2",
     },
     {
-      id: "u69-ex6",
+      id: "unit-69-ex6",
       type: "fill-blank",
       question: "Il porte des vêtements rouges : 他___紅色的衣服。",
       correctAnswer: "穿",
-      hint: "Le verbe « porter » (un vêtement) en chinois.",
+      options: ["穿", "戴", "買", "看"],
+      optionsHint: ["chuān", "dài", "mǎi", "kàn"],
+      optionsZhuyin: ["ㄔㄨㄢ", "ㄉㄞˋ", "ㄇㄞˇ", "ㄎㄢˋ"],
+      hint: "Le verbe « porter » (un vêtement) en chinois. 戴 s'emploie pour les accessoires.",
       hintZhuyin: "ㄔㄨㄢ",
     },
     {
-      id: "u69-ex7",
+      id: "unit-69-ex7",
       type: "translate",
       question:
         "Traduisez : « Bonjour monsieur, madame, je suis l'ami de Xiao Ming. »",
@@ -276,7 +282,7 @@ export const unit69: CourseUnit = {
       ],
     },
     {
-      id: "u69-ex8",
+      id: "unit-69-ex8",
       type: "comprehension",
       question:
         "Quelqu'un dit : 「我家有四個人：爸爸、媽媽、哥哥和我。」 Combien de frères et soeurs a cette personne ?",
@@ -289,7 +295,7 @@ export const unit69: CourseUnit = {
       ],
     },
     {
-      id: "u69-ex9",
+      id: "unit-69-ex9",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 走了 / 招待 / 先 / 你們的 / 我 / 謝謝",
@@ -299,7 +305,7 @@ export const unit69: CourseUnit = {
       hintZhuyin: "Structure : Remerciement + Complément + Sujet + 先走了",
     },
     {
-      id: "u69-ex10",
+      id: "unit-69-ex10",
       type: "listen",
       question:
         "Écoutez et choisissez la bonne traduction de : 他穿紅色的衣服，很高。",
@@ -312,16 +318,19 @@ export const unit69: CourseUnit = {
       ],
     },
     {
-      id: "u69-ex11",
+      id: "unit-69-ex11",
       type: "fill-blank",
       question:
         "Il pleut et je n'ai pas apporté de veste : 下雨了，我沒帶___。",
       correctAnswer: "外套",
+      options: ["外套", "帽子", "鞋子", "手機"],
+      optionsHint: ["wàitào", "màozi", "xiézi", "shǒujī"],
+      optionsZhuyin: ["ㄨㄞˋ ㄊㄠˋ", "ㄇㄠˋ ˙ㄗ", "ㄒㄧㄝˊ ˙ㄗ", "ㄕㄡˇ ㄐㄧ"],
       hint: "Le mot pour « veste / manteau ».",
       hintZhuyin: "ㄨㄞˋ ㄊㄠˋ",
     },
     {
-      id: "u69-ex12",
+      id: "unit-69-ex12",
       type: "translate",
       question: "Traduisez : « Merci pour votre accueil, je vais y aller, à la prochaine ! »",
       correctAnswer: "謝謝你們的招待，我先走了，下次再見！",

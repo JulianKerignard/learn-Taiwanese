@@ -507,7 +507,7 @@ export const unit10: CourseUnit = {
 
   exercises: [
     {
-      id: "u8-ex1",
+      id: "unit-10-ex1",
       type: "translate",
       question: "Comment demande-t-on le prix de quelque chose ?",
       correctAnswer: "多少錢？",
@@ -516,7 +516,7 @@ export const unit10: CourseUnit = {
       optionsZhuyin: ["ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄗㄣˇ ㄇㄜ ㄇㄞˋ?", "ㄊㄞˋ ㄍㄨㄟˋ ㄌㄜ?", "ㄐㄧˇ ㄎㄨㄞˋ ㄑㄧㄢˊ?"],
     },
     {
-      id: "u8-ex2",
+      id: "unit-10-ex2",
       type: "comprehension",
       question: "Que signifie 買一送一 ?",
       correctAnswer: "Un acheté, un offert",
@@ -529,7 +529,7 @@ export const unit10: CourseUnit = {
       hint: "mǎi yī sòng yī",
     },
     {
-      id: "u8-ex3",
+      id: "unit-10-ex3",
       type: "fill-blank",
       question: "太___了！(Trop cher !)",
       correctAnswer: "貴",
@@ -539,7 +539,7 @@ export const unit10: CourseUnit = {
       hint: "Quel caractère signifie « cher » ?",
     },
     {
-      id: "u8-ex4",
+      id: "unit-10-ex4",
       type: "translate",
       question: "Que signifie 現金還是刷卡 ?",
       correctAnswer: "Espèces ou carte ?",
@@ -552,7 +552,7 @@ export const unit10: CourseUnit = {
       hint: "xiànjīn háishì shuākǎ",
     },
     {
-      id: "u8-ex5",
+      id: "unit-10-ex5",
       type: "comprehension",
       question: "Que peut-on faire dans un convenience store taiwanais ?",
       correctAnswer: "Tout : manger, payer des factures, envoyer des colis, recharger sa carte",
@@ -564,7 +564,7 @@ export const unit10: CourseUnit = {
       ],
     },
     {
-      id: "u8-ex6",
+      id: "unit-10-ex6",
       type: "fill-blank",
       question: "可以___一點嗎？(Vous pouvez faire un peu moins cher ?)",
       correctAnswer: "便宜",
@@ -574,7 +574,7 @@ export const unit10: CourseUnit = {
       hint: "Quel mot signifie « pas cher » ?",
     },
     {
-      id: "u08-listen",
+      id: "unit-10-ex7",
       type: "listen",
       question: "這個多少錢？太貴了，可以便宜一點嗎？",
       correctAnswer: "Combien ça coûte ? C'est trop cher, un peu moins cher ?",

@@ -446,7 +446,7 @@ export const unit54: CourseUnit = {
 
   exercises: [
     {
-      id: "u54-ex1",
+      id: "unit-54-ex1",
       type: "comprehension",
       question: "Que signifie la phrase 從台北到花蓮坐火車要兩個小時 ?",
       correctAnswer: "De Taipei à Hualien en train, il faut deux heures",
@@ -458,7 +458,7 @@ export const unit54: CourseUnit = {
       ],
     },
     {
-      id: "u54-ex2",
+      id: "unit-54-ex2",
       type: "fill-blank",
       question: "我們___去太魯閣，___去夜市。(On va d'abord à Taroko, puis au marché de nuit.)",
       correctAnswer: "先...再",
@@ -469,7 +469,7 @@ export const unit54: CourseUnit = {
       hintZhuyin: "Quelle paire de mots exprime une séquence « d'abord... ensuite... » ?",
     },
     {
-      id: "u54-ex3",
+      id: "unit-54-ex3",
       type: "translate",
       question: "Comment dit-on « De l'aéroport à l'hôtel, combien de temps faut-il ? » ?",
       correctAnswer: "從機場到飯店要多久",
@@ -478,7 +478,7 @@ export const unit54: CourseUnit = {
       optionsZhuyin: ["ㄘㄨㄥˊ ㄐㄧ ㄔㄤˇ ㄉㄠˋ ㄈㄢˋ ㄉㄧㄢˋ ㄧㄠˋ ㄉㄨㄛ ㄐㄧㄡˇ", "ㄐㄧ ㄔㄤˇ ㄈㄢˋ ㄉㄧㄢˋ ㄉㄨㄛ ㄐㄧㄡˇ ㄉㄠˋ", "ㄘㄨㄥˊ ㄈㄢˋ ㄉㄧㄢˋ ㄉㄠˋ ㄐㄧ ㄔㄤˇ ㄉㄨㄛ ㄐㄧㄡˇ ㄧㄠˋ", "ㄧㄠˋ ㄉㄨㄛ ㄐㄧㄡˇ ㄘㄨㄥˊ ㄐㄧ ㄔㄤˇ ㄉㄠˋ ㄈㄢˋ ㄉㄧㄢˋ"],
     },
     {
-      id: "u54-ex4",
+      id: "unit-54-ex4",
       type: "listen",
       question: "Écoutez et choisissez la bonne traduction de : 你的護照帶了嗎？",
       correctAnswer: "Tu as pris ton passeport ?",
@@ -490,7 +490,7 @@ export const unit54: CourseUnit = {
       ],
     },
     {
-      id: "u54-ex5",
+      id: "unit-54-ex5",
       type: "comprehension",
       question: "Quel est le moyen de transport le plus rapide pour aller de Taipei à Kaohsiung ?",
       correctAnswer: "Le 高鐵 (train à grande vitesse), qui fait le trajet en environ 1h30",
@@ -502,7 +502,7 @@ export const unit54: CourseUnit = {
       ],
     },
     {
-      id: "u54-ex6",
+      id: "unit-54-ex6",
       type: "fill-blank",
       question: "___台北___高雄坐高鐵要一個半小時。(De Taipei à Kaohsiung en TGV, il faut 1h30.)",
       correctAnswer: "從...到",
@@ -513,7 +513,7 @@ export const unit54: CourseUnit = {
       hintZhuyin: "Quelle paire de mots exprime un trajet « de... à... » ?",
     },
     {
-      id: "u54-ex7",
+      id: "unit-54-ex7",
       type: "translate",
       question: "Comment dit-on « D'abord prendre le petit-déjeuner, ensuite partir » ?",
       correctAnswer: "先吃早餐，再出發",
@@ -522,7 +522,7 @@ export const unit54: CourseUnit = {
       optionsZhuyin: ["ㄒㄧㄢ ㄔ ㄗㄠˇ ㄘㄢ ㄗㄞˋ ㄔㄨ ㄈㄚ", "ㄗㄞˋ ㄔ ㄗㄠˇ ㄘㄢ ㄒㄧㄢ ㄔㄨ ㄈㄚ", "ㄘㄨㄥˊ ㄗㄠˇ ㄘㄢ ㄉㄠˋ ㄔㄨ ㄈㄚ", "ㄔ ㄗㄠˇ ㄘㄢ ㄧˇ ㄏㄡˋ ㄔㄨ ㄈㄚ ㄌㄜ˙"],
     },
     {
-      id: "u54-ex8",
+      id: "unit-54-ex8",
       type: "listen",
       question: "Écoutez et choisissez la bonne traduction de : 我想買一些紀念品回來。",
       correctAnswer: "Je veux acheter des souvenirs à ramener",

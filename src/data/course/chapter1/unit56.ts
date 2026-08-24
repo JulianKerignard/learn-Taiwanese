@@ -414,7 +414,7 @@ export const unit56: CourseUnit = {
 
   exercises: [
     {
-      id: "u56-ex1",
+      id: "unit-56-ex1",
       type: "comprehension",
       question:
         "Quel classificateur utilise-t-on pour compter les chiens et les chats ?",
@@ -422,7 +422,7 @@ export const unit56: CourseUnit = {
       options: ["隻 (zhī)", "條 (tiáo)", "頭 (tóu)", "個 (gè)"],
     },
     {
-      id: "u56-ex2",
+      id: "unit-56-ex2",
       type: "fill-blank",
       question: "河裡有一___魚。(Il y a un poisson dans la rivière.)",
       correctAnswer: "條",
@@ -432,7 +432,7 @@ export const unit56: CourseUnit = {
       hint: "Quel classificateur utilise-t-on pour les animaux de forme allongée ?",
     },
     {
-      id: "u56-ex3",
+      id: "unit-56-ex3",
       type: "translate",
       question: "Que signifie 我家有一隻狗和兩隻貓 ?",
       correctAnswer: "Chez moi j'ai un chien et deux chats.",
@@ -444,7 +444,7 @@ export const unit56: CourseUnit = {
       ],
     },
     {
-      id: "u56-ex4",
+      id: "unit-56-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 台灣的山很高。",
       correctAnswer: "Les montagnes de Taiwan sont hautes.",
@@ -456,7 +456,7 @@ export const unit56: CourseUnit = {
       ],
     },
     {
-      id: "u56-ex5",
+      id: "unit-56-ex5",
       type: "comprehension",
       question:
         "Pourquoi mange-t-on du poisson (魚) pendant le Nouvel An chinois ?",
@@ -470,7 +470,7 @@ export const unit56: CourseUnit = {
       ],
     },
     {
-      id: "u56-ex6",
+      id: "unit-56-ex6",
       type: "fill-blank",
       question: "農場有三___牛。(La ferme a trois boeufs.)",
       correctAnswer: "頭",
@@ -480,7 +480,7 @@ export const unit56: CourseUnit = {
       hint: "Quel classificateur utilise-t-on pour les gros animaux ?",
     },
     {
-      id: "u56-ex7",
+      id: "unit-56-ex7",
       type: "translate",
       question: "Comment dire « Tu as combien de chats ? » en chinois ?",
       correctAnswer: "你有幾隻貓？",
@@ -492,7 +492,7 @@ export const unit56: CourseUnit = {
       ],
     },
     {
-      id: "u56-ex8",
+      id: "unit-56-ex8",
       type: "comprehension",
       question:
         "Quel est le fait marquant concernant Taiwan et la protection animale en Asie ?",

@@ -342,7 +342,7 @@ export const unit76: CourseUnit = {
 
   exercises: [
     {
-      id: "u76-ex1",
+      id: "unit-76-ex1",
       type: "fill-blank",
       question: "___很累，___我還是要去。(Bien que fatigue, je vais quand meme y aller.)",
       correctAnswer: "雖然...可是",
@@ -352,7 +352,7 @@ export const unit76: CourseUnit = {
       hint: "Concession factuelle : c'est VRAI que je suis fatigue, MAIS...",
     },
     {
-      id: "u76-ex2",
+      id: "unit-76-ex2",
       type: "translate",
       question: "Comment dit-on « Tant que tu fais des efforts, tu reussiras » ?",
       correctAnswer: "只要你努力，就會成功。",
@@ -376,7 +376,7 @@ export const unit76: CourseUnit = {
       ],
     },
     {
-      id: "u76-ex3",
+      id: "unit-76-ex3",
       type: "comprehension",
       question: "Quelle est la difference entre 雖然 et 即使 ?",
       correctAnswer: "雖然 = concession sur un fait REEL, 即使 = concession sur une HYPOTHESE",
@@ -400,7 +400,7 @@ export const unit76: CourseUnit = {
       ],
     },
     {
-      id: "u76-ex4",
+      id: "unit-76-ex4",
       type: "fill-blank",
       question: "___你去哪裡，我___跟你去。(Peu importe ou tu vas, j'irai avec toi.)",
       correctAnswer: "無論...都",
@@ -410,7 +410,7 @@ export const unit76: CourseUnit = {
       hint: "Le resultat est le meme dans TOUS les cas, peu importe la condition.",
     },
     {
-      id: "u76-ex5",
+      id: "unit-76-ex5",
       type: "translate",
       question: "Comment dit-on « Il fait de plus en plus chaud » ?",
       correctAnswer: "天氣越來越熱。",
@@ -434,7 +434,7 @@ export const unit76: CourseUnit = {
       ],
     },
     {
-      id: "u76-ex6",
+      id: "unit-76-ex6",
       type: "fill-blank",
       question: "___你來了，___吃飯再走吧。(Puisque tu es la, mange avant de partir.)",
       correctAnswer: "既然...就",
@@ -444,7 +444,7 @@ export const unit76: CourseUnit = {
       hint: "Le fait (tu es la) est deja connu — on en tire une conclusion logique.",
     },
     {
-      id: "u76-ex7",
+      id: "unit-76-ex7",
       type: "comprehension",
       question: "Que signifie 除了中文以外，他還會說日文 ?",
       correctAnswer: "En plus du chinois, il parle aussi japonais (除了...以外 + 還 = addition)",
@@ -468,7 +468,7 @@ export const unit76: CourseUnit = {
       ],
     },
     {
-      id: "u76-ex8",
+      id: "unit-76-ex8",
       type: "translate",
       question: "Comment dit-on « Non seulement c'est delicieux, mais en plus c'est pas cher » ?",
       correctAnswer: "不但好吃，而且便宜。",

@@ -632,10 +632,10 @@ export const unit41: CourseUnit = {
 
   exercises: [
     {
-      id: "u41-ex1",
-      type: "reorder",
+      id: "unit-41-ex1",
+      type: "comprehension",
       question:
-        "Remettez dans l'ordre : 一點 / 慢 / 說 / 嗎 / 可以 (Tu peux parler plus lentement ?)",
+        "Quelle phrase est correcte ? (Tu peux parler plus lentement ?)",
       correctAnswer: "可以說慢一點嗎？",
       options: [
         "可以說慢一點嗎？",
@@ -645,14 +645,14 @@ export const unit41: CourseUnit = {
       ],
     },
     {
-      id: "u41-ex2",
+      id: "unit-41-ex2",
       type: "translate",
       question: "Comment dit-on « pas de problème » en chinois ?",
       correctAnswer: "沒問題",
       options: ["沒問題", "不問題", "沒辦法", "不用"],
     },
     {
-      id: "u41-ex3",
+      id: "unit-41-ex3",
       type: "comprehension",
       question:
         "Quelle est la différence entre 我知道 et 我知道了 ?",
@@ -666,7 +666,7 @@ export const unit41: CourseUnit = {
       ],
     },
     {
-      id: "u41-ex4",
+      id: "unit-41-ex4",
       type: "translate",
       question: "Que signifie 差不多 ?",
       correctAnswer: "À peu près, presque",
@@ -678,7 +678,7 @@ export const unit41: CourseUnit = {
       ],
     },
     {
-      id: "u41-ex5",
+      id: "unit-41-ex5",
       type: "comprehension",
       question:
         "Quelqu'un parle trop vite et tu ne comprends pas. Quelle combinaison de phrases utilises-tu ?",
@@ -691,17 +691,17 @@ export const unit41: CourseUnit = {
       ],
     },
     {
-      id: "u41-ex6",
+      id: "unit-41-ex6",
       type: "translate",
       question: "Comment dit-on « laisse tomber, tant pis » ?",
       correctAnswer: "算了",
       options: ["算了", "慢慢來", "沒辦法", "隨便"],
     },
     {
-      id: "u41-ex7",
-      type: "reorder",
+      id: "unit-41-ex7",
+      type: "comprehension",
       question:
-        "Remettez dans l'ordre : 不好 / 中文 / 的 / 我 (Mon chinois n'est pas bon.)",
+        "Quelle phrase est correcte ? (Mon chinois n'est pas bon.)",
       correctAnswer: "我的中文不好",
       options: [
         "我的中文不好",
@@ -711,7 +711,7 @@ export const unit41: CourseUnit = {
       ],
     },
     {
-      id: "u41-ex8",
+      id: "unit-41-ex8",
       type: "comprehension",
       question: "Tu entends 歡迎光臨 en entrant dans un magasin. Que dois-tu répondre ?",
       correctAnswer: "Rien — c'est un rituel automatique, pas une question",
@@ -723,7 +723,7 @@ export const unit41: CourseUnit = {
       ],
     },
     {
-      id: "u41-comp-new1",
+      id: "unit-41-ex9",
       type: "comprehension",
       question: "Quelqu'un te propose de payer pour toi mais tu veux refuser poliment. Quelle expression utilises-tu ?",
       correctAnswer: "不用不用，我自己來 (pas besoin, je m'en charge)",
@@ -735,7 +735,7 @@ export const unit41: CourseUnit = {
       ],
     },
     {
-      id: "u41-comp-new2",
+      id: "unit-41-ex10",
       type: "comprehension",
       question: "Tu es dans l'ascenseur et quelqu'un crie derriere toi pour que tu retiennes la porte. Quelle expression entends-tu ?",
       correctAnswer: "等一下等一下！(Attends attends !)",
@@ -747,7 +747,7 @@ export const unit41: CourseUnit = {
       ],
     },
     {
-      id: "u41-comp-new3",
+      id: "unit-41-ex11",
       type: "comprehension",
       question: "Ton ami te dit une information que tu trouves incroyable. Quelle est ta reaction naturelle ?",
       correctAnswer: "真的嗎？(C'est vrai ?! / Serieux ?)",
@@ -759,23 +759,23 @@ export const unit41: CourseUnit = {
       ],
     },
     {
-      id: "u41-reorder-new1",
-      type: "reorder",
-      question: "Remettez dans l'ordre : 下 / 等 / 一 (Attends un instant)",
+      id: "unit-41-ex12",
+      type: "comprehension",
+      question: "Quelle phrase est correcte ? (Attends un instant)",
       correctAnswer: "等一下",
       options: ["等一下", "一下等", "下等一", "一等下"],
     },
     {
-      id: "u41-reorder-new2",
-      type: "reorder",
-      question: "Remettez dans l'ordre : 了 / 知道 / 我 (J'ai compris)",
+      id: "unit-41-ex13",
+      type: "comprehension",
+      question: "Quelle phrase est correcte ? (J'ai compris)",
       correctAnswer: "我知道了",
       options: ["我知道了", "知道了我", "了我知道", "我了知道"],
     },
     {
-      id: "u41-reorder-new3",
-      type: "reorder",
-      question: "Remettez dans l'ordre : 辦法 / 沒 (On ne peut rien y faire)",
+      id: "unit-41-ex14",
+      type: "comprehension",
+      question: "Quelle phrase est correcte ? (On ne peut rien y faire)",
       correctAnswer: "沒辦法",
       options: ["沒辦法", "辦法沒", "辦沒法", "法沒辦"],
     },

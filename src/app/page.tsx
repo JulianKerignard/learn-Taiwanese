@@ -15,7 +15,7 @@ import { getProgress, getCards } from "@/lib/storage";
 import { getStats } from "@/lib/fsrs";
 import { lessons } from "@/data/lessons";
 import { getPathProgress } from "@/lib/progress";
-import { getUnitById, hskLevels, allUnits } from "@/data/course";
+import { getUnitById } from "@/data/course";
 import { getCurrentHSKLevel } from "@/lib/progress";
 import type { UserProgress } from "@/types";
 import type { PathProgress } from "@/types/course";
@@ -92,7 +92,7 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
-            <Link href="/flashcards" className="btn-primary gap-1 shrink-0">
+            <Link href="/revision/all" className="btn-primary gap-1 shrink-0">
               Réviser <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
@@ -137,7 +137,7 @@ export default function HomePage() {
 function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
   const currentUnit = getUnitById(pathProgress.currentUnit);
   const hasStarted = pathProgress.completedUnits.length > 0;
-  const currentLevel = getCurrentHSKLevel(pathProgress, allUnits, hskLevels);
+  const currentLevel = getCurrentHSKLevel(pathProgress);
 
   return (
     <section>

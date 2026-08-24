@@ -415,7 +415,7 @@ export const unit78: CourseUnit = {
 
   exercises: [
     {
-      id: "u78-ex1",
+      id: "unit-78-ex1",
       type: "comprehension",
       question: "Que signifie 超商取貨 ?",
       correctAnswer: "Retirer son colis au convenience store (7-Eleven, FamilyMart...)",
@@ -427,7 +427,7 @@ export const unit78: CourseUnit = {
       ],
     },
     {
-      id: "u78-ex2",
+      id: "unit-78-ex2",
       type: "fill-blank",
       question: "我在蝦皮___了一個東西。(J'ai passé commande sur Shopee.)",
       correctAnswer: "下單",
@@ -438,7 +438,7 @@ export const unit78: CourseUnit = {
       hintZhuyin: "Quelle action correspond à « passer commande » ?",
     },
     {
-      id: "u78-ex3",
+      id: "unit-78-ex3",
       type: "translate",
       question: "Comment dit-on « Les frais de livraison sont gratuits » ?",
       correctAnswer: "運費免費",
@@ -452,7 +452,7 @@ export const unit78: CourseUnit = {
       ],
     },
     {
-      id: "u78-ex4",
+      id: "unit-78-ex4",
       type: "comprehension",
       question: "Que signifie 打八折 ?",
       correctAnswer: "20% de réduction (on paie 80% du prix)",
@@ -464,7 +464,7 @@ export const unit78: CourseUnit = {
       ],
     },
     {
-      id: "u78-ex5",
+      id: "unit-78-ex5",
       type: "fill-blank",
       question: "這個東西的___很好，我想買。(Les avis sont bons, je veux acheter.)",
       correctAnswer: "評價",
@@ -475,7 +475,7 @@ export const unit78: CourseUnit = {
       hintZhuyin: "Les commentaires et notes des acheteurs.",
     },
     {
-      id: "u78-ex6",
+      id: "unit-78-ex6",
       type: "translate",
       question: "Comment dit-on « La taille n'est pas bonne, je veux échanger » ?",
       correctAnswer: "尺寸不對，我要換貨",
@@ -499,7 +499,7 @@ export const unit78: CourseUnit = {
       ],
     },
     {
-      id: "u78-ex7",
+      id: "unit-78-ex7",
       type: "listen",
       question: "Écoutez et choisissez la bonne traduction de : 我還沒收貨，包裹在哪裡？",
       correctAnswer: "Je n'ai pas encore reçu ma livraison, où est le colis ?",
@@ -511,7 +511,7 @@ export const unit78: CourseUnit = {
       ],
     },
     {
-      id: "u78-ex8",
+      id: "unit-78-ex8",
       type: "fill-blank",
       question: "你先聯繫___，再申請退貨。(D'abord tu contactes le service client, ensuite tu demandes le retour.)",
       correctAnswer: "客服",

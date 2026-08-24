@@ -430,7 +430,7 @@ export const unit64: CourseUnit = {
 
   exercises: [
     {
-      id: "u64-ex1",
+      id: "unit-64-ex1",
       type: "comprehension",
       question:
         "Quelle salutation utilise-t-on le matin à Taiwan ?",
@@ -443,7 +443,7 @@ export const unit64: CourseUnit = {
       ],
     },
     {
-      id: "u64-ex2",
+      id: "unit-64-ex2",
       type: "fill-blank",
       question: "___，洗手間在哪裡？(Excusez-moi, où sont les toilettes ?)",
       correctAnswer: "請問",
@@ -453,7 +453,7 @@ export const unit64: CourseUnit = {
       hint: "Quelle formule utilise-t-on pour introduire poliment une question ?",
     },
     {
-      id: "u64-ex3",
+      id: "unit-64-ex3",
       type: "translate",
       question: "Que signifie 你吃飽了沒？ dans le contexte des salutations taiwanaises ?",
       correctAnswer: "C'est une salutation qui signifie « Ça va ? » — on ne demande pas vraiment si la personne a mangé",
@@ -465,7 +465,7 @@ export const unit64: CourseUnit = {
       ],
     },
     {
-      id: "u64-ex4",
+      id: "unit-64-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 我可以坐這裡嗎？",
       correctAnswer: "Est-ce que je peux m'asseoir ici ?",
@@ -477,7 +477,7 @@ export const unit64: CourseUnit = {
       ],
     },
     {
-      id: "u64-ex5",
+      id: "unit-64-ex5",
       type: "comprehension",
       question: "Quelle est la différence entre 對不起 et 不好意思 ?",
       correctAnswer:
@@ -490,7 +490,7 @@ export const unit64: CourseUnit = {
       ],
     },
     {
-      id: "u64-ex6",
+      id: "unit-64-ex6",
       type: "fill-blank",
       question: "可以___我拍照嗎？(Pouvez-vous me prendre en photo ?)",
       correctAnswer: "幫",
@@ -500,7 +500,7 @@ export const unit64: CourseUnit = {
       hint: "Quel verbe signifie « aider » dans la structure 可以___我...嗎？",
     },
     {
-      id: "u64-ex7",
+      id: "unit-64-ex7",
       type: "translate",
       question: "Comment dire « Félicitations pour ton mariage ! » en chinois ?",
       correctAnswer: "恭喜你結婚了！",
@@ -512,7 +512,7 @@ export const unit64: CourseUnit = {
       ],
     },
     {
-      id: "u64-ex8",
+      id: "unit-64-ex8",
       type: "comprehension",
       question:
         "Pourquoi LINE est-il important dans la culture des salutations à Taiwan ?",

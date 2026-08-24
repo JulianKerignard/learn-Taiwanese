@@ -282,8 +282,8 @@ export const unit55: CourseUnit = {
     },
     {
       character: "耳朵",
-      pinyin: "ěrduo",
-      zhuyin: "ㄦˇ ㄉㄨㄛ˙",
+      pinyin: "ěrduǒ",
+      zhuyin: "ㄦˇ ㄉㄨㄛˇ",
       french: "Oreilles",
       english: "Ears",
       example: {
@@ -440,7 +440,7 @@ export const unit55: CourseUnit = {
 
   exercises: [
     {
-      id: "u55-ex1",
+      id: "unit-55-ex1",
       type: "comprehension",
       question: "Que signifie la question 你哪裡不舒服？",
       correctAnswer: "Où avez-vous mal ? / Qu'est-ce qui ne va pas ?",
@@ -452,7 +452,7 @@ export const unit55: CourseUnit = {
       ],
     },
     {
-      id: "u55-ex2",
+      id: "unit-55-ex2",
       type: "fill-blank",
       question: "你___多休息，多喝水。(Tu devrais te reposer davantage et boire beaucoup d'eau.)",
       correctAnswer: "應該",
@@ -463,7 +463,7 @@ export const unit55: CourseUnit = {
       hintZhuyin: "Quel mot exprime un conseil, une recommandation (devoir/il faudrait) ?",
     },
     {
-      id: "u55-ex3",
+      id: "unit-55-ex3",
       type: "translate",
       question: "Comment dit-on « J'ai mal à la tête et en plus je tousse sans arrêt » ?",
       correctAnswer: "我頭很痛，而且一直咳嗽",
@@ -472,7 +472,7 @@ export const unit55: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄊㄡˊ ㄏㄣˇ ㄊㄨㄥˋ ㄦˊ ㄑㄧㄝˇ ㄧˋ ㄓˊ ㄎㄜˊ ㄙㄡˋ", "ㄨㄛˇ ㄎㄜˊ ㄙㄡˋ ㄏㄣˇ ㄊㄨㄥˋ ㄊㄡˊ ㄧˋ ㄓˊ", "ㄊㄡˊ ㄊㄨㄥˋ ㄎㄜˊ ㄙㄡˋ ㄨㄛˇ ㄦˊ ㄑㄧㄝˇ ㄧˋ ㄓˊ", "ㄨㄛˇ ㄧˋ ㄓˊ ㄊㄡˊ ㄊㄨㄥˋ ㄦˊ ㄑㄧㄝˇ ㄏㄣˇ ㄎㄜˊ ㄙㄡˋ"],
     },
     {
-      id: "u55-ex4",
+      id: "unit-55-ex4",
       type: "listen",
       question: "Écoutez et choisissez la bonne traduction de : 這樣多久了？",
       correctAnswer: "C'est comme ça depuis combien de temps ?",
@@ -484,7 +484,7 @@ export const unit55: CourseUnit = {
       ],
     },
     {
-      id: "u55-ex5",
+      id: "unit-55-ex5",
       type: "comprehension",
       question: "À Taïwan, où doit-on aller en premier pour un problème de santé mineur (rhume, mal de gorge) ?",
       correctAnswer: "À la 診所 (clinique de quartier), plus rapide et moins chère",
@@ -496,7 +496,7 @@ export const unit55: CourseUnit = {
       ],
     },
     {
-      id: "u55-ex6",
+      id: "unit-55-ex6",
       type: "fill-blank",
       question: "她一直咳嗽，已經三天___。(Elle tousse sans arrêt, ça fait déjà trois jours.)",
       correctAnswer: "了",
@@ -507,7 +507,7 @@ export const unit55: CourseUnit = {
       hintZhuyin: "Quelle particule marque une durée écoulée jusqu'au présent ?",
     },
     {
-      id: "u55-ex7",
+      id: "unit-55-ex7",
       type: "translate",
       question: "Comment dit-on « Tu devrais aller voir le médecin » ?",
       correctAnswer: "你應該去看醫生",
@@ -516,7 +516,7 @@ export const unit55: CourseUnit = {
       optionsZhuyin: ["ㄋㄧˇ ㄧㄥ ㄍㄞ ㄑㄩˋ ㄎㄢˋ ㄧ ㄕㄥ", "ㄋㄧˇ ㄧㄠˋ ㄎㄢˋ ㄑㄩˋ ㄧ ㄕㄥ ㄧㄥ ㄍㄞ", "ㄧ ㄕㄥ ㄧㄥ ㄍㄞ ㄎㄢˋ ㄋㄧˇ ㄑㄩˋ", "ㄑㄩˋ ㄎㄢˋ ㄋㄧˇ ㄧㄥ ㄍㄞ ㄧ ㄕㄥ"],
     },
     {
-      id: "u55-ex8",
+      id: "unit-55-ex8",
       type: "listen",
       question: "Écoutez et choisissez la bonne traduction de : 記得飯後吃藥。",
       correctAnswer: "N'oublie pas de prendre les médicaments après le repas",

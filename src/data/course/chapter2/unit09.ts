@@ -455,7 +455,7 @@ export const unit09: CourseUnit = {
 
   exercises: [
     {
-      id: "u7-ex1",
+      id: "unit-09-ex1",
       type: "translate",
       question: "Comment dit-on « Je voudrais un bol de nouilles au bœuf » ?",
       correctAnswer: "我要一碗牛肉麵",
@@ -474,7 +474,7 @@ export const unit09: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄨㄢˇ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ", "ㄍㄟˇ ㄨㄛˇ ㄧˋ ㄨㄢˇ ㄌㄨˇ ㄖㄡˋ ㄈㄢˋ", "ㄨㄛˇ ㄔ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ", "ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄅㄟ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ"],
     },
     {
-      id: "u7-ex2",
+      id: "unit-09-ex2",
       type: "comprehension",
       question: "Que signifie 內用還是外帶 ?",
       correctAnswer: "Sur place ou à emporter ?",
@@ -487,7 +487,7 @@ export const unit09: CourseUnit = {
       hint: "nèiyòng háishì wàidài",
     },
     {
-      id: "u7-ex3",
+      id: "unit-09-ex3",
       type: "fill-blank",
       question: "這個很___！(C'est délicieux !)",
       correctAnswer: "好吃",
@@ -498,7 +498,7 @@ export const unit09: CourseUnit = {
       hintZhuyin: "好 + quel verbe pour « manger » ?",
     },
     {
-      id: "u7-ex4",
+      id: "unit-09-ex4",
       type: "translate",
       question: "Que signifie 可以試吃嗎 ?",
       correctAnswer: "On peut goûter ?",
@@ -511,7 +511,7 @@ export const unit09: CourseUnit = {
       hint: "kěyǐ shìchī ma",
     },
     {
-      id: "u7-ex5",
+      id: "unit-09-ex5",
       type: "comprehension",
       question: "Quel plat est considéré comme le plat national de Taiwan ?",
       correctAnswer: "滷肉飯 (riz au porc braisé)",
@@ -523,7 +523,7 @@ export const unit09: CourseUnit = {
       ],
     },
     {
-      id: "u7-ex6",
+      id: "unit-09-ex6",
       type: "fill-blank",
       question: "不要___，謝謝。(Pas piquant, merci.)",
       correctAnswer: "辣",
@@ -533,7 +533,7 @@ export const unit09: CourseUnit = {
       hint: "Quel caractère signifie « piquant » ?",
     },
     {
-      id: "u07-listen",
+      id: "unit-09-ex7",
       type: "listen",
       question: "我要一碗滷肉飯，外帶。",
       correctAnswer: "Je voudrais un bol de lu rou fan, à emporter.",

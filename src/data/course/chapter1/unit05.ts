@@ -436,7 +436,7 @@ export const unit05: CourseUnit = {
 
   exercises: [
     {
-      id: "u4-ex1",
+      id: "unit-05-ex1",
       type: "translate",
       question: "Comment dit-on 25 en chinois ?",
       correctAnswer: "二十五",
@@ -445,7 +445,7 @@ export const unit05: CourseUnit = {
       optionsZhuyin: ["ㄦˋ ㄕˊ ㄨˇ", "ㄦˋ ㄨˇ", "ㄕˊ ㄦˋ ㄨˇ", "ㄌㄧㄤˇ ㄕˊ ㄨˇ"],
     },
     {
-      id: "u4-ex2",
+      id: "unit-05-ex2",
       type: "fill-blank",
       question: "___個人 (deux personnes)",
       correctAnswer: "兩",
@@ -456,7 +456,7 @@ export const unit05: CourseUnit = {
       hintZhuyin: "Devant un classificateur, on utilise 兩, pas 二.",
     },
     {
-      id: "u4-ex3",
+      id: "unit-05-ex3",
       type: "comprehension",
       question: "Quel jour est 星期三 ?",
       correctAnswer: "Mercredi (semaine-trois)",
@@ -469,7 +469,7 @@ export const unit05: CourseUnit = {
       hint: "xīngqīsān",
     },
     {
-      id: "u4-ex4",
+      id: "unit-05-ex4",
       type: "translate",
       question: "Que signifie 現在三點半 ?",
       correctAnswer: "Il est trois heures et demie maintenant",
@@ -482,7 +482,7 @@ export const unit05: CourseUnit = {
       hint: "xiànzài sān diǎn bàn",
     },
     {
-      id: "u4-ex5",
+      id: "unit-05-ex5",
       type: "fill-blank",
       question: "一___咖啡 (un café — en tasse)",
       correctAnswer: "杯",
@@ -492,10 +492,10 @@ export const unit05: CourseUnit = {
       hint: "Quel classificateur pour les boissons en tasse ?",
     },
     {
-      id: "u4-ex6",
-      type: "reorder",
+      id: "unit-05-ex6",
+      type: "comprehension",
       question:
-        "Remettez dans l'ordre : 見 / 明天 / 兩點 (À demain à 14h !)",
+        "Quelle phrase est correcte ? (À demain à 14h !)",
       correctAnswer: "明天兩點見",
       options: ["明天兩點見", "兩點明天見", "見明天兩點", "明天見兩點"],
       optionsHint: ["míngtiān liǎng diǎn jiàn", "liǎng diǎn míngtiān jiàn", "jiàn míngtiān liǎng diǎn", "míngtiān jiàn liǎng diǎn"],

@@ -153,7 +153,7 @@ export const unit43: CourseUnit = {
 
   exercises: [
     {
-      id: "u43-ex1",
+      id: "unit-43-ex1",
       type: "translate",
       question: "Comment dit-on « Combien coutent ces deux verres de bubble tea ? »",
       correctAnswer: "這兩杯珍珠奶茶多少錢？",
@@ -172,7 +172,7 @@ export const unit43: CourseUnit = {
       optionsZhuyin: ["ㄓㄜˋ ㄌㄧㄤˇ ㄅㄟ ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄌㄧㄤˇ ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄉㄨㄛ ㄕㄠˇ?", "ㄓㄜˋ ㄍㄜ ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄌㄧㄤˇ ㄅㄟ ㄑㄧㄢˊ?", "ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ ㄌㄧㄤˇ ㄅㄟ ㄓㄜˋ ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?"],
     },
     {
-      id: "u43-ex2",
+      id: "unit-43-ex2",
       type: "fill-blank",
       question: "我要一___滷肉飯。(Je voudrais un bol de lu rou fan.)",
       correctAnswer: "碗",
@@ -182,16 +182,16 @@ export const unit43: CourseUnit = {
       hint: "Le lu rou fan se sert dans un bol.",
     },
     {
-      id: "u43-ex3",
-      type: "reorder",
-      question: "Remettez dans l'ordre : 多少 / 這個 / 錢 (Combien ca coute ?)",
+      id: "unit-43-ex3",
+      type: "comprehension",
+      question: "Quelle phrase est correcte ? (Combien ca coute ?)",
       correctAnswer: "這個多少錢？",
       options: ["這個多少錢？", "多少這個錢？", "錢多少這個？", "這個錢多少？"],
       optionsHint: ["zhège duōshǎo qián?", "duōshǎo zhège qián?", "qián duōshǎo zhège?", "zhège qián duōshǎo?"],
       optionsZhuyin: ["ㄓㄜˋ ㄍㄜ ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄉㄨㄛ ㄕㄠˇ ㄓㄜˋ ㄍㄜ ㄑㄧㄢˊ?", "ㄑㄧㄢˊ ㄉㄨㄛ ㄕㄠˇ ㄓㄜˋ ㄍㄜ?", "ㄓㄜˋ ㄍㄜ ㄑㄧㄢˊ ㄉㄨㄛ ㄕㄠˇ?"],
     },
     {
-      id: "u43-ex4",
+      id: "unit-43-ex4",
       type: "comprehension",
       question: "Quel classificateur utilise-t-on pour commander un taxi ?",
       correctAnswer: "輛 — les vehicules utilisent 輛",
@@ -203,7 +203,7 @@ export const unit43: CourseUnit = {
       ],
     },
     {
-      id: "u43-ex5",
+      id: "unit-43-ex5",
       type: "translate",
       question: "Comment dit-on « Tournez a droite, puis allez tout droit » ?",
       correctAnswer: "右轉，然後直走",
@@ -222,7 +222,7 @@ export const unit43: CourseUnit = {
       optionsZhuyin: ["ㄧㄡˋ ㄓㄨㄢˇ, ㄖㄢˊ ㄏㄡˋ ㄓˊ ㄗㄡˇ", "ㄓˊ ㄗㄡˇ, ㄖㄢˊ ㄏㄡˋ ㄧㄡˋ ㄓㄨㄢˇ", "ㄧㄡˋ ㄅㄧㄢ ㄗㄡˇ, ㄓˊ ㄓˊ ㄑㄩˋ", "ㄖㄢˊ ㄏㄡˋ ㄧㄡˋ ㄓㄨㄢˇ ㄓˊ ㄗㄡˇ"],
     },
     {
-      id: "u43-ex6",
+      id: "unit-43-ex6",
       type: "fill-blank",
       question: "請問，你們有___有素食的？(Excusez-moi, avez-vous du vegetarien ?)",
       correctAnswer: "沒",
@@ -233,7 +233,7 @@ export const unit43: CourseUnit = {
       hintZhuyin: "Question A不A avec le verbe 有.",
     },
     {
-      id: "u43-ex7",
+      id: "unit-43-ex7",
       type: "comprehension",
       question: "Comment se prononce 你好 a cause du sandhi tonal ?",
       correctAnswer: "ni hao — le premier ton 3 passe en ton 2",
@@ -245,9 +245,9 @@ export const unit43: CourseUnit = {
       ],
     },
     {
-      id: "u43-ex8",
-      type: "reorder",
-      question: "Remettez dans l'ordre : 外帶 / 滷肉飯 / 一碗 / 我要 (Je voudrais un lu rou fan a emporter.)",
+      id: "unit-43-ex8",
+      type: "comprehension",
+      question: "Quelle phrase est correcte ? (Je voudrais un lu rou fan a emporter.)",
       correctAnswer: "我要一碗滷肉飯，外帶。",
       options: [
         "我要一碗滷肉飯，外帶。",
@@ -264,7 +264,7 @@ export const unit43: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄨㄢˇ ㄌㄨˇ ㄖㄡˋ ㄈㄢˋ, ㄨㄞˋ ㄉㄞˋ.", "ㄧˋ ㄨㄢˇ ㄨㄛˇ ㄧㄠˋ ㄌㄨˇ ㄖㄡˋ ㄈㄢˋ ㄨㄞˋ ㄉㄞˋ.", "ㄨㄞˋ ㄉㄞˋ ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄨㄢˇ ㄌㄨˇ ㄖㄡˋ ㄈㄢˋ.", "ㄌㄨˇ ㄖㄡˋ ㄈㄢˋ ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄨㄢˇ ㄨㄞˋ ㄉㄞˋ."],
     },
     {
-      id: "u43-ex9",
+      id: "unit-43-ex9",
       type: "translate",
       question: "Comment dit-on « Je ne comprends pas, pouvez-vous parler plus lentement ? »",
       correctAnswer: "聽不懂，可以說慢一點嗎？",
@@ -283,7 +283,7 @@ export const unit43: CourseUnit = {
       optionsZhuyin: ["ㄊㄧㄥ ㄅㄨˋ ㄉㄨㄥˇ, ㄎㄜˇ ㄧˇ ㄕㄨㄛ ㄇㄢˋ ㄧˋ ㄉㄧㄢˇ ㄇㄚ?", "ㄎㄢˋ ㄅㄨˋ ㄉㄨㄥˇ, ㄗㄞˋ ㄕㄨㄛ ㄧˊ ㄘˋ", "ㄅㄨˋ ㄓ ㄉㄠˋ, ㄗㄣˇ ㄇㄜ ㄅㄢˋ?", "ㄨㄛˇ ㄅㄨˊ ㄏㄨㄟˋ, ㄇㄢˋ ㄇㄢˋ ㄌㄞˊ"],
     },
     {
-      id: "u43-ex10",
+      id: "unit-43-ex10",
       type: "fill-blank",
       question: "三___貓 (trois chats)",
       correctAnswer: "隻",
@@ -293,7 +293,7 @@ export const unit43: CourseUnit = {
       hint: "Le classificateur pour les animaux.",
     },
     {
-      id: "u43-ex11",
+      id: "unit-43-ex11",
       type: "comprehension",
       question: "Que signifie 內用還是外帶 ?",
       correctAnswer: "Sur place ou a emporter ?",
@@ -305,7 +305,7 @@ export const unit43: CourseUnit = {
       ],
     },
     {
-      id: "u43-ex12",
+      id: "unit-43-ex12",
       type: "translate",
       question: "Comment dit-on « Ce chien est a toi ? » avec le bon classificateur ?",
       correctAnswer: "這隻狗是你的嗎？",

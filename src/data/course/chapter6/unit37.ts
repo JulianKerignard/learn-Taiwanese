@@ -230,7 +230,7 @@ export const unit37: CourseUnit = {
 
   exercises: [
     {
-      id: "u37-ex1",
+      id: "unit-37-ex1",
       type: "comprehension",
       question: "Sur le menu, quel est le plat le plus cher ?",
       correctAnswer: "Le boeuf aux nouilles (牛肉麵) à 120 NT$",
@@ -242,7 +242,7 @@ export const unit37: CourseUnit = {
       ],
     },
     {
-      id: "u37-ex2",
+      id: "unit-37-ex2",
       type: "comprehension",
       question:
         "Si tu commandes un 滷肉飯 avec un oeuf braisé, combien ça coûte ?",
@@ -255,7 +255,7 @@ export const unit37: CourseUnit = {
       ],
     },
     {
-      id: "u37-ex3",
+      id: "unit-37-ex3",
       type: "comprehension",
       question: "Y a-t-il une option végétarienne sur le menu ?",
       correctAnswer: "Oui, le bento végétarien (素食便當) à 70 NT$",
@@ -267,7 +267,7 @@ export const unit37: CourseUnit = {
       ],
     },
     {
-      id: "u37-ex4",
+      id: "unit-37-ex4",
       type: "comprehension",
       question:
         "Dans l'annonce 591, combien de chambres a l'appartement ?",
@@ -280,7 +280,7 @@ export const unit37: CourseUnit = {
       ],
     },
     {
-      id: "u37-ex5",
+      id: "unit-37-ex5",
       type: "comprehension",
       question: "Peut-on cuisiner dans l'appartement de l'annonce 591 ?",
       correctAnswer: "Oui, la cuisine est autorisée (可開伙)",
@@ -292,7 +292,7 @@ export const unit37: CourseUnit = {
       ],
     },
     {
-      id: "u37-ex6",
+      id: "unit-37-ex6",
       type: "comprehension",
       question:
         "Combien faut-il payer au total pour emménager (loyer + caution) dans l'appartement 591 ?",
@@ -305,7 +305,7 @@ export const unit37: CourseUnit = {
       ],
     },
     {
-      id: "u37-ex7",
+      id: "unit-37-ex7",
       type: "comprehension",
       question:
         "Combien de temps dure le trajet Taipei-Zuoying en 高鐵 ?",
@@ -318,7 +318,7 @@ export const unit37: CourseUnit = {
       ],
     },
     {
-      id: "u37-ex8",
+      id: "unit-37-ex8",
       type: "comprehension",
       question:
         "Que signifie 早鳥票65折 sur l'horaire du 高鐵 ?",
@@ -332,7 +332,7 @@ export const unit37: CourseUnit = {
       ],
     },
     {
-      id: "u37-ex9",
+      id: "unit-37-ex9",
       type: "comprehension",
       question: "Sur le reçu du 7-Eleven, combien a été payé au total ?",
       correctAnswer: "60 NT$ (35 + 25)",
@@ -344,7 +344,7 @@ export const unit37: CourseUnit = {
       ],
     },
     {
-      id: "u37-ex10",
+      id: "unit-37-ex10",
       type: "comprehension",
       question:
         "Comment le client a-t-il payé au 7-Eleven, et combien reste-t-il sur sa carte ?",

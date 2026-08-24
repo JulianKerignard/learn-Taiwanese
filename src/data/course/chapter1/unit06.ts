@@ -556,7 +556,7 @@ export const unit06: CourseUnit = {
 
   exercises: [
     {
-      id: "u6-ex1",
+      id: "unit-06-ex1",
       type: "fill-blank",
       question: "我要買一___書。(Je veux acheter un livre.)",
       correctAnswer: "本",
@@ -566,7 +566,7 @@ export const unit06: CourseUnit = {
       hint: "Un livre est relié, il a des pages.",
     },
     {
-      id: "u6-ex2",
+      id: "unit-06-ex2",
       type: "fill-blank",
       question: "桌子上有兩___貓。(Il y a deux chats sur la table.)",
       correctAnswer: "隻",
@@ -576,7 +576,7 @@ export const unit06: CourseUnit = {
       hint: "Le chat est un animal.",
     },
     {
-      id: "u6-ex3",
+      id: "unit-06-ex3",
       type: "fill-blank",
       question:
         "我要叫一___計程車。(Je veux appeler un taxi.)",
@@ -587,7 +587,7 @@ export const unit06: CourseUnit = {
       hint: "Un taxi est un véhicule avec des roues.",
     },
     {
-      id: "u6-ex4",
+      id: "unit-06-ex4",
       type: "fill-blank",
       question: "請給我一___水。(Donnez-moi une bouteille d'eau.)",
       correctAnswer: "瓶",
@@ -597,7 +597,7 @@ export const unit06: CourseUnit = {
       hint: "L'eau est dans une bouteille.",
     },
     {
-      id: "u6-ex5",
+      id: "unit-06-ex5",
       type: "comprehension",
       question:
         "Pourquoi utilise-t-on 條 pour un pantalon et un poisson ?",
@@ -611,7 +611,7 @@ export const unit06: CourseUnit = {
       ],
     },
     {
-      id: "u6-ex6",
+      id: "unit-06-ex6",
       type: "comprehension",
       question: "Quelle est la différence entre 個 et 位 pour les personnes ?",
       correctAnswer:
@@ -624,7 +624,7 @@ export const unit06: CourseUnit = {
       ],
     },
     {
-      id: "u6-ex7",
+      id: "unit-06-ex7",
       type: "fill-blank",
       question:
         "這___衣服很好看。(Ce vêtement est joli.)",
@@ -635,7 +635,7 @@ export const unit06: CourseUnit = {
       hint: "Les vêtements du haut utilisent ce classificateur.",
     },
     {
-      id: "u6-ex8",
+      id: "unit-06-ex8",
       type: "translate",
       question:
         "Comment dit-on « C'est la première fois que je viens à Taiwan » ?",
@@ -655,7 +655,7 @@ export const unit06: CourseUnit = {
       optionsZhuyin: ["ㄓㄜˋ ㄕˋ ㄨㄛˇ ㄉㄧˋ ㄧ ㄘˋ ㄌㄞˊ ㄊㄞˊ ㄨㄢ.", "ㄓㄜˋ ㄕˋ ㄨㄛˇ ㄧˊ ㄍㄜ ㄌㄞˊ ㄊㄞˊ ㄨㄢ.", "ㄨㄛˇ ㄉㄧˋ ㄧ ㄅㄣˇ ㄌㄞˊ ㄊㄞˊ ㄨㄢ.", "ㄨㄛˇ ㄧˊ ㄘˋ ㄌㄞˊ ㄊㄞˊ ㄨㄢ ㄌㄜ."],
     },
     {
-      id: "u6-fill-new1",
+      id: "unit-06-ex9",
       type: "fill-blank",
       question: "一___狗 (un chien)",
       correctAnswer: "隻",
@@ -665,7 +665,7 @@ export const unit06: CourseUnit = {
       hint: "Le chien est un animal.",
     },
     {
-      id: "u6-fill-new2",
+      id: "unit-06-ex10",
       type: "fill-blank",
       question: "三___褲子 (trois pantalons)",
       correctAnswer: "條",
@@ -675,7 +675,7 @@ export const unit06: CourseUnit = {
       hint: "Le pantalon a une forme allongee (jambes).",
     },
     {
-      id: "u6-fill-new3",
+      id: "unit-06-ex11",
       type: "fill-blank",
       question: "一___照片 (une photo)",
       correctAnswer: "張",
@@ -685,7 +685,7 @@ export const unit06: CourseUnit = {
       hint: "Une photo est plate et a une surface.",
     },
     {
-      id: "u6-translate-new1",
+      id: "unit-06-ex12",
       type: "translate",
       question: "Comment dit-on « deux verres d'eau » ?",
       correctAnswer: "兩杯水",
@@ -694,7 +694,7 @@ export const unit06: CourseUnit = {
       optionsZhuyin: ["ㄌㄧㄤˇ ㄅㄟ ㄕㄨㄟˇ", "ㄌㄧㄤˇ ㄆㄧㄥˊ ㄕㄨㄟˇ", "ㄦˋ ㄍㄜ ㄕㄨㄟˇ", "ㄌㄧㄤˇ ㄨㄢˇ ㄕㄨㄟˇ"],
     },
     {
-      id: "u6-translate-new2",
+      id: "unit-06-ex13",
       type: "translate",
       question: "Comment dit-on « un bol de nouilles » ?",
       correctAnswer: "一碗麵",
@@ -703,7 +703,7 @@ export const unit06: CourseUnit = {
       optionsZhuyin: ["ㄧˋ ㄨㄢˇ ㄇㄧㄢˋ", "ㄧˋ ㄅㄟ ㄇㄧㄢˋ", "ㄧˋ ㄆㄢˊ ㄇㄧㄢˋ", "ㄧˊ ㄍㄜ ㄇㄧㄢˋ"],
     },
     {
-      id: "u6-translate-new3",
+      id: "unit-06-ex14",
       type: "translate",
       question: "Comment dit-on « trois bouteilles de biere » ?",
       correctAnswer: "三瓶啤酒",

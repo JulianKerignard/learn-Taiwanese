@@ -518,7 +518,7 @@ export const unit20: CourseUnit = {
 
   exercises: [
     {
-      id: "u16-ex1",
+      id: "unit-20-ex1",
       type: "comprehension",
       question:
         "Quelle expression utiliseriez-vous pour demander votre chemin à un inconnu ?",
@@ -528,7 +528,7 @@ export const unit20: CourseUnit = {
       optionsZhuyin: ["ㄅㄨˋ ㄏㄠˇ ㄧˋ ㄙ˙", "ㄉㄨㄟˋ ㄅㄨˋ ㄑㄧˇ", "ㄅㄠˋ ㄑㄧㄢˋ", "ㄍㄢˋ ㄇㄚˊ"],
     },
     {
-      id: "u16-ex2",
+      id: "unit-20-ex2",
       type: "translate",
       question: "Que signifie 辛苦了 ?",
       correctAnswer: "Merci pour l'effort / bon travail",
@@ -540,7 +540,7 @@ export const unit20: CourseUnit = {
       ],
     },
     {
-      id: "u16-ex3",
+      id: "unit-20-ex3",
       type: "fill-blank",
       question: "___，請問洗手間在哪裡？(Excusez-moi, où sont les toilettes ?)",
       correctAnswer: "不好意思",
@@ -551,7 +551,7 @@ export const unit20: CourseUnit = {
       hintZhuyin: "Quelle expression pour déranger poliment quelqu'un ?",
     },
     {
-      id: "u16-ex4",
+      id: "unit-20-ex4",
       type: "comprehension",
       question:
         "Un Taiwanais vous dit « 我再想想 » quand vous l'invitez. Que veut-il probablement dire ?",
@@ -564,7 +564,7 @@ export const unit20: CourseUnit = {
       ],
     },
     {
-      id: "u16-ex5",
+      id: "unit-20-ex5",
       type: "translate",
       question: "Comment répondre poliment à un compliment sur votre chinois ?",
       correctAnswer: "哪裡哪裡",
@@ -573,7 +573,7 @@ export const unit20: CourseUnit = {
       optionsZhuyin: ["ㄋㄚˇ ㄌㄧˇ ㄋㄚˇ ㄌㄧˇ", "ㄒㄧㄝˋ ㄒㄧㄝˋ", "ㄉㄨㄟˋ ㄚ˙", "ㄨㄛˇ ㄓ ㄉㄠˋ"],
     },
     {
-      id: "u16-ex6",
+      id: "unit-20-ex6",
       type: "comprehension",
       question: "Quel registre utiliser avec le patron de votre entreprise ?",
       correctAnswer: "Formel : 您, 請問",
@@ -585,7 +585,7 @@ export const unit20: CourseUnit = {
       ],
     },
     {
-      id: "u20-comp-new1",
+      id: "unit-20-ex7",
       type: "comprehension",
       question: "Vous voulez demander les toilettes a un inconnu dans la rue. Quelle formule utilisez-vous ?",
       correctAnswer: "不好意思，請問洗手間在哪裡？ (gene legere + formule polie)",
@@ -597,7 +597,7 @@ export const unit20: CourseUnit = {
       ],
     },
     {
-      id: "u20-comp-new2",
+      id: "unit-20-ex8",
       type: "comprehension",
       question: "Vous avez renverse du cafe sur le document de votre collegue. Quelle expression utilisez-vous ?",
       correctAnswer: "對不起 — c'est une vraie faute qui merite une excuse sincere",
@@ -609,7 +609,7 @@ export const unit20: CourseUnit = {
       ],
     },
     {
-      id: "u20-translate-new1",
+      id: "unit-20-ex9",
       type: "translate",
       question: "Comment dit-on « Excuse-moi de te deranger » (avant une demande) ?",
       correctAnswer: "不好意思麻煩你",
@@ -621,7 +621,7 @@ export const unit20: CourseUnit = {
       ],
     },
     {
-      id: "u20-translate-new2",
+      id: "unit-20-ex10",
       type: "translate",
       question: "Comment dit-on « Merci pour l'effort / bon travail aujourd'hui » ?",
       correctAnswer: "今天辛苦了",

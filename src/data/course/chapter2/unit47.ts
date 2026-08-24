@@ -163,7 +163,7 @@ export const unit47: CourseUnit = {
   exercises: [
     // --- 3 LISTEN exercises ---
     {
-      id: "u47-listen-1",
+      id: "unit-47-ex1",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 你好，請問你叫什麼名字？",
       correctAnswer: "Bonjour, comment vous appelez-vous ?",
@@ -175,7 +175,7 @@ export const unit47: CourseUnit = {
       ],
     },
     {
-      id: "u47-listen-2",
+      id: "unit-47-ex2",
       type: "listen",
       question:
         "Écoute et choisis la bonne traduction de : 一共三百五十塊。",
@@ -188,7 +188,7 @@ export const unit47: CourseUnit = {
       ],
     },
     {
-      id: "u47-listen-3",
+      id: "unit-47-ex3",
       type: "listen",
       question:
         "Écoute et choisis la bonne traduction de : 往前走，到十字路口右轉。",
@@ -203,7 +203,7 @@ export const unit47: CourseUnit = {
 
     // --- 3 COMPREHENSION exercises ---
     {
-      id: "u47-comp-1",
+      id: "unit-47-ex4",
       type: "comprehension",
       question:
         "小美每天早上七點起床，先喝一杯咖啡，然後坐捷運去上班。— Que fait Xiaomei après le café ?",
@@ -216,7 +216,7 @@ export const unit47: CourseUnit = {
       ],
     },
     {
-      id: "u47-comp-2",
+      id: "unit-47-ex5",
       type: "comprehension",
       question:
         "今天是星期六，小明和朋友去夜市吃東西。他們吃了臭豆腐和滷肉飯，很好吃！— Quel jour sont-ils allés au marché de nuit ?",
@@ -224,7 +224,7 @@ export const unit47: CourseUnit = {
       options: ["Samedi", "Dimanche", "Vendredi", "Lundi"],
     },
     {
-      id: "u47-comp-3",
+      id: "unit-47-ex6",
       type: "comprehension",
       question:
         "我在台北住了兩個月了。我覺得台灣人很友善，食物很好吃，可是天氣太熱了。— Que pense cette personne du temps à Taiwan ?",
@@ -239,7 +239,7 @@ export const unit47: CourseUnit = {
 
     // --- 3 FILL-BLANK exercises ---
     {
-      id: "u47-fill-1",
+      id: "unit-47-ex7",
       type: "fill-blank",
       question: "她___老師，她___學生。(Elle n'est pas professeur, elle est étudiante.)",
       correctAnswer: "不是 / 是",
@@ -254,7 +254,7 @@ export const unit47: CourseUnit = {
       hint: "Négation de 是 = 不是. 是 relie sujet + nom (profession).",
     },
     {
-      id: "u47-fill-2",
+      id: "unit-47-ex8",
       type: "fill-blank",
       question: "桌子上___一本書。(Sur la table, il y a un livre.)",
       correctAnswer: "有",
@@ -264,7 +264,7 @@ export const unit47: CourseUnit = {
       hint: "Pour exprimer l'existence (il y a), on utilise ce verbe.",
     },
     {
-      id: "u47-fill-3",
+      id: "unit-47-ex9",
       type: "fill-blank",
       question: "你喜歡吃什麼？我喜歡吃台灣___小吃。(J'aime manger les en-cas de Taiwan.)",
       correctAnswer: "的",
@@ -276,7 +276,7 @@ export const unit47: CourseUnit = {
 
     // --- 3 TRANSLATE exercises ---
     {
-      id: "u47-trad-1",
+      id: "unit-47-ex10",
       type: "translate",
       question: "Traduisez en chinois : « Excusez-moi, combien ça coûte ? »",
       correctAnswer: "請問，這個多少錢？",
@@ -294,7 +294,7 @@ export const unit47: CourseUnit = {
       ],
     },
     {
-      id: "u47-trad-2",
+      id: "unit-47-ex11",
       type: "translate",
       question: "Traduisez en chinois : « J'ai déjà mangé, et toi ? »",
       correctAnswer: "我已經吃了，你呢？",
@@ -312,7 +312,7 @@ export const unit47: CourseUnit = {
       ],
     },
     {
-      id: "u47-trad-3",
+      id: "unit-47-ex12",
       type: "translate",
       question:
         "Traduisez en chinois : « On se retrouve demain soir à sept heures, d'accord ? »",
@@ -333,7 +333,7 @@ export const unit47: CourseUnit = {
 
     // --- 3 REORDER exercises ---
     {
-      id: "u47-reorder-1",
+      id: "unit-47-ex13",
       type: "reorder",
       question: "Remettez dans l'ordre : 在 / 捷運站 / 哪裡 / 請問",
       correctAnswer: "請問捷運站在哪裡",
@@ -348,7 +348,7 @@ export const unit47: CourseUnit = {
       hint: "Structure : 請問 + sujet + 在 + où ?",
     },
     {
-      id: "u47-reorder-2",
+      id: "unit-47-ex14",
       type: "reorder",
       question: "Remettez dans l'ordre : 一碗 / 我 / 不要辣 / 要 / 牛肉麵",
       correctAnswer: "我要一碗牛肉麵不要辣",
@@ -364,7 +364,7 @@ export const unit47: CourseUnit = {
       hint: "Structure : sujet + 要 + classificateur + nom + préférence",
     },
     {
-      id: "u47-reorder-3",
+      id: "unit-47-ex15",
       type: "reorder",
       question: "Remettez dans l'ordre : 幾 / 你 / 有 / 個 / 家 / 人",
       correctAnswer: "你家有幾個人",

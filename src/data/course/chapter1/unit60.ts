@@ -372,7 +372,7 @@ export const unit60: CourseUnit = {
     },
     {
       character: "便宜",
-      pinyin: "piányi",
+      pinyin: "piányí",
       zhuyin: "ㄆㄧㄢˊ ㄧˊ",
       french: "Bon marché / Pas cher",
       english: "Cheap / Inexpensive",
@@ -446,7 +446,7 @@ export const unit60: CourseUnit = {
 
   exercises: [
     {
-      id: "u60-ex1",
+      id: "unit-60-ex1",
       type: "fill-blank",
       question: "台灣的夏天___熱。(L'été à Taiwan est chaud.)",
       correctAnswer: "很",
@@ -456,7 +456,7 @@ export const unit60: CourseUnit = {
       hint: "Quel mot place-t-on devant un adjectif dans une phrase affirmative simple ?",
     },
     {
-      id: "u60-ex2",
+      id: "unit-60-ex2",
       type: "translate",
       question: "Que signifie 法國比台灣冷 ?",
       correctAnswer: "La France est plus froide que Taiwan.",
@@ -468,7 +468,7 @@ export const unit60: CourseUnit = {
       ],
     },
     {
-      id: "u60-ex3",
+      id: "unit-60-ex3",
       type: "fill-blank",
       question: "今天___冷。(Aujourd'hui il ne fait pas froid.)",
       correctAnswer: "不",
@@ -478,7 +478,7 @@ export const unit60: CourseUnit = {
       hint: "Quel mot utilise-t-on pour nier un adjectif ?",
     },
     {
-      id: "u60-ex4",
+      id: "unit-60-ex4",
       type: "comprehension",
       question:
         "Quand un Taiwanais dit 還好 à propos d'un plat, que veut-il probablement dire ?",
@@ -492,14 +492,14 @@ export const unit60: CourseUnit = {
       ],
     },
     {
-      id: "u60-ex5",
+      id: "unit-60-ex5",
       type: "translate",
       question: "Comment dire « C'est trop cher ! » en chinois ?",
       correctAnswer: "太貴了！",
       options: ["太貴了！", "很貴的！", "是貴了！", "比貴了！"],
     },
     {
-      id: "u60-ex6",
+      id: "unit-60-ex6",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 台北的捷運很乾淨。",
       correctAnswer: "Le MRT de Taipei est très propre.",
@@ -511,7 +511,7 @@ export const unit60: CourseUnit = {
       ],
     },
     {
-      id: "u60-ex7",
+      id: "unit-60-ex7",
       type: "comprehension",
       question:
         "Pourquoi ne met-on PAS 很 après 比 dans une phrase comparative ?",
@@ -525,7 +525,7 @@ export const unit60: CourseUnit = {
       ],
     },
     {
-      id: "u60-ex8",
+      id: "unit-60-ex8",
       type: "fill-blank",
       question:
         "這個___那個便宜。(Celui-ci est moins cher que celui-là.)",

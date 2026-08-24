@@ -300,8 +300,8 @@ export const unit83: CourseUnit = {
     },
     {
       character: "下載",
-      pinyin: "xiàzǎi",
-      zhuyin: "ㄒㄧㄚˋ ㄗㄞˇ",
+      pinyin: "xiàzài",
+      zhuyin: "ㄒㄧㄚˋ ㄗㄞˋ",
       french: "Télécharger",
       english: "To download",
       example: {
@@ -410,7 +410,7 @@ export const unit83: CourseUnit = {
 
   exercises: [
     {
-      id: "u83-ex1",
+      id: "unit-83-ex1",
       type: "comprehension",
       question: "Que signifie 當機 en chinois taiwanais ?",
       correctAnswer: "Planter/crash (un ordinateur ou un programme)",
@@ -422,7 +422,7 @@ export const unit83: CourseUnit = {
       ],
     },
     {
-      id: "u83-ex2",
+      id: "unit-83-ex2",
       type: "fill-blank",
       question: "WiFi的___是什麼？(C'est quoi le mot de passe du WiFi ?)",
       correctAnswer: "密碼",
@@ -433,7 +433,7 @@ export const unit83: CourseUnit = {
       hintZhuyin: "Le code secret pour se connecter.",
     },
     {
-      id: "u83-ex3",
+      id: "unit-83-ex3",
       type: "translate",
       question: "Comment dit-on « Mon téléphone est cassé » ?",
       correctAnswer: "我的手機壞了",
@@ -457,7 +457,7 @@ export const unit83: CourseUnit = {
       ],
     },
     {
-      id: "u83-ex4",
+      id: "unit-83-ex4",
       type: "comprehension",
       question: "Pourquoi Taiwan est-il surnommé « le bouclier de silicium » ?",
       correctAnswer: "Parce que TSMC fabrique plus de 60% des puces avancées mondiales",
@@ -469,18 +469,18 @@ export const unit83: CourseUnit = {
       ],
     },
     {
-      id: "u83-ex5",
+      id: "unit-83-ex5",
       type: "fill-blank",
       question: "手機快沒電了，要___。(Le téléphone est presque à plat, il faut le charger.)",
       correctAnswer: "充電",
       options: ["充電", "下載", "更新", "當機"],
-      optionsHint: ["chōngdiàn", "xiàzǎi", "gēngxīn", "dāngjī"],
-      optionsZhuyin: ["ㄔㄨㄥ ㄉㄧㄢˋ", "ㄒㄧㄚˋ ㄗㄞˇ", "ㄍㄥ ㄒㄧㄣ", "ㄉㄤ ㄐㄧ"],
+      optionsHint: ["chōngdiàn", "xiàzài", "gēngxīn", "dāngjī"],
+      optionsZhuyin: ["ㄔㄨㄥ ㄉㄧㄢˋ", "ㄒㄧㄚˋ ㄗㄞˋ", "ㄍㄥ ㄒㄧㄣ", "ㄉㄤ ㄐㄧ"],
       hint: "L'action de remplir la batterie.",
       hintZhuyin: "L'action de remplir la batterie.",
     },
     {
-      id: "u83-ex6",
+      id: "unit-83-ex6",
       type: "translate",
       question: "Comment dit-on « L'ordinateur a encore planté » ?",
       correctAnswer: "電腦又當機了",
@@ -504,7 +504,7 @@ export const unit83: CourseUnit = {
       ],
     },
     {
-      id: "u83-ex7",
+      id: "unit-83-ex7",
       type: "listen",
       question: "Écoutez et choisissez la bonne traduction de : 我忘記密碼了，怎麼辦？",
       correctAnswer: "J'ai oublié mon mot de passe, comment faire ?",
@@ -516,13 +516,13 @@ export const unit83: CourseUnit = {
       ],
     },
     {
-      id: "u83-ex8",
+      id: "unit-83-ex8",
       type: "fill-blank",
       question: "記得___檔案！(N'oublie pas de sauvegarder le fichier !)",
       correctAnswer: "存",
       options: ["存", "下載", "寄", "充電"],
-      optionsHint: ["cún", "xiàzǎi", "jì", "chōngdiàn"],
-      optionsZhuyin: ["ㄘㄨㄣˊ", "ㄒㄧㄚˋ ㄗㄞˇ", "ㄐㄧˋ", "ㄔㄨㄥ ㄉㄧㄢˋ"],
+      optionsHint: ["cún", "xiàzài", "jì", "chōngdiàn"],
+      optionsZhuyin: ["ㄘㄨㄣˊ", "ㄒㄧㄚˋ ㄗㄞˋ", "ㄐㄧˋ", "ㄔㄨㄥ ㄉㄧㄢˋ"],
       hint: "L'action de garder des données en memoire.",
       hintZhuyin: "L'action de garder des données en memoire.",
     },

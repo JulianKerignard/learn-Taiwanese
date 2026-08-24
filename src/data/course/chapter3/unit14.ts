@@ -544,7 +544,7 @@ export const unit14: CourseUnit = {
 
   exercises: [
     {
-      id: "u11-ex1",
+      id: "unit-14-ex1",
       type: "fill-blank",
       question: "我___台灣的食物很好吃。(Je trouve que la nourriture taiwanaise est délicieuse.)",
       correctAnswer: "覺得",
@@ -554,7 +554,7 @@ export const unit14: CourseUnit = {
       hint: "Quel mot signifie « trouver que / penser que » ?",
     },
     {
-      id: "u11-ex2",
+      id: "unit-14-ex2",
       type: "translate",
       question: "Comment dit-on « Taipei est plus grand que Kaohsiung » ?",
       correctAnswer: "台北比高雄大",
@@ -563,7 +563,7 @@ export const unit14: CourseUnit = {
       optionsZhuyin: ["ㄊㄞˊ ㄅㄟˇ ㄅㄧˇ ㄍㄠ ㄒㄩㄥˊ ㄉㄚˋ", "ㄊㄞˊ ㄅㄟˇ ㄏㄣˇ ㄍㄠ ㄒㄩㄥˊ ㄉㄚˋ", "ㄊㄞˊ ㄅㄟˇ ㄗㄨㄟˋ ㄍㄠ ㄒㄩㄥˊ ㄉㄚˋ", "ㄊㄞˊ ㄅㄟˇ ㄍㄣ ㄍㄠ ㄒㄩㄥˊ ㄉㄚˋ"],
     },
     {
-      id: "u11-ex3",
+      id: "unit-14-ex3",
       type: "comprehension",
       question: "Un ami taiwanais vous dit 還好 quand vous demandez son avis sur un restaurant. Que veut-il dire ?",
       correctAnswer: "C'est moyen / ça va (réponse neutre et polie)",
@@ -575,7 +575,7 @@ export const unit14: CourseUnit = {
       ],
     },
     {
-      id: "u11-ex4",
+      id: "unit-14-ex4",
       type: "fill-blank",
       question: "這家餐廳___好吃。(Ce restaurant est le plus délicieux.)",
       correctAnswer: "最",
@@ -585,7 +585,7 @@ export const unit14: CourseUnit = {
       hint: "Quel mot exprime le superlatif (le plus) ?",
     },
     {
-      id: "u11-ex5",
+      id: "unit-14-ex5",
       type: "translate",
       question: "Que signifie 我想去夜市 ?",
       correctAnswer: "Je veux aller au marché de nuit",
@@ -597,7 +597,7 @@ export const unit14: CourseUnit = {
       ],
     },
     {
-      id: "u11-ex6",
+      id: "unit-14-ex6",
       type: "comprehension",
       question: "Pourquoi les Taiwanais utilisent-ils 可能不行 au lieu de 不行 ?",
       correctAnswer: "Pour refuser poliment sans être trop direct",

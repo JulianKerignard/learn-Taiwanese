@@ -498,7 +498,7 @@ export const unit23: CourseUnit = {
 
   exercises: [
     {
-      id: "u17-ex1",
+      id: "unit-23-ex1",
       type: "comprehension",
       question:
         "Quel verbe modal exprime une obligation absolue (pas le choix) ?",
@@ -508,7 +508,7 @@ export const unit23: CourseUnit = {
       optionsZhuyin: ["ㄅㄧˋ ㄒㄩ", "ㄧㄥ ㄍㄞ", "ㄒㄧ ㄨㄤˋ", "ㄒㄩ ㄧㄠˋ"],
     },
     {
-      id: "u17-ex2",
+      id: "unit-23-ex2",
       type: "fill-blank",
       question: "我___你的幫忙。(J'ai besoin de ton aide.)",
       correctAnswer: "需要",
@@ -519,7 +519,7 @@ export const unit23: CourseUnit = {
       hintZhuyin: "Quel verbe exprime un besoin ?",
     },
     {
-      id: "u17-ex3",
+      id: "unit-23-ex3",
       type: "translate",
       question: "Que signifie 加班 ?",
       correctAnswer: "Faire des heures supplémentaires",
@@ -531,7 +531,7 @@ export const unit23: CourseUnit = {
       ],
     },
     {
-      id: "u17-ex4",
+      id: "unit-23-ex4",
       type: "comprehension",
       question: "Comment appeler correctement le manager Chen au travail ?",
       correctAnswer: "陳經理",
@@ -540,7 +540,7 @@ export const unit23: CourseUnit = {
       optionsZhuyin: ["ㄔㄣˊ ㄐㄧㄥ ㄌㄧˇ", "ㄒㄧㄠˇ ㄔㄣˊ", "ㄔㄣˊ ㄒㄧㄢ ㄕㄥ", "ㄚ ㄔㄣˊ"],
     },
     {
-      id: "u17-ex5",
+      id: "unit-23-ex5",
       type: "translate",
       question: "Que signifie 加油 ?",
       correctAnswer: "Courage ! / Vas-y !",
@@ -552,7 +552,7 @@ export const unit23: CourseUnit = {
       ],
     },
     {
-      id: "u17-ex6",
+      id: "unit-23-ex6",
       type: "fill-blank",
       question:
         "你___早點來。(Tu devrais venir plus tôt.)",

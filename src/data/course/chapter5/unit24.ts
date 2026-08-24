@@ -420,7 +420,7 @@ export const unit24: CourseUnit = {
 
   exercises: [
     {
-      id: "u18-ex1",
+      id: "unit-24-ex1",
       type: "fill-blank",
       question: "___很熱，___我很開心。(Bien qu'il fasse chaud, je suis content.)",
       correctAnswer: "雖然...但是",
@@ -431,7 +431,7 @@ export const unit24: CourseUnit = {
       hintZhuyin: "Quelle structure exprime la concession ?",
     },
     {
-      id: "u18-ex2",
+      id: "unit-24-ex2",
       type: "translate",
       question: "Que signifie 如果下雨，我就不去了 ?",
       correctAnswer: "S'il pleut, alors je n'irai pas",
@@ -443,7 +443,7 @@ export const unit24: CourseUnit = {
       ],
     },
     {
-      id: "u18-ex3",
+      id: "unit-24-ex3",
       type: "comprehension",
       question: "Qu'est-ce qu'un 颱風假 ?",
       correctAnswer: "Un jour de congé déclaré à cause d'un typhon",
@@ -455,7 +455,7 @@ export const unit24: CourseUnit = {
       ],
     },
     {
-      id: "u18-ex4",
+      id: "unit-24-ex4",
       type: "fill-blank",
       question: "外面___了，帶傘吧。(Il pleut dehors, prends un parapluie.)",
       correctAnswer: "下雨",
@@ -466,7 +466,7 @@ export const unit24: CourseUnit = {
       hintZhuyin: "Quel verbe signifie « pleuvoir » ?",
     },
     {
-      id: "u18-ex5",
+      id: "unit-24-ex5",
       type: "comprehension",
       question:
         "Pourquoi les Taiwanais utilisent-ils un parapluie par grand soleil ?",
@@ -479,7 +479,7 @@ export const unit24: CourseUnit = {
       ],
     },
     {
-      id: "u18-ex6",
+      id: "unit-24-ex6",
       type: "translate",
       question: "Comment dit-on « Quel temps fait-il aujourd'hui ? » ?",
       correctAnswer: "今天天氣怎麼樣？",

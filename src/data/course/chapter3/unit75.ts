@@ -357,7 +357,7 @@ export const unit75: CourseUnit = {
 
   exercises: [
     {
-      id: "u75-ex1",
+      id: "unit-75-ex1",
       type: "fill-blank",
       question: "我的錢包___偷了。(Mon portefeuille a ete vole.)",
       correctAnswer: "被",
@@ -367,7 +367,7 @@ export const unit75: CourseUnit = {
       hint: "Voix passive — quelque chose de negatif est arrive.",
     },
     {
-      id: "u75-ex2",
+      id: "unit-75-ex2",
       type: "translate",
       question: "Comment dit-on « Maman ne me laisse pas sortir » ?",
       correctAnswer: "媽媽不讓我出去。",
@@ -391,7 +391,7 @@ export const unit75: CourseUnit = {
       ],
     },
     {
-      id: "u75-ex3",
+      id: "unit-75-ex3",
       type: "comprehension",
       question: "Pourquoi le passif 被 est-il souvent negatif en chinois ?",
       correctAnswer: "En chinois, le passif implique que le sujet SUBIT quelque chose, ce qui est generalement desagreable",
@@ -415,7 +415,7 @@ export const unit75: CourseUnit = {
       ],
     },
     {
-      id: "u75-ex4",
+      id: "unit-75-ex4",
       type: "fill-blank",
       question: "老闆___我加班。(Le patron me fait faire des heures sup.)",
       correctAnswer: "叫",
@@ -425,7 +425,7 @@ export const unit75: CourseUnit = {
       hint: "Le patron a l'autorite pour demander/ordonner.",
     },
     {
-      id: "u75-ex5",
+      id: "unit-75-ex5",
       type: "translate",
       question: "Comment dit-on « Ferme bien la porte » avec 把 ?",
       correctAnswer: "把門關好。",
@@ -449,7 +449,7 @@ export const unit75: CourseUnit = {
       ],
     },
     {
-      id: "u75-ex6",
+      id: "unit-75-ex6",
       type: "comprehension",
       question: "Quelle est la difference entre 讓 et 叫 dans une construction causative ?",
       correctAnswer: "讓 = permettre/laisser (doux), 叫 = demander/ordonner (plus directif)",
@@ -473,7 +473,7 @@ export const unit75: CourseUnit = {
       ],
     },
     {
-      id: "u75-ex7",
+      id: "unit-75-ex7",
       type: "fill-blank",
       question: "你___功課寫完了嗎？(Tu as fini d'ecrire tes devoirs ?)",
       correctAnswer: "把",
@@ -483,7 +483,7 @@ export const unit75: CourseUnit = {
       hint: "On deplace l'objet defini (功課) avant le verbe pour montrer ce qu'on en fait.",
     },
     {
-      id: "u75-ex8",
+      id: "unit-75-ex8",
       type: "translate",
       question: "Comment dit-on « Le gateau a ete mange par le petit frere » ?",
       correctAnswer: "蛋糕被弟弟吃掉了。",

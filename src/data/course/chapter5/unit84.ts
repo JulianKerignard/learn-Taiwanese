@@ -94,8 +94,6 @@ export const unit84: CourseUnit = {
     },
   ],
 
-  dialogue: undefined,
-
   keyPoints: [
     "全聯 (PX Mart) est le supermarché le plus courant à Taïwan, et 垃圾車 (camion poubelle) passe à heure fixe.",
     "591.com.tw est le site immobilier de référence. 套房 = studio, 包水電 = charges incluses.",
@@ -229,7 +227,7 @@ export const unit84: CourseUnit = {
 
   exercises: [
     {
-      id: "u84-ex1",
+      id: "unit-84-ex1",
       type: "comprehension",
       question: "Dans le message LINE, que faut-il aller acheter au supermarché ?",
       correctAnswer: "Du lait et du papier toilette",
@@ -241,7 +239,7 @@ export const unit84: CourseUnit = {
       ],
     },
     {
-      id: "u84-ex2",
+      id: "unit-84-ex2",
       type: "comprehension",
       question: "Pourquoi le colocataire doit-il se rappeler de l'heure du 垃圾車 ?",
       correctAnswer: "Parce qu'à Taïwan il faut sortir donner ses poubelles au camion en personne",
@@ -253,7 +251,7 @@ export const unit84: CourseUnit = {
       ],
     },
     {
-      id: "u84-ex3",
+      id: "unit-84-ex3",
       type: "comprehension",
       question: "Dans l'annonce d'appartement, combien coûte le loyer mensuel et qu'est-ce qui est inclus ?",
       correctAnswer: "12 000 NT$, eau, électricité et internet inclus",
@@ -265,7 +263,7 @@ export const unit84: CourseUnit = {
       ],
     },
     {
-      id: "u84-ex4",
+      id: "unit-84-ex4",
       type: "comprehension",
       question: "Quelles sont les deux interdictions mentionnées dans l'annonce d'appartement ?",
       correctAnswer: "Pas d'animaux et pas de cuisine",
@@ -277,7 +275,7 @@ export const unit84: CourseUnit = {
       ],
     },
     {
-      id: "u84-ex5",
+      id: "unit-84-ex5",
       type: "comprehension",
       question: "Dans l'avis du restaurant, quel est le seul défaut mentionné par le client ?",
       correctAnswer: "Il n'y a pas beaucoup de places et il faut faire la queue le midi",
@@ -289,7 +287,7 @@ export const unit84: CourseUnit = {
       ],
     },
     {
-      id: "u84-ex6",
+      id: "unit-84-ex6",
       type: "comprehension",
       question: "Combien coûte un grand bol de 牛肉麵 dans ce restaurant ?",
       correctAnswer: "180 NT$ (environ 5 €)",
@@ -301,7 +299,7 @@ export const unit84: CourseUnit = {
       ],
     },
     {
-      id: "u84-ex7",
+      id: "unit-84-ex7",
       type: "comprehension",
       question: "Que signifie Q彈 dans le contexte de la nourriture à Taïwan ?",
       correctAnswer: "Une texture élastique et rebondissante, agréable en bouche",
@@ -313,7 +311,7 @@ export const unit84: CourseUnit = {
       ],
     },
     {
-      id: "u84-ex8",
+      id: "unit-84-ex8",
       type: "comprehension",
       question: "Dans l'annonce, que signifie 套房 ?",
       correctAnswer: "Un studio avec salle de bain privée",

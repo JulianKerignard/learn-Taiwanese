@@ -379,7 +379,7 @@ export const unit73: CourseUnit = {
 
   exercises: [
     {
-      id: "u73-ex1",
+      id: "unit-73-ex1",
       type: "fill-blank",
       question: "請___！(Entrez, s'il vous plait ! — je suis a l'interieur)",
       correctAnswer: "進來",
@@ -389,10 +389,10 @@ export const unit73: CourseUnit = {
       hint: "Le locuteur est a l'interieur, donc le mouvement va VERS lui.",
     },
     {
-      id: "u73-ex2",
+      id: "unit-73-ex2",
       type: "comprehension",
       question: "Si je suis en bas et que je dis a quelqu'un de monter, je dis :",
-      correctAnswer: "上來 — monter vers moi (en bas → en haut ou je suis... non, je suis en bas)",
+      correctAnswer: "上去 — monter vers la-haut (je suis en bas)",
       options: [
         "上來 — monter vers moi (je suis en haut)",
         "上去 — monter vers la-haut (je suis en bas)",
@@ -413,7 +413,7 @@ export const unit73: CourseUnit = {
       ],
     },
     {
-      id: "u73-ex3",
+      id: "unit-73-ex3",
       type: "translate",
       question: "Comment dit-on « Le chat a couru dehors » (je suis a l'interieur) ?",
       correctAnswer: "貓跑出去了。",
@@ -432,7 +432,7 @@ export const unit73: CourseUnit = {
       ],
     },
     {
-      id: "u73-ex4",
+      id: "unit-73-ex4",
       type: "fill-blank",
       question: "我想___了，他叫王先生！(Ca y est, je me souviens !)",
       correctAnswer: "起來",
@@ -442,7 +442,7 @@ export const unit73: CourseUnit = {
       hint: "想 + ? = se souvenir soudain (sens figure).",
     },
     {
-      id: "u73-ex5",
+      id: "unit-73-ex5",
       type: "translate",
       question: "Comment dit-on « Tu reviens quand ? » ?",
       correctAnswer: "你什麼時候回來？",
@@ -466,7 +466,7 @@ export const unit73: CourseUnit = {
       ],
     },
     {
-      id: "u73-ex6",
+      id: "unit-73-ex6",
       type: "comprehension",
       question: "Que signifie 說下去 ?",
       correctAnswer: "Continuer a parler (sens figure de 下去)",
@@ -490,7 +490,7 @@ export const unit73: CourseUnit = {
       ],
     },
     {
-      id: "u73-ex7",
+      id: "unit-73-ex7",
       type: "fill-blank",
       question: "他走___教室___了。(Il est entre dans la salle de classe en marchant — je suis dans la classe.)",
       correctAnswer: "進...來",
@@ -500,7 +500,7 @@ export const unit73: CourseUnit = {
       hint: "Le locuteur est dans la classe, donc le mouvement va vers lui.",
     },
     {
-      id: "u73-ex8",
+      id: "unit-73-ex8",
       type: "translate",
       question: "Comment dit-on « Il commence a faire froid » ?",
       correctAnswer: "天氣冷起來了。",

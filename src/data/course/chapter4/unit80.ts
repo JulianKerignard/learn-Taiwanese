@@ -417,7 +417,7 @@ export const unit80: CourseUnit = {
 
   exercises: [
     {
-      id: "u80-ex1",
+      id: "unit-80-ex1",
       type: "comprehension",
       question: "Qu'est-ce que le KTV à Taiwan ?",
       correctAnswer: "Un karaoke en cabine privée, très populaire pour les sorties entre amis",
@@ -429,7 +429,7 @@ export const unit80: CourseUnit = {
       ],
     },
     {
-      id: "u80-ex2",
+      id: "unit-80-ex2",
       type: "fill-blank",
       question: "我最近在___一部台劇。(Je suis en train de suivre une série taiwanaise.)",
       correctAnswer: "追",
@@ -440,7 +440,7 @@ export const unit80: CourseUnit = {
       hintZhuyin: "Le verbe qui signifie « suivre/poursuivre » une série épisode par épisode.",
     },
     {
-      id: "u80-ex3",
+      id: "unit-80-ex3",
       type: "translate",
       question: "Comment dit-on « Tu as déjà vu ce film ? » ?",
       correctAnswer: "你看過這部電影嗎？",
@@ -464,7 +464,7 @@ export const unit80: CourseUnit = {
       ],
     },
     {
-      id: "u80-ex4",
+      id: "unit-80-ex4",
       type: "comprehension",
       question: "Qu'est-ce que PTT (批踢踢) ?",
       correctAnswer: "Le plus grand forum en ligne de Taiwan, comparable à Reddit",
@@ -476,7 +476,7 @@ export const unit80: CourseUnit = {
       ],
     },
     {
-      id: "u80-ex5",
+      id: "unit-80-ex5",
       type: "fill-blank",
       question: "這首___很好聽！(Cette chanson est très agréable à écouter !)",
       correctAnswer: "歌",
@@ -487,7 +487,7 @@ export const unit80: CourseUnit = {
       hintZhuyin: "Un morceau de musique avec des paroles.",
     },
     {
-      id: "u80-ex6",
+      id: "unit-80-ex6",
       type: "translate",
       question: "Comment dit-on « Je te recommande de regarder cette émission » ?",
       correctAnswer: "我推薦你看這個節目",
@@ -511,7 +511,7 @@ export const unit80: CourseUnit = {
       ],
     },
     {
-      id: "u80-ex7",
+      id: "unit-80-ex7",
       type: "listen",
       question: "Écoutez et choisissez la bonne traduction de : 你有訂閱這個頻道嗎？",
       correctAnswer: "Tu es abonné à cette chaîne ?",
@@ -523,7 +523,7 @@ export const unit80: CourseUnit = {
       ],
     },
     {
-      id: "u80-ex8",
+      id: "unit-80-ex8",
       type: "fill-blank",
       question: "這個___的影片很有趣。(Les vidéos de cet influenceur sont intéressantes.)",
       correctAnswer: "網紅",

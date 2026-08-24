@@ -430,7 +430,7 @@ export const unit66: CourseUnit = {
 
   exercises: [
     {
-      id: "u66-ex1",
+      id: "unit-66-ex1",
       type: "comprehension",
       question:
         "Quelle est la structure correcte pour dire « d'abord je me brosse les dents, puis je me lave le visage » ?",
@@ -443,7 +443,7 @@ export const unit66: CourseUnit = {
       ],
     },
     {
-      id: "u66-ex2",
+      id: "unit-66-ex2",
       type: "fill-blank",
       question: "我___七點起床。(Je me lève à 7h tous les jours.)",
       correctAnswer: "每天",
@@ -453,7 +453,7 @@ export const unit66: CourseUnit = {
       hint: "Quel mot signifie « tous les jours » ?",
     },
     {
-      id: "u66-ex3",
+      id: "unit-66-ex3",
       type: "translate",
       question: "Que signifie 我下班以後去夜市吃東西 ?",
       correctAnswer: "Après le travail, je vais au marché de nuit manger quelque chose.",
@@ -465,7 +465,7 @@ export const unit66: CourseUnit = {
       ],
     },
     {
-      id: "u66-ex4",
+      id: "unit-66-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 你每天幾點睡覺？",
       correctAnswer: "À quelle heure tu te couches tous les jours ?",
@@ -477,7 +477,7 @@ export const unit66: CourseUnit = {
       ],
     },
     {
-      id: "u66-ex5",
+      id: "unit-66-ex5",
       type: "comprehension",
       question:
         "En chinois, où se place le mot indiquant le temps (l'heure) par rapport au verbe ?",
@@ -491,7 +491,7 @@ export const unit66: CourseUnit = {
       ],
     },
     {
-      id: "u66-ex6",
+      id: "unit-66-ex6",
       type: "fill-blank",
       question: "我每個星期運動三___。(Je fais du sport trois fois par semaine.)",
       correctAnswer: "次",
@@ -501,7 +501,7 @@ export const unit66: CourseUnit = {
       hint: "Quel est le mot pour compter le nombre de « fois » ?",
     },
     {
-      id: "u66-ex7",
+      id: "unit-66-ex7",
       type: "translate",
       question: "Comment dire « Je prends d'abord le petit-déjeuner, puis je sors » ?",
       correctAnswer: "我先吃早餐，然後出門。",
@@ -513,7 +513,7 @@ export const unit66: CourseUnit = {
       ],
     },
     {
-      id: "u66-ex8",
+      id: "unit-66-ex8",
       type: "comprehension",
       question:
         "Pourquoi les Taiwanais prennent-ils souvent leur petit-déjeuner à l'extérieur ?",

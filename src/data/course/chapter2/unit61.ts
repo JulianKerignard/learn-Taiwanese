@@ -450,7 +450,7 @@ export const unit61: CourseUnit = {
 
   exercises: [
     {
-      id: "u61-ex1",
+      id: "unit-61-ex1",
       type: "fill-blank",
       question: "我___一杯奶茶。(Je veux un thé au lait.)",
       correctAnswer: "要",
@@ -460,7 +460,7 @@ export const unit61: CourseUnit = {
       hint: "Quel verbe utilise-t-on pour commander ?",
     },
     {
-      id: "u61-ex2",
+      id: "unit-61-ex2",
       type: "translate",
       question: "Que signifie 你要不要加蛋 ?",
       correctAnswer: "Tu veux ajouter un oeuf ?",
@@ -472,7 +472,7 @@ export const unit61: CourseUnit = {
       ],
     },
     {
-      id: "u61-ex3",
+      id: "unit-61-ex3",
       type: "comprehension",
       question:
         "Qu'est-ce qu'une 早餐店 à Taiwan ?",
@@ -486,7 +486,7 @@ export const unit61: CourseUnit = {
       ],
     },
     {
-      id: "u61-ex4",
+      id: "unit-61-ex4",
       type: "fill-blank",
       question: "我想___吃蛋餅。(Je voudrais manger un dànbǐng.)",
       correctAnswer: "要",
@@ -496,14 +496,14 @@ export const unit61: CourseUnit = {
       hint: "Quel mot complète 想___ pour exprimer « vouloir » poliment ?",
     },
     {
-      id: "u61-ex5",
+      id: "unit-61-ex5",
       type: "translate",
       question: "Comment dire « un peu moins de sucre » en chinois ?",
       correctAnswer: "糖少一點",
       options: ["糖少一點", "不要糖", "很多糖", "糖太少"],
     },
     {
-      id: "u61-ex6",
+      id: "unit-61-ex6",
       type: "listen",
       question:
         "Écoute et choisis la bonne traduction de : 內用還是外帶？",
@@ -516,7 +516,7 @@ export const unit61: CourseUnit = {
       ],
     },
     {
-      id: "u61-ex7",
+      id: "unit-61-ex7",
       type: "comprehension",
       question:
         "Quels sont les quatre niveaux de sucre qu'on peut demander pour une boisson à Taiwan ?",
@@ -530,7 +530,7 @@ export const unit61: CourseUnit = {
       ],
     },
     {
-      id: "u61-ex8",
+      id: "unit-61-ex8",
       type: "fill-blank",
       question: "台灣的水果又甜又___。(Les fruits de Taiwan sont sucrés et bon marché.)",
       correctAnswer: "便宜",

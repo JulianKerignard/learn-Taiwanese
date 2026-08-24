@@ -186,7 +186,7 @@ export const unit33: CourseUnit = {
 
   exercises: [
     {
-      id: "u33-ex1",
+      id: "unit-33-ex1",
       type: "translate",
       question: "Traduisez : « Je voudrais ce bento, vous pouvez le réchauffer ? »",
       correctAnswer: "我要這個便當，可以加熱嗎？",
@@ -205,7 +205,7 @@ export const unit33: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄓㄜˋ ㄍㄜ ㄅㄧㄢˋ ㄉㄤ, ㄎㄜˇ ㄧˇ ㄐㄧㄚ ㄖㄜˋ ㄇㄚ?", "ㄨㄛˇ ㄧㄠˋ ㄧˊ ㄍㄜ ㄅㄧㄢˋ ㄉㄤ, ㄋㄧˇ ㄎㄜˇ ㄧˇ ㄖㄜˋ ㄇㄚ?", "ㄓㄜˋ ㄍㄜ ㄅㄧㄢˋ ㄉㄤ ㄧㄠˋ ㄐㄧㄚ ㄖㄜˋ ㄇㄚ?", "ㄨㄛˇ ㄒㄧㄤˇ ㄧㄠˋ ㄅㄧㄢˋ ㄉㄤ, ㄑㄧㄥˇ ㄐㄧㄚ ㄖㄜˋ."],
     },
     {
-      id: "u33-ex2",
+      id: "unit-33-ex2",
       type: "translate",
       question: "Traduisez : « Vous avez des sacs ? »",
       correctAnswer: "你們有袋子嗎？",
@@ -224,7 +224,7 @@ export const unit33: CourseUnit = {
       optionsZhuyin: ["ㄋㄧˇ ㄇㄣ ㄧㄡˇ ㄉㄞˋ ㄗ ㄇㄚ?", "ㄋㄧˇ ㄧㄡˇ ㄅㄠ ㄇㄚ?", "ㄉㄞˋ ㄗ ㄗㄞˋ ㄋㄚˇ ㄌㄧˇ?", "ㄨㄛˇ ㄧㄠˋ ㄉㄞˋ ㄗ."],
     },
     {
-      id: "u33-ex3",
+      id: "unit-33-ex3",
       type: "translate",
       question: "Traduisez : « Je voudrais recharger 500 dollars. »",
       correctAnswer: "我要加值五百塊。",
@@ -243,7 +243,7 @@ export const unit33: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄐㄧㄚ ㄓˊ ㄨˇ ㄅㄞˇ ㄎㄨㄞˋ.", "ㄨㄛˇ ㄧㄠˋ ㄨˇ ㄅㄞˇ ㄎㄨㄞˋ.", "ㄐㄧㄚ ㄓˊ ㄨˇ ㄅㄞˇ ㄩㄢˊ ㄏㄠˇ ㄇㄚ?", "ㄑㄧㄥˇ ㄍㄟˇ ㄨㄛˇ ㄨˇ ㄅㄞˇ ㄎㄨㄞˋ."],
     },
     {
-      id: "u33-ex4",
+      id: "unit-33-ex4",
       type: "translate",
       question: "Traduisez : « Je voudrais un bol de nouilles au boeuf, pas épicé. »",
       correctAnswer: "我要一碗牛肉麵，不辣。",
@@ -262,7 +262,7 @@ export const unit33: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄧˋ ㄨㄢˇ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ, ㄅㄨˊ ㄌㄚˋ.", "ㄧˋ ㄨㄢˇ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ, ㄅㄨˊ ㄧㄠˋ ㄌㄚˋ ㄉㄜ.", "ㄨㄛˇ ㄒㄧㄤˇ ㄔ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ ㄅㄨˊ ㄌㄚˋ.", "ㄍㄟˇ ㄨㄛˇ ㄋㄧㄡˊ ㄖㄡˋ ㄇㄧㄢˋ, ㄌㄚˋ ㄉㄜ ㄅㄨˊ ㄧㄠˋ."],
     },
     {
-      id: "u33-ex5",
+      id: "unit-33-ex5",
       type: "translate",
       question: "Traduisez : « C'est combien ? »",
       correctAnswer: "多少錢？",
@@ -281,7 +281,7 @@ export const unit33: CourseUnit = {
       optionsZhuyin: ["ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄐㄧˇ ㄎㄨㄞˋ ㄑㄧㄢˊ?", "ㄓㄜˋ ㄍㄜ ㄉㄨㄛ ㄕㄠˇ?", "ㄧㄠˋ ㄈㄨˋ ㄉㄨㄛ ㄕㄠˇ?"],
     },
     {
-      id: "u33-ex6",
+      id: "unit-33-ex6",
       type: "translate",
       question: "Traduisez : « C'est délicieux ! »",
       correctAnswer: "好吃！",
@@ -290,7 +290,7 @@ export const unit33: CourseUnit = {
       optionsZhuyin: ["ㄏㄠˇ ㄔ!", "ㄏㄣˇ ㄏㄠˇ!", "ㄏㄠˇ ㄏㄜ!", "ㄅㄨˊ ㄘㄨㄛˋ!"],
     },
     {
-      id: "u33-ex7",
+      id: "unit-33-ex7",
       type: "translate",
       question: "Traduisez : « Excusez-moi, où sont les toilettes ? »",
       correctAnswer: "不好意思，廁所在哪裡？",
@@ -309,7 +309,7 @@ export const unit33: CourseUnit = {
       optionsZhuyin: ["ㄅㄨˋ ㄏㄠˇ ㄧˋ ㄙ, ㄘㄜˋ ㄙㄨㄛˇ ㄗㄞˋ ㄋㄚˇ ㄌㄧˇ?", "ㄑㄧㄥˇ ㄨㄣˋ ㄘㄜˋ ㄙㄨㄛˇ ㄗㄞˋ ㄋㄚˇ?", "ㄉㄨㄟˋ ㄅㄨˋ ㄑㄧˇ, ㄘㄜˋ ㄙㄨㄛˇ ㄋㄜ?", "ㄅㄨˋ ㄏㄠˇ ㄧˋ ㄙ, ㄒㄧˇ ㄕㄡˇ ㄐㄧㄢ ㄗㄞˋ ㄋㄚˇ ㄌㄧˇ?"],
     },
     {
-      id: "u33-ex8",
+      id: "unit-33-ex8",
       type: "reorder",
       question: "Remettez dans l'ordre : 到 / 台北101 / 坐 / 要 / 我 / 捷運",
       correctAnswer: "我要坐捷運到台北101",
@@ -318,7 +318,7 @@ export const unit33: CourseUnit = {
       hintZhuyin: "Structure : Sujet + 要 + Verbe + Transport + 到 + Destination",
     },
     {
-      id: "u33-ex9",
+      id: "unit-33-ex9",
       type: "translate",
       question: "Traduisez : « Quelle sortie pour Taipei 101 ? »",
       correctAnswer: "台北101是幾號出口？",
@@ -337,7 +337,7 @@ export const unit33: CourseUnit = {
       optionsZhuyin: ["ㄊㄞˊ ㄅㄟˇ ㄧ ㄌㄧㄥˊ ㄧ ㄕˋ ㄐㄧˇ ㄏㄠˋ ㄔㄨ ㄎㄡˇ?", "ㄊㄞˊ ㄅㄟˇ ㄧ ㄌㄧㄥˊ ㄧ ㄗㄞˋ ㄋㄚˇ ㄍㄜ ㄔㄨ ㄎㄡˇ?", "ㄔㄨ ㄎㄡˇ ㄐㄧˇ ㄏㄠˋ ㄕˋ ㄊㄞˊ ㄅㄟˇ ㄧ ㄌㄧㄥˊ ㄧ?", "ㄊㄞˊ ㄅㄟˇ ㄧ ㄌㄧㄥˊ ㄧ ㄉㄜ ㄔㄨ ㄎㄡˇ ㄕˋ ㄕㄣˊ ㄇㄜ?"],
     },
     {
-      id: "u33-ex10",
+      id: "unit-33-ex10",
       type: "reorder",
       question: "Remettez dans l'ordre : 嗎 / 加熱 / 可以 / 便當 / 這個",
       correctAnswer: "這個便當可以加熱嗎",
@@ -346,7 +346,7 @@ export const unit33: CourseUnit = {
       hintZhuyin: "Structure : Sujet + 可以 + Verbe + 嗎",
     },
     {
-      id: "u33-ex11",
+      id: "unit-33-ex11",
       type: "translate",
       question: "Traduisez : « Il reste combien de stations ? »",
       correctAnswer: "還有幾站？",
@@ -365,7 +365,7 @@ export const unit33: CourseUnit = {
       optionsZhuyin: ["ㄏㄞˊ ㄧㄡˇ ㄐㄧˇ ㄓㄢˋ?", "ㄐㄧˇ ㄓㄢˋ ㄉㄠˋ ㄌㄜ?", "ㄏㄞˊ ㄧㄡˇ ㄉㄨㄛ ㄩㄢˇ?", "ㄧㄠˋ ㄗㄨㄛˋ ㄐㄧˇ ㄓㄢˋ?"],
     },
     {
-      id: "u33-ex12",
+      id: "unit-33-ex12",
       type: "reorder",
       question: "Remettez dans l'ordre : 在 / 廁所 / 哪裡 / 不好意思",
       correctAnswer: "不好意思廁所在哪裡",
@@ -374,7 +374,7 @@ export const unit33: CourseUnit = {
       hintZhuyin: "Structure : Formule de politesse + Sujet + 在 + 哪裡",
     },
     {
-      id: "u33-ex13",
+      id: "unit-33-ex13",
       type: "translate",
       question: "Traduisez : « Je veux prendre le MRT jusqu'à la gare de Taipei. »",
       correctAnswer: "我要坐捷運到台北車站。",
@@ -393,7 +393,7 @@ export const unit33: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄧㄠˋ ㄗㄨㄛˋ ㄐㄧㄝˊ ㄩㄣˋ ㄉㄠˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ.", "ㄨㄛˇ ㄗㄨㄛˋ ㄐㄧㄝˊ ㄩㄣˋ ㄑㄩˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ.", "ㄨㄛˇ ㄒㄧㄤˇ ㄉㄠˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ ㄗㄨㄛˋ ㄐㄧㄝˊ ㄩㄣˋ.", "ㄐㄧㄝˊ ㄩㄣˋ ㄉㄠˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ ㄇㄚ?"],
     },
     {
-      id: "u33-ex14",
+      id: "unit-33-ex14",
       type: "reorder",
       question: "Remettez dans l'ordre : 牛肉麵 / 一碗 / 不辣 / 我 / 要",
       correctAnswer: "我要一碗牛肉麵不辣",
@@ -402,7 +402,7 @@ export const unit33: CourseUnit = {
       hintZhuyin: "Structure : Sujet + 要 + Quantité + Nom + Spécification",
     },
     {
-      id: "u33-ex15",
+      id: "unit-33-ex15",
       type: "translate",
       question: "Traduisez : « La EasyCard, c'est possible de recharger ici ? »",
       correctAnswer: "悠遊卡可以在這裡加值嗎？",

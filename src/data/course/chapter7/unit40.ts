@@ -280,7 +280,7 @@ export const unit40: CourseUnit = {
   exercises: [
     // --- 5 exercices "translate" (FR→ZH, phrases complexes) ---
     {
-      id: "u40-ex1",
+      id: "unit-40-ex1",
       type: "translate",
       question:
         "Traduis en chinois : « Pose ton sac sur la chaise et ferme la porte. »",
@@ -293,7 +293,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex2",
+      id: "unit-40-ex2",
       type: "translate",
       question:
         "Traduis en chinois : « Bien que je sois allé à Taiwan trois fois, je n'ai jamais vu le lever du soleil à Alishan. »",
@@ -306,7 +306,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex3",
+      id: "unit-40-ex3",
       type: "translate",
       question:
         "Traduis en chinois : « Il parle chinois mieux que moi, parce qu'il a habité à Taipei pendant deux ans. »",
@@ -319,7 +319,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex4",
+      id: "unit-40-ex4",
       type: "translate",
       question:
         "Traduis en chinois : « Si tu n'as pas fini tes devoirs, tu ne peux pas sortir. »",
@@ -332,7 +332,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex5",
+      id: "unit-40-ex5",
       type: "translate",
       question:
         "Traduis en chinois : « Ce caractère, je n'arrive pas à le comprendre en le regardant. Peux-tu m'expliquer ? »",
@@ -346,8 +346,8 @@ export const unit40: CourseUnit = {
     },
     // --- 5 exercices "reorder" (phrases longues) ---
     {
-      id: "u40-ex6",
-      type: "reorder",
+      id: "unit-40-ex6",
+      type: "comprehension",
       question:
         "Remets dans l'ordre : 了 / 已經 / 在台灣 / 我 / 住 / 六個月",
       correctAnswer: "我在台灣已經住了六個月",
@@ -359,8 +359,8 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex7",
-      type: "reorder",
+      id: "unit-40-ex7",
+      type: "comprehension",
       question:
         "Remets dans l'ordre : 說得 / 比 / 他 / 我 / 中文 / 好",
       correctAnswer: "他中文說得比我好",
@@ -372,8 +372,8 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex8",
-      type: "reorder",
+      id: "unit-40-ex8",
+      type: "comprehension",
       question:
         "Remets dans l'ordre : 把 / 請 / 放在 / 你 / 冰箱裡 / 水果",
       correctAnswer: "請你把水果放在冰箱裡",
@@ -385,8 +385,8 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex9",
-      type: "reorder",
+      id: "unit-40-ex9",
+      type: "comprehension",
       question:
         "Remets dans l'ordre : 不但 / 而且 / 很好吃 / 很便宜 / 夜市的小吃",
       correctAnswer: "夜市的小吃不但很好吃而且很便宜",
@@ -398,8 +398,8 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex10",
-      type: "reorder",
+      id: "unit-40-ex10",
+      type: "comprehension",
       question:
         "Remets dans l'ordre : 聽得懂 / 現在 / 台灣人 / 的 / 說 / 我 / 話",
       correctAnswer: "我現在聽得懂台灣人說的話",
@@ -412,7 +412,7 @@ export const unit40: CourseUnit = {
     },
     // --- 5 exercices "fill-blank" (grammaire avancée) ---
     {
-      id: "u40-ex11",
+      id: "unit-40-ex11",
       type: "fill-blank",
       question:
         "他每天都把房間收拾___。(Il range sa chambre proprement chaque jour.)",
@@ -424,7 +424,7 @@ export const unit40: CourseUnit = {
       hintZhuyin: "Résultatif indiquant que l'action est bien faite.",
     },
     {
-      id: "u40-ex12",
+      id: "unit-40-ex12",
       type: "fill-blank",
       question:
         "你的字寫___不太好看，要多練習。(Tu n'écris pas très joliment, il faut plus pratiquer.)",
@@ -436,7 +436,7 @@ export const unit40: CourseUnit = {
       hintZhuyin: "Particule de complément de degré entre le verbe et l'évaluation.",
     },
     {
-      id: "u40-ex13",
+      id: "unit-40-ex13",
       type: "fill-blank",
       question:
         "我找___半天，終於找到鑰匙了。(J'ai cherché longtemps et j'ai enfin trouvé les clés.)",
@@ -448,7 +448,7 @@ export const unit40: CourseUnit = {
       hintZhuyin: "ㄌㄜ˙₁ : action accomplie (chercher → fait).",
     },
     {
-      id: "u40-ex14",
+      id: "unit-40-ex14",
       type: "fill-blank",
       question:
         "這本書太難了，我看___。(Ce livre est trop dur, je ne le comprends pas.)",
@@ -460,7 +460,7 @@ export const unit40: CourseUnit = {
       hintZhuyin: "Résultatif négatif : impossible de comprendre.",
     },
     {
-      id: "u40-ex15",
+      id: "unit-40-ex15",
       type: "fill-blank",
       question:
         "我___台灣以前，一句中文都不會說。(Avant de venir à Taiwan, je ne savais pas dire un mot de chinois.)",
@@ -473,7 +473,7 @@ export const unit40: CourseUnit = {
     },
     // --- 5 exercices "comprehension" (textes courts) ---
     {
-      id: "u40-ex16",
+      id: "unit-40-ex16",
       type: "comprehension",
       question:
         "Texte : 「我的室友是日本人，他來台灣學中文。雖然他已經學了一年，但是他覺得聲調還是最難的。他說得比我好，因為他每天都跟台灣朋友聊天。」\n\nQuestion : 為什麼室友說中文說得好？",
@@ -486,7 +486,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex17",
+      id: "unit-40-ex17",
       type: "comprehension",
       question:
         "Texte : 「上個週末我們去了九份。那裡的風景很美，小吃也很好吃。可是人太多了，我們排了一個小時才買到芋圓。下次如果再去，我想平日去。」\n\nQuestion : 他下次想什麼時候去？",
@@ -499,7 +499,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex18",
+      id: "unit-40-ex18",
       type: "comprehension",
       question:
         "Texte : 「請把你的護照和簽證給我看。你在台灣要待多久？如果超過九十天，你需要去移民署辦延簽。」\n\nQuestion : 如果待超過90天，要做什麼？",
@@ -512,7 +512,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex19",
+      id: "unit-40-ex19",
       type: "comprehension",
       question:
         "Texte : 「我把冷氣關了，因為外面已經不熱了。如果你覺得還是很熱，你可以把窗戶打開。」\n\nQuestion : 為什麼他把冷氣關了？",
@@ -525,7 +525,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex20",
+      id: "unit-40-ex20",
       type: "comprehension",
       question:
         "Texte : 「這家咖啡店不但咖啡好喝，而且蛋糕也做得很好。老闆是法國人，他在台灣住了十年，中文說得跟台灣人一樣好。」\n\nQuestion : 老闆的中文怎麼樣？",
@@ -539,7 +539,7 @@ export const unit40: CourseUnit = {
     },
     // --- 5 exercices "listen" (phrases à identifier) ---
     {
-      id: "u40-ex21",
+      id: "unit-40-ex21",
       type: "listen",
       question:
         "Écoute : 「我把作業都寫完了，可以出去玩嗎？」— Que demande cette personne ?",
@@ -552,7 +552,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex22",
+      id: "unit-40-ex22",
       type: "listen",
       question:
         "Écoute : 「你跑得比我快，但是我游泳游得比你好。」— Que dit cette phrase ?",
@@ -565,7 +565,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex23",
+      id: "unit-40-ex23",
       type: "listen",
       question:
         "Écoute : 「如果明天下雨，我們就不去爬山了，改去看電影吧。」— Quel est le plan B ?",
@@ -578,7 +578,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex24",
+      id: "unit-40-ex24",
       type: "listen",
       question:
         "Écoute : 「不好意思，這張桌子已經有人訂了。我幫你找別的位子好嗎？」— Que dit le serveur ?",
@@ -591,7 +591,7 @@ export const unit40: CourseUnit = {
       ],
     },
     {
-      id: "u40-ex25",
+      id: "unit-40-ex25",
       type: "listen",
       question:
         "Écoute : 「我在台灣最喜歡的回憶就是跟朋友一起在夜市吃小吃。」— Quel est son meilleur souvenir ?",

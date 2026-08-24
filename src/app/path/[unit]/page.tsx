@@ -1,11 +1,8 @@
 import UnitContent from "./UnitContent";
+import { allUnits } from "@/data/course";
 
 export function generateStaticParams() {
-  const ids: string[] = [];
-  for (let i = 1; i <= 88; i++) {
-    ids.push(`unit-${String(i).padStart(2, "0")}`);
-  }
-  return ids.map((id) => ({ unit: id }));
+  return allUnits.map((u) => ({ unit: u.id }));
 }
 
 export default async function UnitPage({

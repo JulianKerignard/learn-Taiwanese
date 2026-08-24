@@ -558,7 +558,7 @@ export const unit01: CourseUnit = {
 
   exercises: [
     {
-      id: "u1-ex1",
+      id: "unit-01-ex1",
       type: "comprehension",
       question:
         "Quelle est la particularité principale des verbes en chinois ?",
@@ -571,7 +571,7 @@ export const unit01: CourseUnit = {
       ],
     },
     {
-      id: "u1-ex2",
+      id: "unit-01-ex2",
       type: "translate",
       question: "Comment dit-on « Je suis français » en chinois ?",
       correctAnswer: "我是法國人",
@@ -580,7 +580,7 @@ export const unit01: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄕˋ ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ", "ㄨㄛˇ ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ ㄕˋ", "ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ ㄨㄛˇ ㄕˋ", "ㄕˋ ㄨㄛˇ ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ"],
     },
     {
-      id: "u1-ex3",
+      id: "unit-01-ex3",
       type: "fill-blank",
       question: "我___法國人。(Je suis français.)",
       correctAnswer: "是",
@@ -590,7 +590,7 @@ export const unit01: CourseUnit = {
       hint: "Quel verbe signifie « être » ?",
     },
     {
-      id: "u1-ex4",
+      id: "unit-01-ex4",
       type: "comprehension",
       question: "Quel système phonétique est utilisé à Taiwan ?",
       correctAnswer: "Le zhuyin (注音/Bopomofo)",
@@ -602,7 +602,7 @@ export const unit01: CourseUnit = {
       ],
     },
     {
-      id: "u1-ex5",
+      id: "unit-01-ex5",
       type: "translate",
       question: "Que signifie 你好嗎 ?",
       correctAnswer: "Comment vas-tu ? / Tu vas bien ?",
@@ -615,7 +615,7 @@ export const unit01: CourseUnit = {
       hint: "nǐ hǎo ma",
     },
     {
-      id: "u1-ex6",
+      id: "unit-01-ex6",
       type: "fill-blank",
       question: "我___喜歡。(Je n'aime pas.)",
       correctAnswer: "不",
@@ -625,7 +625,7 @@ export const unit01: CourseUnit = {
       hint: "Quel mot exprime la négation ?",
     },
     {
-      id: "u1-ex7",
+      id: "unit-01-ex7",
       type: "comprehension",
       question: "Quel type de caractères utilise-t-on à Taiwan ?",
       correctAnswer: "Les caractères traditionnels (繁體字)",
@@ -637,7 +637,7 @@ export const unit01: CourseUnit = {
       ],
     },
     {
-      id: "u1-ex8",
+      id: "unit-01-ex8",
       type: "translate",
       question: "Comment transforme-t-on « 你是法國人 » en question ?",
       correctAnswer: "你是法國人嗎？",

@@ -612,7 +612,7 @@ export const unit32: CourseUnit = {
 
   exercises: [
     {
-      id: "u32-ex1",
+      id: "unit-32-ex1",
       type: "comprehension",
       question: "Combien de types de traits fondamentaux y a-t-il ?",
       correctAnswer:
@@ -625,7 +625,7 @@ export const unit32: CourseUnit = {
       ],
     },
     {
-      id: "u32-ex2",
+      id: "unit-32-ex2",
       type: "comprehension",
       question:
         "Quel est l'ordre correct pour écrire 十 (dix) ?",
@@ -639,7 +639,7 @@ export const unit32: CourseUnit = {
       ],
     },
     {
-      id: "u32-ex3",
+      id: "unit-32-ex3",
       type: "fill-blank",
       question:
         "Le caractère 好 se décompose en ___ (à gauche) + ___ (à droite).",
@@ -654,7 +654,7 @@ export const unit32: CourseUnit = {
       hintZhuyin: "Le radical 女 (femme) est à gauche.",
     },
     {
-      id: "u32-ex4",
+      id: "unit-32-ex4",
       type: "comprehension",
       question:
         "Si un caractère inconnu contient le radical 氵, quel est probablement son domaine sémantique ?",
@@ -667,7 +667,7 @@ export const unit32: CourseUnit = {
       ],
     },
     {
-      id: "u32-ex5",
+      id: "unit-32-ex5",
       type: "comprehension",
       question:
         "Dans le caractère 說 (dire), quel est le radical et que signifie-t-il ?",
@@ -680,7 +680,7 @@ export const unit32: CourseUnit = {
       ],
     },
     {
-      id: "u32-ex6",
+      id: "unit-32-ex6",
       type: "fill-blank",
       question:
         "La règle d'ordre des traits pour 日 (soleil) est : extérieur d'abord, puis intérieur, et ___ en dernier.",
@@ -694,7 +694,7 @@ export const unit32: CourseUnit = {
       hint: "Règle 5 : le trait qui ferme un cadre s'écrit toujours en dernier.",
     },
     {
-      id: "u32-ex7",
+      id: "unit-32-ex7",
       type: "comprehension",
       question: "Pourquoi le caractère 永 (yǒng) est-il célèbre en calligraphie ?",
       correctAnswer:
@@ -707,7 +707,7 @@ export const unit32: CourseUnit = {
       ],
     },
     {
-      id: "u32-ex8",
+      id: "unit-32-ex8",
       type: "fill-blank",
       question:
         "Le caractère 錢 (argent) contient le radical ___, qui signifie métal, car les anciennes pièces étaient en métal.",

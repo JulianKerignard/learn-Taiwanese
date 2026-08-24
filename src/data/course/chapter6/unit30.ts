@@ -320,7 +320,7 @@ export const unit30: CourseUnit = {
 
   exercises: [
     {
-      id: "u30-ex1",
+      id: "unit-30-ex1",
       type: "comprehension",
       question:
         "Dans 媽媽 (māma), quel phénomène tonal se produit sur la 2e syllabe ?",
@@ -333,7 +333,7 @@ export const unit30: CourseUnit = {
       ],
     },
     {
-      id: "u30-ex2",
+      id: "unit-30-ex2",
       type: "comprehension",
       question: "Que se passe-t-il quand deux tons 3 se suivent ?",
       correctAnswer: "Le premier ton 3 devient ton 2 (sandhi tonal)",
@@ -345,7 +345,7 @@ export const unit30: CourseUnit = {
       ],
     },
     {
-      id: "u30-ex3",
+      id: "unit-30-ex3",
       type: "fill-blank",
       question: "我買了一___鞋子。(J'ai acheté une paire de chaussures.)",
       correctAnswer: "雙",
@@ -356,7 +356,7 @@ export const unit30: CourseUnit = {
       hintZhuyin: "Classificateur pour les paires.",
     },
     {
-      id: "u30-ex4",
+      id: "unit-30-ex4",
       type: "fill-blank",
       question: "這___歌很好聽。(Cette chanson est belle.)",
       correctAnswer: "首",
@@ -367,7 +367,7 @@ export const unit30: CourseUnit = {
       hintZhuyin: "Classificateur pour les chansons.",
     },
     {
-      id: "u30-ex5",
+      id: "unit-30-ex5",
       type: "fill-blank",
       question: "請給我一___傘。(Donnez-moi un parapluie.)",
       correctAnswer: "把",
@@ -378,7 +378,7 @@ export const unit30: CourseUnit = {
       hintZhuyin: "Classificateur pour les objets avec poignée.",
     },
     {
-      id: "u30-ex6",
+      id: "unit-30-ex6",
       type: "comprehension",
       question: "Quelle est la différence entre 了₁ et 了₂ ?",
       correctAnswer:
@@ -391,7 +391,7 @@ export const unit30: CourseUnit = {
       ],
     },
     {
-      id: "u30-ex7",
+      id: "unit-30-ex7",
       type: "translate",
       question: "Que signifie 我去過台南 ?",
       correctAnswer: "Je suis déjà allé à Tainan (expérience)",
@@ -403,7 +403,7 @@ export const unit30: CourseUnit = {
       ],
     },
     {
-      id: "u30-ex8",
+      id: "unit-30-ex8",
       type: "fill-blank",
       question:
         "明天___下雨嗎？(Est-ce qu'il pleuvra demain ?)",
@@ -415,7 +415,7 @@ export const unit30: CourseUnit = {
       hintZhuyin: "Particule du futur.",
     },
     {
-      id: "u30-ex9",
+      id: "unit-30-ex9",
       type: "fill-blank",
       question:
         "___他很忙，___他還是來了。(Bien qu'il soit occupé, il est quand même venu.)",
@@ -427,7 +427,7 @@ export const unit30: CourseUnit = {
       hintZhuyin: "Concession : bien que... mais...",
     },
     {
-      id: "u30-ex10",
+      id: "unit-30-ex10",
       type: "translate",
       question: "Traduisez : 台灣的夜市比法國的市場更熱鬧。",
       correctAnswer:
@@ -440,7 +440,7 @@ export const unit30: CourseUnit = {
       ],
     },
     {
-      id: "u30-ex11",
+      id: "unit-30-ex11",
       type: "comprehension",
       question: "Quelle expression utiliser pour encourager quelqu'un ?",
       correctAnswer: "加油！",
@@ -449,7 +449,7 @@ export const unit30: CourseUnit = {
       optionsZhuyin: ["ㄐㄧㄚ ㄧㄡˊ！", "ㄉㄨㄟˋ ㄅㄨˋ ㄑㄧˇ！", "ㄗㄞˋ ㄐㄧㄢˋ！", "ㄇㄟˊ ㄍㄨㄢ ㄒㄧˋ！"],
     },
     {
-      id: "u30-ex12",
+      id: "unit-30-ex12",
       type: "fill-blank",
       question:
         "___每天練習，你的中文___會進步。(Si tu pratiques chaque jour, ton chinois progressera.)",
@@ -461,7 +461,7 @@ export const unit30: CourseUnit = {
       hintZhuyin: "Condition : si... alors...",
     },
     {
-      id: "u30-ex13",
+      id: "unit-30-ex13",
       type: "translate",
       question: "Que signifie 不好意思，請問一下 ?",
       correctAnswer: "Excusez-moi, puis-je demander...",
@@ -473,7 +473,7 @@ export const unit30: CourseUnit = {
       ],
     },
     {
-      id: "u30-ex14",
+      id: "unit-30-ex14",
       type: "comprehension",
       question:
         "Quel est le prochain objectif réaliste après ce parcours ?",
@@ -486,7 +486,7 @@ export const unit30: CourseUnit = {
       ],
     },
     {
-      id: "u30-ex15",
+      id: "unit-30-ex15",
       type: "translate",
       question: "Que signifie 慢慢來，不要急 ?",
       correctAnswer: "Prends ton temps, ne te presse pas.",

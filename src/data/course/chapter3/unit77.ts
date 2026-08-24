@@ -360,7 +360,7 @@ export const unit77: CourseUnit = {
 
   exercises: [
     {
-      id: "u77-ex1",
+      id: "unit-77-ex1",
       type: "fill-blank",
       question: "我___吃飯___。(Je suis en train de manger.)",
       correctAnswer: "正在...呢",
@@ -370,7 +370,7 @@ export const unit77: CourseUnit = {
       hint: "Action en cours au moment ou on parle.",
     },
     {
-      id: "u77-ex2",
+      id: "unit-77-ex2",
       type: "comprehension",
       question: "Quelle est la difference entre 我學了三年中文 et 我學了三年了 ?",
       correctAnswer: "Avec un seul 了 c'est termine, avec double 了 ca continue encore",
@@ -394,7 +394,7 @@ export const unit77: CourseUnit = {
       ],
     },
     {
-      id: "u77-ex3",
+      id: "unit-77-ex3",
       type: "translate",
       question: "Comment dit-on « Il va bientot pleuvoir » ?",
       correctAnswer: "快要下雨了。",
@@ -418,7 +418,7 @@ export const unit77: CourseUnit = {
       ],
     },
     {
-      id: "u77-ex4",
+      id: "unit-77-ex4",
       type: "fill-blank",
       question: "我___到，你不用等。(Je viens d'arriver, pas besoin d'attendre.)",
       correctAnswer: "剛",
@@ -428,7 +428,7 @@ export const unit77: CourseUnit = {
       hint: "Tres recent — a l'instant meme.",
     },
     {
-      id: "u77-ex5",
+      id: "unit-77-ex5",
       type: "translate",
       question: "Comment dit-on « J'habite a Taiwan depuis deux ans » (et j'y habite toujours) ?",
       correctAnswer: "我在台灣住了兩年了。",
@@ -452,7 +452,7 @@ export const unit77: CourseUnit = {
       ],
     },
     {
-      id: "u77-ex6",
+      id: "unit-77-ex6",
       type: "comprehension",
       question: "Quelle est la difference entre 剛 et 剛才 ?",
       correctAnswer: "剛 = a l'instant (tres recent), 剛才 = tout a l'heure (un peu moins recent)",
@@ -476,7 +476,7 @@ export const unit77: CourseUnit = {
       ],
     },
     {
-      id: "u77-ex7",
+      id: "unit-77-ex7",
       type: "fill-blank",
       question: "我___沒吃飯。(Je n'ai pas encore mange.)",
       correctAnswer: "還",
@@ -486,7 +486,7 @@ export const unit77: CourseUnit = {
       hint: "Pas encore = negation + adverbe.",
     },
     {
-      id: "u77-ex8",
+      id: "unit-77-ex8",
       type: "translate",
       question: "Comment dit-on « Tu es enfin la ! » ?",
       correctAnswer: "你終於來了！",

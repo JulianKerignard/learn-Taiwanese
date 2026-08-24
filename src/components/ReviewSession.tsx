@@ -17,7 +17,6 @@ import { calculateXP, checkAchievements, getLevelFromTotalXP, getStreakMultiplie
 import {
   getCards,
   upsertCard,
-  getProgress,
   saveProgress,
   updateStreak,
   getSettings,
@@ -178,6 +177,15 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
     [queue, currentIndex, reviewed, newLearned, sessionXP, modeAccuracy, allGradesGood, newAchievements]
   );
 
+  // Hooks must run before any conditional return: the early exits below change
+  // between renders as `loaded` and `sessionDone` flip.
+  const card = queue[currentIndex];
+  const distractors = useMemo(
+    () => (card ? shuffleForDistractors(allCards.length > 0 ? allCards : queue, card) : []),
+    [allCards, queue, card]
+  );
+  const settings = useMemo(() => getSettings(), []);
+
   if (!loaded) return null;
 
   // No cards
@@ -323,13 +331,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
   }
 
   // Active session
-  const card = queue[currentIndex];
   const mode = pickMode(currentIndex);
-  const distractors = useMemo(
-    () => shuffleForDistractors(allCards.length > 0 ? allCards : queue, card),
-    [allCards, queue, card]
-  );
-  const settings = useMemo(() => getSettings(), []);
 
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-6">

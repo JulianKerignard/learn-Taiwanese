@@ -22,13 +22,16 @@ import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
 import { getUnitById, chapters, getHSKLevelForUnit, getHSKLevelUnits } from "@/data/course";
 import {
-  getPathProgress,
-  isUnitUnlocked,
   completeUnit,
 } from "@/lib/progress";
-import { upsertCard, updateStreak } from "@/lib/storage";
+import { upsertCard, updateStreak, getCards } from "@/lib/storage";
 import { createCard } from "@/lib/fsrs";
 import type { CourseUnit } from "@/types/course";
+
+/** Stable FSRS card id for a unit vocabulary entry. */
+function vocabCardId(unitId: string, character: string): string {
+  return `course-${unitId}-${character}`;
+}
 
 interface UnitContentProps {
   unitId: string;
@@ -50,6 +53,10 @@ export default function UnitContent({ unitId }: UnitContentProps) {
     const u = getUnitById(unitId);
     setUnit(u);
     setLoaded(true);
+    if (u) {
+      const existingIds = new Set(getCards().map((c) => c.id));
+      setVocabAdded(u.vocabulary.every((item) => existingIds.has(vocabCardId(unitId, item.character))));
+    }
   }, [unitId]);
 
   useEffect(() => {
@@ -118,9 +125,13 @@ export default function UnitContent({ unitId }: UnitContentProps) {
 
   const handleAddAllVocab = useCallback(() => {
     if (!unit) return;
+    // Skip cards already in the store: re-adding would reset their FSRS history.
+    const existingIds = new Set(getCards().map((c) => c.id));
     for (const item of unit.vocabulary) {
+      const id = vocabCardId(unitId, item.character);
+      if (existingIds.has(id)) continue;
       const card = createCard({
-        id: `course-${unitId}-${item.character}`,
+        id,
         front: item.character,
         back: item.french,
         pinyin: item.pinyin,

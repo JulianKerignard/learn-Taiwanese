@@ -415,7 +415,7 @@ export const unit46: CourseUnit = {
 
   exercises: [
     {
-      id: "u46-ex1",
+      id: "unit-46-ex1",
       type: "comprehension",
       question: "Comment dit-on « le 15 octobre » en chinois ?",
       correctAnswer: "十月十五號",
@@ -427,7 +427,7 @@ export const unit46: CourseUnit = {
       ],
     },
     {
-      id: "u46-ex2",
+      id: "unit-46-ex2",
       type: "fill-blank",
       question: "今天___三。(Aujourd'hui c'est mercredi.)",
       correctAnswer: "星期",
@@ -437,7 +437,7 @@ export const unit46: CourseUnit = {
       hint: "Quel mot précède le numéro du jour de la semaine ?",
     },
     {
-      id: "u46-ex3",
+      id: "unit-46-ex3",
       type: "translate",
       question: "Que signifie 你明天早上有沒有空？",
       correctAnswer: "Tu es libre demain matin ?",
@@ -449,7 +449,7 @@ export const unit46: CourseUnit = {
       ],
     },
     {
-      id: "u46-ex4",
+      id: "unit-46-ex4",
       type: "listen",
       question:
         "Écoute et choisis la bonne traduction de : 我們約星期六下午見面。",
@@ -462,7 +462,7 @@ export const unit46: CourseUnit = {
       ],
     },
     {
-      id: "u46-ex5",
+      id: "unit-46-ex5",
       type: "comprehension",
       question:
         "Quel est l'ordre correct des éléments de temps dans une phrase chinoise ?",
@@ -476,7 +476,7 @@ export const unit46: CourseUnit = {
       ],
     },
     {
-      id: "u46-ex6",
+      id: "unit-46-ex6",
       type: "fill-blank",
       question: "他___來了。(Il est déjà arrivé.)",
       correctAnswer: "已經",
@@ -491,7 +491,7 @@ export const unit46: CourseUnit = {
       hint: "Quel mot signifie « déjà » ?",
     },
     {
-      id: "u46-ex7",
+      id: "unit-46-ex7",
       type: "translate",
       question: "Comment dire « Hier soir j'ai mangé avec des amis » ?",
       correctAnswer: "昨天晚上我跟朋友一起吃飯。",
@@ -503,7 +503,7 @@ export const unit46: CourseUnit = {
       ],
     },
     {
-      id: "u46-ex8",
+      id: "unit-46-ex8",
       type: "comprehension",
       question:
         "Que signifie 改天再約 dans une conversation entre Taiwanais ?",

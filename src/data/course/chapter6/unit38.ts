@@ -498,7 +498,7 @@ export const unit38: CourseUnit = {
 
   exercises: [
     {
-      id: "u38-ex1",
+      id: "unit-38-ex1",
       type: "translate",
       question: "Traduis en chinois : « Mets tes chaussures à l'entrée. »",
       correctAnswer: "把你的鞋子放在門口。",
@@ -512,8 +512,8 @@ export const unit38: CourseUnit = {
       optionsZhuyin: ["ㄅㄚˇ ㄋㄧˇ ㄉㄜ˙ ㄒㄧㄝˊ ㄗ˙ ㄈㄤˋ ㄗㄞˋ ㄇㄣˊ ㄎㄡˇ。", "ㄋㄧˇ ㄉㄜ˙ ㄒㄧㄝˊ ㄗ˙ ㄗㄞˋ ㄇㄣˊ ㄎㄡˇ。", "ㄅㄚˇ ㄒㄧㄝˊ ㄗ˙ ㄔㄨㄢ ㄕㄤˋ。", "ㄇㄣˊ ㄎㄡˇ ㄧㄡˇ ㄋㄧˇ ㄉㄜ˙ ㄒㄧㄝˊ ㄗ˙。"],
     },
     {
-      id: "u38-ex2",
-      type: "reorder",
+      id: "unit-38-ex2",
+      type: "comprehension",
       question:
         "Remets dans l'ordre : 桌子上 / 把 / 請 / 杯子 / 放在 / 你",
       correctAnswer: "請你把杯子放在桌子上",
@@ -527,7 +527,7 @@ export const unit38: CourseUnit = {
       optionsZhuyin: ["ㄑㄧㄥˇ ㄋㄧˇ ㄅㄚˇ ㄅㄟ ㄗ˙ ㄈㄤˋ ㄗㄞˋ ㄓㄨㄛ ㄗ˙ ㄕㄤˋ", "ㄑㄧㄥˇ ㄅㄚˇ ㄋㄧˇ ㄓㄨㄛ ㄗ˙ ㄕㄤˋ ㄅㄟ ㄗ˙ ㄈㄤˋ ㄗㄞˋ", "ㄋㄧˇ ㄑㄧㄥˇ ㄅㄚˇ ㄈㄤˋ ㄗㄞˋ ㄓㄨㄛ ㄗ˙ ㄕㄤˋ ㄅㄟ ㄗ˙", "ㄅㄚˇ ㄅㄟ ㄗ˙ ㄑㄧㄥˇ ㄋㄧˇ ㄈㄤˋ ㄗㄞˋ ㄓㄨㄛ ㄗ˙ ㄕㄤˋ"],
     },
     {
-      id: "u38-ex3",
+      id: "unit-38-ex3",
       type: "fill-blank",
       question:
         "你中文說___很好。(Tu parles très bien chinois.)",
@@ -539,7 +539,7 @@ export const unit38: CourseUnit = {
       hintZhuyin: "Complément ㄉㄜ˙ degré : verbe + __ + adjectif.",
     },
     {
-      id: "u38-ex4",
+      id: "unit-38-ex4",
       type: "translate",
       question: "Que signifie 我聽不懂他說的話 ?",
       correctAnswer: "Je ne comprends pas ce qu'il dit (en écoutant)",
@@ -551,7 +551,7 @@ export const unit38: CourseUnit = {
       ],
     },
     {
-      id: "u38-ex5",
+      id: "unit-38-ex5",
       type: "fill-blank",
       question:
         "請___，外面很冷。(Entre, dehors il fait très froid.)",
@@ -563,8 +563,8 @@ export const unit38: CourseUnit = {
       hintZhuyin: "Entrer vers le locuteur.",
     },
     {
-      id: "u38-ex6",
-      type: "reorder",
+      id: "unit-38-ex6",
+      type: "comprehension",
       question:
         "Remets dans l'ordre : 完 / 了 / 他 / 把 / 飯 / 吃",
       correctAnswer: "他把飯吃完了",
@@ -578,7 +578,7 @@ export const unit38: CourseUnit = {
       optionsZhuyin: ["ㄊㄚ ㄅㄚˇ ㄈㄢˋ ㄔ ㄨㄢˊ ㄌㄜ˙", "ㄊㄚ ㄔ ㄨㄢˊ ㄅㄚˇ ㄈㄢˋ ㄌㄜ˙", "ㄅㄚˇ ㄊㄚ ㄈㄢˋ ㄔ ㄨㄢˊ ㄌㄜ˙", "ㄊㄚ ㄈㄢˋ ㄅㄚˇ ㄔ ㄨㄢˊ ㄌㄜ˙"],
     },
     {
-      id: "u38-ex7",
+      id: "unit-38-ex7",
       type: "fill-blank",
       question:
         "這本書你看___嗎？(Tu comprends ce livre ?)",
@@ -590,7 +590,7 @@ export const unit38: CourseUnit = {
       hintZhuyin: "Forme potentielle positive : verbe + ㄉㄜ˙ + résultatif.",
     },
     {
-      id: "u38-ex8",
+      id: "unit-38-ex8",
       type: "translate",
       question:
         "Traduis en chinois : « Je descends tout de suite, attends-moi. »",

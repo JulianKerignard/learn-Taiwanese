@@ -516,7 +516,7 @@ export const unit31: CourseUnit = {
 
   exercises: [
     {
-      id: "u31-ex1",
+      id: "unit-31-ex1",
       type: "comprehension",
       question:
         "Pourquoi les Taiwanais utilisent-ils le zhuyin plutôt que le pinyin ?",
@@ -530,7 +530,7 @@ export const unit31: CourseUnit = {
       ],
     },
     {
-      id: "u31-ex2",
+      id: "unit-31-ex2",
       type: "comprehension",
       question: "Combien de symboles comporte le zhuyin au total ?",
       correctAnswer: "37 symboles : 21 consonnes et 16 voyelles",
@@ -542,7 +542,7 @@ export const unit31: CourseUnit = {
       ],
     },
     {
-      id: "u31-ex3",
+      id: "unit-31-ex3",
       type: "fill-blank",
       question:
         "En zhuyin, le ton 1 est indiqué par ___, contrairement au pinyin qui utilise le macron (ˉ).",
@@ -556,7 +556,7 @@ export const unit31: CourseUnit = {
       hint: "Le ton 1 est considéré comme le ton « par défaut » en zhuyin.",
     },
     {
-      id: "u31-ex4",
+      id: "unit-31-ex4",
       type: "translate",
       question: "Convertissez en pinyin : ㄋㄧˇ ㄏㄠˇ",
       correctAnswer: "nǐ hǎo (bonjour)",
@@ -568,7 +568,7 @@ export const unit31: CourseUnit = {
       ],
     },
     {
-      id: "u31-ex5",
+      id: "unit-31-ex5",
       type: "translate",
       question: "Convertissez en pinyin : ㄒㄧㄝˋ ˙ㄒㄧㄝ",
       correctAnswer: "xiè xie (merci)",
@@ -580,7 +580,7 @@ export const unit31: CourseUnit = {
       ],
     },
     {
-      id: "u31-ex6",
+      id: "unit-31-ex6",
       type: "comprehension",
       question:
         "Quel est l'avantage du zhuyin par rapport au pinyin pour la prononciation ?",
@@ -594,7 +594,7 @@ export const unit31: CourseUnit = {
       ],
     },
     {
-      id: "u31-ex7",
+      id: "unit-31-ex7",
       type: "fill-blank",
       question:
         "Pour taper 你 en zhuyin sur un clavier, l'ordre est : ___(ㄋ) → ___(ㄧ) → ___(ton 3).",
@@ -603,7 +603,7 @@ export const unit31: CourseUnit = {
       hint: "La touche S correspond à ㄋ, U à ㄧ, et 3 au ton 3 sur un clavier zhuyin.",
     },
     {
-      id: "u31-ex8",
+      id: "unit-31-ex8",
       type: "translate",
       question: "Convertissez en zhuyin : Táiwān (台灣)",
       correctAnswer: "ㄊㄞˊ ㄨㄢ",

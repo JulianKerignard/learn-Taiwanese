@@ -507,7 +507,7 @@ export const unit04: CourseUnit = {
 
   exercises: [
     {
-      id: "u3-ex1",
+      id: "unit-04-ex1",
       type: "translate",
       question: "Comment dit-on « Je m'appelle Marie » en chinois ?",
       correctAnswer: "我叫 Marie",
@@ -516,7 +516,7 @@ export const unit04: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄐㄧㄠˋ ㄇㄚ ㄖ ㄜ", "ㄨㄛˇ ㄕˋ ㄇㄚ ㄖ ㄜ", "ㄇㄚ ㄖ ㄜ ㄐㄧㄠˋ ㄨㄛˇ", "ㄨㄛˇ ㄉㄜ ㄇㄚ ㄖ ㄜ"],
     },
     {
-      id: "u3-ex2",
+      id: "unit-04-ex2",
       type: "fill-blank",
       question: "你___什麼名字？(Comment tu t'appelles ?)",
       correctAnswer: "叫",
@@ -526,7 +526,7 @@ export const unit04: CourseUnit = {
       hint: "Quel verbe signifie « s'appeler » ?",
     },
     {
-      id: "u3-ex3",
+      id: "unit-04-ex3",
       type: "translate",
       question: "Que signifie 你是哪裡人？",
       correctAnswer: "Tu viens d'où ? / Tu es de quel pays ?",
@@ -539,7 +539,7 @@ export const unit04: CourseUnit = {
       hint: "nǐ shì nǎlǐ rén?",
     },
     {
-      id: "u3-ex4",
+      id: "unit-04-ex4",
       type: "comprehension",
       question:
         "Pourquoi ne met-on pas 嗎 à la fin de 你叫什麼名字？",
@@ -553,7 +553,7 @@ export const unit04: CourseUnit = {
       ],
     },
     {
-      id: "u3-ex5",
+      id: "unit-04-ex5",
       type: "fill-blank",
       question: "我是法國人。你___？(Je suis français. Et toi ?)",
       correctAnswer: "呢",
@@ -563,7 +563,7 @@ export const unit04: CourseUnit = {
       hint: "Quelle particule retourne la question ?",
     },
     {
-      id: "u3-ex6",
+      id: "unit-04-ex6",
       type: "translate",
       question: "Comment dit-on « Je suis aussi étudiant » ?",
       correctAnswer: "我也是學生",

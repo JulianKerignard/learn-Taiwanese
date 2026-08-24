@@ -96,11 +96,11 @@ import { unit37 } from "./chapter6/unit37";
 import { unit38 } from "./chapter6/unit38";
 import { unit28 } from "./chapter6/unit28";
 
-// Chapter 7 - Maîtriser
+// Chapter 7 - Maîtriser (fichiers dans chapter6/)
 import { unit29 } from "./chapter6/unit29";
 import { unit30 } from "./chapter6/unit30";
 
-// Chapter 8 - Certification
+// Chapter 8 - Certification (fichiers dans chapter7/)
 import { unit39 } from "./chapter7/unit39";
 import { unit40 } from "./chapter7/unit40";
 
@@ -174,8 +174,10 @@ export const allUnits: CourseUnit[] = [
   unit39, unit40,
 ];
 
+const unitMap = new Map(allUnits.map((u) => [u.id, u]));
+
 export function getUnitById(id: string): CourseUnit | undefined {
-  return allUnits.find((u) => u.id === id);
+  return unitMap.get(id);
 }
 
 export function getChapter(num: number): Chapter | undefined {
@@ -186,7 +188,7 @@ export function getChapterUnits(chapterNumber: number): CourseUnit[] {
   const chapter = getChapter(chapterNumber);
   if (!chapter) return [];
   return chapter.unitIds
-    .map((id) => allUnits.find((u) => u.id === id))
+    .map((id) => unitMap.get(id))
     .filter((u): u is CourseUnit => u !== undefined);
 }
 

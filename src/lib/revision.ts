@@ -1,6 +1,6 @@
 import type { SM2Card } from "@/types";
-import type { CourseUnit, Chapter, HSKLevel } from "@/types/course";
-import { allUnits, chapters, hskLevels, getUnitById, getHSKLevelForUnit } from "@/data/course";
+import type { HSKLevel } from "@/types/course";
+import { chapters, hskLevels, getUnitById, getHSKLevelForUnit } from "@/data/course";
 import { lessons } from "@/data/lessons";
 
 // ── Card source parsing ─────────────────────────────────────────────

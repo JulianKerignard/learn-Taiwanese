@@ -392,7 +392,7 @@ export const unit28: CourseUnit = {
 
   exercises: [
     {
-      id: "u28-ex1",
+      id: "unit-28-ex1",
       type: "fill-blank",
       question: "我買了一___鞋子。(J'ai acheté une paire de chaussures.)",
       correctAnswer: "雙",
@@ -403,7 +403,7 @@ export const unit28: CourseUnit = {
       hintZhuyin: "Les chaussures viennent par paires.",
     },
     {
-      id: "u28-ex2",
+      id: "unit-28-ex2",
       type: "fill-blank",
       question: "這___歌很好聽。(Cette chanson est belle.)",
       correctAnswer: "首",
@@ -414,7 +414,7 @@ export const unit28: CourseUnit = {
       hintZhuyin: "Classificateur pour les chansons et poèmes.",
     },
     {
-      id: "u28-ex3",
+      id: "unit-28-ex3",
       type: "comprehension",
       question: "Quel classificateur utilise-t-on pour les plats de cuisine ?",
       correctAnswer: "道",
@@ -423,7 +423,7 @@ export const unit28: CourseUnit = {
       optionsZhuyin: ["ㄉㄠˋ", "ㄈㄣˋ", "ㄉㄨㄣˋ", "ㄨㄢˇ"],
     },
     {
-      id: "u28-ex4",
+      id: "unit-28-ex4",
       type: "fill-blank",
       question: "他住在那___大樓的第五___。(Il habite dans cet immeuble, au 5e étage.)",
       correctAnswer: "棟...層",
@@ -434,7 +434,7 @@ export const unit28: CourseUnit = {
       hintZhuyin: "Bâtiment + étage.",
     },
     {
-      id: "u28-ex5",
+      id: "unit-28-ex5",
       type: "comprehension",
       question:
         "Quel classificateur utiliser si vous ne connaissez pas le bon ?",
@@ -447,7 +447,7 @@ export const unit28: CourseUnit = {
       ],
     },
     {
-      id: "u28-ex6",
+      id: "unit-28-ex6",
       type: "fill-blank",
       question: "請給我一___傘。(Donnez-moi un parapluie.)",
       correctAnswer: "把",
@@ -458,14 +458,14 @@ export const unit28: CourseUnit = {
       hintZhuyin: "Objet qu'on tient par une poignée.",
     },
     {
-      id: "u28-ex7",
+      id: "unit-28-ex7",
       type: "translate",
       question: "Que signifie 一頓飯 ?",
       correctAnswer: "Un repas",
       options: ["Un repas", "Un bol de riz", "Une portion", "Un plat"],
     },
     {
-      id: "u28-ex8",
+      id: "unit-28-ex8",
       type: "fill-blank",
       question: "我寫了一___email給老闆。(J'ai écrit un email au patron.)",
       correctAnswer: "封",

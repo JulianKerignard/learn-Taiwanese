@@ -153,7 +153,7 @@ export const unit71: CourseUnit = {
   exercises: [
     // --- 4 LISTEN exercises ---
     {
-      id: "u71-listen-1",
+      id: "unit-71-ex1",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 我想買三件衣服，一共多少錢？",
       correctAnswer: "Je voudrais acheter trois vêtements, combien ça fait en tout ?",
@@ -165,7 +165,7 @@ export const unit71: CourseUnit = {
       ],
     },
     {
-      id: "u71-listen-2",
+      id: "unit-71-ex2",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 因為今天下雨，所以我們不去公園了。",
       correctAnswer: "Parce qu'il pleut aujourd'hui, nous n'allons plus au parc.",
@@ -177,7 +177,7 @@ export const unit71: CourseUnit = {
       ],
     },
     {
-      id: "u71-listen-3",
+      id: "unit-71-ex3",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 你家有幾個人？我家有五個人。",
       correctAnswer: "Combien de personnes y a-t-il dans ta famille ? Il y en a cinq.",
@@ -189,7 +189,7 @@ export const unit71: CourseUnit = {
       ],
     },
     {
-      id: "u71-listen-4",
+      id: "unit-71-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 我先去超商買東西，然後回家做飯。",
       correctAnswer: "Je vais d'abord au convenience store acheter des choses, puis je rentre cuisiner.",
@@ -203,7 +203,7 @@ export const unit71: CourseUnit = {
 
     // --- 3 COMPREHENSION exercises ---
     {
-      id: "u71-comp-1",
+      id: "unit-71-ex5",
       type: "comprehension",
       question:
         "我叫大衛，是法國人，今年二十五歲。我在台北學中文，已經學了六個月了。我的老師姓林，她很好。我每天上午上課，下午去圖書館看書。— David apprend le chinois depuis combien de temps ?",
@@ -216,7 +216,7 @@ export const unit71: CourseUnit = {
       ],
     },
     {
-      id: "u71-comp-2",
+      id: "unit-71-ex6",
       type: "comprehension",
       question:
         "今天是媽媽的生日。爸爸買了一個蛋糕，姐姐買了一束花，我買了一本書。我們在家裡吃了很多好吃的菜，媽媽很開心。— Qu'est-ce que le narrateur a offert à sa maman ?",
@@ -229,7 +229,7 @@ export const unit71: CourseUnit = {
       ],
     },
     {
-      id: "u71-comp-3",
+      id: "unit-71-ex7",
       type: "comprehension",
       question:
         "小華每天早上七點半起床，八點吃早餐，然後坐公車去上班。他的公司在台北車站的旁邊。中午他去附近的餐廳吃午餐，下午六點下班回家。— Xiaohua comment va-t-il au travail ?",
@@ -244,7 +244,7 @@ export const unit71: CourseUnit = {
 
     // --- 3 FILL-BLANK exercises ---
     {
-      id: "u71-fill-1",
+      id: "unit-71-ex8",
       type: "fill-blank",
       question: "___今天下雨，___我帶了雨傘。(Parce qu'il pleut aujourd'hui, j'ai pris un parapluie.)",
       correctAnswer: "因為 / 所以",
@@ -259,7 +259,7 @@ export const unit71: CourseUnit = {
       hint: "Structure cause-conséquence : parce que... donc...",
     },
     {
-      id: "u71-fill-2",
+      id: "unit-71-ex9",
       type: "fill-blank",
       question: "桌子___有一本書和兩枝筆。(Sur la table il y a un livre et deux stylos.)",
       correctAnswer: "上面",
@@ -274,7 +274,7 @@ export const unit71: CourseUnit = {
       hint: "Les objets se trouvent SUR la table, pas en dessous ni à côté.",
     },
     {
-      id: "u71-fill-3",
+      id: "unit-71-ex10",
       type: "fill-blank",
       question: "你要大杯___小杯？(Tu veux un grand ou un petit ?)",
       correctAnswer: "還是",
@@ -291,7 +291,7 @@ export const unit71: CourseUnit = {
 
     // --- 3 TRANSLATE exercises ---
     {
-      id: "u71-trad-1",
+      id: "unit-71-ex11",
       type: "translate",
       question: "Traduisez en chinois : « Parce qu'il fait froid aujourd'hui, je porte une veste et un chapeau. »",
       correctAnswer: "因為今天很冷，所以我穿了一件外套，戴了一頂帽子。",
@@ -309,7 +309,7 @@ export const unit71: CourseUnit = {
       ],
     },
     {
-      id: "u71-trad-2",
+      id: "unit-71-ex12",
       type: "translate",
       question: "Traduisez en chinois : « Mon chat aime dormir sur la chaise, mon chien aime dormir sous la table. »",
       correctAnswer: "我的貓喜歡在椅子上面睡覺，我的狗喜歡在桌子下面睡覺。",
@@ -327,7 +327,7 @@ export const unit71: CourseUnit = {
       ],
     },
     {
-      id: "u71-trad-3",
+      id: "unit-71-ex13",
       type: "translate",
       question: "Traduisez en chinois : « Demain matin à huit heures, on se retrouve devant l'école, d'accord ? »",
       correctAnswer: "明天早上八點，我們在學校前面見面，好不好？",
@@ -347,7 +347,7 @@ export const unit71: CourseUnit = {
 
     // --- 2 REORDER exercises ---
     {
-      id: "u71-reorder-1",
+      id: "unit-71-ex14",
       type: "reorder",
       question: "Remettez dans l'ordre : 所以 / 下雨 / 不去 / 因為 / 公園 / 我們",
       correctAnswer: "因為下雨所以我們不去公園",
@@ -364,7 +364,7 @@ export const unit71: CourseUnit = {
       hint: "Structure : 因為 + raison + 所以 + sujet + action.",
     },
     {
-      id: "u71-reorder-2",
+      id: "unit-71-ex15",
       type: "reorder",
       question: "Remettez dans l'ordre : 在 / 見面 / 我們 / 八點 / 學校 / 明天 / 前面",
       correctAnswer: "明天八點我們在學校前面見面",

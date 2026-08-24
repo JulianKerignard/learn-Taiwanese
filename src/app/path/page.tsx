@@ -7,7 +7,6 @@ import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
 import {
   getPathProgress,
-  getOverallProgress,
   getHSKLevelCompletedCount,
   getCurrentHSKLevel,
 } from "@/lib/progress";
@@ -33,7 +32,7 @@ export default function PathPage() {
   if (!progress) return null;
 
   const completedCount = progress.completedUnits.length;
-  const currentLevel = getCurrentHSKLevel(progress, allUnits, hskLevels);
+  const currentLevel = getCurrentHSKLevel(progress);
 
   return (
     <div className="flex flex-col gap-10">

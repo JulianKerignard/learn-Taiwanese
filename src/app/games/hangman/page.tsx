@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { getRandomWords, getAllGameWords, type GameWord } from "@/lib/game-data";
+import { getAllGameWords, type GameWord } from "@/lib/game-data";
 import AudioButton from "@/components/AudioButton";
 import { shuffleArray } from "@/lib/utils";
 

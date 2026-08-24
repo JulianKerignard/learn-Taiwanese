@@ -458,7 +458,7 @@ export const unit07: CourseUnit = {
 
   exercises: [
     {
-      id: "u5-ex1",
+      id: "unit-07-ex1",
       type: "translate",
       question: "Comment dit-on « Combien ça coûte ? » en chinois ?",
       correctAnswer: "多少錢？",
@@ -467,7 +467,7 @@ export const unit07: CourseUnit = {
       optionsZhuyin: ["ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄐㄧˇ ㄍㄜ ㄑㄧㄢˊ?", "ㄕㄣˊ ㄇㄜ ㄑㄧㄢˊ?", "ㄑㄧㄢˊ ㄉㄨㄛ ㄕㄠˇ?"],
     },
     {
-      id: "u5-ex2",
+      id: "unit-07-ex2",
       type: "fill-blank",
       question: "廁所在___？(Où sont les toilettes ?)",
       correctAnswer: "哪裡",
@@ -477,7 +477,7 @@ export const unit07: CourseUnit = {
       hint: "Quel mot interrogatif signifie « où » ?",
     },
     {
-      id: "u5-ex3",
+      id: "unit-07-ex3",
       type: "comprehension",
       question:
         "Quelle est la différence entre 幾 et 多少 ?",
@@ -491,7 +491,7 @@ export const unit07: CourseUnit = {
       ],
     },
     {
-      id: "u5-ex4",
+      id: "unit-07-ex4",
       type: "translate",
       question: "Que signifie 你是不是法國人？",
       correctAnswer: "Tu es français (ou pas) ?",
@@ -504,7 +504,7 @@ export const unit07: CourseUnit = {
       hint: "nǐ shì bú shì Fǎguó rén?",
     },
     {
-      id: "u5-ex5",
+      id: "unit-07-ex5",
       type: "comprehension",
       question:
         "Quelles sont les trois façons de poser une question en chinois ?",
@@ -518,10 +518,10 @@ export const unit07: CourseUnit = {
       ],
     },
     {
-      id: "u5-ex6",
-      type: "reorder",
+      id: "unit-07-ex6",
+      type: "comprehension",
       question:
-        "Remettez dans l'ordre : 去 / 台北車站 / 怎麼 (Comment aller à la gare de Taipei ?)",
+        "Quelle phrase est correcte ? (Comment aller à la gare de Taipei ?)",
       correctAnswer: "台北車站怎麼去？",
       options: [
         "台北車站怎麼去？",

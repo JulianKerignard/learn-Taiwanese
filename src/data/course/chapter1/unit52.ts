@@ -366,7 +366,7 @@ export const unit52: CourseUnit = {
     {
       character: "漂亮",
       pinyin: "piàoliang",
-      zhuyin: "ㄆㄧㄠˋ ㄌㄧㄤˋ",
+      zhuyin: "ㄆㄧㄠˋ ˙ㄌㄧㄤ",
       french: "Joli / Beau",
       english: "Pretty / Beautiful",
       example: {
@@ -415,7 +415,7 @@ export const unit52: CourseUnit = {
 
   exercises: [
     {
-      id: "u52-ex1",
+      id: "unit-52-ex1",
       type: "comprehension",
       question:
         "Quelle couleur symbolise la chance à Taiwan et est utilisée pour les enveloppes lors du Nouvel An ?",
@@ -428,7 +428,7 @@ export const unit52: CourseUnit = {
       ],
     },
     {
-      id: "u52-ex2",
+      id: "unit-52-ex2",
       type: "fill-blank",
       question: "這件衣服___漂亮。(Ce vêtement est joli.)",
       correctAnswer: "很",
@@ -438,7 +438,7 @@ export const unit52: CourseUnit = {
       hint: "Quel mot utilise-t-on devant un adjectif à la place de 是 ?",
     },
     {
-      id: "u52-ex3",
+      id: "unit-52-ex3",
       type: "translate",
       question: "Que signifie 這件衣服太大了 ?",
       correctAnswer: "Ce vêtement est trop grand.",
@@ -450,7 +450,7 @@ export const unit52: CourseUnit = {
       ],
     },
     {
-      id: "u52-ex4",
+      id: "unit-52-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 天空是藍色的。",
       correctAnswer: "Le ciel est bleu.",
@@ -462,7 +462,7 @@ export const unit52: CourseUnit = {
       ],
     },
     {
-      id: "u52-ex5",
+      id: "unit-52-ex5",
       type: "comprehension",
       question:
         "Pourquoi ne faut-il PAS offrir un cadeau emballé de blanc à un Taiwanais ?",
@@ -476,7 +476,7 @@ export const unit52: CourseUnit = {
       ],
     },
     {
-      id: "u52-ex6",
+      id: "unit-52-ex6",
       type: "fill-blank",
       question: "她___漂亮！(Elle est vraiment jolie !)",
       correctAnswer: "真",
@@ -486,7 +486,7 @@ export const unit52: CourseUnit = {
       hint: "Quel intensifieur exprime l'admiration ou la surprise sincère ?",
     },
     {
-      id: "u52-ex7",
+      id: "unit-52-ex7",
       type: "translate",
       question: "Comment dire « Avez-vous du rouge ? » au marché ?",
       correctAnswer: "有沒有紅色的？",
@@ -498,7 +498,7 @@ export const unit52: CourseUnit = {
       ],
     },
     {
-      id: "u52-ex8",
+      id: "unit-52-ex8",
       type: "comprehension",
       question:
         "Quelle est la différence entre 高 (gāo) et 大 (dà) ?",
@@ -514,5 +514,5 @@ export const unit52: CourseUnit = {
   ],
 
   requiredScore: 0.6,
-  prerequisites: ["unit-07"],
+  prerequisites: ["unit-51"],
 };

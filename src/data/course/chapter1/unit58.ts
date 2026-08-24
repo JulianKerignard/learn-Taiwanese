@@ -396,7 +396,7 @@ export const unit58: CourseUnit = {
 
   exercises: [
     {
-      id: "u58-ex1",
+      id: "unit-58-ex1",
       type: "comprehension",
       question:
         "Comment dit-on « salon » en chinois, et quelle est la signification littérale ?",
@@ -409,7 +409,7 @@ export const unit58: CourseUnit = {
       ],
     },
     {
-      id: "u58-ex2",
+      id: "unit-58-ex2",
       type: "fill-blank",
       question: "貓___沙發上面。(Le chat est sur le canapé.)",
       correctAnswer: "在",
@@ -419,7 +419,7 @@ export const unit58: CourseUnit = {
       hint: "Quel verbe utilise-t-on pour indiquer la localisation ?",
     },
     {
-      id: "u58-ex3",
+      id: "unit-58-ex3",
       type: "translate",
       question: "Que signifie 水在冰箱裡面 ?",
       correctAnswer: "L'eau est dans le réfrigérateur.",
@@ -431,7 +431,7 @@ export const unit58: CourseUnit = {
       ],
     },
     {
-      id: "u58-ex4",
+      id: "unit-58-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 浴室在哪裡？",
       correctAnswer: "Où est la salle de bain ?",
@@ -443,7 +443,7 @@ export const unit58: CourseUnit = {
       ],
     },
     {
-      id: "u58-ex5",
+      id: "unit-58-ex5",
       type: "comprehension",
       question:
         "Pourquoi certains immeubles à Taiwan n'ont-ils pas de 4e étage ?",
@@ -457,7 +457,7 @@ export const unit58: CourseUnit = {
       ],
     },
     {
-      id: "u58-ex6",
+      id: "unit-58-ex6",
       type: "fill-blank",
       question: "書在桌子___。(Le livre est sous la table.)",
       correctAnswer: "下面",
@@ -467,7 +467,7 @@ export const unit58: CourseUnit = {
       hint: "Quel mot de position signifie « en dessous » ?",
     },
     {
-      id: "u58-ex7",
+      id: "unit-58-ex7",
       type: "translate",
       question: "Comment dire « La cuisine est à côté du salon » ?",
       correctAnswer: "廚房在客廳旁邊。",
@@ -479,7 +479,7 @@ export const unit58: CourseUnit = {
       ],
     },
     {
-      id: "u58-ex8",
+      id: "unit-58-ex8",
       type: "comprehension",
       question:
         "Dans le dialogue, où se trouve la salle de bain de Xiǎoméi ?",

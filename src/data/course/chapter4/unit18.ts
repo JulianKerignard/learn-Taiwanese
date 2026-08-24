@@ -441,7 +441,7 @@ export const unit18: CourseUnit = {
 
   exercises: [
     {
-      id: "u14-ex1",
+      id: "unit-18-ex1",
       type: "fill-blank",
       question: "你來台灣___了？(Tu es à Taiwan depuis combien de temps ?)",
       correctAnswer: "多久",
@@ -452,7 +452,7 @@ export const unit18: CourseUnit = {
       hintZhuyin: "Quel mot signifie « combien de temps » ?",
     },
     {
-      id: "u14-ex2",
+      id: "unit-18-ex2",
       type: "translate",
       question: "Comment dit-on « J'aime Taiwan de plus en plus » ?",
       correctAnswer: "我越來越喜歡台灣",
@@ -461,7 +461,7 @@ export const unit18: CourseUnit = {
       optionsZhuyin: ["ㄨㄛˇ ㄩㄝˋ ㄌㄞˊ ㄩㄝˋ ㄒㄧˇ ㄏㄨㄢ ㄊㄞˊ ㄨㄢ", "ㄨㄛˇ ㄏㄣˇ ㄒㄧˇ ㄏㄨㄢ ㄊㄞˊ ㄨㄢ", "ㄨㄛˇ ㄗㄨㄟˋ ㄒㄧˇ ㄏㄨㄢ ㄊㄞˊ ㄨㄢ", "ㄨㄛˇ ㄅㄧˇ ㄐㄧㄠˋ ㄒㄧˇ ㄏㄨㄢ ㄊㄞˊ ㄨㄢ"],
     },
     {
-      id: "u14-ex3",
+      id: "unit-18-ex3",
       type: "comprehension",
       question: "Pourquoi les Taiwanais posent-ils des questions personnelles (âge, couple) en faisant connaissance ?",
       correctAnswer: "C'est une marque d'intérêt sincère et c'est culturellement normal",
@@ -473,7 +473,7 @@ export const unit18: CourseUnit = {
       ],
     },
     {
-      id: "u14-ex4",
+      id: "unit-18-ex4",
       type: "fill-blank",
       question: "你___來台灣？(Pourquoi es-tu venu à Taiwan ?)",
       correctAnswer: "為什麼",
@@ -484,7 +484,7 @@ export const unit18: CourseUnit = {
       hintZhuyin: "Quel mot interrogatif signifie « pourquoi » ?",
     },
     {
-      id: "u14-ex5",
+      id: "unit-18-ex5",
       type: "translate",
       question: "Que signifie 語言交換 ?",
       correctAnswer: "Language exchange (échange linguistique)",
@@ -496,7 +496,7 @@ export const unit18: CourseUnit = {
       ],
     },
     {
-      id: "u14-ex6",
+      id: "unit-18-ex6",
       type: "fill-blank",
       question: "我的___是旅行和拍照。(Mes centres d'intérêt sont le voyage et la photo.)",
       correctAnswer: "興趣",

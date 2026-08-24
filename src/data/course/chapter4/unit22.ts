@@ -158,7 +158,7 @@ export const unit22: CourseUnit = {
 
   exercises: [
     {
-      id: "u22-ex1",
+      id: "unit-22-ex1",
       type: "fill-blank",
       question: "我___三碗飯了。(J'ai mangé 3 bols de riz.)",
       correctAnswer: "吃了",
@@ -169,7 +169,7 @@ export const unit22: CourseUnit = {
       hintZhuyin: "Action accomplie.",
     },
     {
-      id: "u22-ex2",
+      id: "unit-22-ex2",
       type: "comprehension",
       question: "Quelle est la différence entre 我去了日本 et 我去過日本 ?",
       correctAnswer:
@@ -182,7 +182,7 @@ export const unit22: CourseUnit = {
       ],
     },
     {
-      id: "u22-ex3",
+      id: "unit-22-ex3",
       type: "fill-blank",
       question: "明天___下雨嗎？(Est-ce qu'il pleuvra demain ?)",
       correctAnswer: "會",
@@ -193,7 +193,7 @@ export const unit22: CourseUnit = {
       hintZhuyin: "Futur.",
     },
     {
-      id: "u22-ex4",
+      id: "unit-22-ex4",
       type: "translate",
       question: "Traduisez : 我覺得台灣比法國熱。",
       correctAnswer: "Je trouve que Taiwan est plus chaud que la France.",
@@ -205,7 +205,7 @@ export const unit22: CourseUnit = {
       ],
     },
     {
-      id: "u22-ex5",
+      id: "unit-22-ex5",
       type: "comprehension",
       question:
         "Quelle expression utiliseriez-vous pour demander un renseignement à un inconnu ?",
@@ -215,7 +215,7 @@ export const unit22: CourseUnit = {
       optionsZhuyin: ["ㄅㄨˋ ㄏㄠˇ ㄧˋ ㄙ˙", "ㄉㄨㄟˋ ㄅㄨˋ ㄑㄧˇ", "ㄅㄠˋ ㄑㄧㄢˋ", "ㄙㄨㄢˋ ㄌㄜ˙"],
     },
     {
-      id: "u22-ex6",
+      id: "unit-22-ex6",
       type: "fill-blank",
       question: "台北是台灣___大的城市。(Taipei est la plus grande ville.)",
       correctAnswer: "最",
@@ -226,7 +226,7 @@ export const unit22: CourseUnit = {
       hintZhuyin: "Superlatif.",
     },
     {
-      id: "u22-ex7",
+      id: "unit-22-ex7",
       type: "translate",
       question: "Que signifie 你有沒有去過夜市？",
       correctAnswer: "Es-tu déjà allé au marché de nuit ?",
@@ -238,7 +238,7 @@ export const unit22: CourseUnit = {
       ],
     },
     {
-      id: "u22-ex8",
+      id: "unit-22-ex8",
       type: "comprehension",
       question:
         "Quelqu'un a bousculé quelqu'un dans le métro. Quelle excuse est appropriée ?",
@@ -251,7 +251,7 @@ export const unit22: CourseUnit = {
       ],
     },
     {
-      id: "u22-ex9",
+      id: "unit-22-ex9",
       type: "fill-blank",
       question:
         "這家餐廳___那家___好吃。(Ce restaurant est meilleur que celui-là.)",
@@ -263,7 +263,7 @@ export const unit22: CourseUnit = {
       hintZhuyin: "Comparaison renforcée.",
     },
     {
-      id: "u22-ex10",
+      id: "unit-22-ex10",
       type: "translate",
       question: "Que signifie 他會說三種語言 ?",
       correctAnswer: "Il sait parler 3 langues.",
@@ -275,7 +275,7 @@ export const unit22: CourseUnit = {
       ],
     },
     {
-      id: "u22-ex11",
+      id: "unit-22-ex11",
       type: "comprehension",
       question: "Comment dit-on « Enchanté de faire ta connaissance » ?",
       correctAnswer: "很高興認識你",
@@ -284,7 +284,7 @@ export const unit22: CourseUnit = {
       optionsZhuyin: ["ㄏㄣˇ ㄍㄠ ㄒㄧㄥˋ ㄖㄣˋ ㄕˋ ㄋㄧˇ", "ㄋㄧˇ ㄏㄠˇ ㄇㄚ˙", "ㄗㄞˋ ㄐㄧㄢˋ", "ㄒㄧㄝˋ ㄒㄧㄝˋ ㄋㄧˇ"],
     },
     {
-      id: "u22-ex12",
+      id: "unit-22-ex12",
       type: "fill-blank",
       question: "可以給我你的___嗎？(Tu peux me donner ton LINE ?)",
       correctAnswer: "LINE",

@@ -384,7 +384,7 @@ export const unit29: CourseUnit = {
 
   exercises: [
     {
-      id: "u20-ex1",
+      id: "unit-29-ex1",
       type: "comprehension",
       question: "Quelle structure exprime la concession (bien que...mais) ?",
       correctAnswer: "雖然...但是",
@@ -393,7 +393,7 @@ export const unit29: CourseUnit = {
       optionsZhuyin: ["ㄙㄨㄟ ㄖㄢˊ...ㄉㄢˋ ㄕˋ", "ㄧㄣ ㄨㄟˋ...ㄙㄨㄛˇ ㄧˇ", "ㄖㄨˊ ㄍㄨㄛˇ...ㄐㄧㄡˋ", "ㄅㄨˋ ㄉㄢˋ...ㄦˊ ㄑㄧㄝˇ"],
     },
     {
-      id: "u20-ex2",
+      id: "unit-29-ex2",
       type: "translate",
       question: "Que signifie le mot taiwanais 讚 ?",
       correctAnswer: "Super / génial",
@@ -405,7 +405,7 @@ export const unit29: CourseUnit = {
       ],
     },
     {
-      id: "u20-ex3",
+      id: "unit-29-ex3",
       type: "fill-blank",
       question: "___他很忙，___他還是來了。(Bien qu'il soit occupé, il est quand même venu.)",
       correctAnswer: "雖然...但是",
@@ -416,7 +416,7 @@ export const unit29: CourseUnit = {
       hintZhuyin: "Concession : bien que... mais...",
     },
     {
-      id: "u20-ex4",
+      id: "unit-29-ex4",
       type: "comprehension",
       question: "Quel est l'équivalent taiwanais du HSK ?",
       correctAnswer: "TOCFL (華語文能力測驗)",
@@ -428,7 +428,7 @@ export const unit29: CourseUnit = {
       ],
     },
     {
-      id: "u20-ex5",
+      id: "unit-29-ex5",
       type: "translate",
       question:
         "Traduisez : 如果你每天練習，你的中文就會進步。",
@@ -441,7 +441,7 @@ export const unit29: CourseUnit = {
       ],
     },
     {
-      id: "u20-ex6",
+      id: "unit-29-ex6",
       type: "comprehension",
       question:
         "Parmi ces applications, laquelle est un dictionnaire chinois indispensable ?",

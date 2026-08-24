@@ -347,7 +347,7 @@ export const unit74: CourseUnit = {
 
   exercises: [
     {
-      id: "u74-ex1",
+      id: "unit-74-ex1",
       type: "fill-blank",
       question: "___台北___高雄坐高鐵要一個半小時。(De Taipei a Kaohsiung en TGV, il faut 1h30.)",
       correctAnswer: "從...到",
@@ -357,7 +357,7 @@ export const unit74: CourseUnit = {
       hint: "De...a pour un trajet.",
     },
     {
-      id: "u74-ex2",
+      id: "unit-74-ex2",
       type: "translate",
       question: "Comment dit-on « Je veux aller avec toi » ?",
       correctAnswer: "我想跟你一起去。",
@@ -381,7 +381,7 @@ export const unit74: CourseUnit = {
       ],
     },
     {
-      id: "u74-ex3",
+      id: "unit-74-ex3",
       type: "comprehension",
       question: "Quelle est la difference entre 給你買 et 替你買 ?",
       correctAnswer: "給你買 = acheter pour toi (tu recois), 替你買 = acheter a ta place (tu ne peux pas y aller)",
@@ -405,7 +405,7 @@ export const unit74: CourseUnit = {
       ],
     },
     {
-      id: "u74-ex4",
+      id: "unit-74-ex4",
       type: "fill-blank",
       question: "___前走，然後___右轉。(Allez tout droit, puis tournez a droite.)",
       correctAnswer: "往...往",
@@ -415,7 +415,7 @@ export const unit74: CourseUnit = {
       hint: "Pour indiquer une direction physique.",
     },
     {
-      id: "u74-ex5",
+      id: "unit-74-ex5",
       type: "translate",
       question: "Comment dit-on « C'est pres d'ici » ?",
       correctAnswer: "離這裡很近。",
@@ -439,7 +439,7 @@ export const unit74: CourseUnit = {
       ],
     },
     {
-      id: "u74-ex6",
+      id: "unit-74-ex6",
       type: "fill-blank",
       question: "老師___學生說：「請安靜。」(Le prof dit aux eleves : « Silence. »)",
       correctAnswer: "對",
@@ -449,7 +449,7 @@ export const unit74: CourseUnit = {
       hint: "Dire envers/a quelqu'un = direction de la parole.",
     },
     {
-      id: "u74-ex7",
+      id: "unit-74-ex7",
       type: "comprehension",
       question: "Ou se place la preposition dans une phrase chinoise ?",
       correctAnswer: "AVANT le verbe — les prepositions precedent toujours le verbe en chinois",
@@ -473,7 +473,7 @@ export const unit74: CourseUnit = {
       ],
     },
     {
-      id: "u74-ex8",
+      id: "unit-74-ex8",
       type: "translate",
       question: "Comment dit-on « A partir de demain, j'apprends le chinois » ?",
       correctAnswer: "從明天開始，我學中文。",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Search, X, Volume2, Plus, Check } from "lucide-react";
+import { Search, X, Plus, Check } from "lucide-react";
 import AudioButton from "@/components/AudioButton";
 import PinyinDisplay from "@/components/PinyinDisplay";
 import { cn } from "@/lib/cn";

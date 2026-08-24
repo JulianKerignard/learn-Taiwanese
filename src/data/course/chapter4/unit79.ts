@@ -406,7 +406,7 @@ export const unit79: CourseUnit = {
 
   exercises: [
     {
-      id: "u79-ex1",
+      id: "unit-79-ex1",
       type: "comprehension",
       question: "Quel pourcentage du territoire taiwanais est couvert de montagnes ?",
       correctAnswer: "Environ 70%",
@@ -418,7 +418,7 @@ export const unit79: CourseUnit = {
       ],
     },
     {
-      id: "u79-ex2",
+      id: "unit-79-ex2",
       type: "fill-blank",
       question: "台灣的___做得很好。(Le recyclage à Taiwan est très bien fait.)",
       correctAnswer: "回收",
@@ -429,7 +429,7 @@ export const unit79: CourseUnit = {
       hintZhuyin: "Le processus de réutilisation des matériaux.",
     },
     {
-      id: "u79-ex3",
+      id: "unit-79-ex3",
       type: "translate",
       question: "Comment dit-on « Il faut trier les déchets » ?",
       correctAnswer: "垃圾要分類",
@@ -443,7 +443,7 @@ export const unit79: CourseUnit = {
       ],
     },
     {
-      id: "u79-ex4",
+      id: "unit-79-ex4",
       type: "comprehension",
       question: "Quel est l'animal symbole de Taiwan ?",
       correctAnswer: "Le 台灣黑熊 (ours noir de Formose)",
@@ -455,7 +455,7 @@ export const unit79: CourseUnit = {
       ],
     },
     {
-      id: "u79-ex5",
+      id: "unit-79-ex5",
       type: "fill-blank",
       question: "___上的空氣很好。(L'air en montagne est très bon.)",
       correctAnswer: "山",
@@ -466,7 +466,7 @@ export const unit79: CourseUnit = {
       hintZhuyin: "Un relief en hauteur.",
     },
     {
-      id: "u79-ex6",
+      id: "unit-79-ex6",
       type: "translate",
       question: "Comment dit-on « Les fleurs de Yangmingshan sont très jolies » ?",
       correctAnswer: "陽明山的花很漂亮",
@@ -490,7 +490,7 @@ export const unit79: CourseUnit = {
       ],
     },
     {
-      id: "u79-ex7",
+      id: "unit-79-ex7",
       type: "listen",
       question: "Écoutez et choisissez la bonne traduction de : 垃圾車來了！",
       correctAnswer: "Le camion poubelle arrive !",
@@ -502,7 +502,7 @@ export const unit79: CourseUnit = {
       ],
     },
     {
-      id: "u79-ex8",
+      id: "unit-79-ex8",
       type: "fill-blank",
       question: "台灣黑熊是台灣的___。(L'ours noir est un trésor national de Taiwan.)",
       correctAnswer: "國寶",

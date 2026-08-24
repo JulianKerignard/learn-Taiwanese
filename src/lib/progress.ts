@@ -1,4 +1,5 @@
 import type { PathProgress, CourseUnit, Chapter, HSKLevel } from "@/types/course";
+import { getUnitById, hskLevels as defaultHskLevels } from "@/data/course";
 import { storageGet, storageSet, KEYS } from "@/lib/storage";
 
 const STORAGE_KEY = KEYS.courseProgress;
@@ -86,9 +87,9 @@ export function getHSKLevelCompletedCount(unitIds: string[], progress: PathProgr
   return unitIds.filter((id) => progress.completedUnits.includes(id)).length;
 }
 
-export function getCurrentHSKLevel(progress: PathProgress, allUnits: CourseUnit[], hskLevels: HSKLevel[]): HSKLevel | undefined {
-  const currentUnit = allUnits.find((u) => u.id === progress.currentUnit);
-  if (!currentUnit) return hskLevels[0];
-  return hskLevels.find((l) => l.chapterNumbers.includes(currentUnit.chapter));
+export function getCurrentHSKLevel(progress: PathProgress): HSKLevel | undefined {
+  const currentUnit = getUnitById(progress.currentUnit);
+  if (!currentUnit) return defaultHskLevels[0];
+  return defaultHskLevels.find((l) => l.chapterNumbers.includes(currentUnit.chapter));
 }
 

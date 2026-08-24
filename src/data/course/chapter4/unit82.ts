@@ -406,7 +406,7 @@ export const unit82: CourseUnit = {
 
   exercises: [
     {
-      id: "u82-ex1",
+      id: "unit-82-ex1",
       type: "comprehension",
       question: "Quelle est la différence entre 爺爺 et 外公 ?",
       correctAnswer: "爺爺 = grand-père paternel, 外公 = grand-père maternel",
@@ -418,7 +418,7 @@ export const unit82: CourseUnit = {
       ],
     },
     {
-      id: "u82-ex2",
+      id: "unit-82-ex2",
       type: "fill-blank",
       question: "我有一個___和一個妹妹。(J'ai un grand frère et une petite soeur.)",
       correctAnswer: "哥哥",
@@ -429,7 +429,7 @@ export const unit82: CourseUnit = {
       hintZhuyin: "Un frère plus âgé que soi.",
     },
     {
-      id: "u82-ex3",
+      id: "unit-82-ex3",
       type: "translate",
       question: "Comment dit-on « Tu es marié(e) ? » ?",
       correctAnswer: "你結婚了嗎？",
@@ -453,7 +453,7 @@ export const unit82: CourseUnit = {
       ],
     },
     {
-      id: "u82-ex4",
+      id: "unit-82-ex4",
       type: "comprehension",
       question: "Quel montant de 紅包 convient pour le mariage d'un ami proche ?",
       correctAnswer: "3 600 NT$ (nombre pair, relation proche)",
@@ -465,7 +465,7 @@ export const unit82: CourseUnit = {
       ],
     },
     {
-      id: "u82-ex5",
+      id: "unit-82-ex5",
       type: "fill-blank",
       question: "我的___都住在法國。(Toute ma famille habite en France.)",
       correctAnswer: "家人",
@@ -476,7 +476,7 @@ export const unit82: CourseUnit = {
       hintZhuyin: "Les membres de la famille proche.",
     },
     {
-      id: "u82-ex6",
+      id: "unit-82-ex6",
       type: "translate",
       question: "Comment dit-on « Mon fils a cinq ans cette année » ?",
       correctAnswer: "我的兒子今年五歲",
@@ -500,7 +500,7 @@ export const unit82: CourseUnit = {
       ],
     },
     {
-      id: "u82-ex7",
+      id: "unit-82-ex7",
       type: "listen",
       question: "Écoutez et choisissez la bonne traduction de : 他們下個月要結婚了。",
       correctAnswer: "Ils vont se marier le mois prochain.",
@@ -512,7 +512,7 @@ export const unit82: CourseUnit = {
       ],
     },
     {
-      id: "u82-ex8",
+      id: "unit-82-ex8",
       type: "fill-blank",
       question: "過年的時候要去看___。(Pendant le Nouvel An, on va rendre visite à la famille élargie.)",
       correctAnswer: "親戚",

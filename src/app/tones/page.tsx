@@ -7,7 +7,6 @@ import {
   CheckCircle,
   XCircle,
   Info,
-  RotateCcw,
   Trophy,
   Ear,
   Eye,

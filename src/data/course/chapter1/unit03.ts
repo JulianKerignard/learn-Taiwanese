@@ -624,7 +624,7 @@ export const unit03: CourseUnit = {
 
   exercises: [
     {
-      id: "u3-ex1",
+      id: "unit-03-ex1",
       type: "comprehension",
       question:
         "Pourquoi deux tons 3 consécutifs déclenchent un sandhi tonal ?",
@@ -638,7 +638,7 @@ export const unit03: CourseUnit = {
       ],
     },
     {
-      id: "u3-ex2",
+      id: "unit-03-ex2",
       type: "comprehension",
       question:
         "Comment se prononce 一 (yī) dans 一杯 (un verre) ?",
@@ -651,7 +651,7 @@ export const unit03: CourseUnit = {
       ],
     },
     {
-      id: "u3-ex3",
+      id: "unit-03-ex3",
       type: "comprehension",
       question:
         "Quelle est la combinaison de tons de 台灣 (táiwān) ?",
@@ -664,7 +664,7 @@ export const unit03: CourseUnit = {
       ],
     },
     {
-      id: "u3-ex4",
+      id: "unit-03-ex4",
       type: "fill-blank",
       question:
         "不___ (bù + 是 shì) : Comment se prononce 不 ici ?",
@@ -679,7 +679,7 @@ export const unit03: CourseUnit = {
       hintZhuyin: "不 change de ton devant un autre ton 4.",
     },
     {
-      id: "u3-ex5",
+      id: "unit-03-ex5",
       type: "translate",
       question:
         "Quelle est la différence entre 湯 (tāng) et 糖 (táng) ?",
@@ -692,7 +692,7 @@ export const unit03: CourseUnit = {
       ],
     },
     {
-      id: "u3-ex6",
+      id: "unit-03-ex6",
       type: "comprehension",
       question:
         "Comment prononce-t-on 你好 en réalité à cause du sandhi ?",
@@ -705,7 +705,7 @@ export const unit03: CourseUnit = {
       ],
     },
     {
-      id: "u3-ex7",
+      id: "unit-03-ex7",
       type: "comprehension",
       question: "Qu'est-ce que le « half third » (半三聲) taiwanais ?",
       correctAnswer:
@@ -718,7 +718,7 @@ export const unit03: CourseUnit = {
       ],
     },
     {
-      id: "u3-ex8",
+      id: "unit-03-ex8",
       type: "fill-blank",
       question:
         "Identifiez les tons : 學生 (xuéshēng) = ton ___ + ton ___",

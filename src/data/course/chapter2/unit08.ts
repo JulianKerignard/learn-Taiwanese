@@ -589,7 +589,7 @@ export const unit08: CourseUnit = {
 
   exercises: [
     {
-      id: "u6-ex1",
+      id: "unit-08-ex1",
       type: "translate",
       question: "Comment dit-on « Où est la station de MRT ? » en chinois ?",
       correctAnswer: "捷運站在哪裡？",
@@ -608,7 +608,7 @@ export const unit08: CourseUnit = {
       optionsZhuyin: ["ㄐㄧㄝˊ ㄩㄣˋ ㄓㄢˋ ㄗㄞˋ ㄋㄚˇ ㄌㄧˇ?", "ㄋㄚˇ ㄌㄧˇ ㄗㄞˋ ㄐㄧㄝˊ ㄩㄣˋ ㄓㄢˋ?", "ㄐㄧㄝˊ ㄩㄣˋ ㄓㄢˋ ㄑㄩˋ ㄋㄚˇ ㄌㄧˇ?", "ㄗㄞˋ ㄐㄧㄝˊ ㄩㄣˋ ㄓㄢˋ ㄋㄚˇ ㄌㄧˇ?"],
     },
     {
-      id: "u6-ex2",
+      id: "unit-08-ex2",
       type: "fill-blank",
       question: "往___走。(Tournez à gauche.)",
       correctAnswer: "左",
@@ -618,7 +618,7 @@ export const unit08: CourseUnit = {
       hint: "Quel caractère signifie « gauche » ?",
     },
     {
-      id: "u6-ex3",
+      id: "unit-08-ex3",
       type: "comprehension",
       question: "Que signifie 直走 ?",
       correctAnswer: "Aller tout droit",
@@ -630,7 +630,7 @@ export const unit08: CourseUnit = {
       ],
     },
     {
-      id: "u6-ex4",
+      id: "unit-08-ex4",
       type: "translate",
       question: "Que signifie 出口在右邊 ?",
       correctAnswer: "La sortie est à droite",
@@ -642,7 +642,7 @@ export const unit08: CourseUnit = {
       ],
     },
     {
-      id: "u6-ex5",
+      id: "unit-08-ex5",
       type: "comprehension",
       question:
         "Qu'est-ce qui est strictement interdit dans le MRT de Taipei ?",
@@ -655,7 +655,7 @@ export const unit08: CourseUnit = {
       ],
     },
     {
-      id: "u6-ex6",
+      id: "unit-08-ex6",
       type: "fill-blank",
       question: "車站在___面。(La gare est devant.)",
       correctAnswer: "前",
@@ -665,7 +665,7 @@ export const unit08: CourseUnit = {
       hint: "Quel caractère signifie « devant » ?",
     },
     {
-      id: "u06-listen",
+      id: "unit-08-ex7",
       type: "listen",
       question: "請問捷運站在哪裡？",
       correctAnswer: "Excusez-moi, où est la station de MRT ?",

@@ -319,7 +319,7 @@ export const unit26: CourseUnit = {
 
   exercises: [
     {
-      id: "u26-ex1",
+      id: "unit-26-ex1",
       type: "comprehension",
       question:
         "Dans 媽媽 (māma), quel est le ton de la deuxième syllabe ?",
@@ -332,7 +332,7 @@ export const unit26: CourseUnit = {
       ],
     },
     {
-      id: "u26-ex2",
+      id: "unit-26-ex2",
       type: "comprehension",
       question:
         "Quelle est l'erreur tonale la plus courante des francophones ?",
@@ -345,7 +345,7 @@ export const unit26: CourseUnit = {
       ],
     },
     {
-      id: "u26-ex3",
+      id: "unit-26-ex3",
       type: "comprehension",
       question: "Dans 你好 (nǐhǎo), que se passe-t-il avec les tons ?",
       correctAnswer:
@@ -358,7 +358,7 @@ export const unit26: CourseUnit = {
       ],
     },
     {
-      id: "u26-ex4",
+      id: "unit-26-ex4",
       type: "comprehension",
       question: "Pourquoi le ton 4 français sonne « trop doux » en chinois ?",
       correctAnswer:
@@ -371,7 +371,7 @@ export const unit26: CourseUnit = {
       ],
     },
     {
-      id: "u26-ex5",
+      id: "unit-26-ex5",
       type: "translate",
       question:
         "Quelle paire de mots illustre l'importance des tons ? (acheter/vendre)",
@@ -384,7 +384,7 @@ export const unit26: CourseUnit = {
       ],
     },
     {
-      id: "u26-ex6",
+      id: "unit-26-ex6",
       type: "comprehension",
       question:
         "En chinois, comment est portée l'intonation interrogative ?",
@@ -398,7 +398,7 @@ export const unit26: CourseUnit = {
       ],
     },
     {
-      id: "u26-ex7",
+      id: "unit-26-ex7",
       type: "comprehension",
       question:
         "Quelle est la particularité de la prosodie du mandarin taiwanais par rapport au mandarin de Pékin ?",
@@ -412,7 +412,7 @@ export const unit26: CourseUnit = {
       ],
     },
     {
-      id: "u26-ex8",
+      id: "unit-26-ex8",
       type: "comprehension",
       question:
         "Quand on dit 不是 (búshì), pourquoi le 不 se prononce-t-il au ton 2 ?",
@@ -426,7 +426,7 @@ export const unit26: CourseUnit = {
       ],
     },
     {
-      id: "u26-ex9",
+      id: "unit-26-ex9",
       type: "translate",
       question:
         "Quel terme désigne le phénomène de 'demi-ton 3' utilisé en conversation rapide ?",
@@ -439,7 +439,7 @@ export const unit26: CourseUnit = {
       ],
     },
     {
-      id: "u26-ex10",
+      id: "unit-26-ex10",
       type: "comprehension",
       question:
         "Dans une phrase longue de 10+ syllabes, que se passe-t-il avec les tons individuels ?",

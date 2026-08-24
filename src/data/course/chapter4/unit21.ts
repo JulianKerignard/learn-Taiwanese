@@ -533,7 +533,7 @@ export const unit21: CourseUnit = {
 
   exercises: [
     {
-      id: "u21-ex1",
+      id: "unit-21-ex1",
       type: "comprehension",
       question:
         "Quelle est la différence entre 我沒吃 et 我不吃了 ?",
@@ -547,7 +547,7 @@ export const unit21: CourseUnit = {
       ],
     },
     {
-      id: "u21-ex2",
+      id: "unit-21-ex2",
       type: "fill-blank",
       question: "下雨___，我們回家吧。(Il s'est mis à pleuvoir, rentrons.)",
       correctAnswer: "了",
@@ -558,7 +558,7 @@ export const unit21: CourseUnit = {
       hintZhuyin: "Quelle particule signale un changement de situation ?",
     },
     {
-      id: "u21-ex3",
+      id: "unit-21-ex3",
       type: "translate",
       question: "Que signifie 太好了 ?",
       correctAnswer: "Super ! / Génial !",
@@ -570,7 +570,7 @@ export const unit21: CourseUnit = {
       ],
     },
     {
-      id: "u21-ex4",
+      id: "unit-21-ex4",
       type: "comprehension",
       question:
         "Dans 我學了三個月了, pourquoi y a-t-il deux 了 ?",
@@ -584,7 +584,7 @@ export const unit21: CourseUnit = {
       ],
     },
     {
-      id: "u21-ex5",
+      id: "unit-21-ex5",
       type: "fill-blank",
       question:
         "這個菜太___了！(Ce plat est trop épicé !)",
@@ -596,7 +596,7 @@ export const unit21: CourseUnit = {
       hintZhuyin: "Structure ㄊㄞˋ + adjectif + ㄌㄜ˙. Quel mot va entre ㄊㄞˋ et ㄌㄜ˙ ?",
     },
     {
-      id: "u21-ex6",
+      id: "unit-21-ex6",
       type: "translate",
       question: "Comment dit-on « J'habite à Taiwan depuis deux ans » ?",
       correctAnswer: "我在台灣住了兩年了",
@@ -612,7 +612,7 @@ export const unit21: CourseUnit = {
       hintZhuyin: "Double ㄌㄜ˙ pour indiquer une durée toujours en cours.",
     },
     {
-      id: "u21-ex7",
+      id: "unit-21-ex7",
       type: "comprehension",
       question: "Que signifie 天氣冷了 ?",
       correctAnswer:
@@ -625,7 +625,7 @@ export const unit21: CourseUnit = {
       ],
     },
     {
-      id: "u21-ex8",
+      id: "unit-21-ex8",
       type: "comprehension",
       question:
         "Quelle est la différence entre 我學了三個月 et 我學了三個月了 ?",
@@ -639,7 +639,7 @@ export const unit21: CourseUnit = {
       ],
     },
     {
-      id: "u21-reorder-1",
+      id: "unit-21-ex9",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 了 / 天氣 / 冷 / 越來越",
@@ -651,7 +651,7 @@ export const unit21: CourseUnit = {
       hintZhuyin: "Structure : Sujet + ㄩㄝˋ ㄌㄞˊ ㄩㄝˋ + Adjectif + ㄌㄜ˙",
     },
     {
-      id: "u21-reorder-2",
+      id: "unit-21-ex10",
       type: "reorder",
       question:
         "Remettez dans l'ordre : 不 / 我 / 了 / 想 / 去",

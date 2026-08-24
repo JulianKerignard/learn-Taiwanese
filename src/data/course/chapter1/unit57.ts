@@ -424,7 +424,7 @@ export const unit57: CourseUnit = {
 
   exercises: [
     {
-      id: "u57-ex1",
+      id: "unit-57-ex1",
       type: "comprehension",
       question:
         "Dans la structure 在 + lieu + verbe, où se place le lieu par rapport au verbe ?",
@@ -437,7 +437,7 @@ export const unit57: CourseUnit = {
       ],
     },
     {
-      id: "u57-ex2",
+      id: "unit-57-ex2",
       type: "fill-blank",
       question: "我___圖書館讀書。(J'étudie à la bibliothèque.)",
       correctAnswer: "在",
@@ -447,7 +447,7 @@ export const unit57: CourseUnit = {
       hint: "Quel mot introduit le lieu où se déroule une action ?",
     },
     {
-      id: "u57-ex3",
+      id: "unit-57-ex3",
       type: "translate",
       question: "Que signifie 八點上課，十二點下課 ?",
       correctAnswer: "Les cours commencent à 8h et finissent à midi.",
@@ -459,7 +459,7 @@ export const unit57: CourseUnit = {
       ],
     },
     {
-      id: "u57-ex4",
+      id: "unit-57-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 老師在黑板上寫字。",
       correctAnswer: "Le professeur écrit des caractères au tableau.",
@@ -471,7 +471,7 @@ export const unit57: CourseUnit = {
       ],
     },
     {
-      id: "u57-ex5",
+      id: "unit-57-ex5",
       type: "comprehension",
       question: "Qu'est-ce que les 補習班 (bǔxíbān) à Taiwan ?",
       correctAnswer:
@@ -484,7 +484,7 @@ export const unit57: CourseUnit = {
       ],
     },
     {
-      id: "u57-ex6",
+      id: "unit-57-ex6",
       type: "fill-blank",
       question: "明天有___，我要讀書。(Il y a un examen demain, je dois étudier.)",
       correctAnswer: "考試",
@@ -494,7 +494,7 @@ export const unit57: CourseUnit = {
       hint: "Quel mot signifie « examen » ?",
     },
     {
-      id: "u57-ex7",
+      id: "unit-57-ex7",
       type: "translate",
       question: "Comment dire « Les élèves étudient à la bibliothèque » en chinois ?",
       correctAnswer: "學生在圖書館讀書。",
@@ -506,7 +506,7 @@ export const unit57: CourseUnit = {
       ],
     },
     {
-      id: "u57-ex8",
+      id: "unit-57-ex8",
       type: "comprehension",
       question:
         "Quelle particularité culturelle distingue les écoles taiwanaises des écoles françaises en matière de propreté ?",

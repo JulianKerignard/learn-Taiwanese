@@ -423,7 +423,7 @@ export const unit65: CourseUnit = {
 
   exercises: [
     {
-      id: "u65-ex1",
+      id: "unit-65-ex1",
       type: "comprehension",
       question:
         "Comment dit-on « Le livre est sur la table » en chinois ?",
@@ -436,7 +436,7 @@ export const unit65: CourseUnit = {
       ],
     },
     {
-      id: "u65-ex2",
+      id: "unit-65-ex2",
       type: "fill-blank",
       question: "郵局在銀行___。(La poste est à côté de la banque.)",
       correctAnswer: "旁邊",
@@ -446,7 +446,7 @@ export const unit65: CourseUnit = {
       hint: "Quel mot de position signifie « à côté » ?",
     },
     {
-      id: "u65-ex3",
+      id: "unit-65-ex3",
       type: "translate",
       question: "Que signifie 從我家到公司要三十分鐘 ?",
       correctAnswer: "De chez moi au bureau, il faut trente minutes.",
@@ -458,7 +458,7 @@ export const unit65: CourseUnit = {
       ],
     },
     {
-      id: "u65-ex4",
+      id: "unit-65-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 超市離這裡很近。",
       correctAnswer: "Le supermarché est très proche d'ici.",
@@ -470,7 +470,7 @@ export const unit65: CourseUnit = {
       ],
     },
     {
-      id: "u65-ex5",
+      id: "unit-65-ex5",
       type: "comprehension",
       question: "Dans le système d'adresses taiwanais, que désigne 巷 (xiàng) ?",
       correctAnswer:
@@ -483,7 +483,7 @@ export const unit65: CourseUnit = {
       ],
     },
     {
-      id: "u65-ex6",
+      id: "unit-65-ex6",
       type: "fill-blank",
       question: "___這裡___車站怎麼走？(Comment aller d'ici à la gare ?)",
       correctAnswer: "從...到...",
@@ -493,7 +493,7 @@ export const unit65: CourseUnit = {
       hint: "Quelle structure exprime le trajet d'un point A à un point B ?",
     },
     {
-      id: "u65-ex7",
+      id: "unit-65-ex7",
       type: "translate",
       question: "Comment dire « La poste est en face du 7-11 » ?",
       correctAnswer: "郵局在7-11的對面。",
@@ -505,7 +505,7 @@ export const unit65: CourseUnit = {
       ],
     },
     {
-      id: "u65-ex8",
+      id: "unit-65-ex8",
       type: "comprehension",
       question:
         "Pourquoi les convenience stores (便利商店) sont-ils souvent utilisés comme points de repère à Taiwan ?",

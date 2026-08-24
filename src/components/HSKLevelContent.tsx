@@ -6,8 +6,8 @@ import { ArrowLeft, ChevronRight } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { ChapterSection } from "@/components/ChapterSection";
 import { cn } from "@/lib/cn";
-import { getPathProgress, getHSKLevelProgress, getHSKLevelCompletedCount } from "@/lib/progress";
-import { hskLevels, getHSKLevelChapters, getHSKLevelUnits, allUnits, chapters } from "@/data/course";
+import { getPathProgress, getHSKLevelCompletedCount } from "@/lib/progress";
+import { hskLevels, getHSKLevelChapters, getHSKLevelUnits, chapters } from "@/data/course";
 import type { PathProgress } from "@/types/course";
 
 const LEVEL_COLORS = [

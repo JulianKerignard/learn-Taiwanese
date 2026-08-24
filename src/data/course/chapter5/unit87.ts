@@ -213,8 +213,6 @@ export const unit87: CourseUnit = {
     },
   ],
 
-  dialogue: undefined,
-
   keyPoints: [
     "了₁ (après le verbe) = accompli vs 了₂ (fin de phrase) = changement d'état. Ils peuvent coexister.",
     "過 = expérience (au moins une fois). Ne pas confondre avec 了 (action accomplie précise).",
@@ -227,7 +225,7 @@ export const unit87: CourseUnit = {
 
   exercises: [
     {
-      id: "u87-ex1",
+      id: "unit-87-ex1",
       type: "fill-blank",
       question: "我___看過這部電影，不用再看了。(J'ai déjà vu ce film, pas besoin de le revoir.)",
       correctAnswer: "已經",
@@ -238,7 +236,7 @@ export const unit87: CourseUnit = {
       hintZhuyin: "Quel mot signifie 'déjà' et s'utilise avec 了 en fin de phrase ?",
     },
     {
-      id: "u87-ex2",
+      id: "unit-87-ex2",
       type: "translate",
       question: "Corrigez cette phrase : *台灣比法國很熱。",
       correctAnswer: "台灣比法國熱",
@@ -262,7 +260,7 @@ export const unit87: CourseUnit = {
       ],
     },
     {
-      id: "u87-ex3",
+      id: "unit-87-ex3",
       type: "comprehension",
       question: "Quelle est la différence entre 我去了日本 et 我去過日本 ?",
       correctAnswer: "了 indique une action passée précise (je suis allé au Japon [cette fois]), 過 indique une expérience (je suis déjà allé au Japon [dans ma vie])",
@@ -274,7 +272,7 @@ export const unit87: CourseUnit = {
       ],
     },
     {
-      id: "u87-ex4",
+      id: "unit-87-ex4",
       type: "fill-blank",
       question: "請你___門關上，外面太冷了。(Ferme la porte, il fait trop froid dehors.)",
       correctAnswer: "把",
@@ -285,7 +283,7 @@ export const unit87: CourseUnit = {
       hintZhuyin: "Quelle préposition place l'objet avant le verbe pour agir dessus ?",
     },
     {
-      id: "u87-ex5",
+      id: "unit-87-ex5",
       type: "translate",
       question: "Corrigez : *我昨天不去超市。",
       correctAnswer: "我昨天沒去超市",
@@ -309,7 +307,7 @@ export const unit87: CourseUnit = {
       ],
     },
     {
-      id: "u87-ex6",
+      id: "unit-87-ex6",
       type: "reorder",
       question: "Remettez dans l'ordre : « Bien que je vienne d'arriver, j'ai déjà goûté beaucoup de plats. »",
       correctAnswer: "雖然我剛來，但是我已經吃過很多菜了",
@@ -339,7 +337,7 @@ export const unit87: CourseUnit = {
       ],
     },
     {
-      id: "u87-ex7",
+      id: "unit-87-ex7",
       type: "fill-blank",
       question: "這本書我看___懂，太難了。(Ce livre, je n'arrive pas à le comprendre, c'est trop dur.)",
       correctAnswer: "不",
@@ -350,7 +348,7 @@ export const unit87: CourseUnit = {
       hintZhuyin: "Quel mot insère-t-on entre le verbe et le résultatif pour exprimer l'impossibilité ?",
     },
     {
-      id: "u87-ex8",
+      id: "unit-87-ex8",
       type: "comprehension",
       question: "Pourquoi la phrase *請把門關 est-elle incorrecte ?",
       correctAnswer: "Parce que le verbe après 把 doit obligatoirement avoir un complément (關上, 關了, 關起來, etc.)",
@@ -362,7 +360,7 @@ export const unit87: CourseUnit = {
       ],
     },
     {
-      id: "u87-ex9",
+      id: "unit-87-ex9",
       type: "translate",
       question: "Traduisez : « Du moment que tu étudies chaque jour, tu comprendras vite. »",
       correctAnswer: "只要你每天學，就很快會懂",
@@ -386,7 +384,7 @@ export const unit87: CourseUnit = {
       ],
     },
     {
-      id: "u87-ex10",
+      id: "unit-87-ex10",
       type: "reorder",
       question: "Remettez dans l'ordre : « Je viens de finir le travail, je suis sur le point de rentrer. »",
       correctAnswer: "我剛做完工作，快要回家了",
@@ -416,7 +414,7 @@ export const unit87: CourseUnit = {
       ],
     },
     {
-      id: "u87-ex11",
+      id: "unit-87-ex11",
       type: "fill-blank",
       question: "蛋糕___弟弟吃完了。(Le gâteau a été entièrement mangé par mon petit frère.)",
       correctAnswer: "被",
@@ -427,7 +425,7 @@ export const unit87: CourseUnit = {
       hintZhuyin: "Quel mot introduit le passif en chinois ?",
     },
     {
-      id: "u87-ex12",
+      id: "unit-87-ex12",
       type: "comprehension",
       question: "Quelle phrase est correcte pour dire « J'ai étudié le chinois pendant 2 ans » ?",
       correctAnswer: "我學了兩年中文 ou 我學中文學了兩年",

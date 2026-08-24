@@ -444,7 +444,7 @@ export const unit17: CourseUnit = {
 
   exercises: [
     {
-      id: "u13-ex1",
+      id: "unit-17-ex1",
       type: "fill-blank",
       question: "___冷氣嗎？(Y a-t-il la climatisation ?)",
       correctAnswer: "有",
@@ -454,7 +454,7 @@ export const unit17: CourseUnit = {
       hint: "Quel mot signifie « il y a » ?",
     },
     {
-      id: "u13-ex2",
+      id: "unit-17-ex2",
       type: "translate",
       question: "Comment demander « Je peux visiter l'appartement ? »",
       correctAnswer: "可以看房嗎？",
@@ -463,7 +463,7 @@ export const unit17: CourseUnit = {
       optionsZhuyin: ["ㄎㄜˇ ㄧˇ ㄎㄢˋ ㄈㄤˊ ㄇㄚ?", "ㄧㄡˇ ㄎㄢˋ ㄈㄤˊ ㄇㄚ?", "ㄧㄠˋ ㄎㄢˋ ㄈㄤˊ ㄇㄚ?", "ㄒㄧㄤˇ ㄎㄢˋ ㄈㄤˊ ㄇㄚ?"],
     },
     {
-      id: "u13-ex3",
+      id: "unit-17-ex3",
       type: "comprehension",
       question: "Quelle est la différence entre 雅房 et 套房 ?",
       correctAnswer: "雅房 = chambre partagée (SDB commune), 套房 = studio avec SDB privée",
@@ -475,7 +475,7 @@ export const unit17: CourseUnit = {
       ],
     },
     {
-      id: "u13-ex4",
+      id: "unit-17-ex4",
       type: "fill-blank",
       question: "房租___水電。(Le loyer inclut eau et électricité.)",
       correctAnswer: "包",
@@ -485,7 +485,7 @@ export const unit17: CourseUnit = {
       hint: "Quel mot signifie « inclus » ?",
     },
     {
-      id: "u13-ex5",
+      id: "unit-17-ex5",
       type: "translate",
       question: "Que signifie 押金兩個月 ?",
       correctAnswer: "Le dépôt de garantie est de deux mois",
@@ -497,7 +497,7 @@ export const unit17: CourseUnit = {
       ],
     },
     {
-      id: "u13-ex6",
+      id: "unit-17-ex6",
       type: "comprehension",
       question: "Pourquoi faut-il se méfier des 頂加 (constructions sur le toit) ?",
       correctAnswer: "Elles sont illégales, mal isolées et risquent d'être démolies",

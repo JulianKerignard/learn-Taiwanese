@@ -435,7 +435,7 @@ export const unit53: CourseUnit = {
 
   exercises: [
     {
-      id: "u53-ex1",
+      id: "unit-53-ex1",
       type: "comprehension",
       question:
         "Quelle structure utilise-t-on pour dire qu'on aime faire une activité en chinois ?",
@@ -448,7 +448,7 @@ export const unit53: CourseUnit = {
       ],
     },
     {
-      id: "u53-ex2",
+      id: "unit-53-ex2",
       type: "fill-blank",
       question: "我___去爬山。(Je vais souvent faire de la randonnée.)",
       correctAnswer: "常常",
@@ -458,7 +458,7 @@ export const unit53: CourseUnit = {
       hint: "Quel adverbe signifie « souvent » ?",
     },
     {
-      id: "u53-ex3",
+      id: "unit-53-ex3",
       type: "translate",
       question: "Que signifie 我喜歡一邊聽音樂，一邊跑步 ?",
       correctAnswer: "J'aime écouter de la musique en courant.",
@@ -470,7 +470,7 @@ export const unit53: CourseUnit = {
       ],
     },
     {
-      id: "u53-ex4",
+      id: "unit-53-ex4",
       type: "listen",
       question: "Écoute et choisis la bonne traduction de : 我每天七點起床。",
       correctAnswer: "Je me lève à 7h tous les jours.",
@@ -482,7 +482,7 @@ export const unit53: CourseUnit = {
       ],
     },
     {
-      id: "u53-ex5",
+      id: "unit-53-ex5",
       type: "comprehension",
       question: "Quel loisir est une véritable institution sociale à Taiwan, souvent pratiqué dans des salles privées entre amis ?",
       correctAnswer: "Le KTV (karaoké)",
@@ -494,7 +494,7 @@ export const unit53: CourseUnit = {
       ],
     },
     {
-      id: "u53-ex6",
+      id: "unit-53-ex6",
       type: "fill-blank",
       question: "她___在家看電視。(Parfois elle regarde la télé à la maison.)",
       correctAnswer: "有時候",
@@ -504,7 +504,7 @@ export const unit53: CourseUnit = {
       hint: "Quel adverbe signifie « parfois » ?",
     },
     {
-      id: "u53-ex7",
+      id: "unit-53-ex7",
       type: "translate",
       question: "Comment dire « Allons faire de la randonnée ensemble ce week-end » ?",
       correctAnswer: "我們週末一起去爬山吧！",
@@ -516,7 +516,7 @@ export const unit53: CourseUnit = {
       ],
     },
     {
-      id: "u53-ex8",
+      id: "unit-53-ex8",
       type: "comprehension",
       question: "Quelle est la logique des caractères 上 et 下 dans 上班/下班 ?",
       correctAnswer:
