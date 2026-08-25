@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { EdgeTTS } from "edge-tts-universal";
+import { LANG } from "@/lib/language";
 
 const audioCache = new Map<string, ArrayBuffer>();
 const MAX_CACHE = 500;
@@ -7,11 +8,11 @@ const MAX_CACHE = 500;
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const text = searchParams.get("text");
-  const voice = searchParams.get("voice") || "zh-TW-HsiaoChenNeural";
+  const voice = searchParams.get("voice") || LANG.tts.voice;
   const rate = searchParams.get("rate") || "0.85";
 
-  const ALLOWED_VOICES = ["zh-TW-HsiaoChenNeural", "zh-TW-YunJheNeural"];
-  const safeVoice = ALLOWED_VOICES.includes(voice) ? voice : "zh-TW-HsiaoChenNeural";
+  const ALLOWED_VOICES: string[] = [LANG.tts.voice, LANG.tts.altVoice];
+  const safeVoice = ALLOWED_VOICES.includes(voice) ? voice : LANG.tts.voice;
   const rateNum = parseFloat(rate);
   const safeRate = (!isNaN(rateNum) && rateNum >= 0.5 && rateNum <= 2.0) ? rate : "0.85";
 

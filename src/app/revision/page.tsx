@@ -17,7 +17,7 @@ import {
 } from "@/lib/revision";
 import type { SM2Card } from "@/types";
 
-type ViewMode = "recommended" | "unit" | "chapter" | "hsk";
+type ViewMode = "recommended" | "unit" | "chapter" | "jlpt";
 
 export default function RevisionPage() {
   const [cards, setCards] = useState<SM2Card[]>([]);
@@ -37,7 +37,7 @@ export default function RevisionPage() {
   const groupedData: TopicGroup[] =
     view === "unit" ? groupCardsByUnit(cards) :
     view === "chapter" ? groupCardsByChapter(cards) :
-    view === "hsk" ? groupCardsByHSK(cards) :
+    view === "jlpt" ? groupCardsByHSK(cards) :
     [];
 
   const hasCards = cards.length > 0;
@@ -89,7 +89,7 @@ export default function RevisionPage() {
           <div className="flex gap-1 rounded-lg border border-stone-200 bg-stone-50 p-1">
             {([
               { key: "recommended" as const, label: "Recommandé" },
-              { key: "hsk" as const, label: "Par HSK" },
+              { key: "jlpt" as const, label: "Par JLPT" },
               { key: "chapter" as const, label: "Par chapitre" },
               { key: "unit" as const, label: "Par unité" },
             ]).map((tab) => (
@@ -172,7 +172,7 @@ function TopicCard({ topic }: { topic: RevisionTopic | (TopicGroup & { score: nu
             {topic.label}
           </h3>
           {topic.labelZh && (
-            <p className="chinese text-sm text-stone-400">{topic.labelZh}</p>
+            <p className="japanese text-sm text-stone-400">{topic.labelZh}</p>
           )}
         </div>
         <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 group-hover:text-primary transition-colors" />

@@ -16,7 +16,7 @@ import { saveTestResult } from "@/lib/test-storage";
 import AudioButton from "@/components/AudioButton";
 import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
-import { hasChinese } from "@/lib/utils";
+import { hasJapanese } from "@/lib/utils";
 
 interface TestRunnerProps {
   test: MockTest;
@@ -125,7 +125,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
         <div className="mb-6 text-center">
           <span className="mb-2 inline-block text-4xl">{test.icon}</span>
           <h1 className="text-2xl font-bold">{test.title}</h1>
-          <p className="text-lg text-stone-500">{test.titleZh}</p>
+          <p className="text-lg text-stone-500">{test.titleJa}</p>
         </div>
 
         <p className="mb-6 text-center text-stone-600">{test.description}</p>
@@ -205,7 +205,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
               <p className="text-sm text-stone-500">Écoutez et choisissez la bonne réponse</p>
             </div>
           ) : (
-            <p className={cn("mb-4 text-lg font-medium", hasChinese(current.question) && "chinese")}>
+            <p className={cn("mb-4 text-lg font-medium", hasJapanese(current.question) && "japanese")}>
               {current.question}
             </p>
           )}
@@ -229,7 +229,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
                   selectedAnswer === option
                     ? "border-primary bg-primary/5 font-medium"
                     : "border-stone-200 hover:border-stone-300",
-                  hasChinese(option) && "chinese"
+                  hasJapanese(option) && "japanese"
                 )}
               >
                 {option}

@@ -28,7 +28,7 @@ export async function GET() {
         unitsCompleted: path?.completedUnits?.length ?? 0,
         currentStreak: progress?.currentStreak ?? 0,
         totalXP: gam?.totalXP ?? 0,
-        charactersLearned: progress?.charactersLearned ?? 0,
+        termsLearned: progress?.termsLearned ?? 0,
         lastStudyDate: progress?.lastStudyDate ?? null,
         speedRecord: typeof speedRecord === "number" ? speedRecord : 0,
         totalStudyMinutes: totalMinutes,

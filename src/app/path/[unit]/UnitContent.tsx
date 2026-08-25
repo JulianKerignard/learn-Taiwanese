@@ -20,7 +20,7 @@ import CharacterCard from "@/components/CharacterCard";
 import ExerciseRunner from "@/components/ExerciseRunner";
 import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
-import { getUnitById, chapters, getHSKLevelForUnit, getHSKLevelUnits } from "@/data/course";
+import { getUnitById, chapters, getJLPTLevelForUnit, getJLPTLevelUnits } from "@/data/course";
 import {
   completeUnit,
 } from "@/lib/progress";
@@ -29,8 +29,8 @@ import { createCard } from "@/lib/fsrs";
 import type { CourseUnit } from "@/types/course";
 
 /** Stable FSRS card id for a unit vocabulary entry. */
-function vocabCardId(unitId: string, character: string): string {
-  return `course-${unitId}-${character}`;
+function vocabCardId(unitId: string, term: string): string {
+  return `course-${unitId}-${term}`;
 }
 
 interface UnitContentProps {
@@ -55,7 +55,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
     setLoaded(true);
     if (u) {
       const existingIds = new Set(getCards().map((c) => c.id));
-      setVocabAdded(u.vocabulary.every((item) => existingIds.has(vocabCardId(unitId, item.character))));
+      setVocabAdded(u.vocabulary.every((item) => existingIds.has(vocabCardId(unitId, item.term))));
     }
   }, [unitId]);
 
@@ -89,8 +89,8 @@ export default function UnitContent({ unitId }: UnitContentProps) {
   }, [unitId]);
 
   const chapter = unit ? chapters.find((c) => c.number === unit.chapter) : undefined;
-  const hskLevel = unit ? getHSKLevelForUnit(unit) : undefined;
-  const levelUnits = hskLevel ? getHSKLevelUnits(hskLevel) : [];
+  const jlptLevel = unit ? getJLPTLevelForUnit(unit) : undefined;
+  const levelUnits = jlptLevel ? getJLPTLevelUnits(jlptLevel) : [];
   const levelUnitIds = levelUnits.map((u) => u.id);
 
   const handleExerciseComplete = useCallback(
@@ -128,14 +128,14 @@ export default function UnitContent({ unitId }: UnitContentProps) {
     // Skip cards already in the store: re-adding would reset their FSRS history.
     const existingIds = new Set(getCards().map((c) => c.id));
     for (const item of unit.vocabulary) {
-      const id = vocabCardId(unitId, item.character);
+      const id = vocabCardId(unitId, item.term);
       if (existingIds.has(id)) continue;
       const card = createCard({
         id,
-        front: item.character,
+        front: item.term,
         back: item.french,
-        pinyin: item.pinyin,
-        zhuyin: item.zhuyin,
+        romaji: item.romaji,
+        kana: item.kana,
         type: "vocabulary",
         lessonId: unitId,
       });
@@ -148,7 +148,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
     setExerciseResult(null);
   };
 
-  // Next unit within same HSK level
+  // Next unit within same JLPT level
   const levelIdx = levelUnitIds.indexOf(unitId);
   const nextUnitId = levelIdx >= 0 && levelIdx < levelUnitIds.length - 1
     ? levelUnitIds[levelIdx + 1]
@@ -182,10 +182,10 @@ export default function UnitContent({ unitId }: UnitContentProps) {
           Parcours
         </Link>
         <ChevronRight className="h-3 w-3" />
-        {hskLevel && (
+        {jlptLevel && (
           <>
-            <Link href={`/path/${hskLevel.slug}`} className="hover:text-primary transition-colors">
-              HSK {hskLevel.level}
+            <Link href={`/path/niveau/${jlptLevel.slug}`} className="hover:text-primary transition-colors">
+              JLPT {jlptLevel.level}
             </Link>
             <ChevronRight className="h-3 w-3" />
           </>
@@ -207,7 +207,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
             <h1 className="text-2xl font-bold text-stone-900">
               Unité {unit.number} — {unit.title}
             </h1>
-            <p className="chinese text-stone-400">{unit.titleZh}</p>
+            <p className="japanese text-stone-400">{unit.titleJa}</p>
           </div>
         </div>
         <p className="mt-2 text-stone-500">{unit.description}</p>
@@ -293,7 +293,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {unit.vocabulary.map((item) => (
-              <CharacterCard key={item.character} item={item} />
+              <CharacterCard key={item.term} item={item} />
             ))}
           </div>
         </div>
@@ -327,8 +327,8 @@ export default function UnitContent({ unitId }: UnitContentProps) {
                     Unité suivante
                     <ChevronRight className="h-4 w-4" />
                   </Link>
-                ) : exerciseResult.passed && isLastInLevel && hskLevel ? (
-                  <Link href={`/path/${hskLevel.slug}`} className="btn-primary gap-1">
+                ) : exerciseResult.passed && isLastInLevel && jlptLevel ? (
+                  <Link href={`/path/niveau/${jlptLevel.slug}`} className="btn-primary gap-1">
                     Niveau terminé !
                     <ChevronRight className="h-4 w-4" />
                   </Link>
@@ -338,7 +338,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
                     Réessayer
                   </button>
                 )}
-                <Link href={hskLevel ? `/path/${hskLevel.slug}` : "/path"} className="btn-secondary">
+                <Link href={jlptLevel ? `/path/niveau/${jlptLevel.slug}` : "/path"} className="btn-secondary">
                   Retour au parcours
                 </Link>
               </div>
@@ -355,11 +355,11 @@ export default function UnitContent({ unitId }: UnitContentProps) {
       {/* Bottom navigation */}
       <div className="flex items-center justify-between border-t border-stone-200 pt-6">
         <Link
-          href={hskLevel ? `/path/${hskLevel.slug}` : "/path"}
+          href={jlptLevel ? `/path/niveau/${jlptLevel.slug}` : "/path"}
           className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
-          Retour au HSK {hskLevel?.level ?? "parcours"}
+          Retour au JLPT {jlptLevel?.level ?? "parcours"}
         </Link>
         {nextUnitId && (
           <Link

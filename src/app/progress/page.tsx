@@ -60,7 +60,7 @@ export default function ProgressPage() {
   const [mistakes, setMistakes] = useState<Record<string, number>>({});
   const [showReset, setShowReset] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [otherUsers, setOtherUsers] = useState<{ id: number; username: string; unitsCompleted: number; currentStreak: number; totalXP: number; charactersLearned: number; lastStudyDate: string | null; speedRecord: number; totalStudyMinutes: number; level: number }[]>([]);
+  const [otherUsers, setOtherUsers] = useState<{ id: number; username: string; unitsCompleted: number; currentStreak: number; totalXP: number; termsLearned: number; lastStudyDate: string | null; speedRecord: number; totalStudyMinutes: number; level: number }[]>([]);
 
   useEffect(() => {
     reload();
@@ -95,7 +95,7 @@ export default function ProgressPage() {
           cards: [],
           progress: {},
           path_progress: { completedUnits: [], unitScores: {}, currentUnit: "unit-01", chapterProgress: {} },
-          gamification: { totalXP: 0, totalReviews: 0, totalCharactersLearned: 0, currentStreak: 0, achievements: [], lastSessionPerfect: false, xpHistory: [] },
+          gamification: { totalXP: 0, totalReviews: 0, totalTermsLearned: 0, currentStreak: 0, achievements: [], lastSessionPerfect: false, xpHistory: [] },
           settings: {},
           speed_record: 0,
           study_time: {},
@@ -326,7 +326,7 @@ export default function ProgressPage() {
                   key={word}
                   className="flex items-center justify-between rounded-lg bg-stone-50 px-3 py-2"
                 >
-                  <span className="text-sm font-medium text-stone-700 chinese">{word}</span>
+                  <span className="text-sm font-medium text-stone-700 japanese">{word}</span>
                   <span className="text-xs text-danger font-medium">{count} erreur{count > 1 ? "s" : ""}</span>
                 </li>
               ))}
@@ -471,8 +471,8 @@ export default function ProgressPage() {
                 </div>
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="rounded-lg bg-success/10 px-2 py-1.5">
-                    <p className="text-lg font-bold text-success">{u.charactersLearned}</p>
-                    <p className="text-xs text-stone-500">caractères</p>
+                    <p className="text-lg font-bold text-success">{u.termsLearned}</p>
+                    <p className="text-xs text-stone-500">mots</p>
                   </div>
                   <div className="rounded-lg bg-amber-50 px-2 py-1.5">
                     <p className="text-lg font-bold text-amber-600">{u.speedRecord}</p>

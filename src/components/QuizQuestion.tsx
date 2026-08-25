@@ -33,18 +33,18 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
     <div className="flex flex-col items-center gap-6">
       {/* Question */}
       <div className="flex items-center gap-2">
-        {question.type === "audio-to-character" ? (
+        {question.type === "audio-to-term" ? (
           <AudioButton text={question.question} size="lg" />
         ) : (
-          <h3 className="chinese text-center text-3xl font-medium">{question.question}</h3>
+          <h3 className="japanese text-center text-3xl font-medium">{question.question}</h3>
         )}
       </div>
 
       <p className="text-sm text-stone-500">
-        {question.type === "character-to-french" && "Quelle est la traduction ?"}
-        {question.type === "french-to-character" && "Quel est le caractère ?"}
-        {question.type === "audio-to-character" && "Quel caractère entendez-vous ?"}
-        {question.type === "pinyin-to-character" && "Quel caractère correspond ?"}
+        {question.type === "term-to-french" && "Quelle est la traduction ?"}
+        {question.type === "french-to-term" && "Quel est le mot japonais ?"}
+        {question.type === "audio-to-term" && "Quel mot entendez-vous ?"}
+        {question.type === "kana-to-term" && "Quel mot correspond à cette lecture ?"}
       </p>
 
       {/* Options */}
@@ -65,7 +65,7 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
                 answered && !isThis && !isRight && "border-stone-100 text-stone-300"
               )}
             >
-              <span className={cn(question.type === "french-to-character" && "chinese text-2xl")}>
+              <span className={cn(question.type === "french-to-term" && "japanese text-2xl")}>
                 {option}
               </span>
               {answered && isThis && (

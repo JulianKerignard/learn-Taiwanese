@@ -1,4 +1,4 @@
-// Pre-generate audio files for all Chinese vocabulary and phrases
+// Pre-generate audio files for all Japanese vocabulary and phrases
 // Usage: node scripts/generate-audio.mjs
 // Requires: edge-tts-universal (already in project dependencies)
 
@@ -15,11 +15,11 @@ import { EdgeTTS } from "edge-tts-universal";
 
 const ROOT = resolve(".");
 const AUDIO_DIR = join(ROOT, "public", "audio");
-const VOICE = "zh-TW-HsiaoChenNeural";
+const VOICE = "ja-JP-NanamiNeural";
 const RATE = "-15%";
 const DELAY_MS = 200;
 
-// ── Extract all Chinese texts from TypeScript data files ──────────────
+// ── Extract all Japanese texts from TypeScript data files ──────────────
 
 function extractChineseTexts() {
   const texts = new Set();
@@ -49,13 +49,13 @@ function extractChineseTexts() {
   function extractFromFile(filePath, set) {
     const content = readFileSync(filePath, "utf-8");
 
-    // character: "..." or character: '...'
-    for (const m of content.matchAll(/character:\s*["']([^"']+)["']/g)) {
+    // term: "..." or term: '...'
+    for (const m of content.matchAll(/term:\s*["']([^"']+)["']/g)) {
       set.add(m[1]);
     }
 
-    // chinese: "..." or chinese: '...'
-    for (const m of content.matchAll(/chinese:\s*["']([^"']+)["']/g)) {
+    // japanese: "..." or japanese: '...'
+    for (const m of content.matchAll(/japanese:\s*["']([^"']+)["']/g)) {
       set.add(m[1]);
     }
   }
@@ -80,7 +80,7 @@ async function main() {
   mkdirSync(AUDIO_DIR, { recursive: true });
 
   const texts = extractChineseTexts();
-  console.log(`Found ${texts.length} unique Chinese texts to generate\n`);
+  console.log(`Found ${texts.length} unique Japanese texts to generate\n`);
 
   if (texts.length === 0) {
     console.log("No texts found. Check that src/data/ contains .ts files.");

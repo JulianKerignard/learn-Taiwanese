@@ -5,8 +5,8 @@ import Link from "next/link";
 const games = [
   {
     emoji: "\u{1F0CF}",
-    name: "Matching",
-    description: "Relie les caractères à leur traduction",
+    name: "Associations",
+    description: "Relie les mots à leur traduction",
     href: "/games/matching",
     color: "from-violet-500 to-purple-600",
     bg: "bg-violet-50",
@@ -14,7 +14,7 @@ const games = [
   },
   {
     emoji: "\u26A1",
-    name: "Speed Quiz",
+    name: "Quiz éclair",
     description: "Traduis le plus de mots en 60 secondes",
     href: "/games/speed-quiz",
     color: "from-amber-500 to-orange-600",
@@ -23,8 +23,8 @@ const games = [
   },
   {
     emoji: "\u{1F3AF}",
-    name: "Pendu Chinois",
-    description: "Devine le caractère chinois",
+    name: "Pendu japonais",
+    description: "Devine la lecture en kana",
     href: "/games/hangman",
     color: "from-emerald-500 to-teal-600",
     bg: "bg-emerald-50",

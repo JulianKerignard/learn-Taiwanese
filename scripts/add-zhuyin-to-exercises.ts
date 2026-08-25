@@ -1,15 +1,15 @@
 /**
- * Script to add optionsZhuyin and hintZhuyin to all exercise files.
+ * Script to add optionsKana and hintKana to all exercise files.
  *
  * This script:
- * 1. Adds optionsZhuyin to exercises that have optionsHint (chapters 1-3)
- * 2. Adds hintZhuyin to exercises that have hint in pinyin
- * 3. Adds optionsHint AND optionsZhuyin to chapters 4-8 exercises with Chinese options
+ * 1. Adds optionsKana to exercises that have optionsHint (chapters 1-3)
+ * 2. Adds hintKana to exercises that have hint in romaji
+ * 3. Adds optionsHint AND optionsKana to chapters 4-8 exercises with Japanese options
  *
- * Run with: npx tsx scripts/add-zhuyin-to-exercises.ts
+ * Run with: npx tsx scripts/add-kana-to-exercises.ts
  */
 
-// Pinyin to Zhuyin conversion map
+// Romaji to Kana conversion map
 const pinyinToZhuyinMap: Record<string, string> = {
   // Initials
   'b': 'ㄅ', 'p': 'ㄆ', 'm': 'ㄇ', 'f': 'ㄈ',
@@ -61,7 +61,7 @@ function pinyinSyllableToZhuyin(syllable: string): string {
 
   if (!syllable) return punct;
 
-  // Check if it's not pinyin (numbers, English words, etc.)
+  // Check if it's not romaji (numbers, English words, etc.)
   if (/^[A-Z]/.test(syllable) && !/^[A-Z][a-zāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/.test(syllable)) {
     return syllable + punct;
   }
@@ -152,12 +152,12 @@ function pinyinSyllableToZhuyin(syllable: string): string {
   return (result || syllable) + punct;
 }
 
-export function pinyinToZhuyin(pinyin: string): string {
-  if (!pinyin) return '';
+export function pinyinToZhuyin(romaji: string): string {
+  if (!romaji) return '';
 
   // Split by spaces and convert each syllable
-  return pinyin.split(/\s+/).map(word => {
-    // Handle special characters that aren't pinyin
+  return romaji.split(/\s+/).map(word => {
+    // Handle special characters that aren't romaji
     if (/^[0-9]+$/.test(word)) return word;
     if (/^[A-Z]+$/.test(word)) return word; // Acronyms like LINE, WiFi
     if (word === '...' || word === '—' || word === '-') return word;

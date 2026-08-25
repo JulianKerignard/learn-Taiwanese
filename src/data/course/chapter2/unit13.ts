@@ -3,396 +3,355 @@ import type { CourseUnit } from "@/types/course";
 export const unit13: CourseUnit = {
   id: "unit-13",
   number: 13,
-  title: "Checkpoint 1 — Révision chapitres 1 et 2",
-  titleZh: "檢查站一——第一、二章複習",
+  title: "Les particules essentielles : は, が, を, に, で",
+  titleJa: "基本の助詞",
   chapter: 2,
   description:
-    "Récapitulatif complet de la grammaire, des tons et des classificateurs des unités 1 à 12. Exercices intensifs de révision pour consolider les acquis.",
-  icon: "🏁",
+    "Les particules qui structurent presque toutes les phrases japonaises, は et が en tête. À la fin de l'unité vous savez dire qui fait quoi, où, avec qui, et de quand à quand.",
+  icon: "は",
 
   sections: [
     {
-      title: "Récapitulatif de grammaire",
+      title: "Une particule est une étiquette collée derrière le mot",
+      type: "theory",
+      content: [
+        {
+          type: "text",
+          content:
+            "Le français place ses prépositions devant le mot : à Tokyo, avec un ami, en train. Le japonais fait l'inverse et colle sa particule derrière : とうきょうに, ともだちと, でんしゃで. Chaque groupe forme ainsi un bloc autonome [mot + particule] qui annonce son rôle dans la phrase. C'est le renversement mental le plus important de ce chapitre, et il ne coûte rien une fois accepté.",
+        },
+        {
+          type: "text",
+          content:
+            "Conséquence directe : l'ordre des blocs est souple, puisque le rôle est marqué sur le mot et non par sa place. わたしは あした とうきょうに 行きます et あした わたしは とうきょうに 行きます disent la même chose. Une seule contrainte est absolue : le verbe ferme la phrase. Tant qu'il n'est pas prononcé, on ne sait pas ce qui se passe — d'où l'écoute très différente qu'exige le japonais, où l'on retient les compléments avant de connaître l'action.",
+        },
+        {
+          type: "example",
+          japanese: "ともだちと でんしゃで とうきょうに 行きます。",
+          romaji: "tomodachi to densha de Toukyou ni ikimasu.",
+          translation: "Je vais à Tokyo en train avec un ami.",
+          content:
+            "Trois blocs, trois étiquettes : と dit avec qui, で dit par quel moyen, に dit vers où. Retirez les particules et la phrase devient inintelligible même avec les bons mots dans le bon ordre. Elles ne sont pas des ornements, elles portent toute la syntaxe.",
+        },
+        {
+          type: "warning",
+          content:
+            "L'erreur du débutant francophone n'est pas de choisir la mauvaise particule, c'est de l'oublier. « とうきょう 行きます » est agrammatical. Il est vrai qu'à l'oral rapide, entre proches, certaines particules s'effacent — mais un apprenant doit toutes les prononcer : c'est précisément ce qui rend sa phrase compréhensible.",
+        },
+        {
+          type: "tip",
+          content:
+            "Apprenez chaque verbe avec la particule qui l'accompagne, comme un bloc indissociable : ～に 行く (aller à), ～を 見る (regarder), ～に あう (rencontrer), ～に のる (monter dans). Retenir のる seul ne sert à rien ; retenir でんしゃに のる sert dès le premier quai de gare.",
+        },
+      ],
+    },
+    {
+      title: "は et が : poser le thème ou identifier",
       type: "grammar",
       content: [
         {
           type: "text",
           content:
-            "Voici un tableau récapitulatif de TOUS les patterns grammaticaux vus dans les unités 1 à 12. Si un pattern vous semble flou, retournez à l'unité correspondante pour le retravailler en profondeur.",
-        },
-        {
-          type: "text",
-          content:
-            "1. ORDRE SVO (Sujet-Verbe-Objet) — Le mandarin suit le même ordre de base que le français. 我喝茶 (wǒ hē chá — je bois du thé). Vu dans l'unité 1.",
+            "C'est la difficulté centrale du japonais, et personne ne l'épuise en une leçon : les grammairiens japonais y consacrent des ouvrages entiers. Un principe de travail suffit cependant pour démarrer, et il est fiable. は pose ce dont on parle : il installe un cadre, souvent déjà connu de l'interlocuteur, et ce cadre reste valable sur plusieurs phrases. が identifie : il sélectionne un élément, apporte de l'information neuve, répond à la question « lequel ? ».",
         },
         {
           type: "example",
-          chinese: "我喝茶。",
-          pinyin: "wǒ hē chá.",
-          translation: "Je bois du thé.",
-          content: "Structure SVO de base : sujet + verbe + objet.",
-        },
-        {
-          type: "text",
+          japanese: "わたしは がくせいです。",
+          romaji: "watashi wa gakusei desu.",
+          translation: "Moi, je suis étudiant.",
           content:
-            "2. 是 (shì) — Le verbe « être ». Il relie un sujet à un nom, jamais à un adjectif. 我是學生 (je suis étudiant) ✓. 我是高 ✗ (on dit 我很高). Vu dans l'unité 1.",
+            "は annonce le thème : « quant à moi ». On ne compare avec personne, on installe simplement le sujet de la conversation, et l'interlocuteur sait que les phrases suivantes parleront encore de vous. C'est la structure de présentation vue au début du chapitre.",
         },
         {
           type: "example",
-          chinese: "她是老師。",
-          pinyin: "tā shì lǎoshī.",
-          translation: "Elle est professeur.",
-          content: "是 relie sujet + nom. Ne s'utilise PAS avec les adjectifs.",
+          japanese: "だれが 行きますか。",
+          romaji: "dare ga ikimasu ka.",
+          translation: "Qui y va ?",
+          content:
+            "Impossible de dire だれは. Une question en « qui ? » ou « quoi ? » cherche justement à identifier, donc が. Et la réponse conserve が : わたしが 行きます. Le français rend cette nuance par une tournure clivée, « c'est moi qui y vais », là où le japonais change simplement de particule.",
+        },
+        {
+          type: "comparison",
+          content:
+            "ねこが います / ねこは そこに います. La première phrase signale une existence neuve : « il y a un chat », vous venez de le remarquer. La seconde parle d'un chat déjà en question et donne sa position : « le chat, il est là ». Mots identiques, statut de l'information inversé — c'est cela que は et が encodent.",
         },
         {
           type: "text",
           content:
-            "3. LA NÉGATION — 不 (bù) pour le présent/futur et les habitudes. 沒 (méi) pour le passé et 有 (avoir). 我不喝酒 (je ne bois pas d'alcool). 我沒去 (je n'y suis pas allé). Vu dans les unités 3-4.",
+            "Trois repères pratiques règlent la majorité des cas au niveau débutant. Un : ce qui est neuf entre dans la conversation avec が, puis passe à は dès la phrase suivante, une fois connu. Deux : は marque volontiers un contraste implicite — コーヒーは 飲みます sous-entend « le café oui, autre chose non ». Trois : les phrases d'existence, de description soudaine et les propositions subordonnées préfèrent が.",
         },
         {
-          type: "example",
-          chinese: "我不喝酒。/ 我沒有錢。",
-          pinyin: "wǒ bù hē jiǔ. / wǒ méiyǒu qián.",
-          translation: "Je ne bois pas d'alcool. / Je n'ai pas d'argent.",
-          content: "不 pour les habitudes/volontés. 沒 pour le passé et 有.",
-        },
-        {
-          type: "text",
+          type: "warning",
           content:
-            "4. QUESTIONS avec 嗎 — Ajoutez 嗎 (ma) à la fin d'une phrase affirmative pour en faire une question oui/non. 你是台灣人嗎？(Tu es taiwanais ?). Vu dans l'unité 4.",
-        },
-        {
-          type: "text",
-          content:
-            "5. QUESTIONS A不A — Alternative à 嗎 : répétez le verbe avec 不 au milieu. 你是不是台灣人？(Tu es ou tu n'es pas taiwanais ?). Plus direct que 嗎, très courant à l'oral à Taiwan. Vu dans l'unité 4.",
-        },
-        {
-          type: "example",
-          chinese: "你要不要喝咖啡？",
-          pinyin: "nǐ yào bú yào hē kāfēi?",
-          translation: "Tu veux ou tu ne veux pas boire du café ?",
-          content: "Structure A不A : verbe + 不 + verbe. Question directe très taiwanaise.",
-        },
-        {
-          type: "text",
-          content:
-            "6. 的 (de) — Particule de possession et de modification. 我的書 (mon livre). 漂亮的女生 (une jolie fille). C'est le mot le plus fréquent du mandarin. Vu dans l'unité 5.",
-        },
-        {
-          type: "text",
-          content:
-            "7. 很 + ADJECTIF — En mandarin, les adjectifs fonctionnent comme des verbes. On ne dit pas « je suis grand » (我是高 ✗) mais « je très grand » (我很高 ✓). 很 perd souvent son sens de « très » et sert juste de lien. Vu dans l'unité 7.",
-        },
-        {
-          type: "example",
-          chinese: "台灣的食物很好吃。",
-          pinyin: "táiwān de shíwù hěn hǎochī.",
-          translation: "La nourriture de Taiwan est délicieuse.",
-          content: "很 + adjectif : structure standard pour décrire.",
-        },
-        {
-          type: "text",
-          content:
-            "8. 太...了 — « Trop... ». Exprime l'excès. 太貴了 (trop cher), 太好了 (trop bien / super). Peut être positif ou négatif selon le contexte. Vu dans l'unité 8.",
-        },
-        {
-          type: "example",
-          chinese: "這個太貴了！",
-          pinyin: "zhège tài guì le!",
-          translation: "C'est trop cher !",
-          content: "太 + adjectif + 了 : exprimer l'excès.",
-        },
-        {
-          type: "text",
-          content:
-            "9. 呢 (ne) — Particule de question informelle. « Et toi ? » = 你呢？Sert à retourner une question ou à demander « et... ? ». Vu dans l'unité 9.",
-        },
-        {
-          type: "text",
-          content:
-            "10. LES CLASSIFICATEURS — nombre + classificateur + nom. 個 (général), 隻 (animaux), 輛 (véhicules), 件 (vêtements), 張 (plat), 條 (long), 本 (livres), 杯 (tasses), 碗 (bols), 瓶 (bouteilles), 次 (fois), 位 (personnes-poli). Vu dans les unités 5-6.",
+            "Ne traduisez jamais は par « le / la » ni が par « un / une ». Ces particules ne sont pas des articles et ne disent rien du caractère défini ou indéfini du nom. Elles disent ce que le locuteur considère comme acquis et ce qu'il présente comme neuf. Un francophone qui cherche un article se trompera une fois sur deux.",
         },
         {
           type: "tip",
           content:
-            "Si un de ces patterns vous semble encore flou, retournez à l'unité correspondante. Ce checkpoint ne remplace pas l'apprentissage — il sert à identifier vos lacunes et à les combler.",
+            "Quand vous hésitez, posez-vous une seule question : mon interlocuteur sait-il déjà de quoi je parle ? Oui → は. Non, je le lui apprends ou je le désigne → が. Ce test grossier donne la bonne réponse dans la grande majorité des phrases de la vie courante.",
         },
       ],
     },
     {
-      title: "Récapitulatif des tons",
+      title: "を, に, で, へ : l'objet, le point, le moyen, la direction",
+      type: "grammar",
+      content: [
+        {
+          type: "text",
+          content:
+            "Quatre particules recouvrent à elles seules la plupart des compléments. を marque l'objet direct, ce sur quoi l'action porte. に marque un point : point d'arrivée, destinataire, heure précise. で marque un moyen ou le lieu où l'action se déroule. へ marque une direction, plus vague que に.",
+        },
+        {
+          type: "example",
+          japanese: "えいがを 見ます。",
+          romaji: "eiga o mimasu.",
+          translation: "Je regarde un film.",
+          content:
+            "を se prononce « o », jamais « wo », mais s'écrit avec le kana を réservé à cet usage unique. Dès que vous voyez を dans une phrase, vous savez que le mot qui précède est l'objet du verbe. C'est la particule la plus simple du japonais parce qu'elle n'a qu'une seule fonction.",
+        },
+        {
+          type: "comparison",
+          content:
+            "学校に 行きます / 学校で 見ます. に répond à « vers où ? » et accompagne les verbes de déplacement. で répond à « où l'action a-t-elle lieu ? » et accompagne tout le reste. Le même nom de lieu prend donc l'une ou l'autre particule selon le verbe, jamais selon le lieu lui-même : c'est le verbe qui commande.",
+        },
+        {
+          type: "example",
+          japanese: "3時に 駅で あいましょう。",
+          romaji: "sanji ni eki de aimashou.",
+          translation: "Retrouvons-nous à la gare à 3 heures.",
+          content:
+            "Deux emplois différents dans une phrase de cinq mots : に pour l'heure précise, で pour le lieu où se passe la rencontre. Notez que les heures et les jours de la semaine prennent に, mais que きょう, あした, まいにち n'en prennent aucune — les repères de temps relatifs se passent de particule.",
+        },
+        {
+          type: "text",
+          content:
+            "で couvre aussi l'instrument et la matière : でんしゃで (en train), はしで (avec des baguettes), 日本語で (en japonais). Un seul mot français, « avec », se répartit en japonais entre で pour un moyen inanimé et と pour un accompagnement humain. でんしゃで 行きます signifie j'y vais en train ; ともだちと 行きます signifie j'y vais avec un ami. Confondre les deux produit des phrases involontairement comiques.",
+        },
+        {
+          type: "warning",
+          content:
+            "へ et に ne sont pas strictement interchangeables, mais au niveau débutant へ est presque toujours remplaçable par に devant un lieu. Retenez surtout ceci : en tant que particule, へ se prononce « e » et non « he ». Même piège que は particule, prononcée « wa ». Ce sont les deux seules irrégularités de lecture des kana.",
+        },
+        {
+          type: "tip",
+          content:
+            "Les verbes de mouvement distinguent le but et le trajet : こうえんに 行く (aller au parc) mais こうえんを あるく (marcher dans le parc, le traverser). Ce を de parcours surprend les francophones, il est pourtant parfaitement régulier — il apparaît avec あるく, わたる, とおる.",
+        },
+      ],
+    },
+    {
+      title: "と, から, まで, も, の — et la phrase complète",
       type: "practice",
       content: [
         {
           type: "text",
           content:
-            "Les 4 tons du mandarin : Ton 1 (ˉ) haut et plat. Ton 2 (ˊ) montant. Ton 3 (ˇ) descendant-remontant. Ton 4 (ˋ) descendant brusque. Plus le ton neutre (léger, court).",
+            "と a deux emplois voisins. Entre deux noms, il énumère de façon fermée : パンと たまご désigne le pain et l'œuf, ces deux-là et rien d'autre. Devant une personne, il signifie « avec » : ともだちと. Attention, と ne relie jamais deux phrases : le japonais n'a pas d'équivalent du « et » qui enchaîne des propositions, il utilise pour cela une forme du verbe que le chapitre suivant présente.",
+        },
+        {
+          type: "example",
+          japanese: "しぶやから しんじゅくまで でんしゃで 行きます。",
+          romaji: "Shibuya kara Shinjuku made densha de ikimasu.",
+          translation: "Je vais de Shibuya à Shinjuku en train.",
+          content:
+            "から et まで fonctionnent en paire, et pas seulement dans l'espace : 9時から 5時まで, げつようびから きんようびまで. Chaque particule suit son mot, si bien que la phrase se lit comme une suite d'étiquettes que l'on décode de gauche à droite.",
         },
         {
           type: "text",
           content:
-            "Rappel des règles de sandhi tonal : 1) Deux tons 3 consécutifs → le premier devient ton 2 (你好 → ní hǎo). 2) 不 (bù, ton 4) → bú devant un ton 4 (不是 → búshì). 3) 一 (yī, ton 1) → yí devant ton 4, yì devant ton 1/2/3.",
+            "も signifie « aussi », et son fonctionnement est mécanique : il REMPLACE は, が et を, il ne s'y ajoute jamais. わたしは 行きます devient わたしも 行きます. En revanche il se combine avec に, で et と : とうきょうにも 行きます (je vais aussi à Tokyo), ともだちとも 行きます.",
+        },
+        {
+          type: "example",
+          japanese: "わたしも えいがを 見ます。",
+          romaji: "watashi mo eiga o mimasu.",
+          translation: "Moi aussi, je regarde le film.",
+          content:
+            "わたしはも est une faute que tous les débutants commettent une fois : も prend la place de は, comme un remplaçant. Attention aussi au sens exact — ici c'est moi qui viens en plus des autres. Pour dire « je regarde aussi un film », en plus d'autre chose, il faudrait déplacer la particule : えいがも 見ます.",
         },
         {
           type: "text",
           content:
-            "Exercice de reconnaissance — Identifiez les tons de ces 10 mots vus dans les unités précédentes :",
-        },
-        {
-          type: "example",
-          chinese: "台灣",
-          pinyin: "táiwān",
-          translation: "Taiwan — Ton 2 + Ton 1",
-          content: "台 (ton 2, montant) + 灣 (ton 1, haut plat).",
-        },
-        {
-          type: "example",
-          chinese: "謝謝",
-          pinyin: "xièxiè",
-          translation: "Merci — Ton 4 + Ton 4 (léger)",
-          content: "兩 tons 4 : deux chutes successives.",
-        },
-        {
-          type: "example",
-          chinese: "學生",
-          pinyin: "xuéshēng",
-          translation: "Étudiant — Ton 2 + Ton 1",
-          content: "學 monte (ton 2), 生 haut plat (ton 1).",
-        },
-        {
-          type: "example",
-          chinese: "老師",
-          pinyin: "lǎoshī",
-          translation: "Professeur — Ton 3 + Ton 1",
-          content: "老 descend-remonte (ton 3, half-third devant ton 1), 師 haut plat (ton 1).",
-        },
-        {
-          type: "example",
-          chinese: "漂亮",
-          pinyin: "piàoliang",
-          translation: "Joli — Ton 4 + Ton neutre",
-          content: "漂 chute (ton 4), 亮 léger (ton neutre).",
-        },
-        {
-          type: "text",
-          content:
-            "Tone pairs avec le vocabulaire déjà appris — Pratiquez ces enchaînements : 今天 (1+1), 中文 (1+2), 老師 (3+1), 學生 (2+1), 可以 (3+3 → sandhi), 不要 (4+4 → sandhi), 喜歡 (3+1), 準備 (3+4), 重要 (4+4), 漂亮 (4+neutre).",
+            "の relie deux noms : le déterminant à gauche, le déterminé à droite. ともだちの ほん signifie le livre de l'ami. L'ordre est l'inverse du français et il est constant — 日本語の せんせい (le professeur de japonais), 駅の まえ (le devant de la gare), わたしの かばん. On peut enchaîner plusieurs の : ともだちの おかあさんの くるま, la voiture de la mère de mon ami.",
         },
         {
           type: "tip",
           content:
-            "Méthode de révision : prenez 5 mots de la liste ci-dessus chaque jour et prononcez-les 10 fois chacun en exagérant les tons. Concentrez-vous sur les combinaisons qui vous posent problème (souvent 3+3 et 2+4).",
-        },
-      ],
-    },
-    {
-      title: "Récapitulatif des classificateurs",
-      type: "practice",
-      content: [
-        {
-          type: "text",
-          content:
-            "Voici les 20 classificateurs vus dans les unités 1 à 12. Pour chacun, rappelez-vous la catégorie d'objets et au moins 2 exemples.",
-        },
-        {
-          type: "text",
-          content:
-            "Classificateurs de base : 個 (gè, universel) — 位 (wèi, personnes-poli) — 隻 (zhī, animaux) — 輛 (liàng, véhicules) — 件 (jiàn, vêtements/affaires) — 張 (zhāng, plat) — 條 (tiáo, long) — 本 (běn, livres) — 片 (piàn, tranches) — 瓶 (píng, bouteilles).",
-        },
-        {
-          type: "text",
-          content:
-            "Classificateurs de contenants : 杯 (bēi, verres/tasses) — 碗 (wǎn, bols) — 盤 (pán, assiettes) — 包 (bāo, paquets/sacs).",
-        },
-        {
-          type: "text",
-          content:
-            "Classificateurs de mesure : 次 (cì, fois) — 斤 (jīn, unité de poids ≈ 600g) — 雙 (shuāng, paires) — 台 (tái, machines).",
-        },
-        {
-          type: "text",
-          content:
-            "Classificateurs de contexte : 塊 (kuài, dollars familier / morceaux) — 種 (zhǒng, types/sortes).",
-        },
-        {
-          type: "text",
-          content:
-            "Exercice mental : pour chaque situation ci-dessous, trouvez le classificateur correct. 1) Commander un café → 杯. 2) Acheter deux livres → 本. 3) Appeler un taxi → 輛. 4) Trois chats → 隻. 5) Un pantalon → 條. 6) Une photo → 張. 7) Deux bouteilles de bière → 瓶. 8) Une paire de chaussures → 雙.",
-        },
-        {
-          type: "example",
-          chinese: "我要一杯珍珠奶茶、一碗滷肉飯、一盤水餃。",
-          pinyin:
-            "wǒ yào yì bēi zhēnzhū nǎichá, yì wǎn lǔròufàn, yì pán shuǐjiǎo.",
-          translation:
-            "Je veux un bubble tea, un bol de riz au porc braisé, une assiette de raviolis.",
-          content:
-            "Commande typique à Taiwan avec trois classificateurs de contenants différents.",
-        },
-        {
-          type: "tip",
-          content:
-            "Au restaurant, les trois classificateurs les plus utiles sont 杯 (boissons), 碗 (bols de soupe/riz/nouilles) et 盤 (plats servis dans une assiette). Mémorisez ces trois-là en priorité pour survivre au quotidien.",
+            "Test de contrôle avant de passer au chapitre suivant : reconstruisez une phrase française bloc par bloc. « Samedi, je vais voir un film à Shibuya avec un ami » → 土曜日に / ともだちと / しぶやで / えいがを / 見ます. Cinq blocs, cinq étiquettes, verbe en dernier. Tant que ce découpage demande un effort, parler reste laborieux ; dès qu'il est automatique, la phrase se construit toute seule.",
         },
       ],
     },
   ],
+
+  dialogue: {
+    context:
+      "Vendredi soir, dans un bureau de Tokyo. Yuki propose une sortie à Tanaka. Les verbes sont à la forme polie en -ます, que le chapitre suivant détaille : ici, suivez uniquement les particules.",
+    lines: [
+      {
+        speaker: "Yuki",
+        japanese: "たなかさん、土曜日は ひまですか。",
+        romaji: "Tanaka-san, doyoubi wa hima desu ka.",
+        french: "Tanaka, tu es libre samedi ?",
+        note: "土曜日は : は installe samedi comme cadre de la question, « quant à samedi ». Avec un verbe d'action on aurait dit 土曜日に.",
+      },
+      {
+        speaker: "Tanaka",
+        japanese: "はい、ひまです。",
+        romaji: "hai, hima desu.",
+        french: "Oui, je suis libre.",
+      },
+      {
+        speaker: "Yuki",
+        japanese: "ともだちと しぶやで えいがを 見ます。いっしょに 行きませんか。",
+        romaji: "tomodachi to Shibuya de eiga o mimasu. isshoni ikimasen ka.",
+        french: "Je vais voir un film à Shibuya avec des amis. Tu ne viendrais pas avec nous ?",
+        note: "Trois particules en une phrase : と (avec qui), で (où l'action a lieu), を (ce qu'on regarde). Chacune suit son mot. 行きませんか, question négative, est la façon normale d'inviter sans imposer.",
+      },
+      {
+        speaker: "Tanaka",
+        japanese: "いいですね。何時からですか。",
+        romaji: "ii desu ne. nanji kara desu ka.",
+        french: "Bonne idée. À partir de quelle heure ?",
+        note: "から suit l'heure, comme toujours : 何時から, littéralement « à partir de quelle heure ».",
+      },
+      {
+        speaker: "Yuki",
+        japanese: "3時からです。駅で あいましょう。",
+        romaji: "sanji kara desu. eki de aimashou.",
+        french: "À partir de 3 heures. Retrouvons-nous à la gare.",
+        note: "駅で : la gare est le lieu où se déroule l'action de se retrouver, donc で et non に.",
+      },
+      {
+        speaker: "Tanaka",
+        japanese: "わかりました。じゃ、3時に 駅の 前で。",
+        romaji: "wakarimashita. ja, sanji ni eki no mae de.",
+        french: "Entendu. Alors, à 3 heures devant la gare.",
+        note: "Deux particules distinctes dans une réplique de six mots : に pour l'heure précise, で pour le lieu du rendez-vous. Le verbe est sous-entendu, ce qui est très courant à l'oral.",
+      },
+    ],
+  },
 
   keyPoints: [
-    "Les 10 patterns grammaticaux fondamentaux : SVO, 是, 不/沒, 嗎, A不A, 的, 很+adj, 太...了, 呢, classificateurs.",
-    "Les 3 règles de sandhi : 3+3→2+3, 不+4→bú+4, 一 change selon le ton suivant.",
-    "20 classificateurs essentiels couvrent la quasi-totalité des situations quotidiennes à Taiwan.",
+    "Une particule se place APRÈS le mot qu'elle marque : とうきょうに = « à Tokyo ». Elle fonctionne comme une étiquette collée derrière, pas comme une préposition placée devant.",
+    "は pose le thème (« quant à… »), が identifie ou apporte l'information neuve : une question en だれが reçoit une réponse en が, un sujet déjà connu prend は.",
+    "を marque l'objet direct, に le point d'arrivée et l'heure précise, で le moyen et le lieu de l'action, へ la direction — et へ se prononce « e ».",
+    "と signifie « avec » devant une personne et « et » entre deux noms ; から … まで encadre un trajet ou une durée.",
+    "も remplace は, が et を au lieu de s'y ajouter (わたしも, jamais わたしはも), mais se combine avec に, で et と.",
+    "の relie deux noms dans l'ordre inverse du français : 駅の まえ, le devant de la gare.",
   ],
 
-  vocabulary: [],
+  vocabulary: [
+    { term: "ともだち", kana: "ともだち", romaji: "tomodachi", pitch: 0, french: "Un ami, une amie", english: "Friend" },
+    { term: "でんしゃ", kana: "でんしゃ", romaji: "densha", french: "Le train (urbain)", english: "Train" },
+    { term: "バス", kana: "バス", romaji: "basu", french: "Le bus", english: "Bus" },
+    { term: "えいが", kana: "えいが", romaji: "eiga", french: "Le film, le cinéma", english: "Movie, film" },
+    { term: "学校", kana: "がっこう", romaji: "gakkou", segments: [{ text: "学校", reading: "がっこう" }], pitch: 0, french: "L'école", english: "School" },
+    { term: "駅", kana: "えき", romaji: "eki", segments: [{ text: "駅", reading: "えき" }], pitch: 1, french: "La gare", english: "Station" },
+    { term: "行く", kana: "いく", romaji: "iku", segments: [{ text: "行", reading: "い" }, { text: "く" }], pitch: 0, french: "Aller", english: "To go" },
+    { term: "見る", kana: "みる", romaji: "miru", segments: [{ text: "見", reading: "み" }, { text: "る" }], pitch: 1, french: "Regarder, voir", english: "To watch, to see" },
+    { term: "買う", kana: "かう", romaji: "kau", segments: [{ text: "買", reading: "か" }, { text: "う" }], french: "Acheter", english: "To buy" },
+    { term: "いっしょに", kana: "いっしょに", romaji: "isshoni", french: "Ensemble, avec (quelqu'un)", english: "Together" },
+    { term: "土曜日", kana: "どようび", romaji: "doyoubi", segments: [{ text: "土", reading: "ど" }, { text: "曜", reading: "よう" }, { text: "日", reading: "び" }], french: "Samedi", english: "Saturday" },
+    { term: "しゅうまつ", kana: "しゅうまつ", romaji: "shuumatsu", french: "Le week-end", english: "Weekend" },
+    { term: "ひま", kana: "ひま", romaji: "hima", french: "Du temps libre, disponible", english: "Free time, not busy" },
+    { term: "かいもの", kana: "かいもの", romaji: "kaimono", french: "Les courses, le shopping", english: "Shopping" },
+    { term: "うち", kana: "うち", romaji: "uchi", french: "Chez soi, la maison", english: "Home" },
+    { term: "何時", kana: "なんじ", romaji: "nanji", segments: [{ text: "何", reading: "なん" }, { text: "時", reading: "じ" }], french: "À quelle heure, quelle heure", english: "What time" },
+  ],
 
   exercises: [
     {
       id: "unit-13-ex1",
       type: "comprehension",
-      question: "Quelle est la structure de base d'une phrase en mandarin ?",
-      correctAnswer: "SVO (Sujet-Verbe-Objet), comme en français",
+      question: "Dans とうきょうに 行きます, que marque la particule に ?",
+      correctAnswer: "Le point d'arrivée : « à Tokyo »",
       options: [
-        "SVO (Sujet-Verbe-Objet), comme en français",
-        "SOV (Sujet-Objet-Verbe), comme en japonais",
-        "VSO (Verbe-Sujet-Objet), comme en arabe",
-        "Il n'y a pas d'ordre fixe",
+        "Le point d'arrivée : « à Tokyo »",
+        "Le moyen de transport utilisé",
+        "L'objet direct du verbe",
+        "Le lieu où se déroule l'action",
       ],
+      hint: "に marque un point : arrivée, destinataire, heure précise.",
     },
     {
       id: "unit-13-ex2",
-      type: "comprehension",
-      question: "Quelle est la différence entre 不 et 沒 ?",
-      correctAnswer:
-        "不 pour le présent/futur et les habitudes, 沒 pour le passé et avec 有",
-      options: [
-        "不 pour le présent/futur et les habitudes, 沒 pour le passé et avec 有",
-        "Ils sont interchangeables",
-        "不 est formel, 沒 est informel",
-        "不 pour les verbes, 沒 pour les noms",
-      ],
+      type: "fill-blank",
+      question: "でんしゃ ___ 行きます。 (J'y vais en train.)",
+      correctAnswer: "で",
+      options: ["で", "に", "を", "と"],
+      optionsHint: ["de", "ni", "o", "to"],
+      hint: "Le moyen inanimé ne prend pas la même particule que l'accompagnement humain.",
     },
     {
       id: "unit-13-ex3",
       type: "fill-blank",
-      question:
-        "她___老師。(Elle est professeur.) Quel verbe utiliser ?",
-      correctAnswer: "是",
-      options: ["是", "很", "有", "在"],
-      optionsHint: ["shì", "hěn", "yǒu", "zài"],
-      optionsZhuyin: ["ㄕˋ", "ㄏㄣˇ", "ㄧㄡˇ", "ㄗㄞˋ"],
-      hint: "Pour relier un sujet à un nom (profession), on utilise ce verbe.",
+      question: "えいが ___ 見ます。 (Je regarde un film.)",
+      correctAnswer: "を",
+      options: ["を", "が", "に", "で"],
+      optionsHint: ["o", "ga", "ni", "de"],
+      hint: "Le film est ce sur quoi porte l'action.",
     },
     {
       id: "unit-13-ex4",
-      type: "fill-blank",
-      question:
-        "台灣的食物___好吃。(La nourriture de Taiwan est délicieuse.) Quel mot manque ?",
-      correctAnswer: "很",
-      options: ["很", "是", "不", "太"],
-      optionsHint: ["hěn", "shì", "bù", "tài"],
-      optionsZhuyin: ["ㄏㄣˇ", "ㄕˋ", "ㄅㄨˋ", "ㄊㄞˋ"],
-      hint: "En mandarin, les adjectifs s'utilisent avec ce mot comme lien.",
+      type: "comprehension",
+      question: "On vous demande だれが 行きますか。 Vous répondez « C'est moi qui y vais ». Quelle forme ?",
+      correctAnswer: "わたしが行きます。",
+      options: ["わたしが行きます。", "わたしは行きます。", "わたしも行きます。", "わたしを行きます。"],
+      optionsKana: ["わたしがいきます。", "わたしはいきます。", "わたしもいきます。", "わたしをいきます。"],
+      hint: "Une question qui cherche à identifier reçoit une réponse qui identifie.",
     },
     {
       id: "unit-13-ex5",
-      type: "comprehension",
-      question:
-        "Comment forme-t-on une question A不A avec le verbe 要 ?",
-      correctAnswer: "要不要 (yào bú yào)",
-      options: [
-        "要不要 (yào bú yào)",
-        "不要要 (bú yào yào)",
-        "要要不 (yào yào bú)",
-        "要嗎不 (yào ma bú)",
-      ],
+      type: "reorder",
+      question: "Remettez dans l'ordre : « Je regarde un film avec un ami. »",
+      correctAnswer: "ともだちとえいがを見ます。",
+      options: ["ともだち", "と", "えいが", "を", "見ます"],
+      optionsKana: ["ともだち", "と", "えいが", "を", "みます"],
+      hint: "Chaque particule se colle derrière le mot qu'elle marque, et le verbe ferme la phrase.",
     },
     {
       id: "unit-13-ex6",
-      type: "comprehension",
-      question:
-        "Comment se prononce 不要 (bùyào) à cause du sandhi ?",
-      correctAnswer: "búyào — 不 passe au ton 2 devant le ton 4 de 要",
+      type: "listen",
+      question: "土曜日にともだちとえいがを見ます。",
+      correctAnswer: "Samedi, je vais voir un film avec un ami.",
       options: [
-        "búyào — 不 passe au ton 2 devant le ton 4 de 要",
-        "bùyào — aucun changement",
-        "bǔyào — 不 passe au ton 3",
-        "būyào — 不 passe au ton 1",
+        "Samedi, je vais voir un film avec un ami.",
+        "Samedi, je vais voir un film avec ma famille.",
+        "Dimanche, je vais voir un film avec un ami.",
+        "Samedi, je vais acheter un film avec un ami.",
       ],
+      hint: "Trois particules à repérer : に, と, を.",
     },
     {
       id: "unit-13-ex7",
-      type: "fill-blank",
-      question: "我要買兩___書和三___筆。(Je veux acheter 2 livres et 3 stylos.)",
-      correctAnswer: "本 / 枝",
-      options: ["本 / 枝", "個 / 個", "張 / 條", "件 / 片"],
-      hint: "Les livres sont reliés, les stylos sont fins et longs.",
+      type: "comprehension",
+      question: "Comment dit-on « de 3 heures à 5 heures » ?",
+      correctAnswer: "3時から5時まで",
+      options: ["3時から5時まで", "3時まで5時から", "3時に5時に", "3時と5時と"],
+      optionsKana: ["さんじからごじまで", "さんじまでごじから", "さんじにごじに", "さんじとごじと"],
+      hint: "から marque le départ, まで l'arrivée, et chacune suit son mot.",
     },
     {
       id: "unit-13-ex8",
-      type: "fill-blank",
-      question:
-        "一___計程車 / 一___貓 / 一___衣服 (un taxi / un chat / un vêtement)",
-      correctAnswer: "輛 / 隻 / 件",
-      options: ["輛 / 隻 / 件", "台 / 個 / 條", "個 / 條 / 張", "輛 / 件 / 隻"],
-      hint: "Véhicule / animal / vêtement.",
-    },
-    {
-      id: "unit-13-ex9",
       type: "translate",
-      question: "Traduisez : « C'est trop cher ! »",
-      correctAnswer: "太貴了！",
-      options: ["太貴了！", "很貴了！", "不貴了！", "是貴了！"],
-      optionsHint: ["tài guì le!", "hěn guì le!", "bù guì le!", "shì guì le!"],
-      optionsZhuyin: ["ㄊㄞˋ ㄍㄨㄟˋ ㄌㄜ!", "ㄏㄣˇ ㄍㄨㄟˋ ㄌㄜ!", "ㄅㄨˋ ㄍㄨㄟˋ ㄌㄜ!", "ㄕˋ ㄍㄨㄟˋ ㄌㄜ!"],
-    },
-    {
-      id: "unit-13-ex10",
-      type: "translate",
-      question: "Traduisez : « Tu veux ou tu ne veux pas boire du thé ? »",
-      correctAnswer: "你要不要喝茶？",
+      question: "Traduisez : « Moi aussi, je vais à Shibuya. »",
+      correctAnswer: "わたしもしぶやに行きます。",
       options: [
-        "你要不要喝茶？",
-        "你喝茶嗎？",
-        "你不喝茶嗎？",
-        "你喝不喝茶了？",
+        "わたしもしぶやに行きます。",
+        "わたしはもしぶやに行きます。",
+        "わたしもしぶやを行きます。",
+        "わたしとしぶやに行きます。",
       ],
-      optionsHint: [
-        "nǐ yào bú yào hē chá?",
-        "nǐ hē chá ma?",
-        "nǐ bù hē chá ma?",
-        "nǐ hē bù hē chá le?",
+      optionsKana: [
+        "わたしもしぶやにいきます。",
+        "わたしはもしぶやにいきます。",
+        "わたしもしぶやをいきます。",
+        "わたしとしぶやにいきます。",
       ],
-      optionsZhuyin: ["ㄋㄧˇ ㄧㄠˋ ㄅㄨˊ ㄧㄠˋ ㄏㄜ ㄔㄚˊ?", "ㄋㄧˇ ㄏㄜ ㄔㄚˊ ㄇㄚ?", "ㄋㄧˇ ㄅㄨˋ ㄏㄜ ㄔㄚˊ ㄇㄚ?", "ㄋㄧˇ ㄏㄜ ㄅㄨˋ ㄏㄜ ㄔㄚˊ ㄌㄜ?"],
-    },
-    {
-      id: "unit-13-ex11",
-      type: "comprehension",
-      question:
-        "Quel classificateur utiliser pour commander un bubble tea ?",
-      correctAnswer: "杯 (bēi) — classificateur pour les boissons en verre/gobelet",
-      options: [
-        "杯 (bēi) — classificateur pour les boissons en verre/gobelet",
-        "瓶 (píng) — classificateur pour les bouteilles",
-        "碗 (wǎn) — classificateur pour les bols",
-        "個 (gè) — classificateur universel",
-      ],
-    },
-    {
-      id: "unit-13-ex12",
-      type: "comprehension",
-      question:
-        "Quand 一 (yī) se prononce-t-il au ton 2 (yí) ?",
-      correctAnswer: "Devant un ton 4 — par exemple 一個 (yí gè)",
-      options: [
-        "Devant un ton 4 — par exemple 一個 (yí gè)",
-        "Devant un ton 1 — par exemple 一杯",
-        "Quand il est seul",
-        "Devant un ton 3",
-      ],
+      hint: "も prend la place de は : elles ne cohabitent jamais.",
     },
   ],
 
-  requiredScore: 0.7,
+  requiredScore: 0.6,
   prerequisites: ["unit-12"],
 };

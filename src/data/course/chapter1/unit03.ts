@@ -3,420 +3,187 @@ import type { CourseUnit } from "@/types/course";
 export const unit03: CourseUnit = {
   id: "unit-03",
   number: 3,
-  title: "Les tons — Sandhi et tone pairs",
-  titleZh: "聲調——變調與聲調組合",
+  title: "Hiragana : de la ligne は jusqu'à ん",
+  titleJa: "ひらがな：は行・ま行・や行・ら行・わ行とん",
   chapter: 1,
   description:
-    "Pratique intensive des tone pairs et des règles de sandhi tonal. En mandarin, les tons isolés sont faciles — le vrai défi, c'est de les enchaîner.",
-  icon: "🔊",
+    "Les cinq dernières lignes du tableau, plus ん. À la fin de cette unité le syllabaire de base est complet : vous pouvez lire n'importe quel mot écrit en hiragana simple.",
+  icon: "ん",
 
   sections: [
     {
-      title: "Les 20 combinaisons de tone pairs",
-      type: "practice",
+      title: "La ligne は — et le souffle de ふ",
+      type: "theory",
       content: [
         {
           type: "text",
           content:
-            "En mandarin, la plupart des mots ont deux syllabes ou plus. Prononcer un ton isolé est relativement simple, mais les enchaîner dans un mot de deux syllabes change la donne. Votre bouche et votre gorge doivent passer d'une hauteur à une autre de manière fluide. C'est pourquoi les « tone pairs » (combinaisons de deux tons) sont l'unité fondamentale de la pratique des tons.",
+            "は ひ ふ へ ほ suit le schéma habituel, avec une case déviante : ふ. Le h japonais est plus léger que le « h » aspiré anglais ; devant い il se palatalise et ひ prend un frottement au niveau du palais, proche du « ch » allemand de « ich ». Retenez aussi, sans encore l'exploiter, que は et へ ont un second emploi comme particules grammaticales, où elles se lisent « wa » et « e » — nous y revenons à la dernière section.",
+        },
+        {
+          type: "example",
+          japanese: "は ひ ふ へ ほ",
+          romaji: "ha hi fu he ho",
+          translation: "ha — hi — fou — hé — ho",
+          content:
+            "Côté tracé, ほ n'est rien d'autre que は avec une barre horizontale supplémentaire : c'est la seule différence entre les deux, et elle disparaît vite dans une écriture rapide. へ est le kana le plus simple du syllabaire, un seul angle.",
         },
         {
           type: "text",
           content:
-            "Il y a 4 tons × 5 possibilités (tons 1-4 + neutre) = 20 combinaisons. Nous allons passer en revue les 16 principales (sans le ton neutre) avec des mots réels. Conseil : ne les travaillez pas toutes d'un coup. Prenez 2-3 combinaisons par jour pendant une semaine.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 1 + Ton 1 : La voix reste haute et plate sur les deux syllabes. C'est la combinaison la plus facile — deux notes identiques.",
-        },
-        {
-          type: "example",
-          chinese: "今天 / 飛機 / 星期",
-          pinyin: "jīntiān / fēijī / xīngqī",
-          translation: "aujourd'hui / avion / semaine",
-          content: "Ton 1+1 : deux notes hautes et plates enchaînées.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 1 + Ton 2 : La voix commence haute et plate, puis monte sur la deuxième syllabe. Imaginez un plongeoir : vous êtes en haut, puis vous remontez encore plus haut.",
-        },
-        {
-          type: "example",
-          chinese: "中國 / 咖啡 / 生活",
-          pinyin: "zhōngguó / kāfēi / shēnghuó",
-          translation: "Chine / café / vie",
-          content: "Ton 1+2 : haut plat puis montée.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 1 + Ton 3 : La voix part haute, puis descend et remonte sur la deuxième syllabe. Le contraste est marqué.",
-        },
-        {
-          type: "example",
-          chinese: "工廠 / 開始 / 香港",
-          pinyin: "gōngchǎng / kāishǐ / xiānggǎng",
-          translation: "usine / commencer / Hong Kong",
-          content: "Ton 1+3 : haut plat puis descente-remontée.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 1 + Ton 4 : La voix commence haute et plate, puis chute brusquement. C'est un enchaînement très courant et naturel.",
-        },
-        {
-          type: "example",
-          chinese: "天氣 / 工作 / 開會",
-          pinyin: "tiānqì / gōngzuò / kāihuì",
-          translation: "météo / travail / réunion",
-          content: "Ton 1+4 : haut plat puis chute nette.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 2 + Ton 1 : La voix monte d'abord, puis se stabilise en haut. Comme poser une question puis affirmer.",
-        },
-        {
-          type: "example",
-          chinese: "台灣 / 明天 / 國家",
-          pinyin: "táiwān / míngtiān / guójiā",
-          translation: "Taiwan / demain / pays",
-          content: "Ton 2+1 : montée puis haut plat.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 2 + Ton 2 : Deux montées successives. C'est un peu comme poser deux questions. La voix ne redescend pas entre les deux.",
-        },
-        {
-          type: "example",
-          chinese: "人民 / 時間 / 銀行",
-          pinyin: "rénmín / shíjiān / yínháng",
-          translation: "peuple / temps / banque",
-          content: "Ton 2+2 : deux montées successives.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 2 + Ton 3 : La voix monte puis plonge et remonte. C'est une combinaison qui demande de l'énergie vocale.",
-        },
-        {
-          type: "example",
-          chinese: "蘋果 / 遊泳 / 男友",
-          pinyin: "píngguǒ / yóuyǒng / nányǒu",
-          translation: "pomme / nager / petit ami",
-          content: "Ton 2+3 : montée puis descente-remontée.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 2 + Ton 4 : La voix monte puis chute immédiatement. C'est un enchaînement dynamique et contrasté.",
-        },
-        {
-          type: "example",
-          chinese: "學校 / 牛肉 / 足夠",
-          pinyin: "xuéxiào / niúròu / zúgòu",
-          translation: "école / boeuf / suffisant",
-          content: "Ton 2+4 : montée puis chute.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 3 + Ton 1 : Attention, le ton 3 ici est un « half third » — la voix descend mais ne remonte pas vraiment avant d'enchaîner sur la note haute du ton 1. C'est la prononciation naturelle à Taiwan.",
-        },
-        {
-          type: "example",
-          chinese: "北京 / 手機 / 美金",
-          pinyin: "běijīng / shǒujī / měijīn",
-          translation: "Pékin / téléphone / dollar US",
-          content: "Ton 3+1 : demi-troisième ton puis haut plat.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 3 + Ton 2 : Même principe — le ton 3 est tronqué (half third), puis la voix monte.",
-        },
-        {
-          type: "example",
-          chinese: "法國 / 旅行 / 語言",
-          pinyin: "fǎguó / lǚxíng / yǔyán",
-          translation: "France / voyage / langue",
-          content: "Ton 3+2 : demi-troisième ton puis montée.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 3 + Ton 3 : C'est la fameuse règle du sandhi ! Le premier ton 3 se prononce ton 2. On traite cette combinaison en détail dans la section suivante.",
-        },
-        {
-          type: "example",
-          chinese: "你好 / 可以 / 洗澡",
-          pinyin: "nǐhǎo / kěyǐ / xǐzǎo",
-          translation: "bonjour / pouvoir / se doucher",
-          content:
-            "Ton 3+3 (sandhi) : prononcé comme ton 2+3 → ní hǎo, ké yǐ, xí zǎo.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 3 + Ton 4 : Demi-troisième ton puis chute. Le contraste est fort entre la descente du 3 et la chute du 4.",
-        },
-        {
-          type: "example",
-          chinese: "請問 / 小姐 / 美麗",
-          pinyin: "qǐngwèn / xiǎojiě / měilì",
-          translation: "excusez-moi / mademoiselle / beau",
-          content: "Ton 3+4 : demi-troisième ton puis chute brusque.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 4 + Ton 1 : La voix chute puis remonte brusquement en haut pour se stabiliser. C'est un enchaînement rapide.",
-        },
-        {
-          type: "example",
-          chinese: "上班 / 客廳 / 電梯",
-          pinyin: "shàngbān / kètīng / diàntī",
-          translation: "aller au travail / salon / ascenseur",
-          content: "Ton 4+1 : chute puis haut plat.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 4 + Ton 2 : La voix chute puis monte. C'est comme dire « Non ? » — une négation suivie d'une question.",
-        },
-        {
-          type: "example",
-          chinese: "大學 / 問題 / 地球",
-          pinyin: "dàxué / wèntí / dìqiú",
-          translation: "université / question / terre (planète)",
-          content: "Ton 4+2 : chute puis montée.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 4 + Ton 3 : La voix chute puis descend encore et remonte. C'est une combinaison qui sonne « fatiguée » ou « résignée ».",
-        },
-        {
-          type: "example",
-          chinese: "日本 / 下雨 / 漢語",
-          pinyin: "rìběn / xiàyǔ / hànyǔ",
-          translation: "Japon / pleuvoir / langue chinoise",
-          content: "Ton 4+3 : chute puis descente-remontée.",
-        },
-        {
-          type: "text",
-          content:
-            "Ton 4 + Ton 4 : Deux chutes successives. Ça sonne très direct, presque brusque. Beaucoup de mots courants ont cette combinaison.",
-        },
-        {
-          type: "example",
-          chinese: "再見 / 電視 / 記住",
-          pinyin: "zàijiàn / diànshì / jìzhù",
-          translation: "au revoir / télévision / retenir",
-          content: "Ton 4+4 : deux chutes successives, son direct et net.",
-        },
-        {
-          type: "tip",
-          content:
-            "Méthode de pratique : choisissez 3 combinaisons par jour. Pour chacune, prenez les 2-3 mots exemples ci-dessus et répétez-les 10 fois chacun. En une semaine, vous aurez couvert les 16 combinaisons principales. La deuxième semaine, mélangez-les aléatoirement.",
-        },
-      ],
-    },
-    {
-      title: "Le sandhi tonal en détail",
-      type: "grammar",
-      content: [
-        {
-          type: "text",
-          content:
-            "Le sandhi tonal est un phénomène phonétique où un ton change en fonction du ton qui le suit. Ce n'est pas une règle qu'on « décide » d'appliquer — c'est un ajustement naturel que font tous les locuteurs natifs sans y penser. Votre objectif : comprendre les règles pour que ça devienne automatique.",
-        },
-        {
-          type: "text",
-          content:
-            "Règle 1 — Ton 3 + Ton 3 : Le premier ton 3 se prononce ton 2. Pourquoi ? Parce que deux baisses de voix consécutives sont physiquement difficiles et peu naturelles pour les cordes vocales. Le cerveau simplifie automatiquement en transformant la première descente-remontée en simple montée.",
-        },
-        {
-          type: "example",
-          chinese: "你好",
-          pinyin: "nǐ hǎo → prononcé ní hǎo",
-          translation: "Bonjour — Le premier ton 3 devient ton 2.",
-          content: "Le sandhi 3+3 le plus connu. Le pinyin écrit garde nǐ, mais on prononce ní.",
-        },
-        {
-          type: "example",
-          chinese: "可以",
-          pinyin: "kě yǐ → prononcé ké yǐ",
-          translation: "Pouvoir, d'accord",
-          content: "Autre cas de sandhi 3+3. Le premier 可 monte comme un ton 2.",
-        },
-        {
-          type: "example",
-          chinese: "總統",
-          pinyin: "zǒng tǒng → prononcé zóng tǒng",
-          translation: "Président — très courant dans les nouvelles à Taiwan.",
-          content: "Le sandhi s'applique de la même façon dans tous les registres.",
-        },
-        {
-          type: "text",
-          content:
-            "Cas spécial : trois tons 3 (ou plus) consécutifs. Quand trois syllabes de ton 3 se suivent, le découpage dépend de la structure grammaticale. Par exemple, 我也想買 (wǒ yě xiǎng mǎi) se découpe en [我也] + [想買]. Le premier groupe 我也 : 我 → ton 2 (sandhi). Le deuxième groupe 想買 : pas de sandhi car 買 est ton 3 et 想 est ton 3, donc 想 → ton 2. Résultat : wó yě / xióng mǎi. En pratique, la règle s'applique par paires de gauche à droite selon les groupes de sens.",
-        },
-        {
-          type: "example",
-          chinese: "我也好",
-          pinyin: "wǒ yě hǎo → prononcé wó yé hǎo",
-          translation: "Moi aussi ça va — Trois tons 3 : les deux premiers passent en ton 2.",
-          content:
-            "Avec trois tons 3, le découpage est [我也] + [好]. Les deux premiers deviennent ton 2.",
-        },
-        {
-          type: "text",
-          content:
-            "Règle 2 — 不 (bù) : Le caractère 不 est normalement au ton 4 (bù). Mais quand il est suivi d'un autre ton 4, il se prononce au ton 2 (bú). La raison est la même : deux chutes consécutives sont difficiles à articuler rapidement.",
-        },
-        {
-          type: "example",
-          chinese: "不是 / 不要 / 不對",
-          pinyin: "búshì / búyào / búduì",
-          translation: "ne pas être / ne pas vouloir / incorrect",
-          content:
-            "不 + ton 4 → 不 se prononce au ton 2. Ces trois mots sont parmi les plus fréquents du mandarin.",
-        },
-        {
-          type: "example",
-          chinese: "不好 / 不能 / 不多",
-          pinyin: "bùhǎo / bùnéng / bùduō",
-          translation: "pas bon / ne pas pouvoir / pas beaucoup",
-          content:
-            "不 + tons 1, 2 ou 3 → 不 reste au ton 4 (bù). Pas de changement.",
-        },
-        {
-          type: "text",
-          content:
-            "Règle 3 — 一 (yī) : C'est le caractère qui change le plus. Seul ou en comptant (一、二、三), il se prononce yī (ton 1). Devant un ton 4, il se prononce yí (ton 2). Devant un ton 1, 2 ou 3, il se prononce yì (ton 4).",
-        },
-        {
-          type: "example",
-          chinese: "一個",
-          pinyin: "yī gè → prononcé yí gè",
-          translation: "un (+ classificateur)",
-          content: "一 + ton 4 (個) → 一 se prononce au ton 2.",
-        },
-        {
-          type: "example",
-          chinese: "一杯 / 一年 / 一起",
-          pinyin: "yì bēi / yì nián / yì qǐ",
-          translation: "un verre / un an / ensemble",
-          content:
-            "一 + ton 1, 2 ou 3 → 一 se prononce au ton 4.",
-        },
-        {
-          type: "example",
-          chinese: "一二三四五",
-          pinyin: "yī èr sān sì wǔ",
-          translation: "un deux trois quatre cinq",
-          content: "一 en comptant → garde son ton 1 original.",
+            "ふ n'est ni un « f » ni un « h ». Le français produit son « f » en posant la lèvre inférieure contre les dents du haut ; le japonais ne touche jamais les dents. Les deux lèvres se rapprochent à peine et l'air passe entre elles, comme lorsqu'on souffle sur une bougie ou sur une soupe trop chaude. Le résultat est un souffle intermédiaire, que les francophones entendent tantôt comme « f », tantôt comme « h ».",
         },
         {
           type: "warning",
           content:
-            "Ne cherchez pas à « penser » ces changements de ton en parlant. Les règles de sandhi doivent devenir des réflexes musculaires, pas des calculs conscients. Quand vous entendez un natif dire 不是, votre cerveau enregistre automatiquement bú shì. Écoutez beaucoup, répétez beaucoup, et le sandhi viendra naturellement. Le jour où vous l'appliquerez sans y penser, c'est que vous avez atteint le bon niveau.",
-        },
-      ],
-    },
-    {
-      title: "Pourquoi les tons sont si importants à Taiwan",
-      type: "culture",
-      content: [
-        {
-          type: "text",
-          content:
-            "La bonne nouvelle : les Taiwanais sont extrêmement patients avec les apprenants étrangers et ils devinent beaucoup par le contexte. Si vous dites mǎi (acheter) au lieu de mài (vendre), dans un magasin, le contexte rend l'erreur évidente. Cependant, certaines confusions de tons créent de vrais malentendus — ou des situations hilarantes.",
+            "Les deux erreurs symétriques du francophone : dire « fou » avec un f dentaire et des lèvres bien arrondies, ou surcorriger en « hou ». Dans les deux cas ふゆ (l'hiver) sonne faux. Cible : lèvres à peine entrouvertes, aucun contact avec les dents, et un う plat comme à l'unité 1.",
         },
         {
           type: "example",
-          chinese: "問 vs 吻",
-          pinyin: "wèn vs wěn",
-          translation: "demander vs embrasser",
+          japanese: "ふゆ",
+          romaji: "fuyu",
+          translation: "L'hiver",
           content:
-            "Vous vouliez dire « Je veux vous demander quelque chose » (問) mais avec le mauvais ton, ça devient « Je veux vous embrasser » (吻). Un classique des cours de mandarin.",
-        },
-        {
-          type: "example",
-          chinese: "睡覺 vs 水餃",
-          pinyin: "shuìjiào vs shuǐjiǎo",
-          translation: "dormir vs raviolis (bouillis)",
-          content:
-            "« Tu veux des raviolis ? » ou « Tu veux dormir ? » — La confusion est fréquente chez les débutants et fait rire tout le monde au restaurant.",
-        },
-        {
-          type: "example",
-          chinese: "杯子 vs 被子",
-          pinyin: "bēizi vs bèizi",
-          translation: "verre / tasse vs couverture",
-          content:
-            "Au magasin : « Je cherche une couverture » (被子) au lieu de « Je cherche un verre » (杯子). Le vendeur vous emmène au mauvais rayon.",
-        },
-        {
-          type: "text",
-          content:
-            "Le ton 3 taiwanais est souvent un « half third » (半三聲) : la voix descend bas mais ne remonte pas vraiment. C'est une prononciation plus détendue que le ton 3 « complet » enseigné dans les manuels, où la voix fait un V complet (descente puis remontée). À Taiwan, le ton 3 sonne plus comme un ton bas plat. C'est parfaitement correct et c'est même la norme conversationnelle.",
-        },
-        {
-          type: "text",
-          content:
-            "Quelques différences de prononciation Taiwan vs Chine continentale qui touchent les tons : à Taiwan, certains mots ont un ton différent de la norme du dictionnaire. Par exemple, 研究 se prononce souvent yánjiū (2+1) à Taiwan au lieu de yánjiū (2+1) — en réalité la différence est surtout sur des mots comme 垃圾 : lèsè à Taiwan vs lājī en Chine continentale. Le mot 和 se prononce souvent hàn à Taiwan au lieu de hé. Ces différences sont mineures mais il est bon de les connaître.",
+            "Deux mores, et la hauteur chute après la seconde : ce qui suit le mot redescend. Bon mot d'entraînement parce qu'il enchaîne deux sons faciles à déformer, le souffle de ふ puis le ゆ de la section suivante.",
         },
         {
           type: "tip",
           content:
-            "Conseil pratique : regardez des émissions taiwanaises (dramas, variétés) pour vous habituer aux tons taiwanais. Le mandarin de Taiwan est légèrement plus « doux » et « chantant » que celui de Pékin. Les YouTubers taiwanais sont une excellente ressource gratuite pour entraîner votre oreille.",
+            "Placez votre main à plat devant la bouche. Sur un « f » français vous sentez un jet concentré et étroit ; sur un ふ correct, le souffle est plus large et plus diffus. C'est un contrôle fiable, contrairement à votre oreille qui traduit automatiquement vers le son français le plus proche.",
         },
       ],
     },
     {
-      title: "Exercices de reconnaissance",
-      type: "practice",
+      title: "まみむめも et やゆよ",
+      type: "theory",
       content: [
         {
           type: "text",
           content:
-            "L'exercice le plus efficace pour les tons est le travail sur les « minimal pairs » : des mots qui ne diffèrent que par le ton. Si vous pouvez distinguer et produire ces paires, vos tons sont bons.",
+            "La ligne ま est entièrement régulière : ma-mi-mu-me-mo, sans aucune exception de prononciation, et le m japonais est celui du français. Toute la difficulté est graphique. め rejoint le groupe des kana à boucle que vous avez rencontré à l'unité 2, et c'est avec ぬ qu'il se confond, jamais avec autre chose.",
         },
         {
           type: "example",
-          chinese: "買 / 賣",
-          pinyin: "mǎi / mài",
-          translation: "acheter (ton 3) / vendre (ton 4)",
-          content: "Minimal pair classique. La seule différence est le ton : 3 vs 4.",
-        },
-        {
-          type: "example",
-          chinese: "湯 / 糖 / 躺 / 燙",
-          pinyin: "tāng / táng / tǎng / tàng",
-          translation: "soupe / sucre / s'allonger / brûlant",
-          content: "Un quadruplet tonal — le même son avec les 4 tons.",
-        },
-        {
-          type: "example",
-          chinese: "書 / 熟 / 鼠 / 樹",
-          pinyin: "shū / shú / shǔ / shù",
-          translation: "livre / mûr (cuit) / souris / arbre",
-          content: "Autre quadruplet tonal pour s'entraîner.",
+          japanese: "ま み む め も",
+          romaji: "ma mi mu me mo",
+          translation: "ma — mi — mou — mé — mo",
+          content:
+            "め et ぬ ont exactement le même départ ; ぬ se termine par une boucle croisée fermée, め s'arrête avant et laisse la courbe ouverte. Regardez toujours la fin du dernier trait pour trancher entre les deux.",
         },
         {
           type: "text",
           content:
-            "Méthode d'entraînement : 1) Écoutez un mot et identifiez le ton de chaque syllabe. 2) Répétez le mot en exagérant les tons. 3) Enregistrez-vous et comparez avec l'original. 4) Pratiquez les minimal pairs en alternance rapide : mǎi-mài-mǎi-mài.",
+            "La ligne や ne compte que trois cases : や ゆ よ. Les mores « yi » et « ye » ont existé puis disparu du japonais moderne, et rien ne les a remplacées. Le y se combine en revanche avec d'autres consonnes sous forme de petits ゃ ゅ ょ — きゃ, しゅ, ちょ — mais ces combinaisons viennent plus tard, une fois les signes de base automatisés.",
+        },
+        {
+          type: "example",
+          japanese: "や ゆ よ",
+          romaji: "ya yu yo",
+          translation: "ya — you — yo",
+          content:
+            "Trois signes seulement, donc trois cases vides dans le tableau : ne les cherchez pas, elles n'existent pas. ゆ et ゅ sont le même dessin à deux tailles, et cette différence de taille change la lecture — un détail à repérer dès maintenant sur les enseignes.",
         },
         {
           type: "tip",
           content:
-            "Application concrète : quand vous apprenez un nouveau mot, ne mémorisez JAMAIS le son sans le ton. Le mot et son ton forment un tout indissociable. 明天 n'est pas « ming tian » mais « míngtiān » — le ton fait partie intégrante du mot, comme les lettres d'un mot français.",
+            "À ce stade, testez-vous dans le désordre. Réciter le tableau ligne par ligne donne l'illusion de savoir : écrivez les kana sur des cartes, mélangez-les, et visez une reconnaissance immédiate hors de tout contexte.",
+        },
+      ],
+    },
+    {
+      title: "らりるれろ — le battement japonais",
+      type: "theory",
+      content: [
+        {
+          type: "text",
+          content:
+            "Voici la ligne qui décide de votre accent. Le r japonais n'a rien à voir avec le r français : il se produit à l'avant de la bouche, la pointe de la langue frappant une seule fois la crête située juste derrière les dents du haut. C'est un battement, très bref, articulatoirement bien plus proche du « l » ou du r simple espagnol de « pero » que de quoi que ce soit en français.",
+        },
+        {
+          type: "warning",
+          content:
+            "Le r français se prononce dans la gorge : c'est le trait d'accent le plus audible chez un francophone qui parle japonais, plus encore que les voyelles. Un auditeur japonais qui entend un « l » approximatif comprend le mot ; le r raclé de la gorge, lui, ne ressemble à aucun son de sa langue. En cas de doute, visez le « l ».",
+        },
+        {
+          type: "example",
+          japanese: "ら り る れ ろ",
+          romaji: "ra ri ru re ro",
+          translation: "ra — ri — rou — ré — ro",
+          content:
+            "Prononcez d'abord « la li lou lé lo » en français, puis raccourcissez le contact de la langue jusqu'à ce qu'il ne reste qu'un choc instantané. Vous êtes alors dans la zone correcte : le japonais ne distingue pas r et l, et toute la plage entre les deux est acceptée.",
+        },
+        {
+          type: "comparison",
+          content:
+            "れ et ね se ressemblent trait pour trait sauf à la fin : ね boucle et ferme, れ repart vers la droite en un crochet ouvert. C'est la confusion annoncée à l'unité 2, et elle coûte cher parce que les deux kana sont extrêmement fréquents.",
+        },
+        {
+          type: "example",
+          japanese: "さくら",
+          romaji: "sakura",
+          translation: "Le cerisier",
+          content:
+            "Trois mores sans chute de hauteur : tout reste au même niveau, y compris ce qui suit le mot. Le terme désigne l'arbre comme la fleur, et par extension toute la saison des floraisons — au printemps, il est partout, des bulletins météo aux emballages de gâteaux.",
+        },
+        {
+          type: "example",
+          japanese: "りんご",
+          romaji: "ringo",
+          translation: "La pomme",
+          content:
+            "Trois mores : り, ん et ご. Le petit signe à droite de こ s'appelle dakuten et transforme « ko » en « go » — c'est le sujet de l'unité suivante, contentez-vous ici de lire le mot. Aucune chute de hauteur non plus.",
+        },
+        {
+          type: "tip",
+          content:
+            "Exercice de dix secondes, plusieurs fois par jour : alternez « la-ra-la-ra » en essayant de rendre les deux indiscernables. Le jour où vous n'entendez plus la différence, votre battement est en place.",
+        },
+      ],
+    },
+    {
+      title: "わ, を, ん — le syllabaire est complet",
+      type: "theory",
+      content: [
+        {
+          type: "text",
+          content:
+            "La dernière rangée est incomplète : il ne reste que わ, plus を réservée à un seul usage grammatical. Les signes ゐ et ゑ, qui occupaient les cases manquantes, sont sortis de l'usage au XXe siècle et vous ne les rencontrerez que sur de vieilles enseignes. ん se tient à part, hors du tableau, et c'est le seul kana de tout le système à ne pas contenir de voyelle.",
+        },
+        {
+          type: "example",
+          japanese: "わ を ん",
+          romaji: "wa o n",
+          translation: "wa — o — n",
+          content:
+            "を se lit « o », exactement comme お : en japonais standard moderne, personne ne prononce « wo ». La distinction est purement orthographique et elle sert à signaler une fonction grammaticale, pas un son.",
+        },
+        {
+          type: "text",
+          content:
+            "を n'apparaît jamais à l'intérieur d'un mot. Elle sert uniquement de particule d'objet : elle se place après le groupe qui subit l'action et le marque comme complément d'objet direct. Deux autres kana ont ce dédoublement, は qui se lit « wa » quand elle marque le thème de la phrase, et へ qui se lit « e » quand elle indique une direction. Trois exceptions, toujours les mêmes, toujours en position de particule.",
+        },
+        {
+          type: "example",
+          japanese: "ほんをよみます。",
+          romaji: "hon o yomimasu.",
+          translation: "Je lis un livre.",
+          content:
+            "を se prononce « o » et marque ほん (le livre) comme objet du verbe. Écrire おをみます à sa place serait une faute d'orthographe caractéristique du débutant. La grammaire de cette phrase vient au chapitre 2 : ici, seule la lecture compte.",
+        },
+        {
+          type: "text",
+          content:
+            "ん est une more entière et occupe un temps plein, au même titre que か ou す. Sa réalisation s'adapte à ce qui suit : « n » devant t et d, « m » devant p et b, un son nasal proche du « ng » devant k et g. C'est automatique et il n'y a rien à apprendre par cœur — le salut du soir que l'on transcrit « konbanwa » se prononce ainsi naturellement « kombanwa ».",
+        },
+        {
+          type: "warning",
+          content:
+            "Le réflexe francophone est de fondre ん dans la voyelle précédente, comme dans « an », « on », « un ». En japonais la voyelle reste pure et le n se prononce en plein, sur son propre temps : さん n'est pas le « san » de « sans », mais « sa » puis « n ». Autre règle utile : aucun mot japonais ne commence par ん.",
+        },
+        {
+          type: "tip",
+          content:
+            "Le syllabaire de base est complet : 46 signes. Tout ce qui suit n'est plus un nouveau dessin mais une modification de ces signes — le dakuten de l'unité 4, les voyelles longues, les combinaisons avec les petits kana. Verrouillez donc ces 46 formes maintenant, elles ne changeront plus jamais.",
         },
       ],
     },
@@ -424,312 +191,160 @@ export const unit03: CourseUnit = {
 
   dialogue: {
     context:
-      "Au marché de nuit de Shilin (士林夜市). Un malentendu de tons crée une situation comique.",
+      "Dans un parc, début avril, sous les cerisiers en fleur. Toutes les répliques n'utilisent que des kana des unités 1 à 3.",
     lines: [
       {
-        speaker: "Vous",
-        chinese: "老闆，我要十個水餃。",
-        pinyin: "lǎobǎn, wǒ yào shí ge shuǐjiǎo.",
-        french: "Patron, je veux dix raviolis.",
-        note: "Vous prononcez 水餃 (shuǐjiǎo) correctement.",
-      },
-      {
-        speaker: "Vendeur",
-        chinese: "好，十個水餃。還要別的嗎？",
-        pinyin: "hǎo, shí ge shuǐjiǎo. hái yào biéde ma?",
-        french: "OK, dix raviolis. Autre chose ?",
+        speaker: "Rina",
+        japanese: "さくら！",
+        romaji: "sakura!",
+        french: "Les cerisiers !",
       },
       {
         speaker: "Vous",
-        chinese: "我也要一碗湯。",
-        pinyin: "wǒ yě yào yì wǎn tāng.",
-        french: "Je veux aussi un bol de soupe.",
-        note: "Vous dites accidentellement táng (sucre) au lieu de tāng (soupe).",
+        japanese: "きれい。",
+        romaji: "kirei.",
+        french: "C'est beau.",
+        note: "きれい se suffit à lui-même : le japonais n'a pas besoin de verbe être pour ce genre de commentaire.",
       },
       {
-        speaker: "Vendeur",
-        chinese: "一碗……糖？你要糖水嗎？",
-        pinyin: "yì wǎn... táng? nǐ yào tángshuǐ ma?",
-        french: "Un bol de... sucre ? Tu veux de l'eau sucrée ?",
+        speaker: "Rina",
+        japanese: "あそこも さくら？",
+        romaji: "asoko mo sakura?",
+        french: "Là-bas aussi, des cerisiers ?",
+        note: "あそこ désigne un endroit éloigné des deux interlocuteurs, après ここ (ici) et そこ (là, près de vous).",
       },
       {
         speaker: "Vous",
-        chinese: "不是不是！湯！喝的湯！",
-        pinyin: "búshì búshì! tāng! hē de tāng!",
-        french: "Non non ! De la soupe ! De la soupe à boire !",
+        japanese: "そう。",
+        romaji: "sou.",
+        french: "Oui, c'est ça.",
       },
       {
-        speaker: "Vendeur",
-        chinese: "哈哈，好好好，一碗湯！聲調很重要喔！",
-        pinyin: "hāhā, hǎo hǎo hǎo, yì wǎn tāng! shēngdiào hěn zhòngyào o!",
-        french: "Haha, d'accord d'accord, un bol de soupe ! Les tons c'est important hein !",
+        speaker: "Rina",
+        japanese: "ほら、ねこ。",
+        romaji: "hora, neko.",
+        french: "Tiens, un chat.",
+      },
+      {
+        speaker: "Vous",
+        japanese: "ねこも はなみ。",
+        romaji: "neko mo hanami.",
+        french: "Le chat aussi fait hanami.",
+        note: "はなみ (花見) : sortir contempler les fleurs de cerisier, en avril, généralement avec de quoi manger et boire. C'est l'un des rendez-vous les plus suivis de l'année.",
       },
     ],
   },
 
   keyPoints: [
-    "Les tone pairs (combinaisons de deux tons) sont l'unité fondamentale de pratique — travaillez-les 2-3 par jour.",
-    "Sandhi 3+3 : le premier ton 3 se prononce ton 2 (你好 → ní hǎo). C'est automatique chez les natifs.",
-    "不 (bù) → bú devant un ton 4. 一 (yī) → yí devant un ton 4, yì devant un ton 1/2/3.",
-    "Le ton 3 taiwanais est souvent un « half third » (la voix descend sans remonter), c'est normal et correct.",
-    "Ne mémorisez jamais un mot sans son ton — le ton fait partie intégrante du mot comme les lettres en français.",
+    "ふ n'est ni « fou » ni « hou » : les deux lèvres se rapprochent à peine et ne touchent jamais les dents.",
+    "らりるれろ est un battement unique de la langue, proche du « l » ; le r français de la gorge est le défaut d'accent le plus audible chez un francophone.",
+    "ん est la seule more sans voyelle et vaut un temps plein : la voyelle qui précède reste pure, sans nasalisation à la française.",
+    "を ne s'écrit que comme particule d'objet et se lit « o » ; は se lit « wa » et へ se lit « e » dans le même rôle de particule.",
+    "Le syllabaire de base est complet avec 46 signes : la suite ne sont que des modifications de ces formes, plus aucun dessin nouveau.",
   ],
 
   vocabulary: [
-    {
-      character: "今天",
-      pinyin: "jīntiān",
-      zhuyin: "ㄐㄧㄣ ㄊㄧㄢ",
-      french: "Aujourd'hui",
-      english: "Today",
-      example: {
-        sentence: "今天天氣很好。",
-        pinyin: "jīntiān tiānqì hěn hǎo.",
-        translation: "Aujourd'hui il fait beau.",
-      },
-    },
-    {
-      character: "中文",
-      pinyin: "zhōngwén",
-      zhuyin: "ㄓㄨㄥ ㄨㄣˊ",
-      french: "Chinois (langue)",
-      english: "Chinese (language)",
-      example: {
-        sentence: "我在學中文。",
-        pinyin: "wǒ zài xué zhōngwén.",
-        translation: "J'apprends le chinois.",
-      },
-    },
-    {
-      character: "老師",
-      pinyin: "lǎoshī",
-      zhuyin: "ㄌㄠˇ ㄕ",
-      french: "Professeur",
-      english: "Teacher",
-      example: {
-        sentence: "老師說得很清楚。",
-        pinyin: "lǎoshī shuō de hěn qīngchǔ.",
-        translation: "Le professeur parle très clairement.",
-      },
-    },
-    {
-      character: "學生",
-      pinyin: "xuéshēng",
-      zhuyin: "ㄒㄩㄝˊ ㄕㄥ",
-      french: "Étudiant",
-      english: "Student",
-      example: {
-        sentence: "我是學生。",
-        pinyin: "wǒ shì xuéshēng.",
-        translation: "Je suis étudiant.",
-      },
-    },
-    {
-      character: "可以",
-      pinyin: "kěyǐ",
-      zhuyin: "ㄎㄜˇ ㄧˇ",
-      french: "Pouvoir, d'accord",
-      english: "Can, may, OK",
-      example: {
-        sentence: "可以便宜一點嗎？",
-        pinyin: "kěyǐ piányí yìdiǎn ma?",
-        translation: "Vous pouvez faire un peu moins cher ?",
-      },
-    },
-    {
-      character: "一起",
-      pinyin: "yìqǐ",
-      zhuyin: "ㄧˋ ㄑㄧˇ",
-      french: "Ensemble",
-      english: "Together",
-      example: {
-        sentence: "我們一起去吧！",
-        pinyin: "wǒmen yìqǐ qù ba!",
-        translation: "Allons-y ensemble !",
-      },
-    },
-    {
-      character: "不要",
-      pinyin: "búyào",
-      zhuyin: "ㄅㄨˊ ㄧㄠˋ",
-      french: "Ne pas vouloir",
-      english: "Don't want",
-      example: {
-        sentence: "不要太辣。",
-        pinyin: "búyào tài là.",
-        translation: "Pas trop pimenté.",
-      },
-    },
-    {
-      character: "沒有",
-      pinyin: "méiyǒu",
-      zhuyin: "ㄇㄟˊ ㄧㄡˇ",
-      french: "Ne pas avoir",
-      english: "Don't have",
-      example: {
-        sentence: "我沒有現金。",
-        pinyin: "wǒ méiyǒu xiànjīn.",
-        translation: "Je n'ai pas de liquide.",
-      },
-    },
-    {
-      character: "漂亮",
-      pinyin: "piàoliang",
-      zhuyin: "ㄆㄧㄠˋ ˙ㄌㄧㄤ",
-      french: "Joli, beau",
-      english: "Beautiful, pretty",
-      example: {
-        sentence: "台北很漂亮。",
-        pinyin: "táiběi hěn piàoliang.",
-        translation: "Taipei est très joli.",
-      },
-    },
-    {
-      character: "喜歡",
-      pinyin: "xǐhuān",
-      zhuyin: "ㄒㄧˇ ㄏㄨㄢ",
-      french: "Aimer",
-      english: "To like",
-      example: {
-        sentence: "我喜歡台灣的食物。",
-        pinyin: "wǒ xǐhuān táiwān de shíwù.",
-        translation: "J'aime la nourriture de Taiwan.",
-      },
-    },
-    {
-      character: "準備",
-      pinyin: "zhǔnbèi",
-      zhuyin: "ㄓㄨㄣˇ ㄅㄟˋ",
-      french: "Préparer",
-      english: "To prepare",
-      example: {
-        sentence: "你準備好了嗎？",
-        pinyin: "nǐ zhǔnbèi hǎo le ma?",
-        translation: "Tu es prêt ?",
-      },
-    },
-    {
-      character: "重要",
-      pinyin: "zhòngyào",
-      zhuyin: "ㄓㄨㄥˋ ㄧㄠˋ",
-      french: "Important",
-      english: "Important",
-      example: {
-        sentence: "聲調很重要。",
-        pinyin: "shēngdiào hěn zhòngyào.",
-        translation: "Les tons sont très importants.",
-      },
-    },
+    { term: "はな", kana: "はな", romaji: "hana", pitch: 2, french: "La fleur", english: "Flower" },
+    { term: "ひと", kana: "ひと", romaji: "hito", pitch: 0, french: "La personne, les gens", english: "Person, people" },
+    { term: "ふゆ", kana: "ふゆ", romaji: "fuyu", pitch: 2, french: "L'hiver", english: "Winter" },
+    { term: "へや", kana: "へや", romaji: "heya", pitch: 2, french: "La chambre, la pièce", english: "Room" },
+    { term: "ほし", kana: "ほし", romaji: "hoshi", pitch: 0, french: "L'étoile", english: "Star" },
+    { term: "ほん", kana: "ほん", romaji: "hon", pitch: 1, french: "Le livre", english: "Book" },
+    { term: "まち", kana: "まち", romaji: "machi", pitch: 2, french: "La ville, le quartier", english: "Town, neighbourhood" },
+    { term: "みみ", kana: "みみ", romaji: "mimi", pitch: 2, french: "L'oreille", english: "Ear" },
+    { term: "むし", kana: "むし", romaji: "mushi", pitch: 0, french: "L'insecte", english: "Insect" },
+    { term: "め", kana: "め", romaji: "me", pitch: 1, french: "L'œil", english: "Eye" },
+    { term: "もり", kana: "もり", romaji: "mori", pitch: 0, french: "La forêt", english: "Forest" },
+    { term: "やま", kana: "やま", romaji: "yama", pitch: 2, french: "La montagne", english: "Mountain" },
+    { term: "よる", kana: "よる", romaji: "yoru", pitch: 1, french: "La nuit, le soir", english: "Night" },
+    { term: "さくら", kana: "さくら", romaji: "sakura", pitch: 0, french: "Le cerisier, la fleur de cerisier", english: "Cherry tree, cherry blossom" },
+    { term: "りんご", kana: "りんご", romaji: "ringo", pitch: 0, french: "La pomme", english: "Apple" },
+    { term: "ろく", kana: "ろく", romaji: "roku", pitch: 2, french: "Six", english: "Six" },
+    { term: "きれい", kana: "きれい", romaji: "kirei", pitch: 1, french: "Beau, joli, propre", english: "Beautiful, clean" },
+    { term: "わたし", kana: "わたし", romaji: "watashi", pitch: 0, french: "Moi, je", english: "I, me" },
   ],
 
   exercises: [
     {
       id: "unit-03-ex1",
       type: "comprehension",
-      question:
-        "Pourquoi deux tons 3 consécutifs déclenchent un sandhi tonal ?",
-      correctAnswer:
-        "Deux baisses de voix consécutives sont physiquement difficiles, le premier ton 3 devient ton 2",
+      question: "Comment se prononce ふ ?",
+      correctAnswer: "Un souffle entre les deux lèvres à peine entrouvertes, sans contact avec les dents",
       options: [
-        "Deux baisses de voix consécutives sont physiquement difficiles, le premier ton 3 devient ton 2",
-        "C'est une règle arbitraire sans explication",
-        "Le deuxième ton 3 devient ton 2",
-        "Les deux tons 3 deviennent ton 1",
+        "Un souffle entre les deux lèvres à peine entrouvertes, sans contact avec les dents",
+        "Un « f » français, lèvre inférieure contre les dents du haut",
+        "Un « h » nettement aspiré, comme en anglais",
+        "Un « p » très relâché, lèvres fermées puis ouvertes",
       ],
+      hint: "Le geste est celui qu'on fait pour souffler sur une bougie.",
     },
     {
       id: "unit-03-ex2",
       type: "comprehension",
-      question:
-        "Comment se prononce 一 (yī) dans 一杯 (un verre) ?",
-      correctAnswer: "yì (ton 4), car 杯 est au ton 1",
+      question: "Comment se prononce le r de らりるれろ ?",
+      correctAnswer: "Un battement unique de la pointe de la langue, proche du « l »",
       options: [
-        "yì (ton 4), car 杯 est au ton 1",
-        "yí (ton 2), car 杯 est au ton 1",
-        "yī (ton 1), pas de changement",
-        "yǐ (ton 3)",
+        "Un battement unique de la pointe de la langue, proche du « l »",
+        "Le r français, produit dans la gorge",
+        "Un r roulé long, comme l'espagnol de « perro »",
+        "Un son intermédiaire entre le r français et le « g »",
       ],
+      hint: "Tout se passe à l'avant de la bouche, derrière les dents du haut.",
     },
     {
       id: "unit-03-ex3",
       type: "comprehension",
-      question:
-        "Quelle est la combinaison de tons de 台灣 (táiwān) ?",
-      correctAnswer: "Ton 2 + Ton 1",
+      question: "Combien de mores compte りんご ?",
+      correctAnswer: "Trois : り, ん et ご, de durée égale",
       options: [
-        "Ton 2 + Ton 1",
-        "Ton 1 + Ton 2",
-        "Ton 2 + Ton 2",
-        "Ton 4 + Ton 1",
+        "Trois : り, ん et ご, de durée égale",
+        "Deux : « rin » puis « go »",
+        "Deux : ん ne compte pas comme une more",
+        "Quatre : ん vaut deux temps",
       ],
+      hint: "ん est un kana comme un autre du point de vue du rythme.",
     },
     {
       id: "unit-03-ex4",
       type: "fill-blank",
-      question:
-        "不___ (bù + 是 shì) : Comment se prononce 不 ici ?",
-      correctAnswer: "bú (ton 2), car 是 est au ton 4",
-      options: [
-        "bú (ton 2), car 是 est au ton 4",
-        "bù (ton 4), pas de changement",
-        "bū (ton 1)",
-        "bǔ (ton 3)",
-      ],
-      hint: "不 change de ton devant un autre ton 4.",
-      hintZhuyin: "不 change de ton devant un autre ton 4.",
+      question: "« Moi, je » se dit ___ .",
+      correctAnswer: "わたし",
+      options: ["わたし", "れたし", "わなし", "ねたし"],
+      optionsHint: ["watashi", "retashi", "wanashi", "netashi"],
+      hint: "Attention aux trois formes voisines わ, ね et れ.",
     },
     {
       id: "unit-03-ex5",
-      type: "translate",
-      question:
-        "Quelle est la différence entre 湯 (tāng) et 糖 (táng) ?",
-      correctAnswer: "湯 = soupe (ton 1), 糖 = sucre (ton 2)",
-      options: [
-        "湯 = soupe (ton 1), 糖 = sucre (ton 2)",
-        "湯 = sucre, 糖 = soupe",
-        "Ils ont le même sens",
-        "湯 = chaud, 糖 = froid",
-      ],
+      type: "fill-blank",
+      question: "La particule qui marque le complément d'objet direct s'écrit ___ et se lit « o ».",
+      correctAnswer: "を",
+      options: ["を", "お", "わ", "ほ"],
+      optionsHint: ["wo, lu « o »", "o", "wa", "ho"],
+      hint: "Ce kana ne s'écrit jamais à l'intérieur d'un mot.",
     },
     {
       id: "unit-03-ex6",
-      type: "comprehension",
-      question:
-        "Comment prononce-t-on 你好 en réalité à cause du sandhi ?",
-      correctAnswer: "ní hǎo — le premier ton 3 (你) devient ton 2",
-      options: [
-        "ní hǎo — le premier ton 3 (你) devient ton 2",
-        "nǐ háo — le deuxième ton 3 (好) devient ton 2",
-        "nǐ hǎo — aucun changement",
-        "ní háo — les deux deviennent ton 2",
-      ],
+      type: "reorder",
+      question: "Remettez les éléments dans l'ordre : « ma chambre ».",
+      correctAnswer: "わたしのへや",
+      options: ["わたし", "の", "へや"],
+      hint: "の relie le possesseur à l'objet possédé, dans cet ordre.",
     },
     {
       id: "unit-03-ex7",
-      type: "comprehension",
-      question: "Qu'est-ce que le « half third » (半三聲) taiwanais ?",
-      correctAnswer:
-        "Le ton 3 descend mais ne remonte pas vraiment — c'est la norme conversationnelle à Taiwan",
-      options: [
-        "Le ton 3 descend mais ne remonte pas vraiment — c'est la norme conversationnelle à Taiwan",
-        "Un ton spécial qui n'existe qu'en taiwanais (閩南語)",
-        "Un ton 3 prononcé très fort",
-        "Un ton 3 prononcé comme un ton 1",
-      ],
+      type: "listen",
+      question: "りんご",
+      correctAnswer: "La pomme",
+      options: ["La pomme", "La fleur", "La forêt", "L'étoile"],
+      hint: "Trois mores, sans chute de hauteur.",
     },
     {
       id: "unit-03-ex8",
-      type: "fill-blank",
-      question:
-        "Identifiez les tons : 學生 (xuéshēng) = ton ___ + ton ___",
-      correctAnswer: "Ton 2 + Ton 1",
-      options: [
-        "Ton 2 + Ton 1",
-        "Ton 1 + Ton 2",
-        "Ton 2 + Ton 2",
-        "Ton 4 + Ton 1",
-      ],
-      hint: "xué porte un accent montant (ton 2) et shēng un accent plat haut (ton 1).",
+      type: "listen",
+      question: "ほし",
+      correctAnswer: "L'étoile",
+      options: ["L'étoile", "Le livre", "La ville", "L'oreille"],
+      hint: "Le premier kana est は augmenté d'une barre.",
     },
   ],
 

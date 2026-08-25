@@ -3,11 +3,12 @@
 import { useState, useMemo } from "react";
 import { Search, X, Plus, Check } from "lucide-react";
 import AudioButton from "@/components/AudioButton";
-import PinyinDisplay from "@/components/PinyinDisplay";
+import ReadingDisplay from "@/components/ReadingDisplay";
 import { cn } from "@/lib/cn";
 import { getSettings, getCards, upsertCard } from "@/lib/storage";
+import { japaneseCollator } from "@/lib/japanese";
 import { createCard } from "@/lib/fsrs";
-import { allUnits, hskLevels, getHSKLevelForUnit } from "@/data/course";
+import { allUnits, jlptLevels, getJLPTLevelForUnit } from "@/data/course";
 import { lessons } from "@/data/lessons";
 import { gradedTexts } from "@/data/readings";
 import type { VocabularyItem } from "@/types";
@@ -15,14 +16,14 @@ import type { VocabularyItem } from "@/types";
 // ─── Build complete dictionary from all sources ───
 
 interface DictEntry {
-  character: string;
-  pinyin: string;
-  zhuyin: string;
+  term: string;
+  romaji: string;
+  kana: string;
   french: string;
   english: string;
   sources: string[];
-  hskLevel?: number;
-  example?: { sentence: string; pinyin: string; translation: string };
+  jlptLevel?: number;
+  example?: { sentence: string; romaji: string; translation: string };
 }
 
 function buildDictionary(): DictEntry[] {
@@ -30,25 +31,25 @@ function buildDictionary(): DictEntry[] {
 
   // Course units
   for (const unit of allUnits) {
-    const hsk = getHSKLevelForUnit(unit);
+    const jlpt = getJLPTLevelForUnit(unit);
     for (const v of unit.vocabulary) {
-      const existing = map.get(v.character);
+      const existing = map.get(v.term);
       if (existing) {
         if (!existing.sources.includes(`Unité ${unit.number}`)) {
           existing.sources.push(`Unité ${unit.number}`);
         }
-        if (hsk && (!existing.hskLevel || hsk.level < existing.hskLevel)) {
-          existing.hskLevel = hsk.level;
+        if (jlpt && (!existing.jlptLevel || jlpt.level < existing.jlptLevel)) {
+          existing.jlptLevel = jlpt.level;
         }
       } else {
-        map.set(v.character, {
-          character: v.character,
-          pinyin: v.pinyin,
-          zhuyin: v.zhuyin,
+        map.set(v.term, {
+          term: v.term,
+          romaji: v.romaji,
+          kana: v.kana,
           french: v.french,
           english: v.english,
           sources: [`Unité ${unit.number}`],
-          hskLevel: hsk?.level,
+          jlptLevel: jlpt?.level,
           example: v.example,
         });
       }
@@ -58,16 +59,16 @@ function buildDictionary(): DictEntry[] {
   // Standalone lessons
   for (const lesson of lessons) {
     for (const v of lesson.vocabulary) {
-      const existing = map.get(v.character);
+      const existing = map.get(v.term);
       if (existing) {
         if (!existing.sources.includes(lesson.title)) {
           existing.sources.push(lesson.title);
         }
       } else {
-        map.set(v.character, {
-          character: v.character,
-          pinyin: v.pinyin,
-          zhuyin: v.zhuyin,
+        map.set(v.term, {
+          term: v.term,
+          romaji: v.romaji,
+          kana: v.kana,
           french: v.french,
           english: v.english,
           sources: [lesson.title],
@@ -80,16 +81,16 @@ function buildDictionary(): DictEntry[] {
   // Readings
   for (const reading of gradedTexts) {
     for (const v of reading.vocabulary) {
-      const existing = map.get(v.character);
+      const existing = map.get(v.term);
       if (existing) {
         if (!existing.sources.includes(`Lecture: ${reading.titleFr}`)) {
           existing.sources.push(`Lecture: ${reading.titleFr}`);
         }
       } else {
-        map.set(v.character, {
-          character: v.character,
-          pinyin: v.pinyin,
-          zhuyin: v.zhuyin || "",
+        map.set(v.term, {
+          term: v.term,
+          romaji: v.romaji,
+          kana: v.kana || "",
           french: v.french,
           english: "",
           sources: [`Lecture: ${reading.titleFr}`],
@@ -98,17 +99,17 @@ function buildDictionary(): DictEntry[] {
     }
   }
 
-  return [...map.values()].sort((a, b) => a.pinyin.localeCompare(b.pinyin));
+  return [...map.values()].sort((a, b) => japaneseCollator.compare(a.kana, b.kana));
 }
 
-type SortMode = "pinyin" | "character" | "hsk";
+type SortMode = "kana" | "romaji" | "jlpt";
 type SourceFilter = "all" | "course" | "lessons" | "readings";
 
 export default function DictionaryPage() {
   const [query, setQuery] = useState("");
-  const [sortMode, setSortMode] = useState<SortMode>("pinyin");
+  const [sortMode, setSortMode] = useState<SortMode>("kana");
   const [sourceFilter, setSourceFilter] = useState<SourceFilter>("all");
-  const [hskFilter, setHskFilter] = useState<number | null>(null);
+  const [levelFilter, setLevelFilter] = useState<number | null>(null);
   const [expandedEntry, setExpandedEntry] = useState<string | null>(null);
   const [addedCards, setAddedCards] = useState<Set<string>>(new Set());
 
@@ -133,52 +134,55 @@ export default function DictionaryPage() {
       results = results.filter((e) => e.sources.some((s) => s.startsWith("Lecture")));
     }
 
-    // HSK filter
-    if (hskFilter) {
-      results = results.filter((e) => e.hskLevel === hskFilter);
+    // JLPT filter
+    if (levelFilter) {
+      results = results.filter((e) => e.jlptLevel === levelFilter);
     }
 
     // Search
     if (q) {
       results = results.filter(
         (e) =>
-          e.character.includes(q) ||
-          e.pinyin.toLowerCase().includes(q) ||
-          e.zhuyin.includes(q) ||
+          e.term.includes(q) ||
+          e.romaji.toLowerCase().includes(q) ||
+          e.kana.includes(q) ||
           e.french.toLowerCase().includes(q) ||
           e.english.toLowerCase().includes(q)
       );
     }
 
     // Sort
-    if (sortMode === "character") {
-      results = [...results].sort((a, b) => a.character.localeCompare(b.character, "zh-Hant"));
-    } else if (sortMode === "hsk") {
-      results = [...results].sort((a, b) => (a.hskLevel ?? 99) - (b.hskLevel ?? 99) || a.pinyin.localeCompare(b.pinyin));
+    if (sortMode === "romaji") {
+      results = [...results].sort((a, b) => a.romaji.localeCompare(b.romaji, "en"));
+    } else if (sortMode === "jlpt") {
+      results = [...results].sort(
+        (a, b) =>
+          (b.jlptLevel ?? 0) - (a.jlptLevel ?? 0) || japaneseCollator.compare(a.kana, b.kana)
+      );
     }
-    // default "pinyin" is already sorted
+    // default "kana" is the gojūon order buildDictionary already applied
 
     return results;
-  }, [query, sortMode, sourceFilter, hskFilter, dictionary]);
+  }, [query, sortMode, sourceFilter, levelFilter, dictionary]);
 
   function handleAddToFlashcards(entry: DictEntry) {
-    if (existingCardChars.has(entry.character) || addedCards.has(entry.character)) return;
+    if (existingCardChars.has(entry.term) || addedCards.has(entry.term)) return;
     const card = createCard({
-      id: `dict-${entry.character}-${Date.now()}`,
-      front: entry.character,
+      id: `dict-${entry.term}-${Date.now()}`,
+      front: entry.term,
       back: entry.french,
-      pinyin: entry.pinyin,
-      zhuyin: entry.zhuyin,
+      romaji: entry.romaji,
+      kana: entry.kana,
       type: "vocabulary",
     });
     upsertCard(card);
-    setAddedCards((prev) => new Set(prev).add(entry.character));
+    setAddedCards((prev) => new Set(prev).add(entry.term));
   }
 
   const stats = useMemo(() => ({
     total: dictionary.length,
-    hsk1: dictionary.filter((e) => e.hskLevel === 1).length,
-    hsk2: dictionary.filter((e) => e.hskLevel === 2).length,
+    hsk1: dictionary.filter((e) => e.jlptLevel === 1).length,
+    hsk2: dictionary.filter((e) => e.jlptLevel === 2).length,
   }), [dictionary]);
 
   return (
@@ -190,9 +194,9 @@ export default function DictionaryPage() {
           {stats.total} mots — Tout le vocabulaire du parcours, des leçons et des lectures
         </p>
         <div className="mt-2 flex gap-2 text-xs text-stone-400">
-          <span>HSK 1 : {stats.hsk1} mots</span>
+          <span>JLPT 1 : {stats.hsk1} mots</span>
           <span>·</span>
-          <span>HSK 2 : {stats.hsk2} mots</span>
+          <span>JLPT 2 : {stats.hsk2} mots</span>
         </div>
       </div>
 
@@ -203,7 +207,7 @@ export default function DictionaryPage() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Rechercher un caractère, pinyin, zhuyin ou traduction..."
+          placeholder="Rechercher un caractère, romaji, kana ou traduction..."
           className="w-full rounded-lg border border-stone-300 bg-white py-2.5 pl-10 pr-10 text-sm text-stone-900 placeholder:text-stone-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
         />
         {query && (
@@ -243,20 +247,20 @@ export default function DictionaryPage() {
 
         <div className="h-4 w-px bg-stone-200" />
 
-        {/* HSK filter */}
+        {/* JLPT filter */}
         <div className="flex gap-1">
-          {hskLevels.filter((l) => !l.comingSoon).map((level) => (
+          {jlptLevels.filter((l) => !l.comingSoon).map((level) => (
             <button
               key={level.level}
-              onClick={() => setHskFilter(hskFilter === level.level ? null : level.level)}
+              onClick={() => setLevelFilter(levelFilter === level.level ? null : level.level)}
               className={cn(
                 "badge border transition-colors",
-                hskFilter === level.level
+                levelFilter === level.level
                   ? "border-primary bg-primary/10 text-primary"
                   : "border-stone-200 bg-white text-stone-500 hover:border-stone-300"
               )}
             >
-              HSK {level.level}
+              N{level.level}
             </button>
           ))}
         </div>
@@ -269,9 +273,9 @@ export default function DictionaryPage() {
           onChange={(e) => setSortMode(e.target.value as SortMode)}
           className="rounded-lg border border-stone-200 bg-white px-2 py-1 text-xs text-stone-600 focus:border-primary focus:outline-none"
         >
-          <option value="pinyin">Tri : Pinyin</option>
-          <option value="character">Tri : Caractère</option>
-          <option value="hsk">Tri : Niveau HSK</option>
+          <option value="kana">Tri : ordre gojūon (あいうえお)</option>
+          <option value="romaji">Tri : rōmaji</option>
+          <option value="jlpt">Tri : niveau JLPT</option>
         </select>
       </div>
 
@@ -285,13 +289,13 @@ export default function DictionaryPage() {
       {filtered.length > 0 ? (
         <div className="flex flex-col gap-1">
           {filtered.map((entry) => {
-            const isExpanded = expandedEntry === entry.character;
-            const isInFlashcards = existingCardChars.has(entry.character) || addedCards.has(entry.character);
+            const isExpanded = expandedEntry === entry.term;
+            const isInFlashcards = existingCardChars.has(entry.term) || addedCards.has(entry.term);
 
             return (
-              <div key={entry.character}>
+              <div key={entry.term}>
                 <button
-                  onClick={() => setExpandedEntry(isExpanded ? null : entry.character)}
+                  onClick={() => setExpandedEntry(isExpanded ? null : entry.term)}
                   className={cn(
                     "flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left transition-all",
                     isExpanded
@@ -300,17 +304,17 @@ export default function DictionaryPage() {
                   )}
                 >
                   {/* Character */}
-                  <span className="chinese text-2xl font-medium text-stone-900 w-16 text-center shrink-0">
-                    {entry.character}
+                  <span className="japanese text-2xl font-medium text-stone-900 w-16 text-center shrink-0">
+                    {entry.term}
                   </span>
 
                   {/* Info */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <PinyinDisplay pinyin={entry.pinyin} zhuyin={entry.zhuyin} mode={displayMode} size="sm" />
-                      {entry.hskLevel && (
+                      <ReadingDisplay romaji={entry.romaji} kana={entry.kana} mode={displayMode} size="sm" />
+                      {entry.jlptLevel && (
                         <span className="badge bg-stone-100 text-stone-500 text-[10px]">
-                          HSK {entry.hskLevel}
+                          N{entry.jlptLevel}
                         </span>
                       )}
                     </div>
@@ -318,7 +322,7 @@ export default function DictionaryPage() {
                   </div>
 
                   {/* Audio */}
-                  <AudioButton text={entry.character} size="sm" className="shrink-0" />
+                  <AudioButton text={entry.term} size="sm" className="shrink-0" />
                 </button>
 
                 {/* Expanded view */}
@@ -327,8 +331,8 @@ export default function DictionaryPage() {
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
                         <p className="text-xs font-medium text-stone-400 uppercase mb-1">Prononciation</p>
-                        <p className="text-sm text-stone-700">{entry.pinyin}</p>
-                        {entry.zhuyin && <p className="text-sm text-stone-500 chinese">{entry.zhuyin}</p>}
+                        <p className="text-sm text-stone-700">{entry.romaji}</p>
+                        {entry.kana && <p className="text-sm text-stone-500 japanese">{entry.kana}</p>}
                       </div>
                       <div>
                         <p className="text-xs font-medium text-stone-400 uppercase mb-1">Traduction</p>
@@ -340,8 +344,8 @@ export default function DictionaryPage() {
                     {entry.example && (
                       <div className="mt-3 rounded-lg bg-white border border-stone-100 p-3">
                         <p className="text-xs font-medium text-stone-400 uppercase mb-1">Exemple</p>
-                        <p className="chinese text-sm text-stone-800">{entry.example.sentence}</p>
-                        <p className="text-xs italic text-stone-400">{entry.example.pinyin}</p>
+                        <p className="japanese text-sm text-stone-800">{entry.example.sentence}</p>
+                        <p className="text-xs italic text-stone-400">{entry.example.romaji}</p>
                         <p className="text-xs text-stone-500">{entry.example.translation}</p>
                       </div>
                     )}

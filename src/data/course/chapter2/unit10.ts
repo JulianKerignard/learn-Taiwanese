@@ -3,268 +3,192 @@ import type { CourseUnit } from "@/types/course";
 export const unit10: CourseUnit = {
   id: "unit-10",
   number: 10,
-  title: "Faire du shopping",
-  titleZh: "買東西",
+  title: "Les nombres, les prix et l'âge",
+  titleJa: "数字・値段・年齢",
   chapter: 2,
   description:
-    "Négociez les prix, payez de différentes manières et découvrez pourquoi les convenience stores sont le centre de la vie taiwanaise.",
-  icon: "🛒",
+    "Lire et dire n'importe quel nombre japonais, demander un prix et donner un âge — en comprenant pourquoi le japonais compte par tranches de quatre chiffres et pas de trois.",
+  icon: "円",
 
   sections: [
     {
-      title: "Parler des prix",
+      title: "De 1 à 10, puis toute la mécanique jusqu'à 99",
+      type: "theory",
+      content: [
+        {
+          type: "text",
+          content:
+            "Les dix premiers nombres sont le seul effort de mémoire de l'unité : いち、に、さん、よん、ご、ろく、なな、はち、きゅう、じゅう. Au-delà, le système est entièrement régulier. Le japonais ne connaît rien qui ressemble à « soixante-dix » ou « quatre-vingts » : il n'existe aucun mot spécifique pour vingt, trente ou quarante, on les fabrique à partir de dix.",
+        },
+        {
+          type: "text",
+          content:
+            "La construction combine multiplication et addition autour de 十. Onze = 十一 (じゅういち), soit dix-un. Vingt = 二十 (にじゅう), soit deux-dix. Trente-cinq = 三十五 (さんじゅうご), soit trois-dix-cinq. Tout nombre jusqu'à 99 s'obtient ainsi, dans cet ordre, sans exception. Vous savez déjà compter jusqu'à cent : il ne vous reste qu'à gagner en vitesse.",
+        },
+        {
+          type: "example",
+          japanese: "四十二",
+          romaji: "yonjuuni",
+          translation: "Quarante-deux",
+          content:
+            "Lisez le nombre exactement comme il s'écrit : 4-10-2. La difficulté n'est pas la structure, elle est mécanique : un locuteur natif enchaîne よんじゅうに en un seul souffle, sans pause entre les blocs. Entraînez-vous à le dire d'un trait plutôt qu'à le calculer.",
+        },
+        {
+          type: "example",
+          japanese: "九十九",
+          romaji: "kyuujuukyuu",
+          translation: "Quatre-vingt-dix-neuf",
+          content:
+            "Le plus grand nombre avant le palier des centaines. Remarquez qu'aucun 一 n'apparaît devant 十 : dix se dit じゅう tout court, et いちじゅう n'existe pas. Le 一 ne revient qu'à partir de 一万.",
+        },
+        {
+          type: "warning",
+          content:
+            "Deux réflexes de francophone à corriger tout de suite. Ne dites jamais いちじゅう pour 10. Et n'insérez aucun mot de liaison entre les chiffres : 二十五 se dit にじゅうご, jamais にじゅう と ご — le « et » de « vingt et un » n'a pas d'équivalent.",
+        },
+        {
+          type: "tip",
+          content:
+            "Travaillez sur des nombres qui désignent quelque chose plutôt que sur une récitation à vide : votre numéro de téléphone, les numéros de quai dans une gare, les étages d'un grand magasin, les prix d'un menu en ligne. La mémoire des nombres utiles tient ; celle des séries abstraites s'efface en trois jours.",
+        },
+      ],
+    },
+    {
+      title: "四, 七, 九 : les lectures doubles",
+      type: "theory",
+      content: [
+        {
+          type: "text",
+          content:
+            "Trois chiffres ont deux lectures concurrentes, et c'est la première source d'erreur à l'oral : 四 se dit よん ou し, 七 se dit なな ou しち, 九 se dit きゅう ou く. Ce n'est pas une question de registre ni de préférence personnelle. Chaque contexte impose sa lecture, et il faut donc apprendre la lecture avec le mot, jamais le chiffre isolément.",
+        },
+        {
+          type: "text",
+          content:
+            "Par défaut — chiffre isolé, prix, quantités, la plupart des compteurs — on emploie よん, なな, きゅう : よんひゃく (400), ななせん (7 000), きゅうじゅう (90). C'est ce que dit une caissière, c'est ce que vous devez dire. し et しち ne disparaissent pas pour autant : ils survivent dans la récitation apprise à l'école (いち、に、さん、し、ご、ろく、しち、はち、きゅう、じゅう) et dans un noyau de mots figés, essentiellement les dates et les heures.",
+        },
+        {
+          type: "example",
+          japanese: "四月",
+          romaji: "shigatsu",
+          translation: "Avril",
+          content:
+            "Avril ne se dit jamais よんがつ. De même 七月 = しちがつ et 九月 = くがつ. Les noms de mois forment un bloc figé : la lecture y est imposée, jamais choisie. Un Japonais qui entendrait よんがつ comprendrait, mais entendrait aussi immédiatement un étranger.",
+        },
+        {
+          type: "example",
+          japanese: "四時",
+          romaji: "yoji",
+          translation: "Quatre heures",
+          content:
+            "Ici ni よん ni し, mais une troisième lecture : よ. Elle n'apparaît que dans une poignée de mots — 四時 (よじ), 四人 (よにん). Personne ne la déduit d'une règle ; on l'apprend mot par mot, et ces deux-là suffisent pour commencer.",
+        },
+        {
+          type: "warning",
+          content:
+            "Dans une gare, au téléphone, à un guichet, le personnel dit systématiquement なな et jamais しち : しち et いち se confondent dès qu'il y a du bruit. Adoptez le même réflexe chaque fois qu'un chiffre doit passer sans ambiguïté — numéro de chambre, montant, numéro de vol.",
+        },
+        {
+          type: "tip",
+          content:
+            "四 (し) est homophone de 死 (la mort) et 九 (く) de 苦 (la souffrance). Beaucoup d'hôpitaux japonais n'ont ni chambre 4 ni chambre 9, et les coffrets cadeaux se vendent par 3 ou par 5. Ce n'est pas seulement du folklore : c'est une des raisons pour lesquelles よん et きゅう ont pris le dessus à l'oral.",
+        },
+      ],
+    },
+    {
+      title: "百, 千, 万 : compter par tranches de quatre chiffres",
       type: "grammar",
       content: [
         {
           type: "text",
           content:
-            "Pour demander le prix de quelque chose, une seule phrase suffit : 多少錢？(duōshǎo qián?) = « Combien ça coûte ? ». C'est la question que vous utiliserez le plus souvent à Taiwan.",
+            "Au-dessus de 99 apparaissent trois paliers : 百 (ひゃく, cent), 千 (せん, mille) et 万 (まん, dix mille). Les deux premiers ne surprennent personne. Le troisième change toute la mécanique : le japonais ne regroupe pas les grands nombres par tranches de trois chiffres comme le français, mais par tranches de quatre. Il n'existe aucun mot pour « cent mille » ni pour « million » — ils s'expriment en multiples de 万.",
         },
         {
           type: "example",
-          chinese: "這個多少錢？",
-          pinyin: "zhège duōshǎo qián?",
+          japanese: "一万円",
+          romaji: "ichiman en",
+          translation: "Dix mille yens",
+          content:
+            "Dix mille n'est pas 十千 : c'est un palier neuf, 一万, et le 一 y est obligatoire — まんえん seul ne se dit pas. Comparez avec 千円 (せんえん, mille yens), qui se passe très bien de 一. C'est le billet le plus courant du pays, celui qu'on vous rend au distributeur.",
+        },
+        {
+          type: "example",
+          japanese: "十五万円",
+          romaji: "juugoman en",
+          translation: "Cent cinquante mille yens",
+          content:
+            "Cent cinquante mille se pense en japonais comme quinze fois dix mille : 十五万. Le découpage français « cent / cinquante / mille » n'a aucun équivalent, il faut convertir. C'est exactement l'obstacle qui vous attend devant une annonce de loyer ou un devis.",
+        },
+        {
+          type: "text",
+          content:
+            "Le tableau vaut d'être appris une fois pour toutes : 十万 = 100 000, 百万 = 1 000 000, 千万 = 10 000 000, 一億 (いちおく) = 100 000 000. Méthode pratique pour lire un montant écrit : coupez-le quatre chiffres avant la fin, lisez la partie gauche normalement, ajoutez 万, puis lisez le reste.",
+        },
+        {
+          type: "warning",
+          content:
+            "Certaines centaines et certains milliers changent de son, et ces liaisons ne sont pas facultatives : 300 = さんびゃく, 600 = ろっぴゃく, 800 = はっぴゃく, 3 000 = さんぜん, 8 000 = はっせん. Dire さんひゃく ou さんせん s'entend instantanément comme une faute.",
+        },
+        {
+          type: "comparison",
+          content:
+            "Sur un ticket de caisse japonais, la virgule des milliers est placée tous les trois chiffres, à l'occidentale : 12,000円. Mais on lit いちまんにせんえん — la découpe visuelle et la découpe orale ne coïncident jamais. D'où ce paradoxe qui déroute tous les débutants : les prix écrits sont faciles, les prix dits sont difficiles.",
+        },
+        {
+          type: "tip",
+          content:
+            "Entraînez-vous sur des montants réels : un ramen 950円 (きゅうひゃくごじゅうえん), un ticket de métro 180円, une nuit d'hôtel 12,000円, un loyer 85,000円 (はちまんごせんえん). Lisez-les à voix haute jusqu'à ce que le passage par le français disparaisse.",
+        },
+      ],
+    },
+    {
+      title: "Demander un prix, donner un âge",
+      type: "practice",
+      content: [
+        {
+          type: "text",
+          content:
+            "Le compteur monétaire est 円 (えん). Il se colle au nombre, sans espace ni particule : 500円 = ごひゃくえん. Le yen n'a pas de subdivision, donc aucun prix à virgule et aucune monnaie de centime à comprendre. En revanche les montants sont grands : trois à quatre chiffres pour un repas, cinq pour un vêtement, six pour un loyer. C'est ce qui rend les prix japonais durs à saisir à l'oral, bien plus que le vocabulaire.",
+        },
+        {
+          type: "example",
+          japanese: "これはいくらですか。",
+          romaji: "kore wa ikura desu ka.",
           translation: "Combien coûte ceci ?",
-          content: "這個 (zhège) = ceci. 這個 + 多少錢 est la formule complète.",
-        },
-        {
-          type: "text",
           content:
-            "L'unité monétaire officielle est le 元 (yuán), mais dans la vie courante tout le monde dit 塊 (kuài). C'est comme dire « balles » au lieu de « euros » en français. Les deux sont parfaitement compris.",
+            "いくら est le mot interrogatif du prix et il occupe dans la phrase la place exacte de la réponse. これ sert à désigner l'objet que vous tenez ou touchez — le système これ／それ／あれ est détaillé à l'unité suivante. En boutique, montrer l'objet et dire いくらですか suffit à faire l'achat.",
         },
         {
           type: "example",
-          chinese: "一百塊",
-          pinyin: "yì bǎi kuài",
-          translation: "100 dollars (NT$)",
-          content: "塊 est le mot familier pour l'unité monétaire. 100 NT$ ≈ 3 euros.",
+          japanese: "千二百円です。",
+          romaji: "sen nihyaku en desu.",
+          translation: "Ça fait 1 200 yens.",
+          content:
+            "La réponse reprend la structure ...です, sans verbe « coûter » : le japonais n'en emploie pas ici. On ne répète pas いくら et on n'insère aucune particule entre le montant et です.",
         },
         {
           type: "text",
           content:
-            "Pour négocier (surtout aux marchés), voici les expressions clés : 太貴了 (tài guì le) = « trop cher ! », 便宜一點 (piányí yìdiǎn) = « un peu moins cher ».",
+            "Pour l'âge, le compteur est さい (écrit 歳, ou 才 dans les formulaires). Il déclenche des liaisons du même type que les centaines : 1 an = いっさい, 8 ans = はっさい, 10 ans = じゅっさい. Et une forme totalement irrégulière à connaître : 20 ans = はたち (二十歳), qui ne se dit jamais にじゅっさい pour une personne.",
         },
         {
           type: "example",
-          chinese: "太貴了！可以便宜一點嗎？",
-          pinyin: "tài guì le! kěyǐ piányí yìdiǎn ma?",
-          translation: "Trop cher ! Vous pouvez faire un peu moins cher ?",
-          content: "Formule de négociation classique au marché. Avec le sourire, ça marche souvent.",
-        },
-        {
-          type: "tip",
+          japanese: "なんさいですか。",
+          romaji: "nansai desu ka.",
+          translation: "Quel âge as-tu ?",
           content:
-            "**一點** (yìdiǎn) signifie « un peu ». On l'utilise pour adoucir une demande : 便宜一點 = un peu moins cher (plus poli que 便宜！). 快一點 = un peu plus vite. On peut aussi dire 一點點 pour « un tout petit peu ».",
-        },
-        {
-          type: "example",
-          chinese: "打折",
-          pinyin: "dǎzhé",
-          translation: "Promotion / réduction",
-          content: "打八折 = 20% de réduction (on paie 80%). Attention, la logique est inversée par rapport au français !",
-        },
-        {
-          type: "example",
-          chinese: "買一送一",
-          pinyin: "mǎi yī sòng yī",
-          translation: "Un acheté, un offert",
-          content: "買 = acheter, 送 = offrir. Très courant dans les convenience stores.",
-        },
-        {
-          type: "tip",
-          content:
-            "On ne négocie PAS dans les magasins avec prix affichés, ni dans les convenience stores. La négociation est acceptable aux marchés traditionnels, marchés de nuit (pour les vêtements/accessoires, pas la nourriture) et dans certaines petites boutiques.",
-        },
-        {
-          type: "text",
-          content:
-            "Le système monétaire taiwanais : la monnaie est le New Taiwan Dollar (新台幣 xīntáibì), symbole NT$ ou TWD. 1 euro equivaut à environ 35 NT$ (approximation 2026). Les prix courants pour vous repérer : un repas simple dans un petit restaurant = 80-120 NT$ (2-3 euros), un bubble tea = 50-70 NT$ (1.5-2 euros), un trajet en MRT = 20-65 NT$ (0.5-2 euros), un café dans un coffee shop = 80-150 NT$ (2-4 euros), un mois de loyer pour un studio à Taipei = 8,000-15,000 NT$ (230-430 euros), une nuit en auberge de jeunesse = 500-800 NT$ (15-23 euros). Les Taiwanais disent souvent juste le nombre sans le classificateur monétaire : 這個一百二 (ça fait 120) au lieu de 這個一百二十塊. Attention au piège : 一百二 peut signifier 120 (raccourci courant, le 十 est omis) et non 102. C'est un usage oral très fréquent. Les pièces en circulation : 1, 5, 10 et 50 NT$. Les billets : 100 (rouge), 200 (vert, rare), 500 (marron), 1000 (bleu) et 2000 (violet, très rare). Le billet de 1000 NT$ est le plus courant pour les gros achats.",
-        },
-        {
-          type: "text",
-          content:
-            "Ordres de grandeur pour la vie quotidienne a Taiwan (2026) : un repas dans un stand de rue = 60-120 NT$ (1.5-3 euros), un bubble tea = 40-70 NT$, un trajet MRT = 20-65 NT$, un cafe au 星巴克 Starbucks = 120-180 NT$, un loyer studio a Taipei centre (Da'an, Zhongshan) = 10,000-18,000 NT$/mois, un loyer studio en peripherie (Banqiao, Zhonghe) = 7,000-12,000 NT$/mois, le SMIC taiwanais (基本工資 jīběn gōngzī) = environ 27,470 NT$/mois en 2026, un billet de 高鐵 (gāotiě, TGV taiwanais) Taipei vers Kaohsiung = environ 1,490 NT$, un aller simple en bus longue distance Taipei-Taichung = 250-300 NT$, une consultation medicale de base = 150-300 NT$ (la sante est tres abordable a Taiwan grace au systeme NHI 健保 jiànbǎo). Les billets et pieces en detail : billets de 100 (rouge, le plus courant pour les achats quotidiens), 200 (vert, assez rare — certains commercants le regardent a deux fois), 500 (marron, courant), 1000 (bleu, c'est ce que les distributeurs ATM donnent le plus souvent — pensez a faire de la monnaie car les petits commerces n'aiment pas rendre sur 1000), 2000 (violet, tres rare — certains vendeurs le refusent par meconnaissance). Pieces : 1 NT$ (petite, aluminium), 5 NT$ (bronze, bord lisse), 10 NT$ (argent, la plus commune), 50 NT$ (bicolore or et argent, ressemble a la piece de 2 euros). Astuce : les distributeurs de billets des convenience stores (7-Eleven surtout) acceptent les cartes Visa et Mastercard internationales et donnent des billets de 1000 NT$.",
-        },
-        {
-          type: "tip",
-          content:
-            "Où et quand négocier à Taiwan : OUI aux marchés de nuit (vêtements, accessoires, coques de téléphone — PAS la nourriture dont le prix est fixe), aux marchés traditionnels du matin (菜市場), aux marchés aux fleurs de Jianguo (建國花市), aux marchés aux puces et aux boutiques de jade au marché de Jianguo le week-end. NON dans les magasins avec prix affichés, les convenience stores, les chaînes (Uniqlo, MUJI...), les restaurants, les supermarchés. La technique de négociation polie en 4 étapes : 1) Demandez le prix : 多少錢？ 2) Faites une petite moue et dites 有點貴耶 (yǒudiǎn guì ye — c'est un peu cher...) avec un ton hésitant, pas agressif. 3) Demandez : 可以算便宜一點嗎？(kěyǐ suàn piányí yìdiǎn ma? — vous pouvez faire un prix ?). Le verbe 算 (suàn, calculer) est la clé — il sous-entend « refaites le calcul en ma faveur ». 4) Si le vendeur refuse, acceptez ou posez doucement l'article et partez lentement — souvent il vous rappellera avec une contre-offre. Ne négociez jamais agressivement — la politesse est la clé. Un sourire et un ton amical valent toutes les techniques de négociation.",
-        },
-        {
-          type: "text",
-          content:
-            "Le marchandage a Taiwan suit des regles precises qui meritent d'etre approfondies. OU marchander : marches de nuit (pour les vetements, accessoires, coques de telephone — PAS pour la nourriture dont le prix est fixe), marches traditionnels du matin (菜市場 càishìchǎng — parfaits pour les fruits et legumes frais), marches aux fleurs de Jianguo (建國花市 Jiànguó huāshì, le week-end), Wufenpu (五分埔 Wǔfēnpǔ, le quartier textile de Taipei pres de la gare de Songshan — des ruelles entieres de vetements en gros et au detail), et les marches aux puces. JAMAIS dans les magasins avec des prix affiches (7-Eleven, Uniqlo, MUJI, restaurants, supermarches Carrefour/PX Mart). COMMENT marchander : commencez par 太貴了 (tài guì le, trop cher), puis demandez 可以便宜一點嗎？(kěyǐ piányí yìdiǎn ma? — un peu moins cher ?). Le vendeur propose un prix, vous contre-proposez. L'objectif n'est pas de « gagner » mais de trouver un prix acceptable pour les deux — c'est un rituel social, pas un combat. COMBIEN reduire : en general, on obtient 10-20% de reduction maximum. Ne demandez JAMAIS la moitie du prix — c'est insultant et montre que vous ne connaissez pas la culture. QUAND abandonner : si le vendeur dit 不行 (bùxíng, impossible) ou 已經很便宜了 (yǐjīng hěn piányí le, c'est deja tres bon marche), arretez de negocier. Insister est mal vu et vous perdrez la face (丟臉 diūliǎn). L'astuce du lot : 買多一點可以便宜嗎？(mǎi duō yìdiǎn kěyǐ piányí ma? — si j'en achete plusieurs, c'est moins cher ?) fonctionne souvent. Acheter 3 coques de telephone au lieu d'une peut vous faire passer de 150 a 100 NT$ piece.",
-        },
-      ],
-    },
-    {
-      title: "Payer",
-      type: "grammar",
-      content: [
-        {
-          type: "text",
-          content:
-            "À Taiwan, on vous demandera souvent le mode de paiement. Les deux options de base : 現金 (xiànjīn) = espèces et 刷卡 (shuākǎ) = carte bancaire.",
-        },
-        {
-          type: "example",
-          chinese: "現金還是刷卡？",
-          pinyin: "xiànjīn háishì shuākǎ?",
-          translation: "Espèces ou carte ?",
-          content: "還是 (háishì) = ou bien (dans une question à choix). Même structure que 內用還是外帶.",
-        },
-        {
-          type: "text",
-          content:
-            "La 悠遊卡 (Yōuyóu kǎ, EasyCard) est une carte rechargeable qui sert à tout : MRT, bus, convenience stores, YouBike, certains restaurants. C'est l'outil indispensable du quotidien à Taiwan.",
-        },
-        {
-          type: "example",
-          chinese: "可以用悠遊卡嗎？",
-          pinyin: "kěyǐ yòng Yōuyóu kǎ ma?",
-          translation: "On peut payer avec la EasyCard ?",
-          content: "用 (yòng) = utiliser. 可以用...嗎？ = peut-on utiliser... ?",
-        },
-        {
-          type: "text",
-          content:
-            "Le paiement mobile est très répandu : LINE Pay et 街口支付 (JKoPay) sont les plus utilisés. Beaucoup de Taiwanais ne portent même plus de portefeuille.",
-        },
-        {
-          type: "text",
-          content:
-            "Quand vous payez, on vous donnera un reçu : 發票 (fāpiào). Rappelez-vous : c'est aussi un billet de loterie ! Le vendeur peut aussi demander : 要袋子嗎？(yào dàizi ma?) = « Vous voulez un sac ? ». Les sacs plastiques sont payants (1 à 2 NT$).",
-        },
-        {
-          type: "example",
-          chinese: "不用袋子，謝謝",
-          pinyin: "bùyòng dàizi, xièxiè",
-          translation: "Pas besoin de sac, merci",
-          content: "不用 (bùyòng) = pas besoin. Plus poli que 不要 (bú yào) dans ce contexte.",
-        },
-      ],
-    },
-    {
-      title: "Les convenience stores",
-      type: "culture",
-      content: [
-        {
-          type: "text",
-          content:
-            "Taiwan a la plus haute densité de convenience stores au monde. Il y a plus de 13 000 7-Eleven et FamilyMart sur une île de 23 millions d'habitants. Un 7-Eleven tous les 200 mètres en ville. Ce ne sont pas de simples épiceries : ce sont des centres de services essentiels.",
-        },
-        {
-          type: "text",
-          content:
-            "Ce que vous pouvez faire dans un convenience store taiwanais : acheter à manger (repas chauds, bentos, boissons), payer vos factures (eau, électricité, téléphone), envoyer et recevoir des colis, imprimer des documents, acheter des billets de concert, recharger votre EasyCard, et même payer vos impôts.",
-        },
-        {
-          type: "example",
-          chinese: "可以幫我加熱嗎？",
-          pinyin: "kěyǐ bāng wǒ jiārè ma?",
-          translation: "Vous pouvez me réchauffer ça ?",
-          content: "加熱 (jiārè) = réchauffer. Le micro-ondes du conbini est votre meilleur ami.",
-        },
-        {
-          type: "example",
-          chinese: "我要寄包裹",
-          pinyin: "wǒ yào jì bāoguǒ",
-          translation: "Je veux envoyer un colis",
-          content: "Les convenience stores sont aussi des points relais pour les colis.",
-        },
-        {
-          type: "tip",
-          content:
-            "Astuce de survie : les bentos (便當 biàndāng) des convenience stores sont de bonne qualité et coûtent entre 60 et 90 NT$ (2 à 3 euros). Parfait quand vous ne savez pas quoi manger. Demandez à les réchauffer (加熱) au comptoir.",
+            "Question directe, adaptée à un enfant. La réponse est un nombre + さい + です : 三十五歳です。 Entre adultes, on emploie おいくつですか (oikutsu desu ka), plus poli et moins abrupt.",
         },
         {
           type: "warning",
           content:
-            "Attention : beaucoup de petits commerces et stands de marché ne prennent QUE du liquide. Les convenience stores acceptent tout (cash, carte, EasyCard, LINE Pay), mais gardez toujours des billets sur vous pour les petits stands.",
-        },
-        {
-          type: "text",
-          content:
-            "Au comptoir du convenience store, les caissiers vous poseront systématiquement une série de questions rapides. Les connaître à l'avance vous évitera la panique du débutant : 要加熱嗎？(yào jiārè ma — vous voulez qu'on le réchauffe ?), 要集點嗎？(yào jídiǎn ma — vous voulez les points fidélité ?), 要袋子嗎？(yào dàizi ma — vous voulez un sac ? — payant, 1-2 NT$), 要統編嗎？(yào tǒngbiān ma — numéro fiscal d'entreprise ? — répondez 不用 bùyòng si vous êtes un particulier). Pour toutes ces questions : 好 (hǎo — oui) ou 不用 (bùyòng — non merci). Avec ces deux mots, vous survivrez à n'importe quel passage en caisse.",
-        },
-        {
-          type: "example",
-          chinese: "好，幫我加熱。不用袋子，謝謝。",
-          pinyin: "Hǎo, bāng wǒ jiārè. Bùyòng dàizi, xièxiè.",
-          translation: "Oui, réchauffez-le. Pas besoin de sac, merci.",
-          content: "Le duo 好/不用 est votre kit de survie au comptoir du conbini.",
-        },
-        {
-          type: "text",
-          content:
-            "Le café des convenience stores est une bonne surprise : City Café chez 7-Eleven et Let's Café chez FamilyMart proposent du café fraîchement moulu pour 45-65 NT$ (un americano medium). Les promotions café sont PARTOUT — deuxième tasse à moitié prix (第二杯半價 dì èr bēi bànjià), ou collectionnez des autocollants pour un café gratuit.",
-        },
-        {
-          type: "example",
-          chinese: "我要一杯中杯拿鐵。",
-          pinyin: "Wǒ yào yì bēi zhōng bēi ná tiě.",
-          translation: "Je voudrais un latte taille moyenne.",
-          content: "Les tailles : 小杯 (petit), 中杯 (moyen), 大杯 (grand).",
-        },
-        {
-          type: "text",
-          content:
-            "Les convenience stores (便利商店 biànlì shāngdiàn) sont le VRAI centre de la vie taiwanaise. Taiwan a la plus haute densité de convenience stores au monde : plus de 13,000 pour 23 millions d'habitants, soit 1 pour environ 1,700 personnes. Les deux géants : 7-Eleven (統一超商 Tǒngyī chāoshāng, environ 6,600 magasins) et FamilyMart (全家 Quánjiā, environ 4,000 magasins). On trouve aussi Hi-Life (萊爾富) et OK Mart en moindre nombre. Ce qu'on peut y faire (et cette liste n'est PAS exhaustive) : acheter à manger (bento 便當 biàndāng, onigiri 飯糰 fàntuán, sandwichs, salades, boissons chaudes et froides), réchauffer sa nourriture gratuitement au micro-ondes du comptoir, payer ses factures d'eau, d'électricité, de gaz et de téléphone, retirer de l'argent aux distributeurs ATM (qui acceptent les cartes internationales), envoyer et recevoir des colis (寄件 jìjiàn / 取件 qǔjiàn — le système de livraison de colis aux convenience stores est omniprésent à Taiwan), imprimer et scanner des documents sur la borne ibon (7-Eleven) ou FamiPort (FamilyMart), acheter des tickets de concert, de train ou de spectacle, recharger sa EasyCard (悠遊卡 Yōuyóu kǎ) au comptoir ou à la borne, payer des amendes de stationnement ou de circulation, acheter des timbres et envoyer du courrier, commander des billets de bus longue distance (客運 kèyùn), et même réserver certains services. Le 7-Eleven est ouvert 24h/24, 7j/7, 365 jours par an. C'est littéralement le couteau suisse de la vie quotidienne taiwanaise. Pour un étranger qui vient d'arriver, c'est le premier endroit à maîtriser.",
-        },
-        {
-          type: "text",
-          content:
-            "Les convenience stores meritent un approfondissement car ils sont le coeur battant du quotidien taiwanais. Le cafe : City Cafe chez 7-Eleven et Let's Cafe chez FamilyMart proposent du cafe fraichement moulu de qualite correcte pour 45-65 NT$ (un americano medium). C'est moins cher qu'un Starbucks (120-180 NT$) et souvent meilleur que ce qu'on attend. Les promotions cafe (咖啡優惠 kāfēi yōuhuì) sont PARTOUT — achetez-en deux et le deuxieme est a moitie prix (第二杯半價 dì èr bēi bànjià), ou collectionnez des autocollants pour un cafe gratuit. Les colis : le systeme de livraison a Taiwan passe massivement par les convenience stores. Quand vous commandez en ligne (sur Shopee 蝦皮, PChome, ou Momo), vous pouvez choisir la livraison en convenience store (超商取貨 chāoshāng qǔhuò). Vous recevez un SMS quand le colis arrive, puis vous allez le chercher au comptoir en montrant le code barre. C'est gratuit ou presque (souvent 60 NT$ de frais de livraison). Vous pouvez aussi ENVOYER des colis (寄件 jìjiàn) depuis un convenience store — pratique pour envoyer des souvenirs en France. La borne multifonction : la borne ibon (chez 7-Eleven) ou FamiPort (chez FamilyMart) est un ordinateur public qui permet d'imprimer des documents (depuis une cle USB, un email, ou le cloud), d'acheter des billets de concert, de train (TRA 台鐵 ou HSR 高鐵), de spectacle, de cinema, et de payer toutes sortes de factures et amendes. La collecte de points : quand le caissier vous demande 要集點嗎？(yào jídiǎn ma? — voulez-vous accumuler les points ?), repondez 好 si vous avez l'app Open Point (7-Eleven) ou FamilyMart App, ou 不用 (bùyòng, pas besoin) sinon. Les points permettent d'obtenir des cadeaux gratuits (peluches, ustensiles de cuisine, etc.) que les Taiwanais collectionnent avec passion.",
-        },
-        {
-          type: "warning",
-          content:
-            "Les pièges du shopping à Taiwan pour les étrangers : 1) Les étiquettes de prix incluent TOUJOURS les taxes — pas de mauvaise surprise à la caisse, contrairement aux États-Unis ou au Canada. Le prix affiché est le prix payé. 2) La loterie des reçus (統一發票 tǒngyī fāpiào) : GARDEZ tous vos reçus ! Chaque facture a un numéro unique à 8 chiffres qui participe à un tirage au sort bimestriel organisé par le gouvernement. Le gros lot : 10 millions NT$ (environ 286,000 euros). Les prix intermédiaires : 2 millions, 200,000, 40,000, 10,000, 4,000, 1,000, et 200 NT$. Vérifiez vos numéros sur l'app 發票存摺 (fāpiào cúnzhé) ou sur le site officiel du Ministère des Finances. Beaucoup de Taiwanais stockent leurs factures numériquement via l'EasyCard ou l'app. 3) Les sacs plastiques sont payants dans toutes les enseignes : 1 à 5 NT$ selon la taille — amenez votre propre sac (環保袋 huánbǎo dài). 4) Le retour et l'échange sont généralement faciles dans les chaînes (7 jours avec le reçu, article non ouvert) mais impossibles dans les marchés et les stands de rue — vérifiez avant d'acheter.",
-        },
-      ],
-    },
-    {
-      title: "Shopping en ligne et loterie des reçus",
-      type: "culture",
-      content: [
-        {
-          type: "text",
-          content:
-            "Le e-commerce est extrêmement développé à Taiwan. La plateforme dominante est 蝦皮 (xiāpí — Shopee), qui combine marketplace et réseau social — on y trouve absolument tout. La spécificité taiwanaise : la livraison au convenience store (超商取貨 chāoshāng qǔhuò) est le mode favori. Vous commandez en ligne, choisissez le 7-Eleven ou FamilyMart le plus proche, et récupérez votre colis quand ça vous arrange (les conbini sont ouverts 24h/24). Pas besoin d'être chez soi.",
-        },
-        {
-          type: "text",
-          content:
-            "Les autres plateformes importantes : PChome 24h est le « Amazon taiwanais » — livraison en 24 heures dans toute l'île. momo (富邦購物 Fùbāng gòuwù) offre un catalogue gigantesque avec des promotions agressives. Pour la livraison de repas : Foodpanda (熊貓 xióngmāo) et UberEats se partagent le marché. Les livreurs en scooter rose (Foodpanda) ou vert (UberEats) font partie du paysage urbain.",
-        },
-        {
-          type: "example",
-          chinese: "我在蝦皮下單了，選超商取貨。",
-          pinyin: "Wǒ zài xiāpí xiàdān le, xuǎn chāoshāng qǔhuò.",
-          translation: "J'ai commandé sur Shopee, avec retrait au convenience store.",
-          content: "下單 = passer commande, 超商取貨 = retrait au conbini.",
-        },
-        {
-          type: "text",
-          content:
-            "Le vocabulaire du shopping en ligne : 下單 (xiàdān — passer commande), 付款 (fùkuǎn — payer), 運費 (yùnfèi — frais de livraison), 免運 (miǎn yùn — livraison gratuite, le graal de tout acheteur), 超商取貨 (chāoshāng qǔhuò — retrait au conbini), 貨到付款 (huò dào fùkuǎn — paiement à la livraison). Sur Shopee, guettez les événements « double jour » (雙11, 雙12) pour des réductions massives. Les vendeurs offrent souvent la livraison gratuite au-dessus d'un certain montant — 免運 est le mot magique à chercher.",
-        },
-        {
-          type: "text",
-          content:
-            "Le système de reçus-loterie (統一發票 tǒngyī fāpiào) est unique au monde. Chaque reçu officiel est automatiquement un billet de loterie — système mis en place en 1951 pour lutter contre l'évasion fiscale. Le tirage a lieu tous les deux mois (les 25 des mois impairs). Chaque reçu porte un numéro à 8 chiffres. Les gains : 3 derniers chiffres = 200 NT$, les 8 chiffres complets pour les gros lots (10 millions NT$ ≈ 280,000 euros, et un prix spécial de 2 millions NT$). L'app indispensable : 發票存摺 (fāpiào cúnzhé — « carnet de reçus »), qui scanne vos reçus papier, stocke vos reçus électroniques, et vérifie automatiquement les numéros gagnants à chaque tirage.",
-        },
-        {
-          type: "example",
-          chinese: "你有沒有對發票？這期有中獎嗎？",
-          pinyin: "Nǐ yǒu méiyǒu duì fāpiào? Zhè qī yǒu zhòngjiǎng ma?",
-          translation: "Tu as vérifié tes reçus ? Tu as gagné cette fois ?",
-          content: "對發票 = vérifier ses reçus. 中獎 = gagner un prix.",
+            "Demander l'âge d'un adulte est délicat au Japon comme en France, mais pour une autre raison : l'âge y détermine le registre de langue et la place dans un groupe, donc la question surgit vite entre collègues ou entre étudiants. Si vous devez la poser, dites おいくつですか — なんさい à un adulte sonne enfantin, presque impoli.",
         },
         {
           type: "tip",
           content:
-            "Pour éviter d'accumuler des montagnes de reçus papier : téléchargez l'app 發票存摺 et configurez les reçus électroniques (電子發票 diànzǐ fāpiào) — vous pouvez enregistrer votre EasyCard ou votre numéro de téléphone comme support. Ou donnez vos reçus papier aux boîtes de collecte (發票捐贈箱) dans les convenience stores — ils sont reversés à des associations caritatives.",
+            "Deux phrases à savoir dire sans réfléchir avant d'arriver au Japon : いくらですか (combien ?) et ...をください (donnez-moi...). Associées à un nombre, elles suffisent à conclure n'importe quel achat.",
         },
       ],
     },
@@ -272,319 +196,160 @@ export const unit10: CourseUnit = {
 
   dialogue: {
     context:
-      "Vous achetez un souvenir au marché puis vous passez au 7-Eleven.",
+      "Dans une boutique de souvenirs. Vous demandez un prix, vous le trouvez élevé, la vendeuse vous propose autre chose. Tous les montants de la scène révisent les liaisons de l'unité.",
     lines: [
       {
         speaker: "Vous",
-        chinese: "這個多少錢？",
-        pinyin: "zhège duōshǎo qián?",
-        french: "Combien coûte ceci ?",
+        japanese: "すみません、これはいくらですか。",
+        romaji: "sumimasen, kore wa ikura desu ka.",
+        french: "Excusez-moi, combien coûte ceci ?",
+        note: "すみません sert ici à héler quelqu'un, pas à s'excuser. C'est son usage le plus fréquent au Japon.",
       },
       {
-        speaker: "Vendeur",
-        chinese: "三百五十塊。",
-        pinyin: "sān bǎi wǔshí kuài.",
-        french: "350 dollars.",
-      },
-      {
-        speaker: "Vous",
-        chinese: "太貴了！便宜一點可以嗎？",
-        pinyin: "tài guì le! piányí yìdiǎn kěyǐ ma?",
-        french: "Trop cher ! Un peu moins cher, c'est possible ?",
-      },
-      {
-        speaker: "Vendeur",
-        chinese: "好吧，三百塊。",
-        pinyin: "hǎo ba, sān bǎi kuài.",
-        french: "Bon, 300 dollars.",
-        note: "好吧 (hǎo ba) = bon, d'accord (avec une légère concession).",
+        speaker: "Vendeuse",
+        japanese: "それは千八百円です。",
+        romaji: "sore wa sen happyaku en desu.",
+        french: "Cela fait 1 800 yens.",
+        note: "八百 se dit はっぴゃく, jamais はちひゃく. Notez aussi le それ : de son point de vue, l'objet est dans votre sphère.",
       },
       {
         speaker: "Vous",
-        chinese: "好，可以刷卡嗎？",
-        pinyin: "hǎo, kěyǐ shuākǎ ma?",
-        french: "D'accord, je peux payer par carte ?",
+        japanese: "ちょっと高いですね。",
+        romaji: "chotto takai desu ne.",
+        french: "C'est un peu cher.",
+        note: "ちょっと (un peu) adoucit tout ce qui suit. Un refus direct se formule presque toujours avec ちょっと au Japon.",
       },
       {
-        speaker: "Vendeur",
-        chinese: "不好意思，只收現金。",
-        pinyin: "bù hǎoyìsi, zhǐ shōu xiànjīn.",
-        french: "Désolé, on n'accepte que le liquide.",
-        note: "只 (zhǐ) = seulement. 收 (shōu) = accepter/recevoir.",
+        speaker: "Vendeuse",
+        japanese: "こちらは九百円です。",
+        romaji: "kochira wa kyuuhyaku en desu.",
+        french: "Celui-ci est à 900 yens.",
+        note: "Le personnel de vente dit こちら là où vous diriez これ : c'est la forme déférente du commerce.",
+      },
+      {
+        speaker: "Vous",
+        japanese: "じゃあ、それをください。",
+        romaji: "jaa, sore o kudasai.",
+        french: "Alors, je prends celui-là.",
+        note: "...をください est la formule d'achat standard. À l'oral rapide, を tombe souvent.",
+      },
+      {
+        speaker: "Vendeuse",
+        japanese: "ありがとうございます。九百円です。",
+        romaji: "arigatou gozaimasu. kyuuhyaku en desu.",
+        french: "Merci beaucoup. Ce sera 900 yens.",
       },
     ],
   },
 
   keyPoints: [
-    "多少錢？ pour demander le prix. L'unité courante est 塊 (kuài), l'officielle est 元 (yuán).",
-    "太貴了 = trop cher, 便宜一點 = un peu moins cher. On négocie aux marchés, jamais en magasin.",
-    "Modes de paiement : 現金 (espèces), 刷卡 (carte), 悠遊卡 (EasyCard), LINE Pay.",
-    "Les convenience stores (7-Eleven, FamilyMart) sont des centres de services où l'on peut tout faire : manger, payer ses factures, envoyer des colis.",
+    "De 11 à 99, tout se construit autour de 十 : 十一 = 11, 二十 = 20, 三十五 = 35. Aucune irrégularité, et jamais いちじゅう pour dix.",
+    "四, 七, 九 ont deux lectures : よん／し, なな／しち, きゅう／く. よん, なな et きゅう dominent à l'oral ; し et しち restent dans les dates et les heures (四月 しがつ, 七時 しちじ).",
+    "Le japonais compte par tranches de quatre chiffres : 一万 = 10 000, 十万 = 100 000, 百万 = 1 000 000. « Cent cinquante mille » se dit 十五万.",
+    "Liaisons obligatoires : 300 さんびゃく, 600 ろっぴゃく, 800 はっぴゃく, 3 000 さんぜん, 8 000 はっせん.",
+    "Prix : いくらですか, puis montant + 円です. Âge : なんさいですか à un enfant, おいくつですか à un adulte, et 20 ans = はたち.",
   ],
 
   vocabulary: [
-    {
-      character: "多少錢",
-      pinyin: "duōshǎo qián",
-      zhuyin: "ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ",
-      french: "Combien (ça coûte) ?",
-      english: "How much?",
-      example: {
-        sentence: "這個多少錢？",
-        pinyin: "zhège duōshǎo qián?",
-        translation: "Combien coûte ceci ?",
-      },
-    },
-    {
-      character: "塊",
-      pinyin: "kuài",
-      zhuyin: "ㄎㄨㄞˋ",
-      french: "Dollar (familier) / yuan",
-      english: "Dollar (colloquial)",
-      example: {
-        sentence: "一百塊。",
-        pinyin: "yì bǎi kuài.",
-        translation: "100 dollars.",
-      },
-    },
-    {
-      character: "太貴了",
-      pinyin: "tài guì le",
-      zhuyin: "ㄊㄞˋ ㄍㄨㄟˋ ㄌㄜ˙",
-      french: "Trop cher",
-      english: "Too expensive",
-      example: {
-        sentence: "這個太貴了！",
-        pinyin: "zhège tài guì le!",
-        translation: "C'est trop cher !",
-      },
-    },
-    {
-      character: "便宜",
-      pinyin: "piányí",
-      zhuyin: "ㄆㄧㄢˊ ㄧˊ",
-      french: "Pas cher / bon marché",
-      english: "Cheap / inexpensive",
-      example: {
-        sentence: "夜市的東西很便宜。",
-        pinyin: "yèshì de dōngxi hěn piányí.",
-        translation: "Les choses au marché de nuit sont pas chères.",
-      },
-    },
-    {
-      character: "現金",
-      pinyin: "xiànjīn",
-      zhuyin: "ㄒㄧㄢˋ ㄐㄧㄣ",
-      french: "Espèces / liquide",
-      english: "Cash",
-      example: {
-        sentence: "只收現金。",
-        pinyin: "zhǐ shōu xiànjīn.",
-        translation: "On n'accepte que le liquide.",
-      },
-    },
-    {
-      character: "刷卡",
-      pinyin: "shuākǎ",
-      zhuyin: "ㄕㄨㄚ ㄎㄚˇ",
-      french: "Payer par carte",
-      english: "Pay by card",
-      example: {
-        sentence: "可以刷卡嗎？",
-        pinyin: "kěyǐ shuākǎ ma?",
-        translation: "On peut payer par carte ?",
-      },
-    },
-    {
-      character: "發票",
-      pinyin: "fāpiào",
-      zhuyin: "ㄈㄚ ㄆㄧㄠˋ",
-      french: "Reçu / facture (loterie)",
-      english: "Receipt / invoice",
-      example: {
-        sentence: "發票給你。",
-        pinyin: "fāpiào gěi nǐ.",
-        translation: "Voici votre reçu.",
-      },
-    },
-    {
-      character: "袋子",
-      pinyin: "dàizi",
-      zhuyin: "ㄉㄞˋ ㄗ˙",
-      french: "Sac",
-      english: "Bag",
-      example: {
-        sentence: "要袋子嗎？",
-        pinyin: "yào dàizi ma?",
-        translation: "Vous voulez un sac ?",
-      },
-    },
-    {
-      character: "大",
-      pinyin: "dà",
-      zhuyin: "ㄉㄚˋ",
-      french: "Grand",
-      english: "Big / large",
-      example: {
-        sentence: "要大的還是小的？",
-        pinyin: "yào dà de háishì xiǎo de?",
-        translation: "Vous voulez le grand ou le petit ?",
-      },
-    },
-    {
-      character: "小",
-      pinyin: "xiǎo",
-      zhuyin: "ㄒㄧㄠˇ",
-      french: "Petit",
-      english: "Small",
-      example: {
-        sentence: "小的就好。",
-        pinyin: "xiǎo de jiù hǎo.",
-        translation: "Le petit ça va.",
-      },
-    },
-    {
-      character: "要",
-      pinyin: "yào",
-      zhuyin: "ㄧㄠˋ",
-      french: "Vouloir / avoir besoin",
-      english: "To want / to need",
-      example: {
-        sentence: "你要什麼？",
-        pinyin: "nǐ yào shénme?",
-        translation: "Qu'est-ce que tu veux ?",
-      },
-    },
-    {
-      character: "不要",
-      pinyin: "bú yào",
-      zhuyin: "ㄅㄨˊ ㄧㄠˋ",
-      french: "Ne pas vouloir / non merci",
-      english: "Don't want / no thanks",
-      example: {
-        sentence: "不要袋子，謝謝。",
-        pinyin: "bú yào dàizi, xièxiè.",
-        translation: "Pas de sac, merci.",
-      },
-    },
-    {
-      character: "一點",
-      pinyin: "yìdiǎn",
-      zhuyin: "ㄧˋ ㄉㄧㄢˇ",
-      french: "Un peu",
-      english: "A little",
-      example: {
-        sentence: "便宜一點可以嗎？",
-        pinyin: "piányí yìdiǎn kěyǐ ma?",
-        translation: "Un peu moins cher, c'est possible ?",
-      },
-    },
-    {
-      character: "可以",
-      pinyin: "kěyǐ",
-      zhuyin: "ㄎㄜˇ ㄧˇ",
-      french: "Pouvoir, est-ce que",
-      english: "Can / may",
-      example: {
-        sentence: "可以刷卡嗎？",
-        pinyin: "kěyǐ shuākǎ ma?",
-        translation: "On peut payer par carte ?",
-      },
-    },
-    {
-      character: "還是",
-      pinyin: "háishì",
-      zhuyin: "ㄏㄞˊ ㄕˋ",
-      french: "Ou bien (dans une question)",
-      english: "Or (in a question)",
-      example: {
-        sentence: "要大的還是小的？",
-        pinyin: "yào dà de háishì xiǎo de?",
-        translation: "Vous voulez le grand ou le petit ?",
-      },
-    },
+    { term: "一", kana: "いち", romaji: "ichi", segments: [{ text: "一", reading: "いち" }], french: "Un (1)", english: "One (1)" },
+    { term: "二", kana: "に", romaji: "ni", segments: [{ text: "二", reading: "に" }], french: "Deux (2)", english: "Two (2)" },
+    { term: "三", kana: "さん", romaji: "san", segments: [{ text: "三", reading: "さん" }], french: "Trois (3)", english: "Three (3)" },
+    { term: "四", kana: "よん", romaji: "yon", segments: [{ text: "四", reading: "よん" }], french: "Quatre (4) — aussi lu し", english: "Four (4) — also read shi" },
+    { term: "五", kana: "ご", romaji: "go", segments: [{ text: "五", reading: "ご" }], french: "Cinq (5)", english: "Five (5)" },
+    { term: "六", kana: "ろく", romaji: "roku", segments: [{ text: "六", reading: "ろく" }], french: "Six (6)", english: "Six (6)" },
+    { term: "七", kana: "なな", romaji: "nana", segments: [{ text: "七", reading: "なな" }], french: "Sept (7) — aussi lu しち", english: "Seven (7) — also read shichi" },
+    { term: "八", kana: "はち", romaji: "hachi", segments: [{ text: "八", reading: "はち" }], french: "Huit (8)", english: "Eight (8)" },
+    { term: "九", kana: "きゅう", romaji: "kyuu", segments: [{ text: "九", reading: "きゅう" }], french: "Neuf (9) — aussi lu く", english: "Nine (9) — also read ku" },
+    { term: "十", kana: "じゅう", romaji: "juu", segments: [{ text: "十", reading: "じゅう" }], french: "Dix (10)", english: "Ten (10)" },
+    { term: "百", kana: "ひゃく", romaji: "hyaku", segments: [{ text: "百", reading: "ひゃく" }], french: "Cent (100)", english: "Hundred (100)" },
+    { term: "千", kana: "せん", romaji: "sen", segments: [{ text: "千", reading: "せん" }], french: "Mille (1 000)", english: "Thousand (1,000)" },
+    { term: "万", kana: "まん", romaji: "man", segments: [{ text: "万", reading: "まん" }], french: "Dix mille (10 000)", english: "Ten thousand (10,000)" },
+    { term: "円", kana: "えん", romaji: "en", segments: [{ text: "円", reading: "えん" }], french: "Le yen (monnaie japonaise)", english: "Yen (Japanese currency)" },
+    { term: "さい", kana: "さい", romaji: "sai", french: "Ans (compteur d'âge, écrit 歳 ou 才)", english: "Years old (age counter)" },
+    { term: "いくら", kana: "いくら", romaji: "ikura", pitch: 1, french: "Combien ? (prix)", english: "How much? (price)" },
+    { term: "なんさい", kana: "なんさい", romaji: "nansai", french: "Quel âge ?", english: "How old?" },
+    { term: "高い", kana: "たかい", romaji: "takai", segments: [{ text: "高", reading: "たか" }, { text: "い" }], pitch: 2, french: "Cher ; haut", english: "Expensive; tall" },
   ],
 
   exercises: [
     {
       id: "unit-10-ex1",
-      type: "translate",
-      question: "Comment demande-t-on le prix de quelque chose ?",
-      correctAnswer: "多少錢？",
-      options: ["多少錢？", "怎麼賣？", "太貴了？", "幾塊錢？"],
-      optionsHint: ["duōshǎo qián?", "zěnme mài?", "tài guì le?", "jǐ kuài qián?"],
-      optionsZhuyin: ["ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄗㄣˇ ㄇㄜ ㄇㄞˋ?", "ㄊㄞˋ ㄍㄨㄟˋ ㄌㄜ?", "ㄐㄧˇ ㄎㄨㄞˋ ㄑㄧㄢˊ?"],
+      type: "comprehension",
+      question: "Par tranches de combien de chiffres le japonais regroupe-t-il les grands nombres ?",
+      correctAnswer: "Quatre : après 千 vient le palier 万 (10 000)",
+      options: [
+        "Quatre : après 千 vient le palier 万 (10 000)",
+        "Trois, comme le français : après 千 vient un mot pour « million »",
+        "Deux, ce qui explique les liaisons comme はっぴゃく",
+        "Six, à partir de 百万 seulement",
+      ],
+      hint: "C'est ce qui rend les prix japonais difficiles à saisir à l'oral.",
     },
     {
       id: "unit-10-ex2",
-      type: "comprehension",
-      question: "Que signifie 買一送一 ?",
-      correctAnswer: "Un acheté, un offert",
-      options: [
-        "Un acheté, un offert",
-        "Acheter et envoyer",
-        "Deux pour le prix de trois",
-        "Soldes de fin de saison",
-      ],
-      hint: "mǎi yī sòng yī",
+      type: "fill-blank",
+      question: "« 3 000 yens » se dit ___ .",
+      correctAnswer: "さんぜんえん",
+      options: ["さんぜんえん", "さんせんえん", "さんまんえん", "さんびゃくえん"],
+      optionsHint: ["san zen en", "san sen en", "san man en", "san byaku en"],
+      optionsKana: ["さんぜんえん", "さんせんえん", "さんまんえん", "さんびゃくえん"],
+      hint: "千 change de son après 三.",
     },
     {
       id: "unit-10-ex3",
       type: "fill-blank",
-      question: "太___了！(Trop cher !)",
-      correctAnswer: "貴",
-      options: ["貴", "便宜", "大", "好"],
-      optionsHint: ["guì", "piányi", "dà", "hǎo"],
-      optionsZhuyin: ["ㄍㄨㄟˋ", "ㄆㄧㄢˊ ㄧ", "ㄉㄚˋ", "ㄏㄠˇ"],
-      hint: "Quel caractère signifie « cher » ?",
+      question: "Un loyer affiché 150,000円 se lit ___ .",
+      correctAnswer: "じゅうごまんえん",
+      options: ["じゅうごまんえん", "ひゃくごじゅうせんえん", "いちまんごせんえん", "ごじゅうまんえん"],
+      optionsHint: ["juugoman en", "hyaku gojuu sen en", "ichiman gosen en", "gojuuman en"],
+      optionsKana: ["じゅうごまんえん", "ひゃくごじゅうせんえん", "いちまんごせんえん", "ごじゅうまんえん"],
+      hint: "Coupez le nombre quatre chiffres avant la fin : 15 | 0000.",
     },
     {
       id: "unit-10-ex4",
-      type: "translate",
-      question: "Que signifie 現金還是刷卡 ?",
-      correctAnswer: "Espèces ou carte ?",
+      type: "comprehension",
+      question: "Pourquoi le personnel des gares et des boutiques dit-il なな plutôt que しち ?",
+      correctAnswer: "Parce que しち se confond avec いち dès qu'on écoute mal",
       options: [
-        "Espèces ou carte ?",
-        "Grand ou petit ?",
-        "Sur place ou à emporter ?",
-        "Piquant ou pas piquant ?",
+        "Parce que しち se confond avec いち dès qu'on écoute mal",
+        "Parce que しち est une lecture familière réservée aux enfants",
+        "Parce que しち ne s'emploie qu'après 十",
+        "Parce que なな est la seule lecture correcte de 七",
       ],
-      hint: "xiànjīn háishì shuākǎ",
+      hint: "Pensez au bruit d'un quai de gare.",
     },
     {
       id: "unit-10-ex5",
-      type: "comprehension",
-      question: "Que peut-on faire dans un convenience store taiwanais ?",
-      correctAnswer: "Tout : manger, payer des factures, envoyer des colis, recharger sa carte",
-      options: [
-        "Tout : manger, payer des factures, envoyer des colis, recharger sa carte",
-        "Seulement acheter à manger et des boissons",
-        "Uniquement acheter des produits de première nécessité",
-        "Seulement retirer de l'argent",
-      ],
+      type: "listen",
+      question: "これはいくらですか。",
+      correctAnswer: "Combien coûte ceci ?",
+      options: ["Combien coûte ceci ?", "Quel âge avez-vous ?", "Qu'est-ce que c'est ?", "Où est-ce ?"],
+      hint: "Le mot interrogatif du prix.",
     },
     {
       id: "unit-10-ex6",
-      type: "fill-blank",
-      question: "可以___一點嗎？(Vous pouvez faire un peu moins cher ?)",
-      correctAnswer: "便宜",
-      options: ["便宜", "貴", "大", "好"],
-      optionsHint: ["piányi", "guì", "dà", "hǎo"],
-      optionsZhuyin: ["ㄆㄧㄢˊ ㄧ", "ㄍㄨㄟˋ", "ㄉㄚˋ", "ㄏㄠˇ"],
-      hint: "Quel mot signifie « pas cher » ?",
+      type: "reorder",
+      question: "Remettez dans l'ordre : « Ceci coûte 1 000 yens. »",
+      correctAnswer: "これは千円です。",
+      options: ["これ", "は", "千円", "です"],
+      hint: "Sujet, particule は, montant, です.",
     },
     {
       id: "unit-10-ex7",
+      type: "translate",
+      question: "Traduisez : « Quel âge as-tu ? » (à un enfant)",
+      correctAnswer: "なんさいですか。",
+      options: ["なんさいですか。", "なんじですか。", "いくらですか。", "なんにんですか。"],
+      optionsHint: ["quel âge", "quelle heure", "combien ça coûte", "combien de personnes"],
+      hint: "Le compteur de l'âge est さい.",
+    },
+    {
+      id: "unit-10-ex8",
       type: "listen",
-      question: "這個多少錢？太貴了，可以便宜一點嗎？",
-      correctAnswer: "Combien ça coûte ? C'est trop cher, un peu moins cher ?",
-      options: [
-        "Combien ça coûte ? C'est trop cher, un peu moins cher ?",
-        "Je veux acheter ce sac.",
-        "Vous acceptez la carte ?",
-        "Où est le 7-Eleven ?",
-      ],
-      hint: "zhège duōshǎo qián? tài guì le, kěyǐ piányí yìdiǎn ma?",
+      question: "はたちです。",
+      correctAnswer: "J'ai vingt ans.",
+      options: ["J'ai vingt ans.", "J'ai dix ans.", "J'ai huit ans.", "Ça fait vingt yens."],
+      hint: "Une forme irrégulière : ce n'est pas にじゅっさい.",
     },
   ],
 

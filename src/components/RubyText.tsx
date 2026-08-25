@@ -1,87 +1,65 @@
 "use client";
 
 import { cn } from "@/lib/cn";
+import { toSegments } from "@/lib/japanese";
+import type { Segment } from "@/types";
+
+type ReadingSize = "xs" | "sm" | "md";
 
 interface RubyTextProps {
-  chinese: string;
-  pinyin: string;
-  showPinyin: boolean;
-  pinyinSize?: "xs" | "sm" | "md";
-  charSize?: string;
+  /** The word as written. */
+  term: string;
+  /** Full reading in kana, used when no explicit segments are given. */
+  kana: string;
+  segments?: Segment[];
+  showReading: boolean;
+  readingSize?: ReadingSize;
+  termSize?: string;
   className?: string;
 }
 
+const RT_SIZES: Record<ReadingSize, string> = {
+  xs: "text-[10px]",
+  sm: "text-xs",
+  md: "text-sm",
+};
+
 /**
- * Splits pinyin string into syllables aligned with Chinese characters.
- * Handles multi-char words by matching syllable count to character count.
+ * Renders furigana as one <ruby> per segment.
+ *
+ * There is no alignment to compute: the data says which run of text carries which
+ * reading. That is the only correct model for Japanese — 食べる splits as 食(た)
+ * + べる, and 今日(きょう) does not split at all.
+ *
+ * When the reading is hidden it is left out of the DOM rather than made
+ * transparent, so a screen reader never reads the answer aloud.
  */
-function alignPinyinToChars(chinese: string, pinyin: string): string[] {
-  const syllables = pinyin
-    .replace(/[，。！？、；：""''（）…—]/g, "")
-    .split(/[\s]+/)
-    .filter(Boolean);
-
-  const chars = chinese.split("");
-  const result: string[] = [];
-  let syllableIdx = 0;
-
-  for (const char of chars) {
-    if (/[\u4e00-\u9fff\u3400-\u4dbf]/.test(char)) {
-      result.push(syllableIdx < syllables.length ? syllables[syllableIdx] : "");
-      syllableIdx++;
-    } else {
-      result.push("");
-    }
-  }
-
-  return result;
-}
-
 export default function RubyText({
-  chinese,
-  pinyin,
-  showPinyin,
-  pinyinSize = "xs",
-  charSize,
+  term,
+  kana,
+  segments,
+  showReading,
+  readingSize = "xs",
+  termSize,
   className,
 }: RubyTextProps) {
-  const aligned = alignPinyinToChars(chinese, pinyin);
-  const chars = chinese.split("");
-
-  const rtSize = {
-    xs: "text-[10px]",
-    sm: "text-xs",
-    md: "text-sm",
-  }[pinyinSize];
+  const resolved = toSegments({ term, kana, segments });
+  const rtSize = RT_SIZES[readingSize];
 
   return (
-    <span className={cn("inline", className)} lang="zh-Hant-TW">
-      {chars.map((char, i) => {
-        const isChinese = /[\u4e00-\u9fff\u3400-\u4dbf]/.test(char);
-
-        if (!isChinese) {
-          return (
-            <span key={i} className={charSize}>
-              {char}
-            </span>
-          );
-        }
-
-        return (
-          <ruby key={i} className={cn("ruby-align-center", charSize)}>
-            {char}
-            <rt
-              className={cn(
-                rtSize,
-                "font-normal text-stone-400 transition-opacity duration-200",
-                showPinyin ? "opacity-100" : "opacity-0"
-              )}
-            >
-              {aligned[i]}
-            </rt>
+    <span className={cn("inline", className)} lang="ja">
+      {resolved.map((segment, i) =>
+        segment.reading && showReading ? (
+          <ruby key={i} className={termSize}>
+            {segment.text}
+            <rt className={cn(rtSize, "font-normal text-stone-500")}>{segment.reading}</rt>
           </ruby>
-        );
-      })}
+        ) : (
+          <span key={i} className={termSize}>
+            {segment.text}
+          </span>
+        )
+      )}
     </span>
   );
 }

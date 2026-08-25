@@ -1,9 +1,9 @@
 /**
  * Fix script: ensure every optionsHint: [ has its closing ],
- * before optionsZhuyin starts.
+ * before optionsKana starts.
  *
- * Also remove any optionsZhuyin that has incomplete/bad conversions
- * (contains raw pinyin mixed with zhuyin).
+ * Also remove any optionsKana that has incomplete/bad conversions
+ * (contains raw romaji mixed with kana).
  */
 
 import { readFileSync, writeFileSync, readdirSync } from 'fs';
@@ -27,9 +27,9 @@ function fixFile(filePath) {
       newLines.push(line);
       i++;
 
-      // Read until we find ], or optionsZhuyin (which means ], was eaten)
+      // Read until we find ], or optionsKana (which means ], was eaten)
       while (i < lines.length) {
-        if (lines[i].match(/^\s*optionsZhuyin:/)) {
+        if (lines[i].match(/^\s*optionsKana:/)) {
           // The ], of optionsHint was eaten! Insert it
           const indent = line.match(/^(\s*)/)[1];
           newLines.push(`${indent}],`);
@@ -46,9 +46,9 @@ function fixFile(filePath) {
       continue;
     }
 
-    // Detect optionsZhuyin that contain raw pinyin (bad conversions)
-    if (line.match(/^\s*optionsZhuyin:/)) {
-      // Check if this line or subsequent lines contain Latin letters mixed with zhuyin
+    // Detect optionsKana that contain raw romaji (bad conversions)
+    if (line.match(/^\s*optionsKana:/)) {
+      // Check if this line or subsequent lines contain Latin letters mixed with kana
       // (indicating bad conversion)
       let blockStr = line;
       let blockEnd = i;
@@ -64,16 +64,16 @@ function fixFile(filePath) {
         }
       }
 
-      // Check for mixed pinyin+zhuyin (bad conversion)
-      // A good optionsZhuyin should only have zhuyin chars, spaces, punctuation, tone marks
+      // Check for mixed romaji+kana (bad conversion)
+      // A good optionsKana should only have kana chars, spaces, punctuation, tone marks
       // Bad ones contain Latin letters like "zhè", "nǎ", etc.
       const hasLatinPinyin = /[a-zA-Zāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]{2,}/.test(
         blockStr.replace(/LINE|SIM|WiFi|OK|APP/g, '') // Keep known English words
       );
 
       if (hasLatinPinyin) {
-        // Skip this bad optionsZhuyin entirely
-        console.log(`  Removing bad optionsZhuyin in ${filePath} at line ${i + 1}`);
+        // Skip this bad optionsKana entirely
+        console.log(`  Removing bad optionsKana in ${filePath} at line ${i + 1}`);
         if (blockEnd > i) {
           i = blockEnd + 1;
         } else {

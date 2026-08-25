@@ -3,8 +3,8 @@ import type { VocabularyItem } from "./index";
 export interface ContentBlock {
   type: "text" | "example" | "warning" | "tip" | "comparison";
   content: string;
-  chinese?: string;
-  pinyin?: string;
+  japanese?: string;
+  romaji?: string;
   translation?: string;
 }
 
@@ -16,8 +16,8 @@ export interface CourseSection {
 
 export interface DialogueLine {
   speaker: string;
-  chinese: string;
-  pinyin: string;
+  japanese: string;
+  romaji: string;
   french: string;
   note?: string;
 }
@@ -34,16 +34,16 @@ export interface Exercise {
   correctAnswer: string;
   options?: string[];
   hint?: string;
-  hintZhuyin?: string;
+  hintKana?: string;
   optionsHint?: string[];
-  optionsZhuyin?: string[];
+  optionsKana?: string[];
 }
 
 export interface CourseUnit {
   id: string;
   number: number;
   title: string;
-  titleZh: string;
+  titleJa: string;
   chapter: number;
   description: string;
   icon: string;
@@ -62,17 +62,25 @@ export interface CourseUnit {
 export interface Chapter {
   number: number;
   title: string;
-  titleZh: string;
+  titleJa: string;
   description: string;
   unitIds: string[];
 }
 
-export interface HSKLevel {
+/** Tailwind class strings, written out so the scanner can see them. */
+export interface LevelColor {
+  badge: string;
+  surface: string;
+  text: string;
+}
+
+export interface JLPTLevel {
   level: number;
   slug: string;
+  color: LevelColor;
   title: string;
-  titleZh: string;
-  tocflLabel: string;
+  titleJa: string;
+  secondaryLabel: string;
   description: string;
   chapterNumbers: number[];
   comingSoon?: boolean;

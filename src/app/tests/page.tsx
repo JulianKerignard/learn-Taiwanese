@@ -15,9 +15,9 @@ const LEVEL_COLORS = [
 ];
 
 const HSK3_PLACEHOLDER = {
-  id: "hsk-3",
-  title: "HSK 3 — Test blanc",
-  titleZh: "HSK三級模擬考試",
+  id: "jlpt-3",
+  title: "JLPT 3 — Test blanc",
+  titleJa: "HSK三級模擬考試",
   level: 3,
   description: "Teste ta compréhension de textes et ta capacité à t'exprimer",
   totalQuestions: 80,
@@ -39,7 +39,7 @@ export default function TestsPage() {
   return (
     <div className="flex flex-col gap-10">
       <section className="text-center">
-        <h1 className="text-3xl font-bold text-stone-900">Tests HSK</h1>
+        <h1 className="text-3xl font-bold text-stone-900">Tests JLPT</h1>
         <p className="mt-1 text-stone-500">
           Évalue ton niveau avec des examens blancs au format officiel
         </p>
@@ -68,7 +68,7 @@ export default function TestsPage() {
                   <h2 className="text-lg font-bold text-stone-800 group-hover:text-primary transition-colors">
                     {test.title}
                   </h2>
-                  <p className="chinese text-sm text-stone-400">{test.titleZh}</p>
+                  <p className="japanese text-sm text-stone-400">{test.titleJa}</p>
                   <p className="mt-1 text-sm text-stone-500">{test.description}</p>
                 </div>
                 <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 group-hover:text-primary transition-colors mt-1" />
@@ -98,7 +98,7 @@ export default function TestsPage() {
           );
         })}
 
-        {/* HSK 3 placeholder */}
+        {/* JLPT 3 placeholder */}
         <div className="card relative overflow-hidden opacity-60 cursor-not-allowed">
           <div className="flex items-start gap-4">
             <div className={cn(
@@ -114,7 +114,7 @@ export default function TestsPage() {
                 </h2>
                 <Lock className="h-4 w-4 text-stone-400" />
               </div>
-              <p className="chinese text-sm text-stone-300">{HSK3_PLACEHOLDER.titleZh}</p>
+              <p className="japanese text-sm text-stone-300">{HSK3_PLACEHOLDER.titleJa}</p>
               <p className="mt-1 text-sm text-stone-400">{HSK3_PLACEHOLDER.description}</p>
             </div>
           </div>

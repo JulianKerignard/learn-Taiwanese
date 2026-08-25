@@ -1,13 +1,14 @@
-// Corpus invariants. Fails the build on anything that silently breaks a lesson:
-// unanswerable exercises, tone buckets that contradict the pronunciation,
+// Corpus invariants. Fails the build on anything that silently teaches an error:
+// misplaced furigana, unanswerable exercises, impossible pitch accents,
 // prerequisites that lock a unit, duplicate ids, divergent readings.
 //
 //   npm run validate
 //
 // Errors exit 1. Warnings are reported but do not fail.
 
-import { tonePairs } from "../src/data/tone-pairs.ts";
-import { allUnits, chapters } from "../src/data/course/index.ts";
+import { allUnits, chapters, jlptLevels } from "../src/data/course/index.ts";
+import { accentGroups, minimalPairs } from "../src/data/pitch-accent.ts";
+import { splitMora, countMora, isKana, isKanji } from "../src/lib/japanese.ts";
 
 const errors = [];
 const warnings = [];
@@ -15,141 +16,176 @@ const warnings = [];
 const err = (check, message) => errors.push({ check, message });
 const warn = (check, message) => warnings.push({ check, message });
 
-// ── Tone helpers ──────────────────────────────────────────────────────
+const isAllKana = (text) => [...text].every((c) => isKana(c));
 
-const ZHUYIN_TONE_MARKS = { "ˊ": 2, "ˇ": 3, "ˋ": 4, "˙": 0 };
+// ── 1. Furigana actually line up ──────────────────────────────────────
+//
+// This is the check that matters most. A misplaced reading is invisible during
+// review and teaches the learner a word that does not exist.
 
-/** Tone of a single zhuyin syllable; unmarked means first tone. */
-function zhuyinTone(syllable) {
-  for (const [mark, tone] of Object.entries(ZHUYIN_TONE_MARKS)) {
-    if (syllable.includes(mark)) return tone;
+function checkSegments(label, item) {
+  const { term, kana, segments } = item;
+
+  if (!term || !kana) {
+    err("vocabulaire", `${label}: term ou kana manquant`);
+    return;
   }
-  return 1;
-}
-
-function zhuyinTones(zhuyin) {
-  return zhuyin.trim().split(/\s+/).filter(Boolean).map(zhuyinTone);
-}
-
-const PINYIN_TONES = {
-  1: "āēīōūǖĀĒĪŌŪǕ",
-  2: "áéíóúǘÁÉÍÓÚǗ",
-  3: "ǎěǐǒǔǚǍĚǏǑǓǙ",
-  4: "àèìòùǜÀÈÌÒÙǛ",
-};
-
-/** Ordered tones carried by pinyin diacritics; neutral syllables leave no mark. */
-function pinyinMarkedTones(pinyin) {
-  const tones = [];
-  for (const char of pinyin) {
-    for (const [tone, marked] of Object.entries(PINYIN_TONES)) {
-      if (marked.includes(char)) tones.push(Number(tone));
-    }
+  if (!isAllKana(kana)) {
+    err("vocabulaire", `${label}: la lecture "${kana}" contient autre chose que des kana`);
   }
-  return tones;
-}
-
-// ── 1. Tone pairs match the pronunciation they teach ──────────────────
-
-for (const pair of tonePairs) {
-  for (const word of pair.words) {
-    const tones = zhuyinTones(word.zhuyin);
-    const label = `${pair.id} ${word.chinese} (${word.pinyin})`;
-
-    if (tones.length !== 2) {
-      err("tone-pairs", `${label}: ${tones.length} syllabe(s) dans une paire de tons`);
-      continue;
+  if (!segments?.length) {
+    // Legitimate for a kana-only word; coarse as soon as a kanji appears.
+    if ([...term].some(isKanji)) {
+      warn("furigana", `${label}: contient un kanji mais aucun segment — la lecture couvrira tout le mot`);
     }
-    if (tones[0] !== pair.tone1 || tones[1] !== pair.tone2) {
-      err(
-        "tone-pairs",
-        `${label}: prononce ${tones[0]}+${tones[1]} mais rangé dans ${pair.tone1}+${pair.tone2}`
-      );
-    }
-    if (word.chinese.length !== tones.length) {
-      warn("tone-pairs", `${label}: ${word.chinese.length} caractères pour ${tones.length} syllabes`);
-    }
+    return;
+  }
 
-    // Cross-check the two annotation systems against each other.
-    const fromPinyin = pinyinMarkedTones(word.pinyin);
-    const fromZhuyin = tones.filter((t) => t !== 0);
-    if (fromPinyin.join(",") !== fromZhuyin.join(",")) {
-      err(
-        "annotations",
-        `${label}: pinyin donne [${fromPinyin}] et zhuyin donne [${fromZhuyin}]`
-      );
+  const rebuiltTerm = segments.map((s) => s.text).join("");
+  if (rebuiltTerm !== term) {
+    err("furigana", `${label}: les segments composent "${rebuiltTerm}" au lieu de "${term}"`);
+  }
+
+  const rebuiltKana = segments.map((s) => s.reading ?? s.text).join("");
+  if (rebuiltKana !== kana) {
+    err(
+      "furigana",
+      `${label}: les segments se lisent "${rebuiltKana}" au lieu de "${kana}" — furigana mal placés`
+    );
+  }
+
+  for (const segment of segments) {
+    if (!segment.reading && [...segment.text].some(isKanji)) {
+      err("furigana", `${label}: le segment "${segment.text}" contient un kanji sans lecture`);
+    }
+    if (segment.reading && !isAllKana(segment.reading)) {
+      err("furigana", `${label}: la lecture "${segment.reading}" n'est pas en kana`);
+    }
+    if (segment.reading && isAllKana(segment.text)) {
+      warn("furigana", `${label}: le segment "${segment.text}" est déjà en kana mais porte une lecture`);
     }
   }
 }
 
-const seenPairWords = new Map();
-for (const pair of tonePairs) {
-  for (const word of pair.words) {
-    const previous = seenPairWords.get(word.chinese);
-    if (previous) {
-      err("tone-pairs", `${word.chinese} déclaré dans ${previous} et dans ${pair.id}`);
-    } else {
-      seenPairWords.set(word.chinese, pair.id);
-    }
+function checkPitch(label, kana, pitch) {
+  if (pitch === undefined) return;
+  const mora = countMora(kana);
+  if (!Number.isInteger(pitch) || pitch < 0) {
+    err("accent", `${label}: pitch ${pitch} invalide`);
+  } else if (pitch > mora) {
+    err("accent", `${label}: chute sur la more ${pitch} alors que "${kana}" n'en compte que ${mora}`);
   }
 }
 
-// ── 2. Every exercise is answerable ───────────────────────────────────
+// ── 2. Vocabulary ─────────────────────────────────────────────────────
 
-const exerciseIds = new Map();
+const readings = new Map();
+let vocabCount = 0;
 
 for (const unit of allUnits) {
-  for (const exercise of unit.exercises) {
+  const seen = new Set();
+  for (const item of unit.vocabulary) {
+    vocabCount += 1;
+    const label = `${unit.id}/${item.term}`;
+
+    if (seen.has(item.term)) err("vocabulaire", `${label}: doublon dans l'unité`);
+    seen.add(item.term);
+
+    checkSegments(label, item);
+    checkPitch(label, item.kana, item.pitch);
+
+    if (!item.french?.trim()) err("vocabulaire", `${label}: traduction française manquante`);
+    if (!item.romaji?.trim()) err("vocabulaire", `${label}: rōmaji manquant`);
+
+    // Chapter 1 teaches the syllabaries: no kanji may appear before they exist.
+    if (unit.chapter === 1 && [...item.term].some(isKanji)) {
+      err("vocabulaire", `${label}: kanji dans le chapitre 1, qui enseigne les kana`);
+    }
+
+    const entry = readings.get(item.term) ?? new Map();
+    if (!entry.has(item.kana)) entry.set(item.kana, unit.id);
+    readings.set(item.term, entry);
+  }
+}
+
+for (const [term, variants] of readings) {
+  if (variants.size > 1) {
+    const list = [...variants].map(([kana, unit]) => `${kana} (${unit})`).join(" vs ");
+    warn("vocabulaire", `${term} : lectures divergentes — ${list}`);
+  }
+}
+
+// ── 3. Every exercise is answerable ───────────────────────────────────
+
+const exerciseIds = new Map();
+const IGNORED = /[、。？！：；「」『』\s]/g;
+
+for (const unit of allUnits) {
+  if (unit.exercises.length === 0) err("exercices", `${unit.id}: aucun exercice`);
+
+  unit.exercises.forEach((exercise, index) => {
     const label = `${unit.id}/${exercise.id}`;
 
-    const previous = exerciseIds.get(exercise.id);
-    if (previous) {
-      err("exercise-ids", `id "${exercise.id}" partagé par ${previous} et ${unit.id}`);
+    if (exerciseIds.has(exercise.id)) {
+      err("ids", `id "${exercise.id}" partagé par ${exerciseIds.get(exercise.id)} et ${unit.id}`);
     } else {
       exerciseIds.set(exercise.id, unit.id);
     }
+    const expected = `${unit.id}-ex${index + 1}`;
+    if (exercise.id !== expected) warn("ids", `${label}: attendu "${expected}"`);
 
     const options = exercise.options ?? [];
 
     if (exercise.type === "reorder") {
       if (options.length < 2) {
-        err("exercises", `${label}: reorder avec ${options.length} tuile(s)`);
+        err("exercices", `${label}: reorder avec ${options.length} tuile(s)`);
+        return;
       }
-      // A reorder is solvable only if the tiles can spell the answer.
-      const stripped = exercise.correctAnswer.replace(/[，。？！、：；「」\s]/g, "");
-      const joined = options.join("");
-      if (joined.length !== stripped.length) {
+      const target = exercise.correctAnswer.replace(IGNORED, "");
+      const built = options.join("").replace(IGNORED, "");
+      if (built.length !== target.length) {
         err(
-          "exercises",
-          `${label}: les tuiles (${joined.length} car.) ne peuvent pas composer la réponse (${stripped.length} car.)`
+          "exercices",
+          `${label}: les tuiles (${built.length} signes) ne peuvent pas composer la réponse (${target.length})`
         );
+      } else if ([...built].sort().join("") !== [...target].sort().join("")) {
+        err("exercices", `${label}: les tuiles ne contiennent pas les mêmes signes que la réponse`);
       }
-      continue;
+      return;
     }
 
     if (options.length === 0) {
-      // ExerciseRunner falls back to a free-text field, which is the right UX for a
-      // translation but meaningless for a multiple-choice question.
       if (exercise.type === "comprehension" || exercise.type === "listen") {
-        err("exercises", `${label}: type "${exercise.type}" sans options — question à choix sans choix`);
+        err("exercices", `${label}: type "${exercise.type}" sans options — question à choix sans choix`);
       } else {
-        warn("exercises", `${label}: type "${exercise.type}" sans options — réponse en saisie libre`);
+        warn("exercices", `${label}: type "${exercise.type}" sans options — réponse en saisie libre`);
       }
-      continue;
+      return;
     }
+
     if (!options.includes(exercise.correctAnswer)) {
-      err("exercises", `${label}: correctAnswer absent des options`);
+      err("exercices", `${label}: correctAnswer absent des options`);
     }
     if (new Set(options).size !== options.length) {
-      warn("exercises", `${label}: options dupliquées`);
+      err("exercices", `${label}: options dupliquées`);
     }
-    if (exercise.optionsHint && exercise.optionsHint.length !== options.length) {
-      warn("exercises", `${label}: ${exercise.optionsHint.length} hints pour ${options.length} options`);
+    for (const field of ["optionsHint", "optionsKana"]) {
+      const extra = exercise[field];
+      if (extra && extra.length !== options.length) {
+        err("exercices", `${label}: ${field} a ${extra.length} entrées pour ${options.length} options`);
+      }
     }
-  }
+    // A listen exercise sends `question` straight to speech synthesis.
+    if (exercise.type === "listen" && /[a-zA-ZÀ-ÿ]/.test(exercise.question)) {
+      err(
+        "exercices",
+        `${label}: la consigne d'écoute contient du texte latin — il serait lu par la synthèse vocale`
+      );
+    }
+  });
 }
 
-// ── 3. Prerequisites never lock a unit ────────────────────────────────
+// ── 4. The path is walkable ───────────────────────────────────────────
 
 const pathOrder = chapters.flatMap((chapter) => chapter.unitIds);
 const positionOf = new Map(pathOrder.map((id, index) => [id, index]));
@@ -157,51 +193,71 @@ const positionOf = new Map(pathOrder.map((id, index) => [id, index]));
 for (const unit of allUnits) {
   const position = positionOf.get(unit.id);
   if (position === undefined) {
-    err("path", `${unit.id} existe mais n'est référencée par aucun chapitre`);
+    err("parcours", `${unit.id} existe mais n'est référencée par aucun chapitre`);
     continue;
   }
   for (const prerequisite of unit.prerequisites) {
-    const prerequisitePosition = positionOf.get(prerequisite);
-    if (prerequisitePosition === undefined) {
-      err("path", `${unit.id} exige ${prerequisite}, qui n'existe pas`);
-    } else if (prerequisitePosition > position) {
-      err(
-        "path",
-        `${unit.id} (position ${position}) exige ${prerequisite} (position ${prerequisitePosition}) : unité verrouillée`
-      );
+    const at = positionOf.get(prerequisite);
+    if (at === undefined) {
+      err("parcours", `${unit.id} exige ${prerequisite}, qui n'existe pas`);
+    } else if (at > position) {
+      err("parcours", `${unit.id} (rang ${position}) exige ${prerequisite} (rang ${at}) : unité verrouillée`);
     }
   }
 }
 
-const declaredIds = new Set(allUnits.map((unit) => unit.id));
+const declared = new Set(allUnits.map((u) => u.id));
 for (const id of pathOrder) {
-  if (!declaredIds.has(id)) err("path", `${id} référencé par un chapitre mais aucune unité ne l'exporte`);
-}
-if (new Set(pathOrder).size !== pathOrder.length) {
-  err("path", "un id d'unité apparaît dans plusieurs chapitres");
+  if (!declared.has(id)) err("parcours", `${id} référencé par un chapitre mais aucune unité ne l'exporte`);
 }
 
-// ── 4. One word, one reading ──────────────────────────────────────────
-
-const readings = new Map();
-
-for (const unit of allUnits) {
-  for (const item of unit.vocabulary) {
-    const entry = readings.get(item.character) ?? { pinyin: new Map(), zhuyin: new Map() };
-    if (!entry.pinyin.has(item.pinyin)) entry.pinyin.set(item.pinyin, unit.id);
-    if (!entry.zhuyin.has(item.zhuyin)) entry.zhuyin.set(item.zhuyin, unit.id);
-    readings.set(item.character, entry);
+// Every chapter a live level claims must exist, or the level renders empty.
+for (const level of jlptLevels) {
+  if (level.comingSoon) continue;
+  for (const number of level.chapterNumbers) {
+    if (!chapters.some((c) => c.number === number)) {
+      err("parcours", `${level.slug} référence le chapitre ${number}, absent`);
+    }
   }
 }
 
-for (const [character, entry] of readings) {
-  if (entry.pinyin.size > 1) {
-    const variants = [...entry.pinyin].map(([value, unit]) => `${value} (${unit})`).join(" vs ");
-    warn("annotations", `${character} : pinyin divergent — ${variants}`);
+// ── 5. Pitch accent data ──────────────────────────────────────────────
+
+for (const group of accentGroups) {
+  for (const word of group.words) {
+    const label = `${group.id}/${word.term}`;
+    checkSegments(label, word);
+    checkPitch(label, word.kana, word.downstep);
+
+    const mora = countMora(word.kana);
+    const actual =
+      word.downstep <= 0
+        ? "heiban"
+        : word.downstep === 1
+          ? "atamadaka"
+          : word.downstep >= mora
+            ? "odaka"
+            : "nakadaka";
+    if (actual !== group.id) {
+      err("accent", `${label}: chute ${word.downstep} sur ${mora} mores = ${actual}, rangé dans ${group.id}`);
+    }
   }
-  if (entry.zhuyin.size > 1) {
-    const variants = [...entry.zhuyin].map(([value, unit]) => `${value} (${unit})`).join(" vs ");
-    warn("annotations", `${character} : zhuyin divergent — ${variants}`);
+}
+
+for (const pair of minimalPairs) {
+  if (!isAllKana(pair.kana)) err("accent", `paire ${pair.kana}: la lecture n'est pas en kana`);
+  if (pair.senses.length < 2) err("accent", `paire ${pair.kana}: moins de deux sens`);
+
+  const downsteps = new Set();
+  for (const sense of pair.senses) {
+    checkPitch(`paire ${pair.kana}/${sense.term}`, pair.kana, sense.downstep);
+    if (downsteps.has(sense.downstep)) {
+      err(
+        "accent",
+        `paire ${pair.kana}: ${sense.term} porte le même accent qu'un autre sens — ce n'est pas une paire minimale`
+      );
+    }
+    downsteps.add(sense.downstep);
   }
 }
 
@@ -221,10 +277,17 @@ function report(title, entries) {
   }
 }
 
+const moraTotal = allUnits.reduce(
+  (n, u) => n + u.vocabulary.reduce((m, v) => m + splitMora(v.kana).length, 0),
+  0
+);
+
 console.log(
   `Corpus : ${allUnits.length} unités, ${chapters.length} chapitres, ` +
-    `${allUnits.reduce((n, u) => n + u.vocabulary.length, 0)} entrées de vocabulaire, ` +
-    `${exerciseIds.size} exercices, ${tonePairs.length} paires de tons`
+    `${vocabCount} entrées de vocabulaire (${moraTotal} mores), ` +
+    `${exerciseIds.size} exercices, ` +
+    `${accentGroups.reduce((n, g) => n + g.words.length, 0)} mots d'accent, ` +
+    `${minimalPairs.length} paires minimales`
 );
 
 report("WARNINGS", warnings);

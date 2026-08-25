@@ -25,8 +25,8 @@ export default function DialogueDisplay({ dialogue, className }: DialogueDisplay
             <DialogueBubble
               key={i}
               speaker={line.speaker}
-              chinese={line.chinese}
-              pinyin={line.pinyin}
+              japanese={line.japanese}
+              romaji={line.romaji}
               french={line.french}
               note={line.note}
               isRight={isRight}
@@ -40,15 +40,15 @@ export default function DialogueDisplay({ dialogue, className }: DialogueDisplay
 
 function DialogueBubble({
   speaker,
-  chinese,
-  pinyin,
+  japanese,
+  romaji,
   french,
   note,
   isRight,
 }: {
   speaker: string;
-  chinese: string;
-  pinyin: string;
+  japanese: string;
+  romaji: string;
   french: string;
   note?: string;
   isRight: boolean;
@@ -67,10 +67,10 @@ function DialogueBubble({
         )}
       >
         <div className="flex items-center gap-2">
-          <span className="chinese text-lg">{chinese}</span>
-          <AudioButton text={chinese} size="sm" />
+          <span className="japanese text-lg">{japanese}</span>
+          <AudioButton text={japanese} size="sm" />
         </div>
-        <p className="text-xs italic text-stone-400 mt-0.5">{pinyin}</p>
+        <p className="text-xs italic text-stone-400 mt-0.5">{romaji}</p>
       </div>
       <button
         onClick={() => setShowTranslation(!showTranslation)}

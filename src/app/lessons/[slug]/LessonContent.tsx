@@ -13,7 +13,7 @@ import {
 import Link from "next/link";
 import CharacterCard from "@/components/CharacterCard";
 import AudioButton from "@/components/AudioButton";
-import PinyinDisplay from "@/components/PinyinDisplay";
+import ReadingDisplay from "@/components/ReadingDisplay";
 import QuizQuestion from "@/components/QuizQuestion";
 import CourseContent from "@/components/CourseContent";
 import { getLessonBySlug } from "@/data/lessons";
@@ -64,14 +64,14 @@ export default function LessonContent({ slug }: { slug: string }) {
     const existingIds = new Set(existingCards.map((c) => c.id));
 
     for (const item of lesson.vocabulary) {
-      const id = `${lesson.id}-${item.character}`;
+      const id = `${lesson.id}-${item.term}`;
       if (!existingIds.has(id)) {
         const data: FlashcardData = {
           id,
-          front: item.character,
+          front: item.term,
           back: item.french,
-          pinyin: item.pinyin,
-          zhuyin: item.zhuyin,
+          romaji: item.romaji,
+          kana: item.kana,
           type: "vocabulary",
           lessonId: lesson.id,
         };
@@ -80,8 +80,8 @@ export default function LessonContent({ slug }: { slug: string }) {
     }
 
     const progress = getProgress();
-    progress.charactersLearned = Math.max(
-      progress.charactersLearned,
+    progress.termsLearned = Math.max(
+      progress.termsLearned,
       getCards().filter(c => c.repetitions > 0).length
     );
     saveProgress(progress);
@@ -132,7 +132,7 @@ export default function LessonContent({ slug }: { slug: string }) {
           <span className="text-4xl sm:text-5xl">{lesson.icon}</span>
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-stone-900">{lesson.title}</h1>
-            <p className="chinese text-lg text-stone-400">{lesson.titleZh}</p>
+            <p className="japanese text-lg text-stone-400">{lesson.titleJa}</p>
             <p className="mt-1 text-stone-500">{lesson.description}</p>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function LessonContent({ slug }: { slug: string }) {
       {tab === "vocabulary" && (
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {lesson.vocabulary.map((item) => (
-            <CharacterCard key={item.character} item={item} />
+            <CharacterCard key={item.term} item={item} />
           ))}
         </div>
       )}
@@ -199,13 +199,13 @@ export default function LessonContent({ slug }: { slug: string }) {
       {tab === "phrases" && (
         <div className="flex flex-col gap-4">
           {lesson.phrases.map((phrase) => (
-            <div key={phrase.chinese} className="card flex items-start gap-4">
-              <AudioButton text={phrase.chinese} size="md" />
+            <div key={phrase.japanese} className="card flex items-start gap-4">
+              <AudioButton text={phrase.japanese} size="md" />
               <div className="flex-1">
-                <p className="chinese text-2xl font-medium text-stone-800">
-                  {phrase.chinese}
+                <p className="japanese text-2xl font-medium text-stone-800">
+                  {phrase.japanese}
                 </p>
-                <PinyinDisplay pinyin={phrase.pinyin} zhuyin={phrase.zhuyin} size="md" />
+                <ReadingDisplay romaji={phrase.romaji} kana={phrase.kana} size="md" />
                 <p className="mt-1 text-stone-600">{phrase.french}</p>
                 {phrase.context && (
                   <p className="mt-2 text-xs text-stone-400 italic">{phrase.context}</p>

@@ -3,7 +3,7 @@ import { join } from "path";
 import { mkdirSync } from "fs";
 import { dirname } from "path";
 
-const DB_PATH = process.env.DB_PATH || join(process.cwd(), "data", "taiwan.db");
+const DB_PATH = process.env.DB_PATH || join(process.cwd(), "data", "japon.db");
 let db: Database.Database | null = null;
 
 export function getDb(): Database.Database {

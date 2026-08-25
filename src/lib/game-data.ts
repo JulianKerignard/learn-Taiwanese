@@ -2,9 +2,10 @@ import { allUnits } from "@/data/course";
 import { lessons } from "@/data/lessons";
 
 export interface GameWord {
-  character: string;
+  term: string;
+  kana: string;
   french: string;
-  pinyin: string;
+  romaji: string;
 }
 
 let _cachedWords: GameWord[] | null = null;
@@ -16,11 +17,12 @@ export function getAllGameWords(): GameWord[] {
 
   for (const unit of allUnits) {
     for (const v of unit.vocabulary) {
-      if (!words.has(v.character)) {
-        words.set(v.character, {
-          character: v.character,
+      if (!words.has(v.term)) {
+        words.set(v.term, {
+          term: v.term,
+          kana: v.kana,
           french: v.french,
-          pinyin: v.pinyin,
+          romaji: v.romaji,
         });
       }
     }
@@ -28,11 +30,12 @@ export function getAllGameWords(): GameWord[] {
 
   for (const lesson of lessons) {
     for (const v of lesson.vocabulary) {
-      if (!words.has(v.character)) {
-        words.set(v.character, {
-          character: v.character,
+      if (!words.has(v.term)) {
+        words.set(v.term, {
+          term: v.term,
+          kana: v.kana,
           french: v.french,
-          pinyin: v.pinyin,
+          romaji: v.romaji,
         });
       }
     }

@@ -3,184 +3,201 @@ import type { CourseUnit } from "@/types/course";
 export const unit07: CourseUnit = {
   id: "unit-07",
   number: 7,
-  title: "Poser des questions",
-  titleZh: "問問題",
+  title: "La more, le rythme et l'accent de hauteur",
+  titleJa: "モーラとアクセント",
   chapter: 1,
   description:
-    "Maîtrisez les mots interrogatifs et les trois façons de poser une question en chinois. Indispensable pour survivre à Taiwan.",
-  icon: "❓",
+    "La synthèse sonore du japonais : compter les mores d'un mot sans hésiter, et entendre la chute de hauteur qui sépare あめ (la pluie) de あめ (le bonbon).",
+  icon: "🎵",
 
   sections: [
     {
-      title: "Les mots interrogatifs",
-      type: "grammar",
+      title: "La more : une unité de durée, pas une syllabe",
+      type: "theory",
       content: [
         {
           type: "text",
           content:
-            "En chinois, les mots interrogatifs se placent exactement là où irait la réponse dans la phrase. Pas d'inversion, pas de changement d'ordre. Si la réponse est « Taipei », le mot interrogatif 哪裡 (où) prend la place de « Taipei ». C'est d'une logique redoutable.",
+            "Le japonais ne se découpe pas en syllabes mais en mores, et une more est avant tout une durée. Chaque more occupe le même temps que la précédente, comme les croches d'une mesure. Un kana plein vaut une more ; les petits kana n'en valent aucune, ils modifient celle d'avant. C'est le point de départ de tout le rythme japonais, et le francophone le viole sans s'en apercevoir parce que le français, lui, étire librement certaines syllabes et en écrase d'autres.",
         },
         {
           type: "example",
-          chinese: "你去哪裡？→ 我去台北。",
-          pinyin: "nǐ qù nǎlǐ? → wǒ qù Táiběi.",
-          translation: "Tu vas où ? → Je vais à Taipei.",
+          japanese: "がっこう",
+          romaji: "gakkou",
+          translation: "l'école",
           content:
-            "哪裡 occupe la même position que 台北 dans la réponse. La structure ne change pas.",
+            "Quatre mores : が・っ・こ・う. Le っ est une more silencieuse, un temps plein pendant lequel la bouche reste fermée sur le k. Un francophone dit spontanément « ga-KO » en deux temps : il perd la moitié du mot. Comptez quatre battements égaux, dont un vide.",
+        },
+        {
+          type: "example",
+          japanese: "きょう",
+          romaji: "kyou",
+          translation: "aujourd'hui",
+          content:
+            "Deux mores seulement : きょ et う. Le petit ょ ne compte pas pour lui-même, il fusionne avec き pour donner une more unique « kyo » ; le う qui suit allonge cette voyelle. Ce n'est donc ni ki-yo-u ni kyo-ou, mais deux temps : kyo-o.",
+        },
+        {
+          type: "example",
+          japanese: "とうきょう",
+          romaji: "toukyou",
+          translation: "Tokyo",
+          content:
+            "Quatre mores : と・う・きょ・う. Le nom français « Tokyo » n'en garde que trois syllabes et supprime les deux allongements. Prononcez to-o-kyo-o, quatre temps rigoureusement égaux : c'est le mot où l'erreur francophone s'entend le plus vite.",
         },
         {
           type: "text",
           content:
-            "Les sept mots interrogatifs essentiels : 什麼 (shénme, quoi), 哪裡 (nǎlǐ, où), 誰 (shéi, qui), 怎麼 (zěnme, comment), 為什麼 (wèishénme, pourquoi), 幾 (jǐ, combien — petit nombre), 多少 (duōshǎo, combien — grand nombre ou prix).",
+            "Les règles de comptage tiennent en quatre lignes. Un kana plein vaut une more. Les petits kana ゃ ゅ ょ ぁ ぃ ぅ ぇ ぉ se collent à la more précédente et n'en créent pas. ん compte pour une more entière, même s'il ne porte pas de voyelle. っ compte pour une more, silencieuse. En katakana, la barre ー compte elle aussi pour une more pleine.",
         },
         {
           type: "example",
-          chinese: "誰？什麼？哪裡？怎麼？為什麼？幾個？多少錢？",
-          pinyin:
-            "shéi? shénme? nǎlǐ? zěnme? wèishénme? jǐ ge? duōshǎo qián?",
-          translation:
-            "Qui ? Quoi ? Où ? Comment ? Pourquoi ? Combien (pièces) ? Combien (argent) ?",
-          content: "Les sept mots interrogatifs fondamentaux.",
+          japanese: "せんせい",
+          romaji: "sensei",
+          translation: "le professeur",
+          content:
+            "Quatre mores : せ・ん・せ・い. Le ん est un temps à part entière, pas une simple nasalisation de la voyelle qui précède. Le francophone tend à produire « sen-sé » en deux temps nasalisés ; il faut au contraire poser quatre battements et laisser le ん occuper le sien.",
         },
         {
           type: "tip",
           content:
-            "幾 vs 多少 : utilisez 幾 quand vous attendez un petit nombre (幾個人？ combien de personnes ? — probablement moins de 10). Utilisez 多少 pour les prix ou les grands nombres (多少錢？combien ça coûte ?). En cas de doute, 多少 marche partout.",
-        },
-        {
-          type: "tip",
-          content:
-            "**呢** (ne) est une particule magique pour retourner une question. Après avoir répondu, ajoutez 呢 pour demander « et toi ? » : — 我很好，你呢？(Je vais bien, et toi ?) — 我是法國人，你呢？(Je suis français, et toi ?). 呢 peut aussi exprimer « où est... ? » : 我的手機呢？(Où est mon téléphone ?)",
-        },
-        {
-          type: "text",
-          content:
-            "POURQUOI le chinois ne fait pas d'inversion sujet-verbe pour les questions ? Parce que le chinois utilise un système BEAUCOUP plus simple et logique. Le mot interrogatif se met EXACTEMENT là où irait la réponse dans la phrase. C'est comme un trou à remplir :\n\n你叫什麼名字？ (Tu t'appelles QUEL nom ?) → 我叫 Julian (Je m'appelle Julian)\n你住在哪裡？ (Tu habites OÙ ?) → 我住在台北 (J'habite à Taipei)\n你幾歲？ (Tu as COMBIEN d'années ?) → 我二十五歲 (J'ai 25 ans)\n\nVous voyez ? La structure de la phrase ne change JAMAIS entre la question et la réponse. Seul le mot interrogatif est remplacé par la réponse. C'est d'une logique implacable comparé au français où on inverse le sujet, on ajoute 'est-ce que', on change l'intonation... Le chinois est plus simple — une fois que vous avez compris ce principe, vous pouvez poser N'IMPORTE quelle question.",
-        },
-        {
-          type: "comparison",
-          content:
-            "Comparons la MÊME question en français et en chinois :\nFrançais : 'Où habites-tu ?' → inversion sujet-verbe, le 'où' est au début\nChinois : '你住在哪裡？' (toi habiter à OÙ ?) → pas d'inversion, le 'où' est là où serait la réponse\n\nFrançais : 'Qu'est-ce que tu manges ?' → construction complexe avec 'est-ce que'\nChinois : '你吃什麼？' (toi manger QUOI ?) → 3 mots, structure identique à 'tu manges du riz'\n\nFrançais : 'Combien ça coûte ?' → 'combien' au début, verbe modifié\nChinois : '這個多少錢？' (ceci COMBIEN argent ?) → question = réponse avec un trou",
+            "Méthode concrète : tapez du doigt une fois par more en prononçant, à vitesse lente et régulière. がっこう donne quatre coups, きょう deux, しんぶん quatre, きって trois. Quelques minutes par jour suffisent pour installer le réflexe, et il conditionne tout le reste de votre prononciation.",
         },
       ],
     },
     {
-      title: "Trois façons de poser une question",
-      type: "grammar",
+      title: "Hauteur et non intensité : les quatre schémas",
+      type: "theory",
       content: [
         {
           type: "text",
           content:
-            "En chinois, il existe trois structures pour poser une question. Chacune a son usage et sa nuance. C'est beaucoup plus flexible qu'en français.",
+            "Le français marque un mot en frappant une syllabe plus fort et plus longtemps. Le japonais standard ne fait rien de tel : l'intensité reste plate, et c'est la hauteur de la voix qui bouge. Chaque more est simplement haute ou basse — deux niveaux, pas davantage. Un mot comporte au plus une chute de hauteur, et une fois la voix descendue elle ne remonte pas à l'intérieur du groupe. C'est ce qu'on appelle l'accent de hauteur, et il ne varie ni avec l'émotion ni avec la place du mot dans la phrase.",
         },
         {
           type: "text",
           content:
-            "Méthode 1 : La particule 嗎 (ma). On ajoute 嗎 à la fin d'une phrase affirmative pour en faire une question oui/non. C'est la plus simple et la plus utilisée par les débutants. 你是學生 (tu es étudiant) → 你是學生嗎？(tu es étudiant ?).",
+            "De cette contrainte découlent exactement quatre schémas possibles. Heiban : aucune chute, la voix monte après la première more et reste en haut. Atamadaka : la chute intervient juste après la première more. Nakadaka : la chute intervient à l'intérieur du mot, ni à la première more ni à la dernière. Odaka : la chute intervient après la dernière more, donc elle ne s'entend que sur ce qui suit le mot. Le chiffre donné dans les dictionnaires est l'indice de la more après laquelle la voix descend, 0 signifiant qu'elle ne descend jamais.",
         },
         {
           type: "example",
-          chinese: "你喜歡台灣嗎？",
-          pinyin: "nǐ xǐhuān Táiwān ma?",
-          translation: "Tu aimes Taiwan ?",
-          content: "嗎 transforme n'importe quelle phrase en question oui/non.",
-        },
-        {
-          type: "text",
+          japanese: "ねこ",
+          romaji: "neko",
+          translation: "le chat",
           content:
-            "Méthode 2 : La structure A 不 A (ou V 不 V). On répète le verbe avec 不 au milieu. C'est plus naturel et plus courant à l'oral à Taiwan. 好不好？(d'accord ou pas ?) 是不是？(c'est le cas ou pas ?) 喜歡不喜歡？(tu aimes ou pas ?).",
+            "Atamadaka, chute après la première more : NE haut, ko bas. Tout ce qui suit reste bas, y compris une particule. C'est le schéma le plus facile à imiter pour un francophone, à condition de ne pas frapper plus fort sur ね mais seulement plus haut.",
         },
         {
           type: "example",
-          chinese: "你是不是法國人？",
-          pinyin: "nǐ shì bú shì Fǎguó rén?",
-          translation: "Tu es français (ou pas) ?",
+          japanese: "たまご",
+          romaji: "tamago",
+          translation: "l'œuf",
           content:
-            "A 不 A : on propose l'affirmation et la négation en même temps.",
-        },
-        {
-          type: "text",
-          content:
-            "Méthode 3 : Le mot interrogatif. On remplace l'élément inconnu par un mot interrogatif (什麼, 哪裡, 誰, etc.). Pas de 嗎 nécessaire. C'est pour les questions ouvertes, pas les oui/non.",
+            "Nakadaka, chute au milieu : ta bas, MA haut, go bas. La voix monte, tient un temps, puis redescend à l'intérieur du mot. C'est le schéma qui demande le plus de contrôle, parce que la remontée initiale et la chute sont proches l'une de l'autre.",
         },
         {
           type: "example",
-          chinese: "你想吃什麼？",
-          pinyin: "nǐ xiǎng chī shénme?",
-          translation: "Tu veux manger quoi ?",
-          content: "什麼 remplace la chose inconnue. Pas besoin de 嗎.",
+          japanese: "さかな",
+          romaji: "sakana",
+          translation: "le poisson",
+          content:
+            "Heiban : sa bas, KA-NA haut, et la voix reste en haut sur ce qui suit. さかなが garde le が haut. C'est le schéma le plus fréquent du japonais : dans le doute sur un mot inconnu, c'est statistiquement le meilleur pari.",
         },
         {
-          type: "text",
+          type: "example",
+          japanese: "はな",
+          romaji: "hana",
+          translation: "la fleur",
           content:
-            "Prenons la question 'Est-ce que tu aimes le bubble tea ?' en 3 versions :\n\n**Version 1 — Avec 嗎 (la plus simple, pour les débutants)** :\n你喜歡珍珠奶茶嗎？ → Tu ajoutes 嗎 à la fin d'une phrase affirmative. C'est tout.\n\n**Version 2 — Avec A不A (plus naturelle à l'oral)** :\n你喜不喜歡珍珠奶茶？ → Tu répètes le verbe en version positive+négative. Plus typique de Taiwan.\n\n**Version 3 — Avec un mot interrogatif (pas applicable ici)** :\nOn ne peut pas utiliser cette version pour une question oui/non. Elle sert pour les questions ouvertes : 你喜歡什麼飲料？(Quelle boisson tu aimes ?)\n\nLaquelle utiliser au quotidien ? À Taiwan, la version A不A est la plus naturelle à l'oral. La version 嗎 est plus neutre et passe-partout. Utilisez 嗎 en cas de doute.",
+            "Odaka : ha bas, NA haut, et la chute tombe sur ce qui suit le mot. Isolé, はな (la fleur) sonne exactement comme un mot heiban ; ajoutez une particule et la différence apparaît : はなが descend sur が. C'est pour cela qu'un mot s'apprend avec sa particule collée.",
+        },
+        {
+          type: "tip",
+          content:
+            "N'essayez pas de chanter des intervalles : il n'y a que deux niveaux, haut et bas, et l'écart est faible. Le meilleur exercice consiste à écouter un mot, à le fredonner sur deux notes seulement, puis à replacer les consonnes et les voyelles par-dessus.",
         },
       ],
     },
     {
-      title: "Questions pratiques pour Taiwan",
-      type: "culture",
+      title: "Les paires que seule la hauteur distingue",
+      type: "practice",
       content: [
         {
           type: "text",
           content:
-            "Trois questions qui vous sauveront la vie à Taiwan au quotidien. Apprenez-les par cœur avant même de comprendre chaque caractère. La survie d'abord, la grammaire ensuite.",
+            "Quelques paires de mots ne se distinguent que par leur schéma de hauteur. Elles sont peu nombreuses et le contexte lève presque toujours l'ambiguïté — personne ne confond vraiment la pluie et un bonbon dans une conversation. Leur intérêt est ailleurs : elles rendent audible une différence que l'oreille francophone ne perçoit pas encore, et travailler dessus affine l'écoute pour tout le reste du vocabulaire.",
         },
         {
           type: "example",
-          chinese: "多少錢？",
-          pinyin: "duōshǎo qián?",
-          translation: "Combien ça coûte ?",
+          japanese: "あめ",
+          romaji: "ame",
+          translation: "la pluie / le bonbon",
           content:
-            "LA question la plus utile. Au marché de nuit, dans les boutiques, partout.",
+            "La pluie est atamadaka : A haut, me bas, la chute est immédiate. Le bonbon est heiban : a bas, ME haut, sans aucune chute — あめが garde le が haut. Deux mots identiques à l'écrit en kana, deux courbes de hauteur opposées.",
         },
         {
           type: "example",
-          chinese: "廁所在哪裡？",
-          pinyin: "cèsuǒ zài nǎlǐ?",
-          translation: "Où sont les toilettes ?",
+          japanese: "はし",
+          romaji: "hashi",
+          translation: "les baguettes / le pont / le bord",
           content:
-            "Urgence universelle. 廁所 = toilettes, 在 = se trouver à, 哪裡 = où.",
+            "Trois mots, trois schémas. Les baguettes : atamadaka, HA haut puis chute. Le pont : odaka, ha bas, SHI haut, la chute tombe sur la particule (はしが descend sur が). Le bord : heiban, aucune chute. Les kanji les distinguent à l'écrit, la hauteur seule les distingue à l'oral.",
         },
         {
-          type: "example",
-          chinese: "怎麼去？",
-          pinyin: "zěnme qù?",
-          translation: "Comment on y va ?",
+          type: "text",
           content:
-            "Pour demander son chemin. Ajoutez le lieu : 台北車站怎麼去？(Comment aller à la gare de Taipei ?)",
+            "Ce qui précède décrit le japonais standard, celui de Tokyo, des dictionnaires et des médias nationaux. D'autres régions ont leurs propres schémas : dans la région d'Osaka et de Kyoto, beaucoup de mots portent une courbe différente, parfois inversée par rapport à Tokyo. Ce n'est pas un problème pour un apprenant : apprenez le standard, il est compris partout, et l'oreille s'adaptera d'elle-même sur place.",
+        },
+        {
+          type: "text",
+          content:
+            "Pour l'entraînement à l'écoute, l'application dispose d'une page dédiée : /accent. Vous y écoutez des mots isolés et des paires minimales, et vous devez identifier où tombe la chute. Deux ou trois minutes par session valent mieux qu'une longue séance mensuelle — c'est une compétence perceptive, elle se construit par répétition courte et régulière.",
+        },
+        {
+          type: "warning",
+          content:
+            "Ne laissez pas la hauteur vous paralyser. Une chute mal placée passe presque toujours inaperçue ou se corrige par le contexte ; une more escamotée, elle, rend le mot méconnaissable. Si vous devez choisir où porter votre effort, travaillez d'abord la longueur et le nombre de mores, la hauteur ensuite.",
         },
         {
           type: "tip",
           content:
-            "Au marché de nuit, pointez un plat du doigt et dites 這個多少錢？(zhège duōshǎo qián? — ça coûte combien ?). Le vendeur vous répondra avec un nombre. Si c'est trop rapide, montrez votre téléphone et demandez-lui de taper le prix.",
+            "Enregistrez-vous en disant あめ dans les deux schémas, puis réécoutez-vous le lendemain sans regarder vos notes : si vous ne distinguez pas vos deux versions, c'est la production qui manque, pas l'oreille. C'est le test le plus honnête et le plus rapide.",
         },
+      ],
+    },
+    {
+      title: "Le rythme au niveau de la phrase",
+      type: "theory",
+      content: [
         {
           type: "text",
           content:
-            "Autre question utile : 可以嗎？(kěyǐ ma? — c'est possible ? / je peux ?). Vous pouvez pointer quelque chose et ajouter 可以嗎？ pour demander la permission. C'est poli et passe-partout.",
-        },
-        {
-          type: "text",
-          content:
-            "**太...了** encadre un adjectif pour dire « trop... » ou « vraiment... ». 太好了 peut être positif (« super ! ») ou neutre selon le contexte. C'est une des structures les plus utilisées au quotidien.",
+            "Dans une phrase, les mots ne se prononcent pas isolément : ils forment des groupes accentuels, chacun avec au plus une chute. La particule qui suit un nom appartient au même groupe que lui, ce qui explique pourquoi la chute d'un mot odaka ne s'entend que sur elle. Le japonais parlé est donc un flux continu de mores égales, découpé par des chutes de hauteur, et non par des pauses entre les mots.",
         },
         {
           type: "example",
-          content: "太...了 (tài...le) = trop...",
-          chinese: "太好了！太貴了！太辣了！",
-          pinyin: "tài hǎo le! tài guì le! tài là le!",
-          translation: "Super ! / Trop cher ! / Trop épicé !",
+          japanese: "いぬが",
+          romaji: "inu ga",
+          translation: "le chien (suivi de la particule が)",
+          content:
+            "いぬ est odaka : i bas, NU haut, puis が retombe en bas. Seule la particule révèle le schéma. Isolé, いぬ sonnerait comme un mot plat.",
+        },
+        {
+          type: "example",
+          japanese: "さかなが",
+          romaji: "sakana ga",
+          translation: "le poisson (suivi de la particule が)",
+          content:
+            "さかな est heiban : la voix monte après la première more et le が reste en haut, sans jamais retomber. Comparez directement avec いぬが : même particule, deux comportements opposés. C'est l'exercice qui fixe la différence odaka / heiban.",
         },
         {
           type: "text",
           content:
-            "Préparez-vous — voici les 10 questions que les Taiwanais vous poseront le plus souvent. Apprenez les réponses par cœur :\n\n1. 你從哪裡來？ → D'où viens-tu ?\n2. 你來台灣多久了？ → Depuis combien de temps es-tu à Taiwan ?\n3. 你為什麼來台灣？ → Pourquoi Taiwan ?\n4. 你會說中文嗎？ → Tu parles chinois ? (on vous le demande PENDANT que vous parlez chinois)\n5. 你喜歡台灣嗎？ → Tu aimes Taiwan ? (la seule réponse acceptable est oui)\n6. 你習慣了嗎？ → Tu t'es habitué ?\n7. 你吃得慣嗎？ → Tu t'habitues à la nourriture ?\n8. 台灣很熱吧？ → Il fait chaud à Taiwan, non ?\n9. 你有沒有男/女朋友？ → T'as un(e) petit(e) ami(e) ? (pas indiscret à Taiwan)\n10. 你幾歲？ → Quel âge as-tu ? (voir Unit 04 — c'est normal ici)",
+            "Conséquence pratique : apprenez des blocs, pas des mots nus. Un nom mémorisé avec sa particule, une expression apprise d'un seul tenant, portent avec eux leur rythme et leur courbe de hauteur. C'est aussi ainsi que les enfants japonais les acquièrent, et c'est ce qui donne à un apprenant l'impression soudaine de « sonner » juste.",
         },
         {
           type: "tip",
           content:
-            "Les 10 questions de survie à poser au quotidien à Taiwan :\n\n1. 這個多少錢？ → Combien ça coûte ?\n2. 廁所在哪裡？ → Où sont les toilettes ?\n3. 這是什麼？ → C'est quoi ?\n4. 怎麼去？ → Comment y aller ?\n5. 有沒有 WiFi？ → Y a-t-il du WiFi ?\n6. 可以刷卡嗎？ → Je peux payer par carte ?\n7. 幾點開？/ 幾點關？ → Ça ouvre/ferme à quelle heure ?\n8. 最近的捷運站在哪裡？ → Où est la station de MRT la plus proche ?\n9. 你推薦什麼？ → Tu recommandes quoi ?\n10. 可以幫我嗎？ → Tu peux m'aider ?",
+            "Le shadowing est la méthode la plus efficace à ce stade : lancez un enregistrement court et répétez par-dessus avec un demi-mot de retard, sans regarder le texte. Vous copiez alors la durée des mores et la courbe de hauteur ensemble, au lieu de les analyser séparément.",
         },
       ],
     },
@@ -188,354 +205,150 @@ export const unit07: CourseUnit = {
 
   dialogue: {
     context:
-      "Vous êtes perdu dans le quartier de Ximending (西門町) à Taipei et cherchez la station de MRT.",
+      "Au comptoir d'un petit restaurant, un jour de pluie. Deux mots de ce court échange ne se distinguent de leurs homophones que par la hauteur.",
     lines: [
       {
         speaker: "Vous",
-        chinese: "不好意思，請問捷運站在哪裡？",
-        pinyin: "bù hǎo yìsi, qǐngwèn jiéyùn zhàn zài nǎlǐ?",
-        french: "Excusez-moi, où est la station de métro ?",
-        note: "不好意思 (excusez-moi) est la façon polie d'aborder un inconnu. 捷運 = MRT (métro de Taiwan).",
+        japanese: "きょうはあめですね。",
+        romaji: "kyou wa ame desu ne.",
+        french: "Il pleut, aujourd'hui.",
+        note: "あめ avec la chute juste après la première more = la pluie. Prononcé plat, le même mot désigne un bonbon.",
       },
       {
-        speaker: "Passant",
-        chinese: "捷運站？你要去哪裡？",
-        pinyin: "jiéyùn zhàn? nǐ yào qù nǎlǐ?",
-        french: "La station de métro ? Tu veux aller où ?",
-      },
-      {
-        speaker: "Vous",
-        chinese: "我要去台北車站。怎麼去？",
-        pinyin: "wǒ yào qù Táiběi chēzhàn. zěnme qù?",
-        french: "Je veux aller à la gare de Taipei. Comment y aller ?",
-      },
-      {
-        speaker: "Passant",
-        chinese: "很近！往前走，左轉就到了。",
-        pinyin: "hěn jìn! wǎng qián zǒu, zuǒ zhuǎn jiù dào le.",
-        french: "C'est tout près ! Marche tout droit, tourne à gauche et tu y es.",
+        speaker: "Patron",
+        japanese: "そうですね。",
+        romaji: "sou desu ne.",
+        french: "Oui, en effet.",
+        note: "Réponse de connivence passe-partout : elle valide ce que vient de dire l'autre sans rien ajouter.",
       },
       {
         speaker: "Vous",
-        chinese: "好，謝謝！多少時間？",
-        pinyin: "hǎo, xièxiè! duōshǎo shíjiān?",
-        french: "OK, merci ! C'est combien de temps ?",
+        japanese: "はし、おねがいします。",
+        romaji: "hashi, onegai shimasu.",
+        french: "Des baguettes, s'il vous plaît.",
+        note: "はし avec la chute après la première more = les baguettes. Avec la chute reportée sur la particule suivante, ce serait le pont.",
       },
       {
-        speaker: "Passant",
-        chinese: "走路五分鐘就到了。不客氣！",
-        pinyin: "zǒulù wǔ fēnzhōng jiù dào le. bú kèqì!",
-        french: "Cinq minutes à pied et tu y es. De rien !",
+        speaker: "Patron",
+        japanese: "はい、どうぞ。",
+        romaji: "hai, douzo.",
+        french: "Voilà, je vous en prie.",
       },
     ],
   },
 
   keyPoints: [
-    "Les mots interrogatifs se placent là où irait la réponse, sans changer l'ordre de la phrase.",
-    "Trois façons de questionner : 嗎 (oui/non), A 不 A (choix), mot interrogatif (question ouverte).",
-    "幾 pour les petits nombres, 多少 pour les prix et grands nombres.",
-    "Questions de survie : 多少錢？(combien ?), 廁所在哪裡？(toilettes ?), 怎麼去？(comment y aller ?).",
+    "La more est une unité de durée, pas une syllabe : がっこう en compte quatre (が・っ・こ・う), きょう deux (きょ・う), せんせい et とうきょう quatre chacun.",
+    "Les petits kana ゃ ゅ ょ se collent à la more précédente et n'en créent pas ; ん, っ et la barre ー comptent chacun pour une more entière.",
+    "Le japonais standard n'a pas d'accent d'intensité : chaque more est haute ou basse, un mot comporte au plus une chute de hauteur, et la voix ne remonte pas après elle.",
+    "Quatre schémas seulement : heiban (aucune chute), atamadaka (chute après la 1re more), nakadaka (chute à l'intérieur du mot), odaka (chute après la dernière more, audible uniquement sur la particule suivante).",
+    "Certaines paires ne se distinguent que par la hauteur : あめ (pluie, chute immédiate) et あめ (bonbon, plat), はし (baguettes / pont / bord). La page /accent de l'application sert à entraîner l'oreille.",
   ],
 
   vocabulary: [
-    {
-      character: "什麼",
-      pinyin: "shénme",
-      zhuyin: "ㄕㄣˊ ㄇㄜ˙",
-      french: "Quoi / quel",
-      english: "What",
-      example: {
-        sentence: "你要吃什麼？",
-        pinyin: "nǐ yào chī shénme?",
-        translation: "Tu veux manger quoi ?",
-      },
-    },
-    {
-      character: "哪裡",
-      pinyin: "nǎlǐ",
-      zhuyin: "ㄋㄚˇ ㄌㄧˇ",
-      french: "Où",
-      english: "Where",
-      example: {
-        sentence: "你住在哪裡？",
-        pinyin: "nǐ zhù zài nǎlǐ?",
-        translation: "Tu habites où ?",
-      },
-    },
-    {
-      character: "誰",
-      pinyin: "shéi",
-      zhuyin: "ㄕㄟˊ",
-      french: "Qui",
-      english: "Who",
-      example: {
-        sentence: "他是誰？",
-        pinyin: "tā shì shéi?",
-        translation: "C'est qui ?",
-      },
-    },
-    {
-      character: "怎麼",
-      pinyin: "zěnme",
-      zhuyin: "ㄗㄣˇ ㄇㄜ˙",
-      french: "Comment",
-      english: "How",
-      example: {
-        sentence: "怎麼去？",
-        pinyin: "zěnme qù?",
-        translation: "Comment y aller ?",
-      },
-    },
-    {
-      character: "為什麼",
-      pinyin: "wèishénme",
-      zhuyin: "ㄨㄟˋ ㄕㄣˊ ㄇㄜ˙",
-      french: "Pourquoi",
-      english: "Why",
-      example: {
-        sentence: "為什麼你學中文？",
-        pinyin: "wèishénme nǐ xué zhōngwén?",
-        translation: "Pourquoi tu apprends le chinois ?",
-      },
-    },
-    {
-      character: "幾",
-      pinyin: "jǐ",
-      zhuyin: "ㄐㄧˇ",
-      french: "Combien (petit nombre)",
-      english: "How many (small number)",
-      example: {
-        sentence: "你有幾個朋友？",
-        pinyin: "nǐ yǒu jǐ ge péngyǒu?",
-        translation: "Tu as combien d'amis ?",
-      },
-    },
-    {
-      character: "多少",
-      pinyin: "duōshǎo",
-      zhuyin: "ㄉㄨㄛ ㄕㄠˇ",
-      french: "Combien (prix / grand nombre)",
-      english: "How much / how many",
-      example: {
-        sentence: "這個多少錢？",
-        pinyin: "zhège duōshǎo qián?",
-        translation: "Ça coûte combien ?",
-      },
-    },
-    {
-      character: "錢",
-      pinyin: "qián",
-      zhuyin: "ㄑㄧㄢˊ",
-      french: "Argent",
-      english: "Money",
-      example: {
-        sentence: "你有錢嗎？",
-        pinyin: "nǐ yǒu qián ma?",
-        translation: "Tu as de l'argent ?",
-      },
-    },
-    {
-      character: "廁所",
-      pinyin: "cèsuǒ",
-      zhuyin: "ㄘㄜˋ ㄙㄨㄛˇ",
-      french: "Toilettes",
-      english: "Toilet / restroom",
-      example: {
-        sentence: "廁所在哪裡？",
-        pinyin: "cèsuǒ zài nǎlǐ?",
-        translation: "Où sont les toilettes ?",
-      },
-    },
-    {
-      character: "在",
-      pinyin: "zài",
-      zhuyin: "ㄗㄞˋ",
-      french: "Se trouver / être (lieu)",
-      english: "At / to be (location)",
-      example: {
-        sentence: "我在台北。",
-        pinyin: "wǒ zài Táiběi.",
-        translation: "Je suis à Taipei.",
-      },
-    },
-    {
-      character: "去",
-      pinyin: "qù",
-      zhuyin: "ㄑㄩˋ",
-      french: "Aller",
-      english: "To go",
-      example: {
-        sentence: "你要去哪裡？",
-        pinyin: "nǐ yào qù nǎlǐ?",
-        translation: "Tu veux aller où ?",
-      },
-    },
-    {
-      character: "知道",
-      pinyin: "zhīdào",
-      zhuyin: "ㄓ ㄉㄠˋ",
-      french: "Savoir",
-      english: "To know",
-      example: {
-        sentence: "我不知道。",
-        pinyin: "wǒ bù zhīdào.",
-        translation: "Je ne sais pas.",
-      },
-    },
-    {
-      character: "可以",
-      pinyin: "kěyǐ",
-      zhuyin: "ㄎㄜˇ ㄧˇ",
-      french: "Pouvoir (permission)",
-      english: "Can (permission)",
-      example: {
-        sentence: "可以拍照嗎？",
-        pinyin: "kěyǐ pāizhào ma?",
-        translation: "On peut prendre des photos ?",
-      },
-    },
-    {
-      character: "會",
-      pinyin: "huì",
-      zhuyin: "ㄏㄨㄟˋ",
-      french: "Savoir faire, futur probable",
-      english: "Can (learned skill), will",
-      example: {
-        sentence: "你會說中文嗎？",
-        pinyin: "nǐ huì shuō zhōngwén ma?",
-        translation: "Tu sais parler chinois ?",
-      },
-    },
-    {
-      character: "能",
-      pinyin: "néng",
-      zhuyin: "ㄋㄥˊ",
-      french: "Pouvoir (capacité)",
-      english: "Can (ability)",
-      example: {
-        sentence: "你能幫我嗎？",
-        pinyin: "nǐ néng bāng wǒ ma?",
-        translation: "Tu peux m'aider ?",
-      },
-    },
-    {
-      character: "問",
-      pinyin: "wèn",
-      zhuyin: "ㄨㄣˋ",
-      french: "Demander",
-      english: "To ask",
-      example: {
-        sentence: "我想問你一個問題。",
-        pinyin: "wǒ xiǎng wèn nǐ yí ge wèntí.",
-        translation: "Je voudrais te poser une question.",
-      },
-    },
-    {
-      character: "回答",
-      pinyin: "huídá",
-      zhuyin: "ㄏㄨㄟˊ ㄉㄚˊ",
-      french: "Répondre",
-      english: "To answer",
-      example: {
-        sentence: "請回答這個問題。",
-        pinyin: "qǐng huídá zhège wèntí.",
-        translation: "Veuillez répondre à cette question.",
-      },
-    },
-    {
-      character: "但是",
-      pinyin: "dànshì",
-      zhuyin: "ㄉㄢˋ ㄕˋ",
-      french: "Mais",
-      english: "But, however",
-      example: {
-        sentence: "我想去，但是沒有時間。",
-        pinyin: "wǒ xiǎng qù, dànshì méiyǒu shíjiān.",
-        translation: "Je veux y aller, mais je n'ai pas le temps.",
-      },
-    },
+    { term: "がっこう", kana: "がっこう", romaji: "gakkou", pitch: 0, french: "L'école", english: "School" },
+    { term: "きょう", kana: "きょう", romaji: "kyou", pitch: 1, french: "Aujourd'hui", english: "Today" },
+    { term: "せんせい", kana: "せんせい", romaji: "sensei", pitch: 3, french: "Le professeur", english: "Teacher" },
+    { term: "とうきょう", kana: "とうきょう", romaji: "toukyou", pitch: 0, french: "Tokyo", english: "Tokyo" },
+    { term: "あめ", kana: "あめ", romaji: "ame", pitch: 1, french: "La pluie", english: "Rain" },
+    { term: "はし", kana: "はし", romaji: "hashi", pitch: 1, french: "Les baguettes (pour manger)", english: "Chopsticks" },
+    { term: "いぬ", kana: "いぬ", romaji: "inu", pitch: 2, french: "Le chien", english: "Dog" },
+    { term: "ねこ", kana: "ねこ", romaji: "neko", pitch: 1, french: "Le chat", english: "Cat" },
+    { term: "さかな", kana: "さかな", romaji: "sakana", pitch: 0, french: "Le poisson", english: "Fish" },
+    { term: "はな", kana: "はな", romaji: "hana", pitch: 2, french: "La fleur", english: "Flower" },
+    { term: "やま", kana: "やま", romaji: "yama", pitch: 2, french: "La montagne", english: "Mountain" },
+    { term: "たまご", kana: "たまご", romaji: "tamago", pitch: 2, french: "L'œuf", english: "Egg" },
+    { term: "みかん", kana: "みかん", romaji: "mikan", pitch: 1, french: "La mandarine", english: "Tangerine" },
+    { term: "きって", kana: "きって", romaji: "kitte", pitch: 0, french: "Le timbre", english: "Postage stamp" },
+    { term: "しんぶん", kana: "しんぶん", romaji: "shinbun", pitch: 0, french: "Le journal", english: "Newspaper" },
+    { term: "こうえん", kana: "こうえん", romaji: "kouen", pitch: 0, french: "Le parc", english: "Park" },
+    { term: "でんわ", kana: "でんわ", romaji: "denwa", pitch: 0, french: "Le téléphone", english: "Telephone" },
   ],
 
   exercises: [
     {
       id: "unit-07-ex1",
-      type: "translate",
-      question: "Comment dit-on « Combien ça coûte ? » en chinois ?",
-      correctAnswer: "多少錢？",
-      options: ["多少錢？", "幾個錢？", "什麼錢？", "錢多少？"],
-      optionsHint: ["duōshǎo qián?", "jǐ ge qián?", "shénme qián?", "qián duōshǎo?"],
-      optionsZhuyin: ["ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ?", "ㄐㄧˇ ㄍㄜ ㄑㄧㄢˊ?", "ㄕㄣˊ ㄇㄜ ㄑㄧㄢˊ?", "ㄑㄧㄢˊ ㄉㄨㄛ ㄕㄠˇ?"],
+      type: "comprehension",
+      question: "Combien de mores compte がっこう ?",
+      correctAnswer: "Quatre : が・っ・こ・う",
+      options: [
+        "Quatre : が・っ・こ・う",
+        "Trois : le っ ne compte pas comme une more",
+        "Deux : がっ et こう",
+        "Cinq : le う final compte double",
+      ],
+      hint: "Le っ est une more silencieuse, mais c'est une more entière.",
     },
     {
       id: "unit-07-ex2",
-      type: "fill-blank",
-      question: "廁所在___？(Où sont les toilettes ?)",
-      correctAnswer: "哪裡",
-      options: ["哪裡", "什麼", "怎麼", "誰"],
-      optionsHint: ["nǎlǐ", "shénme", "zěnme", "shéi"],
-      optionsZhuyin: ["ㄋㄚˇ ㄌㄧˇ", "ㄕㄣˊ ㄇㄜ", "ㄗㄣˇ ㄇㄜ", "ㄕㄟˊ"],
-      hint: "Quel mot interrogatif signifie « où » ?",
+      type: "comprehension",
+      question: "Combien de mores compte きょう ?",
+      correctAnswer: "Deux : きょ et う",
+      options: [
+        "Deux : きょ et う",
+        "Trois : き, ょ et う",
+        "Une seule, le mot est trop court pour en faire deux",
+        "Quatre, comme とうきょう",
+      ],
+      hint: "Un petit kana ne crée jamais de more, il modifie celle qui précède.",
     },
     {
       id: "unit-07-ex3",
       type: "comprehension",
-      question:
-        "Quelle est la différence entre 幾 et 多少 ?",
-      correctAnswer:
-        "幾 pour les petits nombres (< 10), 多少 pour les prix et grands nombres",
+      question: "Comment le japonais standard marque-t-il un mot à l'oral ?",
+      correctAnswer: "Par la hauteur : chaque more est haute ou basse",
       options: [
-        "幾 pour les petits nombres (< 10), 多少 pour les prix et grands nombres",
-        "幾 est formel, 多少 est familier",
-        "Ils sont identiques et interchangeables",
-        "幾 pour les personnes, 多少 pour les objets",
+        "Par la hauteur : chaque more est haute ou basse",
+        "Par l'intensité : une syllabe est frappée plus fort",
+        "Par la longueur de la consonne initiale",
+        "Par rien : aucun mot japonais n'est accentué",
       ],
+      hint: "C'est exactement ce que le français ne fait pas.",
     },
     {
       id: "unit-07-ex4",
-      type: "translate",
-      question: "Que signifie 你是不是法國人？",
-      correctAnswer: "Tu es français (ou pas) ?",
-      options: [
-        "Tu es français (ou pas) ?",
-        "Tu n'es pas français.",
-        "Es-tu français ou chinois ?",
-        "Tu es un Français.",
-      ],
-      hint: "nǐ shì bú shì Fǎguó rén?",
+      type: "fill-blank",
+      question: "Prononcé avec une chute juste après la première more, あめ signifie ___ .",
+      correctAnswer: "la pluie",
+      options: ["la pluie", "le bonbon", "le ciel", "la neige"],
+      hint: "Le même mot prononcé plat, sans chute, désigne autre chose.",
     },
     {
       id: "unit-07-ex5",
-      type: "comprehension",
-      question:
-        "Quelles sont les trois façons de poser une question en chinois ?",
-      correctAnswer:
-        "嗎 (oui/non), A 不 A (choix), mot interrogatif (question ouverte)",
-      options: [
-        "嗎 (oui/non), A 不 A (choix), mot interrogatif (question ouverte)",
-        "嗎, 呢, 吧",
-        "Inversion du sujet, 嗎, intonation",
-        "不, 沒, 嗎",
-      ],
+      type: "fill-blank",
+      question: "Le schéma d'accent dans lequel la voix ne redescend jamais s'appelle ___ .",
+      correctAnswer: "heiban",
+      options: ["heiban", "atamadaka", "nakadaka", "odaka"],
+      hint: "C'est le schéma le plus fréquent du japonais : さかな, がっこう, でんわ.",
     },
     {
       id: "unit-07-ex6",
       type: "comprehension",
-      question:
-        "Quelle phrase est correcte ? (Comment aller à la gare de Taipei ?)",
-      correctAnswer: "台北車站怎麼去？",
+      question: "Pourquoi la chute d'un mot odaka comme いぬ ne s'entend-elle pas quand le mot est isolé ?",
+      correctAnswer: "Parce qu'elle tombe après la dernière more, donc sur ce qui suit",
       options: [
-        "台北車站怎麼去？",
-        "怎麼去台北車站？",
-        "去怎麼台北車站？",
-        "怎麼台北車站去？",
+        "Parce qu'elle tombe après la dernière more, donc sur ce qui suit",
+        "Parce que les mots odaka n'ont en réalité aucune chute",
+        "Parce que la chute est trop faible pour être audible",
+        "Parce qu'elle se produit avant la première more",
       ],
-      optionsHint: [
-        "Táiběi chēzhàn zěnme qù?",
-        "zěnme qù Táiběi chēzhàn?",
-        "qù zěnme Táiběi chēzhàn?",
-        "zěnme Táiběi chēzhàn qù?",
-      ],
-      optionsZhuyin: ["ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ ㄗㄣˇ ㄇㄜ ㄑㄩˋ?", "ㄗㄣˇ ㄇㄜ ㄑㄩˋ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ?", "ㄑㄩˋ ㄗㄣˇ ㄇㄜ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ?", "ㄗㄣˇ ㄇㄜ ㄊㄞˊ ㄅㄟˇ ㄔㄜ ㄓㄢˋ ㄑㄩˋ?"],
+      hint: "Comparez いぬが et さかなが : la particule ne se comporte pas pareil.",
+    },
+    {
+      id: "unit-07-ex7",
+      type: "reorder",
+      question: "Remettez les blocs dans l'ordre : « L'école, c'est à Tokyo. »",
+      correctAnswer: "がっこうはとうきょうです。",
+      options: ["がっこう", "は", "とうきょう", "です"],
+      hint: "Huit mores en tout dans les deux noms : quatre pour chacun.",
+    },
+    {
+      id: "unit-07-ex8",
+      type: "listen",
+      question: "とうきょう",
+      correctAnswer: "Tokyo",
+      options: ["Tokyo", "Aujourd'hui", "L'école", "Le parc"],
+      hint: "Quatre mores, schéma plat : la voix ne redescend pas.",
     },
   ],
 

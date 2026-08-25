@@ -1,5 +1,5 @@
-import type { PathProgress, CourseUnit, Chapter, HSKLevel } from "@/types/course";
-import { getUnitById, hskLevels as defaultHskLevels } from "@/data/course";
+import type { PathProgress, CourseUnit, Chapter, JLPTLevel } from "@/types/course";
+import { getUnitById, jlptLevels as defaultHskLevels } from "@/data/course";
 import { storageGet, storageSet, KEYS } from "@/lib/storage";
 
 const STORAGE_KEY = KEYS.courseProgress;
@@ -75,19 +75,19 @@ export function getOverallProgress(totalUnits: number, progress: PathProgress): 
   return totalUnits > 0 ? progress.completedUnits.length / totalUnits : 0;
 }
 
-// ── HSK Level helpers ──────────────────────────────────────────────
+// ── JLPT Level helpers ──────────────────────────────────────────────
 
-export function getHSKLevelProgress(level: HSKLevel, unitIds: string[], progress: PathProgress): number {
+export function getJLPTLevelProgress(level: JLPTLevel, unitIds: string[], progress: PathProgress): number {
   if (unitIds.length === 0) return 0;
   const completed = unitIds.filter((id) => progress.completedUnits.includes(id)).length;
   return completed / unitIds.length;
 }
 
-export function getHSKLevelCompletedCount(unitIds: string[], progress: PathProgress): number {
+export function getJLPTLevelCompletedCount(unitIds: string[], progress: PathProgress): number {
   return unitIds.filter((id) => progress.completedUnits.includes(id)).length;
 }
 
-export function getCurrentHSKLevel(progress: PathProgress): HSKLevel | undefined {
+export function getCurrentJLPTLevel(progress: PathProgress): JLPTLevel | undefined {
   const currentUnit = getUnitById(progress.currentUnit);
   if (!currentUnit) return defaultHskLevels[0];
   return defaultHskLevels.find((l) => l.chapterNumbers.includes(currentUnit.chapter));

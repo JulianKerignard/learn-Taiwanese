@@ -53,8 +53,8 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 border-b border-stone-200 bg-white/80 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold text-stone-900">
-          <span className="chinese text-2xl text-primary">學</span>
-          <span className="hidden sm:inline">Taiwan Mandarin</span>
+          <span className="japanese text-2xl text-primary">學</span>
+          <span className="hidden sm:inline">Japon Mandarin</span>
         </Link>
 
         {/* Desktop nav */}
@@ -68,9 +68,7 @@ export default function Navbar() {
           <Link href="/revision" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Révision
           </Link>
-          <Link href="/tones" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
-            Tons
-          </Link>
+          <Link href="/accent" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">Accent</Link>
           <Link href="/dictionary" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Dictionnaire
           </Link>
@@ -167,10 +165,10 @@ export default function Navbar() {
                 <Link href="/path" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Parcours</Link>
                 <Link href="/lessons" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Leçons</Link>
                 <Link href="/revision" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Révision</Link>
-                <Link href="/tones" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Tons</Link>
+                <Link href="/accent" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Accent</Link>
                 <Link href="/dictionary" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Dictionnaire</Link>
                 <Link href="/reading" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Lecture</Link>
-                <Link href="/funfacts" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Fun Facts</Link>
+                <Link href="/funfacts" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Anecdotes</Link>
                 <Link href="/games" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Jeux</Link>
                 <Link href="/tests" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Tests</Link>
                 <Link href="/progress" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Progression</Link>

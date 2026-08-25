@@ -1,11 +1,11 @@
 /**
- * Batch script to add optionsZhuyin after every optionsHint line,
- * and hintZhuyin after every hint that contains pinyin.
+ * Batch script to add optionsKana after every optionsHint line,
+ * and hintKana after every hint that contains romaji.
  *
- * For chapters 4-8, also adds optionsHint and optionsZhuyin
- * to exercises with Chinese options.
+ * For chapters 4-8, also adds optionsHint and optionsKana
+ * to exercises with Japanese options.
  *
- * Run: node scripts/add-zhuyin-batch.mjs
+ * Run: node scripts/add-kana-batch.mjs
  */
 
 import { readFileSync, writeFileSync, readdirSync } from 'fs';
@@ -13,7 +13,7 @@ import { join } from 'path';
 
 const courseDir = 'src/data/course';
 
-// Comprehensive pinyin syllable to zhuyin dictionary
+// Comprehensive romaji syllable to kana dictionary
 const P2Z = {
   'wǒ':'ㄨㄛˇ','shì':'ㄕˋ','bù':'ㄅㄨˋ','bú':'ㄅㄨˊ','hǎo':'ㄏㄠˇ','lái':'ㄌㄞˊ',
   'ma':'ㄇㄚ','ne':'ㄋㄜ˙','ba':'ㄅㄚ˙','a':'ㄚ˙','la':'ㄌㄚ˙',
@@ -108,7 +108,7 @@ const P2Z = {
   'ō':'ㄛ',
   // Misc fill-blank single chars
   'le':'ㄌㄜ˙','guò':'ㄍㄨㄛˋ','huì':'ㄏㄨㄟˋ','de':'ㄉㄜ˙',
-  // CH4-8 exercise options (Chinese characters to pinyin/zhuyin)
+  // CH4-8 exercise options (Japanese characters to romaji/kana)
   '多久':'ㄉㄨㄛ ㄐㄧㄡˇ','多少':'ㄉㄨㄛ ㄕㄠˇ',
   '怎麼':'ㄗㄣˇ ㄇㄜ˙','什麼':'ㄕㄣˊ ㄇㄜ˙',
   '為什麼':'ㄨㄟˋ ㄕㄣˊ ㄇㄜ˙','怎麼樣':'ㄗㄣˇ ㄇㄜ˙ ㄧㄤˋ',
@@ -154,13 +154,13 @@ const P2Z = {
   '不是...而是':'ㄅㄨˊ ㄕˋ...ㄦˊ ㄕˋ',
 };
 
-function convertPinyinHint(pinyin) {
-  if (!pinyin) return null;
+function convertPinyinHint(romaji) {
+  if (!romaji) return null;
   // Try exact match first
-  if (P2Z[pinyin]) return P2Z[pinyin];
+  if (P2Z[romaji]) return P2Z[romaji];
 
   // Try converting word by word
-  const words = pinyin.split(/\s+/);
+  const words = romaji.split(/\s+/);
   const converted = words.map(w => {
     // Remove trailing punctuation for lookup
     const punct = w.match(/[?!.,;:？！。，]+$/)?.[0] || '';
@@ -173,13 +173,13 @@ function convertPinyinHint(pinyin) {
   const result = converted.join(' ');
   // Check if any conversion happened
   if (/[\u3100-\u312F\u31A0-\u31BF]/.test(result)) return result;
-  return null; // No zhuyin characters found = conversion failed
+  return null; // No kana characters found = conversion failed
 }
 
-function convertChineseOption(chinese) {
-  if (!chinese) return null;
+function convertChineseOption(japanese) {
+  if (!japanese) return null;
   // Try exact match
-  if (P2Z[chinese]) return P2Z[chinese];
+  if (P2Z[japanese]) return P2Z[japanese];
   return null;
 }
 
@@ -192,17 +192,17 @@ function processFile(filePath) {
   for (let i = 0; i < lines.length; i++) {
     newLines.push(lines[i]);
 
-    // Check for optionsHint without optionsZhuyin on next non-empty line
-    if (lines[i].match(/^\s*optionsHint:\s*\[/) && !lines[i].includes('optionsZhuyin')) {
-      // Check if optionsZhuyin already exists on subsequent lines
+    // Check for optionsHint without optionsKana on next non-empty line
+    if (lines[i].match(/^\s*optionsHint:\s*\[/) && !lines[i].includes('optionsKana')) {
+      // Check if optionsKana already exists on subsequent lines
       let hasZhuyin = false;
       for (let j = i + 1; j < Math.min(i + 5, lines.length); j++) {
-        if (lines[j].includes('optionsZhuyin')) { hasZhuyin = true; break; }
+        if (lines[j].includes('optionsKana')) { hasZhuyin = true; break; }
         if (lines[j].match(/^\s*(hint:|id:|type:|question:|correctAnswer:|\}|],)/)) break;
       }
 
       if (!hasZhuyin) {
-        // Extract the pinyin values from optionsHint
+        // Extract the romaji values from optionsHint
         // This handles both single-line and multi-line optionsHint
         let optionsHintStr = lines[i];
         let endIdx = i;
@@ -223,7 +223,7 @@ function processFile(filePath) {
           }
         }
 
-        // Extract pinyin values
+        // Extract romaji values
         const pinyinValues = [];
         const regex = /"([^"]+)"/g;
         let match;
@@ -237,9 +237,9 @@ function processFile(filePath) {
         if (zhuyinValues.every(z => z !== null)) {
           const indent = lines[i].match(/^(\s*)/)[1];
           if (pinyinValues.length <= 4 && zhuyinValues.join('').length < 100) {
-            newLines.push(`${indent}optionsZhuyin: [${zhuyinValues.map(z => `"${z}"`).join(', ')}],`);
+            newLines.push(`${indent}optionsKana: [${zhuyinValues.map(z => `"${z}"`).join(', ')}],`);
           } else {
-            newLines.push(`${indent}optionsZhuyin: [`);
+            newLines.push(`${indent}optionsKana: [`);
             for (let k = 0; k < zhuyinValues.length; k++) {
               const comma = k < zhuyinValues.length - 1 ? ',' : ',';
               newLines.push(`${indent}  "${zhuyinValues[k]}"${comma}`);
@@ -251,23 +251,23 @@ function processFile(filePath) {
       }
     }
 
-    // Check for hint with pinyin that needs hintZhuyin
+    // Check for hint with romaji that needs hintKana
     const hintMatch = lines[i].match(/^(\s*)hint:\s*"([^"]+)"/);
     if (hintMatch) {
       const [, indent, hintValue] = hintMatch;
-      // Only add hintZhuyin if hint contains pinyin tone marks
+      // Only add hintKana if hint contains romaji tone marks
       if (/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/.test(hintValue)) {
-        // Check if hintZhuyin already exists
+        // Check if hintKana already exists
         let hasHintZhuyin = false;
         for (let j = i + 1; j < Math.min(i + 3, lines.length); j++) {
-          if (lines[j].includes('hintZhuyin')) { hasHintZhuyin = true; break; }
+          if (lines[j].includes('hintKana')) { hasHintZhuyin = true; break; }
           if (lines[j].match(/^\s*(id:|type:|\})/)) break;
         }
 
         if (!hasHintZhuyin) {
-          const zhuyin = convertPinyinHint(hintValue);
-          if (zhuyin) {
-            newLines.push(`${indent}hintZhuyin: "${zhuyin}",`);
+          const kana = convertPinyinHint(hintValue);
+          if (kana) {
+            newLines.push(`${indent}hintKana: "${kana}",`);
             modified = true;
           }
         }

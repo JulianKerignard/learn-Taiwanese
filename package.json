@@ -1,7 +1,7 @@
 {
-  "name": "site-taiwan",
+  "name": "site-japon",
   "version": "1.0.0",
-  "description": "",
+  "description": "Apprendre le japonais pour francophones \u2014 parcours JLPT, repetition espacee, accent de hauteur",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",

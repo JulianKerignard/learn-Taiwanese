@@ -1,25 +1,61 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #e11d48;
-  --color-primary-light: #fb7185;
-  --color-primary-dark: #be123c;
+  /* Indigo (藍色, ai-iro) — the dye of noren and workwear. Chosen so the primary
+     is not also the error colour, which was the case when both were red. */
+  --color-primary: #29527a;
+  --color-primary-light: #4a7bab;
+  --color-primary-dark: #1b3a58;
   --color-surface: #fafaf9;
-  --color-surface-dark: #1c1917;
-  --color-accent: #0ea5e9;
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
-  --font-chinese: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --color-accent: #c24232;
+  --color-success: #2f7d52;
+  --color-warning: #b5761f;
+  --color-danger: #c2312b;
+
+  /* Pitch accent patterns. Declared once, here, so the contour graph and its
+     label can never disagree — and so no pattern borrows the success or error
+     colour and quietly means "correct" or "wrong". */
+  --color-heiban: #3f6f8f;
+  --color-atamadaka: #a85432;
+  --color-nakadaka: #6d4e9c;
+  --color-odaka: #7a6420;
+
+  /* JLPT levels, ordered N5 (entry) to N1 (hardest). */
+  --color-n5: #4e8c6a;
+  --color-n4: #3f7a9e;
+  --color-n3: #5b5fa0;
+  --color-n2: #8a4e93;
+  --color-n1: #99384b;
+
+  /* next/font owns --font-noto-jp; this composes it with local fallbacks so the
+     two declarations cannot overwrite each other. */
+  --font-japanese: var(--font-noto-jp), "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  --font-sans: var(--font-noto-jp), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
   body {
     @apply bg-surface text-stone-900 antialiased;
+    font-family: var(--font-sans);
   }
 
-  .chinese {
-    font-family: var(--font-chinese);
+  .japanese {
+    font-family: var(--font-japanese);
+  }
+
+  /* One global focus ring instead of per-component focus:outline-none. */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  ruby {
+    ruby-align: center;
+  }
+
+  rt {
+    font-family: var(--font-japanese);
   }
 }
 
@@ -29,20 +65,41 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary/50;
+    @apply inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-dark;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-50 focus:outline-none focus:ring-2 focus:ring-stone-500/30;
+    @apply inline-flex items-center justify-center rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-50;
   }
 
   .badge {
     @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
   }
 
-  .character-display {
-    font-family: var(--font-chinese);
-    @apply text-5xl sm:text-6xl font-normal leading-none;
+  /* The signature element: the word itself, always in the Japanese face. */
+  .term-display {
+    font-family: var(--font-japanese);
+    @apply text-5xl leading-none font-normal sm:text-6xl;
+  }
+
+  .skip-link {
+    @apply absolute left-4 z-50 -translate-y-20 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-transform;
+  }
+
+  .skip-link:focus {
+    @apply translate-y-4;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 }
 
@@ -57,4 +114,15 @@
 
 .backface-hidden {
   backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

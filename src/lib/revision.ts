@@ -1,6 +1,6 @@
 import type { SM2Card } from "@/types";
-import type { HSKLevel } from "@/types/course";
-import { chapters, hskLevels, getUnitById, getHSKLevelForUnit } from "@/data/course";
+import type { JLPTLevel } from "@/types/course";
+import { chapters, jlptLevels, getUnitById, getJLPTLevelForUnit } from "@/data/course";
 import { lessons } from "@/data/lessons";
 
 // ── Card source parsing ─────────────────────────────────────────────
@@ -8,14 +8,14 @@ import { lessons } from "@/data/lessons";
 interface CardSource {
   unitId?: string;
   chapterNum?: number;
-  hskLevel?: number;
+  jlptLevel?: number;
   lessonSlug?: string;
 }
 
 function getCardSource(card: SM2Card): CardSource {
   const result: CardSource = {};
 
-  // Course cards: id = "course-unit-XX-character" and lessonId = "unit-XX"
+  // Course cards: id = "course-unit-XX-term" and lessonId = "unit-XX"
   if (card.id.startsWith("course-")) {
     const match = card.id.match(/^course-(unit-\d+)-/);
     if (match) result.unitId = match[1];
@@ -26,24 +26,24 @@ function getCardSource(card: SM2Card): CardSource {
     result.unitId = card.lessonId;
   }
 
-  // Lesson cards: id = "lessonSlug-character" or lessonId = "lesson-slug"
+  // Lesson cards: id = "lessonSlug-term" or lessonId = "lesson-slug"
   if (!result.unitId && card.lessonId) {
     const lesson = lessons.find((l) => l.id === card.lessonId || l.slug === card.lessonId);
     if (lesson) result.lessonSlug = lesson.slug;
   }
 
-  // Reading cards: id = "reading-character-timestamp"
+  // Reading cards: id = "reading-term-timestamp"
   if (!result.unitId && !result.lessonSlug && card.id.startsWith("reading-")) {
     result.lessonSlug = "__reading__";
   }
 
-  // Resolve chapter and HSK level from unit
+  // Resolve chapter and JLPT level from unit
   if (result.unitId) {
     const unit = getUnitById(result.unitId);
     if (unit) {
       result.chapterNum = unit.chapter;
-      const hsk = getHSKLevelForUnit(unit);
-      if (hsk) result.hskLevel = hsk.level;
+      const jlpt = getJLPTLevelForUnit(unit);
+      if (jlpt) result.jlptLevel = jlpt.level;
     }
   }
 
@@ -74,7 +74,7 @@ export interface TopicGroup {
 
 export interface RevisionTopic extends TopicGroup {
   score: number;
-  type: "unit" | "chapter" | "hsk" | "lesson";
+  type: "unit" | "chapter" | "jlpt" | "lesson";
 }
 
 // ── Grouping functions ──────────────────────────────────────────────
@@ -98,7 +98,7 @@ export function groupCardsByUnit(cards: SM2Card[]): TopicGroup[] {
     result.push({
       id: key,
       label: unit ? `Unité ${unit.number} — ${unit.title}` : lesson ? lesson.title : "Autres",
-      labelZh: unit?.titleZh || lesson?.titleZh,
+      labelZh: unit?.titleJa || lesson?.titleJa,
       cards: groupCards,
       dueCount: groupCards.filter(isDue).length,
       weakCount: groupCards.filter(isWeak).length,
@@ -127,7 +127,7 @@ export function groupCardsByChapter(cards: SM2Card[]): TopicGroup[] {
     result.push({
       id: `chapter-${key}`,
       label: chapter ? `Chapitre ${chapter.number} — ${chapter.title}` : "Leçons indépendantes",
-      labelZh: chapter?.titleZh,
+      labelZh: chapter?.titleJa,
       cards: groupCards,
       dueCount: groupCards.filter(isDue).length,
       weakCount: groupCards.filter(isWeak).length,
@@ -147,7 +147,7 @@ export function groupCardsByHSK(cards: SM2Card[]): TopicGroup[] {
 
   for (const card of cards) {
     const source = getCardSource(card);
-    const key = source.hskLevel ?? 0;
+    const key = source.jlptLevel ?? 0;
     const arr = groups.get(key) || [];
     arr.push(card);
     groups.set(key, arr);
@@ -155,12 +155,12 @@ export function groupCardsByHSK(cards: SM2Card[]): TopicGroup[] {
 
   const result: TopicGroup[] = [];
   for (const [key, groupCards] of groups) {
-    const level = hskLevels.find((l) => l.level === key);
+    const level = jlptLevels.find((l) => l.level === key);
 
     result.push({
-      id: `hsk-${key}`,
-      label: level ? `HSK ${level.level} — ${level.title}` : "Leçons indépendantes",
-      labelZh: level?.titleZh,
+      id: `jlpt-${key}`,
+      label: level ? `JLPT ${level.level} — ${level.title}` : "Leçons indépendantes",
+      labelZh: level?.titleJa,
       cards: groupCards,
       dueCount: groupCards.filter(isDue).length,
       weakCount: groupCards.filter(isWeak).length,
@@ -169,8 +169,8 @@ export function groupCardsByHSK(cards: SM2Card[]): TopicGroup[] {
   }
 
   return result.sort((a, b) => {
-    const aNum = parseInt(a.id.replace("hsk-", ""));
-    const bNum = parseInt(b.id.replace("hsk-", ""));
+    const aNum = parseInt(a.id.replace("jlpt-", ""));
+    const bNum = parseInt(b.id.replace("jlpt-", ""));
     return aNum - bNum;
   });
 }
@@ -232,11 +232,11 @@ export function filterCardsByTopic(cards: SM2Card[], topicId: string): SM2Card[]
     });
   }
 
-  if (topicId.startsWith("hsk-")) {
-    const num = parseInt(topicId.replace("hsk-", ""));
+  if (topicId.startsWith("jlpt-")) {
+    const num = parseInt(topicId.replace("jlpt-", ""));
     return cards.filter((c) => {
       const source = getCardSource(c);
-      return source.hskLevel === num;
+      return source.jlptLevel === num;
     });
   }
 

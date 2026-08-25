@@ -56,7 +56,7 @@ export default function LessonsPage() {
                 <h2 className="text-lg font-semibold text-stone-800 group-hover:text-primary transition-colors">
                   {lesson.title}
                 </h2>
-                <p className="chinese text-sm text-stone-400">{lesson.titleZh}</p>
+                <p className="japanese text-sm text-stone-400">{lesson.titleJa}</p>
               </div>
 
               <p className="text-sm text-stone-500 line-clamp-2">{lesson.description}</p>

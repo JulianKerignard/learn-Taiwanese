@@ -102,8 +102,8 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
         progress.todayNewCards += 1;
       }
       progress.lastStudyDate = new Date().toISOString().split("T")[0];
-      progress.charactersLearned = Math.max(
-        progress.charactersLearned,
+      progress.termsLearned = Math.max(
+        progress.termsLearned,
         getCards().filter((c) => c.repetitions > 0).length
       );
       saveProgress(progress);
@@ -113,7 +113,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
       const gamData = getGamification();
       gamData.totalXP += xpEvent.total;
       gamData.totalReviews += 1;
-      gamData.totalCharactersLearned = progress.charactersLearned;
+      gamData.totalTermsLearned = progress.termsLearned;
       gamData.currentStreak = progress.currentStreak;
       gamData.xpHistory.push(xpEvent);
 

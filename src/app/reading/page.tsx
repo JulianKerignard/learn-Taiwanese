@@ -185,12 +185,12 @@ export default function ReadingPage() {
                       </span>
                     )}
                   </div>
-                  <h3 className="chinese mt-3 text-xl font-bold text-stone-900">{text.title}</h3>
+                  <h3 className="japanese mt-3 text-xl font-bold text-stone-900">{text.title}</h3>
                   <p className="mt-1 text-sm text-stone-500">{text.titleFr}</p>
                   <div className="mt-3 flex items-center gap-3 text-xs text-stone-400">
                     <span>{text.sentences.length} phrases</span>
                     <span>{text.vocabulary.length} mots</span>
-                    <span>{text.text.length} caractères</span>
+                    <span>{text.text.length} signes</span>
                   </div>
                   {text.vocabulary.filter((v) => v.isNew).length > 0 && (
                     <div className="mt-2 text-xs text-amber-600">

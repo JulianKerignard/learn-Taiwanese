@@ -1,38 +1,40 @@
-export interface Character {
-  character: string;
-  traditional: string;
-  simplified: string;
-  pinyin: string;
-  zhuyin: string;
-  definition: string;
-  definitionFr: string;
-  strokeCount: number;
-  radical: string;
-  frequency: number;
-  hskLevel?: number;
-  tocflLevel?: number;
-  strokes?: string[];
-  medians?: number[][][];
+/** One ruby unit: a run of text with the kana reading placed above it. */
+export interface Segment {
+  text: string;
+  /** Omitted when `text` is already kana and needs no furigana. */
+  reading?: string;
 }
 
 export interface VocabularyItem {
-  character: string;
-  pinyin: string;
-  zhuyin: string;
+  /** The word as written, kanji included: 食べる, 今日, ありがとう. */
+  term: string;
+  /** Full reading in kana: たべる, きょう, ありがとう. */
+  kana: string;
+  /** Hepburn romanisation: taberu, kyou, arigatou. */
+  romaji: string;
+  /**
+   * Explicit furigana split. Required whenever the reading does not distribute
+   * evenly over the kanji — which is most words. Without it the reading is
+   * placed over the whole term, which is coarse but never wrong.
+   */
+  segments?: Segment[];
+  /** Mora index of the downstep. 0 = heiban (no downstep). */
+  pitch?: number;
   french: string;
   english: string;
   audio?: string;
   example?: {
     sentence: string;
-    pinyin: string;
+    romaji: string;
     translation: string;
   };
 }
 
 export interface Phrase {
-  chinese: string;
-  pinyin: string;
-  zhuyin: string;
+  japanese: string;
+  kana: string;
+  romaji: string;
+  segments?: Segment[];
   french: string;
   english: string;
   context?: string;
@@ -42,7 +44,7 @@ export interface Lesson {
   id: string;
   slug: string;
   title: string;
-  titleZh: string;
+  titleJa: string;
   description: string;
   icon: string;
   category: "basics" | "survival" | "daily" | "social" | "culture";
@@ -56,7 +58,7 @@ export interface Lesson {
 
 export interface QuizItem {
   id: string;
-  type: "character-to-french" | "french-to-character" | "audio-to-character" | "pinyin-to-character";
+  type: "term-to-french" | "french-to-term" | "audio-to-term" | "kana-to-term";
   question: string;
   correctAnswer: string;
   options: string[];
@@ -67,9 +69,10 @@ export interface FlashcardData {
   id: string;
   front: string;
   back: string;
-  pinyin: string;
-  zhuyin: string;
-  type: "character" | "vocabulary" | "phrase";
+  romaji: string;
+  kana: string;
+  segments?: Segment[];
+  type: "kanji" | "vocabulary" | "phrase";
   lessonId?: string;
 }
 
@@ -121,7 +124,7 @@ export interface Achievement {
 export interface GamificationData {
   totalXP: number;
   totalReviews: number;
-  totalCharactersLearned: number;
+  totalTermsLearned: number;
   currentStreak: number;
   achievements: Achievement[];
   lastSessionPerfect: boolean;
@@ -139,7 +142,7 @@ export interface SessionResult {
 }
 
 export interface UserProgress {
-  charactersLearned: number;
+  termsLearned: number;
   vocabularyMastered: number;
   lessonsCompleted: string[];
   currentStreak: number;
@@ -153,7 +156,7 @@ export interface UserProgress {
 }
 
 export interface UserSettings {
-  displayMode: "pinyin" | "zhuyin" | "both";
+  displayMode: "romaji" | "kana" | "both";
   dailyNewCards: number;
   showEnglish: boolean;
   autoPlayAudio: boolean;

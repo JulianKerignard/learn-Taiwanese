@@ -5,6 +5,7 @@ let currentAudio: HTMLAudioElement | null = null;
 // ── Pre-generated audio manifest ──────────────────────────────────────
 
 import { getBasePath } from "@/lib/basepath";
+import { LANG } from "@/lib/language";
 
 let audioManifest: Record<string, string> | null = null;
 
@@ -65,7 +66,7 @@ export async function speak(text: string, rate = 0.85): Promise<void> {
   try {
     const params = new URLSearchParams({
       text,
-      voice: "zh-TW-HsiaoChenNeural",
+      voice: LANG.tts.voice,
       rate: String(rate),
     });
 
@@ -112,16 +113,16 @@ function speakFallback(text: string, rate: number): Promise<void> {
     }
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "zh-TW";
+    utterance.lang = LANG.tts.speechLang;
     utterance.rate = rate;
     utterance.pitch = 1;
 
     const voices = window.speechSynthesis.getVoices();
-    const zhVoice =
-      voices.find((v) => v.lang === "zh-TW") ||
-      voices.find((v) => v.lang.startsWith("zh-Hant")) ||
-      voices.find((v) => v.lang.startsWith("zh"));
-    if (zhVoice) utterance.voice = zhVoice;
+    const match = LANG.tts.voicePrefixes.reduce<SpeechSynthesisVoice | undefined>(
+      (found, prefix) => found ?? voices.find((v) => v.lang.startsWith(prefix)),
+      undefined
+    );
+    if (match) utterance.voice = match;
 
     utterance.onend = () => resolve();
     utterance.onerror = () => resolve();

@@ -9,11 +9,11 @@ import { Sparkles, Shuffle } from "lucide-react";
 type Category = FunFact["category"];
 
 const categoryColors: Record<Category, { card: string; badge: string }> = {
-  taipei: { card: "bg-blue-50 border-blue-200", badge: "bg-blue-100 text-blue-700 border-blue-200" },
-  villes: { card: "bg-purple-50 border-purple-200", badge: "bg-purple-100 text-purple-700 border-purple-200" },
+  langue: { card: "bg-blue-50 border-blue-200", badge: "bg-blue-100 text-blue-700 border-blue-200" },
+  ecriture: { card: "bg-purple-50 border-purple-200", badge: "bg-purple-100 text-purple-700 border-purple-200" },
   nourriture: { card: "bg-amber-50 border-amber-200", badge: "bg-amber-100 text-amber-700 border-amber-200" },
-  culture: { card: "bg-rose-50 border-rose-200", badge: "bg-rose-100 text-rose-700 border-rose-200" },
-  nature: { card: "bg-emerald-50 border-emerald-200", badge: "bg-emerald-100 text-emerald-700 border-emerald-200" },
+  societe: { card: "bg-rose-50 border-rose-200", badge: "bg-rose-100 text-rose-700 border-rose-200" },
+  histoire: { card: "bg-emerald-50 border-emerald-200", badge: "bg-emerald-100 text-emerald-700 border-emerald-200" },
   insolite: { card: "bg-orange-50 border-orange-200", badge: "bg-orange-100 text-orange-700 border-orange-200" },
   expressions: { card: "bg-cyan-50 border-cyan-200", badge: "bg-cyan-100 text-cyan-700 border-cyan-200" },
   quotidien: { card: "bg-stone-50 border-stone-200", badge: "bg-stone-100 text-stone-700 border-stone-200" },
@@ -50,7 +50,7 @@ export default function FunFactsPage() {
             <Sparkles className="text-primary" size={22} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-stone-900">Fun Facts sur Taiwan</h1>
+            <h1 className="text-2xl font-bold text-stone-900">Fun Facts sur Japon</h1>
             <p className="text-sm text-stone-500">
               Des anecdotes pour briller en société
             </p>
@@ -131,13 +131,13 @@ export default function FunFactsPage() {
             <p className="mt-2 text-sm leading-relaxed text-stone-700">
               {fact.text}
             </p>
-            {fact.chinese && (
+            {fact.japanese && (
               <div className="mt-3 inline-flex items-center gap-2 rounded-lg border border-stone-200 bg-white/60 px-3 py-1.5">
-                <span className="chinese text-lg font-semibold text-stone-900">
-                  {fact.chinese}
+                <span className="japanese text-lg font-semibold text-stone-900">
+                  {fact.japanese}
                 </span>
-                {fact.pinyin && (
-                  <span className="text-xs text-stone-500">{fact.pinyin}</span>
+                {fact.romaji && (
+                  <span className="text-xs text-stone-500">{fact.romaji}</span>
                 )}
               </div>
             )}

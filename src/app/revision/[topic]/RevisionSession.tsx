@@ -17,7 +17,7 @@ function getTopicLabel(topicId: string): string {
     return `Unité ${parseInt(num)}`;
   }
   if (topicId.startsWith("chapter-")) return `Chapitre ${topicId.replace("chapter-", "")}`;
-  if (topicId.startsWith("hsk-")) return `HSK ${topicId.replace("hsk-", "")}`;
+  if (topicId.startsWith("jlpt-")) return `JLPT ${topicId.replace("jlpt-", "")}`;
   return topicId;
 }
 

@@ -13,7 +13,7 @@ import {
 import type { FlashcardData, SM2Card, FSRSCardState } from "@/types";
 
 /**
- * FSRS configuration optimized for Chinese character learning.
+ * FSRS configuration optimized for Japanese term learning.
  * - 90% target retention (good balance for hanzi)
  * - Max 365 days interval
  * - Short-term scheduling enabled for learning steps

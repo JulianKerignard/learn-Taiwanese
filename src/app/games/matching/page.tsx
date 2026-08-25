@@ -9,7 +9,7 @@ interface Card {
   id: number;
   pairId: number;
   text: string;
-  type: "character" | "french";
+  type: "term" | "french";
   word: GameWord;
   flipped: boolean;
   matched: boolean;
@@ -21,8 +21,8 @@ function buildCards(words: GameWord[]): Card[] {
     cards.push({
       id: i * 2,
       pairId: i,
-      text: word.character,
-      type: "character",
+      text: word.term,
+      type: "term",
       word,
       flipped: false,
       matched: false,
@@ -159,7 +159,7 @@ export default function MatchingPage() {
         <div className="flex items-center gap-4 text-sm text-stone-600">
           <label className="flex items-center gap-1">
             <input type="checkbox" checked={showPinyin} onChange={(e) => setShowPinyin(e.target.checked)} className="rounded" />
-            Pinyin
+            Romaji
           </label>
           <span>
             Tentatives : <strong>{attempts}</strong>
@@ -223,19 +223,19 @@ export default function MatchingPage() {
                 >
                   <span
                     className={`text-center font-bold leading-tight ${
-                      card.type === "character"
-                        ? "chinese text-2xl text-stone-900"
+                      card.type === "term"
+                        ? "japanese text-2xl text-stone-900"
                         : "text-sm text-stone-700"
                     }`}
                   >
                     {card.text}
                   </span>
-                  {card.type === "character" && (card.flipped || card.matched) && (
+                  {card.type === "term" && (card.flipped || card.matched) && (
                     <div className="mt-1 flex flex-col items-center gap-0.5">
                       {showPinyin && (
-                        <span className="text-xs text-stone-400 italic">{card.word.pinyin}</span>
+                        <span className="text-xs text-stone-400 italic">{card.word.romaji}</span>
                       )}
-                      <AudioButton text={card.word.character} size="sm" />
+                      <AudioButton text={card.word.term} size="sm" />
                     </div>
                   )}
                 </div>

@@ -3,312 +3,192 @@ import type { CourseUnit } from "@/types/course";
 export const unit06: CourseUnit = {
   id: "unit-06",
   number: 6,
-  title: "Les classificateurs — Partie 2",
-  titleZh: "量詞——第二部分",
+  title: "Katakana : la fin du tableau et la logique des emprunts",
+  titleJa: "カタカナ：後半と外来語",
   chapter: 1,
   description:
-    "Approfondissement des classificateurs avec 15+ mots de mesure organisés par catégorie. Comprenez la logique derrière chaque classificateur et utilisez-les naturellement.",
-  icon: "📦",
+    "Les dernières lignes du katakana, puis le système qui transforme un mot étranger en mot japonais. À la fin de cette unité vous lirez un menu, un panneau ou un emballage sans buter sur les katakana.",
+  icon: "ン",
 
   sections: [
     {
-      title: "La logique des classificateurs",
-      type: "grammar",
-      content: [
-        {
-          type: "text",
-          content:
-            "Pourquoi les classificateurs existent-ils ? En mandarin, on ne peut pas coller directement un nombre devant un nom. On doit intercaler un « mot de mesure » (量詞, liàngcí) qui catégorise l'objet par sa forme, sa nature ou sa fonction. C'est un système ancien qui remonte au chinois classique, où il servait à distinguer des objets par leurs propriétés physiques.",
-        },
-        {
-          type: "text",
-          content:
-            "La bonne nouvelle : la plupart des classificateurs suivent une LOGIQUE visuelle. Si vous visualisez la forme de l'objet, vous pouvez souvent deviner le bon classificateur. Les choses longues et fines utilisent 條. Les choses plates utilisent 張. Les animaux utilisent 隻. Les machines utilisent 台. Ce n'est pas arbitraire — c'est un système de classification par la forme et la nature.",
-        },
-        {
-          type: "example",
-          chinese: "一條河 / 一條魚 / 一條路 / 一條褲子",
-          pinyin: "yì tiáo hé / yì tiáo yú / yì tiáo lù / yì tiáo kùzi",
-          translation: "une rivière / un poisson / une route / un pantalon",
-          content:
-            "條 (tiáo) : pour tout ce qui est LONG et FIN. Une rivière, un poisson, une route, un pantalon — tous ces objets ont une forme allongée.",
-        },
-        {
-          type: "example",
-          chinese: "一張紙 / 一張桌子 / 一張票 / 一張床",
-          pinyin:
-            "yì zhāng zhǐ / yì zhāng zhuōzi / yì zhāng piào / yì zhāng chuáng",
-          translation: "une feuille / une table / un billet / un lit",
-          content:
-            "張 (zhāng) : pour tout ce qui est PLAT et qui a une SURFACE. Papier, table, billet, lit — tous ont une surface plate dominante.",
-        },
-        {
-          type: "example",
-          chinese: "一隻狗 / 一隻貓 / 一隻鳥",
-          pinyin: "yì zhī gǒu / yì zhī māo / yì zhī niǎo",
-          translation: "un chien / un chat / un oiseau",
-          content:
-            "隻 (zhī) : pour les ANIMAUX en général (surtout les petits et moyens). C'est le classificateur animal par défaut.",
-        },
-        {
-          type: "tip",
-          content:
-            "Astuce mnémotechnique : quand vous apprenez un nouveau nom, imaginez-le visuellement. Est-ce que c'est long ? → 條. Plat ? → 張. Un animal ? → 隻. Un véhicule ? → 輛. Si rien ne colle → 個 (le classificateur universel).",
-        },
-      ],
-    },
-    {
-      title: "Les 15 classificateurs essentiels",
+      title: "Fermer le tableau — ハ行 マ行 ヤ行 ラ行 ワ ン",
       type: "theory",
       content: [
         {
           type: "text",
           content:
-            "Voici les 15 classificateurs les plus fréquents du mandarin, organisés par catégorie logique. Pour chacun, mémorisez le classificateur + 2-3 noms associés. C'est plus efficace que d'apprendre des listes.",
-        },
-        {
-          type: "text",
-          content:
-            "CATÉGORIE 1 — Personnes. Deux classificateurs : 個 (gè, général) et 位 (wèi, formel/poli). 個 est le classificateur par défaut pour les personnes dans un contexte informel. 位 marque le respect — on l'utilise pour les clients, les professeurs, les personnes âgées.",
+            "Il reste cinq lignes et deux signes isolés : ハ ヒ フ ヘ ホ, マ ミ ム メ モ, ヤ ユ ヨ, ラ リ ル レ ロ, puis ワ et ン. Avec eux le tableau des katakana est complet — quarante-six signes de base, exactement les mêmes cases que les hiragana. Vous n'apprenez donc pas un second système, vous apprenez un second habillage du même système. La ligne ヤ n'a que trois signes, comme en hiragana : les cases yi et ye n'existent pas en japonais moderne.",
         },
         {
           type: "example",
-          chinese: "一個朋友 / 一個人",
-          pinyin: "yí gè péngyǒu / yí gè rén",
-          translation: "un ami / une personne",
-          content: "個 (gè) : classificateur informel et universel pour les personnes.",
+          japanese: "ハ ヒ フ ヘ ホ",
+          romaji: "ha hi fu he ho",
+          translation: "ha — hi — fu — he — ho",
+          content:
+            "フ n'est pas le « fou » français : la consonne se produit entre les deux lèvres, sans que les dents inférieures touchent la lèvre supérieure. Soufflez comme pour éteindre une bougie. C'est un f très léger, presque un h soufflé, et c'est lui qui note tous les f étrangers.",
         },
         {
           type: "example",
-          chinese: "一位老師 / 三位客人",
-          pinyin: "yí wèi lǎoshī / sān wèi kèrén",
-          translation: "un professeur / trois invités",
+          japanese: "ラ リ ル レ ロ",
+          romaji: "ra ri ru re ro",
+          translation: "ra — ri — rou — ré — ro",
           content:
-            "位 (wèi) : classificateur poli. Au restaurant : 幾位？(jǐ wèi? — combien de personnes ?).",
-        },
-        {
-          type: "text",
-          content:
-            "CATÉGORIE 2 — Animaux. Le classificateur principal est 隻 (zhī). Il couvre la grande majorité des animaux : chiens, chats, oiseaux, insectes, poissons (quand on parle de l'animal vivant).",
+            "La consonne de la ligne ラ est un simple battement de la langue contre le palais, à mi-chemin entre le r roulé, le l et le d français. Ce n'est jamais le r grasseyé de Paris. Retenez bien cette ligne : c'est elle qui reçoit tous les l étrangers, et elle apparaît dans presque tous les mots empruntés.",
         },
         {
           type: "example",
-          chinese: "一隻狗 / 兩隻貓 / 一隻蝴蝶",
-          pinyin: "yì zhī gǒu / liǎng zhī māo / yì zhī húdié",
-          translation: "un chien / deux chats / un papillon",
+          japanese: "マ ミ ム メ モ ／ ヤ ユ ヨ ／ ワ ン",
+          romaji: "ma mi mu me mo / ya yu yo / wa n",
+          translation: "ma-mi-mu-me-mo — ya-yu-yo — wa — n",
           content:
-            "隻 (zhī) : classificateur animal par défaut. Note : pour les grands animaux comme les chevaux ou les vaches, on utilise parfois 匹 (pǐ) ou 頭 (tóu).",
-        },
-        {
-          type: "text",
-          content:
-            "CATÉGORIE 3 — Véhicules. Le classificateur est 輛 (liàng). Il s'utilise pour tout ce qui a des roues : voitures, bus, vélos, motos, taxis.",
-        },
-        {
-          type: "example",
-          chinese: "一輛車 / 一輛計程車 / 一輛腳踏車",
-          pinyin: "yí liàng chē / yí liàng jìchéngchē / yí liàng jiǎotàchē",
-          translation: "une voiture / un taxi / un vélo",
-          content:
-            "輛 (liàng) : pour tous les véhicules. À Taiwan, le taxi s'appelle 計程車 (pas 出租車 comme en Chine continentale).",
-        },
-        {
-          type: "text",
-          content:
-            "CATÉGORIE 4 — Vêtements et affaires. Le classificateur est 件 (jiàn). Il couvre les vêtements du haut (chemise, veste, manteau) et aussi les « affaires » ou « choses » abstraites (une affaire, un événement).",
-        },
-        {
-          type: "example",
-          chinese: "一件衣服 / 一件外套 / 一件事",
-          pinyin: "yí jiàn yīfú / yí jiàn wàitào / yí jiàn shì",
-          translation: "un vêtement / un manteau / une affaire (chose)",
-          content:
-            "件 (jiàn) : vêtements du haut + affaires/choses abstraites. « C'est une petite chose » = 這是一件小事。",
-        },
-        {
-          type: "text",
-          content:
-            "CATÉGORIE 5 — Choses plates (surfaces). 張 (zhāng) — déjà vu en détail. Papier, tables, billets, lits, cartes, photos.",
-        },
-        {
-          type: "example",
-          chinese: "一張照片 / 一張地圖 / 一張信用卡",
-          pinyin: "yì zhāng zhàopiàn / yì zhāng dìtú / yì zhāng xìnyòngkǎ",
-          translation: "une photo / une carte (géo) / une carte de crédit",
-          content: "張 (zhāng) : tout ce qui a une surface plate. Très fréquent au quotidien.",
-        },
-        {
-          type: "text",
-          content:
-            "CATÉGORIE 6 — Choses longues. 條 (tiáo) — déjà vu. Rivières, routes, poissons, pantalons, écharpes, nouvelles (une nouvelle = 一條新聞).",
-        },
-        {
-          type: "text",
-          content:
-            "CATÉGORIE 7 — Livres et documents reliés. 本 (běn). Pour tout ce qui est relié : livres, cahiers, magazines, dictionnaires, passeports.",
-        },
-        {
-          type: "example",
-          chinese: "一本書 / 一本雜誌 / 一本護照",
-          pinyin: "yì běn shū / yì běn zázhì / yì běn hùzhào",
-          translation: "un livre / un magazine / un passeport",
-          content:
-            "本 (běn) : pour les documents reliés. Le passeport aussi — il a une couverture et des pages.",
-        },
-        {
-          type: "text",
-          content:
-            "CATÉGORIE 8 — Tranches et morceaux. 片 (piàn). Pour les choses en tranches, en morceaux plats, ou les étendues : une tranche de pain, un paysage, un CD.",
-        },
-        {
-          type: "example",
-          chinese: "一片麵包 / 一片風景 / 一片葉子",
-          pinyin: "yí piàn miànbāo / yí piàn fēngjǐng / yí piàn yèzi",
-          translation: "une tranche de pain / un paysage / une feuille (d'arbre)",
-          content:
-            "片 (piàn) : tranches, morceaux plats, étendues. 一片風景 évoque une « étendue » de paysage.",
-        },
-        {
-          type: "text",
-          content:
-            "CATÉGORIE 9 — Bouteilles. 瓶 (píng). Spécifique aux contenants en forme de bouteille : eau, bière, vin, sauce soja.",
-        },
-        {
-          type: "example",
-          chinese: "一瓶水 / 一瓶啤酒 / 兩瓶可樂",
-          pinyin: "yì píng shuǐ / yì píng píjiǔ / liǎng píng kělè",
-          translation: "une bouteille d'eau / une bière / deux cocas",
-          content:
-            "瓶 (píng) : pour les bouteilles. Au dépanneur (便利商店) : 我要一瓶水。",
-        },
-        {
-          type: "text",
-          content:
-            "CATÉGORIE 10 — Fois / occurrences. 次 (cì). Pour compter les occurrences d'une action : une fois, la première fois, combien de fois.",
-        },
-        {
-          type: "example",
-          chinese: "一次 / 第一次 / 很多次",
-          pinyin: "yí cì / dì yī cì / hěn duō cì",
-          translation: "une fois / la première fois / beaucoup de fois",
-          content:
-            "次 (cì) : pour les occurrences. 這是我第一次來台灣 = C'est la première fois que je viens à Taiwan.",
-        },
-        {
-          type: "text",
-          content:
-            "Autres classificateurs courants : 杯 (bēi) pour les tasses/verres (一杯咖啡), 碗 (wǎn) pour les bols (一碗麵), 盤 (pán) pour les assiettes/plats (一盤炒飯), 雙 (shuāng) pour les paires (一雙筷子, une paire de baguettes).",
-        },
-        {
-          type: "example",
-          chinese: "一杯咖啡 / 一碗麵 / 一盤炒飯 / 一雙筷子",
-          pinyin:
-            "yì bēi kāfēi / yì wǎn miàn / yì pán chǎofàn / yì shuāng kuàizi",
-          translation:
-            "un café / un bol de nouilles / un plat de riz frit / une paire de baguettes",
-          content:
-            "Classificateurs de contenants : 杯 (verre/tasse), 碗 (bol), 盤 (assiette/plat), 雙 (paire).",
+            "ン est le seul signe qui ne porte pas de voyelle : c'est une more nasale à part entière, qui compte pour un temps plein. Le signe ヲ existe encore dans les tableaux mais ne sert quasiment jamais : la particule を s'écrit toujours en hiragana.",
         },
         {
           type: "warning",
           content:
-            "La structure est TOUJOURS : nombre + classificateur + nom. Jamais nombre + nom directement. 三本書 (trois livres) ✓. 三書 ✗. C'est une erreur que font tous les débutants francophones — en français on dit « trois livres » sans classificateur.",
+            "Quatre confusions piègent tout le monde : ソ / ン, シ / ツ, マ / ム, et ラ / ワ / ク. Le réflexe fiable est de repasser par l'hiragana correspondant : ン rappelle le départ de ん, ソ celui de そ ; dans シ les traits attaquent par la gauche comme dans し, dans ツ ils attaquent par le haut comme dans つ.",
+        },
+        {
+          type: "tip",
+          content:
+            "Certains katakana ressemblent beaucoup à leur hiragana : ヘ et へ sont pratiquement identiques, et カ／か, セ／せ, リ／り, モ／も, ヤ／や se distinguent d'un rien. Ce n'est pas un problème : dans un texte réel c'est le contexte — nom étranger ou mot japonais — qui tranche instantanément.",
         },
       ],
     },
     {
-      title: "Classificateurs dans la vie à Taiwan",
+      title: "Dakuten, barre longue et sons importés",
+      type: "theory",
+      content: [
+        {
+          type: "text",
+          content:
+            "Les deux petits traits (dakuten) et le petit rond (handakuten) fonctionnent exactement comme en hiragana : ハ devient バ avec les traits, パ avec le rond. On obtient ainsi ガ ギ グ ゲ ゴ, ザ ジ ズ ゼ ゾ, ダ ヂ ヅ デ ド, バ ビ ブ ベ ボ et パ ピ プ ペ ポ. Les emprunts en font un usage massif, simplement parce que les langues européennes sont pleines de b, d, g et z.",
+        },
+        {
+          type: "example",
+          japanese: "ハ バ パ",
+          romaji: "ha ba pa",
+          translation: "ha — ba — pa",
+          content:
+            "Un même signe, trois sons. Les deux traits sonorisent la consonne, le rond la transforme en p. C'est ce mécanisme qui donne パン (le pain), ビール (la bière), パソコン (l'ordinateur) : trois mots que vous croiserez le premier jour au Japon.",
+        },
+        {
+          type: "text",
+          content:
+            "Deuxième particularité : en katakana la voyelle longue ne s'écrit pas en doublant le signe, mais avec une barre appelée chōonpu, ー. On écrit donc コーヒー et non コオヒイ. En écriture verticale la barre se redresse et devient un trait vertical. Cette barre compte pour une more pleine, exactement comme un kana.",
+        },
+        {
+          type: "comparison",
+          content:
+            "ビール (biiru, la bière) et ビル (biru, l'immeuble) : la seule différence est la barre, donc une more de plus. Un francophone qui néglige la longueur des voyelles commande un immeuble. La longueur n'est pas un détail d'accent en japonais, elle distingue les mots.",
+        },
+        {
+          type: "text",
+          content:
+            "Le tableau classique ne suffisait pas pour transcrire les sons étrangers. Des combinaisons modernes ont donc été créées, en écrivant un kana entier suivi d'une petite voyelle : ファ フィ フェ フォ pour fa-fi-fe-fo, ティ et ディ pour ti et di, トゥ ドゥ pour tu et du, ウィ ウェ pour wi et we, シェ ジェ チェ pour she-je-che. Elles n'existent qu'en katakana, précisément parce qu'elles ne servent qu'aux mots venus d'ailleurs.",
+        },
+        {
+          type: "example",
+          japanese: "カフェ ／ パーティー ／ ファイル",
+          romaji: "kafe / paatii / fairu",
+          translation: "le café (le lieu) — la fête — le fichier",
+          content:
+            "Décomposez : フ + petit ェ donne fe, テ + petit ィ donne ti, フ + petit ァ donne fa. Le petit kana ne compte pas comme une more séparée, il modifie la voyelle du kana qui le précède. パーティー fait donc quatre mores : pa-a-ti-i.",
+        },
+        {
+          type: "comparison",
+          content:
+            "Le signe ヴ (vu) et ses dérivés ヴァ ヴィ ヴェ ヴォ existent pour noter le v, mais l'usage courant leur préfère la ligne バ : on écrit aujourd'hui バイオリン plutôt que ヴァイオリン, ビーナス plutôt que ヴィーナス. Gardez ヴ en lecture passive, il survit surtout dans des noms de marque et des transcriptions soignées.",
+        },
+      ],
+    },
+    {
+      title: "La machine à adapter un mot étranger",
+      type: "theory",
+      content: [
+        {
+          type: "text",
+          content:
+            "Un emprunt n'est pas déformé au hasard : il passe dans une machine dont les règles sont peu nombreuses et régulières. Trois contraintes suffisent à tout expliquer. Le japonais ne dispose que d'un inventaire limité de sons ; il n'admet pas de syllabe fermée, sauf par ン et ッ ; et il découpe tout en mores de durée égale. Une fois ces trois contraintes appliquées, la forme japonaise du mot est presque toujours prévisible.",
+        },
+        {
+          type: "example",
+          japanese: "マクドナルド",
+          romaji: "makudonarudo",
+          translation: "McDonald's",
+          content:
+            "Six mores là où l'anglais en fait trois syllabes. Chaque consonne qui aurait fermé une syllabe reçoit une voyelle : le c devient ク, le d final devient ド ; le l devient ル. Rien n'est arbitraire, tout découle des trois contraintes. Les Japonais raccourcissent ensuite le nom en マック à Tokyo et en マクド à Osaka.",
+        },
+        {
+          type: "text",
+          content:
+            "Quelle voyelle ajoute-t-on ? Par défaut ウ : milk devient ミルク, gas devient ガス, beef devient ビーフ. Mais après t et d, c'est オ : hint donne ヒント, bed donne ベッド, card donne カード. Cette règle à deux branches couvre l'immense majorité des cas et vous permet de deviner un mot que vous n'avez jamais vu.",
+        },
+        {
+          type: "example",
+          japanese: "ホット ／ ホテル",
+          romaji: "hotto / hoteru",
+          translation: "chaud (pour une boisson) — l'hôtel",
+          content:
+            "Deux mécanismes différents sur deux mots voisins. Dans hot, le t final devient ト, et la voyelle courte devant l'occlusive déclenche en plus un ッ : ホット, trois mores. Dans hotel, c'est le l qui est traité, et il passe par la ligne ラ : ホテル.",
+        },
+        {
+          type: "text",
+          content:
+            "Le l et le r étrangers tombent tous les deux dans la ligne ラ, sans distinction : light et right donnent l'un comme l'autre ライト. Cette fusion explique aussi la difficulté symétrique des Japonais quand ils apprennent le français ou l'anglais. Pour vous, c'est une bonne nouvelle : vous n'avez pas à choisir, il n'y a qu'une seule ligne possible.",
+        },
+        {
+          type: "tip",
+          content:
+            "Dernière étape de la machine : la troncation. Un emprunt trop long est coupé, généralement autour de trois ou quatre mores. supermarket donne スーパー, department store donne デパート, apartment donne アパート, convenience store donne コンビニ, television donne テレビ. Quand un mot vous semble incomplet, cherchez le mot étranger long derrière.",
+        },
+        {
+          type: "warning",
+          content:
+            "L'erreur francophone typique est de lire les katakana avec les habitudes du français : nasaliser, avaler la voyelle finale, appuyer sur la dernière syllabe. レストラン ne se dit pas « restoran » à la française mais re-su-to-ra-n, cinq mores de durée égale, sans nasale sur le ラン. Prononcez chaque more, y compris celles que le mot d'origine n'avait pas.",
+        },
+      ],
+    },
+    {
+      title: "Les emprunts dans la vie réelle",
       type: "culture",
       content: [
         {
           type: "text",
           content:
-            "Au restaurant à Taiwan, vous utiliserez des classificateurs à chaque commande. Le serveur vous demandera 幾位？(jǐ wèi? — combien de personnes ?) et vous commanderez avec les bons classificateurs de contenants.",
-        },
-        {
-          type: "example",
-          chinese: "一碗滷肉飯 / 一杯珍珠奶茶 / 一盤水餃",
-          pinyin: "yì wǎn lǔròufàn / yì bēi zhēnzhū nǎichá / yì pán shuǐjiǎo",
-          translation:
-            "un bol de riz au porc braisé / un bubble tea / une assiette de raviolis",
-          content:
-            "Les trois classiques de la street food taiwanaise avec leurs classificateurs : 碗 (bol), 杯 (verre), 盤 (assiette).",
+            "Les katakana sont partout : cartes de restaurant, rayons de konbini, panneaux de gare, notices, vocabulaire informatique. Pour un voyageur, savoir les lire vite est la compétence au meilleur rendement de tout le japonais débutant — bien avant les kanji. Une bonne partie de ce que vous lirez sera un mot que vous connaissez déjà, simplement rhabillé.",
         },
         {
           type: "text",
           content:
-            "Au marché traditionnel (傳統市場), vous entendrez un classificateur spécial : 斤 (jīn). C'est l'unité de poids taiwanaise, qui vaut environ 600 grammes (pas 500g comme en Chine continentale). Quand le vendeur dit 一斤五十塊 (yì jīn wǔshí kuài), ça veut dire « 50 dollars taiwanais les 600g ».",
+            "Tout ne vient pas de l'anglais, et c'est un avantage pour un francophone. パン (le pain) vient du portugais pão, ビール du néerlandais bier, アルバイト de l'allemand Arbeit, アンケート du français enquête. Les premiers contacts commerciaux du Japon se sont faits avec les Portugais et les Néerlandais, et leur vocabulaire est resté dans la langue quotidienne.",
         },
         {
           type: "example",
-          chinese: "這個蘋果一斤多少錢？",
-          pinyin: "zhège píngguǒ yì jīn duōshǎo qián?",
-          translation: "Combien coûte un jin (600g) de ces pommes ?",
+          japanese: "アルバイト",
+          romaji: "arubaito",
+          translation: "un petit boulot, un travail à temps partiel",
           content:
-            "Au marché, on achète au poids avec 斤 (jīn). C'est l'unité standard à Taiwan — pas le kilogramme.",
+            "L'allemand Arbeit signifie « le travail » en général ; en japonais le mot s'est spécialisé et ne désigne que l'emploi à temps partiel, typiquement celui d'un étudiant. Il se raccourcit en バイト dans la langue courante. Un emprunt ne garde donc pas forcément le sens de la langue source.",
         },
         {
-          type: "text",
+          type: "warning",
           content:
-            "Classificateur taiwanais notable : 台 (tái) pour les machines et appareils. 一台電腦 (un ordinateur), 一台冷氣 (un climatiseur), 一台電視 (un téléviseur). En Chine continentale, on dit plutôt 臺 ou on utilise d'autres classificateurs, mais à Taiwan 台 est standard et très fréquent.",
+            "Méfiez-vous des mots qui ont l'air anglais sans l'être : サラリーマン désigne un employé de bureau, コンセント une prise électrique, マンション un immeuble d'habitation ordinaire, ワンピース une robe. Ces créations japonaises se lisent en katakana comme les autres, mais deviner leur sens à partir de l'anglais vous égarera.",
         },
         {
           type: "example",
-          chinese: "一台電腦 / 一台冷氣 / 一台手機",
-          pinyin: "yì tái diànnǎo / yì tái lěngqì / yì tái shǒujī",
-          translation: "un ordinateur / un climatiseur / un téléphone",
+          japanese: "パソコン",
+          romaji: "pasokon",
+          translation: "un ordinateur",
           content:
-            "台 (tái) : classificateur taiwanais pour les machines et appareils électroniques.",
+            "Le mot complet était パーソナルコンピューター. Le japonais a coupé les deux moitiés et recollé les débuts : パソ + コン. La forme longue ne se dit pratiquement jamais. Ce procédé est très productif : リモコン (télécommande), エアコン (climatiseur) sont bâtis de la même façon.",
         },
         {
           type: "tip",
           content:
-            "Quand vous ne connaissez pas le bon classificateur, utilisez 個 (gè). C'est le classificateur universel. Les Taiwanais comprendront toujours, même si ce n'est pas le plus précis. C'est comme dire « un truc de... » en français — pas élégant mais fonctionnel. Avec le temps, vous remplacerez les 個 par les classificateurs corrects.",
-        },
-      ],
-    },
-    {
-      title: "Exercices de sélection",
-      type: "practice",
-      content: [
-        {
-          type: "text",
-          content:
-            "Les exercices suivants vous entraînent à choisir le bon classificateur. La méthode : visualisez l'objet, identifiez sa caractéristique dominante (forme, nature, contenant), puis sélectionnez le classificateur correspondant.",
-        },
-        {
-          type: "text",
-          content:
-            "Stratégie de choix : 1) Est-ce une personne ? → 個 ou 位. 2) Est-ce un animal ? → 隻. 3) Est-ce un véhicule ? → 輛. 4) Est-ce long et fin ? → 條. 5) Est-ce plat ? → 張. 6) Est-ce relié (livre) ? → 本. 7) Est-ce un contenant ? → 杯/碗/瓶/盤. 8) Rien de tout ça ? → 個.",
-        },
-        {
-          type: "example",
-          chinese: "我要買兩___書。",
-          pinyin: "wǒ yào mǎi liǎng ___ shū.",
-          translation: "Je veux acheter deux livres. → 本 (běn)",
-          content:
-            "Un livre est relié, il a des pages → classificateur 本. Réponse : 兩本書。",
-        },
-        {
-          type: "example",
-          chinese: "桌子上有三___貓。",
-          pinyin: "zhuōzi shàng yǒu sān ___ māo.",
-          translation: "Il y a trois chats sur la table. → 隻 (zhī)",
-          content: "Un chat est un animal → classificateur 隻. Réponse : 三隻貓。",
-        },
-        {
-          type: "example",
-          chinese: "請給我一___水。",
-          pinyin: "qǐng gěi wǒ yì ___ shuǐ.",
-          translation:
-            "S'il vous plaît, donnez-moi un verre/une bouteille d'eau. → 杯 ou 瓶",
-          content:
-            "Ça dépend du contenant ! Au restaurant → 杯 (verre). Au dépanneur → 瓶 (bouteille).",
-        },
-        {
-          type: "tip",
-          content:
-            "Piège courant : 一件衣服 (un vêtement, 件) mais 一條褲子 (un pantalon, 條). Pourquoi ? Le pantalon a des jambes longues (forme allongée → 條), alors que la chemise est un « article » vestimentaire (件). La logique n'est pas toujours intuitive — certains classificateurs doivent simplement être mémorisés avec le nom.",
+            "Entraînement concret : dans un konbini ou devant n'importe quel emballage, lisez le katakana more par more à voix haute, puis seulement après essayez de reconnaître le mot d'origine. Faire l'inverse — deviner d'abord — vous fait sauter des mores et installe une lecture approximative.",
         },
       ],
     },
@@ -316,400 +196,155 @@ export const unit06: CourseUnit = {
 
   dialogue: {
     context:
-      "Au supermarché 全聯 (PX Mart) à Taipei. Vous faites vos courses et demandez de l'aide à un employé.",
+      "Dans un café de Tokyo. Presque tout ce que vous commandez s'écrit en katakana, et le personnel répond par des formules figées qu'il faut simplement reconnaître.",
     lines: [
       {
-        speaker: "Vous",
-        chinese: "請問，牛奶在哪裡？",
-        pinyin: "qǐngwèn, niúnǎi zài nǎlǐ?",
-        french: "Excusez-moi, où est le lait ?",
-      },
-      {
-        speaker: "Employé",
-        chinese: "在那邊。你要幾瓶？",
-        pinyin: "zài nàbiān. nǐ yào jǐ píng?",
-        french: "Là-bas. Vous en voulez combien de bouteilles ?",
+        speaker: "Serveur",
+        japanese: "いらっしゃいませ。",
+        romaji: "irasshaimase.",
+        french: "Bienvenue.",
+        note: "Formule d'accueil systématique dans tous les commerces. On n'y répond pas : elle ne demande rien.",
       },
       {
         speaker: "Vous",
-        chinese: "兩瓶牛奶，一瓶果汁。還有，我要一包米。",
-        pinyin: "liǎng píng niúnǎi, yì píng guǒzhī. háiyǒu, wǒ yào yì bāo mǐ.",
-        french:
-          "Deux bouteilles de lait, une bouteille de jus. Et aussi, je veux un paquet de riz.",
-        note: "包 (bāo) est le classificateur pour les paquets/sacs.",
+        japanese: "コーヒーとパン、おねがいします。",
+        romaji: "koohii to pan, onegai shimasu.",
+        french: "Un café et un pain, s'il vous plaît.",
+        note: "と relie deux noms (« et »). おねがいします transforme n'importe quel nom en commande polie.",
       },
       {
-        speaker: "Employé",
-        chinese: "好。你需要幾雙筷子？今天買一送一。",
-        pinyin: "hǎo. nǐ xūyào jǐ shuāng kuàizi? jīntiān mǎi yī sòng yī.",
-        french:
-          "D'accord. Vous avez besoin de combien de paires de baguettes ? Aujourd'hui c'est un acheté un offert.",
+        speaker: "Serveur",
+        japanese: "ホットですか、アイスですか。",
+        romaji: "hotto desu ka, aisu desu ka.",
+        french: "Chaud ou glacé ?",
+        note: "ホット (hot) et アイス (ice) servent uniquement à ce choix, et on l'entend partout. Notez le ッ de ホット, la trace du t anglais.",
       },
       {
         speaker: "Vous",
-        chinese: "太好了！我要三雙。一共多少錢？",
-        pinyin: "tài hǎo le! wǒ yào sān shuāng. yígòng duōshǎo qián?",
-        french: "Super ! J'en veux trois paires. Combien ça fait en tout ?",
+        japanese: "アイスで、おねがいします。",
+        romaji: "aisu de, onegai shimasu.",
+        french: "Glacé, s'il vous plaît.",
       },
       {
-        speaker: "Employé",
-        chinese: "一共兩百五十塊。需要塑膠袋嗎？一個兩塊。",
-        pinyin:
-          "yígòng liǎng bǎi wǔshí kuài. xūyào sùjiāodài ma? yí gè liǎng kuài.",
-        french:
-          "250 dollars en tout. Vous avez besoin d'un sac plastique ? C'est 2 dollars pièce.",
-        note: "À Taiwan, les sacs plastiques sont payants dans les magasins.",
+        speaker: "Serveur",
+        japanese: "はい、かしこまりました。",
+        romaji: "hai, kashikomarimashita.",
+        french: "Bien, c'est noté.",
+        note: "Formule très polie propre au service. À reconnaître, pas à réutiliser : ce n'est pas au client de la dire.",
       },
     ],
   },
 
   keyPoints: [
-    "Les classificateurs catégorisent les objets par leur FORME ou NATURE — ce n'est pas arbitraire.",
-    "Structure obligatoire : nombre + classificateur + nom. Jamais nombre + nom directement.",
-    "條 = long/fin, 張 = plat, 隻 = animaux, 輛 = véhicules, 件 = vêtements/affaires, 本 = livres.",
-    "En cas de doute, utilisez 個 — c'est le classificateur universel, toujours compris.",
-    "À Taiwan : 斤 (jīn ≈ 600g) au marché, 台 (tái) pour les machines, 杯 pour le bubble tea.",
+    "Le tableau katakana est complet : ハ行, マ行, ヤ行, ラ行, ワ et ン ferment les quarante-six cases, identiques à celles des hiragana.",
+    "En katakana la voyelle longue s'écrit avec la barre ー, jamais en doublant le kana : ビール fait trois mores, ビル en fait deux, et ce sont deux mots différents.",
+    "Le japonais n'a pas de syllabe fermée : seules ン et ッ peuvent fermer une more. Toute autre consonne finale reçoit une voyelle — ウ en général, オ après t et d.",
+    "Le l comme le r étranger passent par la ligne ラ, sans distinction : hotel donne ホテル, milk donne ミルク, light et right donnent tous deux ライト.",
+    "Les emprunts longs sont tronqués, souvent à trois ou quatre mores : supermarket donne スーパー, personal computer donne パソコン.",
   ],
 
   vocabulary: [
-    {
-      character: "隻",
-      pinyin: "zhī",
-      zhuyin: "ㄓ",
-      french: "Classificateur (animaux)",
-      english: "Classifier (animals)",
-      example: {
-        sentence: "他有兩隻狗。",
-        pinyin: "tā yǒu liǎng zhī gǒu.",
-        translation: "Il a deux chiens.",
-      },
-    },
-    {
-      character: "輛",
-      pinyin: "liàng",
-      zhuyin: "ㄌㄧㄤˋ",
-      french: "Classificateur (véhicules)",
-      english: "Classifier (vehicles)",
-      example: {
-        sentence: "我要叫一輛計程車。",
-        pinyin: "wǒ yào jiào yí liàng jìchéngchē.",
-        translation: "Je veux appeler un taxi.",
-      },
-    },
-    {
-      character: "件",
-      pinyin: "jiàn",
-      zhuyin: "ㄐㄧㄢˋ",
-      french: "Classificateur (vêtements, affaires)",
-      english: "Classifier (clothes, matters)",
-      example: {
-        sentence: "這件衣服很好看。",
-        pinyin: "zhè jiàn yīfú hěn hǎokàn.",
-        translation: "Ce vêtement est joli.",
-      },
-    },
-    {
-      character: "張",
-      pinyin: "zhāng",
-      zhuyin: "ㄓㄤ",
-      french: "Classificateur (objets plats)",
-      english: "Classifier (flat objects)",
-      example: {
-        sentence: "給我一張紙。",
-        pinyin: "gěi wǒ yì zhāng zhǐ.",
-        translation: "Donne-moi une feuille de papier.",
-      },
-    },
-    {
-      character: "條",
-      pinyin: "tiáo",
-      zhuyin: "ㄊㄧㄠˊ",
-      french: "Classificateur (objets longs)",
-      english: "Classifier (long objects)",
-      example: {
-        sentence: "這條路很長。",
-        pinyin: "zhè tiáo lù hěn cháng.",
-        translation: "Cette route est très longue.",
-      },
-    },
-    {
-      character: "本",
-      pinyin: "běn",
-      zhuyin: "ㄅㄣˇ",
-      french: "Classificateur (livres)",
-      english: "Classifier (books)",
-      example: {
-        sentence: "我買了三本書。",
-        pinyin: "wǒ mǎi le sān běn shū.",
-        translation: "J'ai acheté trois livres.",
-      },
-    },
-    {
-      character: "片",
-      pinyin: "piàn",
-      zhuyin: "ㄆㄧㄢˋ",
-      french: "Classificateur (tranches, morceaux)",
-      english: "Classifier (slices, pieces)",
-      example: {
-        sentence: "我要一片蛋糕。",
-        pinyin: "wǒ yào yí piàn dàngāo.",
-        translation: "Je veux une part de gâteau.",
-      },
-    },
-    {
-      character: "瓶",
-      pinyin: "píng",
-      zhuyin: "ㄆㄧㄥˊ",
-      french: "Classificateur (bouteilles)",
-      english: "Classifier (bottles)",
-      example: {
-        sentence: "一瓶水多少錢？",
-        pinyin: "yì píng shuǐ duōshǎo qián?",
-        translation: "Combien coûte une bouteille d'eau ?",
-      },
-    },
-    {
-      character: "次",
-      pinyin: "cì",
-      zhuyin: "ㄘˋ",
-      french: "Fois (occurrence)",
-      english: "Time (occurrence)",
-      example: {
-        sentence: "這是我第一次來台灣。",
-        pinyin: "zhè shì wǒ dì yī cì lái táiwān.",
-        translation: "C'est la première fois que je viens à Taiwan.",
-      },
-    },
-    {
-      character: "位",
-      pinyin: "wèi",
-      zhuyin: "ㄨㄟˋ",
-      french: "Classificateur (personnes, poli)",
-      english: "Classifier (people, polite)",
-      example: {
-        sentence: "請問幾位？",
-        pinyin: "qǐngwèn jǐ wèi?",
-        translation: "Combien de personnes ? (au restaurant)",
-      },
-    },
-    {
-      character: "斤",
-      pinyin: "jīn",
-      zhuyin: "ㄐㄧㄣ",
-      french: "Jin (unité de poids ≈ 600g)",
-      english: "Jin (weight unit ≈ 600g)",
-      example: {
-        sentence: "這個水果一斤六十塊。",
-        pinyin: "zhège shuǐguǒ yì jīn liùshí kuài.",
-        translation: "Ces fruits coûtent 60 dollars le jin.",
-      },
-    },
-    {
-      character: "衣服",
-      pinyin: "yīfú",
-      zhuyin: "ㄧ ㄈㄨˊ",
-      french: "Vêtement",
-      english: "Clothes",
-      example: {
-        sentence: "我要買幾件衣服。",
-        pinyin: "wǒ yào mǎi jǐ jiàn yīfú.",
-        translation: "Je veux acheter quelques vêtements.",
-      },
-    },
-    {
-      character: "褲子",
-      pinyin: "kùzi",
-      zhuyin: "ㄎㄨˋ ˙ㄗ",
-      french: "Pantalon",
-      english: "Pants",
-      example: {
-        sentence: "這條褲子太長了。",
-        pinyin: "zhè tiáo kùzi tài cháng le.",
-        translation: "Ce pantalon est trop long.",
-      },
-    },
-    {
-      character: "路",
-      pinyin: "lù",
-      zhuyin: "ㄌㄨˋ",
-      french: "Route, chemin",
-      english: "Road",
-      example: {
-        sentence: "這條路很漂亮。",
-        pinyin: "zhè tiáo lù hěn piàoliang.",
-        translation: "Cette route est très jolie.",
-      },
-    },
-    {
-      character: "紙",
-      pinyin: "zhǐ",
-      zhuyin: "ㄓˇ",
-      french: "Papier",
-      english: "Paper",
-      example: {
-        sentence: "你有沒有一張紙？",
-        pinyin: "nǐ yǒu méiyǒu yì zhāng zhǐ?",
-        translation: "As-tu une feuille de papier ?",
-      },
-    },
+    { term: "パン", kana: "パン", romaji: "pan", pitch: 1, french: "Le pain", english: "Bread" },
+    { term: "ビール", kana: "ビール", romaji: "biiru", pitch: 1, french: "La bière", english: "Beer" },
+    { term: "ホテル", kana: "ホテル", romaji: "hoteru", pitch: 1, french: "L'hôtel", english: "Hotel" },
+    { term: "レストラン", kana: "レストラン", romaji: "resutoran", pitch: 0, french: "Le restaurant", english: "Restaurant" },
+    { term: "スーパー", kana: "スーパー", romaji: "suupaa", pitch: 1, french: "Le supermarché", english: "Supermarket" },
+    { term: "パソコン", kana: "パソコン", romaji: "pasokon", pitch: 0, french: "L'ordinateur", english: "Computer" },
+    { term: "アルバイト", kana: "アルバイト", romaji: "arubaito", pitch: 3, french: "Le petit boulot, le travail à temps partiel", english: "Part-time job" },
+    { term: "コーヒー", kana: "コーヒー", romaji: "koohii", pitch: 3, french: "Le café (la boisson)", english: "Coffee" },
+    { term: "ラーメン", kana: "ラーメン", romaji: "raamen", pitch: 1, french: "Les ramen (nouilles en bouillon)", english: "Ramen" },
+    { term: "テレビ", kana: "テレビ", romaji: "terebi", pitch: 1, french: "La télévision", english: "Television" },
+    { term: "タクシー", kana: "タクシー", romaji: "takushii", pitch: 1, french: "Le taxi", english: "Taxi" },
+    { term: "ミルク", kana: "ミルク", romaji: "miruku", pitch: 1, french: "Le lait", english: "Milk" },
+    { term: "ワイン", kana: "ワイン", romaji: "wain", pitch: 1, french: "Le vin", english: "Wine" },
+    { term: "ノート", kana: "ノート", romaji: "nooto", pitch: 1, french: "Le cahier", english: "Notebook" },
+    { term: "パーティー", kana: "パーティー", romaji: "paatii", pitch: 1, french: "La fête, la soirée", english: "Party" },
+    { term: "ファイル", kana: "ファイル", romaji: "fairu", french: "Le fichier, le classeur", english: "File" },
+    { term: "マヨネーズ", kana: "マヨネーズ", romaji: "mayoneezu", french: "La mayonnaise", english: "Mayonnaise" },
+    { term: "マクドナルド", kana: "マクドナルド", romaji: "makudonarudo", french: "McDonald's", english: "McDonald's" },
   ],
 
   exercises: [
     {
       id: "unit-06-ex1",
-      type: "fill-blank",
-      question: "我要買一___書。(Je veux acheter un livre.)",
-      correctAnswer: "本",
-      options: ["本", "張", "條", "個"],
-      optionsHint: ["běn", "zhāng", "tiáo", "ge"],
-      optionsZhuyin: ["ㄅㄣˇ", "ㄓㄤ", "ㄊㄧㄠˊ", "ㄍㄜ"],
-      hint: "Un livre est relié, il a des pages.",
+      type: "comprehension",
+      question: "Pourquoi « supermarket » donne-t-il スーパー en japonais ?",
+      correctAnswer: "Le mot est tronqué : seul le début est conservé",
+      options: [
+        "Le mot est tronqué : seul le début est conservé",
+        "Le japonais n'a pas de mot pour « marché »",
+        "スーパー vient en réalité du français « super »",
+        "La seconde partie du mot s'écrit en hiragana",
+      ],
+      hint: "Les emprunts longs sont raccourcis à trois ou quatre mores.",
     },
     {
       id: "unit-06-ex2",
-      type: "fill-blank",
-      question: "桌子上有兩___貓。(Il y a deux chats sur la table.)",
-      correctAnswer: "隻",
-      options: ["隻", "個", "條", "件"],
-      optionsHint: ["zhī", "ge", "tiáo", "jiàn"],
-      optionsZhuyin: ["ㄓ", "ㄍㄜ", "ㄊㄧㄠˊ", "ㄐㄧㄢˋ"],
-      hint: "Le chat est un animal.",
+      type: "comprehension",
+      question: "Le l étranger n'existe pas en japonais. Par quoi est-il remplacé dans les emprunts ?",
+      correctAnswer: "Par la ligne ラ : hotel donne ホテル",
+      options: [
+        "Par la ligne ラ : hotel donne ホテル",
+        "Par la ligne ナ : hotel donne ホテナ",
+        "Par ワ : hotel donne ホテワ",
+        "Il est simplement supprimé : hotel donne ホテ",
+      ],
+      hint: "C'est la même ligne qui reçoit le r étranger.",
     },
     {
       id: "unit-06-ex3",
       type: "fill-blank",
-      question:
-        "我要叫一___計程車。(Je veux appeler un taxi.)",
-      correctAnswer: "輛",
-      options: ["輛", "台", "個", "隻"],
-      optionsHint: ["liàng", "tái", "ge", "zhī"],
-      optionsZhuyin: ["ㄌㄧㄤˋ", "ㄊㄞˊ", "ㄍㄜ", "ㄓ"],
-      hint: "Un taxi est un véhicule avec des roues.",
+      question: "« La bière » s'écrit ___ .",
+      correctAnswer: "ビール",
+      options: ["ビール", "ビル", "ヒール", "ベール"],
+      optionsHint: ["biiru", "biru", "hiiru", "beeru"],
+      hint: "Comptez les mores : la barre ー en vaut une à elle seule.",
     },
     {
       id: "unit-06-ex4",
       type: "fill-blank",
-      question: "請給我一___水。(Donnez-moi une bouteille d'eau.)",
-      correctAnswer: "瓶",
-      options: ["瓶", "杯", "碗", "個"],
-      optionsHint: ["píng", "bēi", "wǎn", "ge"],
-      optionsZhuyin: ["ㄆㄧㄥˊ", "ㄅㄟ", "ㄨㄢˇ", "ㄍㄜ"],
-      hint: "L'eau est dans une bouteille.",
+      question: "Un étudiant qui travaille le soir fait un ___ .",
+      correctAnswer: "アルバイト",
+      options: ["アルバイト", "アパート", "アイロン", "アニメ"],
+      optionsHint: ["arubaito", "apaato", "airon", "anime"],
+      hint: "Le mot vient de l'allemand Arbeit et se raccourcit en バイト.",
     },
     {
       id: "unit-06-ex5",
-      type: "comprehension",
-      question:
-        "Pourquoi utilise-t-on 條 pour un pantalon et un poisson ?",
-      correctAnswer:
-        "Parce que les deux ont une forme allongée — 條 est pour les choses longues et fines",
-      options: [
-        "Parce que les deux ont une forme allongée — 條 est pour les choses longues et fines",
-        "Parce qu'ils sont de la même couleur",
-        "C'est une règle arbitraire sans logique",
-        "Parce qu'on les achète au même endroit",
-      ],
+      type: "listen",
+      question: "レストラン",
+      correctAnswer: "Le restaurant",
+      options: ["Le restaurant", "L'hôtel", "Le supermarché", "Le taxi"],
+      hint: "Cinq mores de durée égale, sans nasale à la française.",
     },
     {
       id: "unit-06-ex6",
-      type: "comprehension",
-      question: "Quelle est la différence entre 個 et 位 pour les personnes ?",
-      correctAnswer:
-        "個 est informel/général, 位 est poli/formel (pour clients, professeurs, etc.)",
-      options: [
-        "個 est informel/général, 位 est poli/formel (pour clients, professeurs, etc.)",
-        "個 est pour les femmes, 位 pour les hommes",
-        "Ils sont interchangeables",
-        "個 est pour les enfants, 位 pour les adultes",
-      ],
+      type: "reorder",
+      question: "Remettez les morceaux dans l'ordre pour écrire « McDonald's » en katakana.",
+      correctAnswer: "マクドナルド",
+      options: ["マ", "クド", "ナ", "ルド"],
+      hint: "Six mores : chaque consonne finale de l'anglais a reçu une voyelle.",
     },
     {
       id: "unit-06-ex7",
-      type: "fill-blank",
-      question:
-        "這___衣服很好看。(Ce vêtement est joli.)",
-      correctAnswer: "件",
-      options: ["件", "條", "張", "個"],
-      optionsHint: ["jiàn", "tiáo", "zhāng", "ge"],
-      optionsZhuyin: ["ㄐㄧㄢˋ", "ㄊㄧㄠˊ", "ㄓㄤ", "ㄍㄜ"],
-      hint: "Les vêtements du haut utilisent ce classificateur.",
+      type: "comprehension",
+      question: "Le japonais n'admet pas de syllabe fermée. Que devient donc le mot anglais « milk » ?",
+      correctAnswer: "ミルク : le k final reçoit la voyelle ウ",
+      options: [
+        "ミルク : le k final reçoit la voyelle ウ",
+        "ミル : la consonne finale est supprimée",
+        "ミルクン : on ajoute ン à la fin",
+        "ミルク se prononce en deux mores, comme en anglais",
+      ],
+      hint: "Seules ン et ッ peuvent fermer une more.",
     },
     {
       id: "unit-06-ex8",
-      type: "translate",
-      question:
-        "Comment dit-on « C'est la première fois que je viens à Taiwan » ?",
-      correctAnswer: "這是我第一次來台灣。",
-      options: [
-        "這是我第一次來台灣。",
-        "這是我一個來台灣。",
-        "我第一本來台灣。",
-        "我一次來台灣了。",
-      ],
-      optionsHint: [
-        "zhè shì wǒ dì yī cì lái Táiwān.",
-        "zhè shì wǒ yí ge lái Táiwān.",
-        "wǒ dì yī běn lái Táiwān.",
-        "wǒ yí cì lái Táiwān le.",
-      ],
-      optionsZhuyin: ["ㄓㄜˋ ㄕˋ ㄨㄛˇ ㄉㄧˋ ㄧ ㄘˋ ㄌㄞˊ ㄊㄞˊ ㄨㄢ.", "ㄓㄜˋ ㄕˋ ㄨㄛˇ ㄧˊ ㄍㄜ ㄌㄞˊ ㄊㄞˊ ㄨㄢ.", "ㄨㄛˇ ㄉㄧˋ ㄧ ㄅㄣˇ ㄌㄞˊ ㄊㄞˊ ㄨㄢ.", "ㄨㄛˇ ㄧˊ ㄘˋ ㄌㄞˊ ㄊㄞˊ ㄨㄢ ㄌㄜ."],
-    },
-    {
-      id: "unit-06-ex9",
-      type: "fill-blank",
-      question: "一___狗 (un chien)",
-      correctAnswer: "隻",
-      options: ["隻", "條", "個", "輛"],
-      optionsHint: ["zhī", "tiáo", "ge", "liàng"],
-      optionsZhuyin: ["ㄓ", "ㄊㄧㄠˊ", "ㄍㄜ", "ㄌㄧㄤˋ"],
-      hint: "Le chien est un animal.",
-    },
-    {
-      id: "unit-06-ex10",
-      type: "fill-blank",
-      question: "三___褲子 (trois pantalons)",
-      correctAnswer: "條",
-      options: ["條", "件", "張", "個"],
-      optionsHint: ["tiáo", "jiàn", "zhāng", "ge"],
-      optionsZhuyin: ["ㄊㄧㄠˊ", "ㄐㄧㄢˋ", "ㄓㄤ", "ㄍㄜ"],
-      hint: "Le pantalon a une forme allongee (jambes).",
-    },
-    {
-      id: "unit-06-ex11",
-      type: "fill-blank",
-      question: "一___照片 (une photo)",
-      correctAnswer: "張",
-      options: ["張", "本", "片", "個"],
-      optionsHint: ["zhāng", "běn", "piàn", "ge"],
-      optionsZhuyin: ["ㄓㄤ", "ㄅㄣˇ", "ㄆㄧㄢˋ", "ㄍㄜ"],
-      hint: "Une photo est plate et a une surface.",
-    },
-    {
-      id: "unit-06-ex12",
-      type: "translate",
-      question: "Comment dit-on « deux verres d'eau » ?",
-      correctAnswer: "兩杯水",
-      options: ["兩杯水", "兩瓶水", "二個水", "兩碗水"],
-      optionsHint: ["liǎng bēi shuǐ", "liǎng píng shuǐ", "èr ge shuǐ", "liǎng wǎn shuǐ"],
-      optionsZhuyin: ["ㄌㄧㄤˇ ㄅㄟ ㄕㄨㄟˇ", "ㄌㄧㄤˇ ㄆㄧㄥˊ ㄕㄨㄟˇ", "ㄦˋ ㄍㄜ ㄕㄨㄟˇ", "ㄌㄧㄤˇ ㄨㄢˇ ㄕㄨㄟˇ"],
-    },
-    {
-      id: "unit-06-ex13",
-      type: "translate",
-      question: "Comment dit-on « un bol de nouilles » ?",
-      correctAnswer: "一碗麵",
-      options: ["一碗麵", "一杯麵", "一盤麵", "一個麵"],
-      optionsHint: ["yì wǎn miàn", "yì bēi miàn", "yì pán miàn", "yí ge miàn"],
-      optionsZhuyin: ["ㄧˋ ㄨㄢˇ ㄇㄧㄢˋ", "ㄧˋ ㄅㄟ ㄇㄧㄢˋ", "ㄧˋ ㄆㄢˊ ㄇㄧㄢˋ", "ㄧˊ ㄍㄜ ㄇㄧㄢˋ"],
-    },
-    {
-      id: "unit-06-ex14",
-      type: "translate",
-      question: "Comment dit-on « trois bouteilles de biere » ?",
-      correctAnswer: "三瓶啤酒",
-      options: ["三瓶啤酒", "三杯啤酒", "三碗啤酒", "三個啤酒"],
-      optionsHint: ["sān píng píjiǔ", "sān bēi píjiǔ", "sān wǎn píjiǔ", "sān ge píjiǔ"],
-      optionsZhuyin: ["ㄙㄢ ㄆㄧㄥˊ ㄆㄧˊ ㄐㄧㄡˇ", "ㄙㄢ ㄅㄟ ㄆㄧˊ ㄐㄧㄡˇ", "ㄙㄢ ㄨㄢˇ ㄆㄧˊ ㄐㄧㄡˇ", "ㄙㄢ ㄍㄜ ㄆㄧˊ ㄐㄧㄡˇ"],
+      type: "listen",
+      question: "スーパー",
+      correctAnswer: "Le supermarché",
+      options: ["Le supermarché", "La soupe", "Le café", "Le cahier"],
+      hint: "La chute de hauteur tombe juste après la première more.",
     },
   ],
 

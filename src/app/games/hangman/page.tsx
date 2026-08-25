@@ -5,19 +5,17 @@ import Link from "next/link";
 import { getAllGameWords, type GameWord } from "@/lib/game-data";
 import AudioButton from "@/components/AudioButton";
 import { shuffleArray } from "@/lib/utils";
+import { splitMora } from "@/lib/japanese";
 
 type Phase = "playing" | "won" | "lost";
 
 const MAX_ERRORS = 6;
 
 function buildChoices(target: GameWord, allWords: GameWord[]): string[] {
-  const targetChars = [...target.character];
-  const pool = new Set<string>(targetChars);
+  const pool = new Set<string>(splitMora(target.kana));
 
-  const allChars = allWords.flatMap((w) => [...w.character]);
-  const shuffled = shuffleArray(
-    [...new Set(allChars)].filter((c) => !pool.has(c))
-  );
+  const allMora = allWords.flatMap((w) => splitMora(w.kana));
+  const shuffled = shuffleArray([...new Set(allMora)].filter((c) => !pool.has(c)));
 
   const needed = 20 - pool.size;
   for (let i = 0; i < needed && i < shuffled.length; i++) {
@@ -63,11 +61,11 @@ export default function HangmanPage() {
     newGuessed.add(char);
     setGuessed(newGuessed);
 
-    const targetChars = [...target.character];
+    const targetMora = splitMora(target.kana);
 
-    if (targetChars.includes(char)) {
+    if (targetMora.includes(char)) {
       // Check win
-      const allFound = targetChars.every((c) => newGuessed.has(c));
+      const allFound = targetMora.every((c) => newGuessed.has(c));
       if (allFound) setPhase("won");
     } else {
       const newErrors = errors + 1;
@@ -84,7 +82,8 @@ export default function HangmanPage() {
     );
   }
 
-  const targetChars = [...target.character];
+  const targetMora = splitMora(target.kana);
+  const solved = phase === "won" || phase === "lost";
 
   return (
     <main className="mx-auto max-w-xl px-4 py-8">
@@ -98,27 +97,27 @@ export default function HangmanPage() {
       </div>
 
       <h1 className="mb-6 text-center text-2xl font-bold text-stone-900">
-        Pendu Chinois
+        Pendu japonais
       </h1>
 
-      {/* Pinyin toggle */}
+      {/* Romaji toggle */}
       <div className="mb-4 flex justify-end">
         <label className="flex items-center gap-2 text-sm text-stone-500">
           <input type="checkbox" checked={showPinyin} onChange={(e) => setShowPinyin(e.target.checked)} className="rounded" />
-          Afficher le pinyin
+          Afficher le rōmaji
         </label>
       </div>
 
       {/* Question */}
       <div className="mb-6 rounded-xl border border-stone-200 bg-stone-50 p-4 text-center">
         <p className="text-sm text-stone-500">
-          Quel est le caractère chinois pour :
+          Écrivez la lecture en kana de :
         </p>
         <p className="mt-1 text-xl font-bold text-stone-900">
           {target.french}
         </p>
         {showPinyin && (
-          <p className="mt-1 text-sm italic text-stone-400">{target.pinyin}</p>
+          <p className="mt-1 text-sm italic text-stone-400">{target.romaji}</p>
         )}
       </div>
 
@@ -141,16 +140,16 @@ export default function HangmanPage() {
 
       {/* Word display */}
       <div className="mb-8 flex items-center justify-center gap-3">
-        {targetChars.map((char, i) => {
+        {targetMora.map((char, i) => {
           const revealed = guessed.has(char) || phase === "lost" || phase === "won";
           return (
             <div
               key={i}
-              className={`flex h-16 w-16 items-center justify-center rounded-xl border-2 text-2xl font-bold transition-all ${
+              className={`flex h-16 min-w-14 items-center justify-center rounded-xl border-2 px-2 text-2xl font-bold transition-all ${
                 revealed
                   ? phase === "lost" && !guessed.has(char)
-                    ? "border-red-300 bg-red-50 text-red-600 chinese"
-                    : "border-emerald-300 bg-emerald-50 text-stone-900 chinese"
+                    ? "border-red-300 bg-red-50 text-red-600 japanese"
+                    : "border-emerald-300 bg-emerald-50 text-stone-900 japanese"
                   : "border-stone-300 bg-white text-stone-300"
               }`}
             >
@@ -159,6 +158,15 @@ export default function HangmanPage() {
           );
         })}
       </div>
+
+      {solved && (
+        <div className="mb-6 text-center">
+          <p className="text-xs tracking-wide text-stone-400 uppercase">S&rsquo;écrit</p>
+          <p className="japanese mt-1 text-3xl text-stone-900" lang="ja">
+            {target.term}
+          </p>
+        </div>
+      )}
 
       {/* Result */}
       {phase !== "playing" && (
@@ -179,11 +187,11 @@ export default function HangmanPage() {
           >
             {phase === "won" ? "Bravo !" : "Perdu..."}
           </h2>
-          <p className="mb-1 text-lg font-bold text-stone-900 chinese">
-            {target.character}
+          <p className="mb-1 text-lg font-bold text-stone-900 japanese">
+            {target.term}
           </p>
-          <p className="mb-3 text-sm text-stone-500">{target.pinyin}</p>
-          <AudioButton text={target.character} size="lg" />
+          <p className="mb-3 text-sm text-stone-500">{target.romaji}</p>
+          <AudioButton text={target.term} size="lg" />
           <div className="mt-4">
             <button
               onClick={() => initGame()}
@@ -200,9 +208,9 @@ export default function HangmanPage() {
         <div className="grid grid-cols-5 gap-2">
           {choices.map((char) => {
             const isGuessed = guessed.has(char);
-            const isInWord = targetChars.includes(char);
+            const isInWord = targetMora.includes(char);
             let cls =
-              "flex h-12 items-center justify-center rounded-lg border-2 text-lg font-bold chinese transition-all ";
+              "flex h-12 items-center justify-center rounded-lg border-2 text-lg font-bold japanese transition-all ";
             if (isGuessed && isInWord) {
               cls +=
                 "border-emerald-300 bg-emerald-50 text-emerald-700 cursor-default";

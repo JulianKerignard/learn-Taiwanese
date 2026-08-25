@@ -52,14 +52,14 @@ function TextBlock({ block }: { block: ContentBlock }) {
 function ExampleBlock({ block }: { block: ContentBlock }) {
   return (
     <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
-      {block.chinese && (
+      {block.japanese && (
         <div className="flex items-center gap-2 mb-1">
-          <span className="chinese text-2xl text-stone-900">{block.chinese}</span>
-          <AudioButton text={block.chinese} size="sm" />
+          <span className="japanese text-2xl text-stone-900">{block.japanese}</span>
+          <AudioButton text={block.japanese} size="sm" />
         </div>
       )}
-      {block.pinyin && (
-        <p className="text-sm italic text-stone-500 mb-1">{block.pinyin}</p>
+      {block.romaji && (
+        <p className="text-sm italic text-stone-500 mb-1">{block.romaji}</p>
       )}
       {block.translation && (
         <p className="text-sm italic text-stone-600">{block.translation}</p>
@@ -102,8 +102,8 @@ function TipBlock({ block }: { block: ContentBlock }) {
 }
 
 function ComparisonBlock({ block }: { block: ContentBlock }) {
-  // If chinese field is provided, use content=FR and chinese=ZH
-  if (block.chinese) {
+  // If japanese field is provided, use content=FR and japanese=ZH
+  if (block.japanese) {
     return (
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="rounded-lg bg-blue-50 p-4">
@@ -114,8 +114,8 @@ function ComparisonBlock({ block }: { block: ContentBlock }) {
         </div>
         <div className="rounded-lg bg-rose-50 p-4">
           <p className="mb-1 text-xs font-semibold uppercase text-rose-400">Chinois</p>
-          <p className="text-sm text-rose-800 leading-relaxed chinese whitespace-pre-line">
-            {parseInlineFormatting(block.chinese)}
+          <p className="text-sm text-rose-800 leading-relaxed japanese whitespace-pre-line">
+            {parseInlineFormatting(block.japanese)}
           </p>
         </div>
       </div>

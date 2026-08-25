@@ -16,7 +16,7 @@ import { getStats } from "@/lib/fsrs";
 import { lessons } from "@/data/lessons";
 import { getPathProgress } from "@/lib/progress";
 import { getUnitById } from "@/data/course";
-import { getCurrentHSKLevel } from "@/lib/progress";
+import { getCurrentJLPTLevel } from "@/lib/progress";
 import type { UserProgress } from "@/types";
 import type { PathProgress } from "@/types/course";
 
@@ -42,10 +42,10 @@ export default function HomePage() {
       {/* Hero */}
       <section className="text-center">
         <h1 className="text-4xl font-bold text-stone-900">
-          Bienvenue, <span className="chinese text-primary">歡迎!</span>
+          Bienvenue, <span className="japanese text-primary">歡迎!</span>
         </h1>
         <p className="mt-2 text-lg text-stone-500">
-          Apprends le mandarin pour ta vie à Taiwan
+          Apprends le japonais pour ta vie au Japon
         </p>
       </section>
 
@@ -56,8 +56,8 @@ export default function HomePage() {
       <section className="grid grid-cols-2 gap-4 md:grid-cols-4">
         <StatCard
           icon={<GraduationCap className="h-5 w-5 text-primary" />}
-          label="Caractères appris"
-          value={progress.charactersLearned}
+          label="Mots appris"
+          value={progress.termsLearned}
         />
         <StatCard
           icon={<Flame className="h-5 w-5 text-warning" />}
@@ -118,7 +118,7 @@ export default function HomePage() {
                     <h3 className="font-semibold text-stone-800 group-hover:text-primary transition-colors">
                       {lesson.title}
                     </h3>
-                    <p className="chinese text-sm text-stone-400">{lesson.titleZh}</p>
+                    <p className="japanese text-sm text-stone-400">{lesson.titleJa}</p>
                     <p className="mt-1 text-sm text-stone-500 line-clamp-2">{lesson.description}</p>
                     {completed && (
                       <span className="badge mt-2 bg-success/10 text-success">Complétée</span>
@@ -137,7 +137,7 @@ export default function HomePage() {
 function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
   const currentUnit = getUnitById(pathProgress.currentUnit);
   const hasStarted = pathProgress.completedUnits.length > 0;
-  const currentLevel = getCurrentHSKLevel(pathProgress);
+  const currentLevel = getCurrentJLPTLevel(pathProgress);
 
   return (
     <section>
@@ -152,10 +152,10 @@ function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
             </p>
             <p className="text-sm text-stone-500">
               {hasStarted && currentUnit
-                ? `HSK ${currentLevel?.level ?? ""} — Unité ${currentUnit.number} : ${currentUnit.title}`
+                ? `JLPT ${currentLevel?.level ?? ""} — Unité ${currentUnit.number} : ${currentUnit.title}`
                 : hasStarted
                   ? `${pathProgress.completedUnits.length} unités complétées`
-                  : "Apprends le chinois pas à pas"}
+                  : "Apprends le japonais pas à pas"}
             </p>
           </div>
         </div>

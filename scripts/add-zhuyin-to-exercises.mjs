@@ -1,13 +1,13 @@
 /**
- * Script to add optionsZhuyin and hintZhuyin to all exercise files.
+ * Script to add optionsKana and hintKana to all exercise files.
  *
- * Run: node scripts/add-zhuyin-to-exercises.mjs
+ * Run: node scripts/add-kana-to-exercises.mjs
  */
 
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'fs';
 import { join } from 'path';
 
-// Complete pinyin syllable -> zhuyin mapping
+// Complete romaji syllable -> kana mapping
 const PINYIN_ZHUYIN = {
   // Common full syllables encountered in the exercises
   'wǒ': 'ㄨㄛˇ', 'wǒ': 'ㄨㄛˇ', 'wо̌': 'ㄨㄛˇ',
@@ -136,14 +136,14 @@ const PINYIN_ZHUYIN = {
 
 // This approach is too fragile for automated conversion.
 // Instead, let's take a surgical approach: for each file that has optionsHint,
-// just add the optionsZhuyin line right after it.
+// just add the optionsKana line right after it.
 // We'll process the actual content via a different strategy.
 
-console.log("This script needs manual zhuyin data. Use the manual editing approach instead.");
-console.log("The pinyin-to-zhuyin conversion is too complex for reliable automation.");
-console.log("Files that need optionsZhuyin added after optionsHint:");
+console.log("This script needs manual kana data. Use the manual editing approach instead.");
+console.log("The romaji-to-kana conversion is too complex for reliable automation.");
+console.log("Files that need optionsKana added after optionsHint:");
 
-const courseDir = '/Users/juliankerignard/Documents/Other/Site-taiwan/src/data/course';
+const courseDir = '/Users/juliankerignard/Documents/Other/Site-japon/src/data/course';
 const chapters = ['chapter1', 'chapter2', 'chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7'];
 
 for (const chapter of chapters) {
@@ -155,27 +155,27 @@ for (const chapter of chapters) {
       const content = readFileSync(filePath, 'utf-8');
 
       const hasOptionsHint = content.includes('optionsHint');
-      const hasOptionsZhuyin = content.includes('optionsZhuyin');
+      const hasOptionsZhuyin = content.includes('optionsKana');
       const hasHint = /\bhint:/.test(content);
-      const hasHintZhuyin = content.includes('hintZhuyin');
+      const hasHintZhuyin = content.includes('hintKana');
       const hasChineseOptions = /options:\s*\[.*[\u4e00-\u9fff]/.test(content);
 
       if (hasOptionsHint && !hasOptionsZhuyin) {
-        console.log(`[NEEDS optionsZhuyin] ${chapter}/${file}`);
+        console.log(`[NEEDS optionsKana] ${chapter}/${file}`);
       }
       if (hasHint && !hasHintZhuyin) {
-        // Check if hint contains pinyin (has tone marks)
+        // Check if hint contains romaji (has tone marks)
         const hintMatches = content.match(/hint:\s*"([^"]+)"/g);
         if (hintMatches) {
           for (const m of hintMatches) {
             if (/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/.test(m)) {
-              console.log(`[NEEDS hintZhuyin] ${chapter}/${file}: ${m}`);
+              console.log(`[NEEDS hintKana] ${chapter}/${file}: ${m}`);
             }
           }
         }
       }
       if (hasChineseOptions && !hasOptionsHint) {
-        console.log(`[NEEDS optionsHint+optionsZhuyin] ${chapter}/${file}`);
+        console.log(`[NEEDS optionsHint+optionsKana] ${chapter}/${file}`);
       }
     }
   } catch (e) {

@@ -1,20 +1,28 @@
 import type { SM2Card, UserProgress, UserSettings, GamificationData } from "@/types";
 import { getDefaultGamificationData } from "@/lib/gamification";
+import { LANG } from "@/lib/language";
 
+const p = (name: string) => `${LANG.storagePrefix}-${name}`;
+
+/**
+ * Every persisted key lives here, prefixed from LANG so two language editions
+ * never collide in the same browser. Adding a key here forces a decision in
+ * SYNC_KEYS (sync.ts), which is keyed off this object.
+ */
 export const KEYS = {
-  cards: "taiwan-cards",
-  progress: "taiwan-progress",
-  settings: "taiwan-settings",
-  favorites: "taiwan-favorites",
-  gamification: "taiwan-gamification",
-  studyTime: "taiwan-study-time",
-  mistakes: "taiwan-mistakes",
-  courseProgress: "taiwan-course-progress",
-  speedRecord: "taiwan-speed-record",
-  readingKnownWords: "taiwan-reading-known-words",
-  readingCompleted: "taiwan-reading-completed",
-  testResults: "taiwan-test-results",
-  toneDrillProgress: "tone-drill-progress",
+  cards: p("cards"),
+  progress: p("progress"),
+  settings: p("settings"),
+  favorites: p("favorites"),
+  gamification: p("gamification"),
+  studyTime: p("study-time"),
+  mistakes: p("mistakes"),
+  courseProgress: p("course-progress"),
+  speedRecord: p("speed-record"),
+  readingKnownWords: p("reading-known-words"),
+  readingCompleted: p("reading-completed"),
+  testResults: p("test-results"),
+  accentDrillProgress: p("accent-drill-progress"),
 } as const;
 
 function isClient(): boolean {
@@ -25,7 +33,17 @@ function get<T>(key: string, fallback: T): T {
   if (!isClient()) return fallback;
   try {
     const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : fallback;
+    if (!raw) return fallback;
+    const parsed = JSON.parse(raw);
+    // Merge over the defaults: a stored object written by an older version (or an
+    // empty one written by a reset) must not reach callers with missing fields.
+    if (
+      parsed && typeof parsed === "object" && !Array.isArray(parsed) &&
+      fallback && typeof fallback === "object" && !Array.isArray(fallback)
+    ) {
+      return { ...fallback, ...parsed };
+    }
+    return parsed as T;
   } catch {
     return fallback;
   }
@@ -74,7 +92,7 @@ export function upsertCard(card: SM2Card): void {
 
 // Progress
 const defaultProgress: UserProgress = {
-  charactersLearned: 0,
+  termsLearned: 0,
   vocabularyMastered: 0,
   lessonsCompleted: [],
   currentStreak: 0,
@@ -124,7 +142,7 @@ export function updateStreak(): UserProgress {
 
 // Settings
 const defaultSettings: UserSettings = {
-  displayMode: "pinyin",
+  displayMode: "romaji",
   dailyNewCards: 10,
   showEnglish: true,
   autoPlayAudio: false,

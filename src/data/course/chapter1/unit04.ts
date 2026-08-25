@@ -3,209 +3,191 @@ import type { CourseUnit } from "@/types/course";
 export const unit04: CourseUnit = {
   id: "unit-04",
   number: 4,
-  title: "Se présenter",
-  titleZh: "自我介紹",
+  title: "Les sons dérivés : dakuten, yōon, sokuon et voyelles longues",
+  titleJa: "だくてん・ようおん・そくおん・ちょうおん",
   chapter: 1,
   description:
-    "Apprenez à vous présenter, dire votre nom, votre nationalité et poser des questions sur les autres.",
-  icon: "🤝",
+    "Quatre mécanismes qui, à partir des kana déjà connus, doublent le nombre de sons disponibles. À la fin de cette unité vous saurez lire n'importe quel mot écrit en hiragana et compter ses mores correctement.",
+  icon: "が",
 
   sections: [
     {
-      title: "我是... Je suis...",
-      type: "grammar",
+      title: "Le dakuten et le handakuten",
+      type: "theory",
       content: [
         {
           type: "text",
           content:
-            "Il y a deux façons de se présenter en chinois. La première utilise 是 (shì, être) pour indiquer une identité ou une catégorie : « je suis étudiant », « je suis français ». La seconde utilise 叫 (jiào, s'appeler) pour donner son prénom ou son nom.",
+            "Les cinquante hiragana de base ne couvrent pas tous les sons du japonais : il manque les consonnes sonores. Plutôt que de créer de nouvelles formes, l'écriture japonaise ajoute deux petits traits en haut à droite du kana — le dakuten ゛. Le signe garde sa forme, seule la consonne change : elle passe de sourde à sonore. Vous n'avez donc rien de nouveau à mémoriser visuellement, seulement une règle à appliquer.",
         },
         {
           type: "example",
-          chinese: "我是法國人。",
-          pinyin: "wǒ shì Fǎguó rén.",
-          translation: "Je suis français. (Je + être + France + personne)",
+          japanese: "か → が / さ → ざ / た → だ / は → ば / は → ぱ",
+          romaji: "ka ga / sa za / ta da / ha ba / ha pa",
+          translation: "ka devient ga, sa devient za, ta devient da, ha devient ba, ha devient pa",
           content:
-            "是 relie le sujet à une catégorie. Nationalité = nom du pays + 人.",
-        },
-        {
-          type: "example",
-          chinese: "我叫 Julian。",
-          pinyin: "wǒ jiào Julian.",
-          translation: "Je m'appelle Julian. (Je + s'appeler + [nom])",
-          content: "叫 sert à donner un prénom ou un surnom.",
-        },
-        {
-          type: "comparison",
-          content:
-            "是 vs 叫 : 我是 Julian → je suis Julian (identité). 我叫 Julian → je m'appelle Julian (nom). En pratique, 叫 est plus naturel pour se présenter. 是 s'utilise plus pour une catégorie (nationalité, profession, rôle).",
-        },
-        {
-          type: "tip",
-          content:
-            "À Taiwan, les gens donnent souvent un nom anglais ou un surnom en plus de leur nom chinois. Ne soyez pas surpris si quelqu'un vous dit « 我叫 Kevin » — c'est très courant. Vous pouvez aussi vous choisir un nom chinois, les Taiwanais adorent ça !",
+            "Quatre lignes prennent le dakuten : か→が, さ→ざ, た→だ, は→ば. La ligne は accepte en plus le handakuten ゜, un petit cercle, qui donne ぱ ぴ ぷ ぺ ぽ. Pour un francophone c'est un cadeau : vous distinguez déjà p/b, t/d, k/g dans votre langue, il n'y a aucun son nouveau à apprendre.",
         },
         {
           type: "warning",
           content:
-            "你好 (nǐ hǎo) est un salut neutre et assez formel. Les Taiwanais ne l'utilisent presque jamais entre eux au quotidien. Entre amis et collègues, on dit plutôt 嗨 (hāi, emprunté à « hi ») ou 欸 (èi), ou simplement un sourire et un hochement de tête. 你好 est réservé aux premières rencontres et aux situations formelles. En tant que débutant, utilisez-le — c'est toujours correct. Mais sachez que quand vous progresserez, vous l'utiliserez de moins en moins.",
-        },
-        {
-          type: "warning",
-          content:
-            "你好嗎？(Nǐ hǎo ma? — Comment vas-tu ?) est la phrase que TOUS les manuels de chinois enseignent en premier, mais elle n'est quasiment JAMAIS utilisée dans la conversation courante à Taiwan. Si quelqu'un vous dit 你好嗎？, c'est généralement parce qu'il sait que vous avez été malade ou que vous traversez une période difficile. La façon courante de « saluer » est de commenter ce que fait la personne : 你要去哪裡？(Tu vas où ?) ou 吃飽了嗎？(Tu as mangé ?). Ces questions ne demandent pas de réponse précise — ce sont des formules sociales.",
+            "Le cercle ゜ n'existe QUE sur la ligne は. Il n'y a pas de か゜ ni de さ゜. Et ne confondez pas les deux marques à la lecture rapide : ば (ba) et ぱ (pa) ne se distinguent que par deux traits contre un cercle, dans un coin de caractère souvent minuscule à l'écran.",
         },
         {
           type: "text",
           content:
-            "Les noms taiwanais ont une structure fixe : **NOM DE FAMILLE + PRÉNOM**. Le nom de famille vient TOUJOURS en premier — c'est l'inverse du français. Le nom de famille fait 1 syllabe (Chen 陳, Lin 林, Wang 王, Li 李, Zhang 張 sont les 5 plus courants à Taiwan). Le prénom fait 1 ou 2 syllabes. 陳美玲 (Chén Měilíng) = Chen est le nom de famille, Meiling est le prénom. Au quotidien, on appelle les gens par leur nom complet (pas juste le prénom) ou par leur titre : 陳老師 (Professeur Chen), 林小姐 (Mademoiselle Lin). Appeler quelqu'un par son prénom seul est réservé aux amis proches et à la famille.",
+            "Deux paires posent un problème particulier. じ et ぢ se prononcent exactement pareil (ji), ず et づ également (zu). La distinction existait en japonais ancien, elle s'est perdue. L'orthographe moderne a tranché : on écrit じ et ず par défaut, et ぢ / づ ne survivent que dans deux cas — la répétition d'une syllabe (つづく, ちぢむ) et certains composés où le mot d'origine commençait par ち ou つ (はなぢ, saignement de nez, de はな + ち).",
+        },
+        {
+          type: "example",
+          japanese: "つづく",
+          romaji: "tsuzuku",
+          translation: "Continuer, se poursuivre",
+          content:
+            "Vous lirez ce mot à la fin de chaque épisode de série et de chaque chapitre de manga : つづく, « à suivre ». C'est le づ irrégulier, justifié par la répétition つ-つ à l'origine du mot. En rōmaji Hepburn on écrit tsuzuku, parce que le son est bien celui de ず.",
+        },
+        {
+          type: "comparison",
+          content:
+            "Deux traits changent le mot, pas seulement le son : かき (le kaki, le fruit) contre かぎ (la clé) ; てんき (le temps qu'il fait) contre でんき (l'électricité, la lumière). Un dakuten oublié dans un message écrit n'est pas une faute d'orthographe bénigne, c'est un autre mot.",
         },
         {
           type: "tip",
           content:
-            "Presque tous les Taiwanais de moins de 40 ans ont un **nom anglais** (English name) qu'ils utilisent avec les étrangers. C'est une tradition qui vient de l'école primaire où le professeur d'anglais donne un nom anglais à chaque élève. Certains choisissent des noms classiques (David, Amy), d'autres des noms créatifs (Rainbow, Apple, Fish). Ne soyez pas surpris et ne vous moquez pas — c'est culturellement important. Vous pouvez aussi choisir un nom chinois : demandez à un ami taiwanais de vous en choisir un, c'est un beau geste d'intégration.",
-        },
-        {
-          type: "warning",
-          content:
-            "À Taiwan, l'âge détermine le niveau de respect. C'est POURQUOI la question 你幾歲？(quel âge as-tu ?) n'est pas indiscrète — c'est une nécessité sociale pour savoir comment s'adresser à quelqu'un. Quelqu'un de plus âgé = 哥哥/姐姐 (grand frère/grande sœur, même si ce n'est pas votre famille). Quelqu'un de plus jeune = 弟弟/妹妹 (petit frère/petite sœur). Au travail, on ajoute 學長/學姐 pour les anciens. Ne JAMAIS appeler quelqu'un de plus âgé par son prénom sans titre — c'est comme dire 'tu' au lieu de 'vous' à votre patron en France, mais en pire.",
+            "N'apprenez pas les kana sonores comme une nouvelle liste. Reprenez votre tableau et relisez chaque ligne deux fois : か き く け こ, puis が ぎ ぐ げ ご. Le geste d'écriture est identique, seuls les deux traits finaux s'ajoutent — c'est une demi-heure de travail, pas une semaine.",
         },
       ],
     },
     {
-      title: "Votre première conversation — le script",
+      title: "Les yōon : きゃ きゅ きょ",
+      type: "theory",
+      content: [
+        {
+          type: "text",
+          content:
+            "Le japonais a besoin de syllabes du type « kya », « shu », « jo », que le tableau de base ne fournit pas. Le mécanisme est le suivant : on prend un kana de la colonne en -i (き, し, ち, に, ひ, み, り, et leurs versions sonores ぎ, じ, び, ぴ), et on lui accole un ゃ, ゅ ou ょ écrit en petit. La voyelle i disparaît de la prononciation et laisse place à ya, yu ou yo.",
+        },
+        {
+          type: "example",
+          japanese: "きゃ きゅ きょ",
+          romaji: "kya kyu kyo",
+          translation: "kya — kyu — kyo",
+          content:
+            "Ce n'est pas « ki-ya » en deux temps, mais un seul temps, une seule more. Le petit kana est écrit à peu près à la moitié de la taille normale, dans le bas de la case en écriture horizontale. しゃ se lit sha (pas « si-ya »), ちゃ se lit cha, じゃ se lit ja.",
+        },
+        {
+          type: "text",
+          content:
+            "Voici le point le plus important de l'unité, et celui que les francophones ratent le plus longtemps : le petit kana ne compte PAS pour une more séparée. きょう (aujourd'hui) fait deux mores, きょ et う, exactement la même durée que きく ou ここ. Prononcé en trois temps, « ki-yo-ou », le mot devient méconnaissable — et il existe justement un autre mot, きよう, qui fait trois mores.",
+        },
+        {
+          type: "comparison",
+          content:
+            "La paire de référence : びょういん (l'hôpital) fait quatre mores — びょ + う + い + ん. びよういん (le salon de coiffure) en fait cinq — び + よ + う + い + ん. La différence tient à la taille d'un seul caractère à l'écrit, et à un temps de plus à l'oral. Se tromper vous envoie chez le coiffeur au lieu des urgences.",
+        },
+        {
+          type: "warning",
+          content:
+            "Le réflexe francophone est d'insérer une voyelle de soutien : « kyo » devient « ki-yo », « sha » devient « chi-a ». Le japonais attaque directement la consonne palatalisée, comme dans le mot français « pied » où le « ié » ne fait qu'un temps. Cherchez cette sensation-là, pas celle de deux syllabes accolées.",
+        },
+        {
+          type: "example",
+          japanese: "おちゃ",
+          romaji: "ocha",
+          translation: "Le thé",
+          content:
+            "Deux mores : お et ちゃ. Le お initial est un préfixe de politesse soudé au mot ; on ne dit pratiquement jamais ちゃ seul. Vous entendrez おちゃ dix fois par jour au Japon, où le thé accompagne tous les repas et où il est le plus souvent servi gratuitement.",
+        },
+        {
+          type: "tip",
+          content:
+            "Pour ancrer le rythme, tapez du doigt sur la table une fois par more en lisant à voix haute : きょ-う (deux coups), びょ-う-い-ん (quatre coups), しゃ-し-ん (trois coups). Cette gymnastique de dix minutes règle un problème qui, sans elle, dure des mois.",
+        },
+      ],
+    },
+    {
+      title: "Le sokuon っ : une more de silence",
+      type: "theory",
+      content: [
+        {
+          type: "text",
+          content:
+            "Le petit っ est un つ écrit en réduit, mais il ne se prononce jamais « tsu ». Il redouble la consonne qui le suit et occupe pour cela une more entière. Concrètement, la bouche se met en position pour la consonne suivante et bloque l'air pendant un temps complet : きって se dit « ki », un temps de silence tendu, puis « te ». On l'appelle sokuon, et il n'apparaît que devant k, s, t, p (et, dans les emprunts, devant quelques autres consonnes).",
+        },
+        {
+          type: "example",
+          japanese: "きて / きって",
+          romaji: "kite / kitte",
+          translation: "Viens / Le timbre",
+          content:
+            "Deux mots sans aucun rapport, séparés par une seule more de silence. きて est la forme en -て du verbe « venir », きって est un timbre-poste. Aucun contexte ne les rattrape : si vous ne marquez pas le silence, votre interlocuteur entend l'autre mot.",
+        },
+        {
+          type: "warning",
+          content:
+            "Le français n'oppose pas les consonnes simples et doubles : « ville » et « vile » se prononcent pareil. Le réflexe est donc d'appuyer un peu plus fort sur la consonne au lieu de tenir un silence. Ce n'est pas la même chose. Ne renforcez pas la consonne : ajoutez du temps avant elle.",
+        },
+        {
+          type: "text",
+          content:
+            "Une nuance utile : le « silence » n'est vraiment un silence que devant une occlusive, k, t ou p. Devant une sifflante, il devient un sifflement tenu — dans ざっし (magazine), on entend un « sss » prolongé plutôt qu'un blanc. Dans les deux cas la durée est la même : une more pleine.",
+        },
+        {
+          type: "comparison",
+          content:
+            "おと (le son, le bruit) contre おっと (le mari) ; まて (attends, familier) contre まって (attends, forme en -て). Ces paires ne sont pas des curiosités de manuel : おっと et まって sont des mots que vous utiliserez la première semaine.",
+        },
+        {
+          type: "example",
+          japanese: "がっこう",
+          romaji: "gakkou",
+          translation: "L'école",
+          content:
+            "Quatre mores : が + っ + こ + う. Notez que deux de ces quatre temps ne correspondent à aucun son propre — un silence et un allongement. C'est exactement ce qui rend le mot difficile à dire pour un francophone, qui aura tendance à le sortir en deux temps, « gako ».",
+        },
+        {
+          type: "tip",
+          content:
+            "À l'écrit, っ se place dans le bas de la case en écriture horizontale, décalé vers la droite en écriture verticale. Il n'apparaît jamais en fin de mot, sauf dans les interjections où il marque une coupure brutale : あっ！ (« ah ! »).",
+        },
+      ],
+    },
+    {
+      title: "Les voyelles longues",
       type: "practice",
       content: [
         {
           type: "text",
           content:
-            "Voici le script pas à pas de votre toute première interaction en mandarin à Taiwan, expliqué mot par mot. L'objectif n'est pas la perfection — c'est d'oser et de communiquer.",
+            "Une voyelle longue n'est pas une voyelle « accentuée » ou « appuyée » : c'est la même voyelle tenue pendant deux mores. Elle est distinctive, au même titre que le sokuon. Le japonais standard oppose systématiquement les paires courte / longue, et une durée mal rendue produit un autre mot ou, plus souvent, un mot que personne ne reconnaît.",
         },
         {
           type: "example",
-          content: "Se présenter — nom et nationalité",
-          chinese: "你好！我叫朱利安，我是法國人。我在學中文。你呢？",
-          pinyin:
-            "Nǐ hǎo! Wǒ jiào Zhūlì'ān, wǒ shì Fǎguó rén. Wǒ zài xué zhōngwén. Nǐ ne?",
-          translation:
-            "Bonjour ! Je m'appelle Julian, je suis français. J'apprends le chinois. Et toi ?",
+          japanese: "せんせい",
+          romaji: "sensei",
+          translation: "Le professeur",
+          content:
+            "Quatre mores : せ + ん + せ + い. Le ん compte pour une more pleine à lui seul, et la séquence えい se réalise dans la pratique comme un « é » long — à Tokyo on entend « sensê » plutôt que « sen-sé-i ». L'accent chute après la troisième more.",
+        },
+        {
+          type: "comparison",
+          content:
+            "おじさん signifie « mon oncle », ou « monsieur » pour un homme d'âge mûr. おじいさん signifie « grand-père ». Une more de plus, une génération d'écart : c'est l'erreur classique, et elle vexe. Même mécanique avec おばさん (la tante, madame) et おばあさん (la grand-mère).",
         },
         {
           type: "text",
           content:
-            "呢 (ne) est une particule magique qui renvoie la question précédente à l'interlocuteur sans avoir à la reformuler. Si quelqu'un vous demande 你叫什麼名字？et que vous répondez puis ajoutez 你呢？, cela équivaut à « et toi, comment t'appelles-tu ? ». C'est un raccourci conversationnel extrêmement pratique.",
-        },
-        {
-          type: "tip",
-          content:
-            "N'ayez pas peur de mélanger chinois et anglais au début. Les Taiwanais le font eux-mêmes constamment. Dire 我要一個 coffee 是可以的 n'est pas une honte — c'est de la communication pragmatique. Vous affinerez avec le temps.",
-        },
-      ],
-    },
-    {
-      title: "La particule 的 - Le mot le plus important",
-      type: "grammar",
-      content: [
-        {
-          type: "text",
-          content:
-            "的 (de) est LA particule la plus utilisée en chinois. Elle exprime la possession (comme « de » en français) et relie un modificateur à un nom.",
-        },
-        {
-          type: "example",
-          content: "Possession : mon, ton, son",
-          chinese: "我的名字、你的電話、他的朋友",
-          pinyin: "wǒ de míngzì, nǐ de diànhuà, tā de péngyǒu",
-          translation: "Mon nom, ton téléphone, son ami",
-        },
-        {
-          type: "example",
-          content: "Description : quelque chose DE quelque chose",
-          chinese: "台灣的食物、法國的紅酒",
-          pinyin: "Táiwān de shíwù, Fǎguó de hóngjiǔ",
-          translation: "La nourriture de Taiwan, le vin rouge de France",
-        },
-        {
-          type: "tip",
-          content:
-            "Bonne nouvelle : on peut SUPPRIMER 的 entre un pronom et un mot proche (famille, relations). On dit 我媽媽 (ma maman) plutôt que 我的媽媽. Mais 我的手機 (mon téléphone) garde le 的.",
-        },
-      ],
-    },
-    {
-      title: "Poser des questions sur quelqu'un",
-      type: "grammar",
-      content: [
-        {
-          type: "text",
-          content:
-            "Trois questions essentielles pour faire connaissance : le nom, l'origine et la profession. La structure est simple : le mot interrogatif remplace l'information inconnue dans la phrase.",
-        },
-        {
-          type: "example",
-          chinese: "你叫什麼名字？",
-          pinyin: "nǐ jiào shénme míngzì?",
-          translation:
-            "Comment tu t'appelles ? (Tu + s'appeler + quoi + nom ?)",
-          content:
-            "什麼 (quoi) remplace le nom inconnu. Pas besoin de 嗎 avec un mot interrogatif.",
-        },
-        {
-          type: "example",
-          chinese: "你是哪裡人？",
-          pinyin: "nǐ shì nǎlǐ rén?",
-          translation: "Tu viens d'où ? (Tu + être + où + personne ?)",
-          content:
-            "哪裡 (où) remplace le lieu. Littéralement : « Tu es une personne d'où ? »",
-        },
-        {
-          type: "example",
-          chinese: "你做什麼工作？",
-          pinyin: "nǐ zuò shénme gōngzuò?",
-          translation:
-            "Tu fais quoi comme travail ? (Tu + faire + quoi + travail ?)",
-          content: "什麼 remplace le type de travail inconnu.",
+            "L'orthographe des voyelles longues suit deux conventions qu'il faut connaître. Le « o » long s'écrit presque toujours おう : きょう, とうきょう, がっこう. Une petite liste fermée d'exceptions historiques s'écrit おお : おおきい (grand), おおい (nombreux), とおい (loin), おおさか (Osaka). Le « e » long s'écrit えい dans l'immense majorité des cas — せんせい, えいが (le film) — et ええ ne sert que dans de rares mots comme おねえさん (la grande sœur).",
         },
         {
           type: "warning",
           content:
-            "Quand on utilise un mot interrogatif (什麼, 哪裡, 誰...), on ne met PAS 嗎 à la fin. Le mot interrogatif suffit pour indiquer que c'est une question.",
-        },
-      ],
-    },
-    {
-      title: "Les présentations à Taiwan",
-      type: "culture",
-      content: [
-        {
-          type: "text",
-          content:
-            "À Taiwan, les présentations sont souvent chaleureuses et directes. Les Taiwanais sont naturellement curieux et posent beaucoup de questions personnelles sans que ce soit impoli : d'où tu viens, quel âge tu as, ce que tu fais, si tu es marié... C'est leur façon de montrer de l'intérêt.",
+            "Le rōmaji vous trahit ici. « Tokyo » écrit à la française cache deux voyelles longues : le mot japonais est とうきょう, quatre mores, « tô-kyô ». De même « Osaka » masque le premier o long de おおさか. Prenez l'habitude de compter les mores sur la graphie kana, jamais sur la transcription latine.",
         },
         {
           type: "tip",
           content:
-            "Astuce sociale : après vous être présenté, proposez d'échanger vos LINE (l'application de messagerie n°1 à Taiwan, pas WhatsApp). Dire « 我們加 LINE 好嗎？» (wǒmen jiā LINE hǎo ma? — On s'ajoute sur LINE ?) est la façon standard de garder contact.",
-        },
-        {
-          type: "text",
-          content:
-            "La hiérarchie d'âge est importante. Les Taiwanais utilisent des termes comme 哥哥 (gēge, grand frère), 姐姐 (jiějie, grande sœur) même avec des inconnus plus âgés. Si quelqu'un a manifestement 5-10 ans de plus, l'appeler 哥 ou 姐 est un signe de respect et de politesse.",
-        },
-        {
-          type: "text",
-          content:
-            "Les cartes de visite (名片 míngpiàn) sont encore très utilisées dans le contexte professionnel. On les donne et reçoit à deux mains, en les regardant avec attention. Ne glissez jamais une carte dans votre poche arrière — c'est considéré comme irrespectueux.",
-        },
-        {
-          type: "text",
-          content:
-            "Si quelqu'un vous donne sa carte de visite (名片 míngpiàn) à Taiwan, il y a un protocole strict :\n- Recevez-la avec LES DEUX MAINS (pas une seule main, c'est irrespectueux)\n- Lisez-la attentivement pendant quelques secondes (ne la mettez pas directement dans votre poche)\n- Si vous êtes assis, posez-la devant vous sur la table pendant la conversation\n- Ne JAMAIS écrire dessus ou la plier\n- Ne JAMAIS la mettre dans votre poche arrière (vous vous asseyez sur la personne symboliquement)\nCe rituel vient de la culture confucéenne du respect. La carte représente la personne.",
-        },
-        {
-          type: "text",
-          content:
-            "Une présentation typique entre Taiwanais suit ce schéma :\n1. Bonjour + nom complet + d'où je viens : 你好，我叫陳美玲，我是台北人。\n2. Ce que je fais (profession OU école) : 我在大學教英文。(J'enseigne l'anglais à l'université)\n3. Âge (souvent demandé rapidement) : 你幾歲？/ 你哪一年的？(tu es de quelle année ?)\n4. Échange de LINE (pas de numéro de téléphone !) : 加個LINE吧！(Ajoutons-nous sur LINE !)\n\nPour un étranger, on vous demandera en plus : 你從哪裡來？(d'où viens-tu ?), 你來台灣多久了？(depuis combien de temps es-tu à Taiwan ?), 你為什麼來台灣？(pourquoi Taiwan ?).",
+            "Exercice de fin d'unité, à faire à voix haute avec un doigt qui bat la mesure : とうきょう, がっこう, びょういん, ぎんこう, しゃしん, きって, ざっし, つづく. Objectif : quatre temps réguliers pour les cinq premiers, trois pour les trois derniers, sans jamais écraser ni le silence du っ ni la seconde moitié d'une voyelle longue.",
         },
       ],
     },
@@ -213,363 +195,149 @@ export const unit04: CourseUnit = {
 
   dialogue: {
     context:
-      "Vous emménagez dans une colocation à Taipei et rencontrez votre colocataire pour la première fois.",
+      "Dans une supérette, vous achetez des timbres. Tout ce qui est dit tient dans les hiragana connus, dakuten, yōon, sokuon et voyelles longues compris.",
     lines: [
       {
-        speaker: "Coloc",
-        chinese: "你好！你是新室友嗎？",
-        pinyin: "nǐ hǎo! nǐ shì xīn shìyǒu ma?",
-        french: "Salut ! Tu es le nouveau coloc ?",
+        speaker: "Vous",
+        japanese: "すみません、きって、ありますか。",
+        romaji: "sumimasen, kitte, arimasu ka.",
+        french: "Excusez-moi, avez-vous des timbres ?",
+        note: "きって porte un っ : une more de silence. Sans elle, きて signifie « viens ».",
+      },
+      {
+        speaker: "Employé",
+        japanese: "はい、ございます。なんまいですか。",
+        romaji: "hai, gozaimasu. nanmai desu ka.",
+        french: "Oui, nous en avons. Combien ?",
+        note: "ございます est la forme très polie de « il y a », standard derrière un comptoir. まい compte les objets plats : timbres, billets, feuilles.",
       },
       {
         speaker: "Vous",
-        chinese: "是，我是。我叫 Julian，很高興認識你！",
-        pinyin: "shì, wǒ shì. wǒ jiào Julian, hěn gāoxìng rènshì nǐ!",
-        french: "Oui, c'est moi. Je m'appelle Julian, enchanté !",
+        japanese: "にまい、おねがいします。",
+        romaji: "nimai, onegai shimasu.",
+        french: "Deux, s'il vous plaît.",
       },
       {
-        speaker: "Coloc",
-        chinese: "我叫小美。你是哪裡人？",
-        pinyin: "wǒ jiào Xiǎo Měi. nǐ shì nǎlǐ rén?",
-        french: "Je m'appelle Xiao Mei. Tu viens d'où ?",
-      },
-      {
-        speaker: "Vous",
-        chinese: "我是法國人。你呢？",
-        pinyin: "wǒ shì Fǎguó rén. nǐ ne?",
-        french: "Je suis français. Et toi ?",
-        note: "呢 (ne) en fin de phrase sert à retourner la question : « Et toi ? »",
-      },
-      {
-        speaker: "Coloc",
-        chinese: "我是台灣人。你做什麼工作？",
-        pinyin: "wǒ shì Táiwān rén. nǐ zuò shénme gōngzuò?",
-        french: "Je suis taiwanaise. Tu fais quoi comme travail ?",
-      },
-      {
-        speaker: "Vous",
-        chinese: "我是學生。你也是學生嗎？",
-        pinyin: "wǒ shì xuéshēng. nǐ yě shì xuéshēng ma?",
-        french: "Je suis étudiant. Tu es étudiante aussi ?",
+        speaker: "Employé",
+        japanese: "かしこまりました。しょうしょうおまちください。",
+        romaji: "kashikomarimashita. shoushou omachi kudasai.",
+        french: "Très bien. Un instant, je vous prie.",
+        note: "しょうしょう enchaîne deux yōon et deux voyelles longues : しょ-う-しょ-う, quatre mores. かしこまりました est la formule de service, plus déférente que わかりました.",
       },
     ],
   },
 
   keyPoints: [
-    "是 (shì) relie le sujet à une catégorie (nationalité, profession). 叫 (jiào) donne le nom.",
-    "Les questions avec un mot interrogatif (什麼, 哪裡) ne prennent PAS 嗎 à la fin.",
-    "呢 (ne) en fin de phrase retourne la question : 你呢？= Et toi ?",
-    "À Taiwan, échanger ses LINE est l'équivalent d'échanger ses numéros. La hiérarchie d'âge influence les termes d'adresse.",
+    "Le dakuten ゛ sonorise la consonne : か→が, さ→ざ, た→だ, は→ば. Le handakuten ゜ n'existe que sur la ligne は et donne ぱ ぴ ぷ ぺ ぽ.",
+    "じ et ぢ se prononcent pareil, ず et づ aussi : écrivez じ et ず par défaut, ぢ et づ ne servent que dans quelques mots comme つづく.",
+    "Le petit ゃ ゅ ょ ne compte pas pour une more : きょう fait deux mores, きよう en fait trois — et ce sont deux mots différents.",
+    "Le っ n'est pas un son mais une more de silence qui redouble la consonne suivante : きて (viens) et きって (le timbre).",
+    "Une voyelle longue vaut deux mores et change le mot : おじさん (l'oncle) contre おじいさん (le grand-père). Le « o » long s'écrit おう, sauf une courte liste d'exceptions en おお.",
   ],
 
   vocabulary: [
-    {
-      character: "叫",
-      pinyin: "jiào",
-      zhuyin: "ㄐㄧㄠˋ",
-      french: "S'appeler",
-      english: "To be called",
-      example: {
-        sentence: "你叫什麼名字？",
-        pinyin: "nǐ jiào shénme míngzì?",
-        translation: "Comment tu t'appelles ?",
-      },
-    },
-    {
-      character: "名字",
-      pinyin: "míngzì",
-      zhuyin: "ㄇㄧㄥˊ ㄗˋ",
-      french: "Nom / prénom",
-      english: "Name",
-      example: {
-        sentence: "你的名字很好聽。",
-        pinyin: "nǐ de míngzì hěn hǎo tīng.",
-        translation: "Ton nom est très joli.",
-      },
-    },
-    {
-      character: "哪裡",
-      pinyin: "nǎlǐ",
-      zhuyin: "ㄋㄚˇ ㄌㄧˇ",
-      french: "Où",
-      english: "Where",
-      example: {
-        sentence: "你是哪裡人？",
-        pinyin: "nǐ shì nǎlǐ rén?",
-        translation: "Tu viens d'où ?",
-      },
-    },
-    {
-      character: "工作",
-      pinyin: "gōngzuò",
-      zhuyin: "ㄍㄨㄥ ㄗㄨㄛˋ",
-      french: "Travail / travailler",
-      english: "Work / to work",
-      example: {
-        sentence: "你做什麼工作？",
-        pinyin: "nǐ zuò shénme gōngzuò?",
-        translation: "Tu fais quoi comme travail ?",
-      },
-    },
-    {
-      character: "學生",
-      pinyin: "xuéshēng",
-      zhuyin: "ㄒㄩㄝˊ ㄕㄥ",
-      french: "Étudiant(e)",
-      english: "Student",
-      example: {
-        sentence: "我是學生。",
-        pinyin: "wǒ shì xuéshēng.",
-        translation: "Je suis étudiant.",
-      },
-    },
-    {
-      character: "老師",
-      pinyin: "lǎoshī",
-      zhuyin: "ㄌㄠˇ ㄕ",
-      french: "Professeur",
-      english: "Teacher",
-      example: {
-        sentence: "她是中文老師。",
-        pinyin: "tā shì zhōngwén lǎoshī.",
-        translation: "Elle est professeur de chinois.",
-      },
-    },
-    {
-      character: "法國人",
-      pinyin: "Fǎguó rén",
-      zhuyin: "ㄈㄚˇ ㄍㄨㄛˊ ㄖㄣˊ",
-      french: "Français(e) (personne)",
-      english: "French person",
-      example: {
-        sentence: "我是法國人。",
-        pinyin: "wǒ shì Fǎguó rén.",
-        translation: "Je suis français.",
-      },
-    },
-    {
-      character: "很高興",
-      pinyin: "hěn gāoxìng",
-      zhuyin: "ㄏㄣˇ ㄍㄠ ㄒㄧㄥˋ",
-      french: "Très content / enchanté",
-      english: "Very happy / pleased",
-      example: {
-        sentence: "很高興認識你！",
-        pinyin: "hěn gāoxìng rènshì nǐ!",
-        translation: "Enchanté de te connaître !",
-      },
-    },
-    {
-      character: "認識",
-      pinyin: "rènshì",
-      zhuyin: "ㄖㄣˋ ㄕˋ",
-      french: "Connaître / faire connaissance",
-      english: "To know / to meet",
-      example: {
-        sentence: "我不認識他。",
-        pinyin: "wǒ bú rènshì tā.",
-        translation: "Je ne le connais pas.",
-      },
-    },
-    {
-      character: "也",
-      pinyin: "yě",
-      zhuyin: "ㄧㄝˇ",
-      french: "Aussi",
-      english: "Also",
-      example: {
-        sentence: "我也是學生。",
-        pinyin: "wǒ yě shì xuéshēng.",
-        translation: "Je suis aussi étudiant.",
-      },
-    },
-    {
-      character: "都",
-      pinyin: "dōu",
-      zhuyin: "ㄉㄡ",
-      french: "Tous / tout",
-      english: "All / both",
-      example: {
-        sentence: "我們都是法國人。",
-        pinyin: "wǒmen dōu shì Fǎguó rén.",
-        translation: "Nous sommes tous français.",
-      },
-    },
-    {
-      character: "什麼",
-      pinyin: "shénme",
-      zhuyin: "ㄕㄣˊ ㄇㄜ˙",
-      french: "Quoi / quel",
-      english: "What",
-      example: {
-        sentence: "這是什麼？",
-        pinyin: "zhè shì shénme?",
-        translation: "C'est quoi ?",
-      },
-    },
-    {
-      character: "我們",
-      pinyin: "wǒmen",
-      zhuyin: "ㄨㄛˇ ㄇㄣ˙",
-      french: "Nous",
-      english: "We / us",
-      example: {
-        sentence: "我們是朋友。",
-        pinyin: "wǒmen shì péngyǒu.",
-        translation: "Nous sommes amis.",
-      },
-    },
-    {
-      character: "你們",
-      pinyin: "nǐmen",
-      zhuyin: "ㄋㄧˇ ㄇㄣ˙",
-      french: "Vous (pluriel)",
-      english: "You (plural)",
-      example: {
-        sentence: "你們好！",
-        pinyin: "nǐmen hǎo!",
-        translation: "Bonjour à vous !",
-      },
-    },
-    {
-      character: "他們",
-      pinyin: "tāmen",
-      zhuyin: "ㄊㄚ ㄇㄣ˙",
-      french: "Ils / elles",
-      english: "They / them",
-      example: {
-        sentence: "他們是台灣人。",
-        pinyin: "tāmen shì Táiwān rén.",
-        translation: "Ils sont taiwanais.",
-      },
-    },
-    {
-      character: "朋友",
-      pinyin: "péngyǒu",
-      zhuyin: "ㄆㄥˊ ㄧㄡˇ",
-      french: "Ami",
-      english: "Friend",
-      example: {
-        sentence: "他是我的好朋友。",
-        pinyin: "tā shì wǒ de hǎo péngyǒu.",
-        translation: "C'est mon bon ami.",
-      },
-    },
-    {
-      character: "喜歡",
-      pinyin: "xǐhuān",
-      zhuyin: "ㄒㄧˇ ㄏㄨㄢ",
-      french: "Aimer",
-      english: "To like",
-      example: {
-        sentence: "我喜歡台灣的食物。",
-        pinyin: "wǒ xǐhuān Táiwān de shíwù.",
-        translation: "J'aime la nourriture taiwanaise.",
-      },
-    },
-    {
-      character: "再見",
-      pinyin: "zàijiàn",
-      zhuyin: "ㄗㄞˋ ㄐㄧㄢˋ",
-      french: "Au revoir",
-      english: "Goodbye",
-      example: {
-        sentence: "再見，明天見！",
-        pinyin: "zàijiàn, míngtiān jiàn!",
-        translation: "Au revoir, à demain !",
-      },
-    },
-    {
-      character: "對",
-      pinyin: "duì",
-      zhuyin: "ㄉㄨㄟˋ",
-      french: "Correct, exact",
-      english: "Correct, right",
-      example: {
-        sentence: "對，我是法國人。",
-        pinyin: "duì, wǒ shì Fǎguó rén.",
-        translation: "Oui, c'est ça, je suis français.",
-      },
-    },
-    {
-      character: "真",
-      pinyin: "zhēn",
-      zhuyin: "ㄓㄣ",
-      french: "Vraiment",
-      english: "Really, truly",
-      example: {
-        sentence: "你的中文真好！",
-        pinyin: "nǐ de zhōngwén zhēn hǎo!",
-        translation: "Ton chinois est vraiment bien !",
-      },
-    },
+    { term: "かぎ", kana: "かぎ", romaji: "kagi", french: "La clé", english: "Key" },
+    { term: "たまご", kana: "たまご", romaji: "tamago", french: "L'œuf", english: "Egg" },
+    { term: "でんわ", kana: "でんわ", romaji: "denwa", pitch: 0, french: "Le téléphone, l'appel", english: "Telephone, phone call" },
+    { term: "ぎんこう", kana: "ぎんこう", romaji: "ginkou", pitch: 0, french: "La banque", english: "Bank" },
+    { term: "ざっし", kana: "ざっし", romaji: "zasshi", pitch: 0, french: "Le magazine, la revue", english: "Magazine" },
+    { term: "がっこう", kana: "がっこう", romaji: "gakkou", pitch: 0, french: "L'école", english: "School" },
+    { term: "きって", kana: "きって", romaji: "kitte", pitch: 0, french: "Le timbre", english: "Postage stamp" },
+    { term: "きて", kana: "きて", romaji: "kite", french: "Viens (forme en -て de « venir »)", english: "Come (te-form of to come)" },
+    { term: "てんぷら", kana: "てんぷら", romaji: "tenpura", pitch: 0, french: "Le tempura (beignet frit)", english: "Tempura" },
+    { term: "きょう", kana: "きょう", romaji: "kyou", pitch: 1, french: "Aujourd'hui", english: "Today" },
+    { term: "おちゃ", kana: "おちゃ", romaji: "ocha", pitch: 0, french: "Le thé", english: "Tea" },
+    { term: "しゃしん", kana: "しゃしん", romaji: "shashin", pitch: 0, french: "La photo", english: "Photograph" },
+    { term: "びょういん", kana: "びょういん", romaji: "byouin", pitch: 0, french: "L'hôpital", english: "Hospital" },
+    { term: "じかん", kana: "じかん", romaji: "jikan", pitch: 0, french: "Le temps, l'heure", english: "Time, hour" },
+    { term: "つづく", kana: "つづく", romaji: "tsuzuku", pitch: 0, french: "Continuer, à suivre", english: "To continue" },
+    { term: "とうきょう", kana: "とうきょう", romaji: "toukyou", pitch: 0, french: "Tokyo", english: "Tokyo" },
+    { term: "せんせい", kana: "せんせい", romaji: "sensei", pitch: 3, french: "Le professeur, le maître", english: "Teacher" },
+    { term: "おおきい", kana: "おおきい", romaji: "ookii", pitch: 3, french: "Grand", english: "Big, large" },
   ],
 
   exercises: [
     {
       id: "unit-04-ex1",
-      type: "translate",
-      question: "Comment dit-on « Je m'appelle Marie » en chinois ?",
-      correctAnswer: "我叫 Marie",
-      options: ["我叫 Marie", "我是 Marie", "Marie 叫我", "我的 Marie"],
-      optionsHint: ["wǒ jiào Marie", "wǒ shì Marie", "Marie jiào wǒ", "wǒ de Marie"],
-      optionsZhuyin: ["ㄨㄛˇ ㄐㄧㄠˋ ㄇㄚ ㄖ ㄜ", "ㄨㄛˇ ㄕˋ ㄇㄚ ㄖ ㄜ", "ㄇㄚ ㄖ ㄜ ㄐㄧㄠˋ ㄨㄛˇ", "ㄨㄛˇ ㄉㄜ ㄇㄚ ㄖ ㄜ"],
+      type: "comprehension",
+      question: "Quel kana obtient-on en ajoutant le dakuten ゛ à は ?",
+      correctAnswer: "ば",
+      options: ["ば", "ぱ", "が", "わ"],
+      optionsHint: ["ba", "pa", "ga", "wa"],
+      optionsKana: ["ば", "ぱ", "が", "わ"],
+      hint: "Les deux traits sonorisent la consonne ; le petit cercle ゜ fait autre chose.",
     },
     {
       id: "unit-04-ex2",
-      type: "fill-blank",
-      question: "你___什麼名字？(Comment tu t'appelles ?)",
-      correctAnswer: "叫",
-      options: ["叫", "是", "做", "有"],
-      optionsHint: ["jiào", "shì", "zuò", "yǒu"],
-      optionsZhuyin: ["ㄐㄧㄠˋ", "ㄕˋ", "ㄗㄨㄛˋ", "ㄧㄡˇ"],
-      hint: "Quel verbe signifie « s'appeler » ?",
+      type: "comprehension",
+      question: "Combien de mores compte きょう (aujourd'hui) ?",
+      correctAnswer: "Deux : きょ + う",
+      options: [
+        "Deux : きょ + う",
+        "Trois : き + ょ + う",
+        "Une seule, le mot est très court",
+        "Quatre, la voyelle longue en vaut trois",
+      ],
+      hint: "Le petit ょ ne compte jamais pour une more séparée.",
     },
     {
       id: "unit-04-ex3",
-      type: "translate",
-      question: "Que signifie 你是哪裡人？",
-      correctAnswer: "Tu viens d'où ? / Tu es de quel pays ?",
-      options: [
-        "Tu viens d'où ? / Tu es de quel pays ?",
-        "Où habites-tu ?",
-        "Comment tu t'appelles ?",
-        "Où tu vas ?",
-      ],
-      hint: "nǐ shì nǎlǐ rén?",
+      type: "fill-blank",
+      question: "« Le timbre » s'écrit ___ .",
+      correctAnswer: "きって",
+      options: ["きって", "きて", "きっと", "きいて"],
+      optionsHint: ["kitte", "kite", "kitto", "kiite"],
+      optionsKana: ["きって", "きて", "きっと", "きいて"],
+      hint: "Il y a une more de silence entre les deux syllabes.",
     },
     {
       id: "unit-04-ex4",
       type: "comprehension",
-      question:
-        "Pourquoi ne met-on pas 嗎 à la fin de 你叫什麼名字？",
-      correctAnswer:
-        "Parce que 什麼 est déjà un mot interrogatif — on ne double pas la marque de question",
+      question: "Que note le petit っ de きって ?",
+      correctAnswer: "Une more de silence qui redouble la consonne suivante",
       options: [
-        "Parce que 什麼 est déjà un mot interrogatif — on ne double pas la marque de question",
-        "Parce que c'est une phrase négative",
-        "Parce que 叫 est un verbe spécial",
-        "Parce que 嗎 n'existe pas avec 你",
+        "Une more de silence qui redouble la consonne suivante",
+        "Un « tsu » prononcé très vite",
+        "Un allongement de la voyelle précédente",
+        "Une pause facultative, sans effet sur le sens",
       ],
+      hint: "C'est ce qui sépare きて de きって.",
     },
     {
       id: "unit-04-ex5",
-      type: "fill-blank",
-      question: "我是法國人。你___？(Je suis français. Et toi ?)",
-      correctAnswer: "呢",
-      options: ["呢", "嗎", "吧", "啊"],
-      optionsHint: ["ne", "ma", "ba", "a"],
-      optionsZhuyin: ["ㄋㄜ", "ㄇㄚ", "ㄅㄚ", "ㄚ"],
-      hint: "Quelle particule retourne la question ?",
+      type: "listen",
+      question: "きって",
+      correctAnswer: "Le timbre",
+      options: ["Le timbre", "Viens", "La clé", "Le magazine"],
+      hint: "Écoutez le temps de silence au milieu du mot.",
     },
     {
       id: "unit-04-ex6",
+      type: "fill-blank",
+      question: "« Tokyo » s'écrit ___ en kana.",
+      correctAnswer: "とうきょう",
+      options: ["とうきょう", "ときょう", "とうきよう", "とおきょう"],
+      optionsHint: ["toukyou", "tokyou", "toukiyou", "tookyou"],
+      optionsKana: ["とうきょう", "ときょう", "とうきよう", "とおきょう"],
+      hint: "Deux voyelles longues, et le « o » long s'écrit ici de la manière habituelle.",
+    },
+    {
+      id: "unit-04-ex7",
+      type: "reorder",
+      question: "Remettez dans l'ordre : « Deux timbres, s'il vous plaît. »",
+      correctAnswer: "きってをにまいください。",
+      options: ["きって", "を", "にまい", "ください"],
+      hint: "L'objet et son compteur d'abord, la demande à la fin.",
+    },
+    {
+      id: "unit-04-ex8",
       type: "translate",
-      question: "Comment dit-on « Je suis aussi étudiant » ?",
-      correctAnswer: "我也是學生",
-      options: ["我也是學生", "我是也學生", "也我是學生", "我學生也是"],
-      optionsHint: ["wǒ yě shì xuéshēng", "wǒ shì yě xuéshēng", "yě wǒ shì xuéshēng", "wǒ xuéshēng yě shì"],
-      optionsZhuyin: ["ㄨㄛˇ ㄧㄝˇ ㄕˋ ㄒㄩㄝˊ ㄕㄥ", "ㄨㄛˇ ㄕˋ ㄧㄝˇ ㄒㄩㄝˊ ㄕㄥ", "ㄧㄝˇ ㄨㄛˇ ㄕˋ ㄒㄩㄝˊ ㄕㄥ", "ㄨㄛˇ ㄒㄩㄝˊ ㄕㄥ ㄧㄝˇ ㄕˋ"],
+      question: "Traduisez en japonais : « aujourd'hui ».",
+      correctAnswer: "きょう",
+      options: ["きょう", "きよう", "きゅう", "こう"],
+      optionsHint: ["kyou", "kiyou", "kyuu", "kou"],
+      optionsKana: ["きょう", "きよう", "きゅう", "こう"],
+      hint: "Deux mores, avec un ょ écrit en petit.",
     },
   ],
 
