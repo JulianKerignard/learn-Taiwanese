@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Search, X, Plus, Check } from "lucide-react";
+import { Search, X, Plus, Check, ChevronDown } from "lucide-react";
 import AudioButton from "@/components/AudioButton";
 import ReadingDisplay from "@/components/ReadingDisplay";
 import { cn } from "@/lib/cn";
@@ -105,6 +105,9 @@ function buildDictionary(): DictEntry[] {
 type SortMode = "kana" | "romaji" | "jlpt";
 type SourceFilter = "all" | "course" | "lessons" | "readings";
 
+/** The dictionary holds ~850 entries; rendering them all blows up the HTML. */
+const PAGE_SIZE = 100;
+
 export default function DictionaryPage() {
   const [query, setQuery] = useState("");
   const [sortMode, setSortMode] = useState<SortMode>("kana");
@@ -112,6 +115,7 @@ export default function DictionaryPage() {
   const [levelFilter, setLevelFilter] = useState<number | null>(null);
   const [expandedEntry, setExpandedEntry] = useState<string | null>(null);
   const [addedCards, setAddedCards] = useState<Set<string>>(new Set());
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const displayMode = getSettings().displayMode;
   const dictionary = useMemo(() => buildDictionary(), []);
@@ -164,6 +168,17 @@ export default function DictionaryPage() {
 
     return results;
   }, [query, sortMode, sourceFilter, levelFilter, dictionary]);
+
+  // Any change to the search or the filters restarts the list at the first page.
+  const filterKey = `${query}|${sortMode}|${sourceFilter}|${levelFilter}`;
+  const [lastFilterKey, setLastFilterKey] = useState(filterKey);
+  if (lastFilterKey !== filterKey) {
+    setLastFilterKey(filterKey);
+    setVisibleCount(PAGE_SIZE);
+  }
+
+  const visible = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
+  const remaining = filtered.length - visible.length;
 
   function handleAddToFlashcards(entry: DictEntry) {
     if (existingCardChars.has(entry.term) || addedCards.has(entry.term)) return;
@@ -283,12 +298,15 @@ export default function DictionaryPage() {
       <p className="text-sm text-stone-500">
         {filtered.length} résultat{filtered.length !== 1 ? "s" : ""}
         {query && ` pour "${query}"`}
+        {remaining > 0 && (
+          <span className="text-stone-400"> — {visible.length} affiché{visible.length !== 1 ? "s" : ""}</span>
+        )}
       </p>
 
       {/* Results */}
       {filtered.length > 0 ? (
         <div className="flex flex-col gap-1">
-          {filtered.map((entry) => {
+          {visible.map((entry) => {
             const isExpanded = expandedEntry === entry.term;
             const isInFlashcards = existingCardChars.has(entry.term) || addedCards.has(entry.term);
 
@@ -296,6 +314,7 @@ export default function DictionaryPage() {
               <div key={entry.term}>
                 <button
                   onClick={() => setExpandedEntry(isExpanded ? null : entry.term)}
+                  aria-expanded={isExpanded}
                   className={cn(
                     "flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left transition-all",
                     isExpanded
@@ -321,8 +340,16 @@ export default function DictionaryPage() {
                     <p className="text-sm text-stone-600 truncate">{entry.french}</p>
                   </div>
 
-                  {/* Audio */}
-                  <AudioButton text={entry.term} size="sm" className="shrink-0" />
+                  {/* Audio lives in the expanded panel: one mounted client
+                      component per collapsed row is far too many. */}
+                  <ChevronDown
+                    size={16}
+                    aria-hidden
+                    className={cn(
+                      "shrink-0 text-stone-300 transition-transform",
+                      isExpanded && "rotate-180 text-primary"
+                    )}
+                  />
                 </button>
 
                 {/* Expanded view */}
@@ -331,7 +358,10 @@ export default function DictionaryPage() {
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
                         <p className="text-xs font-medium text-stone-400 uppercase mb-1">Prononciation</p>
-                        <p className="text-sm text-stone-700">{entry.romaji}</p>
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm text-stone-700">{entry.romaji}</p>
+                          <AudioButton text={entry.term} size="sm" className="shrink-0" />
+                        </div>
                         {entry.kana && <p className="text-sm text-stone-500 japanese">{entry.kana}</p>}
                       </div>
                       <div>
@@ -375,6 +405,15 @@ export default function DictionaryPage() {
               </div>
             );
           })}
+
+          {remaining > 0 && (
+            <button
+              onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+              className="mt-3 self-center rounded-lg border border-stone-200 bg-white px-4 py-2 text-sm font-medium text-stone-600 transition-colors hover:border-primary/30 hover:text-primary"
+            >
+              Afficher plus ({Math.min(PAGE_SIZE, remaining)} sur {remaining} restants)
+            </button>
+          )}
         </div>
       ) : (
         <div className="flex flex-col items-center gap-4 py-16 text-center">

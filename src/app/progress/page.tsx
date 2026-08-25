@@ -22,7 +22,7 @@ import {
 } from "@/lib/gamification";
 import { getGamification } from "@/lib/storage";
 import { getStats } from "@/lib/fsrs";
-import { chapters, allUnits } from "@/data/course";
+import { chapters, allUnitMetas } from "@/data/course/meta";
 import { lessons } from "@/data/lessons";
 import type { UserProgress, XPEvent } from "@/types";
 import type { GamificationData } from "@/types";
@@ -107,8 +107,6 @@ export default function ProgressPage() {
     window.location.reload();
   }
 
-  if (!loaded) return null;
-
   const isFirstVisit = !progress?.lastStudyDate && !gamification?.totalXP && !pathProgress?.completedUnits.length;
 
   const levelInfo = getLevelFromTotalXP(gamification?.totalXP ?? 0);
@@ -118,7 +116,7 @@ export default function ProgressPage() {
   );
 
   const overallCompleted = pathProgress?.completedUnits.length ?? 0;
-  const overallTotal = allUnits.length;
+  const overallTotal = allUnitMetas.length;
   const overallPct =
     overallTotal > 0 ? Math.round((overallCompleted / overallTotal) * 100) : 0;
 
@@ -132,7 +130,8 @@ export default function ProgressPage() {
       </div>
 
       {/* Bannière premier accès */}
-      {isFirstVisit && (
+      {/* A claim about the reader: it waits until localStorage has been read. */}
+      {loaded && isFirstVisit && (
         <div className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4 border-primary/30 bg-primary/5">
           <Map className="h-10 w-10 text-primary shrink-0" />
           <div className="flex-1">
@@ -240,29 +239,41 @@ export default function ProgressPage() {
         <h2 className="mb-4 text-lg font-semibold text-stone-800">
           XP des 7 derniers jours
         </h2>
-        {(() => {
-          const xpDays = getXpByDay(gamification?.xpHistory ?? []);
-          const maxXp = Math.max(...xpDays.map((d) => d.xp), 1);
-          return (
-            <div className="grid grid-cols-7 gap-2 items-end" style={{ height: 160 }}>
-              {xpDays.map((d) => (
-                <div key={d.day} className="flex flex-col items-center gap-1 h-full justify-end">
-                  <span className="text-xs font-medium text-stone-600">
-                    {d.xp > 0 ? d.xp : ""}
-                  </span>
-                  <div
-                    className={`w-full rounded-t-md ${d.xp > 0 ? "bg-success" : "bg-stone-200"}`}
-                    style={{
-                      height: `${Math.max((d.xp / maxXp) * 100, 8)}%`,
-                      minHeight: 8,
-                    }}
-                  />
-                  <span className="text-xs text-stone-400">{d.label}</span>
-                </div>
-              ))}
-            </div>
-          );
-        })()}
+        {/* The seven day labels come from the reader's clock, not the build clock:
+            rendering them before hydration would mismatch on any day but one. */}
+        {loaded ? (
+          (() => {
+            const xpDays = getXpByDay(gamification?.xpHistory ?? []);
+            const maxXp = Math.max(...xpDays.map((d) => d.xp), 1);
+            return (
+              <div className="grid grid-cols-7 gap-2 items-end" style={{ height: 160 }}>
+                {xpDays.map((d) => (
+                  <div key={d.day} className="flex flex-col items-center gap-1 h-full justify-end">
+                    <span className="text-xs font-medium text-stone-600">
+                      {d.xp > 0 ? d.xp : ""}
+                    </span>
+                    <div
+                      className={`w-full rounded-t-md ${d.xp > 0 ? "bg-success" : "bg-stone-200"}`}
+                      style={{
+                        height: `${Math.max((d.xp / maxXp) * 100, 8)}%`,
+                        minHeight: 8,
+                      }}
+                    />
+                    <span className="text-xs text-stone-400">{d.label}</span>
+                  </div>
+                ))}
+              </div>
+            );
+          })()
+        ) : (
+          <div className="grid grid-cols-7 gap-2 items-end" style={{ height: 160 }} aria-hidden>
+            {Array.from({ length: 7 }, (_, i) => (
+              <div key={i} className="h-full flex items-end">
+                <div className="w-full rounded-t-md bg-stone-100" style={{ height: 8 }} />
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Section Study Time */}
@@ -313,11 +324,12 @@ export default function ProgressPage() {
             .sort(([, a], [, b]) => b - a)
             .slice(0, 10);
           if (sorted.length === 0) {
-            return (
+            // Before hydration an empty list means "not read yet", not "no mistakes".
+            return loaded ? (
               <p className="text-sm text-stone-400">
                 Aucune erreur ! Continue comme ça.
               </p>
-            );
+            ) : null;
           }
           return (
             <ul className="flex flex-col gap-2">

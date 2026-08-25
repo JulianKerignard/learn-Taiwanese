@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import JLPTLevelContent from "@/components/JLPTLevelContent";
-import { jlptLevels, getJLPTLevelBySlug } from "@/data/course";
+import { jlptLevels, getJLPTLevelBySlug } from "@/data/course/meta";
 
 // One route instead of four near-identical level pages. Adding N1 is a data
 // change, not a new file.

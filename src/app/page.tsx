@@ -11,19 +11,21 @@ import {
   Map,
 } from "lucide-react";
 import Link from "next/link";
-import { getProgress, getCards } from "@/lib/storage";
+import { getProgress, getCards, defaultProgress } from "@/lib/storage";
 import { getStats } from "@/lib/fsrs";
 import { lessons } from "@/data/lessons";
-import { getPathProgress } from "@/lib/progress";
-import { getUnitById } from "@/data/course";
+import { getPathProgress, EMPTY_PATH_PROGRESS } from "@/lib/progress";
+import { getUnitMetaById } from "@/data/course/meta";
 import { getCurrentJLPTLevel } from "@/lib/progress";
 import type { UserProgress } from "@/types";
 import type { PathProgress } from "@/types/course";
 
 export default function HomePage() {
-  const [progress, setProgress] = useState<UserProgress | null>(null);
+  // Start from the defaults so the page prerenders with real content: returning
+  // null until hydration left <main> at 17 bytes.
+  const [progress, setProgress] = useState<UserProgress>(defaultProgress);
   const [cardStats, setCardStats] = useState({ total: 0, due: 0, learned: 0, mature: 0, newCards: 0 });
-  const [pathProgress, setPathProgress] = useState<PathProgress | null>(null);
+  const [pathProgress, setPathProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
 
   useEffect(() => {
     const p = getProgress();
@@ -33,8 +35,6 @@ export default function HomePage() {
     setPathProgress(getPathProgress());
   }, []);
 
-  if (!progress) return null;
-
   const displayedLessons = lessons.slice(0, 5);
 
   return (
@@ -42,7 +42,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="text-center">
         <h1 className="text-4xl font-bold text-stone-900">
-          Bienvenue, <span className="japanese text-primary">歡迎!</span>
+          Bienvenue, <span className="japanese text-primary" lang="ja">ようこそ！</span>
         </h1>
         <p className="mt-2 text-lg text-stone-500">
           Apprends le japonais pour ta vie au Japon
@@ -135,7 +135,7 @@ export default function HomePage() {
 }
 
 function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
-  const currentUnit = getUnitById(pathProgress.currentUnit);
+  const currentUnit = getUnitMetaById(pathProgress.currentUnit);
   const hasStarted = pathProgress.completedUnits.length > 0;
   const currentLevel = getCurrentJLPTLevel(pathProgress);
 

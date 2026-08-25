@@ -9,8 +9,8 @@ import {
   isUnitCompleted,
   getChapterProgress,
 } from "@/lib/progress";
-import { getUnitById } from "@/data/course";
-import type { PathProgress, CourseUnit, Chapter } from "@/types/course";
+import { getUnitMetaById } from "@/data/course/meta";
+import type { PathProgress, CourseUnitMeta, Chapter } from "@/types/course";
 
 export function ChapterSection({
   chapter,
@@ -24,8 +24,8 @@ export function ChapterSection({
   const chapterPct = getChapterProgress(chapter, progress);
 
   const chapterUnits = chapter.unitIds
-    .map((id) => getUnitById(id))
-    .filter((u): u is CourseUnit => u !== undefined);
+    .map((id) => getUnitMetaById(id))
+    .filter((u): u is CourseUnitMeta => u !== undefined);
 
   return (
     <section>
@@ -61,7 +61,7 @@ function UnitNode({
   progress,
   isLast,
 }: {
-  unit: CourseUnit;
+  unit: CourseUnitMeta;
   displayNumber: number;
   progress: PathProgress;
   isLast: boolean;

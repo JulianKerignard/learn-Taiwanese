@@ -6,21 +6,24 @@ import { ArrowLeft, ChevronRight } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { ChapterSection } from "@/components/ChapterSection";
 import { cn } from "@/lib/cn";
-import { getPathProgress, getJLPTLevelCompletedCount } from "@/lib/progress";
-import { getJLPTLevelBySlug, jlptLevels, getJLPTLevelChapters, getJLPTLevelUnits, chapters } from "@/data/course";
+import {
+  getPathProgress,
+  getJLPTLevelCompletedCount,
+  EMPTY_PATH_PROGRESS,
+} from "@/lib/progress";
+import {
+  getJLPTLevelBySlug,
+  jlptLevels,
+  getJLPTLevelChapters,
+  getJLPTLevelUnitMetas,
+  chapters,
+} from "@/data/course/meta";
 import type { PathProgress } from "@/types/course";
-
-const EMPTY_PROGRESS: PathProgress = {
-  completedUnits: [],
-  unitScores: {},
-  currentUnit: "",
-  chapterProgress: {},
-};
 
 export default function JLPTLevelContent({ slug }: { slug: string }) {
   // Start from empty rather than null: returning null until hydration left the
   // prerendered page with no content at all, so the LCP waited on the bundle.
-  const [progress, setProgress] = useState<PathProgress>(EMPTY_PROGRESS);
+  const [progress, setProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
 
   useEffect(() => {
     setProgress(getPathProgress());
@@ -52,7 +55,7 @@ export default function JLPTLevelContent({ slug }: { slug: string }) {
   }
 
   const levelChapters = getJLPTLevelChapters(jlptLevel);
-  const levelUnits = getJLPTLevelUnits(jlptLevel);
+  const levelUnits = getJLPTLevelUnitMetas(jlptLevel);
   const unitIds = levelUnits.map((u) => u.id);
   const completedCount = getJLPTLevelCompletedCount(unitIds, progress);
   const totalCount = levelUnits.length;

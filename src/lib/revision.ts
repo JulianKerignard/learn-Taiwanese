@@ -1,6 +1,12 @@
 import type { SM2Card } from "@/types";
 import type { JLPTLevel } from "@/types/course";
-import { chapters, jlptLevels, getUnitById, getJLPTLevelForUnit } from "@/data/course";
+// Labels only — a revision topic names a unit, it never renders its lesson.
+import {
+  chapters,
+  jlptLevels,
+  getUnitMetaById,
+  getJLPTLevelForUnit,
+} from "@/data/course/meta";
 import { lessons } from "@/data/lessons";
 
 // ── Card source parsing ─────────────────────────────────────────────
@@ -39,7 +45,7 @@ function getCardSource(card: SM2Card): CardSource {
 
   // Resolve chapter and JLPT level from unit
   if (result.unitId) {
-    const unit = getUnitById(result.unitId);
+    const unit = getUnitMetaById(result.unitId);
     if (unit) {
       result.chapterNum = unit.chapter;
       const jlpt = getJLPTLevelForUnit(unit);
@@ -92,7 +98,7 @@ export function groupCardsByUnit(cards: SM2Card[]): TopicGroup[] {
 
   const result: TopicGroup[] = [];
   for (const [key, groupCards] of groups) {
-    const unit = key.startsWith("unit-") ? getUnitById(key) : undefined;
+    const unit = key.startsWith("unit-") ? getUnitMetaById(key) : undefined;
     const lesson = !unit ? lessons.find((l) => l.slug === key) : undefined;
 
     result.push({

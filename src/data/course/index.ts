@@ -26,6 +26,40 @@ import { unit18 } from "./chapter3/unit18";
 import { unit19 } from "./chapter3/unit19";
 import { unit20 } from "./chapter3/unit20";
 
+// Chapitre 4 — Se déplacer et habiter
+import { unit21 } from "./chapter4/unit21";
+import { unit22 } from "./chapter4/unit22";
+import { unit23 } from "./chapter4/unit23";
+import { unit24 } from "./chapter4/unit24";
+import { unit25 } from "./chapter4/unit25";
+import { unit26 } from "./chapter4/unit26";
+
+// Chapitre 5 — Grammaire intermédiaire
+import { unit27 } from "./chapter5/unit27";
+import { unit28 } from "./chapter5/unit28";
+import { unit29 } from "./chapter5/unit29";
+import { unit30 } from "./chapter5/unit30";
+import { unit31 } from "./chapter5/unit31";
+import { unit32 } from "./chapter5/unit32";
+
+// Chapitre 6 — Travail et société
+import { unit33 } from "./chapter6/unit33";
+import { unit34 } from "./chapter6/unit34";
+import { unit35 } from "./chapter6/unit35";
+import { unit36 } from "./chapter6/unit36";
+import { unit37 } from "./chapter6/unit37";
+
+// Chapitre 7 — Nuances et registres
+import { unit38 } from "./chapter7/unit38";
+import { unit39 } from "./chapter7/unit39";
+import { unit40 } from "./chapter7/unit40";
+import { unit41 } from "./chapter7/unit41";
+
+// Chapitre 8 — Vers l'autonomie
+import { unit42 } from "./chapter8/unit42";
+import { unit43 } from "./chapter8/unit43";
+import { unit44 } from "./chapter8/unit44";
+
 export const chapters: Chapter[] = [
   {
     number: 1,
@@ -48,10 +82,50 @@ export const chapters: Chapter[] = [
     description: "Verbes, heure, restaurant, achats, transports : le japonais utile dès le premier jour",
     unitIds: ["unit-14", "unit-15", "unit-16", "unit-17", "unit-18", "unit-19", "unit-20"],
   },
+  {
+    number: 4,
+    title: "Se déplacer et habiter",
+    titleJa: "移動と住まい",
+    description:
+      "Enchaîner les actions avec la forme en て, demander une permission, chercher un logement et dire ce qu'on veut",
+    unitIds: ["unit-21", "unit-22", "unit-23", "unit-24", "unit-25", "unit-26"],
+  },
+  {
+    number: 5,
+    title: "Grammaire intermédiaire",
+    titleJa: "中級文法",
+    description:
+      "Style neutre, conditionnels, passif, causatif et propositions relatives : la charpente de la phrase longue",
+    unitIds: ["unit-27", "unit-28", "unit-29", "unit-30", "unit-31", "unit-32"],
+  },
+  {
+    number: 6,
+    title: "Travail et société",
+    titleJa: "仕事と社会",
+    description:
+      "Keigo, téléphone et courriels, hôpital et démarches administratives : le japonais des situations formelles",
+    unitIds: ["unit-33", "unit-34", "unit-35", "unit-36", "unit-37"],
+  },
+  {
+    number: 7,
+    title: "Nuances et registres",
+    titleJa: "ニュアンスと文体",
+    description:
+      "Auxiliaires d'aspect, ouï-dire et suppositions, onomatopées et formes contractées : choisir le bon ton",
+    unitIds: ["unit-38", "unit-39", "unit-40", "unit-41"],
+  },
+  {
+    number: 8,
+    title: "Vers l'autonomie",
+    titleJa: "自立へ向けて",
+    description:
+      "Lire un texte argumenté, la presse et les documents officiels, et comprendre les expressions imagées",
+    unitIds: ["unit-42", "unit-43", "unit-44"],
+  },
 ];
 
 /**
- * JLPT runs from N5 (entry) to N1 (hardest) — the reverse of HSK's numbering.
+ * JLPT runs from N5 (entry) to N1 (hardest): the number decreases as level rises.
  * `level` keeps the N number so the UI can print it directly.
  */
 export const jlptLevels: JLPTLevel[] = [
@@ -76,7 +150,6 @@ export const jlptLevels: JLPTLevel[] = [
     description:
       "Environ 1 500 mots et 300 kanji. Tenir une conversation quotidienne et lire des textes courts.",
     chapterNumbers: [4, 5],
-    comingSoon: true,
   },
   {
     level: 3,
@@ -88,7 +161,6 @@ export const jlptLevels: JLPTLevel[] = [
     description:
       "Le palier charnière : environ 3 700 mots et 650 kanji, registres poli et familier maîtrisés.",
     chapterNumbers: [6, 7],
-    comingSoon: true,
   },
   {
     level: 2,
@@ -99,7 +171,6 @@ export const jlptLevels: JLPTLevel[] = [
     secondaryLabel: "Kanji Kentei 4–3 級",
     description: "Japonais de travail : presse, réunions, nuances de politesse (敬語).",
     chapterNumbers: [8],
-    comingSoon: true,
   },
 ];
 
@@ -107,6 +178,11 @@ export const allUnits: CourseUnit[] = [
   unit01, unit02, unit03, unit04, unit05, unit06, unit07,
   unit08, unit09, unit10, unit11, unit12, unit13,
   unit14, unit15, unit16, unit17, unit18, unit19, unit20,
+  unit21, unit22, unit23, unit24, unit25, unit26,
+  unit27, unit28, unit29, unit30, unit31, unit32,
+  unit33, unit34, unit35, unit36, unit37,
+  unit38, unit39, unit40, unit41,
+  unit42, unit43, unit44,
 ];
 
 const unitMap = new Map(allUnits.map((unit) => [unit.id, unit]));

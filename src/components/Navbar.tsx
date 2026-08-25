@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { LANG } from "@/lib/language";
 import { User, LogIn, LogOut, Menu, X } from "lucide-react";
 import { checkUser, login, syncUp, syncDown, setConnected } from "@/lib/sync";
 import { cn } from "@/lib/cn";
@@ -53,8 +54,8 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 border-b border-stone-200 bg-white/80 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold text-stone-900">
-          <span className="japanese text-2xl text-primary">學</span>
-          <span className="hidden sm:inline">Japon Mandarin</span>
+          <span className="japanese text-2xl text-primary" lang="ja">学</span>
+          <span className="hidden sm:inline">{LANG.brand}</span>
         </Link>
 
         {/* Desktop nav */}

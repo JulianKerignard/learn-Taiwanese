@@ -9,20 +9,20 @@ import {
   getPathProgress,
   getJLPTLevelCompletedCount,
   getCurrentJLPTLevel,
+  EMPTY_PATH_PROGRESS,
 } from "@/lib/progress";
-import { allUnits, jlptLevels, getJLPTLevelUnits } from "@/data/course";
+import { allUnitMetas, jlptLevels, getJLPTLevelUnitMetas } from "@/data/course/meta";
 import type { PathProgress } from "@/types/course";
 
-const TOTAL_UNITS = allUnits.length;
+const TOTAL_UNITS = allUnitMetas.length;
 
 export default function PathPage() {
-  const [progress, setProgress] = useState<PathProgress | null>(null);
+  // The level cards are known at build time; only the counters need the browser.
+  const [progress, setProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
 
   useEffect(() => {
     setProgress(getPathProgress());
   }, []);
-
-  if (!progress) return null;
 
   const completedCount = progress.completedUnits.length;
   const currentLevel = getCurrentJLPTLevel(progress);
@@ -47,7 +47,7 @@ export default function PathPage() {
       {/* Level cards */}
       <div className="grid gap-6 sm:grid-cols-2">
         {jlptLevels.map((level) => {
-          const units = getJLPTLevelUnits(level);
+          const units = getJLPTLevelUnitMetas(level);
           const unitIds = units.map((u) => u.id);
           const completed = getJLPTLevelCompletedCount(unitIds, progress);
           const total = units.length;

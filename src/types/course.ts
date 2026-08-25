@@ -39,7 +39,12 @@ export interface Exercise {
   optionsKana?: string[];
 }
 
-export interface CourseUnit {
+/**
+ * What a unit is, minus what it teaches. List views, breadcrumbs and unlock
+ * rules need only this, and `@/data/course/meta` serves it without loading a
+ * single unit module.
+ */
+export interface CourseUnitMeta {
   id: string;
   number: number;
   title: string;
@@ -48,15 +53,17 @@ export interface CourseUnit {
   description: string;
   icon: string;
 
+  requiredScore: number;
+  prerequisites: string[];
+}
+
+export interface CourseUnit extends CourseUnitMeta {
   sections: CourseSection[];
   dialogue?: Dialogue;
   keyPoints: string[];
 
   vocabulary: VocabularyItem[];
   exercises: Exercise[];
-
-  requiredScore: number;
-  prerequisites: string[];
 }
 
 export interface Chapter {

@@ -91,7 +91,8 @@ export function upsertCard(card: SM2Card): void {
 }
 
 // Progress
-const defaultProgress: UserProgress = {
+/** Shape a page can render from before localStorage is read. */
+export const defaultProgress: UserProgress = {
   termsLearned: 0,
   vocabularyMastered: 0,
   lessonsCompleted: [],

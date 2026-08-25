@@ -1,12 +1,18 @@
 // Corpus invariants. Fails the build on anything that silently teaches an error:
 // misplaced furigana, unanswerable exercises, impossible pitch accents,
-// prerequisites that lock a unit, duplicate ids, divergent readings.
+// prerequisites that lock a unit, duplicate ids, divergent readings, and a
+// metadata catalogue that no longer matches the units it describes.
 //
 //   npm run validate
 //
 // Errors exit 1. Warnings are reported but do not fail.
 
 import { allUnits, chapters, jlptLevels } from "../src/data/course/index.ts";
+import {
+  allUnitMetas,
+  chapters as metaChapters,
+  jlptLevels as metaJlptLevels,
+} from "../src/data/course/meta.ts";
 import { accentGroups, minimalPairs } from "../src/data/pitch-accent.ts";
 import { splitMora, countMora, isKana, isKanji } from "../src/lib/japanese.ts";
 
@@ -221,7 +227,64 @@ for (const level of jlptLevels) {
   }
 }
 
-// ── 5. Pitch accent data ──────────────────────────────────────────────
+// ── 5. The metadata catalogue matches the units ───────────────────────
+//
+// `src/data/course/meta.ts` restates unit metadata so that list views never
+// import a unit module. Nothing keeps the copy honest at build time, so keep it
+// honest here: a title edited in unitNN.ts and not in meta.ts would otherwise
+// ship two different titles for the same unit.
+
+const META_FIELDS = [
+  "id",
+  "number",
+  "chapter",
+  "title",
+  "titleJa",
+  "description",
+  "icon",
+  "requiredScore",
+];
+
+const metaById = new Map(allUnitMetas.map((meta) => [meta.id, meta]));
+
+if (allUnitMetas.length !== allUnits.length) {
+  err(
+    "meta",
+    `meta.ts décrit ${allUnitMetas.length} unités, le corpus en compte ${allUnits.length}`
+  );
+}
+
+allUnits.forEach((unit, index) => {
+  const meta = metaById.get(unit.id);
+  if (!meta) {
+    err("meta", `${unit.id} absente de meta.ts`);
+    return;
+  }
+  if (allUnitMetas[index]?.id !== unit.id) {
+    err("meta", `${unit.id} est au rang ${index} dans le corpus mais pas dans meta.ts`);
+  }
+  for (const field of META_FIELDS) {
+    if (meta[field] !== unit[field]) {
+      err("meta", `${unit.id}.${field} : meta.ts dit ${JSON.stringify(meta[field])}, l'unité dit ${JSON.stringify(unit[field])}`);
+    }
+  }
+  if (meta.prerequisites.join("|") !== unit.prerequisites.join("|")) {
+    err("meta", `${unit.id}.prerequisites divergent entre meta.ts et l'unité`);
+  }
+});
+
+for (const meta of allUnitMetas) {
+  if (!declared.has(meta.id)) err("meta", `${meta.id} décrite par meta.ts mais aucune unité ne l'exporte`);
+}
+
+if (JSON.stringify(metaChapters) !== JSON.stringify(chapters)) {
+  err("meta", "les chapitres de meta.ts divergent de ceux de index.ts");
+}
+if (JSON.stringify(metaJlptLevels) !== JSON.stringify(jlptLevels)) {
+  err("meta", "les niveaux JLPT de meta.ts divergent de ceux de index.ts");
+}
+
+// ── 6. Pitch accent data ──────────────────────────────────────────────
 
 for (const group of accentGroups) {
   for (const word of group.words) {
