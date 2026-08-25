@@ -30,10 +30,10 @@ export function ChapterSection({
   return (
     <section>
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-stone-800">
+        <h2 className="section-title">
           Chapitre {chapter.number} — {chapter.title}
         </h2>
-        <p className="japanese text-sm text-stone-400">{chapter.titleJa}</p>
+        <p className="japanese text-sm text-stone-500" lang="ja">{chapter.titleJa}</p>
         <p className="mt-1 text-sm text-stone-500">{chapter.description}</p>
         <div className="mt-3 max-w-xs">
           <ProgressBar value={Math.round(chapterPct * 100)} max={100} />
@@ -71,13 +71,13 @@ function UnitNode({
   const isCurrent = progress.currentUnit === unit.id;
   const score = progress.unitScores[unit.id];
 
-  let circleStyle = "border-stone-300 bg-white text-stone-400";
+  let circleStyle = "border-stone-300 bg-white text-stone-500";
   if (completed) {
     circleStyle = "border-success bg-success text-white";
   } else if (isCurrent) {
     circleStyle = "border-primary bg-primary/10 text-primary ring-2 ring-primary/30";
   } else if (!unlocked) {
-    circleStyle = "border-stone-200 bg-stone-100 text-stone-300";
+    circleStyle = "border-stone-200 bg-stone-100 text-stone-400";
   }
 
   return (
@@ -106,23 +106,18 @@ function UnitNode({
         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <h3
-                className={cn(
-                  "font-semibold",
-                  !unlocked ? "text-stone-400" : "text-stone-800"
-                )}
-              >
+              <h3 className={cn("card-title", !unlocked && "text-stone-500")}>
                 Unité {displayNumber} — {unit.title}
               </h3>
-              {!unlocked && !completed && <Lock className="h-4 w-4 text-stone-300" />}
+              {!unlocked && !completed && <Lock className="h-4 w-4 text-stone-500" />}
             </div>
             {unit.titleJa && (
-              <p className="japanese text-sm text-stone-400">{unit.titleJa}</p>
+              <p className="japanese text-sm text-stone-500" lang="ja">{unit.titleJa}</p>
             )}
             <p
               className={cn(
                 "mt-1 text-sm",
-                !unlocked ? "text-stone-300" : "text-stone-500"
+                !unlocked ? "text-stone-400" : "text-stone-500"
               )}
             >
               {unit.description}

@@ -131,8 +131,8 @@ export default function LessonContent({ slug }: { slug: string }) {
         <div className="flex items-center gap-4">
           <span className="text-4xl sm:text-5xl">{lesson.icon}</span>
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-stone-900">{lesson.title}</h1>
-            <p className="japanese text-lg text-stone-400">{lesson.titleJa}</p>
+            <h1 className="page-title">{lesson.title}</h1>
+            <p className="japanese text-lg text-stone-500" lang="ja">{lesson.titleJa}</p>
             <p className="mt-1 text-stone-500">{lesson.description}</p>
           </div>
         </div>
@@ -202,13 +202,13 @@ export default function LessonContent({ slug }: { slug: string }) {
             <div key={phrase.japanese} className="card flex items-start gap-4">
               <AudioButton text={phrase.japanese} size="md" />
               <div className="flex-1">
-                <p className="japanese text-2xl font-medium text-stone-800">
+                <p className="japanese text-2xl font-medium text-stone-800" lang="ja">
                   {phrase.japanese}
                 </p>
                 <ReadingDisplay romaji={phrase.romaji} kana={phrase.kana} size="md" />
                 <p className="mt-1 text-stone-600">{phrase.french}</p>
                 {phrase.context && (
-                  <p className="mt-2 text-xs text-stone-400 italic">{phrase.context}</p>
+                  <p className="mt-2 text-xs text-stone-500 italic">{phrase.context}</p>
                 )}
               </div>
             </div>
@@ -221,7 +221,7 @@ export default function LessonContent({ slug }: { slug: string }) {
           {quizFinished ? (
             <div className="card flex flex-col items-center gap-4 text-center">
               <Trophy className="h-12 w-12 text-warning" />
-              <h3 className="text-2xl font-bold text-stone-800">Quiz terminé !</h3>
+              <h3 className="card-title">Quiz terminé !</h3>
               <p className="text-lg text-stone-600">
                 Score : {quizScore} / {lesson.quiz.length}
               </p>
@@ -272,7 +272,7 @@ export default function LessonContent({ slug }: { slug: string }) {
       {/* Cultural notes */}
       {lesson.culturalNotes && lesson.culturalNotes.length > 0 && (
         <section>
-          <h2 className="mb-3 text-lg font-semibold text-stone-800">Notes culturelles</h2>
+          <h2 className="section-title mb-3">Notes culturelles</h2>
           <div className="flex flex-col gap-3">
             {lesson.culturalNotes.map((note, i) => (
               <div key={i} className="card bg-amber-50/50 border-amber-200/50">

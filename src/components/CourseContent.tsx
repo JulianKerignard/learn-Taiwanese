@@ -1,5 +1,6 @@
 "use client";
 
+import { BookOpen, Landmark, Lightbulb, PenLine, Scale, SquarePen, TriangleAlert } from "lucide-react";
 import AudioButton from "./AudioButton";
 import type { CourseSection, ContentBlock } from "@/types/course";
 import { cn } from "@/lib/cn";
@@ -9,11 +10,11 @@ interface CourseContentProps {
   className?: string;
 }
 
-const sectionIcons: Record<CourseSection["type"], string> = {
-  theory: "📖",
-  grammar: "📝",
-  culture: "🏮",
-  practice: "✏️",
+const sectionIcons: Record<CourseSection["type"], typeof BookOpen> = {
+  theory: BookOpen,
+  grammar: SquarePen,
+  culture: Landmark,
+  practice: PenLine,
 };
 
 function parseInlineFormatting(text: string): React.ReactNode[] {
@@ -41,6 +42,40 @@ function parseInlineFormatting(text: string): React.ReactNode[] {
   return parts.length > 0 ? parts : [text];
 }
 
+/**
+ * Three roles, and only three: warning, tip, comparison. Each is the same shape
+ * — a left rule in a semantic token, a labelled icon, body copy in stone — so
+ * the reader learns the vocabulary once. The blocks used to reach for six raw
+ * Tailwind ramps (orange, teal, blue, rose, indigo), several of which failed
+ * 4.5:1: text-blue-400 on bg-blue-50 measured 2.42:1.
+ */
+const ROLES = {
+  warning: { border: "border-l-warning", text: "text-warning", icon: TriangleAlert },
+  tip: { border: "border-l-success", text: "text-success", icon: Lightbulb },
+  comparison: { border: "border-l-accent", text: "text-accent", icon: Scale },
+} as const;
+
+function Callout({
+  role,
+  label,
+  children,
+}: {
+  role: keyof typeof ROLES;
+  label: string;
+  children: React.ReactNode;
+}) {
+  const { border, text, icon: Icon } = ROLES[role];
+  return (
+    <div className={cn("rounded-lg border border-stone-200 border-l-4 bg-stone-50 p-4", border)}>
+      <p className={cn("mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide", text)}>
+        <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+        {label}
+      </p>
+      {children}
+    </div>
+  );
+}
+
 function TextBlock({ block }: { block: ContentBlock }) {
   return (
     <p className="text-stone-700 leading-relaxed">
@@ -54,7 +89,9 @@ function ExampleBlock({ block }: { block: ContentBlock }) {
     <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
       {block.japanese && (
         <div className="flex items-center gap-2 mb-1">
-          <span className="japanese text-2xl text-stone-900">{block.japanese}</span>
+          <span className="japanese text-2xl text-stone-900" lang="ja">
+            {block.japanese}
+          </span>
           <AudioButton text={block.japanese} size="sm" />
         </div>
       )}
@@ -65,7 +102,7 @@ function ExampleBlock({ block }: { block: ContentBlock }) {
         <p className="text-sm italic text-stone-600">{block.translation}</p>
       )}
       {block.content && (
-        <p className="mt-2 text-sm text-stone-500">
+        <p className="mt-2 text-sm text-stone-600">
           {parseInlineFormatting(block.content)}
         </p>
       )}
@@ -75,61 +112,53 @@ function ExampleBlock({ block }: { block: ContentBlock }) {
 
 function WarningBlock({ block }: { block: ContentBlock }) {
   return (
-    <div className="rounded-lg border border-orange-200 bg-orange-50 p-4">
-      <div className="flex items-center gap-2 mb-2">
-        <span>⚠️</span>
-        <span className="font-semibold text-orange-800">Attention</span>
-      </div>
-      <p className="text-sm text-orange-700 leading-relaxed">
+    <Callout role="warning" label="Attention">
+      <p className="text-sm leading-relaxed text-stone-700">
         {parseInlineFormatting(block.content)}
       </p>
-    </div>
+    </Callout>
   );
 }
 
 function TipBlock({ block }: { block: ContentBlock }) {
   return (
-    <div className="rounded-lg border border-teal-200 bg-teal-50 p-4">
-      <div className="flex items-center gap-2 mb-2">
-        <span>💡</span>
-        <span className="font-semibold text-teal-800">Astuce</span>
-      </div>
-      <p className="text-sm text-teal-700 leading-relaxed">
+    <Callout role="tip" label="Astuce">
+      <p className="text-sm leading-relaxed text-stone-700">
         {parseInlineFormatting(block.content)}
       </p>
-    </div>
+    </Callout>
   );
 }
 
 function ComparisonBlock({ block }: { block: ContentBlock }) {
-  // If japanese field is provided, use content=FR and japanese=ZH
-  if (block.japanese) {
-    return (
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <div className="rounded-lg bg-blue-50 p-4">
-          <p className="mb-1 text-xs font-semibold uppercase text-blue-400">Français</p>
-          <p className="text-sm text-blue-800 leading-relaxed whitespace-pre-line">
-            {parseInlineFormatting(block.content)}
-          </p>
-        </div>
-        <div className="rounded-lg bg-rose-50 p-4">
-          <p className="mb-1 text-xs font-semibold uppercase text-rose-400">Chinois</p>
-          <p className="text-sm text-rose-800 leading-relaxed japanese whitespace-pre-line">
-            {parseInlineFormatting(block.japanese)}
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  // Fallback: single block with full content (no forced split)
+  // With a japanese field, content is the French side and japanese the Japanese one.
   return (
-    <div className="rounded-lg border border-indigo-200 bg-indigo-50/50 p-4">
-      <p className="mb-1 text-xs font-semibold uppercase text-indigo-400">Comparaison</p>
-      <p className="text-sm text-indigo-800 leading-relaxed whitespace-pre-line">
-        {parseInlineFormatting(block.content)}
-      </p>
-    </div>
+    <Callout role="comparison" label="Comparaison">
+      {block.japanese ? (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-stone-500">
+              Français
+            </p>
+            <p className="text-sm leading-relaxed whitespace-pre-line text-stone-700">
+              {parseInlineFormatting(block.content)}
+            </p>
+          </div>
+          <div>
+            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-stone-500">
+              Japonais
+            </p>
+            <p className="japanese text-sm leading-relaxed whitespace-pre-line text-stone-700" lang="ja">
+              {parseInlineFormatting(block.japanese)}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <p className="text-sm leading-relaxed whitespace-pre-line text-stone-700">
+          {parseInlineFormatting(block.content)}
+        </p>
+      )}
+    </Callout>
   );
 }
 
@@ -153,20 +182,23 @@ function ContentBlockRenderer({ block }: { block: ContentBlock }) {
 export default function CourseContent({ sections, className }: CourseContentProps) {
   return (
     <div className={cn("flex flex-col gap-8", className)}>
-      {sections.map((section, i) => (
-        <div key={i}>
-          {i > 0 && <hr className="mb-8 border-stone-200" />}
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-xl">{sectionIcons[section.type]}</span>
-            <h3 className="text-lg font-semibold text-stone-800">{section.title}</h3>
+      {sections.map((section, i) => {
+        const Icon = sectionIcons[section.type];
+        return (
+          <div key={i}>
+            {i > 0 && <hr className="mb-8 border-stone-200" />}
+            <div className="flex items-center gap-2 mb-4">
+              <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+              <h3 className="card-title">{section.title}</h3>
+            </div>
+            <div className="flex flex-col gap-4 pl-1">
+              {section.content.map((block, j) => (
+                <ContentBlockRenderer key={j} block={block} />
+              ))}
+            </div>
           </div>
-          <div className="flex flex-col gap-4 pl-1">
-            {section.content.map((block, j) => (
-              <ContentBlockRenderer key={j} block={block} />
-            ))}
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

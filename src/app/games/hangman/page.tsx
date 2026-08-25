@@ -6,6 +6,7 @@ import { getAllGameWords, type GameWord } from "@/lib/game-data";
 import AudioButton from "@/components/AudioButton";
 import { shuffleArray } from "@/lib/utils";
 import { splitMora } from "@/lib/japanese";
+import { ArrowLeft, Frown, Trophy } from "lucide-react";
 
 type Phase = "playing" | "won" | "lost";
 
@@ -76,9 +77,9 @@ export default function HangmanPage() {
 
   if (!target) {
     return (
-      <main className="mx-auto max-w-xl px-4 py-12 text-center">
+      <div className="mx-auto max-w-xl text-center">
         <p className="text-stone-500">Chargement...</p>
-      </main>
+      </div>
     );
   }
 
@@ -86,19 +87,18 @@ export default function HangmanPage() {
   const solved = phase === "won" || phase === "lost";
 
   return (
-    <main className="mx-auto max-w-xl px-4 py-8">
+    <div className="mx-auto max-w-xl">
       <div className="mb-6 flex items-center justify-between">
         <Link
           href="/games"
-          className="text-sm text-stone-400 hover:text-stone-600 transition-colors"
+          className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
         >
-          &larr; Retour aux jeux
+          <ArrowLeft className="h-4 w-4" />
+          Retour aux jeux
         </Link>
       </div>
 
-      <h1 className="mb-6 text-center text-2xl font-bold text-stone-900">
-        Pendu japonais
-      </h1>
+      <h1 className="page-title mb-6 text-center">Pendu japonais</h1>
 
       {/* Romaji toggle */}
       <div className="mb-4 flex justify-end">
@@ -109,15 +109,13 @@ export default function HangmanPage() {
       </div>
 
       {/* Question */}
-      <div className="mb-6 rounded-xl border border-stone-200 bg-stone-50 p-4 text-center">
+      <div className="card bg-stone-50 mb-6 p-4 text-center">
         <p className="text-sm text-stone-500">
           Écrivez la lecture en kana de :
         </p>
-        <p className="mt-1 text-xl font-bold text-stone-900">
-          {target.french}
-        </p>
+        <p className="card-title mt-1">{target.french}</p>
         {showPinyin && (
-          <p className="mt-1 text-sm italic text-stone-400">{target.romaji}</p>
+          <p className="mt-1 text-sm italic text-stone-500">{target.romaji}</p>
         )}
       </div>
 
@@ -128,12 +126,12 @@ export default function HangmanPage() {
             key={i}
             className={`h-4 w-4 rounded-full border-2 transition-colors ${
               i < errors
-                ? "border-red-400 bg-red-400"
+                ? "border-danger bg-danger"
                 : "border-stone-300 bg-white"
             }`}
           />
         ))}
-        <span className="ml-2 text-sm text-stone-400">
+        <span className="ml-2 text-sm text-stone-500">
           {MAX_ERRORS - errors} essais restants
         </span>
       </div>
@@ -145,12 +143,13 @@ export default function HangmanPage() {
           return (
             <div
               key={i}
-              className={`flex h-16 min-w-14 items-center justify-center rounded-xl border-2 px-2 text-2xl font-bold transition-all ${
+              lang={revealed ? "ja" : undefined}
+              className={`flex h-16 min-w-14 items-center justify-center rounded-xl border-2 px-2 text-2xl font-semibold transition-all ${
                 revealed
                   ? phase === "lost" && !guessed.has(char)
-                    ? "border-red-300 bg-red-50 text-red-600 japanese"
-                    : "border-emerald-300 bg-emerald-50 text-stone-900 japanese"
-                  : "border-stone-300 bg-white text-stone-300"
+                    ? "japanese border-danger bg-danger/10 text-danger"
+                    : "japanese border-success bg-success/10 text-stone-900"
+                  : "border-stone-300 bg-white text-stone-500"
               }`}
             >
               {revealed ? char : "_"}
@@ -161,8 +160,8 @@ export default function HangmanPage() {
 
       {solved && (
         <div className="mb-6 text-center">
-          <p className="text-xs tracking-wide text-stone-400 uppercase">S&rsquo;écrit</p>
-          <p className="japanese mt-1 text-3xl text-stone-900" lang="ja">
+          <p className="text-xs tracking-wide text-stone-500 uppercase">S&rsquo;écrit</p>
+          <p className="term-display mt-1 text-stone-900" lang="ja">
             {target.term}
           </p>
         </div>
@@ -170,33 +169,26 @@ export default function HangmanPage() {
 
       {/* Result */}
       {phase !== "playing" && (
-        <div
-          className={`mb-6 rounded-xl border p-6 text-center ${
-            phase === "won"
-              ? "border-emerald-200 bg-emerald-50"
-              : "border-red-200 bg-red-50"
-          }`}
-        >
-          <div className="mb-2 text-3xl">
-            {phase === "won" ? "\u{1F389}" : "\u{1F614}"}
-          </div>
+        <div className="card mb-6 text-center">
+          {phase === "won" ? (
+            <Trophy className="mx-auto mb-2 h-9 w-9 text-success" aria-hidden="true" />
+          ) : (
+            <Frown className="mx-auto mb-2 h-9 w-9 text-stone-500" aria-hidden="true" />
+          )}
           <h2
-            className={`mb-2 text-lg font-bold ${
-              phase === "won" ? "text-emerald-700" : "text-red-700"
+            className={`section-title mb-2 ${
+              phase === "won" ? "text-success" : "text-danger"
             }`}
           >
             {phase === "won" ? "Bravo !" : "Perdu..."}
           </h2>
-          <p className="mb-1 text-lg font-bold text-stone-900 japanese">
+          <p className="japanese card-title mb-1" lang="ja">
             {target.term}
           </p>
           <p className="mb-3 text-sm text-stone-500">{target.romaji}</p>
           <AudioButton text={target.term} size="lg" />
           <div className="mt-4">
-            <button
-              onClick={() => initGame()}
-              className="rounded-xl bg-primary px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary/90"
-            >
+            <button onClick={() => initGame()} className="btn-primary">
               Mot suivant
             </button>
           </div>
@@ -210,13 +202,12 @@ export default function HangmanPage() {
             const isGuessed = guessed.has(char);
             const isInWord = targetMora.includes(char);
             let cls =
-              "flex h-12 items-center justify-center rounded-lg border-2 text-lg font-bold japanese transition-all ";
+              "japanese flex h-12 items-center justify-center rounded-lg border-2 text-lg font-semibold transition-all ";
             if (isGuessed && isInWord) {
-              cls +=
-                "border-emerald-300 bg-emerald-50 text-emerald-700 cursor-default";
+              cls += "border-success bg-success/10 text-success cursor-default";
             } else if (isGuessed && !isInWord) {
               cls +=
-                "border-stone-200 bg-stone-100 text-stone-300 cursor-default";
+                "border-stone-200 bg-stone-100 text-stone-500 cursor-default";
             } else {
               cls +=
                 "border-stone-200 bg-white text-stone-700 hover:border-primary hover:bg-primary/5 cursor-pointer";
@@ -224,6 +215,7 @@ export default function HangmanPage() {
             return (
               <button
                 key={char}
+                lang="ja"
                 onClick={() => handleChoice(char)}
                 disabled={isGuessed}
                 className={cls}
@@ -234,6 +226,6 @@ export default function HangmanPage() {
           })}
         </div>
       )}
-    </main>
+    </div>
   );
 }

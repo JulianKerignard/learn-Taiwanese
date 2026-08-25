@@ -67,7 +67,7 @@ function RecognizeMode({
     <div className="flex flex-col items-center gap-6">
       <div className="flex flex-col items-center gap-2">
         <span className="text-xs font-medium text-accent uppercase tracking-wide">Reconnaissance</span>
-        <span className="term-display">{card.front}</span>
+        <span className="term-display" lang="ja">{card.front}</span>
         <AudioButton text={card.front} size="lg" />
       </div>
 
@@ -83,7 +83,7 @@ function RecognizeMode({
               !answered && "border-stone-200 bg-white hover:border-primary hover:bg-primary/5",
               answered && opt.isCorrect && "border-success bg-success/10 text-success",
               answered && selected === idx && !opt.isCorrect && "border-danger bg-danger/10 text-danger",
-              answered && selected !== idx && !opt.isCorrect && "border-stone-100 bg-stone-50 text-stone-400"
+              answered && selected !== idx && !opt.isCorrect && "border-stone-100 bg-stone-50 text-stone-500"
             )}
             disabled={answered}
           >
@@ -135,7 +135,7 @@ function RecallMode({
         >
           <p className="text-lg font-medium text-stone-700">{card.back}</p>
           <ReadingDisplay romaji={card.romaji} kana={card.kana} mode={displayMode} size="lg" />
-          <p className="mt-2 text-xs text-stone-400">Cliquer pour révéler le caractère</p>
+          <p className="mt-2 text-xs text-stone-500">Cliquer pour révéler le caractère</p>
         </div>
 
         <div
@@ -145,7 +145,7 @@ function RecallMode({
             !flipped ? "rotate-y-180" : ""
           )}
         >
-          <span className="term-display">{card.front}</span>
+          <span className="term-display" lang="ja">{card.front}</span>
           <ReadingDisplay romaji={card.romaji} kana={card.kana} mode={displayMode} size="lg" />
           <p className="text-lg font-medium text-stone-700">{card.back}</p>
           <AudioButton text={card.front} size="md" />
@@ -200,7 +200,7 @@ function ListeningMode({
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <span className="text-xs font-medium text-orange-600 uppercase tracking-wide">Écoute</span>
+      <span className="text-xs font-medium text-orange-700 uppercase tracking-wide">Écoute</span>
 
       <button
         onClick={playAudio}
@@ -223,13 +223,14 @@ function ListeningMode({
             {options.map((opt, idx) => (
               <button
                 key={idx}
+                lang="ja"
                 onClick={() => handleSelect(idx)}
                 className={cn(
-                  "rounded-xl border-2 px-4 py-4 text-2xl font-bold transition-all",
+                  "japanese rounded-xl border-2 px-4 py-4 text-2xl font-semibold transition-all",
                   !answered && "border-stone-200 bg-white hover:border-primary hover:bg-primary/5",
                   answered && opt.isCorrect && "border-success bg-success/10 text-success",
                   answered && selected === idx && !opt.isCorrect && "border-danger bg-danger/10 text-danger",
-                  answered && selected !== idx && !opt.isCorrect && "border-stone-100 bg-stone-50 text-stone-400"
+                  answered && selected !== idx && !opt.isCorrect && "border-stone-100 bg-stone-50 text-stone-500"
                 )}
                 disabled={answered}
               >
@@ -338,33 +339,26 @@ function WritingMode({
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <span className="text-xs font-medium text-emerald-600 uppercase tracking-wide">Écriture</span>
+      <span className="text-xs font-medium text-emerald-700 uppercase tracking-wide">Écriture</span>
 
       <div className="flex flex-col items-center gap-1">
         <p className="text-lg font-medium text-stone-700">{card.back}</p>
         <ReadingDisplay romaji={card.romaji} kana={card.kana} mode={displayMode} size="lg" />
       </div>
 
-      <div className="relative">
-        <canvas
-          ref={canvasRef}
-          width={240}
-          height={240}
-          className="rounded-xl border-2 border-dashed border-stone-300 bg-white touch-none"
-          onMouseDown={startDraw}
-          onMouseMove={draw}
-          onMouseUp={stopDraw}
-          onMouseLeave={stopDraw}
-          onTouchStart={startDraw}
-          onTouchMove={draw}
-          onTouchEnd={stopDraw}
-        />
-        {/* Grid overlay */}
-        <div className="pointer-events-none absolute inset-0 rounded-xl">
-          <div className="absolute left-1/2 top-0 h-full w-px bg-stone-200/50" />
-          <div className="absolute left-0 top-1/2 h-px w-full bg-stone-200/50" />
-        </div>
-      </div>
+      <canvas
+        ref={canvasRef}
+        width={240}
+        height={240}
+        className="term-grid bg-white touch-none"
+        onMouseDown={startDraw}
+        onMouseMove={draw}
+        onMouseUp={stopDraw}
+        onMouseLeave={stopDraw}
+        onTouchStart={startDraw}
+        onTouchMove={draw}
+        onTouchEnd={stopDraw}
+      />
 
       <div className="flex gap-2">
         <button
@@ -386,9 +380,11 @@ function WritingMode({
       </div>
 
       {revealed && (
-        <div className="flex flex-col items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 p-4">
-          <p className="text-xs text-stone-500">Caractère correct :</p>
-          <span className="text-5xl font-bold text-stone-900">{card.front}</span>
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-xs text-stone-500">Écriture correcte :</p>
+          <span className="term-display term-display--boxed text-stone-900" lang="ja">
+            {card.front}
+          </span>
           <AudioButton text={card.front} size="md" />
         </div>
       )}

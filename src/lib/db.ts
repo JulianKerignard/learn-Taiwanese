@@ -11,6 +11,8 @@ export function getDb(): Database.Database {
   mkdirSync(dirname(DB_PATH), { recursive: true });
   db = new Database(DB_PATH);
   db.pragma("journal_mode = WAL");
+  // Off by default in SQLite: without it the user_data foreign key is decorative.
+  db.pragma("foreign_keys = ON");
   db.exec(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,

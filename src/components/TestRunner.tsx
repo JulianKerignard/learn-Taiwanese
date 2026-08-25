@@ -124,8 +124,8 @@ export default function TestRunner({ test }: TestRunnerProps) {
       <div className="card mx-auto max-w-2xl p-6">
         <div className="mb-6 text-center">
           <span className="mb-2 inline-block text-4xl">{test.icon}</span>
-          <h1 className="text-2xl font-bold">{test.title}</h1>
-          <p className="text-lg text-stone-500">{test.titleJa}</p>
+          <h1 className="page-title">{test.title}</h1>
+          <p className="japanese text-lg text-stone-500" lang="ja">{test.titleJa}</p>
         </div>
 
         <p className="mb-6 text-center text-stone-600">{test.description}</p>
@@ -139,14 +139,14 @@ export default function TestRunner({ test }: TestRunnerProps) {
         </div>
 
         <div className="mb-6 space-y-2">
-          <h2 className="font-semibold text-stone-700">Sections</h2>
+          <h2 className="card-title">Sections</h2>
           {test.sections.map((section) => (
             <div
               key={section.id}
               className="flex items-center justify-between rounded-lg bg-stone-50 px-4 py-2 text-sm"
             >
               <span>{section.title}</span>
-              <span className="text-stone-400">
+              <span className="text-stone-500">
                 {section.exercises.length} question{section.exercises.length > 1 ? "s" : ""}
               </span>
             </div>
@@ -205,13 +205,16 @@ export default function TestRunner({ test }: TestRunnerProps) {
               <p className="text-sm text-stone-500">Écoutez et choisissez la bonne réponse</p>
             </div>
           ) : (
-            <p className={cn("mb-4 text-lg font-medium", hasJapanese(current.question) && "japanese")}>
+            <p
+            lang={hasJapanese(current.question) ? "ja" : undefined}
+            className={cn("mb-4 text-lg font-medium", hasJapanese(current.question) && "japanese")}
+          >
               {current.question}
             </p>
           )}
 
           {current.hint && (
-            <p className="mb-4 text-sm italic text-stone-400">{current.hint}</p>
+            <p className="mb-4 text-sm italic text-stone-500">{current.hint}</p>
           )}
 
           {/* Options grid */}
@@ -246,7 +249,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
             className={cn(
               "flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium transition-colors",
               currentIndex === 0
-                ? "cursor-not-allowed text-stone-300"
+                ? "cursor-not-allowed text-stone-400"
                 : "text-stone-600 hover:bg-stone-100"
             )}
           >
@@ -310,9 +313,9 @@ export default function TestRunner({ test }: TestRunnerProps) {
         >
           <div className="mb-3 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white">
             {result.passed ? (
-              <Trophy size={32} className="text-green-500" />
+              <Trophy size={32} className="text-success" aria-hidden="true" />
             ) : (
-              <AlertTriangle size={32} className="text-yellow-500" />
+              <AlertTriangle size={32} className="text-warning" aria-hidden="true" />
             )}
           </div>
           <div className="mb-2 text-4xl font-bold">{result.percentage}%</div>
@@ -337,7 +340,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
 
         {/* Section breakdown */}
         <div className="card space-y-4 p-6">
-          <h2 className="font-semibold text-stone-700">Résultats par section</h2>
+          <h2 className="card-title">Résultats par section</h2>
           {result.sectionResults.map((sr) => (
             <div key={sr.sectionId}>
               <div className="mb-1 flex items-center justify-between text-sm">
@@ -349,7 +352,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
               <ProgressBar
                 value={sr.correct}
                 max={sr.total}
-                color={sr.percentage >= 70 ? "bg-green-500" : sr.percentage >= 50 ? "bg-yellow-500" : "bg-red-500"}
+                color={sr.percentage >= 70 ? "bg-success" : sr.percentage >= 50 ? "bg-warning" : "bg-danger"}
               />
             </div>
           ))}

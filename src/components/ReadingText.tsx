@@ -101,14 +101,14 @@ function CharTooltip({
         style={{ left: pos.left, top: pos.top }}
       >
         <div className="flex items-center gap-2">
-          <span className="japanese text-2xl font-medium text-stone-900">{data.term}</span>
+          <span className="japanese text-2xl font-medium text-stone-900" lang="ja">{data.term}</span>
           <AudioButton text={data.term} size="sm" />
         </div>
         {showReading && (
           <p className="mt-1 text-sm italic text-stone-500">{data.romaji}</p>
         )}
         {showZhuyin && (
-          <p className="mt-0.5 text-sm text-stone-400 japanese">{data.kana}</p>
+          <p className="japanese mt-0.5 text-sm text-stone-500" lang="ja">{data.kana}</p>
         )}
         <p className="text-sm text-stone-700">{data.french}</p>
         <button
@@ -283,14 +283,14 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
           {onClose && (
             <button
               onClick={onClose}
-              className="rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 hover:text-stone-600 transition-colors"
+              className="rounded-lg p-1.5 text-stone-500 hover:bg-stone-100 hover:text-stone-600 transition-colors"
             >
               <ChevronLeft size={20} />
             </button>
           )}
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="japanese text-xl font-bold text-stone-900">{reading.title}</h2>
+              <h2 className="section-title japanese" lang="ja">{reading.title}</h2>
               <span className={cn("badge", levelColor)}>Niveau {reading.level}</span>
             </div>
             <p className="text-sm text-stone-500">{reading.titleFr}</p>
@@ -333,7 +333,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
           /* ─── Sentence mode ─── */
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-stone-400">
+              <span className="text-sm text-stone-500">
                 Phrase {currentSentence + 1} / {reading.sentences.length}
               </span>
               <button
@@ -346,7 +346,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
             </div>
 
             <div className="min-h-[120px]">
-              <div className="japanese text-2xl leading-relaxed tracking-wide text-stone-900">
+              <div className="japanese text-2xl leading-relaxed tracking-wide text-stone-900" lang="ja">
                 <RubyText
                   term={reading.sentences[currentSentence].japanese}
                   kana={reading.sentences[currentSentence].kana}
@@ -359,7 +359,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
 
               <button
                 onClick={() => toggleTranslation(currentSentence)}
-                className="mt-4 text-sm text-stone-400 hover:text-stone-600 transition-colors"
+                className="mt-4 text-sm text-stone-500 hover:text-stone-600 transition-colors"
               >
                 {revealedTranslations.has(currentSentence)
                   ? reading.sentences[currentSentence].french
@@ -406,8 +406,8 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
           <div>
             <div
               className="japanese text-2xl leading-[2.6] tracking-wide text-stone-900"
-              onMouseLeave={handleTooltipLeave}
               lang="ja"
+              onMouseLeave={handleTooltipLeave}
             >
               {reading.sentences.map((sentence, si) =>
                 tokenizeByVocabulary(sentence.japanese, vocabTerms).map((token, ti) => {
@@ -453,13 +453,13 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
                 >
                   <AudioButton text={s.japanese} size="sm" />
                   <div className="flex-1">
-                    <p className="japanese text-base text-stone-900">{s.japanese}</p>
+                    <p className="japanese text-base text-stone-900" lang="ja">{s.japanese}</p>
                     {showReading && (
-                      <p className="text-xs italic text-stone-400">{s.romaji}</p>
+                      <p className="text-xs italic text-stone-500">{s.romaji}</p>
                     )}
                     <button
                       onClick={() => toggleTranslation(i)}
-                      className="mt-1 text-sm text-stone-400 hover:text-stone-600 transition-colors"
+                      className="mt-1 text-sm text-stone-500 hover:text-stone-600 transition-colors"
                     >
                       {revealedTranslations.has(i) ? s.french : "Voir la traduction..."}
                     </button>
@@ -488,12 +488,12 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
               >
                 <AudioButton text={v.term} size="sm" />
                 <div className="min-w-0 flex-1">
-                  <span className="japanese font-medium text-stone-900">{v.term}</span>
+                  <span className="japanese font-medium text-stone-900" lang="ja">{v.term}</span>
                   {(displayMode === "romaji" || displayMode === "both") && (
-                    <span className="ml-1 text-xs text-stone-400 italic">{v.romaji}</span>
+                    <span className="ml-1 text-xs text-stone-500 italic">{v.romaji}</span>
                   )}
                   {(displayMode === "kana" || displayMode === "both") && v.kana && (
-                    <span className="ml-1 text-xs text-stone-400 japanese">{v.kana}</span>
+                    <span className="japanese ml-1 text-xs text-stone-500" lang="ja">{v.kana}</span>
                   )}
                   <p className="truncate text-xs text-stone-500">{v.french}</p>
                 </div>

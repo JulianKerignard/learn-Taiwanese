@@ -21,7 +21,7 @@ export default function CharacterCard({
   return (
     <div className={cn("card flex flex-col items-center gap-2 p-4", className)}>
       <div className="flex items-center gap-1">
-        <span className="term-display">{item.term}</span>
+        <span className="term-display" lang="ja">{item.term}</span>
         <AudioButton text={item.term} size="md" />
       </div>
       <ReadingDisplay romaji={item.romaji} kana={item.kana} mode={displayMode} />

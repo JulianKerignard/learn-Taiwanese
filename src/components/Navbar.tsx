@@ -97,7 +97,7 @@ export default function Navbar() {
                   <User className="h-4 w-4" />
                   {user.username}
                 </span>
-                <button onClick={handleLogout} className="text-stone-400 hover:text-stone-600" title="Déconnexion">
+                <button onClick={handleLogout} className="text-stone-500 hover:text-stone-600" title="Déconnexion">
                   <LogOut className="h-4 w-4" />
                 </button>
               </div>
@@ -131,7 +131,7 @@ export default function Navbar() {
                 >
                   {loading ? "..." : "C'est parti !"}
                 </button>
-                <p className="mt-2 text-xs text-stone-400">Ta progression sera sauvegardée</p>
+                <p className="mt-2 text-xs text-stone-500">Ta progression sera sauvegardée</p>
               </div>
             )}
           </div>
@@ -181,7 +181,7 @@ export default function Navbar() {
                       <User className="h-4 w-4" />
                       {user.username}
                     </span>
-                    <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="text-stone-400 hover:text-stone-600" title="Déconnexion">
+                    <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="text-stone-500 hover:text-stone-600" title="Déconnexion">
                       <LogOut className="h-4 w-4" />
                     </button>
                   </div>

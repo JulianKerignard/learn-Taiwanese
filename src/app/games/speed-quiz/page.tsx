@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
+import { ArrowLeft, Timer } from "lucide-react";
 import { getAllGameWords, type GameWord } from "@/lib/game-data";
 import { KEYS } from "@/lib/storage";
 
@@ -145,83 +146,77 @@ export default function SpeedQuizPage() {
 
   if (phase === "ready") {
     return (
-      <main className="mx-auto max-w-xl px-4 py-12 text-center">
+      <div className="mx-auto flex max-w-xl flex-col items-center gap-6 text-center">
         <Link
           href="/games"
-          className="mb-8 inline-block text-sm text-stone-400 hover:text-stone-600 transition-colors"
+          className="flex items-center gap-1 self-start text-sm text-stone-500 hover:text-primary transition-colors"
         >
-          &larr; Retour aux jeux
+          <ArrowLeft className="h-4 w-4" />
+          Retour aux jeux
         </Link>
-        <h1 className="mb-4 text-3xl font-bold text-stone-900">Speed Quiz</h1>
-        <p className="mb-8 text-stone-500">
+        <h1 className="page-title">Quiz éclair</h1>
+        <p className="text-stone-500">
           Traduis le plus de mots possible en 60 secondes !
         </p>
-        <label className="mb-6 flex items-center justify-center gap-2 text-sm text-stone-600">
+        <label className="flex items-center justify-center gap-2 text-sm text-stone-600">
           <input type="checkbox" checked={showPinyin} onChange={(e) => setShowPinyin(e.target.checked)} className="rounded" />
-          Afficher le romaji
+          Afficher le rōmaji
         </label>
         <button
           onClick={startGame}
           disabled={allWords.length === 0}
-          className="rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 px-10 py-4 text-lg font-bold text-white shadow-lg transition-transform hover:scale-105 disabled:opacity-50"
+          className="btn-primary px-8 py-3 text-base disabled:opacity-50"
         >
           Commencer
         </button>
-      </main>
+      </div>
     );
   }
 
   if (phase === "result") {
     const isNewRecord = score >= record && score > 0;
     return (
-      <main className="mx-auto max-w-xl px-4 py-12 text-center">
-        <div className="rounded-2xl border border-amber-200 bg-amber-50 p-8">
-          <div className="mb-2 text-4xl">&#9201;</div>
-          <h2 className="mb-4 text-2xl font-bold text-amber-700">
-            Temps écoulé !
-          </h2>
-          <div className="mb-6 text-5xl font-black text-stone-900">
+      <div className="mx-auto max-w-xl">
+        <div className="card text-center">
+          <Timer className="mx-auto mb-2 h-10 w-10 text-warning" aria-hidden="true" />
+          <h2 className="section-title mb-4">Temps écoulé !</h2>
+          <div className="mb-6 text-5xl font-bold text-stone-900">
             {score} pts
           </div>
           {isNewRecord && (
-            <p className="mb-4 text-lg font-bold text-amber-600">
+            <p className="mb-4 text-lg font-semibold text-warning">
               Nouveau record !
             </p>
           )}
           <div className="mb-6 flex justify-center gap-8 text-sm text-stone-600">
             <div>
-              <div className="text-2xl font-bold text-emerald-600">
+              <div className="text-2xl font-bold text-success">
                 {correct}
               </div>
               Bonnes réponses
             </div>
             <div>
-              <div className="text-2xl font-bold text-red-500">{wrong}</div>
+              <div className="text-2xl font-bold text-danger">{wrong}</div>
               Mauvaises réponses
             </div>
           </div>
-          <p className="mb-6 text-sm text-stone-400">
+          <p className="mb-6 text-sm text-stone-500">
             Record : <strong>{record}</strong> pts
           </p>
-          <button
-            onClick={startGame}
-            className="rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 px-8 py-3 font-medium text-white transition-transform hover:scale-105"
-          >
+          <button onClick={startGame} className="btn-primary">
             Rejouer
           </button>
         </div>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="mx-auto max-w-xl px-4 py-8">
+    <div className="mx-auto max-w-xl">
       <div className="mb-4 flex items-center justify-between">
-        <div className="text-2xl font-black text-stone-900">{score} pts</div>
+        <div className="text-2xl font-bold text-stone-900">{score} pts</div>
         {combo >= 3 && (
-          <div className="rounded-full bg-amber-100 px-3 py-1 text-sm font-bold text-amber-700">
-            x{multiplier}
-          </div>
+          <span className="badge bg-warning/10 text-warning">x{multiplier}</span>
         )}
         <div className="text-2xl font-bold text-stone-700">{timeLeft}s</div>
       </div>
@@ -231,10 +226,10 @@ export default function SpeedQuizPage() {
         <div
           className={`h-full rounded-full transition-all duration-1000 ease-linear ${
             timeLeft > 20
-              ? "bg-emerald-500"
+              ? "bg-success"
               : timeLeft > 10
-              ? "bg-amber-500"
-              : "bg-red-500"
+              ? "bg-warning"
+              : "bg-danger"
           }`}
           style={{ width: `${timerPercent}%` }}
         />
@@ -243,11 +238,11 @@ export default function SpeedQuizPage() {
       {question && (
         <>
           <div className="mb-8 text-center">
-            <span className="japanese text-6xl font-bold text-stone-900">
+            <span className="term-display text-stone-900" lang="ja">
               {question.word.term}
             </span>
             {showPinyin && (
-              <p className="mt-2 text-sm text-stone-400 italic">
+              <p className="mt-2 text-sm text-stone-500 italic">
                 {question.word.romaji}
               </p>
             )}
@@ -260,10 +255,10 @@ export default function SpeedQuizPage() {
               if (feedback !== null) {
                 if (i === question.correctIndex) {
                   cls =
-                    "rounded-xl border-2 border-emerald-400 bg-emerald-50 px-4 py-4 text-center font-medium text-emerald-700";
+                    "rounded-xl border-2 border-success bg-success/10 px-4 py-4 text-center font-medium text-success";
                 } else if (i === feedback && i !== question.correctIndex) {
                   cls =
-                    "rounded-xl border-2 border-red-400 bg-red-50 px-4 py-4 text-center font-medium text-red-700";
+                    "rounded-xl border-2 border-danger bg-danger/10 px-4 py-4 text-center font-medium text-danger";
                 }
               }
               return (
@@ -275,6 +270,6 @@ export default function SpeedQuizPage() {
           </div>
         </>
       )}
-    </main>
+    </div>
   );
 }

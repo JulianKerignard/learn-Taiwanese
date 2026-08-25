@@ -192,8 +192,8 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
   if (queue.length === 0 && sessionDone) {
     return (
       <div className="flex flex-col items-center gap-6 py-20 text-center">
-        <BookOpen className="h-16 w-16 text-stone-300" />
-        <h1 className="text-2xl font-bold text-stone-800">Rien à réviser !</h1>
+        <BookOpen className="h-16 w-16 text-stone-400" aria-hidden="true" />
+        <h1 className="page-title">Rien à réviser !</h1>
         <p className="max-w-md text-stone-500">
           Ajoute du vocabulaire depuis les leçons pour commencer tes sessions de
           révision.
@@ -217,7 +217,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
     return (
       <div className="mx-auto flex max-w-md flex-col items-center gap-6 py-12">
         <CheckCircle2 className="h-16 w-16 text-success" />
-        <h1 className="text-2xl font-bold text-stone-800">Session terminée !</h1>
+        <h1 className="page-title">Session terminée !</h1>
 
         {/* XP and Level */}
         <div className="w-full rounded-xl border border-stone-200 bg-gradient-to-r from-primary/5 to-accent/5 p-4">
@@ -336,7 +336,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-bold text-stone-900">Révision</h1>
+        <h1 className="page-title">Révision</h1>
         <p className="text-sm text-stone-500">
           Carte {currentIndex + 1} sur {queue.length}
         </p>
@@ -359,7 +359,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
         distractors={distractors}
       />
 
-      <div className="flex justify-center gap-4 text-xs text-stone-400">
+      <div className="flex justify-center gap-4 text-xs text-stone-500">
         <span>Revues : {reviewed}</span>
         <span>Nouvelles : {newLearned}</span>
         <span>XP : +{sessionXP}</span>

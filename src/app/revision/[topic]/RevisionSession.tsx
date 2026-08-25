@@ -29,7 +29,7 @@ export default function RevisionSession({ topicId }: { topicId: string }) {
     <div className="flex flex-col gap-6">
       <Link
         href="/revision"
-        className="flex items-center gap-1 text-sm text-stone-400 hover:text-primary transition-colors"
+        className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
         Retour à la révision

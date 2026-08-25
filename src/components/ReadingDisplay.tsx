@@ -28,9 +28,9 @@ export default function ReadingDisplay({
       {(mode === "romaji" || mode === "both") && (
         <span className="italic">{romaji}</span>
       )}
-      {mode === "both" && kana && <span className="mx-1 text-stone-300">|</span>}
+      {mode === "both" && kana && <span className="mx-1 text-stone-400" aria-hidden="true">|</span>}
       {(mode === "kana" || mode === "both") && kana && (
-        <span className="japanese">{kana}</span>
+        <span className="japanese" lang="ja">{kana}</span>
       )}
     </span>
   );

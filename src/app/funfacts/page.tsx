@@ -50,7 +50,7 @@ export default function FunFactsPage() {
             <Sparkles className="text-primary" size={22} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-stone-900">Fun Facts sur Japon</h1>
+            <h1 className="page-title">Fun Facts sur Japon</h1>
             <p className="text-sm text-stone-500">
               Des anecdotes pour briller en société
             </p>
@@ -89,7 +89,7 @@ export default function FunFactsPage() {
         ))}
 
         <div className="flex w-full items-center gap-3 sm:w-auto sm:ml-auto">
-          <span className="text-xs text-stone-400">
+          <span className="text-xs text-stone-500">
             {filtered.length} / {funFacts.length} faits
           </span>
           <button
@@ -125,7 +125,7 @@ export default function FunFactsPage() {
                 {categories.find((c) => c.key === fact.category)?.label}
               </span>
             </div>
-            <h3 className="mt-3 text-base font-bold text-stone-900">
+            <h3 className="card-title mt-3">
               {fact.title}
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-stone-700">
@@ -133,7 +133,7 @@ export default function FunFactsPage() {
             </p>
             {fact.japanese && (
               <div className="mt-3 inline-flex items-center gap-2 rounded-lg border border-stone-200 bg-white/60 px-3 py-1.5">
-                <span className="japanese text-lg font-semibold text-stone-900">
+                <span className="japanese text-lg font-semibold text-stone-900" lang="ja">
                   {fact.japanese}
                 </span>
                 {fact.romaji && (

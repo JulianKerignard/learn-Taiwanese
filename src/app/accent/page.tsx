@@ -85,9 +85,10 @@ function ContourGraph({
         {slots.map((_, i) => (
           <span
             key={i}
+            lang="ja"
             className={cn(
               "japanese text-center text-sm",
-              i >= mora.length ? "text-stone-300 italic" : "text-stone-700"
+              i >= mora.length ? "text-stone-400 italic" : "text-stone-700"
             )}
             style={{ width: stepX }}
           >
@@ -104,8 +105,8 @@ function PatternBadge({ pattern }: { pattern: PitchPattern }) {
   const style = PATTERN_CLASS[pattern];
   return (
     <span className={cn("badge gap-1.5", style.bg, style.text)}>
-      <span className="japanese">{label.ja}</span>
-      <span className="text-stone-400">·</span>
+      <span className="japanese" lang="ja">{label.ja}</span>
+      <span className="text-stone-500">·</span>
       {label.fr}
     </span>
   );
@@ -155,7 +156,7 @@ function AccentDrill() {
     const pct = Math.round((score / queue.length) * 100);
     return (
       <div className="card flex flex-col items-center gap-4 text-center">
-        <h2 className="text-xl font-semibold text-stone-800">
+        <h2 className="section-title">
           {score}/{queue.length} — {pct}%
         </h2>
         <ProgressBar value={score} max={queue.length} color={pct >= 70 ? "bg-success" : "bg-warning"} />
@@ -186,7 +187,7 @@ function AccentDrill() {
       <ProgressBar value={index + 1} max={queue.length} />
 
       <div className="card flex flex-col items-center gap-5">
-        <p className="text-xs font-medium tracking-wide text-stone-400 uppercase">
+        <p className="text-xs font-medium tracking-wide text-stone-500 uppercase">
           Écoutez et identifiez le schéma
         </p>
         <AudioButton text={current.term} size="lg" />
@@ -217,7 +218,7 @@ function AccentDrill() {
             if (picked) {
               if (isAnswer) style = "border-success bg-success/10 text-success";
               else if (isPicked) style = "border-danger bg-danger/10 text-danger";
-              else style = "border-stone-100 bg-stone-50 text-stone-400";
+              else style = "border-stone-100 bg-stone-50 text-stone-500";
             }
             return (
               <button
@@ -232,8 +233,8 @@ function AccentDrill() {
                 {picked && isAnswer && <Check className="h-4 w-4 shrink-0" />}
                 {picked && isPicked && !isAnswer && <X className="h-4 w-4 shrink-0" />}
                 <span className="flex-1">
-                  <span className="japanese">{PITCH_LABELS[pattern].ja}</span>
-                  <span className="ml-2 text-stone-400">{PITCH_LABELS[pattern].fr}</span>
+                  <span className="japanese" lang="ja">{PITCH_LABELS[pattern].ja}</span>
+                  <span className="ml-2 text-stone-500">{PITCH_LABELS[pattern].fr}</span>
                 </span>
               </button>
             );
@@ -276,8 +277,8 @@ export default function AccentPage() {
   return (
     <div className="flex flex-col gap-8">
       <header>
-        <h1 className="text-3xl font-bold text-stone-900">L&rsquo;accent de hauteur</h1>
-        <p className="japanese mt-1 text-stone-400" lang="ja">
+        <h1 className="page-title">L&rsquo;accent de hauteur</h1>
+        <p className="japanese mt-1 text-stone-500" lang="ja">
           高低アクセント
         </p>
         <p className="mt-3 max-w-2xl text-stone-600">
@@ -310,7 +311,7 @@ export default function AccentPage() {
           {accentGroups.map((group) => (
             <section key={group.id} className="card flex flex-col gap-4">
               <div className="flex flex-wrap items-baseline gap-3">
-                <h2 className="text-xl font-semibold text-stone-800">{PITCH_LABELS[group.id].fr}</h2>
+                <h2 className="section-title">{PITCH_LABELS[group.id].fr}</h2>
                 <PatternBadge pattern={group.id} />
               </div>
               <p className="max-w-2xl text-sm leading-relaxed text-stone-600">{group.description}</p>
@@ -332,7 +333,7 @@ export default function AccentPage() {
                     </div>
                     <div className="text-sm">
                       <span className="text-stone-700">{word.french}</span>
-                      <span className="ml-2 text-stone-400 italic">{word.romaji}</span>
+                      <span className="ml-2 text-stone-500 italic">{word.romaji}</span>
                     </div>
                   </li>
                 ))}
@@ -354,7 +355,7 @@ export default function AccentPage() {
                 <h2 className="japanese text-2xl font-medium text-stone-800" lang="ja">
                   {pair.kana}
                 </h2>
-                <span className="text-sm text-stone-400 italic">{pair.romaji}</span>
+                <span className="text-sm text-stone-500 italic">{pair.romaji}</span>
               </div>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {pair.senses.map((sense) => {

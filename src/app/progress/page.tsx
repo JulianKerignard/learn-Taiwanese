@@ -123,7 +123,7 @@ export default function ProgressPage() {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-3xl font-bold text-stone-900">Progression</h1>
+        <h1 className="page-title">Progression</h1>
         <p className="mt-1 text-stone-500">
           Suis tes avancées et reste motivé.
         </p>
@@ -172,7 +172,7 @@ export default function ProgressPage() {
       {/* Section 2: Progression du parcours */}
       <section className="card">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-stone-800">
+          <h2 className="section-title">
             Ton parcours
           </h2>
           <span className="text-sm font-medium text-primary">{overallPct}%</span>
@@ -205,7 +205,7 @@ export default function ProgressPage() {
                       </span>
                     )}
                   </div>
-                  <span className="text-xs text-stone-400">
+                  <span className="text-xs text-stone-500">
                     {completedInChapter}/{totalInChapter}
                   </span>
                 </div>
@@ -236,7 +236,7 @@ export default function ProgressPage() {
 
       {/* Section XP Graph (7 last days) */}
       <section className="card">
-        <h2 className="mb-4 text-lg font-semibold text-stone-800">
+        <h2 className="section-title mb-4">
           XP des 7 derniers jours
         </h2>
         {/* The seven day labels come from the reader's clock, not the build clock:
@@ -259,7 +259,7 @@ export default function ProgressPage() {
                         minHeight: 8,
                       }}
                     />
-                    <span className="text-xs text-stone-400">{d.label}</span>
+                    <span className="text-xs text-stone-500">{d.label}</span>
                   </div>
                 ))}
               </div>
@@ -278,7 +278,7 @@ export default function ProgressPage() {
 
       {/* Section Study Time */}
       <section>
-        <h2 className="mb-4 text-lg font-semibold text-stone-800">
+        <h2 className="section-title mb-4">
           Temps d'étude
         </h2>
         {(() => {
@@ -316,7 +316,7 @@ export default function ProgressPage() {
 
       {/* Section Mistakes */}
       <section className="card">
-        <h2 className="mb-4 text-lg font-semibold text-stone-800">
+        <h2 className="section-title mb-4">
           Mots les plus ratés
         </h2>
         {(() => {
@@ -326,7 +326,7 @@ export default function ProgressPage() {
           if (sorted.length === 0) {
             // Before hydration an empty list means "not read yet", not "no mistakes".
             return loaded ? (
-              <p className="text-sm text-stone-400">
+              <p className="text-sm text-stone-500">
                 Aucune erreur ! Continue comme ça.
               </p>
             ) : null;
@@ -338,7 +338,7 @@ export default function ProgressPage() {
                   key={word}
                   className="flex items-center justify-between rounded-lg bg-stone-50 px-3 py-2"
                 >
-                  <span className="text-sm font-medium text-stone-700 japanese">{word}</span>
+                  <span className="japanese text-sm font-medium text-stone-700" lang="ja">{word}</span>
                   <span className="text-xs text-danger font-medium">{count} erreur{count > 1 ? "s" : ""}</span>
                 </li>
               ))}
@@ -349,7 +349,7 @@ export default function ProgressPage() {
 
       {/* Section 3: Gamification */}
       <section className="card">
-        <h2 className="mb-4 text-lg font-semibold text-stone-800">
+        <h2 className="section-title mb-4">
           Niveau et trophées
         </h2>
 
@@ -360,7 +360,7 @@ export default function ProgressPage() {
               Niveau {levelInfo.level}
             </span>
             {levelInfo.xpToNextLevel > 0 && (
-              <span className="text-stone-400">
+              <span className="text-stone-500">
                 {levelInfo.currentLevelXP} / {xpNeeded} XP
               </span>
             )}
@@ -388,7 +388,7 @@ export default function ProgressPage() {
                   <p className="text-sm font-medium text-stone-700">
                     {a.name}
                   </p>
-                  <p className="text-xs text-stone-400">
+                  <p className="text-xs text-stone-500">
                     {a.unlockedAt
                       ? new Date(a.unlockedAt).toLocaleDateString("fr-FR")
                       : ""}
@@ -398,7 +398,7 @@ export default function ProgressPage() {
             ))}
           </div>
         ) : (
-          <p className="text-sm text-stone-400">
+          <p className="text-sm text-stone-500">
             Continue à étudier pour débloquer des trophées
           </p>
         )}
@@ -406,7 +406,7 @@ export default function ProgressPage() {
 
       {/* Section 4: Lecons completees */}
       <section className="card">
-        <h2 className="mb-3 text-lg font-semibold text-stone-800">
+        <h2 className="section-title mb-3">
           <BookOpen className="mr-2 inline h-5 w-5 text-primary" />
           Leçons
         </h2>
@@ -429,7 +429,7 @@ export default function ProgressPage() {
                     Complétée
                   </span>
                 ) : (
-                  <span className="badge bg-stone-100 text-stone-400 text-xs">
+                  <span className="badge bg-stone-100 text-stone-500 text-xs">
                     À faire
                   </span>
                 )}
@@ -442,7 +442,7 @@ export default function ProgressPage() {
       {/* Section 6: Les autres */}
       {otherUsers.length > 0 && (
         <section>
-          <h2 className="mb-4 text-lg font-semibold text-stone-800 flex items-center gap-2">
+          <h2 className="section-title mb-4 flex items-center gap-2">
             <Star className="h-5 w-5 text-warning" />
             L'équipe
           </h2>
@@ -450,7 +450,7 @@ export default function ProgressPage() {
             {otherUsers
               .sort((a, b) => b.totalXP - a.totalXP)
               .map((u, rank) => (
-              <div key={u.id} className="card flex flex-col gap-3">
+              <div key={u.username} className="card flex flex-col gap-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
@@ -461,7 +461,7 @@ export default function ProgressPage() {
                   <span className="badge bg-stone-100 text-stone-500">Niv. {u.level}</span>
                 </div>
                 {u.lastStudyDate && (
-                  <p className="text-xs text-stone-400">
+                  <p className="text-xs text-stone-500">
                     {u.lastStudyDate === new Date().toISOString().split("T")[0]
                       ? "Actif aujourd'hui"
                       : `Dernier : ${u.lastStudyDate}`}
@@ -487,7 +487,7 @@ export default function ProgressPage() {
                     <p className="text-xs text-stone-500">mots</p>
                   </div>
                   <div className="rounded-lg bg-amber-50 px-2 py-1.5">
-                    <p className="text-lg font-bold text-amber-600">{u.speedRecord}</p>
+                    <p className="text-lg font-bold text-amber-700">{u.speedRecord}</p>
                     <p className="text-xs text-stone-500">speed quiz</p>
                   </div>
                   <div className="rounded-lg bg-violet-50 px-2 py-1.5">
@@ -503,7 +503,7 @@ export default function ProgressPage() {
 
       {/* Section 7: Reset */}
       <section className="card border-danger/30">
-        <h2 className="mb-2 text-lg font-semibold text-danger">
+        <h2 className="section-title mb-2 text-danger">
           Zone de danger
         </h2>
         {!showReset ? (
@@ -527,7 +527,7 @@ export default function ProgressPage() {
             <div className="flex gap-3">
               <button
                 onClick={handleReset}
-                className="rounded-lg bg-danger px-4 py-2 text-sm font-medium text-white hover:bg-red-600"
+                className="rounded-lg bg-danger px-4 py-2 text-sm font-medium text-white hover:bg-danger/90"
               >
                 Confirmer la réinitialisation
               </button>

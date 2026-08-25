@@ -10,6 +10,7 @@ import {
   Plus,
   Check,
   RotateCcw,
+  Trophy,
 } from "lucide-react";
 import Link from "next/link";
 import { getGamification, saveGamification, addStudyTime } from "@/lib/storage";
@@ -182,7 +183,7 @@ export default function UnitContent({
   return (
     <div className="flex flex-col gap-8">
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-sm text-stone-400">
+      <nav className="flex items-center gap-2 text-sm text-stone-500">
         <Link href="/path" className="hover:text-primary transition-colors">
           Parcours
         </Link>
@@ -209,10 +210,10 @@ export default function UnitContent({
         <div className="flex items-center gap-3">
           <span className="text-3xl">{unit.icon}</span>
           <div>
-            <h1 className="text-2xl font-bold text-stone-900">
+            <h1 className="page-title">
               Unité {unit.number} — {unit.title}
             </h1>
-            <p className="japanese text-stone-400">{unit.titleJa}</p>
+            <p className="japanese text-stone-500" lang="ja">{unit.titleJa}</p>
           </div>
         </div>
         <p className="mt-2 text-stone-500">{unit.description}</p>
@@ -244,7 +245,7 @@ export default function UnitContent({
 
           {unit.dialogue && (
             <div>
-              <h3 className="mb-4 text-lg font-semibold text-stone-800">
+              <h3 className="card-title mb-4">
                 Dialogue
               </h3>
               <DialogueDisplay dialogue={unit.dialogue} />
@@ -259,7 +260,7 @@ export default function UnitContent({
               <ul className="flex flex-col gap-2">
                 {unit.keyPoints.map((point, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-amber-700">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-amber-700" aria-hidden="true" />
                     <span>{point}</span>
                   </li>
                 ))}
@@ -308,10 +309,14 @@ export default function UnitContent({
         <div className="flex flex-col gap-6">
           {exerciseResult ? (
             <div className="card text-center">
-              <div className="text-5xl mb-4">
-                {exerciseResult.passed ? "🎉" : "💪"}
+              <div className="mb-4 flex justify-center">
+                {exerciseResult.passed ? (
+                  <Trophy className="h-10 w-10 text-success" aria-hidden="true" />
+                ) : (
+                  <RotateCcw className="h-10 w-10 text-warning" aria-hidden="true" />
+                )}
               </div>
-              <h3 className="text-xl font-bold text-stone-800 mb-2">
+              <h3 className="card-title mb-2">
                 {exerciseResult.passed
                   ? "Unité validée !"
                   : "Pas tout à fait..."}

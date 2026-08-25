@@ -21,7 +21,7 @@ const DELAY_MS = 200;
 
 // ── Extract all Japanese texts from TypeScript data files ──────────────
 
-function extractChineseTexts() {
+function extractSpokenTexts() {
   const texts = new Set();
 
   const dataDirs = [
@@ -31,7 +31,7 @@ function extractChineseTexts() {
 
   const standaloneFiles = [
     join(ROOT, "src/data/readings.ts"),
-    join(ROOT, "src/data/tone-pairs.ts"),
+    join(ROOT, "src/data/pitch-accent.ts"),
   ];
 
   function scanDir(dir) {
@@ -46,17 +46,24 @@ function extractChineseTexts() {
     }
   }
 
+  const HAS_JAPANESE = /[\u3040-\u30ff\u4e00-\u9fff\u3400-\u4dbf\u30fc\u3005]/;
+
   function extractFromFile(filePath, set) {
     const content = readFileSync(filePath, "utf-8");
 
-    // term: "..." or term: '...'
-    for (const m of content.matchAll(/term:\s*["']([^"']+)["']/g)) {
-      set.add(m[1]);
+    // Fields the UI hands directly to the synthesiser.
+    for (const field of ["term", "japanese", "correctAnswer", "question", "sentence"]) {
+      const pattern = new RegExp(`${field}:\\s*["']([^"'\\n]+)["']`, "g");
+      for (const m of content.matchAll(pattern)) {
+        if (HAS_JAPANESE.test(m[1])) set.add(m[1]);
+      }
     }
 
-    // japanese: "..." or japanese: '...'
-    for (const m of content.matchAll(/japanese:\s*["']([^"']+)["']/g)) {
-      set.add(m[1]);
+    // Option lists: AudioButton is rendered beside every option containing Japanese.
+    for (const m of content.matchAll(/options(?:Kana)?:\s*\[([\s\S]*?)\]/g)) {
+      for (const item of m[1].matchAll(/["']([^"'\n]+)["']/g)) {
+        if (HAS_JAPANESE.test(item[1])) set.add(item[1]);
+      }
     }
   }
 
@@ -79,12 +86,12 @@ function hash(text) {
 async function main() {
   mkdirSync(AUDIO_DIR, { recursive: true });
 
-  const texts = extractChineseTexts();
+  const texts = extractSpokenTexts();
   console.log(`Found ${texts.length} unique Japanese texts to generate\n`);
 
   if (texts.length === 0) {
-    console.log("No texts found. Check that src/data/ contains .ts files.");
-    return;
+    console.error("No texts found — the extractor is broken or src/data/ moved.");
+    process.exit(1);
   }
 
   const manifest = {};
@@ -142,6 +149,11 @@ async function main() {
   console.log(`  Failed: ${failed}`);
   console.log(`  Total in manifest: ${Object.keys(manifest).length}`);
   console.log(`  Output: ${AUDIO_DIR}/`);
+
+  if (generated === 0 && skipped === 0) {
+    console.error("Nothing was produced.");
+    process.exit(1);
+  }
 }
 
 main().catch((err) => {

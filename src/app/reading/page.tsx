@@ -65,7 +65,7 @@ export default function ReadingPage() {
             <BookOpen className="text-primary" size={22} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-stone-900">Lecture gradée</h1>
+            <h1 className="page-title">Lecture gradée</h1>
             <p className="text-sm text-stone-500">
               Apprends par l&apos;immersion avec des textes adaptés à ton niveau
             </p>
@@ -133,7 +133,7 @@ export default function ReadingPage() {
         <>
           {/* Filters */}
           <div className="flex items-center gap-2">
-            <Filter size={16} className="text-stone-400" />
+            <Filter size={16} className="text-stone-500" />
             <button
               onClick={() => setSelectedLevel(null)}
               className={cn(
@@ -185,15 +185,15 @@ export default function ReadingPage() {
                       </span>
                     )}
                   </div>
-                  <h3 className="japanese mt-3 text-xl font-bold text-stone-900">{text.title}</h3>
+                  <h3 className="card-title japanese mt-3" lang="ja">{text.title}</h3>
                   <p className="mt-1 text-sm text-stone-500">{text.titleFr}</p>
-                  <div className="mt-3 flex items-center gap-3 text-xs text-stone-400">
+                  <div className="mt-3 flex items-center gap-3 text-xs text-stone-500">
                     <span>{text.sentences.length} phrases</span>
                     <span>{text.vocabulary.length} mots</span>
                     <span>{text.text.length} signes</span>
                   </div>
                   {text.vocabulary.filter((v) => v.isNew).length > 0 && (
-                    <div className="mt-2 text-xs text-amber-600">
+                    <div className="mt-2 text-xs text-amber-700">
                       {text.vocabulary.filter((v) => v.isNew).length} mots nouveaux
                     </div>
                   )}

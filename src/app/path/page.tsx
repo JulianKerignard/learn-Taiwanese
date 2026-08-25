@@ -31,7 +31,7 @@ export default function PathPage() {
     <div className="flex flex-col gap-10">
       {/* Header */}
       <section className="text-center">
-        <h1 className="text-3xl font-bold text-stone-900">Ton parcours</h1>
+        <h1 className="page-title">Ton parcours</h1>
         <p className="mt-1 text-stone-500">
           Choisis ton niveau et progresse à ton rythme
         </p>
@@ -63,28 +63,28 @@ export default function PathPage() {
               >
                 <div className="flex items-start gap-4">
                   <div className={cn(
-                    "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-black text-white shadow-sm opacity-50",
+                    "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-bold text-white shadow-sm opacity-50",
                     colors.badge
                   )}>
                     {`N${level.level}`}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <h2 className="text-lg font-bold text-stone-500">
+                      <h2 className="card-title text-stone-500">
                         {level.title}
                       </h2>
-                      <Lock className="h-4 w-4 text-stone-400" />
+                      <Lock className="h-4 w-4 text-stone-500" />
                     </div>
-                    <p className="japanese text-sm text-stone-300">{level.titleJa}</p>
-                    <p className="mt-1 text-sm text-stone-400">{level.description}</p>
-                    <p className="mt-1 text-xs font-medium text-stone-400">
+                    <p className="japanese text-sm text-stone-500" lang="ja">{level.titleJa}</p>
+                    <p className="mt-1 text-sm text-stone-500">{level.description}</p>
+                    <p className="mt-1 text-xs font-medium text-stone-500">
                       {level.secondaryLabel}
                     </p>
                   </div>
                 </div>
-                <div className="mt-4 flex items-center justify-between text-xs text-stone-400">
+                <div className="mt-4 flex items-center justify-between text-xs text-stone-500">
                   <span>{total > 0 ? `${total} unités` : "Contenu en préparation"}</span>
-                  <span className="badge bg-stone-100 text-stone-400">Bientôt disponible</span>
+                  <span className="badge bg-stone-100 text-stone-500">Bientôt disponible</span>
                 </div>
               </div>
             );
@@ -101,27 +101,27 @@ export default function PathPage() {
             >
               <div className="flex items-start gap-4">
                 <div className={cn(
-                  "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-black text-white shadow-sm",
+                  "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-bold text-white shadow-sm",
                   colors.badge
                 )}>
                   {isComplete ? <Check className="h-7 w-7" /> : `N${level.level}`}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <h2 className="text-lg font-bold text-stone-800 group-hover:text-primary transition-colors">
+                    <h2 className="card-title group-hover:text-primary transition-colors">
                       {level.title}
                     </h2>
                     {isCurrent && (
                       <span className="badge bg-primary/10 text-primary text-xs">En cours</span>
                     )}
                   </div>
-                  <p className="japanese text-sm text-stone-400">{level.titleJa}</p>
+                  <p className="japanese text-sm text-stone-500" lang="ja">{level.titleJa}</p>
                   <p className="mt-1 text-sm text-stone-500">{level.description}</p>
                   <p className={cn("mt-1 text-xs font-medium", colors.text)}>
                     {level.secondaryLabel}
                   </p>
                 </div>
-                <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 group-hover:text-primary transition-colors mt-1" />
+                <ChevronRight className="h-5 w-5 shrink-0 text-stone-500 group-hover:text-primary transition-colors mt-1" />
               </div>
 
               <div className="mt-4">

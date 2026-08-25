@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
-import { Check, X, ArrowRight } from "lucide-react";
+import { Check, X, ArrowRight, RotateCcw, Trophy } from "lucide-react";
 import AudioButton from "./AudioButton";
 import type { Exercise } from "@/types/course";
 import { addMistake } from "@/lib/storage";
@@ -113,8 +113,14 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
     const pct = Math.round(finalScore * 100);
     return (
       <div className={cn("card text-center", className)}>
-        <div className="text-5xl mb-4">{pct >= 70 ? "🎉" : "💪"}</div>
-        <h3 className="text-xl font-bold text-stone-800 mb-2">
+        <div className="mb-4 flex justify-center">
+          {pct >= 70 ? (
+            <Trophy className="h-10 w-10 text-success" aria-hidden="true" />
+          ) : (
+            <RotateCcw className="h-10 w-10 text-warning" aria-hidden="true" />
+          )}
+        </div>
+        <h3 className="card-title mb-2">
           {pct >= 70 ? "Bravo !" : "Courage !"}
         </h3>
         <p className="text-stone-600 mb-4">
@@ -144,24 +150,24 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
       <ProgressBar value={currentIndex + 1} max={exercises.length} />
 
       <div className="card">
-        <p className="mb-1 text-xs font-medium uppercase text-stone-400">
+        <p className="mb-1 text-xs font-medium uppercase text-stone-500">
           {exerciseTypeLabel(current.type)}
         </p>
         <div className="mb-6">
           {current.type === "listen" && hasJapanese(current.question) ? (
             <div className="flex flex-col items-center gap-3">
               <AudioButton text={current.question} size="lg" />
-              <p className="text-sm text-stone-400">Écoutez et choisissez la bonne réponse</p>
+              <p className="text-sm text-stone-500">Écoutez et choisissez la bonne réponse</p>
             </div>
           ) : (
             <p className="text-lg font-medium text-stone-800">
               {hasJapanese(current.question) ? (
-                <span className="japanese">{current.question}</span>
+                <span className="japanese" lang="ja">{current.question}</span>
               ) : (
                 current.question
               )}
               {hasJapanese(current.question) && current.hint && (
-                <span className="ml-2 text-sm text-stone-400 italic">({current.hint})</span>
+                <span className="ml-2 text-sm text-stone-500 italic">({current.hint})</span>
               )}
             </p>
           )}
@@ -170,8 +176,8 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
         {(current.hint || current.hintKana) && (
           <p className="mb-4 rounded-lg bg-accent/5 px-3 py-1.5 text-sm italic text-accent">
             {current.hint && <span>{current.hint}</span>}
-            {current.hint && current.hintKana && <span className="mx-1.5 text-stone-300">|</span>}
-            {current.hintKana && <span className="japanese">{current.hintKana}</span>}
+            {current.hint && current.hintKana && <span className="mx-1.5 text-stone-400" aria-hidden="true">|</span>}
+            {current.hintKana && <span className="japanese" lang="ja">{current.hintKana}</span>}
           </p>
         )}
 
@@ -187,7 +193,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 </span>
               ))}
               {reorderPicked.length === 0 && (
-                <span className="text-sm text-stone-300">Cliquez sur les mots pour former la phrase...</span>
+                <span className="text-sm text-stone-500">Cliquez sur les mots pour former la phrase...</span>
               )}
             </div>
             <div className="flex flex-wrap gap-2">
@@ -201,7 +207,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                     className={cn(
                       "rounded-lg border border-stone-200 px-3 py-1.5 text-sm font-medium japanese transition-colors",
                       isUsed
-                        ? "bg-stone-100 text-stone-300 cursor-default"
+                        ? "bg-stone-100 text-stone-400 cursor-default"
                         : "bg-white hover:border-primary hover:bg-primary/5 cursor-pointer"
                     )}
                   >
@@ -227,7 +233,8 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
               placeholder="Écrivez votre réponse…"
               aria-label="Votre réponse"
               autoComplete="off"
-              className="japanese flex-1 rounded-lg border-2 border-stone-200 px-4 py-3 text-base text-stone-800 focus-visible:border-primary focus-visible:outline-none disabled:bg-stone-50 disabled:text-stone-400"
+              lang="ja"
+              className="japanese flex-1 rounded-lg border-2 border-stone-200 px-4 py-3 text-base text-stone-800 focus-visible:border-primary focus-visible:outline-none disabled:bg-stone-50 disabled:text-stone-500"
             />
             <button
               type="submit"
@@ -251,7 +258,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 } else if (isSelected && !isAnswer) {
                   optionStyle = "border-danger bg-danger/10 text-danger";
                 } else {
-                  optionStyle = "border-stone-100 bg-stone-50 text-stone-400";
+                  optionStyle = "border-stone-100 bg-stone-50 text-stone-500";
                 }
               }
 
@@ -278,10 +285,10 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                     <span className="flex-1">
                       <span>{option}</span>
                       {hasJapanese(option) && (optPinyin || optZhuyin) && (
-                        <span className="ml-2 text-xs text-stone-400 italic">
+                        <span className="ml-2 text-xs text-stone-500 italic">
                           {optPinyin}
-                          {optPinyin && optZhuyin && <span className="mx-1 text-stone-300">|</span>}
-                          {optZhuyin && <span className="japanese">{optZhuyin}</span>}
+                          {optPinyin && optZhuyin && <span className="mx-1 text-stone-400" aria-hidden="true">|</span>}
+                          {optZhuyin && <span className="japanese" lang="ja">{optZhuyin}</span>}
                         </span>
                       )}
                     </span>
@@ -314,7 +321,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 </span>
                 {!isCorrect && hasJapanese(current.correctAnswer) && (
                   <div className="flex items-center gap-2 mt-1">
-                    {current.hint && <span className="text-xs text-stone-400 italic">{current.hint}</span>}
+                    {current.hint && <span className="text-xs text-stone-500 italic">{current.hint}</span>}
                     <AudioButton text={current.correctAnswer} size="sm" />
                   </div>
                 )}

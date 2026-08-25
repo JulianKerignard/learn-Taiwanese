@@ -41,7 +41,7 @@ export default function HomePage() {
     <div className="flex flex-col gap-10">
       {/* Hero */}
       <section className="text-center">
-        <h1 className="text-4xl font-bold text-stone-900">
+        <h1 className="page-title">
           Bienvenue, <span className="japanese text-primary" lang="ja">ようこそ！</span>
         </h1>
         <p className="mt-2 text-lg text-stone-500">
@@ -79,7 +79,7 @@ export default function HomePage() {
       {/* Continuer */}
       {cardStats.due > 0 && (
         <section>
-          <h2 className="mb-4 text-xl font-semibold text-stone-800">Continuer</h2>
+          <h2 className="section-title mb-4">Continuer</h2>
           <div className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
@@ -102,7 +102,7 @@ export default function HomePage() {
       {/* Leçons */}
       <section>
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-stone-800">Leçons</h2>
+          <h2 className="section-title">Leçons</h2>
           <Link href="/lessons" className="text-sm font-medium text-primary hover:underline">
             Voir tout
           </Link>
@@ -115,10 +115,10 @@ export default function HomePage() {
                 <div className="flex items-start gap-3">
                   <span className="text-3xl">{lesson.icon}</span>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-stone-800 group-hover:text-primary transition-colors">
+                    <h3 className="card-title group-hover:text-primary transition-colors">
                       {lesson.title}
                     </h3>
-                    <p className="japanese text-sm text-stone-400">{lesson.titleJa}</p>
+                    <p className="japanese text-sm text-stone-500" lang="ja">{lesson.titleJa}</p>
                     <p className="mt-1 text-sm text-stone-500 line-clamp-2">{lesson.description}</p>
                     {completed && (
                       <span className="badge mt-2 bg-success/10 text-success">Complétée</span>

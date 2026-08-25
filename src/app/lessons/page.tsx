@@ -25,7 +25,7 @@ export default function LessonsPage() {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-3xl font-bold text-stone-900">Leçons</h1>
+        <h1 className="page-title">Leçons</h1>
         <p className="mt-1 text-stone-500">
           Progresse à ton rythme à travers les leçons thématiques.
         </p>
@@ -53,17 +53,17 @@ export default function LessonsPage() {
               </div>
 
               <div>
-                <h2 className="text-lg font-semibold text-stone-800 group-hover:text-primary transition-colors">
+                <h2 className="card-title group-hover:text-primary transition-colors">
                   {lesson.title}
                 </h2>
-                <p className="japanese text-sm text-stone-400">{lesson.titleJa}</p>
+                <p className="japanese text-sm text-stone-500" lang="ja">{lesson.titleJa}</p>
               </div>
 
               <p className="text-sm text-stone-500 line-clamp-2">{lesson.description}</p>
 
               <div className="mt-auto flex items-center justify-between">
                 <span className={`badge ${cat.color}`}>{cat.label}</span>
-                <span className="flex items-center gap-1 text-xs text-stone-400">
+                <span className="flex items-center gap-1 text-xs text-stone-500">
                   <BookOpen className="h-3.5 w-3.5" />
                   {lesson.vocabulary.length} mots
                 </span>

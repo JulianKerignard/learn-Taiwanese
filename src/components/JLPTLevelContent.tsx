@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronRight, Construction } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { ChapterSection } from "@/components/ChapterSection";
 import { cn } from "@/lib/cn";
@@ -36,15 +36,15 @@ export default function JLPTLevelContent({ slug }: { slug: string }) {
   if (jlptLevel.comingSoon) {
     return (
       <div className="flex flex-col gap-10">
-        <Link href="/path" className="flex items-center gap-1 text-sm text-stone-400 hover:text-primary transition-colors">
+        <Link href="/path" className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors">
           <ArrowLeft className="h-4 w-4" />
           Tous les niveaux
         </Link>
         <div className="card text-center py-16">
-          <div className="text-5xl mb-4">🚧</div>
-          <h1 className="text-2xl font-bold text-stone-800 mb-2">JLPT N{level}</h1>
+          <Construction className="mx-auto mb-4 h-12 w-12 text-stone-500" aria-hidden="true" />
+          <h1 className="page-title mb-2">JLPT N{level}</h1>
           <p className="text-stone-500 mb-1">{jlptLevel.description}</p>
-          <p className="text-sm text-stone-400">{jlptLevel.secondaryLabel}</p>
+          <p className="text-sm text-stone-500">{jlptLevel.secondaryLabel}</p>
           <p className="mt-6 text-stone-500">Ce niveau est en cours de préparation. Reviens bientôt !</p>
           <Link href="/path" className="btn-primary mt-6 inline-flex">
             Retour aux niveaux
@@ -74,7 +74,7 @@ export default function JLPTLevelContent({ slug }: { slug: string }) {
       {/* Back link */}
       <Link
         href="/path"
-        className="flex items-center gap-1 text-sm text-stone-400 hover:text-primary transition-colors"
+        className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
         Tous les niveaux
@@ -85,17 +85,17 @@ export default function JLPTLevelContent({ slug }: { slug: string }) {
         <div className="flex items-center gap-4">
           <div
             className={cn(
-              "flex h-14 w-14 items-center justify-center rounded-2xl text-xl font-black text-white",
+              "flex h-14 w-14 items-center justify-center rounded-2xl text-xl font-bold text-white",
               jlptLevel.color.badge
             )}
           >
             N{level}
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-stone-900">
+            <h1 className="page-title">
               JLPT N{level}
             </h1>
-            <p className="japanese text-stone-400">{jlptLevel.titleJa}</p>
+            <p className="japanese text-stone-500" lang="ja">{jlptLevel.titleJa}</p>
             <p className="text-sm text-stone-500">{jlptLevel.secondaryLabel}</p>
           </div>
         </div>

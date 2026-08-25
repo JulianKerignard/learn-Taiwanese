@@ -7,9 +7,14 @@
   --color-primary-light: #4a7bab;
   --color-primary-dark: #1b3a58;
   --color-surface: #fafaf9;
-  --color-accent: #c24232;
-  --color-success: #2f7d52;
-  --color-warning: #b5761f;
+  /* Accent, success and warning were each darkened ~10% in luminance (from
+     #c24232, #2f7d52 and #b5761f). The interface states them twice: as text on
+     white, and as text on a 10% tint of themselves — the `bg-x/10 text-x` badge.
+     At the original values that second pairing landed at 4.2–4.4:1, and warning
+     failed even on plain white (3.77:1). Same hues, now clearing 4.5:1 in both. */
+  --color-accent: #af3b2d;
+  --color-success: #2a704a;
+  --color-warning: #8e5c17;
   --color-danger: #c2312b;
 
   /* Pitch accent patterns. Declared once, here, so the contour graph and its
@@ -20,17 +25,52 @@
   --color-nakadaka: #6d4e9c;
   --color-odaka: #7a6420;
 
-  /* JLPT levels, ordered N5 (entry) to N1 (hardest). */
-  --color-n5: #4e8c6a;
+  /* JLPT levels, ordered N5 (entry) to N1 (hardest). Each carries white text on
+     its badge, so each must clear 4.5:1 against white — N5 was #4e8c6a (3.97). */
+  --color-n5: #457c5b;
   --color-n4: #3f7a9e;
   --color-n3: #5b5fa0;
   --color-n2: #8a4e93;
   --color-n1: #99384b;
 
+  /* Type scale. One explicit ramp instead of the inherited default, which left
+     the interface stuck between text-sm and text-xs with no deliberate step
+     between a body paragraph and a page title. Ratio ~1.25 above the body size,
+     tighter below it; line-heights loosen as the size drops. */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: 1.375rem;
+  --text-xl--line-height: 1.4;
+  --text-2xl: 1.75rem;
+  --text-2xl--line-height: 1.3;
+  --text-3xl: 2.125rem;
+  --text-3xl--line-height: 1.2;
+  --text-4xl: 2.625rem;
+  --text-4xl--line-height: 1.15;
+  --text-5xl: 3.25rem;
+  --text-5xl--line-height: 1.05;
+  --text-6xl: 4rem;
+  --text-6xl--line-height: 1;
+
   /* next/font owns --font-noto-jp; this composes it with local fallbacks so the
      two declarations cannot overwrite each other. */
   --font-japanese: var(--font-noto-jp), "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
   --font-sans: var(--font-noto-jp), ui-sans-serif, system-ui, sans-serif;
+
+  /* Only the weights layout.tsx actually loads: 400, 500, 600, 700. Resetting the
+     namespace first means font-black (900) no longer resolves to anything — the
+     browser was synthesising it, and a synthesised weight smears a Japanese face. */
+  --font-weight-*: initial;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }
 
 @layer base {
@@ -76,10 +116,50 @@
     @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
   }
 
+  /* Three heading ranks, one declaration each. Before this every page invented
+     its own: h1 ran from text-2xl to text-4xl for the same rank, and h2 mixed
+     text-lg/text-xl with bold and semibold interchangeably. */
+  .page-title {
+    @apply text-3xl font-bold tracking-tight text-stone-900;
+  }
+
+  .section-title {
+    @apply text-xl font-semibold text-stone-800;
+  }
+
+  /* The heading of a card or of a row in a list — a rank below a page section. */
+  .card-title {
+    @apply text-lg font-semibold text-stone-900;
+  }
+
   /* The signature element: the word itself, always in the Japanese face. */
   .term-display {
     font-family: var(--font-japanese);
     @apply text-5xl leading-none font-normal sm:text-6xl;
+  }
+
+  /* 田字格 — the practice grid kana and kanji are written in: a square split by
+     a dashed centre cross, which is what tells you where a stroke starts and how
+     far it reaches. Drawn in gradients so it needs no extra element and scales
+     with the box. .term-grid is the backdrop alone (for the drawing canvas);
+     .term-display--boxed sets the term itself inside one. */
+  .term-grid,
+  .term-display--boxed {
+    --term-grid-line: color-mix(in oklab, var(--color-primary) 30%, transparent);
+    border: 1px solid var(--color-stone-300);
+    border-radius: 0.75rem;
+    background-image:
+      repeating-linear-gradient(to bottom, var(--term-grid-line) 0 6px, transparent 6px 12px),
+      repeating-linear-gradient(to right, var(--term-grid-line) 0 6px, transparent 6px 12px);
+    background-size:
+      1px 100%,
+      100% 1px;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  .term-display--boxed {
+    @apply flex aspect-square w-40 items-center justify-center bg-white sm:w-48;
   }
 
   .skip-link {

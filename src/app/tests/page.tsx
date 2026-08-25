@@ -34,7 +34,7 @@ export default function TestsPage() {
   return (
     <div className="flex flex-col gap-10">
       <section className="text-center">
-        <h1 className="text-3xl font-bold text-stone-900">Tests JLPT</h1>
+        <h1 className="page-title">Tests JLPT</h1>
         <p className="mt-1 text-stone-500">
           Évalue ton niveau avec des examens blancs au format officiel
         </p>
@@ -54,19 +54,19 @@ export default function TestsPage() {
             >
               <div className="flex items-start gap-4">
                 <div className={cn(
-                  "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-black text-white shadow-sm",
+                  "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-bold text-white shadow-sm",
                   colors.badge
                 )}>
                   {test.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h2 className="text-lg font-bold text-stone-800 group-hover:text-primary transition-colors">
+                  <h2 className="card-title group-hover:text-primary transition-colors">
                     {test.title}
                   </h2>
-                  <p className="japanese text-sm text-stone-400">{test.titleJa}</p>
+                  <p className="japanese text-sm text-stone-500" lang="ja">{test.titleJa}</p>
                   <p className="mt-1 text-sm text-stone-500">{test.description}</p>
                 </div>
-                <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 group-hover:text-primary transition-colors mt-1" />
+                <ChevronRight className="h-5 w-5 shrink-0 text-stone-500 group-hover:text-primary transition-colors mt-1" />
               </div>
 
               <div className="mt-4 flex items-center gap-4 text-xs text-stone-500">
@@ -97,29 +97,29 @@ export default function TestsPage() {
         <div className="card relative overflow-hidden opacity-60 cursor-not-allowed">
           <div className="flex items-start gap-4">
             <div className={cn(
-              "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-black text-white shadow-sm",
+              "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-bold text-white shadow-sm",
               (jlptLevels.find((l) => l.level === NEXT_TEST.level)?.color.badge ?? "bg-stone-400")
             )}>
               {NEXT_TEST.icon}
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold text-stone-500">
+                <h2 className="card-title text-stone-500">
                   {NEXT_TEST.title}
                 </h2>
-                <Lock className="h-4 w-4 text-stone-400" />
+                <Lock className="h-4 w-4 text-stone-500" />
               </div>
-              <p className="japanese text-sm text-stone-300">{NEXT_TEST.titleJa}</p>
-              <p className="mt-1 text-sm text-stone-400">{NEXT_TEST.description}</p>
+              <p className="japanese text-sm text-stone-500" lang="ja">{NEXT_TEST.titleJa}</p>
+              <p className="mt-1 text-sm text-stone-500">{NEXT_TEST.description}</p>
             </div>
           </div>
-          <div className="mt-4 flex items-center gap-4 text-xs text-stone-400">
+          <div className="mt-4 flex items-center gap-4 text-xs text-stone-500">
             <span className="flex items-center gap-1">
               <Clock className="h-3.5 w-3.5" />
               {NEXT_TEST.timeLimitMinutes} min
             </span>
             <span>{NEXT_TEST.totalQuestions} questions</span>
-            <span className="badge bg-stone-100 text-stone-400 ml-auto">Bientôt disponible</span>
+            <span className="badge bg-stone-100 text-stone-500 ml-auto">Bientôt disponible</span>
           </div>
         </div>
       </div>

@@ -204,11 +204,11 @@ export default function DictionaryPage() {
     <div className="flex flex-col gap-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-stone-900">Dictionnaire</h1>
+        <h1 className="page-title">Dictionnaire</h1>
         <p className="mt-1 text-stone-500">
           {stats.total} mots — Tout le vocabulaire du parcours, des leçons et des lectures
         </p>
-        <div className="mt-2 flex gap-2 text-xs text-stone-400">
+        <div className="mt-2 flex gap-2 text-xs text-stone-500">
           <span>JLPT 1 : {stats.hsk1} mots</span>
           <span>·</span>
           <span>JLPT 2 : {stats.hsk2} mots</span>
@@ -217,18 +217,18 @@ export default function DictionaryPage() {
 
       {/* Search bar */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-500" />
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Rechercher un caractère, romaji, kana ou traduction..."
-          className="w-full rounded-lg border border-stone-300 bg-white py-2.5 pl-10 pr-10 text-sm text-stone-900 placeholder:text-stone-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="w-full rounded-lg border border-stone-300 bg-white py-2.5 pl-10 pr-10 text-sm text-stone-900 placeholder:text-stone-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
         />
         {query && (
           <button
             onClick={() => setQuery("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-500 hover:text-stone-600"
           >
             <X className="h-4 w-4" />
           </button>
@@ -299,7 +299,7 @@ export default function DictionaryPage() {
         {filtered.length} résultat{filtered.length !== 1 ? "s" : ""}
         {query && ` pour "${query}"`}
         {remaining > 0 && (
-          <span className="text-stone-400"> — {visible.length} affiché{visible.length !== 1 ? "s" : ""}</span>
+          <span className="text-stone-500"> — {visible.length} affiché{visible.length !== 1 ? "s" : ""}</span>
         )}
       </p>
 
@@ -323,7 +323,7 @@ export default function DictionaryPage() {
                   )}
                 >
                   {/* Character */}
-                  <span className="japanese text-2xl font-medium text-stone-900 w-16 text-center shrink-0">
+                  <span className="japanese text-2xl font-medium text-stone-900 w-16 text-center shrink-0" lang="ja">
                     {entry.term}
                   </span>
 
@@ -346,7 +346,7 @@ export default function DictionaryPage() {
                     size={16}
                     aria-hidden
                     className={cn(
-                      "shrink-0 text-stone-300 transition-transform",
+                      "shrink-0 text-stone-500 transition-transform",
                       isExpanded && "rotate-180 text-primary"
                     )}
                   />
@@ -357,25 +357,25 @@ export default function DictionaryPage() {
                   <div className="ml-4 mr-4 mb-2 rounded-b-lg border border-t-0 border-stone-100 bg-stone-50 p-4">
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
-                        <p className="text-xs font-medium text-stone-400 uppercase mb-1">Prononciation</p>
+                        <p className="text-xs font-medium text-stone-500 uppercase mb-1">Prononciation</p>
                         <div className="flex items-center gap-2">
                           <p className="text-sm text-stone-700">{entry.romaji}</p>
                           <AudioButton text={entry.term} size="sm" className="shrink-0" />
                         </div>
-                        {entry.kana && <p className="text-sm text-stone-500 japanese">{entry.kana}</p>}
+                        {entry.kana && <p className="japanese text-sm text-stone-500" lang="ja">{entry.kana}</p>}
                       </div>
                       <div>
-                        <p className="text-xs font-medium text-stone-400 uppercase mb-1">Traduction</p>
+                        <p className="text-xs font-medium text-stone-500 uppercase mb-1">Traduction</p>
                         <p className="text-sm text-stone-700">{entry.french}</p>
-                        {entry.english && <p className="text-xs text-stone-400">{entry.english}</p>}
+                        {entry.english && <p className="text-xs text-stone-500">{entry.english}</p>}
                       </div>
                     </div>
 
                     {entry.example && (
                       <div className="mt-3 rounded-lg bg-white border border-stone-100 p-3">
-                        <p className="text-xs font-medium text-stone-400 uppercase mb-1">Exemple</p>
-                        <p className="japanese text-sm text-stone-800">{entry.example.sentence}</p>
-                        <p className="text-xs italic text-stone-400">{entry.example.romaji}</p>
+                        <p className="text-xs font-medium text-stone-500 uppercase mb-1">Exemple</p>
+                        <p className="japanese text-sm text-stone-800" lang="ja">{entry.example.sentence}</p>
+                        <p className="text-xs italic text-stone-500">{entry.example.romaji}</p>
                         <p className="text-xs text-stone-500">{entry.example.translation}</p>
                       </div>
                     )}
@@ -383,7 +383,7 @@ export default function DictionaryPage() {
                     <div className="mt-3 flex items-center justify-between">
                       <div className="flex flex-wrap gap-1">
                         {entry.sources.map((s, i) => (
-                          <span key={i} className="badge bg-stone-100 text-stone-400 text-[10px]">{s}</span>
+                          <span key={i} className="badge bg-stone-100 text-stone-500 text-[10px]">{s}</span>
                         ))}
                       </div>
                       <button
@@ -417,9 +417,9 @@ export default function DictionaryPage() {
         </div>
       ) : (
         <div className="flex flex-col items-center gap-4 py-16 text-center">
-          <Search className="h-12 w-12 text-stone-300" />
+          <Search className="h-12 w-12 text-stone-400" aria-hidden="true" />
           <p className="text-lg text-stone-500">Aucun résultat trouvé.</p>
-          <p className="text-sm text-stone-400">
+          <p className="text-sm text-stone-500">
             Essaie avec un autre terme ou retire les filtres.
           </p>
         </div>

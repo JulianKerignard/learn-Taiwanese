@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { getRandomWords, type GameWord } from "@/lib/game-data";
 import AudioButton from "@/components/AudioButton";
+import { ArrowLeft, Trophy } from "lucide-react";
 
 interface Card {
   id: number;
@@ -141,20 +142,21 @@ export default function MatchingPage() {
 
   if (words.length === 0) {
     return (
-      <main className="mx-auto max-w-4xl px-4 py-12 text-center">
+      <div className="mx-auto max-w-2xl text-center">
         <p className="text-stone-500">Chargement...</p>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="mx-auto max-w-2xl px-4 py-8">
+    <div className="mx-auto max-w-2xl">
       <div className="mb-6 flex items-center justify-between">
         <Link
           href="/games"
-          className="text-sm text-stone-400 hover:text-stone-600 transition-colors"
+          className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
         >
-          &larr; Retour aux jeux
+          <ArrowLeft className="h-4 w-4" />
+          Retour aux jeux
         </Link>
         <div className="flex items-center gap-4 text-sm text-stone-600">
           <label className="flex items-center gap-1">
@@ -170,26 +172,19 @@ export default function MatchingPage() {
         </div>
       </div>
 
-      <h1 className="mb-6 text-center text-2xl font-bold text-stone-900">
-        Matching
-      </h1>
+      <h1 className="page-title mb-6 text-center">Associations</h1>
 
       {finished ? (
-        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center">
-          <div className="mb-2 text-4xl">&#127881;</div>
-          <h2 className="mb-2 text-xl font-bold text-emerald-700">
-            Bravo !
-          </h2>
+        <div className="card text-center">
+          <Trophy className="mx-auto mb-2 h-10 w-10 text-success" aria-hidden="true" />
+          <h2 className="section-title mb-2 text-success">Bravo !</h2>
           <p className="mb-1 text-stone-600">
             6 paires trouvées en <strong>{attempts}</strong> tentatives
           </p>
           <p className="mb-6 text-stone-600">
             Temps : <strong>{formatTime(elapsed)}</strong>
           </p>
-          <button
-            onClick={initGame}
-            className="rounded-xl bg-primary px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary/90"
-          >
+          <button onClick={initGame} className="btn-primary">
             Rejouer
           </button>
         </div>
@@ -217,12 +212,13 @@ export default function MatchingPage() {
                 <div
                   className={`absolute inset-0 flex flex-col items-center justify-center rounded-xl border-2 shadow-md [backface-visibility:hidden] [transform:rotateY(180deg)] ${
                     card.matched
-                      ? "border-emerald-300 bg-emerald-50"
+                      ? "border-success bg-success/10"
                       : "border-stone-200 bg-white"
                   }`}
                 >
                   <span
-                    className={`text-center font-bold leading-tight ${
+                    lang={card.type === "term" ? "ja" : undefined}
+                    className={`text-center font-semibold leading-tight ${
                       card.type === "term"
                         ? "japanese text-2xl text-stone-900"
                         : "text-sm text-stone-700"
@@ -233,7 +229,7 @@ export default function MatchingPage() {
                   {card.type === "term" && (card.flipped || card.matched) && (
                     <div className="mt-1 flex flex-col items-center gap-0.5">
                       {showPinyin && (
-                        <span className="text-xs text-stone-400 italic">{card.word.romaji}</span>
+                        <span className="text-xs text-stone-500 italic">{card.word.romaji}</span>
                       )}
                       <AudioButton text={card.word.term} size="sm" />
                     </div>
@@ -244,6 +240,6 @@ export default function MatchingPage() {
           ))}
         </div>
       )}
-    </main>
+    </div>
   );
 }

@@ -46,7 +46,7 @@ export default function RevisionPage() {
     <div className="flex flex-col gap-10">
       {/* Header */}
       <section className="text-center">
-        <h1 className="text-3xl font-bold text-stone-900">Révision</h1>
+        <h1 className="page-title">Révision</h1>
         <p className="mt-1 text-stone-500">
           Renforce ta mémoire avec la répétition espacée
         </p>
@@ -65,8 +65,8 @@ export default function RevisionPage() {
       {/* No cards state */}
       {!hasCards && (
         <div className="card text-center py-12">
-          <BookOpen className="mx-auto h-16 w-16 text-stone-300 mb-4" />
-          <h2 className="text-xl font-bold text-stone-800 mb-2">Aucune carte à réviser</h2>
+          <BookOpen className="mx-auto mb-4 h-16 w-16 text-stone-400" aria-hidden="true" />
+          <h2 className="section-title mb-2">Aucune carte à réviser</h2>
           <p className="text-stone-500 mb-6">
             Ajoute du vocabulaire depuis les leçons ou le parcours pour commencer tes révisions.
           </p>
@@ -113,7 +113,7 @@ export default function RevisionPage() {
             <div className="flex flex-col gap-6">
               {recommended.length > 0 ? (
                 <>
-                  <h2 className="text-lg font-semibold text-stone-800">À réviser en priorité</h2>
+                  <h2 className="section-title">À réviser en priorité</h2>
                   <div className="grid gap-4 sm:grid-cols-2">
                     {recommended.map((topic) => (
                       <TopicCard key={topic.id} topic={topic} />
@@ -147,7 +147,7 @@ export default function RevisionPage() {
                 <TopicCard key={group.id} topic={{ ...group, score: group.dueCount, type: "unit" }} />
               ))}
               {groupedData.length === 0 && (
-                <p className="text-stone-400 col-span-2 text-center py-8">Aucune carte dans cette catégorie.</p>
+                <p className="text-stone-500 col-span-2 text-center py-8">Aucune carte dans cette catégorie.</p>
               )}
             </div>
           )}
@@ -168,14 +168,14 @@ function TopicCard({ topic }: { topic: RevisionTopic | (TopicGroup & { score: nu
     >
       <div className="flex items-start justify-between">
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-stone-800 group-hover:text-primary transition-colors">
+          <h3 className="card-title group-hover:text-primary transition-colors">
             {topic.label}
           </h3>
           {topic.labelZh && (
-            <p className="japanese text-sm text-stone-400">{topic.labelZh}</p>
+            <p className="japanese text-sm text-stone-500" lang="ja">{topic.labelZh}</p>
           )}
         </div>
-        <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 group-hover:text-primary transition-colors" />
+        <ChevronRight className="h-5 w-5 shrink-0 text-stone-500 group-hover:text-primary transition-colors" />
       </div>
 
       <div className="flex items-center gap-4 text-xs text-stone-500">
@@ -189,11 +189,11 @@ function TopicCard({ topic }: { topic: RevisionTopic | (TopicGroup & { score: nu
       </div>
 
       <div>
-        <div className="flex items-center justify-between text-xs text-stone-400 mb-1">
+        <div className="flex items-center justify-between text-xs text-stone-500 mb-1">
           <span>Maîtrise</span>
           <span>{mastery}%</span>
         </div>
-        <ProgressBar value={topic.masteredCount} max={total} color={mastery >= 80 ? "bg-success" : mastery >= 50 ? "bg-warning" : "bg-stone-300"} />
+        <ProgressBar value={topic.masteredCount} max={total} color={mastery >= 80 ? "bg-success" : mastery >= 50 ? "bg-warning" : "bg-stone-500"} />
       </div>
     </Link>
   );

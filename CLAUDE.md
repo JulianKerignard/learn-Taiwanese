@@ -132,3 +132,24 @@ its declared pattern; no kanji in chapter 1.
   `.japanese`, `.skip-link`, `.sr-only`.
 - Japanese text carries `lang="ja"`; the document is `lang="fr"`.
 - Content language: UI in French, learning content in Japanese with kana, rōmaji and French/English.
+
+### Auth
+
+Username-only login, no password — a documented product choice. The session is a
+**signed cookie**, not a plain id: `src/lib/auth.ts` HMACs the user id with
+`SESSION_SECRET`, and `getSessionUserId()` is the only way the API routes read it.
+An unsigned or tampered cookie yields `null`, so pre-existing sessions are invalidated
+rather than trusted.
+
+**`SESSION_SECRET` is required in production.** Without it the app throws on the first
+login instead of silently signing with a per-process random key. Generate one with
+`openssl rand -hex 32` and set it in the server environment.
+
+Also enforced: `sameSite: "strict"` plus an `Origin` check on login and save
+(login-CSRF), `/api/users` requires a session and no longer returns account ids,
+`/api/progress/save` caps each key at 512 kB and the body at 4 MB, and
+`db.pragma("foreign_keys = ON")` — off by default in SQLite, which made the
+`user_data` foreign key decorative.
+
+API routes: `/api/auth/{login,logout,me}`, `/api/progress/{load,save}`, `/api/users`.
+SQLite stores users and their synced data in `src/lib/db.ts`.

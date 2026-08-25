@@ -36,7 +36,7 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
         {question.type === "audio-to-term" ? (
           <AudioButton text={question.question} size="lg" />
         ) : (
-          <h3 className="japanese text-center text-3xl font-medium">{question.question}</h3>
+          <h3 className="japanese text-center text-3xl font-medium" lang="ja">{question.question}</h3>
         )}
       </div>
 
@@ -62,7 +62,7 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
                 !answered && "border-stone-200 hover:border-primary hover:bg-primary/5",
                 answered && isRight && "border-success bg-success/10 text-success",
                 answered && isThis && !isRight && "border-danger bg-danger/10 text-danger",
-                answered && !isThis && !isRight && "border-stone-100 text-stone-300"
+                answered && !isThis && !isRight && "border-stone-100 text-stone-400"
               )}
             >
               <span className={cn(question.type === "french-to-term" && "japanese text-2xl")}>
