@@ -20,28 +20,41 @@ import CharacterCard from "@/components/CharacterCard";
 import ExerciseRunner from "@/components/ExerciseRunner";
 import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
-import { getUnitById, chapters, getHSKLevelForUnit, getHSKLevelUnits } from "@/data/course";
 import {
   completeUnit,
 } from "@/lib/progress";
 import { upsertCard, updateStreak, getCards } from "@/lib/storage";
 import { createCard } from "@/lib/fsrs";
-import type { CourseUnit } from "@/types/course";
+import type { Chapter, CourseUnit, HSKLevel } from "@/types/course";
 
 /** Stable FSRS card id for a unit vocabulary entry. */
 function vocabCardId(unitId: string, character: string): string {
   return `course-${unitId}-${character}`;
 }
 
+// Everything this component knows about the catalogue arrives as props. It is a
+// client component: importing @/data/course here would ship all 88 unit modules
+// to the browser, which is exactly what the server page exists to prevent.
 interface UnitContentProps {
+  /** The route param — the address, even when nothing is found at it. */
   unitId: string;
+  unit?: CourseUnit;
+  /** The whole parcours in order: completing a unit advances through it. */
+  chapters: Chapter[];
+  hskLevel?: HSKLevel;
+  /** Ids of this level's units, in order, for the "next unit" link. */
+  levelUnitIds: string[];
 }
 
 type Tab = "course" | "vocabulary" | "exercises";
 
-export default function UnitContent({ unitId }: UnitContentProps) {
-  const [unit, setUnit] = useState<CourseUnit | undefined>(undefined);
-  const [loaded, setLoaded] = useState(false);
+export default function UnitContent({
+  unitId,
+  unit,
+  chapters,
+  hskLevel,
+  levelUnitIds,
+}: UnitContentProps) {
   const [activeTab, setActiveTab] = useState<Tab>("course");
   const [exerciseResult, setExerciseResult] = useState<{
     score: number;
@@ -49,15 +62,14 @@ export default function UnitContent({ unitId }: UnitContentProps) {
   } | null>(null);
   const [vocabAdded, setVocabAdded] = useState(false);
 
+  // Only the flashcard state needs the browser; the lesson itself came prerendered.
   useEffect(() => {
-    const u = getUnitById(unitId);
-    setUnit(u);
-    setLoaded(true);
-    if (u) {
-      const existingIds = new Set(getCards().map((c) => c.id));
-      setVocabAdded(u.vocabulary.every((item) => existingIds.has(vocabCardId(unitId, item.character))));
-    }
-  }, [unitId]);
+    if (!unit) return;
+    const existingIds = new Set(getCards().map((c) => c.id));
+    setVocabAdded(
+      unit.vocabulary.every((item) => existingIds.has(vocabCardId(unitId, item.character)))
+    );
+  }, [unit, unitId]);
 
   useEffect(() => {
     let activeTime = 0;
@@ -89,9 +101,6 @@ export default function UnitContent({ unitId }: UnitContentProps) {
   }, [unitId]);
 
   const chapter = unit ? chapters.find((c) => c.number === unit.chapter) : undefined;
-  const hskLevel = unit ? getHSKLevelForUnit(unit) : undefined;
-  const levelUnits = hskLevel ? getHSKLevelUnits(hskLevel) : [];
-  const levelUnitIds = levelUnits.map((u) => u.id);
 
   const handleExerciseComplete = useCallback(
     (score: number) => {
@@ -120,7 +129,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
         saveGamification(gam);
       }
     },
-    [unit, unitId]
+    [unit, unitId, chapters]
   );
 
   const handleAddAllVocab = useCallback(() => {
@@ -154,8 +163,6 @@ export default function UnitContent({ unitId }: UnitContentProps) {
     ? levelUnitIds[levelIdx + 1]
     : null;
   const isLastInLevel = levelIdx === levelUnitIds.length - 1;
-
-  if (!loaded) return null;
 
   if (!unit) {
     return (
@@ -204,10 +211,10 @@ export default function UnitContent({ unitId }: UnitContentProps) {
         <div className="flex items-center gap-3">
           <span className="text-3xl">{unit.icon}</span>
           <div>
-            <h1 className="text-2xl font-bold text-stone-900">
+            <h1 className="text-display font-bold text-stone-900">
               Unité {unit.number} — {unit.title}
             </h1>
-            <p className="chinese text-stone-400">{unit.titleZh}</p>
+            <p className="chinese text-stone-500">{unit.titleZh}</p>
           </div>
         </div>
         <p className="mt-2 text-stone-500">{unit.description}</p>
@@ -239,7 +246,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
 
           {unit.dialogue && (
             <div>
-              <h3 className="mb-4 text-lg font-semibold text-stone-800">
+              <h3 className="mb-4 text-lg font-bold text-stone-800">
                 Dialogue
               </h3>
               <DialogueDisplay dialogue={unit.dialogue} />
@@ -248,7 +255,7 @@ export default function UnitContent({ unitId }: UnitContentProps) {
 
           {unit.keyPoints.length > 0 && (
             <div className="rounded-lg border border-amber-200 bg-amber-50 p-5">
-              <h3 className="mb-3 font-semibold text-amber-800">
+              <h3 className="mb-3 font-bold text-amber-800">
                 Points clés à retenir
               </h3>
               <ul className="flex flex-col gap-2">

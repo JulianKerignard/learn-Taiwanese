@@ -25,7 +25,7 @@ export default function LessonsPage() {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-3xl font-bold text-stone-900">Leçons</h1>
+        <h1 className="text-display font-bold text-stone-900">Leçons</h1>
         <p className="mt-1 text-stone-500">
           Progresse à ton rythme à travers les leçons thématiques.
         </p>
@@ -53,10 +53,10 @@ export default function LessonsPage() {
               </div>
 
               <div>
-                <h2 className="text-lg font-semibold text-stone-800 group-hover:text-primary transition-colors">
+                <h2 className="text-title font-bold text-stone-800 group-hover:text-primary transition-colors">
                   {lesson.title}
                 </h2>
-                <p className="chinese text-sm text-stone-400">{lesson.titleZh}</p>
+                <p className="chinese text-sm text-stone-500">{lesson.titleZh}</p>
               </div>
 
               <p className="text-sm text-stone-500 line-clamp-2">{lesson.description}</p>

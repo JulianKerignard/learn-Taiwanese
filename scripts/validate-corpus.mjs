@@ -1,13 +1,22 @@
 // Corpus invariants. Fails the build on anything that silently breaks a lesson:
 // unanswerable exercises, tone buckets that contradict the pronunciation,
-// prerequisites that lock a unit, duplicate ids, divergent readings.
+// prerequisites that lock a unit, duplicate ids, divergent readings, a metadata
+// catalogue that no longer matches the units it describes, and a game word list
+// that has drifted from the corpus.
 //
 //   npm run validate
 //
 // Errors exit 1. Warnings are reported but do not fail.
 
 import { tonePairs } from "../src/data/tone-pairs.ts";
-import { allUnits, chapters } from "../src/data/course/index.ts";
+import { allUnits, chapters, hskLevels } from "../src/data/course/index.ts";
+import {
+  allUnitMetas,
+  chapters as metaChapters,
+  hskLevels as metaHskLevels,
+} from "../src/data/course/meta.ts";
+import { gameWords } from "../src/data/game-words.ts";
+import { lessons } from "../src/data/lessons.ts";
 
 const errors = [];
 const warnings = [];
@@ -205,6 +214,100 @@ for (const [character, entry] of readings) {
   }
 }
 
+// ── 5. The metadata catalogue matches the units ───────────────────────
+//
+// `src/data/course/meta.ts` restates unit metadata so that list views never
+// import a unit module. Nothing keeps the copy honest at build time, so keep it
+// honest here: a title edited in unitNN.ts and not in meta.ts would otherwise
+// ship two different titles for the same unit.
+
+const META_FIELDS = [
+  "id",
+  "number",
+  "chapter",
+  "title",
+  "titleZh",
+  "description",
+  "icon",
+  "requiredScore",
+];
+
+const metaById = new Map(allUnitMetas.map((meta) => [meta.id, meta]));
+
+if (allUnitMetas.length !== allUnits.length) {
+  err(
+    "meta",
+    `meta.ts décrit ${allUnitMetas.length} unités, le corpus en compte ${allUnits.length}`
+  );
+}
+
+allUnits.forEach((unit, index) => {
+  const meta = metaById.get(unit.id);
+  if (!meta) {
+    err("meta", `${unit.id} absente de meta.ts`);
+    return;
+  }
+  if (allUnitMetas[index]?.id !== unit.id) {
+    err("meta", `${unit.id} est au rang ${index} dans le corpus mais pas dans meta.ts`);
+  }
+  for (const field of META_FIELDS) {
+    if (meta[field] !== unit[field]) {
+      err(
+        "meta",
+        `${unit.id}.${field} : meta.ts dit ${JSON.stringify(meta[field])}, l'unité dit ${JSON.stringify(unit[field])}`
+      );
+    }
+  }
+  if (meta.prerequisites.join("|") !== unit.prerequisites.join("|")) {
+    err("meta", `${unit.id}.prerequisites divergent entre meta.ts et l'unité`);
+  }
+});
+
+for (const meta of allUnitMetas) {
+  if (!declaredIds.has(meta.id)) {
+    err("meta", `${meta.id} décrite par meta.ts mais aucune unité ne l'exporte`);
+  }
+}
+
+if (JSON.stringify(metaChapters) !== JSON.stringify(chapters)) {
+  err("meta", "les chapitres de meta.ts divergent de ceux de index.ts");
+}
+if (JSON.stringify(metaHskLevels) !== JSON.stringify(hskLevels)) {
+  err("meta", "les niveaux HSK de meta.ts divergent de ceux de index.ts");
+}
+
+// ── 6. The generated game word list matches the corpus ────────────────
+//
+// src/data/game-words.ts is generated so /games/* never bundles the units.
+// Regenerate it with scripts/generate-game-words.mjs when this fails.
+
+const expectedGameWords = new Map();
+for (const source of [allUnits, lessons]) {
+  for (const entry of source) {
+    for (const item of entry.vocabulary) {
+      if (expectedGameWords.has(item.character)) continue;
+      expectedGameWords.set(item.character, { pinyin: item.pinyin, french: item.french });
+    }
+  }
+}
+
+if (gameWords.length !== expectedGameWords.size) {
+  err(
+    "game-words",
+    `game-words.ts liste ${gameWords.length} mots, le corpus en donne ${expectedGameWords.size} — régénère-le`
+  );
+}
+for (const word of gameWords) {
+  const expected = expectedGameWords.get(word.character);
+  if (!expected) {
+    err("game-words", `${word.character} n'existe plus dans le corpus — régénère game-words.ts`);
+    continue;
+  }
+  if (expected.pinyin !== word.pinyin || expected.french !== word.french) {
+    err("game-words", `${word.character} : game-words.ts diverge du corpus — régénère-le`);
+  }
+}
+
 // ── Report ────────────────────────────────────────────────────────────
 
 function report(title, entries) {
@@ -224,7 +327,8 @@ function report(title, entries) {
 console.log(
   `Corpus : ${allUnits.length} unités, ${chapters.length} chapitres, ` +
     `${allUnits.reduce((n, u) => n + u.vocabulary.length, 0)} entrées de vocabulaire, ` +
-    `${exerciseIds.size} exercices, ${tonePairs.length} paires de tons`
+    `${exerciseIds.size} exercices, ${tonePairs.length} paires de tons, ` +
+    `${allUnitMetas.length} métadonnées, ${gameWords.length} mots de jeu`
 );
 
 report("WARNINGS", warnings);

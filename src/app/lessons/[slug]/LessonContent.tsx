@@ -131,8 +131,8 @@ export default function LessonContent({ slug }: { slug: string }) {
         <div className="flex items-center gap-4">
           <span className="text-4xl sm:text-5xl">{lesson.icon}</span>
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-stone-900">{lesson.title}</h1>
-            <p className="chinese text-lg text-stone-400">{lesson.titleZh}</p>
+            <h1 className="text-display font-bold text-stone-900">{lesson.title}</h1>
+            <p className="chinese text-lg text-stone-500">{lesson.titleZh}</p>
             <p className="mt-1 text-stone-500">{lesson.description}</p>
           </div>
         </div>
@@ -208,7 +208,7 @@ export default function LessonContent({ slug }: { slug: string }) {
                 <PinyinDisplay pinyin={phrase.pinyin} zhuyin={phrase.zhuyin} size="md" />
                 <p className="mt-1 text-stone-600">{phrase.french}</p>
                 {phrase.context && (
-                  <p className="mt-2 text-xs text-stone-400 italic">{phrase.context}</p>
+                  <p className="mt-2 text-xs text-stone-500 italic">{phrase.context}</p>
                 )}
               </div>
             </div>
@@ -272,7 +272,7 @@ export default function LessonContent({ slug }: { slug: string }) {
       {/* Cultural notes */}
       {lesson.culturalNotes && lesson.culturalNotes.length > 0 && (
         <section>
-          <h2 className="mb-3 text-lg font-semibold text-stone-800">Notes culturelles</h2>
+          <h2 className="text-title font-bold mb-3 text-stone-800">Notes culturelles</h2>
           <div className="flex flex-col gap-3">
             {lesson.culturalNotes.map((note, i) => (
               <div key={i} className="card bg-amber-50/50 border-amber-200/50">

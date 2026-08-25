@@ -124,7 +124,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
       <div className="card mx-auto max-w-2xl p-6">
         <div className="mb-6 text-center">
           <span className="mb-2 inline-block text-4xl">{test.icon}</span>
-          <h1 className="text-2xl font-bold">{test.title}</h1>
+          <h1 className="text-display font-bold">{test.title}</h1>
           <p className="text-lg text-stone-500">{test.titleZh}</p>
         </div>
 
@@ -139,7 +139,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
         </div>
 
         <div className="mb-6 space-y-2">
-          <h2 className="font-semibold text-stone-700">Sections</h2>
+          <h2 className="text-title font-bold text-stone-700">Sections</h2>
           {test.sections.map((section) => (
             <div
               key={section.id}
@@ -214,7 +214,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
           )}
 
           {current.hint && (
-            <p className="mb-4 text-sm italic text-stone-400">{current.hint}</p>
+            <p className="mb-4 text-sm italic text-stone-500">{current.hint}</p>
           )}
 
           {/* Options grid */}
@@ -325,7 +325,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
           </div>
           <p
             className={cn(
-              "text-lg font-semibold",
+              "text-lg font-bold",
               result.passed ? "text-green-700" : "text-yellow-700"
             )}
           >
@@ -341,7 +341,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
 
         {/* Section breakdown */}
         <div className="card space-y-4 p-6">
-          <h2 className="font-semibold text-stone-700">Résultats par section</h2>
+          <h2 className="text-title font-bold text-stone-700">Résultats par section</h2>
           {result.sectionResults.map((sr) => (
             <div key={sr.sectionId}>
               <div className="mb-1 flex items-center justify-between text-sm">

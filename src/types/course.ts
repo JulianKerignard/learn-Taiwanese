@@ -39,7 +39,12 @@ export interface Exercise {
   optionsZhuyin?: string[];
 }
 
-export interface CourseUnit {
+/**
+ * What a unit is, minus what it teaches. List views, breadcrumbs and unlock
+ * rules need only this, and `@/data/course/meta` serves it without loading a
+ * single unit module.
+ */
+export interface CourseUnitMeta {
   id: string;
   number: number;
   title: string;
@@ -48,15 +53,17 @@ export interface CourseUnit {
   description: string;
   icon: string;
 
+  requiredScore: number;
+  prerequisites: string[];
+}
+
+export interface CourseUnit extends CourseUnitMeta {
   sections: CourseSection[];
   dialogue?: Dialogue;
   keyPoints: string[];
 
   vocabulary: VocabularyItem[];
   exercises: Exercise[];
-
-  requiredScore: number;
-  prerequisites: string[];
 }
 
 export interface Chapter {
@@ -67,6 +74,20 @@ export interface Chapter {
   unitIds: string[];
 }
 
+/**
+ * The three surfaces a level identity is ever painted on. Written as literal
+ * Tailwind classes so the scanner sees them, and built on the --color-hsk-*
+ * tokens so the hue is declared once in globals.css.
+ */
+export interface HSKLevelColor {
+  /** Solid ground under white text: the level chip. */
+  badge: string;
+  /** Tinted ground for a bar or a panel. Never carries text. */
+  surface: string;
+  /** The level hue as text. Clears 4.5:1 on white. */
+  text: string;
+}
+
 export interface HSKLevel {
   level: number;
   slug: string;
@@ -75,6 +96,7 @@ export interface HSKLevel {
   tocflLabel: string;
   description: string;
   chapterNumbers: number[];
+  color: HSKLevelColor;
   comingSoon?: boolean;
 }
 

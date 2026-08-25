@@ -17,7 +17,7 @@ export default function DialogueDisplay({ dialogue, className }: DialogueDisplay
 
   return (
     <div className={cn("flex flex-col gap-4", className)}>
-      <p className="text-sm italic text-stone-400">{dialogue.context}</p>
+      <p className="text-sm italic text-stone-500">{dialogue.context}</p>
       <div className="flex flex-col gap-3">
         {dialogue.lines.map((line, i) => {
           const isRight = line.speaker === speakerB;
@@ -72,7 +72,7 @@ function DialogueBubble({
           </span>
           <AudioButton text={chinese} size="sm" />
         </div>
-        <p className="text-xs italic text-stone-400 mt-0.5">{pinyin}</p>
+        <p className="text-xs italic text-stone-500 mt-0.5">{pinyin}</p>
       </div>
       <button
         onClick={() => setShowTranslation(!showTranslation)}
@@ -84,7 +84,7 @@ function DialogueBubble({
         <div className="mt-1">
           <p className="text-sm text-stone-600">{french}</p>
           {note && (
-            <p className="mt-0.5 text-xs text-stone-400 italic">
+            <p className="mt-0.5 text-xs text-stone-500 italic">
               📌 {note}
             </p>
           )}

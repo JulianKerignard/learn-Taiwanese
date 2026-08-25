@@ -152,7 +152,7 @@ export default function SpeedQuizPage() {
         >
           &larr; Retour aux jeux
         </Link>
-        <h1 className="mb-4 text-3xl font-bold text-stone-900">Speed Quiz</h1>
+        <h1 className="text-display font-bold mb-4 text-stone-900">Speed Quiz</h1>
         <p className="mb-8 text-stone-500">
           Traduis le plus de mots possible en 60 secondes !
         </p>
@@ -177,10 +177,10 @@ export default function SpeedQuizPage() {
       <main className="mx-auto max-w-xl px-4 py-12 text-center">
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-8">
           <div className="mb-2 text-4xl">&#9201;</div>
-          <h2 className="mb-4 text-2xl font-bold text-amber-700">
+          <h2 className="text-title font-bold mb-4 text-amber-700">
             Temps écoulé !
           </h2>
-          <div className="mb-6 text-5xl font-black text-stone-900">
+          <div className="mb-6 text-5xl font-bold text-stone-900">
             {score} pts
           </div>
           {isNewRecord && (
@@ -217,7 +217,7 @@ export default function SpeedQuizPage() {
   return (
     <main className="mx-auto max-w-xl px-4 py-8">
       <div className="mb-4 flex items-center justify-between">
-        <div className="text-2xl font-black text-stone-900">{score} pts</div>
+        <div className="text-2xl font-bold text-stone-900">{score} pts</div>
         {combo >= 3 && (
           <div className="rounded-full bg-amber-100 px-3 py-1 text-sm font-bold text-amber-700">
             x{multiplier}
@@ -243,11 +243,11 @@ export default function SpeedQuizPage() {
       {question && (
         <>
           <div className="mb-8 text-center">
-            <span className="chinese text-6xl font-bold text-stone-900">
+            <span className="character-display text-stone-900" lang="zh-Hant-TW">
               {question.word.character}
             </span>
             {showPinyin && (
-              <p className="mt-2 text-sm text-stone-400 italic">
+              <p className="mt-2 text-sm text-stone-500 italic">
                 {question.word.pinyin}
               </p>
             )}

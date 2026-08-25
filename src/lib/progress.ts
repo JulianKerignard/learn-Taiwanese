@@ -1,10 +1,26 @@
-import type { PathProgress, CourseUnit, Chapter, HSKLevel } from "@/types/course";
-import { getUnitById, hskLevels as defaultHskLevels } from "@/data/course";
+import type { PathProgress, CourseUnitMeta, Chapter, HSKLevel } from "@/types/course";
+// Metadata only: unlock rules read prerequisites and requiredScore, never the
+// lesson itself. Importing @/data/course here would pull all 88 unit modules
+// into every client bundle that tracks progress.
+import { getUnitMetaById, hskLevels as defaultHskLevels } from "@/data/course/meta";
 import { storageGet, storageSet, KEYS } from "@/lib/storage";
 
 const STORAGE_KEY = KEYS.courseProgress;
 
 const defaultProgress: PathProgress = {
+  completedUnits: [],
+  unitScores: {},
+  currentUnit: "unit-01",
+  chapterProgress: {},
+};
+
+/**
+ * Seed for the prerender, where localStorage does not exist yet: the state of a
+ * visitor who has never started. Pages render the whole parcours from it and let
+ * the badges fill in at hydration — returning null until then would ship an
+ * empty <main>. Read-only: never pass it to a function that mutates progress.
+ */
+export const EMPTY_PATH_PROGRESS: PathProgress = {
   completedUnits: [],
   unitScores: {},
   currentUnit: "unit-01",
@@ -19,7 +35,7 @@ export function savePathProgress(progress: PathProgress): void {
   storageSet(STORAGE_KEY, progress);
 }
 
-export function isUnitUnlocked(unitId: string, unit: CourseUnit, progress: PathProgress): boolean {
+export function isUnitUnlocked(unitId: string, unit: CourseUnitMeta, progress: PathProgress): boolean {
   if (unit.prerequisites.length === 0) return true;
   return unit.prerequisites.every((prereq) => progress.completedUnits.includes(prereq));
 }
@@ -41,7 +57,7 @@ function findNextUnitId(unitId: string, chapters: Chapter[]): string | null {
 export function completeUnit(
   unitId: string,
   score: number,
-  unit: CourseUnit,
+  unit: CourseUnitMeta,
   chapters?: Chapter[]
 ): PathProgress {
   const progress = getPathProgress();
@@ -88,7 +104,7 @@ export function getHSKLevelCompletedCount(unitIds: string[], progress: PathProgr
 }
 
 export function getCurrentHSKLevel(progress: PathProgress): HSKLevel | undefined {
-  const currentUnit = getUnitById(progress.currentUnit);
+  const currentUnit = getUnitMetaById(progress.currentUnit);
   if (!currentUnit) return defaultHskLevels[0];
   return defaultHskLevels.find((l) => l.chapterNumbers.includes(currentUnit.chapter));
 }

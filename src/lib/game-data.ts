@@ -1,50 +1,24 @@
-import { allUnits } from "@/data/course";
-import { lessons } from "@/data/lessons";
+import { gameWords, type GameWord } from "@/data/game-words";
 
-export interface GameWord {
-  character: string;
-  french: string;
-  pinyin: string;
-}
+export type { GameWord };
 
-let _cachedWords: GameWord[] | null = null;
-
+/**
+ * Word pool shared by the three mini-games.
+ *
+ * Reads the pre-extracted list in src/data/game-words.ts rather than the course
+ * index: /games/* are client components, so importing the units here would ship
+ * every section, dialogue and exercise of the 88 units to the browser.
+ * Regenerate that file with scripts/generate-game-words.mjs after editing any
+ * unit or lesson vocabulary.
+ *
+ * The returned array is the module constant itself — treat it as read-only.
+ */
 export function getAllGameWords(): GameWord[] {
-  if (_cachedWords) return _cachedWords;
-
-  const words = new Map<string, GameWord>();
-
-  for (const unit of allUnits) {
-    for (const v of unit.vocabulary) {
-      if (!words.has(v.character)) {
-        words.set(v.character, {
-          character: v.character,
-          french: v.french,
-          pinyin: v.pinyin,
-        });
-      }
-    }
-  }
-
-  for (const lesson of lessons) {
-    for (const v of lesson.vocabulary) {
-      if (!words.has(v.character)) {
-        words.set(v.character, {
-          character: v.character,
-          french: v.french,
-          pinyin: v.pinyin,
-        });
-      }
-    }
-  }
-
-  _cachedWords = [...words.values()];
-  return _cachedWords;
+  return gameWords;
 }
 
 export function getRandomWords(count: number): GameWord[] {
-  const all = getAllGameWords();
-  const shuffled = [...all];
+  const shuffled = [...gameWords];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];

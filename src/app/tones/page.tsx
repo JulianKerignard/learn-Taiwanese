@@ -20,6 +20,7 @@ import { tonePairs, sandhiRules, type TonePair, type TonePairWord } from "@/data
 import { shuffleArray } from "@/lib/utils";
 import ProgressBar from "@/components/ProgressBar";
 import AudioButton from "@/components/AudioButton";
+import RubyText from "@/components/RubyText";
 
 type ExerciseMode = "listen" | "reverse";
 type PageView = "overview" | "grid" | "exercise" | "sandhi";
@@ -143,7 +144,7 @@ function ToneOverview({ onStart }: { onStart: () => void }) {
       <div className="card flex items-center gap-4 p-4">
         <ToneVisual tone={0} size={40} />
         <div>
-          <h3 className="font-semibold text-stone-700">{toneName(0)}</h3>
+          <h3 className="font-bold text-stone-700">{toneName(0)}</h3>
           <p className="text-sm text-stone-500">
             Court et faible, souvent pour les particules : <span className="chinese" lang="zh-Hant-TW">嗎</span> (ma),{" "}
             <span className="chinese" lang="zh-Hant-TW">的</span> (de), <span className="chinese" lang="zh-Hant-TW">了</span> (le)
@@ -355,7 +356,7 @@ function Exercise({
             <span className="chinese text-2xl text-stone-800" lang="zh-Hant-TW">{currentWord.chinese}</span>
             <AudioButton text={currentWord.chinese} size="sm" />
           </div>
-          <p className="text-xs text-stone-400 italic">{currentWord.pinyin}</p>
+          <p className="text-xs text-stone-500 italic">{currentWord.pinyin}</p>
         </div>
       ) : (
         <div className="flex flex-col items-center gap-3">
@@ -419,12 +420,19 @@ function Exercise({
             <AudioButton text={currentWord.chinese} size="sm" />
             <div className="flex-1">
               <span className="chinese text-lg font-medium text-stone-800" lang="zh-Hant-TW">
-                {currentWord.chinese}
+                {currentWord.zhuyin ? (
+                  <RubyText
+                    chinese={currentWord.chinese}
+                    pinyin={currentWord.zhuyin}
+                    showPinyin
+                    mode="zhuyin"
+                    pinyinSize="sm"
+                  />
+                ) : (
+                  currentWord.chinese
+                )}
               </span>
-              <span className="ml-2 text-sm italic text-stone-400">{currentWord.pinyin}</span>
-              {currentWord.zhuyin && (
-                <span className="ml-1 text-sm text-stone-400 chinese" lang="zh-Hant-TW">{currentWord.zhuyin}</span>
-              )}
+              <span className="ml-2 text-sm italic text-stone-500">{currentWord.pinyin}</span>
             </div>
             <span className="text-sm text-stone-500">{currentWord.french}</span>
           </div>
@@ -445,7 +453,7 @@ function SandhiSection() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-bold text-stone-800">Règles de sandhi tonal</h2>
+        <h2 className="text-title font-bold text-stone-800">Règles de sandhi tonal</h2>
         <p className="mt-1 text-sm text-stone-500">
           En mandarin, certains tons changent selon le contexte. Ces règles sont essentielles pour parler naturellement.
         </p>
@@ -453,7 +461,7 @@ function SandhiSection() {
 
       {sandhiRules.map((rule, i) => (
         <div key={i} className="card">
-          <h3 className="mb-2 text-base font-semibold text-stone-800">{rule.titleFr}</h3>
+          <h3 className="mb-2 text-base font-bold text-stone-800">{rule.titleFr}</h3>
           <p className="mb-4 text-sm text-stone-600">{rule.ruleFr}</p>
 
           <div className="space-y-2">
@@ -537,7 +545,7 @@ export default function TonesPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-stone-900">
+          <h1 className="text-display font-bold text-stone-900">
             <span className="chinese text-primary" lang="zh-Hant-TW">聲調</span> Les tons du mandarin
           </h1>
           <p className="mt-1 text-sm text-stone-500">
@@ -682,7 +690,7 @@ export default function TonesPage() {
                   <AudioButton text={word.chinese} size="sm" />
                   <div className="min-w-0 flex-1">
                     <span className="chinese text-base font-medium" lang="zh-Hant-TW">{word.chinese}</span>
-                    <p className="text-xs italic text-stone-400">{word.pinyin}</p>
+                    <p className="text-xs italic text-stone-500">{word.pinyin}</p>
                     <p className="text-xs text-stone-500 truncate">{word.french}</p>
                   </div>
                 </div>

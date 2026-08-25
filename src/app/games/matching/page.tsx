@@ -170,14 +170,14 @@ export default function MatchingPage() {
         </div>
       </div>
 
-      <h1 className="mb-6 text-center text-2xl font-bold text-stone-900">
+      <h1 className="text-display font-bold mb-6 text-center text-stone-900">
         Matching
       </h1>
 
       {finished ? (
         <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center">
           <div className="mb-2 text-4xl">&#127881;</div>
-          <h2 className="mb-2 text-xl font-bold text-emerald-700">
+          <h2 className="text-title font-bold mb-2 text-emerald-700">
             Bravo !
           </h2>
           <p className="mb-1 text-stone-600">
@@ -233,7 +233,7 @@ export default function MatchingPage() {
                   {card.type === "character" && (card.flipped || card.matched) && (
                     <div className="mt-1 flex flex-col items-center gap-0.5">
                       {showPinyin && (
-                        <span className="text-xs text-stone-400 italic">{card.word.pinyin}</span>
+                        <span className="text-xs text-stone-500 italic">{card.word.pinyin}</span>
                       )}
                       <AudioButton text={card.word.character} size="sm" />
                     </div>

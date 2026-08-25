@@ -16,6 +16,19 @@ const sectionIcons: Record<CourseSection["type"], string> = {
   practice: "✏️",
 };
 
+/**
+ * Three visual roles, not five. The five block types stay as they are in the
+ * data; what they share is a role, and each role is one semantic token pair:
+ * the tint is the ground, the -ink is the only colour allowed on it.
+ */
+type BlockRole = "info" | "caution" | "example";
+
+const roleStyles: Record<BlockRole, { box: string; label: string }> = {
+  info: { box: "border-accent/25 bg-accent/10", label: "text-accent-ink" },
+  caution: { box: "border-warning/30 bg-warning/10", label: "text-warning-ink" },
+  example: { box: "border-success/25 bg-success/10", label: "text-success-ink" },
+};
+
 function parseInlineFormatting(text: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
   const regex = /(\*\*(.+?)\*\*|\*(.+?)\*)/g;
@@ -41,6 +54,29 @@ function parseInlineFormatting(text: string): React.ReactNode[] {
   return parts.length > 0 ? parts : [text];
 }
 
+function Callout({
+  role,
+  icon,
+  label,
+  children,
+}: {
+  role: BlockRole;
+  icon: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  const style = roleStyles[role];
+  return (
+    <div className={cn("rounded-lg border p-4", style.box)}>
+      <p className={cn("mb-2 flex items-center gap-2 text-xs font-medium uppercase tracking-wide", style.label)}>
+        <span aria-hidden>{icon}</span>
+        {label}
+      </p>
+      {children}
+    </div>
+  );
+}
+
 function TextBlock({ block }: { block: ContentBlock }) {
   return (
     <p className="text-stone-700 leading-relaxed">
@@ -51,7 +87,7 @@ function TextBlock({ block }: { block: ContentBlock }) {
 
 function ExampleBlock({ block }: { block: ContentBlock }) {
   return (
-    <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+    <Callout role="example" icon="◆" label="Exemple">
       {block.chinese && (
         <div className="flex items-center gap-2 mb-1">
           <span className="chinese text-2xl text-stone-900" lang="zh-Hant-TW">{block.chinese}</span>
@@ -59,80 +95,68 @@ function ExampleBlock({ block }: { block: ContentBlock }) {
         </div>
       )}
       {block.pinyin && (
-        <p className="text-sm italic text-stone-500 mb-1">{block.pinyin}</p>
+        <p className="text-sm italic text-stone-600 mb-1">{block.pinyin}</p>
       )}
       {block.translation && (
-        <p className="text-sm italic text-stone-600">{block.translation}</p>
+        <p className="text-sm italic text-stone-700">{block.translation}</p>
       )}
       {block.content && (
-        <p className="mt-2 text-sm text-stone-500">
+        <p className="mt-2 text-sm text-stone-700">
           {parseInlineFormatting(block.content)}
         </p>
       )}
-    </div>
+    </Callout>
   );
 }
 
 function WarningBlock({ block }: { block: ContentBlock }) {
   return (
-    <div className="rounded-lg border border-orange-200 bg-orange-50 p-4">
-      <div className="flex items-center gap-2 mb-2">
-        <span>⚠️</span>
-        <span className="font-semibold text-orange-800">Attention</span>
-      </div>
-      <p className="text-sm text-orange-700 leading-relaxed">
+    <Callout role="caution" icon="⚠️" label="Attention">
+      <p className="text-sm text-stone-700 leading-relaxed">
         {parseInlineFormatting(block.content)}
       </p>
-    </div>
+    </Callout>
   );
 }
 
 function TipBlock({ block }: { block: ContentBlock }) {
   return (
-    <div className="rounded-lg border border-teal-200 bg-teal-50 p-4">
-      <div className="flex items-center gap-2 mb-2">
-        <span>💡</span>
-        <span className="font-semibold text-teal-800">Astuce</span>
-      </div>
-      <p className="text-sm text-teal-700 leading-relaxed">
+    <Callout role="info" icon="💡" label="Astuce">
+      <p className="text-sm text-stone-700 leading-relaxed">
         {parseInlineFormatting(block.content)}
       </p>
-    </div>
+    </Callout>
   );
 }
 
 function ComparisonBlock({ block }: { block: ContentBlock }) {
-  // If chinese field is provided, use content=FR and chinese=ZH
-  if (block.chinese) {
-    return (
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <div className="rounded-lg bg-blue-50 p-4">
-          <p className="mb-1 text-xs font-semibold uppercase text-blue-400">Français</p>
-          <p className="text-sm text-blue-800 leading-relaxed whitespace-pre-line">
-            {parseInlineFormatting(block.content)}
-          </p>
-        </div>
-        <div className="rounded-lg bg-rose-50 p-4">
-          <p className="mb-1 text-xs font-semibold uppercase text-rose-400">Chinois</p>
-          <p
-            className="text-sm text-rose-800 leading-relaxed chinese whitespace-pre-line"
-            lang="zh-Hant-TW"
-          >
-            {parseInlineFormatting(block.chinese)}
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  // Fallback: single block with full content (no forced split)
+  // With a chinese field the block is a two-column contrast: content=FR, chinese=ZH.
   return (
-    <div className="rounded-lg border border-indigo-200 bg-indigo-50/50 p-4">
-      <p className="mb-1 text-xs font-semibold uppercase text-indigo-400">Comparaison</p>
-      <p className="text-sm text-indigo-800 leading-relaxed whitespace-pre-line">
-        {parseInlineFormatting(block.content)}
-      </p>
-    </div>
+    <Callout role="info" icon="⇄" label="Comparaison">
+      {block.chinese ? (
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div>
+            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-accent-ink">Français</p>
+            <p className="text-sm text-stone-700 leading-relaxed whitespace-pre-line">
+              {parseInlineFormatting(block.content)}
+            </p>
+          </div>
+          <div>
+            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-accent-ink">Chinois</p>
+            <p
+              className="chinese text-sm text-stone-700 leading-relaxed whitespace-pre-line"
+              lang="zh-Hant-TW"
+            >
+              {parseInlineFormatting(block.chinese)}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <p className="text-sm text-stone-700 leading-relaxed whitespace-pre-line">
+          {parseInlineFormatting(block.content)}
+        </p>
+      )}
+    </Callout>
   );
 }
 
@@ -161,7 +185,7 @@ export default function CourseContent({ sections, className }: CourseContentProp
           {i > 0 && <hr className="mb-8 border-stone-200" />}
           <div className="flex items-center gap-2 mb-4">
             <span className="text-xl">{sectionIcons[section.type]}</span>
-            <h3 className="text-lg font-semibold text-stone-800">{section.title}</h3>
+            <h3 className="text-subtitle font-bold text-stone-800">{section.title}</h3>
           </div>
           <div className="flex flex-col gap-4 pl-1">
             {section.content.map((block, j) => (

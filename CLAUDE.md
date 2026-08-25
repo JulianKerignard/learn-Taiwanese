@@ -14,6 +14,8 @@ npm run build        # Production build
 npm run start        # Start production server
 npm run lint         # ESLint
 npm run generate-audio  # Pre-generate TTS audio files (Edge TTS) into public/audio/
+npm run generate-game-words  # Regenerate src/data/game-words.ts from the corpus
+npm run validate     # Corpus invariants (exercises, prerequisites, meta.ts vs index.ts)
 ```
 
 No test framework is configured.
@@ -26,7 +28,9 @@ Next.js App Router with `basePath: "/taiwan"` and `output: "standalone"`. All cl
 
 ### Data Layer (static, no CMS)
 
-- **Course path**: `src/data/course/chapter{1-7}/` — 44 units across 8 chapters, each a `CourseUnit` with sections, vocabulary, exercises, dialogues. Indexed via `src/data/course/index.ts` which exports `getUnitById()`, `getChapter()`, `getChapterUnits()`.
+- **Course path**: `src/data/course/chapter{1-7}/` — 88 units across 8 chapters, each a `CourseUnit` with sections, vocabulary, exercises, dialogues. Indexed via `src/data/course/index.ts` which exports `getUnitById()`, `getChapter()`, `getChapterUnits()`.
+- **Course catalogue (metadata only)**: `src/data/course/meta.ts` restates the 88 units' metadata (`CourseUnitMeta`: id, number, chapter, titles, description, icon, requiredScore, prerequisites) plus `chapters` and `hskLevels`, and imports no unit module. **Client components must import from `@/data/course/meta`, never `@/data/course`** — the full index drags all 88 unit modules into the route's browser bundle. Only server components (`src/app/path/[unit]/page.tsx`) and the dictionary read the full index.
+- **Game words**: `src/data/game-words.ts` is generated (`npm run generate-game-words`) from the units' and lessons' vocabulary so `/games/*` never bundles the course. `npm run validate` fails when it drifts.
 - **Standalone lessons**: `src/data/lessons/` — 10 themed lessons (basics, restaurant, transport, etc.) independent of the course path.
 - **Other**: `readings.ts` (3 difficulty levels), `tone-pairs.ts`, `funfacts.ts`.
 
@@ -49,7 +53,24 @@ Handled by `src/lib/tts.ts`:
 
 ### Auth
 
-Simple username-based auth (no passwords). HTTP-only cookies for sessions. API routes: `/api/auth/login`, `/api/auth/logout`, `/api/auth/me`. SQLite stores users and their synced data in `src/lib/db.ts`.
+Username-only login, no password — a documented product choice. The session is a
+**signed cookie**, not a plain id: `src/lib/auth.ts` HMACs the user id with
+`SESSION_SECRET`, and `getSessionUserId()` is the only way the API routes read it.
+An unsigned or tampered cookie yields `null`, so pre-existing sessions are invalidated
+rather than trusted.
+
+**`SESSION_SECRET` is required in production.** Without it the app throws on the first
+login instead of silently signing with a per-process random key. Generate one with
+`openssl rand -hex 32` and set it in the server environment.
+
+Also enforced: `sameSite: "strict"` plus an `Origin` check on login and save
+(login-CSRF), `/api/users` requires a session and no longer returns account ids,
+`/api/progress/save` caps each key at 512 kB and the body at 4 MB, and
+`db.pragma("foreign_keys = ON")` — off by default in SQLite, which made the
+`user_data` foreign key decorative.
+
+API routes: `/api/auth/{login,logout,me}`, `/api/progress/{load,save}`, `/api/users`.
+SQLite stores users and their synced data in `src/lib/db.ts`.
 
 ### Gamification
 

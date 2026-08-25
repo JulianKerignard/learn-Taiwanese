@@ -97,7 +97,7 @@ export default function HangmanPage() {
         </Link>
       </div>
 
-      <h1 className="mb-6 text-center text-2xl font-bold text-stone-900">
+      <h1 className="text-display font-bold mb-6 text-center text-stone-900">
         Pendu Chinois
       </h1>
 
@@ -118,7 +118,7 @@ export default function HangmanPage() {
           {target.french}
         </p>
         {showPinyin && (
-          <p className="mt-1 text-sm italic text-stone-400">{target.pinyin}</p>
+          <p className="mt-1 text-sm italic text-stone-500">{target.pinyin}</p>
         )}
       </div>
 
@@ -173,7 +173,7 @@ export default function HangmanPage() {
             {phase === "won" ? "\u{1F389}" : "\u{1F614}"}
           </div>
           <h2
-            className={`mb-2 text-lg font-bold ${
+            className={`text-title font-bold mb-2 ${
               phase === "won" ? "text-emerald-700" : "text-red-700"
             }`}
           >

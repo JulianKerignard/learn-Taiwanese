@@ -65,7 +65,7 @@ export default function ReadingPage() {
             <BookOpen className="text-primary" size={22} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-stone-900">Lecture gradée</h1>
+            <h1 className="text-display font-bold text-stone-900">Lecture gradée</h1>
             <p className="text-sm text-stone-500">
               Apprends par l&apos;immersion avec des textes adaptés à ton niveau
             </p>
@@ -81,7 +81,7 @@ export default function ReadingPage() {
             >
               <div className={cn("h-2 w-2 rounded-full", levelConfig[level].dot)} />
               <span className="text-xs text-stone-500">{levelConfig[level].label}</span>
-              <span className="text-xs font-semibold text-stone-700">
+              <span className="text-xs font-bold text-stone-700">
                 {countByLevel(level)}/{totalByLevel(level)}
               </span>
             </div>

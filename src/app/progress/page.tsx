@@ -22,7 +22,7 @@ import {
 } from "@/lib/gamification";
 import { getGamification } from "@/lib/storage";
 import { getStats } from "@/lib/fsrs";
-import { chapters, allUnits } from "@/data/course";
+import { chapters, allUnitMetas } from "@/data/course/meta";
 import { lessons } from "@/data/lessons";
 import type { UserProgress, XPEvent } from "@/types";
 import type { GamificationData } from "@/types";
@@ -107,8 +107,6 @@ export default function ProgressPage() {
     window.location.reload();
   }
 
-  if (!loaded) return null;
-
   const isFirstVisit = !progress?.lastStudyDate && !gamification?.totalXP && !pathProgress?.completedUnits.length;
 
   const levelInfo = getLevelFromTotalXP(gamification?.totalXP ?? 0);
@@ -118,21 +116,22 @@ export default function ProgressPage() {
   );
 
   const overallCompleted = pathProgress?.completedUnits.length ?? 0;
-  const overallTotal = allUnits.length;
+  const overallTotal = allUnitMetas.length;
   const overallPct =
     overallTotal > 0 ? Math.round((overallCompleted / overallTotal) * 100) : 0;
 
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-3xl font-bold text-stone-900">Progression</h1>
+        <h1 className="text-display font-bold text-stone-900">Progression</h1>
         <p className="mt-1 text-stone-500">
           Suis tes avancées et reste motivé.
         </p>
       </div>
 
       {/* Bannière premier accès */}
-      {isFirstVisit && (
+      {/* A claim about the reader: it waits until localStorage has been read. */}
+      {loaded && isFirstVisit && (
         <div className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4 border-primary/30 bg-primary/5">
           <Map className="h-10 w-10 text-primary shrink-0" />
           <div className="flex-1">
@@ -173,7 +172,7 @@ export default function ProgressPage() {
       {/* Section 2: Progression du parcours */}
       <section className="card">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-stone-800">
+          <h2 className="text-title font-bold text-stone-800">
             Ton parcours
           </h2>
           <span className="text-sm font-medium text-primary">{overallPct}%</span>
@@ -194,7 +193,7 @@ export default function ProgressPage() {
               <div key={chapter.number} className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-stone-700">
+                    <span className="text-sm font-bold text-stone-700">
                       Chapitre {chapter.number}
                     </span>
                     <span className="text-sm text-stone-500">
@@ -237,37 +236,49 @@ export default function ProgressPage() {
 
       {/* Section XP Graph (7 last days) */}
       <section className="card">
-        <h2 className="mb-4 text-lg font-semibold text-stone-800">
+        <h2 className="text-title font-bold mb-4 text-stone-800">
           XP des 7 derniers jours
         </h2>
-        {(() => {
-          const xpDays = getXpByDay(gamification?.xpHistory ?? []);
-          const maxXp = Math.max(...xpDays.map((d) => d.xp), 1);
-          return (
-            <div className="grid grid-cols-7 gap-2 items-end" style={{ height: 160 }}>
-              {xpDays.map((d) => (
-                <div key={d.day} className="flex flex-col items-center gap-1 h-full justify-end">
-                  <span className="text-xs font-medium text-stone-600">
-                    {d.xp > 0 ? d.xp : ""}
-                  </span>
-                  <div
-                    className={`w-full rounded-t-md ${d.xp > 0 ? "bg-success" : "bg-stone-200"}`}
-                    style={{
-                      height: `${Math.max((d.xp / maxXp) * 100, 8)}%`,
-                      minHeight: 8,
-                    }}
-                  />
-                  <span className="text-xs text-stone-400">{d.label}</span>
-                </div>
-              ))}
-            </div>
-          );
-        })()}
+        {/* The seven day labels come from the reader's clock, not the build clock:
+            rendering them before hydration would mismatch on any day but one. */}
+        {loaded ? (
+          (() => {
+            const xpDays = getXpByDay(gamification?.xpHistory ?? []);
+            const maxXp = Math.max(...xpDays.map((d) => d.xp), 1);
+            return (
+              <div className="grid grid-cols-7 gap-2 items-end" style={{ height: 160 }}>
+                {xpDays.map((d) => (
+                  <div key={d.day} className="flex flex-col items-center gap-1 h-full justify-end">
+                    <span className="text-xs font-medium text-stone-600">
+                      {d.xp > 0 ? d.xp : ""}
+                    </span>
+                    <div
+                      className={`w-full rounded-t-md ${d.xp > 0 ? "bg-success" : "bg-stone-200"}`}
+                      style={{
+                        height: `${Math.max((d.xp / maxXp) * 100, 8)}%`,
+                        minHeight: 8,
+                      }}
+                    />
+                    <span className="text-xs text-stone-400">{d.label}</span>
+                  </div>
+                ))}
+              </div>
+            );
+          })()
+        ) : (
+          <div className="grid grid-cols-7 gap-2 items-end" style={{ height: 160 }} aria-hidden>
+            {Array.from({ length: 7 }, (_, i) => (
+              <div key={i} className="h-full flex items-end">
+                <div className="w-full rounded-t-md bg-stone-100" style={{ height: 8 }} />
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Section Study Time */}
       <section>
-        <h2 className="mb-4 text-lg font-semibold text-stone-800">
+        <h2 className="text-title font-bold mb-4 text-stone-800">
           Temps d'étude
         </h2>
         {(() => {
@@ -305,7 +316,7 @@ export default function ProgressPage() {
 
       {/* Section Mistakes */}
       <section className="card">
-        <h2 className="mb-4 text-lg font-semibold text-stone-800">
+        <h2 className="text-title font-bold mb-4 text-stone-800">
           Mots les plus ratés
         </h2>
         {(() => {
@@ -313,11 +324,12 @@ export default function ProgressPage() {
             .sort(([, a], [, b]) => b - a)
             .slice(0, 10);
           if (sorted.length === 0) {
-            return (
+            // Before hydration an empty list means "not read yet", not "no mistakes".
+            return loaded ? (
               <p className="text-sm text-stone-400">
                 Aucune erreur ! Continue comme ça.
               </p>
-            );
+            ) : null;
           }
           return (
             <ul className="flex flex-col gap-2">
@@ -337,7 +349,7 @@ export default function ProgressPage() {
 
       {/* Section 3: Gamification */}
       <section className="card">
-        <h2 className="mb-4 text-lg font-semibold text-stone-800">
+        <h2 className="text-title font-bold mb-4 text-stone-800">
           Niveau et trophées
         </h2>
 
@@ -361,7 +373,7 @@ export default function ProgressPage() {
         </div>
 
         {/* Achievements */}
-        <h3 className="mb-3 text-sm font-semibold text-stone-700">
+        <h3 className="mb-3 text-sm font-bold text-stone-700">
           Trophées débloqués
         </h3>
         {unlockedAchievements.length > 0 ? (
@@ -394,7 +406,7 @@ export default function ProgressPage() {
 
       {/* Section 4: Lecons completees */}
       <section className="card">
-        <h2 className="mb-3 text-lg font-semibold text-stone-800">
+        <h2 className="text-title font-bold mb-3 text-stone-800">
           <BookOpen className="mr-2 inline h-5 w-5 text-primary" />
           Leçons
         </h2>
@@ -430,7 +442,7 @@ export default function ProgressPage() {
       {/* Section 6: Les autres */}
       {otherUsers.length > 0 && (
         <section>
-          <h2 className="mb-4 text-lg font-semibold text-stone-800 flex items-center gap-2">
+          <h2 className="text-title font-bold mb-4 text-stone-800 flex items-center gap-2">
             <Star className="h-5 w-5 text-warning" />
             L'équipe
           </h2>
@@ -438,13 +450,13 @@ export default function ProgressPage() {
             {otherUsers
               .sort((a, b) => b.totalXP - a.totalXP)
               .map((u, rank) => (
-              <div key={u.id} className="card flex flex-col gap-3">
+              <div key={u.username} className="card flex flex-col gap-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
                       {rank === 0 ? "🥇" : rank === 1 ? "🥈" : rank === 2 ? "🥉" : rank + 1}
                     </span>
-                    <span className="font-semibold text-stone-800 capitalize">{u.username}</span>
+                    <span className="font-bold text-stone-800 capitalize">{u.username}</span>
                   </div>
                   <span className="badge bg-stone-100 text-stone-500">Niv. {u.level}</span>
                 </div>
@@ -491,7 +503,7 @@ export default function ProgressPage() {
 
       {/* Section 7: Reset */}
       <section className="card border-danger/30">
-        <h2 className="mb-2 text-lg font-semibold text-danger">
+        <h2 className="text-title font-bold mb-2 text-danger">
           Zone de danger
         </h2>
         {!showReset ? (

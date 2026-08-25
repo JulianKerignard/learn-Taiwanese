@@ -170,7 +170,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 current.question
               )}
               {hasChinese(current.question) && current.hint && (
-                <span className="ml-2 text-sm text-stone-400 italic">({current.hint})</span>
+                <span className="ml-2 text-sm text-stone-500 italic">({current.hint})</span>
               )}
             </p>
           )}
@@ -292,7 +292,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                     <span className="flex-1">
                       <span lang={hasChinese(option) ? "zh-Hant-TW" : undefined}>{option}</span>
                       {hasChinese(option) && (optPinyin || optZhuyin) && (
-                        <span className="ml-2 text-xs text-stone-400 italic">
+                        <span className="ml-2 text-xs text-stone-500 italic">
                           {optPinyin}
                           {optPinyin && optZhuyin && <span className="mx-1 text-stone-300">|</span>}
                           {optZhuyin && (
@@ -332,7 +332,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 </span>
                 {!isCorrect && hasChinese(current.correctAnswer) && (
                   <div className="flex items-center gap-2 mt-1">
-                    {current.hint && <span className="text-xs text-stone-400 italic">{current.hint}</span>}
+                    {current.hint && <span className="text-xs text-stone-500 italic">{current.hint}</span>}
                     <AudioButton text={current.correctAnswer} size="sm" />
                   </div>
                 )}

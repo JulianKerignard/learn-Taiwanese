@@ -102,15 +102,22 @@ function CharTooltip({
       >
         <div className="flex items-center gap-2">
           <span className="chinese text-2xl font-medium text-stone-900" lang="zh-Hant-TW">
-            {data.character}
+            {showZhuyin && data.zhuyin ? (
+              <RubyText
+                chinese={data.character}
+                pinyin={data.zhuyin}
+                showPinyin
+                mode="zhuyin"
+                pinyinSize="sm"
+              />
+            ) : (
+              data.character
+            )}
           </span>
           <AudioButton text={data.character} size="sm" />
         </div>
         {showPinyin && (
           <p className="mt-1 text-sm italic text-stone-500">{data.pinyin}</p>
-        )}
-        {showZhuyin && (
-          <p className="mt-0.5 text-sm text-stone-400 chinese" lang="zh-Hant-TW">{data.zhuyin}</p>
         )}
         <p className="text-sm text-stone-700">{data.french}</p>
         <button
@@ -290,7 +297,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
           )}
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="chinese text-xl font-bold text-stone-900" lang="zh-Hant-TW">
+              <h2 className="text-title font-bold chinese text-stone-900" lang="zh-Hant-TW">
                 {reading.title}
               </h2>
               <span className={cn("badge", levelColor)}>Niveau {reading.level}</span>
@@ -447,7 +454,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
 
             {/* Sentence breakdown */}
             <div className="mt-8 space-y-3 border-t border-stone-100 pt-6">
-              <h3 className="text-sm font-semibold text-stone-500 uppercase tracking-wider">
+              <h3 className="text-sm font-bold text-stone-500 uppercase tracking-wider">
                 Phrases
               </h3>
               {reading.sentences.map((s, i) => (
@@ -459,7 +466,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
                   <div className="flex-1">
                     <p className="chinese text-base text-stone-900" lang="zh-Hant-TW">{s.chinese}</p>
                     {showPinyin && (
-                      <p className="text-xs italic text-stone-400">{s.pinyin}</p>
+                      <p className="text-xs italic text-stone-500">{s.pinyin}</p>
                     )}
                     <button
                       onClick={() => toggleTranslation(i)}
@@ -476,7 +483,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
 
         {/* Vocabulary */}
         <div className="mt-8 border-t border-stone-100 pt-6">
-          <h3 className="text-sm font-semibold text-stone-500 uppercase tracking-wider mb-3">
+          <h3 className="text-sm font-bold text-stone-500 uppercase tracking-wider mb-3">
             Vocabulaire
           </h3>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -492,12 +499,21 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
               >
                 <AudioButton text={v.character} size="sm" />
                 <div className="min-w-0 flex-1">
-                  <span className="chinese font-medium text-stone-900" lang="zh-Hant-TW">{v.character}</span>
+                  <span className="chinese font-medium text-stone-900" lang="zh-Hant-TW">
+                    {(displayMode === "zhuyin" || displayMode === "both") && v.zhuyin ? (
+                      <RubyText
+                        chinese={v.character}
+                        pinyin={v.zhuyin}
+                        showPinyin
+                        mode="zhuyin"
+                        pinyinSize="sm"
+                      />
+                    ) : (
+                      v.character
+                    )}
+                  </span>
                   {(displayMode === "pinyin" || displayMode === "both") && (
-                    <span className="ml-1 text-xs text-stone-400 italic">{v.pinyin}</span>
-                  )}
-                  {(displayMode === "zhuyin" || displayMode === "both") && v.zhuyin && (
-                    <span className="ml-1 text-xs text-stone-400 chinese" lang="zh-Hant-TW">{v.zhuyin}</span>
+                    <span className="ml-1 text-xs text-stone-500 italic">{v.pinyin}</span>
                   )}
                   <p className="truncate text-xs text-stone-500">{v.french}</p>
                 </div>
@@ -518,7 +534,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
         {/* Cultural note */}
         {reading.culturalNote && (
           <div className="mt-6 rounded-lg bg-accent/5 border border-accent/20 p-4">
-            <h3 className="text-sm font-semibold text-accent mb-1">Note culturelle</h3>
+            <h3 className="text-sm font-bold text-accent-ink mb-1">Note culturelle</h3>
             <p className="text-sm text-stone-600 leading-relaxed">{reading.culturalNote}</p>
           </div>
         )}

@@ -11,19 +11,21 @@ import {
   Map,
 } from "lucide-react";
 import Link from "next/link";
-import { getProgress, getCards } from "@/lib/storage";
+import { getProgress, getCards, defaultProgress } from "@/lib/storage";
 import { getStats } from "@/lib/fsrs";
 import { lessons } from "@/data/lessons";
-import { getPathProgress } from "@/lib/progress";
-import { getUnitById } from "@/data/course";
+import { getPathProgress, EMPTY_PATH_PROGRESS } from "@/lib/progress";
+import { getUnitMetaById } from "@/data/course/meta";
 import { getCurrentHSKLevel } from "@/lib/progress";
 import type { UserProgress } from "@/types";
 import type { PathProgress } from "@/types/course";
 
 export default function HomePage() {
-  const [progress, setProgress] = useState<UserProgress | null>(null);
+  // Start from the defaults so the page prerenders with real content: returning
+  // null until hydration left <main> at 17 bytes.
+  const [progress, setProgress] = useState<UserProgress>(defaultProgress);
   const [cardStats, setCardStats] = useState({ total: 0, due: 0, learned: 0, mature: 0, newCards: 0 });
-  const [pathProgress, setPathProgress] = useState<PathProgress | null>(null);
+  const [pathProgress, setPathProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
 
   useEffect(() => {
     const p = getProgress();
@@ -33,15 +35,13 @@ export default function HomePage() {
     setPathProgress(getPathProgress());
   }, []);
 
-  if (!progress) return null;
-
   const displayedLessons = lessons.slice(0, 5);
 
   return (
     <div className="flex flex-col gap-10">
       {/* Hero */}
       <section className="text-center">
-        <h1 className="text-4xl font-bold text-stone-900">
+        <h1 className="text-display font-bold text-stone-900">
           Bienvenue, <span className="chinese text-primary">歡迎!</span>
         </h1>
         <p className="mt-2 text-lg text-stone-500">
@@ -79,7 +79,7 @@ export default function HomePage() {
       {/* Continuer */}
       {cardStats.due > 0 && (
         <section>
-          <h2 className="mb-4 text-xl font-semibold text-stone-800">Continuer</h2>
+          <h2 className="text-title font-bold mb-4 text-stone-800">Continuer</h2>
           <div className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
@@ -102,7 +102,7 @@ export default function HomePage() {
       {/* Leçons */}
       <section>
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-stone-800">Leçons</h2>
+          <h2 className="text-title font-bold text-stone-800">Leçons</h2>
           <Link href="/lessons" className="text-sm font-medium text-primary hover:underline">
             Voir tout
           </Link>
@@ -115,10 +115,10 @@ export default function HomePage() {
                 <div className="flex items-start gap-3">
                   <span className="text-3xl">{lesson.icon}</span>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-stone-800 group-hover:text-primary transition-colors">
+                    <h3 className="font-bold text-stone-800 group-hover:text-primary transition-colors">
                       {lesson.title}
                     </h3>
-                    <p className="chinese text-sm text-stone-400">{lesson.titleZh}</p>
+                    <p className="chinese text-sm text-stone-500">{lesson.titleZh}</p>
                     <p className="mt-1 text-sm text-stone-500 line-clamp-2">{lesson.description}</p>
                     {completed && (
                       <span className="badge mt-2 bg-success/10 text-success">Complétée</span>
@@ -135,7 +135,7 @@ export default function HomePage() {
 }
 
 function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
-  const currentUnit = getUnitById(pathProgress.currentUnit);
+  const currentUnit = getUnitMetaById(pathProgress.currentUnit);
   const hasStarted = pathProgress.completedUnits.length > 0;
   const currentLevel = getCurrentHSKLevel(pathProgress);
 

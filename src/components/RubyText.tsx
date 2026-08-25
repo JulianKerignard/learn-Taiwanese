@@ -4,19 +4,27 @@ import { cn } from "@/lib/cn";
 
 interface RubyTextProps {
   chinese: string;
+  /** Reading to annotate with: pinyin syllables, or zhuyin in "zhuyin" mode. */
   pinyin: string;
   showPinyin: boolean;
   pinyinSize?: "xs" | "sm" | "md";
   charSize?: string;
+  /**
+   * "pinyin" sets the reading above the character; "zhuyin" sets it vertically
+   * to its right (ruby-position: inter-character), the way every Taiwanese
+   * textbook does. Browsers without inter-character fall back to "over", which
+   * is still a correct annotation.
+   */
+  mode?: "pinyin" | "zhuyin";
   className?: string;
 }
 
 /**
- * Splits pinyin string into syllables aligned with Chinese characters.
- * Handles multi-char words by matching syllable count to character count.
+ * Splits a reading into syllables aligned with Chinese characters.
+ * Pinyin and zhuyin are both whitespace-separated, one syllable per character.
  */
-function alignPinyinToChars(chinese: string, pinyin: string): string[] {
-  const syllables = pinyin
+function alignReadingToChars(chinese: string, reading: string): string[] {
+  const syllables = reading
     .replace(/[，。！？、；：""''（）…—]/g, "")
     .split(/[\s]+/)
     .filter(Boolean);
@@ -43,9 +51,10 @@ export default function RubyText({
   showPinyin,
   pinyinSize = "xs",
   charSize,
+  mode = "pinyin",
   className,
 }: RubyTextProps) {
-  const aligned = alignPinyinToChars(chinese, pinyin);
+  const aligned = alignReadingToChars(chinese, pinyin);
   const chars = chinese.split("");
 
   const rtSize = {
@@ -53,6 +62,8 @@ export default function RubyText({
     sm: "text-xs",
     md: "text-sm",
   }[pinyinSize];
+
+  const isZhuyin = mode === "zhuyin";
 
   return (
     <span className={cn("inline", className)} lang="zh-Hant-TW">
@@ -68,12 +79,13 @@ export default function RubyText({
         }
 
         return (
-          <ruby key={i} className={charSize}>
+          <ruby key={i} className={cn(charSize, isZhuyin && "ruby-zhuyin")}>
             {char}
             <rt
               className={cn(
                 rtSize,
-                "font-normal text-stone-400 transition-opacity duration-200",
+                isZhuyin && "chinese",
+                "font-normal text-stone-500 transition-opacity duration-200",
                 showPinyin ? "opacity-100" : "opacity-0"
               )}
             >

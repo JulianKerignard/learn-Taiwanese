@@ -94,7 +94,7 @@ export default function AuthModal({ isOpen, onClose, onAuth }: AuthModalProps) {
               <UserPlus size={24} className="text-primary" />
             )}
           </div>
-          <h2 className="text-lg font-bold text-stone-900">
+          <h2 className="text-title font-bold text-stone-900">
             {mode === "login" ? "Se connecter" : "Creer un compte"}
           </h2>
           <p className="mt-1 text-sm text-stone-500">

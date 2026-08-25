@@ -50,7 +50,7 @@ export default function FunFactsPage() {
             <Sparkles className="text-primary" size={22} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-stone-900">Fun Facts sur Taiwan</h1>
+            <h1 className="text-display font-bold text-stone-900">Fun Facts sur Taiwan</h1>
             <p className="text-sm text-stone-500">
               Des anecdotes pour briller en société
             </p>
@@ -133,7 +133,7 @@ export default function FunFactsPage() {
             </p>
             {fact.chinese && (
               <div className="mt-3 inline-flex items-center gap-2 rounded-lg border border-stone-200 bg-white/60 px-3 py-1.5">
-                <span className="chinese text-lg font-semibold text-stone-900">
+                <span className="chinese text-lg font-bold text-stone-900">
                   {fact.chinese}
                 </span>
                 {fact.pinyin && (

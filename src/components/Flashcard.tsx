@@ -389,7 +389,10 @@ function WritingMode({
       {revealed && (
         <div className="flex flex-col items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 p-4">
           <p className="text-xs text-stone-500">Caractère correct :</p>
-          <span className="text-5xl font-bold text-stone-900" lang="zh-Hant-TW">
+          <span
+            className="character-display character-display--boxed text-stone-900"
+            lang="zh-Hant-TW"
+          >
             {card.front}
           </span>
           <AudioButton text={card.front} size="md" />

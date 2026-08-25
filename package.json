@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint src",
     "generate-audio": "node scripts/generate-audio.mjs",
+    "generate-game-words": "node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-game-words.mjs",
     "validate": "node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/validate-corpus.mjs"
   },
   "keywords": [],

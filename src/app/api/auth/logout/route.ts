@@ -5,8 +5,8 @@ export async function POST() {
     status: 200,
     headers: [
       ["Content-Type", "application/json"],
-      ["Set-Cookie", `${COOKIE_NAME}=; Max-Age=0; Path=/taiwan; HttpOnly; SameSite=Lax`],
-      ["Set-Cookie", `${COOKIE_NAME}=; Max-Age=0; Path=/; HttpOnly; SameSite=Lax`],
+      ["Set-Cookie", `${COOKIE_NAME}=; Max-Age=0; Path=/taiwan; HttpOnly; SameSite=Strict`],
+      ["Set-Cookie", `${COOKIE_NAME}=; Max-Age=0; Path=/; HttpOnly; SameSite=Strict`],
     ],
   });
 }

@@ -6,19 +6,23 @@ import { ArrowLeft, ChevronRight } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { ChapterSection } from "@/components/ChapterSection";
 import { cn } from "@/lib/cn";
-import { getPathProgress, getHSKLevelCompletedCount } from "@/lib/progress";
-import { hskLevels, getHSKLevelChapters, getHSKLevelUnits, chapters } from "@/data/course";
+import {
+  getPathProgress,
+  getHSKLevelCompletedCount,
+  EMPTY_PATH_PROGRESS,
+} from "@/lib/progress";
+import {
+  hskLevels,
+  getHSKLevelChapters,
+  getHSKLevelUnitMetas,
+  chapters,
+} from "@/data/course/meta";
 import type { PathProgress } from "@/types/course";
 
-const LEVEL_COLORS = [
-  "from-emerald-500 to-teal-600",
-  "from-sky-500 to-blue-600",
-  "from-violet-500 to-purple-600",
-  "from-rose-500 to-red-600",
-];
-
 export default function HSKLevelContent({ level }: { level: number }) {
-  const [progress, setProgress] = useState<PathProgress | null>(null);
+  // Start from empty rather than null: returning null until hydration left the
+  // prerendered page with no content at all, so the LCP waited on the bundle.
+  const [progress, setProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
 
   useEffect(() => {
     setProgress(getPathProgress());
@@ -26,20 +30,19 @@ export default function HSKLevelContent({ level }: { level: number }) {
 
   const hskLevel = hskLevels.find((l) => l.level === level);
   if (!hskLevel) return null;
-  if (!progress) return null;
 
   if (hskLevel.comingSoon) {
     return (
       <div className="flex flex-col gap-10">
-        <Link href="/path" className="flex items-center gap-1 text-sm text-stone-400 hover:text-primary transition-colors">
+        <Link href="/path" className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors">
           <ArrowLeft className="h-4 w-4" />
           Tous les niveaux
         </Link>
         <div className="card text-center py-16">
           <div className="text-5xl mb-4">🚧</div>
-          <h1 className="text-2xl font-bold text-stone-800 mb-2">HSK {level} — {hskLevel.title}</h1>
+          <h1 className="text-display font-bold text-stone-800 mb-2">HSK {level} — {hskLevel.title}</h1>
           <p className="text-stone-500 mb-1">{hskLevel.description}</p>
-          <p className="text-sm text-stone-400">{hskLevel.tocflLabel}</p>
+          <p className="text-sm text-stone-500">{hskLevel.tocflLabel}</p>
           <p className="mt-6 text-stone-500">Ce niveau est en cours de préparation. Reviens bientôt !</p>
           <Link href="/path" className="btn-primary mt-6 inline-flex">
             Retour aux niveaux
@@ -50,7 +53,7 @@ export default function HSKLevelContent({ level }: { level: number }) {
   }
 
   const levelChapters = getHSKLevelChapters(hskLevel);
-  const levelUnits = getHSKLevelUnits(hskLevel);
+  const levelUnits = getHSKLevelUnitMetas(hskLevel);
   const unitIds = levelUnits.map((u) => u.id);
   const completedCount = getHSKLevelCompletedCount(unitIds, progress);
   const totalCount = levelUnits.length;
@@ -68,7 +71,7 @@ export default function HSKLevelContent({ level }: { level: number }) {
       {/* Back link */}
       <Link
         href="/path"
-        className="flex items-center gap-1 text-sm text-stone-400 hover:text-primary transition-colors"
+        className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
         Tous les niveaux
@@ -78,16 +81,16 @@ export default function HSKLevelContent({ level }: { level: number }) {
       <section>
         <div className="flex items-center gap-4">
           <div className={cn(
-            "flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br text-2xl font-black text-white",
-            LEVEL_COLORS[level - 1] || LEVEL_COLORS[0]
+            "flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-bold text-white",
+            hskLevel.color.badge
           )}>
             {level}
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-stone-900">
+            <h1 className="text-display font-bold text-stone-900">
               HSK {level} — {hskLevel.title}
             </h1>
-            <p className="chinese text-stone-400" lang="zh-Hant-TW">{hskLevel.titleZh}</p>
+            <p className="chinese text-stone-500" lang="zh-Hant-TW">{hskLevel.titleZh}</p>
             <p className="text-sm text-stone-500">{hskLevel.tocflLabel}</p>
           </div>
         </div>

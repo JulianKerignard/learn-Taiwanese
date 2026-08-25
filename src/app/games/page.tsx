@@ -36,7 +36,7 @@ export default function GamesPage() {
   return (
     <main className="mx-auto max-w-4xl px-4 py-12">
       <div className="mb-10 text-center">
-        <h1 className="text-3xl font-bold text-stone-900">Mini-jeux</h1>
+        <h1 className="text-display font-bold text-stone-900">Mini-jeux</h1>
         <p className="mt-2 text-stone-500">
           Pratique le vocabulaire en t&apos;amusant
         </p>
@@ -54,7 +54,7 @@ export default function GamesPage() {
             >
               {game.emoji}
             </div>
-            <h2 className="mb-1 text-lg font-bold text-stone-900">
+            <h2 className="text-title font-bold mb-1 text-stone-900">
               {game.name}
             </h2>
             <p className="text-sm text-stone-500">{game.description}</p>

@@ -1,4 +1,9 @@
 import type { CourseUnit, Chapter, HSKLevel } from "@/types/course";
+// The level table — colours included — is declared once, in ./levels, and
+// re-exported by both this index and ./meta so the two can no longer drift.
+import { hskLevels } from "./levels";
+
+export { hskLevels };
 
 // Chapter 1 - Fondations
 import { unit01 } from "./chapter1/unit01";
@@ -194,46 +199,6 @@ export function getChapterUnits(chapterNumber: number): CourseUnit[] {
 
 // ── HSK / TOCFL Levels ──────────────────────────────────────────────
 
-export const hskLevels: HSKLevel[] = [
-  {
-    level: 1,
-    slug: "hsk-1",
-    title: "Fondations & Survie",
-    titleZh: "基礎",
-    tocflLabel: "TOCFL Niveau 1 (入門級)",
-    description: "Prononciation, tons, grammaire de base et conversations essentielles pour le quotidien",
-    chapterNumbers: [1, 2],
-  },
-  {
-    level: 2,
-    slug: "hsk-2",
-    title: "Communication",
-    titleZh: "初級",
-    tocflLabel: "TOCFL Niveau 2 (基礎級)",
-    description: "Construction de phrases, vie sociale, culture taiwanaise et grammaire intermédiaire",
-    chapterNumbers: [3, 4, 5],
-  },
-  {
-    level: 3,
-    slug: "hsk-3",
-    title: "Approfondissement",
-    titleZh: "中級",
-    tocflLabel: "TOCFL Niveau 3 (進階級)",
-    description: "Grammaire avancée, pratique intensive et préparation aux certifications",
-    chapterNumbers: [6, 7, 8],
-    comingSoon: true,
-  },
-  {
-    level: 4,
-    slug: "hsk-4",
-    title: "Maîtrise",
-    titleZh: "進階",
-    tocflLabel: "TOCFL Niveau 4 (高階級)",
-    description: "Expression complexe, lecture avancée et discussions abstraites",
-    chapterNumbers: [],
-    comingSoon: true,
-  },
-];
 
 export function getHSKLevel(levelNumber: number): HSKLevel | undefined {
   return hskLevels.find((l) => l.level === levelNumber);

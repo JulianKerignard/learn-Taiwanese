@@ -1,6 +1,14 @@
 import type { SM2Card } from "@/types";
 import type { HSKLevel } from "@/types/course";
-import { chapters, hskLevels, getUnitById, getHSKLevelForUnit } from "@/data/course";
+// Metadata only: grouping needs a unit's number, title and chapter, never its
+// sections or exercises. /revision is a client route, so importing
+// @/data/course here would ship the whole catalogue to the browser.
+import {
+  chapters,
+  hskLevels,
+  getUnitMetaById,
+  getHSKLevelForUnit,
+} from "@/data/course/meta";
 import { lessons } from "@/data/lessons";
 
 // ── Card source parsing ─────────────────────────────────────────────
@@ -39,7 +47,7 @@ function getCardSource(card: SM2Card): CardSource {
 
   // Resolve chapter and HSK level from unit
   if (result.unitId) {
-    const unit = getUnitById(result.unitId);
+    const unit = getUnitMetaById(result.unitId);
     if (unit) {
       result.chapterNum = unit.chapter;
       const hsk = getHSKLevelForUnit(unit);
@@ -92,7 +100,7 @@ export function groupCardsByUnit(cards: SM2Card[]): TopicGroup[] {
 
   const result: TopicGroup[] = [];
   for (const [key, groupCards] of groups) {
-    const unit = key.startsWith("unit-") ? getUnitById(key) : undefined;
+    const unit = key.startsWith("unit-") ? getUnitMetaById(key) : undefined;
     const lesson = !unit ? lessons.find((l) => l.slug === key) : undefined;
 
     result.push({

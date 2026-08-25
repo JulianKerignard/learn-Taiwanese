@@ -1,7 +1,12 @@
 import { getDb } from "@/lib/db";
+import { getSessionUserId } from "@/lib/auth";
 
 export async function GET() {
   try {
+    // Reserved for signed-in users: this is a leaderboard, not a public directory.
+    if ((await getSessionUserId()) === null) {
+      return Response.json({ error: "Non connecté" }, { status: 401 });
+    }
     const db = getDb();
     const users = db.prepare(`
       SELECT u.id, u.username, u.created_at,
@@ -23,7 +28,6 @@ export async function GET() {
       const totalMinutes = typeof studyTime === "object" ? Object.values(studyTime as Record<string, number>).reduce((a: number, b: number) => a + b, 0) : 0;
 
       return {
-        id: u.id,
         username: u.username,
         unitsCompleted: path?.completedUnits?.length ?? 0,
         currentStreak: progress?.currentStreak ?? 0,

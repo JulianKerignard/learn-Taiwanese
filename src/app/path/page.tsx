@@ -9,27 +9,20 @@ import {
   getPathProgress,
   getHSKLevelCompletedCount,
   getCurrentHSKLevel,
+  EMPTY_PATH_PROGRESS,
 } from "@/lib/progress";
-import { allUnits, hskLevels, getHSKLevelUnits } from "@/data/course";
+import { allUnitMetas, hskLevels, getHSKLevelUnitMetas } from "@/data/course/meta";
 import type { PathProgress } from "@/types/course";
 
-const TOTAL_UNITS = allUnits.length;
-
-const LEVEL_COLORS = [
-  { bg: "from-emerald-500 to-teal-600", light: "bg-emerald-50 border-emerald-200", text: "text-emerald-700" },
-  { bg: "from-sky-500 to-blue-600", light: "bg-sky-50 border-sky-200", text: "text-sky-700" },
-  { bg: "from-violet-500 to-purple-600", light: "bg-violet-50 border-violet-200", text: "text-violet-700" },
-  { bg: "from-rose-500 to-red-600", light: "bg-rose-50 border-rose-200", text: "text-rose-700" },
-];
+const TOTAL_UNITS = allUnitMetas.length;
 
 export default function PathPage() {
-  const [progress, setProgress] = useState<PathProgress | null>(null);
+  // The level cards are known at build time; only the counters need the browser.
+  const [progress, setProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
 
   useEffect(() => {
     setProgress(getPathProgress());
   }, []);
-
-  if (!progress) return null;
 
   const completedCount = progress.completedUnits.length;
   const currentLevel = getCurrentHSKLevel(progress);
@@ -38,7 +31,7 @@ export default function PathPage() {
     <div className="flex flex-col gap-10">
       {/* Header */}
       <section className="text-center">
-        <h1 className="text-3xl font-bold text-stone-900">Ton parcours</h1>
+        <h1 className="text-display font-bold text-stone-900">Ton parcours</h1>
         <p className="mt-1 text-stone-500">
           Choisis ton niveau et progresse à ton rythme
         </p>
@@ -54,13 +47,13 @@ export default function PathPage() {
       {/* Level cards */}
       <div className="grid gap-6 sm:grid-cols-2">
         {hskLevels.map((level) => {
-          const units = getHSKLevelUnits(level);
+          const units = getHSKLevelUnitMetas(level);
           const unitIds = units.map((u) => u.id);
           const completed = getHSKLevelCompletedCount(unitIds, progress);
           const total = units.length;
           const isCurrent = currentLevel?.level === level.level && !level.comingSoon;
           const isComplete = completed === total && total > 0;
-          const colors = LEVEL_COLORS[level.level - 1] || LEVEL_COLORS[0];
+          const colors = level.color;
 
           if (level.comingSoon) {
             return (
@@ -70,28 +63,28 @@ export default function PathPage() {
               >
                 <div className="flex items-start gap-4">
                   <div className={cn(
-                    "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br text-2xl font-black text-white shadow-sm opacity-50",
-                    colors.bg
+                    "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-bold text-white shadow-sm opacity-50",
+                    colors.badge
                   )}>
                     {level.level}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <h2 className="text-lg font-bold text-stone-500">
+                      <h2 className="text-title font-bold text-stone-500">
                         HSK {level.level} — {level.title}
                       </h2>
                       <Lock className="h-4 w-4 text-stone-400" />
                     </div>
-                    <p className="chinese text-sm text-stone-300">{level.titleZh}</p>
-                    <p className="mt-1 text-sm text-stone-400">{level.description}</p>
-                    <p className="mt-1 text-xs font-medium text-stone-400">
+                    <p className="chinese text-sm text-stone-500">{level.titleZh}</p>
+                    <p className="mt-1 text-sm text-stone-500">{level.description}</p>
+                    <p className="mt-1 text-xs font-medium text-stone-500">
                       {level.tocflLabel}
                     </p>
                   </div>
                 </div>
-                <div className="mt-4 flex items-center justify-between text-xs text-stone-400">
+                <div className="mt-4 flex items-center justify-between text-xs text-stone-500">
                   <span>{total > 0 ? `${total} unités` : "Contenu en préparation"}</span>
-                  <span className="badge bg-stone-100 text-stone-400">Bientôt disponible</span>
+                  <span className="badge bg-stone-100 text-stone-500">Bientôt disponible</span>
                 </div>
               </div>
             );
@@ -108,21 +101,21 @@ export default function PathPage() {
             >
               <div className="flex items-start gap-4">
                 <div className={cn(
-                  "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br text-2xl font-black text-white shadow-sm",
-                  colors.bg
+                  "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-bold text-white shadow-sm",
+                  colors.badge
                 )}>
                   {isComplete ? <Check className="h-7 w-7" /> : level.level}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <h2 className="text-lg font-bold text-stone-800 group-hover:text-primary transition-colors">
+                    <h2 className="text-title font-bold text-stone-800 group-hover:text-primary transition-colors">
                       HSK {level.level} — {level.title}
                     </h2>
                     {isCurrent && (
                       <span className="badge bg-primary/10 text-primary text-xs">En cours</span>
                     )}
                   </div>
-                  <p className="chinese text-sm text-stone-400">{level.titleZh}</p>
+                  <p className="chinese text-sm text-stone-500">{level.titleZh}</p>
                   <p className="mt-1 text-sm text-stone-500">{level.description}</p>
                   <p className={cn("mt-1 text-xs font-medium", colors.text)}>
                     {level.tocflLabel}
@@ -136,9 +129,9 @@ export default function PathPage() {
                   <span>{completed}/{total} unités</span>
                   <span>{total > 0 ? Math.round((completed / total) * 100) : 0}%</span>
                 </div>
-                <div className="h-2 w-full overflow-hidden rounded-full bg-stone-100">
+                <div className={cn("h-2 w-full overflow-hidden rounded-full", colors.surface)}>
                   <div
-                    className={cn("h-full rounded-full bg-gradient-to-r transition-all", colors.bg)}
+                    className={cn("h-full rounded-full transition-all", colors.badge)}
                     style={{ width: `${total > 0 ? (completed / total) * 100 : 0}%` }}
                   />
                 </div>

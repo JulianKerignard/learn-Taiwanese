@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Search, X, Plus, Check } from "lucide-react";
+import { Search, X, Plus, Check, ChevronDown } from "lucide-react";
 import AudioButton from "@/components/AudioButton";
 import PinyinDisplay from "@/components/PinyinDisplay";
 import { cn } from "@/lib/cn";
@@ -104,6 +104,9 @@ function buildDictionary(): DictEntry[] {
 type SortMode = "pinyin" | "character" | "hsk";
 type SourceFilter = "all" | "course" | "lessons" | "readings";
 
+/** The dictionary holds ~1000 entries; rendering them all blows up the HTML. */
+const PAGE_SIZE = 100;
+
 export default function DictionaryPage() {
   const [query, setQuery] = useState("");
   const [sortMode, setSortMode] = useState<SortMode>("pinyin");
@@ -111,6 +114,7 @@ export default function DictionaryPage() {
   const [hskFilter, setHskFilter] = useState<number | null>(null);
   const [expandedEntry, setExpandedEntry] = useState<string | null>(null);
   const [addedCards, setAddedCards] = useState<Set<string>>(new Set());
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const displayMode = getSettings().displayMode;
   const dictionary = useMemo(() => buildDictionary(), []);
@@ -161,6 +165,17 @@ export default function DictionaryPage() {
     return results;
   }, [query, sortMode, sourceFilter, hskFilter, dictionary]);
 
+  // Any change to the search or the filters restarts the list at the first page.
+  const filterKey = `${query}|${sortMode}|${sourceFilter}|${hskFilter}`;
+  const [lastFilterKey, setLastFilterKey] = useState(filterKey);
+  if (lastFilterKey !== filterKey) {
+    setLastFilterKey(filterKey);
+    setVisibleCount(PAGE_SIZE);
+  }
+
+  const visible = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
+  const remaining = filtered.length - visible.length;
+
   function handleAddToFlashcards(entry: DictEntry) {
     if (existingCardChars.has(entry.character) || addedCards.has(entry.character)) return;
     const card = createCard({
@@ -185,7 +200,7 @@ export default function DictionaryPage() {
     <div className="flex flex-col gap-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-stone-900">Dictionnaire</h1>
+        <h1 className="text-display font-bold text-stone-900">Dictionnaire</h1>
         <p className="mt-1 text-stone-500">
           {stats.total} mots — Tout le vocabulaire du parcours, des leçons et des lectures
         </p>
@@ -279,12 +294,15 @@ export default function DictionaryPage() {
       <p className="text-sm text-stone-500">
         {filtered.length} résultat{filtered.length !== 1 ? "s" : ""}
         {query && ` pour "${query}"`}
+        {remaining > 0 && (
+          <span className="text-stone-400"> — {visible.length} affiché{visible.length !== 1 ? "s" : ""}</span>
+        )}
       </p>
 
       {/* Results */}
       {filtered.length > 0 ? (
         <div className="flex flex-col gap-1">
-          {filtered.map((entry) => {
+          {visible.map((entry) => {
             const isExpanded = expandedEntry === entry.character;
             const isInFlashcards = existingCardChars.has(entry.character) || addedCards.has(entry.character);
 
@@ -292,6 +310,7 @@ export default function DictionaryPage() {
               <div key={entry.character}>
                 <button
                   onClick={() => setExpandedEntry(isExpanded ? null : entry.character)}
+                  aria-expanded={isExpanded}
                   className={cn(
                     "flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left transition-all",
                     isExpanded
@@ -320,8 +339,16 @@ export default function DictionaryPage() {
                     <p className="text-sm text-stone-600 truncate">{entry.french}</p>
                   </div>
 
-                  {/* Audio */}
-                  <AudioButton text={entry.character} size="sm" className="shrink-0" />
+                  {/* Audio lives in the expanded panel: one mounted client
+                      component per collapsed row is far too many. */}
+                  <ChevronDown
+                    size={16}
+                    aria-hidden
+                    className={cn(
+                      "shrink-0 text-stone-300 transition-transform",
+                      isExpanded && "rotate-180 text-primary"
+                    )}
+                  />
                 </button>
 
                 {/* Expanded view */}
@@ -330,11 +357,19 @@ export default function DictionaryPage() {
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
                         <p className="text-xs font-medium text-stone-400 uppercase mb-1">Prononciation</p>
-                        <p className="text-sm text-stone-700">{entry.pinyin}</p>
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm text-stone-700">{entry.pinyin}</p>
+                          <AudioButton text={entry.character} size="sm" className="shrink-0" />
+                        </div>
                         {entry.zhuyin && (
-                          <p className="text-sm text-stone-500 chinese" lang="zh-Hant-TW">
-                            {entry.zhuyin}
-                          </p>
+                          <PinyinDisplay
+                            chinese={entry.character}
+                            pinyin={entry.pinyin}
+                            zhuyin={entry.zhuyin}
+                            mode="zhuyin"
+                            size="lg"
+                            className="text-stone-900"
+                          />
                         )}
                       </div>
                       <div>
@@ -350,7 +385,7 @@ export default function DictionaryPage() {
                         <p className="chinese text-sm text-stone-800" lang="zh-Hant-TW">
                           {entry.example.sentence}
                         </p>
-                        <p className="text-xs italic text-stone-400">{entry.example.pinyin}</p>
+                        <p className="text-xs italic text-stone-500">{entry.example.pinyin}</p>
                         <p className="text-xs text-stone-500">{entry.example.translation}</p>
                       </div>
                     )}
@@ -380,6 +415,15 @@ export default function DictionaryPage() {
               </div>
             );
           })}
+
+          {remaining > 0 && (
+            <button
+              onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+              className="mt-3 self-center rounded-lg border border-stone-200 bg-white px-4 py-2 text-sm font-medium text-stone-600 transition-colors hover:border-primary/30 hover:text-primary"
+            >
+              Afficher plus ({Math.min(PAGE_SIZE, remaining)} sur {remaining} restants)
+            </button>
+          )}
         </div>
       ) : (
         <div className="flex flex-col items-center gap-4 py-16 text-center">

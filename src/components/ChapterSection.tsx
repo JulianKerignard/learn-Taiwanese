@@ -9,8 +9,11 @@ import {
   isUnitCompleted,
   getChapterProgress,
 } from "@/lib/progress";
-import { getUnitById } from "@/data/course";
-import type { PathProgress, CourseUnit, Chapter } from "@/types/course";
+// Metadata only: a path node shows a title, an icon and a lock state. Reaching
+// for @/data/course here would ship all 88 unit modules to every route that
+// renders the parcours.
+import { getUnitMetaById } from "@/data/course/meta";
+import type { PathProgress, CourseUnitMeta, Chapter } from "@/types/course";
 
 export function ChapterSection({
   chapter,
@@ -24,16 +27,16 @@ export function ChapterSection({
   const chapterPct = getChapterProgress(chapter, progress);
 
   const chapterUnits = chapter.unitIds
-    .map((id) => getUnitById(id))
-    .filter((u): u is CourseUnit => u !== undefined);
+    .map((id) => getUnitMetaById(id))
+    .filter((u): u is CourseUnitMeta => u !== undefined);
 
   return (
     <section>
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-stone-800">
+        <h2 className="text-title font-bold text-stone-800">
           Chapitre {chapter.number} — {chapter.title}
         </h2>
-        <p className="chinese text-sm text-stone-400" lang="zh-Hant-TW">{chapter.titleZh}</p>
+        <p className="chinese text-sm text-stone-500" lang="zh-Hant-TW">{chapter.titleZh}</p>
         <p className="mt-1 text-sm text-stone-500">{chapter.description}</p>
         <div className="mt-3 max-w-xs">
           <ProgressBar value={Math.round(chapterPct * 100)} max={100} />
@@ -61,7 +64,7 @@ function UnitNode({
   progress,
   isLast,
 }: {
-  unit: CourseUnit;
+  unit: CourseUnitMeta;
   displayNumber: number;
   progress: PathProgress;
   isLast: boolean;
@@ -108,7 +111,7 @@ function UnitNode({
             <div className="flex items-center gap-2">
               <h3
                 className={cn(
-                  "font-semibold",
+                  "font-bold",
                   !unlocked ? "text-stone-400" : "text-stone-800"
                 )}
               >
@@ -117,7 +120,7 @@ function UnitNode({
               {!unlocked && !completed && <Lock className="h-4 w-4 text-stone-300" />}
             </div>
             {unit.titleZh && (
-              <p className="chinese text-sm text-stone-400" lang="zh-Hant-TW">{unit.titleZh}</p>
+              <p className="chinese text-sm text-stone-500" lang="zh-Hant-TW">{unit.titleZh}</p>
             )}
             <p
               className={cn(
