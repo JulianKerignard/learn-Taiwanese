@@ -205,7 +205,10 @@ export default function TestRunner({ test }: TestRunnerProps) {
               <p className="text-sm text-stone-500">Écoutez et choisissez la bonne réponse</p>
             </div>
           ) : (
-            <p className={cn("mb-4 text-lg font-medium", hasChinese(current.question) && "chinese")}>
+            <p
+              className={cn("mb-4 text-lg font-medium", hasChinese(current.question) && "chinese")}
+              lang={hasChinese(current.question) ? "zh-Hant-TW" : undefined}
+            >
               {current.question}
             </p>
           )}
@@ -231,6 +234,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
                     : "border-stone-200 hover:border-stone-300",
                   hasChinese(option) && "chinese"
                 )}
+                lang={hasChinese(option) ? "zh-Hant-TW" : undefined}
               >
                 {option}
               </button>

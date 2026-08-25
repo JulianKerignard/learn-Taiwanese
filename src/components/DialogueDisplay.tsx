@@ -67,7 +67,9 @@ function DialogueBubble({
         )}
       >
         <div className="flex items-center gap-2">
-          <span className="chinese text-lg">{chinese}</span>
+          <span className="chinese text-lg" lang="zh-Hant-TW">
+            {chinese}
+          </span>
           <AudioButton text={chinese} size="sm" />
         </div>
         <p className="text-xs italic text-stone-400 mt-0.5">{pinyin}</p>

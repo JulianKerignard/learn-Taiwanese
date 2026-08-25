@@ -54,7 +54,7 @@ function ExampleBlock({ block }: { block: ContentBlock }) {
     <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
       {block.chinese && (
         <div className="flex items-center gap-2 mb-1">
-          <span className="chinese text-2xl text-stone-900">{block.chinese}</span>
+          <span className="chinese text-2xl text-stone-900" lang="zh-Hant-TW">{block.chinese}</span>
           <AudioButton text={block.chinese} size="sm" />
         </div>
       )}
@@ -114,7 +114,10 @@ function ComparisonBlock({ block }: { block: ContentBlock }) {
         </div>
         <div className="rounded-lg bg-rose-50 p-4">
           <p className="mb-1 text-xs font-semibold uppercase text-rose-400">Chinois</p>
-          <p className="text-sm text-rose-800 leading-relaxed chinese whitespace-pre-line">
+          <p
+            className="text-sm text-rose-800 leading-relaxed chinese whitespace-pre-line"
+            lang="zh-Hant-TW"
+          >
             {parseInlineFormatting(block.chinese)}
           </p>
         </div>

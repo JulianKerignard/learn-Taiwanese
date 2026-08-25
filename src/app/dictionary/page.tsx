@@ -204,7 +204,7 @@ export default function DictionaryPage() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Rechercher un caractère, pinyin, zhuyin ou traduction..."
-          className="w-full rounded-lg border border-stone-300 bg-white py-2.5 pl-10 pr-10 text-sm text-stone-900 placeholder:text-stone-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="w-full rounded-lg border border-stone-300 bg-white py-2.5 pl-10 pr-10 text-sm text-stone-900 placeholder:text-stone-400 focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
         />
         {query && (
           <button
@@ -267,7 +267,7 @@ export default function DictionaryPage() {
         <select
           value={sortMode}
           onChange={(e) => setSortMode(e.target.value as SortMode)}
-          className="rounded-lg border border-stone-200 bg-white px-2 py-1 text-xs text-stone-600 focus:border-primary focus:outline-none"
+          className="rounded-lg border border-stone-200 bg-white px-2 py-1 text-xs text-stone-600 focus:border-primary"
         >
           <option value="pinyin">Tri : Pinyin</option>
           <option value="character">Tri : Caractère</option>
@@ -300,7 +300,10 @@ export default function DictionaryPage() {
                   )}
                 >
                   {/* Character */}
-                  <span className="chinese text-2xl font-medium text-stone-900 w-16 text-center shrink-0">
+                  <span
+                    className="chinese text-2xl font-medium text-stone-900 w-16 text-center shrink-0"
+                    lang="zh-Hant-TW"
+                  >
                     {entry.character}
                   </span>
 
@@ -328,7 +331,11 @@ export default function DictionaryPage() {
                       <div>
                         <p className="text-xs font-medium text-stone-400 uppercase mb-1">Prononciation</p>
                         <p className="text-sm text-stone-700">{entry.pinyin}</p>
-                        {entry.zhuyin && <p className="text-sm text-stone-500 chinese">{entry.zhuyin}</p>}
+                        {entry.zhuyin && (
+                          <p className="text-sm text-stone-500 chinese" lang="zh-Hant-TW">
+                            {entry.zhuyin}
+                          </p>
+                        )}
                       </div>
                       <div>
                         <p className="text-xs font-medium text-stone-400 uppercase mb-1">Traduction</p>
@@ -340,7 +347,9 @@ export default function DictionaryPage() {
                     {entry.example && (
                       <div className="mt-3 rounded-lg bg-white border border-stone-100 p-3">
                         <p className="text-xs font-medium text-stone-400 uppercase mb-1">Exemple</p>
-                        <p className="chinese text-sm text-stone-800">{entry.example.sentence}</p>
+                        <p className="chinese text-sm text-stone-800" lang="zh-Hant-TW">
+                          {entry.example.sentence}
+                        </p>
                         <p className="text-xs italic text-stone-400">{entry.example.pinyin}</p>
                         <p className="text-xs text-stone-500">{entry.example.translation}</p>
                       </div>

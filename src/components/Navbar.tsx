@@ -121,7 +121,7 @@ export default function Navbar() {
                   onChange={(e) => setNameInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleLogin()}
                   placeholder="Ton prénom..."
-                  className="mb-2 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                  className="mb-2 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm focus:border-primary"
                   autoFocus
                 />
                 {error && <p className="mb-2 text-xs text-danger">{error}</p>}

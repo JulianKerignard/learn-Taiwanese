@@ -30,7 +30,7 @@ export default function PinyinDisplay({
       )}
       {mode === "both" && zhuyin && <span className="mx-1 text-stone-300">|</span>}
       {(mode === "zhuyin" || mode === "both") && zhuyin && (
-        <span className="chinese">{zhuyin}</span>
+        <span className="chinese" lang="zh-Hant-TW">{zhuyin}</span>
       )}
     </span>
   );

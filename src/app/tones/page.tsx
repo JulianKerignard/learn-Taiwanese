@@ -33,9 +33,9 @@ interface PairProgress {
 
 function toneColor(tone: number): string {
   const colors: Record<number, string> = {
-    1: "text-red-600", 2: "text-amber-600", 3: "text-green-600", 4: "text-blue-600", 0: "text-stone-500",
+    1: "text-tone-1", 2: "text-tone-2", 3: "text-tone-3", 4: "text-tone-4", 0: "text-tone-neutral",
   };
-  return colors[tone] ?? "text-stone-400";
+  return colors[tone] ?? "text-tone-neutral";
 }
 
 function toneBgColor(tone: number): string {
@@ -64,6 +64,14 @@ function toneShortName(tone: number): string {
 
 // ─── Tone visual SVG ───
 
+const TONE_STROKE: Record<number, string> = {
+  1: "var(--color-tone-1)",
+  2: "var(--color-tone-2)",
+  3: "var(--color-tone-3)",
+  4: "var(--color-tone-4)",
+  0: "var(--color-tone-neutral)",
+};
+
 function ToneVisual({ tone, size = 40 }: { tone: number; size?: number }) {
   const mid = size / 2;
   const pad = 4;
@@ -80,13 +88,15 @@ function ToneVisual({ tone, size = 40 }: { tone: number; size?: number }) {
     }
   }
 
-  const colors: Record<number, string> = {
-    1: "#ef4444", 2: "#f59e0b", 3: "#22c55e", 4: "#3b82f6", 0: "#78716c",
-  };
-
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-      <path d={path()} stroke={colors[tone] ?? "#a8a29e"} strokeWidth={3} fill="none" strokeLinecap="round" />
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true" focusable="false">
+      <path
+        d={path()}
+        style={{ stroke: TONE_STROKE[tone] ?? "var(--color-tone-neutral)" }}
+        strokeWidth={3}
+        fill="none"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -118,7 +128,7 @@ function ToneOverview({ onStart }: { onStart: () => void }) {
               <ToneVisual tone={tone} size={56} />
               <h3 className={cn("text-lg font-bold", toneColor(tone))}>{toneName(tone)}</h3>
               <div className="flex items-center gap-2">
-                <span className="chinese text-3xl">{ex.char}</span>
+                <span className="chinese text-3xl" lang="zh-Hant-TW">{ex.char}</span>
                 <AudioButton text={ex.char} size="sm" />
               </div>
               <p className="text-sm text-stone-500">
@@ -135,8 +145,8 @@ function ToneOverview({ onStart }: { onStart: () => void }) {
         <div>
           <h3 className="font-semibold text-stone-700">{toneName(0)}</h3>
           <p className="text-sm text-stone-500">
-            Court et faible, souvent pour les particules : <span className="chinese">嗎</span> (ma),{" "}
-            <span className="chinese">的</span> (de), <span className="chinese">了</span> (le)
+            Court et faible, souvent pour les particules : <span className="chinese" lang="zh-Hant-TW">嗎</span> (ma),{" "}
+            <span className="chinese" lang="zh-Hant-TW">的</span> (de), <span className="chinese" lang="zh-Hant-TW">了</span> (le)
           </p>
         </div>
       </div>
@@ -342,7 +352,7 @@ function Exercise({
             <Volume2 size={36} />
           </button>
           <div className="flex items-center gap-2">
-            <span className="chinese text-2xl text-stone-800">{currentWord.chinese}</span>
+            <span className="chinese text-2xl text-stone-800" lang="zh-Hant-TW">{currentWord.chinese}</span>
             <AudioButton text={currentWord.chinese} size="sm" />
           </div>
           <p className="text-xs text-stone-400 italic">{currentWord.pinyin}</p>
@@ -385,7 +395,7 @@ function Exercise({
               {mode === "listen" ? (
                 <span className="text-lg">{option}</span>
               ) : (
-                <span className="chinese text-xl">{option}</span>
+                <span className="chinese text-xl" lang="zh-Hant-TW">{option}</span>
               )}
             </button>
           );
@@ -408,10 +418,12 @@ function Exercise({
           <div className="flex items-center gap-3 rounded-lg bg-stone-50 border border-stone-100 px-4 py-3 w-full">
             <AudioButton text={currentWord.chinese} size="sm" />
             <div className="flex-1">
-              <span className="chinese text-lg font-medium text-stone-800">{currentWord.chinese}</span>
+              <span className="chinese text-lg font-medium text-stone-800" lang="zh-Hant-TW">
+                {currentWord.chinese}
+              </span>
               <span className="ml-2 text-sm italic text-stone-400">{currentWord.pinyin}</span>
               {currentWord.zhuyin && (
-                <span className="ml-1 text-sm text-stone-400 chinese">{currentWord.zhuyin}</span>
+                <span className="ml-1 text-sm text-stone-400 chinese" lang="zh-Hant-TW">{currentWord.zhuyin}</span>
               )}
             </div>
             <span className="text-sm text-stone-500">{currentWord.french}</span>
@@ -526,7 +538,7 @@ export default function TonesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-stone-900">
-            <span className="chinese text-primary">聲調</span> Les tons du mandarin
+            <span className="chinese text-primary" lang="zh-Hant-TW">聲調</span> Les tons du mandarin
           </h1>
           <p className="mt-1 text-sm text-stone-500">
             Maîtrise les 4 tons et leurs combinaisons pour parler naturellement
@@ -669,7 +681,7 @@ export default function TonesPage() {
                 >
                   <AudioButton text={word.chinese} size="sm" />
                   <div className="min-w-0 flex-1">
-                    <span className="chinese text-base font-medium">{word.chinese}</span>
+                    <span className="chinese text-base font-medium" lang="zh-Hant-TW">{word.chinese}</span>
                     <p className="text-xs italic text-stone-400">{word.pinyin}</p>
                     <p className="text-xs text-stone-500 truncate">{word.french}</p>
                   </div>

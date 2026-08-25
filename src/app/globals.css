@@ -10,16 +10,38 @@
   --color-success: #22c55e;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
-  --font-chinese: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+
+  /* Tone colours are pedagogical, not semantic: they must stay distinct from
+     --color-success / --color-danger so a tone is never read as a verdict. */
+  --color-tone-1: #dc2626;
+  --color-tone-2: #d97706;
+  --color-tone-3: #16a34a;
+  --color-tone-4: #2563eb;
+  --color-tone-neutral: #78716c;
+
+  /* --font-noto-tc is injected by next/font in layout.tsx */
+  --font-sans: var(--font-noto-tc), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-chinese: var(--font-noto-tc), "PingFang TC", "Microsoft JhengHei", sans-serif;
 }
 
 @layer base {
   body {
+    font-family: var(--font-sans);
     @apply bg-surface text-stone-900 antialiased;
   }
 
   .chinese {
     font-family: var(--font-chinese);
+  }
+
+  ruby {
+    ruby-align: center;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 }
 
@@ -29,11 +51,11 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary/50;
+    @apply inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-50 focus:outline-none focus:ring-2 focus:ring-stone-500/30;
+    @apply inline-flex items-center justify-center rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500/30;
   }
 
   .badge {
@@ -43,6 +65,38 @@
   .character-display {
     font-family: var(--font-chinese);
     @apply text-5xl sm:text-6xl font-normal leading-none;
+  }
+
+  /* Visually hidden but exposed to assistive technology. */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Off-screen until focused by keyboard. */
+  .skip-link {
+    position: absolute;
+    left: 0.5rem;
+    top: -4rem;
+    z-index: 100;
+    border-radius: 0.5rem;
+    background-color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #fff;
+    transition: top 150ms ease-in-out;
+  }
+
+  .skip-link:focus {
+    top: 0.5rem;
   }
 }
 
@@ -57,4 +111,15 @@
 
 .backface-hidden {
   backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

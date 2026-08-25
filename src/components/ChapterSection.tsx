@@ -33,7 +33,7 @@ export function ChapterSection({
         <h2 className="text-xl font-bold text-stone-800">
           Chapitre {chapter.number} — {chapter.title}
         </h2>
-        <p className="chinese text-sm text-stone-400">{chapter.titleZh}</p>
+        <p className="chinese text-sm text-stone-400" lang="zh-Hant-TW">{chapter.titleZh}</p>
         <p className="mt-1 text-sm text-stone-500">{chapter.description}</p>
         <div className="mt-3 max-w-xs">
           <ProgressBar value={Math.round(chapterPct * 100)} max={100} />
@@ -117,7 +117,7 @@ function UnitNode({
               {!unlocked && !completed && <Lock className="h-4 w-4 text-stone-300" />}
             </div>
             {unit.titleZh && (
-              <p className="chinese text-sm text-stone-400">{unit.titleZh}</p>
+              <p className="chinese text-sm text-stone-400" lang="zh-Hant-TW">{unit.titleZh}</p>
             )}
             <p
               className={cn(

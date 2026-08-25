@@ -5,9 +5,9 @@ import "./globals.css";
 
 const notoSansTC = Noto_Sans_TC({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["400", "500", "700"],
   display: "swap",
-  variable: "--font-chinese",
+  variable: "--font-noto-tc",
 });
 
 export const metadata: Metadata = {
@@ -21,10 +21,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh-Hant-TW" className={notoSansTC.variable}>
+    <html lang="fr" className={notoSansTC.variable}>
       <body className="min-h-screen bg-surface">
+        <a href="#main-content" className="skip-link">
+          Aller au contenu principal
+        </a>
         <Navbar />
-        <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
+        <main id="main-content" className="mx-auto max-w-6xl px-4 py-8">
+          {children}
+        </main>
       </body>
     </html>
   );

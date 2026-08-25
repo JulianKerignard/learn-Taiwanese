@@ -21,7 +21,9 @@ export default function CharacterCard({
   return (
     <div className={cn("card flex flex-col items-center gap-2 p-4", className)}>
       <div className="flex items-center gap-1">
-        <span className="character-display">{item.character}</span>
+        <span className="character-display" lang="zh-Hant-TW">
+          {item.character}
+        </span>
         <AudioButton text={item.character} size="md" />
       </div>
       <PinyinDisplay pinyin={item.pinyin} zhuyin={item.zhuyin} mode={displayMode} />

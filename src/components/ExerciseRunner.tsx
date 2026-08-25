@@ -132,6 +132,15 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
 
   return (
     <div className={cn("flex flex-col gap-6", className)}>
+      {/* Screen-reader-only verdict */}
+      <div role="status" aria-live="polite" className="sr-only">
+        {showFeedback
+          ? isCorrect
+            ? "Bonne réponse"
+            : `Mauvaise réponse. La bonne réponse était : ${current.correctAnswer}`
+          : ""}
+      </div>
+
       <div className="flex items-center justify-between">
         <span className="text-sm text-stone-500">
           Question {currentIndex + 1}/{exercises.length}
@@ -156,7 +165,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           ) : (
             <p className="text-lg font-medium text-stone-800">
               {hasChinese(current.question) ? (
-                <span className="chinese">{current.question}</span>
+                <span className="chinese" lang="zh-Hant-TW">{current.question}</span>
               ) : (
                 current.question
               )}
@@ -171,7 +180,9 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           <p className="mb-4 rounded-lg bg-accent/5 px-3 py-1.5 text-sm italic text-accent">
             {current.hint && <span>{current.hint}</span>}
             {current.hint && current.hintZhuyin && <span className="mx-1.5 text-stone-300">|</span>}
-            {current.hintZhuyin && <span className="chinese">{current.hintZhuyin}</span>}
+            {current.hintZhuyin && (
+              <span className="chinese" lang="zh-Hant-TW">{current.hintZhuyin}</span>
+            )}
           </p>
         )}
 
@@ -182,6 +193,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 <span
                   key={i}
                   className="rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-medium chinese text-stone-800"
+                  lang="zh-Hant-TW"
                 >
                   {word}
                 </span>
@@ -198,6 +210,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                     key={i}
                     onClick={() => handleReorderPick(word, i)}
                     disabled={showFeedback || isUsed}
+                    lang="zh-Hant-TW"
                     className={cn(
                       "rounded-lg border border-stone-200 px-3 py-1.5 text-sm font-medium chinese transition-colors",
                       isUsed
@@ -227,7 +240,8 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
               placeholder="Écrivez votre réponse…"
               aria-label="Votre réponse"
               autoComplete="off"
-              className="chinese flex-1 rounded-lg border-2 border-stone-200 px-4 py-3 text-base text-stone-800 focus-visible:border-primary focus-visible:outline-none disabled:bg-stone-50 disabled:text-stone-400"
+              lang="zh-Hant-TW"
+              className="chinese flex-1 rounded-lg border-2 border-stone-200 px-4 py-3 text-base text-stone-800 focus-visible:border-primary disabled:bg-stone-50 disabled:text-stone-400"
             />
             <button
               type="submit"
@@ -276,12 +290,16 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                     {showFeedback && isAnswer && <Check className="h-4 w-4 shrink-0 text-success" />}
                     {showFeedback && isSelected && !isAnswer && <X className="h-4 w-4 shrink-0 text-danger" />}
                     <span className="flex-1">
-                      <span>{option}</span>
+                      <span lang={hasChinese(option) ? "zh-Hant-TW" : undefined}>{option}</span>
                       {hasChinese(option) && (optPinyin || optZhuyin) && (
                         <span className="ml-2 text-xs text-stone-400 italic">
                           {optPinyin}
                           {optPinyin && optZhuyin && <span className="mx-1 text-stone-300">|</span>}
-                          {optZhuyin && <span className="chinese">{optZhuyin}</span>}
+                          {optZhuyin && (
+                            <span className="chinese" lang="zh-Hant-TW">
+                              {optZhuyin}
+                            </span>
+                          )}
                         </span>
                       )}
                     </span>

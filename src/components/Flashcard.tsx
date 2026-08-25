@@ -67,7 +67,7 @@ function RecognizeMode({
     <div className="flex flex-col items-center gap-6">
       <div className="flex flex-col items-center gap-2">
         <span className="text-xs font-medium text-accent uppercase tracking-wide">Reconnaissance</span>
-        <span className="character-display">{card.front}</span>
+        <span className="character-display" lang="zh-Hant-TW">{card.front}</span>
         <AudioButton text={card.front} size="lg" />
       </div>
 
@@ -145,7 +145,7 @@ function RecallMode({
             !flipped ? "rotate-y-180" : ""
           )}
         >
-          <span className="character-display">{card.front}</span>
+          <span className="character-display" lang="zh-Hant-TW">{card.front}</span>
           <PinyinDisplay pinyin={card.pinyin} zhuyin={card.zhuyin} mode={displayMode} size="lg" />
           <p className="text-lg font-medium text-stone-700">{card.back}</p>
           <AudioButton text={card.front} size="md" />
@@ -224,6 +224,7 @@ function ListeningMode({
               <button
                 key={idx}
                 onClick={() => handleSelect(idx)}
+                lang="zh-Hant-TW"
                 className={cn(
                   "rounded-xl border-2 px-4 py-4 text-2xl font-bold transition-all",
                   !answered && "border-stone-200 bg-white hover:border-primary hover:bg-primary/5",
@@ -388,7 +389,9 @@ function WritingMode({
       {revealed && (
         <div className="flex flex-col items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 p-4">
           <p className="text-xs text-stone-500">Caractère correct :</p>
-          <span className="text-5xl font-bold text-stone-900">{card.front}</span>
+          <span className="text-5xl font-bold text-stone-900" lang="zh-Hant-TW">
+            {card.front}
+          </span>
           <AudioButton text={card.front} size="md" />
         </div>
       )}

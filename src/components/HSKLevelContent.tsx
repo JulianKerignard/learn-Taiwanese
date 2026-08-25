@@ -87,7 +87,7 @@ export default function HSKLevelContent({ level }: { level: number }) {
             <h1 className="text-2xl font-bold text-stone-900">
               HSK {level} — {hskLevel.title}
             </h1>
-            <p className="chinese text-stone-400">{hskLevel.titleZh}</p>
+            <p className="chinese text-stone-400" lang="zh-Hant-TW">{hskLevel.titleZh}</p>
             <p className="text-sm text-stone-500">{hskLevel.tocflLabel}</p>
           </div>
         </div>

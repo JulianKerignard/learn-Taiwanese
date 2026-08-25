@@ -68,7 +68,7 @@ export default function RubyText({
         }
 
         return (
-          <ruby key={i} className={cn("ruby-align-center", charSize)}>
+          <ruby key={i} className={charSize}>
             {char}
             <rt
               className={cn(
