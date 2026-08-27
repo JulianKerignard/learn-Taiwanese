@@ -60,15 +60,27 @@ export default function ProgressPage() {
   const [mistakes, setMistakes] = useState<Record<string, number>>({});
   const [showReset, setShowReset] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [otherUsers, setOtherUsers] = useState<{ id: number; username: string; unitsCompleted: number; currentStreak: number; totalXP: number; charactersLearned: number; lastStudyDate: string | null; speedRecord: number; totalStudyMinutes: number; level: number }[]>([]);
+  // /api/users returns the signed-in user's own synced stats only: the account
+  // directory it used to expose was half of an account takeover.
+  const [syncedStats, setSyncedStats] = useState<{
+    username: string;
+    unitsCompleted: number;
+    currentStreak: number;
+    charactersLearned: number;
+    level: number;
+    lastStudyDate: string | null;
+    totalXP: number;
+    speedRecord: number;
+    totalStudyMinutes: number;
+  } | null>(null);
 
   useEffect(() => {
     reload();
-    // Load other users
+    // Synced stats for the signed-in account, if there is one.
     import("@/lib/basepath").then(({ getBasePath }) => {
       fetch(`${getBasePath()}/api/users`)
-        .then((r) => r.json())
-        .then((data) => { if (Array.isArray(data)) setOtherUsers(data); })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => { if (data && typeof data.username === "string") setSyncedStats(data); })
         .catch(() => {});
     });
   }, []);
@@ -151,21 +163,25 @@ export default function ProgressPage() {
           icon={<Star className="h-5 w-5 text-warning" />}
           label="Niveau"
           value={levelInfo.level}
+          pending={!loaded}
         />
         <StatCard
           icon={<GraduationCap className="h-5 w-5 text-primary" />}
           label="XP total"
           value={gamification?.totalXP ?? 0}
+          pending={!loaded}
         />
         <StatCard
           icon={<Flame className="h-5 w-5 text-danger" />}
           label="Streak"
           value={`${progress?.currentStreak ?? 0}j`}
+          pending={!loaded}
         />
         <StatCard
           icon={<Map className="h-5 w-5 text-accent" />}
           label="Parcours"
           value={`${overallCompleted}/${overallTotal}`}
+          pending={!loaded}
         />
       </div>
 
@@ -175,7 +191,11 @@ export default function ProgressPage() {
           <h2 className="text-title font-bold text-stone-800">
             Ton parcours
           </h2>
-          <span className="text-sm font-medium text-primary">{overallPct}%</span>
+          {loaded ? (
+            <span className="text-sm font-medium text-primary">{overallPct}%</span>
+          ) : (
+            <span className="block h-5 w-10 animate-pulse rounded bg-stone-100" aria-hidden />
+          )}
         </div>
 
         <div className="flex flex-col gap-4">
@@ -199,27 +219,34 @@ export default function ProgressPage() {
                     <span className="text-sm text-stone-500">
                       {chapter.title}
                     </span>
-                    {isCurrent && (
+                    {loaded && isCurrent && (
                       <span className="badge bg-primary/10 text-primary text-xs">
                         En cours
                       </span>
                     )}
                   </div>
+                  {/* The chapter size is build-known; the share done is not. */}
                   <span className="text-xs text-stone-400">
-                    {completedInChapter}/{totalInChapter}
+                    {loaded
+                      ? `${completedInChapter}/${totalInChapter}`
+                      : `${totalInChapter} unités`}
                   </span>
                 </div>
-                <ProgressBar
-                  value={completedInChapter}
-                  max={totalInChapter}
-                  color={
-                    completedInChapter === totalInChapter
-                      ? "bg-success"
-                      : isCurrent
-                      ? "bg-primary"
-                      : "bg-stone-300"
-                  }
-                />
+                {loaded ? (
+                  <ProgressBar
+                    value={completedInChapter}
+                    max={totalInChapter}
+                    color={
+                      completedInChapter === totalInChapter
+                        ? "bg-success"
+                        : isCurrent
+                        ? "bg-primary"
+                        : "bg-stone-300"
+                    }
+                  />
+                ) : (
+                  <div className="h-2 w-full animate-pulse rounded-full bg-stone-100" />
+                )}
               </div>
             );
           })}
@@ -295,20 +322,27 @@ export default function ProgressPage() {
           const totalRest = totalMin % 60;
           return (
             <div className="grid grid-cols-3 gap-4">
-              <div className="card text-center">
-                <p className="text-2xl font-bold text-stone-800">{todayMin}</p>
-                <p className="text-xs text-stone-500">min aujourd'hui</p>
-              </div>
-              <div className="card text-center">
-                <p className="text-2xl font-bold text-stone-800">{weekMin}</p>
-                <p className="text-xs text-stone-500">min cette semaine</p>
-              </div>
-              <div className="card text-center">
-                <p className="text-2xl font-bold text-stone-800">
-                  {totalH > 0 ? `${totalH}h${totalRest > 0 ? ` ${totalRest}` : ""}` : `${totalMin}`}
-                </p>
-                <p className="text-xs text-stone-500">{totalH > 0 ? "total" : "min total"}</p>
-              </div>
+              <StudyTimeCard
+                value={`${todayMin}`}
+                label="min aujourd'hui"
+                pending={!loaded}
+              />
+              <StudyTimeCard
+                value={`${weekMin}`}
+                label="min cette semaine"
+                pending={!loaded}
+              />
+              <StudyTimeCard
+                value={
+                  totalH > 0
+                    ? `${totalH}h${totalRest > 0 ? ` ${totalRest}` : ""}`
+                    : `${totalMin}`
+                }
+                // The unit of the third card depends on the reader's total, so
+                // before hydration it stays neutral.
+                label={loaded ? (totalH > 0 ? "total" : "min total") : "au total"}
+                pending={!loaded}
+              />
             </div>
           );
         })()}
@@ -356,27 +390,37 @@ export default function ProgressPage() {
         {/* XP bar */}
         <div className="mb-6">
           <div className="mb-1 flex items-center justify-between text-sm">
-            <span className="text-stone-600">
-              Niveau {levelInfo.level}
-            </span>
-            {levelInfo.xpToNextLevel > 0 && (
+            {loaded ? (
+              <span className="text-stone-600">Niveau {levelInfo.level}</span>
+            ) : (
+              <span className="block h-5 w-24 animate-pulse rounded bg-stone-100" aria-hidden />
+            )}
+            {loaded && levelInfo.xpToNextLevel > 0 && (
               <span className="text-stone-400">
                 {levelInfo.currentLevelXP} / {xpNeeded} XP
               </span>
             )}
           </div>
-          <ProgressBar
-            value={levelInfo.currentLevelXP}
-            max={xpNeeded}
-            color="bg-warning"
-          />
+          {loaded ? (
+            <ProgressBar
+              value={levelInfo.currentLevelXP}
+              max={xpNeeded}
+              color="bg-warning"
+            />
+          ) : (
+            <div className="h-2 w-full animate-pulse rounded-full bg-stone-100" />
+          )}
         </div>
 
         {/* Achievements */}
         <h3 className="mb-3 text-sm font-bold text-stone-700">
           Trophées débloqués
         </h3>
-        {unlockedAchievements.length > 0 ? (
+        {!loaded ? (
+          // An empty list before localStorage is read means "unknown", not
+          // "none unlocked".
+          <span className="block h-5 w-72 max-w-full animate-pulse rounded bg-stone-100" aria-hidden />
+        ) : unlockedAchievements.length > 0 ? (
           <div className="grid gap-3 sm:grid-cols-2">
             {unlockedAchievements.map((a) => (
               <div
@@ -417,14 +461,16 @@ export default function ProgressPage() {
               <div
                 key={l.id}
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                  done ? "bg-success/5" : "bg-stone-50"
+                  loaded && done ? "bg-success/5" : "bg-stone-50"
                 }`}
               >
                 <span className="text-xl">{l.icon}</span>
                 <span className="flex-1 text-sm font-medium text-stone-700">
                   {l.title}
                 </span>
-                {done ? (
+                {!loaded ? (
+                  <span className="block h-5 w-16 animate-pulse rounded-full bg-stone-100" aria-hidden />
+                ) : done ? (
                   <span className="badge bg-success/10 text-success text-xs">
                     Complétée
                   </span>
@@ -439,64 +485,29 @@ export default function ProgressPage() {
         </div>
       </section>
 
-      {/* Section 6: Les autres */}
-      {otherUsers.length > 0 && (
+      {/* Section 6: compte synchronisé */}
+      {syncedStats && (
         <section>
           <h2 className="text-title font-bold mb-4 text-stone-800 flex items-center gap-2">
             <Star className="h-5 w-5 text-warning" />
-            L'équipe
+            Ton compte synchronisé
           </h2>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {otherUsers
-              .sort((a, b) => b.totalXP - a.totalXP)
-              .map((u, rank) => (
-              <div key={u.username} className="card flex flex-col gap-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
-                      {rank === 0 ? "🥇" : rank === 1 ? "🥈" : rank === 2 ? "🥉" : rank + 1}
-                    </span>
-                    <span className="font-bold text-stone-800 capitalize">{u.username}</span>
-                  </div>
-                  <span className="badge bg-stone-100 text-stone-500">Niv. {u.level}</span>
-                </div>
-                {u.lastStudyDate && (
-                  <p className="text-xs text-stone-400">
-                    {u.lastStudyDate === new Date().toISOString().split("T")[0]
-                      ? "Actif aujourd'hui"
-                      : `Dernier : ${u.lastStudyDate}`}
-                  </p>
-                )}
-                <div className="grid grid-cols-3 gap-2 text-center">
-                  <div className="rounded-lg bg-primary/5 px-2 py-1.5">
-                    <p className="text-lg font-bold text-primary">{u.unitsCompleted}</p>
-                    <p className="text-xs text-stone-500">unités</p>
-                  </div>
-                  <div className="rounded-lg bg-warning/10 px-2 py-1.5">
-                    <p className="text-lg font-bold text-warning">{u.currentStreak}</p>
-                    <p className="text-xs text-stone-500">streak</p>
-                  </div>
-                  <div className="rounded-lg bg-accent/10 px-2 py-1.5">
-                    <p className="text-lg font-bold text-accent">{u.totalXP}</p>
-                    <p className="text-xs text-stone-500">XP</p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-3 gap-2 text-center">
-                  <div className="rounded-lg bg-success/10 px-2 py-1.5">
-                    <p className="text-lg font-bold text-success">{u.charactersLearned}</p>
-                    <p className="text-xs text-stone-500">caractères</p>
-                  </div>
-                  <div className="rounded-lg bg-amber-50 px-2 py-1.5">
-                    <p className="text-lg font-bold text-amber-600">{u.speedRecord}</p>
-                    <p className="text-xs text-stone-500">speed quiz</p>
-                  </div>
-                  <div className="rounded-lg bg-violet-50 px-2 py-1.5">
-                    <p className="text-lg font-bold text-violet-600">{u.totalStudyMinutes > 60 ? `${Math.floor(u.totalStudyMinutes / 60)}h` : `${u.totalStudyMinutes}m`}</p>
-                    <p className="text-xs text-stone-500">étude</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="card flex flex-col gap-3">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-stone-800 capitalize">{syncedStats.username}</span>
+              <span className="badge bg-stone-100 text-stone-500">Niv. {syncedStats.level}</span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <Stat label="Unités" value={syncedStats.unitsCompleted} />
+              <Stat label="Série" value={`${syncedStats.currentStreak} j`} />
+              <Stat label="XP" value={syncedStats.totalXP} />
+              <Stat label="Temps" value={`${Math.round(syncedStats.totalStudyMinutes / 60)} h`} />
+            </div>
+            <p className="text-xs text-stone-400">
+              Ces chiffres viennent du serveur. Le classement entre comptes a été retiré : la
+              connexion ne demande pas de mot de passe, donc la liste des comptes ne doit pas être
+              publique.
+            </p>
           </div>
         </section>
       )}
@@ -545,21 +556,58 @@ export default function ProgressPage() {
   );
 }
 
-function StatCard({
-  icon,
-  label,
+function StudyTimeCard({
   value,
+  label,
+  pending,
 }: {
-  icon: React.ReactNode;
+  value: string;
   label: string;
-  value: string | number;
+  pending?: boolean;
 }) {
   return (
-    <div className="card flex flex-col items-center gap-2 text-center">
-      {icon}
-      <p className="text-2xl font-bold text-stone-800">{value}</p>
+    <div className="card text-center">
+      {pending ? (
+        <span className="mx-auto block h-8 w-12 animate-pulse rounded bg-stone-100" aria-hidden />
+      ) : (
+        <p className="text-2xl font-bold text-stone-800">{value}</p>
+      )}
       <p className="text-xs text-stone-500">{label}</p>
     </div>
   );
 }
 
+function StatCard({
+  icon,
+  label,
+  value,
+  pending,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string | number;
+  /** Hold the number back until localStorage has been read. The placeholder has
+   *  the same 32px line box as the value, so the card keeps its height. */
+  pending?: boolean;
+}) {
+  return (
+    <div className="card flex flex-col items-center gap-2 text-center">
+      {icon}
+      {pending ? (
+        <span className="block h-8 w-12 animate-pulse rounded bg-stone-100" aria-hidden />
+      ) : (
+        <p className="text-2xl font-bold text-stone-800">{value}</p>
+      )}
+      <p className="text-xs text-stone-500">{label}</p>
+    </div>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string | number }) {
+  return (
+    <div className="rounded-lg border border-stone-100 p-2 text-center">
+      <p className="text-base font-bold text-stone-800">{value}</p>
+      <p className="text-xs text-stone-400">{label}</p>
+    </div>
+  );
+}

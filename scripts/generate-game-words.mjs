@@ -5,10 +5,12 @@
 // every section, dialogue and exercise of the 88 units to the browser. This
 // generated module keeps /games/* down to the word list itself.
 //
-//   node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-game-words.mjs
-//   … same command with --check to fail instead of writing when the file is stale
+//   npm run generate-game-words
+//   npm run generate-game-words -- --check   fails instead of writing when stale
 //
-// Re-run it after touching any unit or lesson vocabulary.
+// Re-run it after touching any unit or lesson vocabulary. `npm run validate`
+// imports collect() and render() from here and re-checks the file, so a stale
+// game-words.ts fails the build without anyone having to call --check by hand.
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -17,13 +19,13 @@ import path from "node:path";
 import { allUnits } from "../src/data/course/index.ts";
 import { lessons } from "../src/data/lessons.ts";
 
-const OUTPUT = path.resolve(
+export const OUTPUT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "../src/data/game-words.ts"
 );
 
 /** Course units first, then lessons; first occurrence of a character wins. */
-function collect() {
+export function collect() {
   const words = new Map();
 
   for (const source of [allUnits, lessons]) {
@@ -44,7 +46,7 @@ function collect() {
 
 const quote = (value) => JSON.stringify(value ?? "");
 
-function render(words) {
+export function render(words) {
   const lines = words.map(
     (w) =>
       `  { character: ${quote(w.character)}, pinyin: ${quote(w.pinyin)}, french: ${quote(w.french)} },`
@@ -72,26 +74,29 @@ ${lines.join("\n")}
 `;
 }
 
-const words = collect();
-const output = render(words);
-const check = process.argv.includes("--check");
+// CLI only: importing this module must stay side-effect free so the validator
+// can reuse collect() and render() without writing anything.
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const words = collect();
+  const output = render(words);
 
-if (check) {
-  let current = "";
-  try {
-    current = readFileSync(OUTPUT, "utf8");
-  } catch {
-    console.error("game-words.ts est absent — lance le script sans --check.");
-    process.exit(1);
+  if (process.argv.includes("--check")) {
+    let current = "";
+    try {
+      current = readFileSync(OUTPUT, "utf8");
+    } catch {
+      console.error("game-words.ts est absent — lance le script sans --check.");
+      process.exit(1);
+    }
+    if (current !== output) {
+      console.error(
+        "game-words.ts est desynchronise du corpus — regenere-le (script sans --check)."
+      );
+      process.exit(1);
+    }
+    console.log(`game-words.ts a jour (${words.length} mots).`);
+  } else {
+    writeFileSync(OUTPUT, output, "utf8");
+    console.log(`game-words.ts ecrit : ${words.length} mots.`);
   }
-  if (current !== output) {
-    console.error(
-      "game-words.ts est desynchronise du corpus — regenere-le (script sans --check)."
-    );
-    process.exit(1);
-  }
-  console.log(`game-words.ts a jour (${words.length} mots).`);
-} else {
-  writeFileSync(OUTPUT, output, "utf8");
-  console.log(`game-words.ts ecrit : ${words.length} mots.`);
 }

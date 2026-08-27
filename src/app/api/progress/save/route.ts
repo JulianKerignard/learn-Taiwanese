@@ -13,8 +13,21 @@ const ALLOWED_KEYS = new Set([
   "mistakes",
 ]);
 
-/** Per-key ceiling. A full card store is a few hundred kB at most. */
-const MAX_KEY_BYTES = 512 * 1024;
+/**
+ * Per-key ceiling, measured rather than guessed.
+ *
+ * A fully reviewed card store for the current corpus — 88 units plus 10 lessons,
+ * 1188 cards — serialises to 596 252 bytes (582 Ko), about 500 bytes per card
+ * once the FSRS block carries a review date. The previous 512 Ko ceiling was
+ * therefore below the size a learner who finishes the parcours necessarily
+ * reaches: the "cards" key was rejected with a 413 that the client dropped in
+ * silence, and every later save died the same way.
+ *
+ * 2 Mo covers ~4200 cards: the whole corpus plus the cards added freely from the
+ * reading pages, with headroom for the corpus to keep growing. It stays well
+ * under MAX_BODY_BYTES, which remains the real ceiling for a whole payload.
+ */
+const MAX_KEY_BYTES = 2 * 1024 * 1024;
 const MAX_BODY_BYTES = 4 * 1024 * 1024;
 
 export async function POST(request: NextRequest) {
@@ -32,7 +45,9 @@ export async function POST(request: NextRequest) {
     }
 
     const raw = await request.text();
-    if (raw.length > MAX_BODY_BYTES) {
+    // Byte budget, not UTF-16 units: CJK text is 3 bytes per character, so
+    // String.length let ~3x the stated limit through.
+    if (Buffer.byteLength(raw, "utf8") > MAX_BODY_BYTES) {
       return Response.json({ error: "Charge trop volumineuse" }, { status: 413 });
     }
 
@@ -57,8 +72,16 @@ export async function POST(request: NextRequest) {
     for (const [key, data] of Object.entries(body)) {
       if (!ALLOWED_KEYS.has(key) || data === undefined || data === null) continue;
       const serialized = JSON.stringify(data);
-      if (serialized.length > MAX_KEY_BYTES) {
-        return Response.json({ error: `Clé "${key}" trop volumineuse` }, { status: 413 });
+      const size = Buffer.byteLength(serialized, "utf8");
+      if (size > MAX_KEY_BYTES) {
+        // Say the numbers: the client surfaces this text, and a rejection the
+        // user can read is the whole point of not failing silently.
+        return Response.json(
+          {
+            error: `Clé "${key}" trop volumineuse (${Math.round(size / 1024)} Ko, maximum ${Math.round(MAX_KEY_BYTES / 1024)} Ko)`,
+          },
+          { status: 413 }
+        );
       }
       payloads.push([key, serialized]);
     }

@@ -19,10 +19,20 @@ export function ChapterSection({
   chapter,
   progress,
   startIndex,
+  userStateReady,
 }: {
   chapter: Chapter;
   progress: PathProgress;
   startIndex: number;
+  /**
+   * False while the prerendered HTML is still waiting for localStorage. The
+   * chapter and unit copy is build-known and always renders; the lock, the
+   * completion tick, the score and the chapter bar are claims about the reader
+   * and stay out until this is true. In particular, nothing is drawn as locked
+   * before then — a lock computed from an empty progression would tell every
+   * visitor that 39 units out of 40 are closed to them.
+   */
+  userStateReady: boolean;
 }) {
   const chapterPct = getChapterProgress(chapter, progress);
 
@@ -39,7 +49,11 @@ export function ChapterSection({
         <p className="chinese text-sm text-stone-500" lang="zh-Hant-TW">{chapter.titleZh}</p>
         <p className="mt-1 text-sm text-stone-500">{chapter.description}</p>
         <div className="mt-3 max-w-xs">
-          <ProgressBar value={Math.round(chapterPct * 100)} max={100} />
+          {userStateReady ? (
+            <ProgressBar value={Math.round(chapterPct * 100)} max={100} />
+          ) : (
+            <div className="h-2 w-full animate-pulse rounded-full bg-stone-100" />
+          )}
         </div>
       </div>
 
@@ -51,6 +65,7 @@ export function ChapterSection({
             displayNumber={startIndex + i + 1}
             progress={progress}
             isLast={i === chapterUnits.length - 1}
+            userStateReady={userStateReady}
           />
         ))}
       </div>
@@ -63,16 +78,21 @@ function UnitNode({
   displayNumber,
   progress,
   isLast,
+  userStateReady,
 }: {
   unit: CourseUnitMeta;
   displayNumber: number;
   progress: PathProgress;
   isLast: boolean;
+  userStateReady: boolean;
 }) {
-  const completed = isUnitCompleted(unit.id, progress);
-  const unlocked = isUnitUnlocked(unit.id, unit, progress);
-  const isCurrent = progress.currentUnit === unit.id;
-  const score = progress.unitScores[unit.id];
+  // Before the reader's progression is known, the node renders in its neutral
+  // state: no tick, no lock, no "en cours", and reachable — an open link is the
+  // one option that asserts nothing about them.
+  const completed = userStateReady && isUnitCompleted(unit.id, progress);
+  const unlocked = !userStateReady || isUnitUnlocked(unit.id, unit, progress);
+  const isCurrent = userStateReady && progress.currentUnit === unit.id;
+  const score = userStateReady ? progress.unitScores[unit.id] : undefined;
 
   let circleStyle = "border-stone-300 bg-white text-stone-400";
   if (completed) {
@@ -143,10 +163,16 @@ function UnitNode({
               className={cn(
                 "shrink-0",
                 completed ? "btn-secondary" : "btn-primary",
-                "gap-1 text-sm"
+                "min-w-[7.5rem] gap-1 text-sm"
               )}
             >
-              {completed ? "Refaire" : isCurrent ? "Continuer" : "Commencer"}
+              {userStateReady
+                ? completed
+                  ? "Refaire"
+                  : isCurrent
+                    ? "Continuer"
+                    : "Commencer"
+                : "Ouvrir"}
               <ChevronRight className="h-4 w-4" />
             </Link>
           )}

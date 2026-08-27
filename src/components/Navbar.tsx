@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { User, LogIn, LogOut, Menu, X } from "lucide-react";
 import { checkUser, login, syncUp, syncDown, setConnected } from "@/lib/sync";
+import SyncStatus from "@/components/SyncStatus";
 import { cn } from "@/lib/cn";
 import { getBasePath } from "@/lib/basepath";
 
@@ -98,6 +99,7 @@ export default function Navbar() {
                   <User className="h-4 w-4" />
                   {user.username}
                 </span>
+                <SyncStatus />
                 <button onClick={handleLogout} className="text-stone-400 hover:text-stone-600" title="Déconnexion">
                   <LogOut className="h-4 w-4" />
                 </button>
@@ -181,6 +183,7 @@ export default function Navbar() {
                     <span className="flex items-center gap-1.5 text-sm font-medium text-primary">
                       <User className="h-4 w-4" />
                       {user.username}
+                      <SyncStatus />
                     </span>
                     <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="text-stone-400 hover:text-stone-600" title="Déconnexion">
                       <LogOut className="h-4 w-4" />

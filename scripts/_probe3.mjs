@@ -1,0 +1,20 @@
+import { allUnits } from "../src/data/course/index.ts";
+import { lessons } from "../src/data/lessons.ts";
+import { gradedTexts } from "../src/data/readings.ts";
+const MARKS={"ˊ":2,"ˇ":3,"ˋ":4,"˙":0};
+const T={1:"āēīōūǖĀĒĪŌŪǕ",2:"áéíóúǘÁÉÍÓÚǗ",3:"ǎěǐǒǔǚǍĚǏǑǓǙ",4:"àèìòùǜÀÈÌÒÙǛ"};
+const zt=(s)=>{for(const[m,t]of Object.entries(MARKS))if(s.includes(m))return t;return 1;};
+const zts=(z)=>z.trim().split(/\s+/).filter(Boolean).map(zt);
+const pts=(p)=>{const o=[];for(const c of p)for(const[t,m]of Object.entries(T))if(m.includes(c))o.push(Number(t));return o;};
+let n=0,bad=0;
+function check(id,items){for(const v of items){ if(!v.zhuyin||!v.pinyin) continue; n++;
+  const fp=pts(v.pinyin).join(","), fz=zts(v.zhuyin).filter(t=>t!==0).join(",");
+  if(fp!==fz){bad++; if(bad<=25)console.log(`${id}/${v.character}: pinyin ${v.pinyin} -> [${fp}] vs zhuyin ${v.zhuyin} -> [${fz}]`);}}}
+for(const u of allUnits) check(u.id,u.vocabulary);
+console.log("course:",n,"bad:",bad);
+let n2=n,b2=bad;
+for(const l of lessons) check(l.id,l.vocabulary);
+console.log("+lessons:",n-n2,"bad added:",bad-b2);
+n2=n;b2=bad;
+for(const t of gradedTexts) check(t.id,t.vocabulary);
+console.log("+readings:",n-n2,"bad added:",bad-b2);

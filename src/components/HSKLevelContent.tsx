@@ -20,12 +20,20 @@ import {
 import type { PathProgress } from "@/types/course";
 
 export default function HSKLevelContent({ level }: { level: number }) {
+  // Every hook runs before the early returns below — the level lookup must not
+  // be allowed to skip one.
+  //
   // Start from empty rather than null: returning null until hydration left the
   // prerendered page with no content at all, so the LCP waited on the bundle.
+  // `hydrated` keeps the two halves apart — chapter and unit copy is build-known
+  // and ships in the HTML, while progression, locks and counters wait for
+  // localStorage rather than presenting an empty progression as a measurement.
   const [progress, setProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     setProgress(getPathProgress());
+    setHydrated(true);
   }, []);
 
   const hskLevel = hskLevels.find((l) => l.level === level);
@@ -96,7 +104,19 @@ export default function HSKLevelContent({ level }: { level: number }) {
         </div>
         <p className="mt-3 text-stone-500">{hskLevel.description}</p>
         <div className="mt-4 max-w-md">
-          <ProgressBar value={completedCount} max={totalCount} label={`${completedCount}/${totalCount} unités complétées`} />
+          {hydrated ? (
+            <ProgressBar value={completedCount} max={totalCount} label={`${completedCount}/${totalCount} unités complétées`} />
+          ) : (
+            // Same two rows and heights as ProgressBar. The unit total belongs to
+            // the corpus; how many are done belongs to the reader.
+            <div className="w-full">
+              <div className="mb-1 flex justify-between text-xs text-stone-500">
+                <span>{totalCount} unités dans ce niveau</span>
+                <span className="block h-4 w-8 animate-pulse rounded bg-stone-100" aria-hidden />
+              </div>
+              <div className="h-2 w-full animate-pulse rounded-full bg-stone-100" />
+            </div>
+          )}
         </div>
       </section>
 
@@ -113,6 +133,7 @@ export default function HSKLevelContent({ level }: { level: number }) {
                 chapter={chapter}
                 progress={progress}
                 startIndex={startIndex}
+                userStateReady={hydrated}
               />
             );
           });
@@ -120,7 +141,7 @@ export default function HSKLevelContent({ level }: { level: number }) {
       </div>
 
       {/* Level complete or next level CTA */}
-      {completedCount === totalCount && totalCount > 0 && (
+      {hydrated && completedCount === totalCount && totalCount > 0 && (
         <div className="card text-center border-success/30 bg-success/5">
           <p className="text-lg font-bold text-success mb-2">Niveau HSK {level} terminé !</p>
           {nextLevel ? (

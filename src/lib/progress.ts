@@ -28,7 +28,14 @@ export const EMPTY_PATH_PROGRESS: PathProgress = {
 };
 
 export function getPathProgress(): PathProgress {
-  return storageGet<PathProgress>(STORAGE_KEY, defaultProgress);
+  // Copy: completeUnit() pushes into the object it is given, and the exported
+  // default doubles as the pre-hydration render seed.
+  return storageGet<PathProgress>(STORAGE_KEY, {
+    ...defaultProgress,
+    completedUnits: [],
+    unitScores: {},
+    chapterProgress: {},
+  });
 }
 
 export function savePathProgress(progress: PathProgress): void {

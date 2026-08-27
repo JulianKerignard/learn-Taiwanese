@@ -4,6 +4,11 @@ import type { HSKLevel } from "@/types/course";
 // to keep a parallel palette keyed by array position. The classes are written
 // out in full for the Tailwind scanner; the hues live in globals.css as
 // --color-hsk-1..4.
+//
+// comingSoon hides a level from the parcours entirely. Only levels with no units
+// may carry it: chapters 6-8 hold eight finished units, so flagging HSK 3 made
+// them unreachable and capped the overall bar at 80/88. HSK 4 has no chapters
+// yet, so it stays flagged and contributes nothing to the total.
 export const hskLevels: HSKLevel[] = [
   {
     level: 1,
@@ -34,7 +39,6 @@ export const hskLevels: HSKLevel[] = [
     description: "Grammaire avancée, pratique intensive et préparation aux certifications",
     chapterNumbers: [6, 7, 8],
     color: { badge: "bg-hsk-3", surface: "bg-hsk-3/10", text: "text-hsk-3" },
-    comingSoon: true,
   },
   {
     level: 4,
