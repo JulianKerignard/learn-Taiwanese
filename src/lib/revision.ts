@@ -165,7 +165,7 @@ export function groupCardsByHSK(cards: SM2Card[]): TopicGroup[] {
 
     result.push({
       id: `jlpt-${key}`,
-      label: level ? `JLPT ${level.level} — ${level.title}` : "Leçons indépendantes",
+      label: level ? `${level.title} — ${level.titleJa}` : "Leçons indépendantes",
       labelZh: level?.titleJa,
       cards: groupCards,
       dueCount: groupCards.filter(isDue).length,
@@ -174,10 +174,14 @@ export function groupCardsByHSK(cards: SM2Card[]): TopicGroup[] {
     });
   }
 
+  // JLPT numbering descends with difficulty: N5 is the entry level. Sort from
+  // easiest to hardest, and keep the "no level" bucket last.
   return result.sort((a, b) => {
     const aNum = parseInt(a.id.replace("jlpt-", ""));
     const bNum = parseInt(b.id.replace("jlpt-", ""));
-    return aNum - bNum;
+    if (aNum === 0) return 1;
+    if (bNum === 0) return -1;
+    return bNum - aNum;
   });
 }
 

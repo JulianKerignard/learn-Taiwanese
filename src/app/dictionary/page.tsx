@@ -8,104 +8,28 @@ import { cn } from "@/lib/cn";
 import { getSettings, getCards, upsertCard } from "@/lib/storage";
 import { japaneseCollator } from "@/lib/japanese";
 import { createCard } from "@/lib/fsrs";
-import { allUnits, jlptLevels, getJLPTLevelForUnit } from "@/data/course";
-import { lessons } from "@/data/lessons";
-import { gradedTexts } from "@/data/readings";
-import type { VocabularyItem } from "@/types";
+import { jlptLevels } from "@/data/course/meta";
+import {
+  dictionaryEntries,
+  type DictionaryEntry,
+  type DictionarySourceKind,
+} from "@/data/dictionary";
 
-// ─── Build complete dictionary from all sources ───
-
-interface DictEntry {
-  term: string;
-  romaji: string;
-  kana: string;
-  french: string;
-  english: string;
-  sources: string[];
-  jlptLevel?: number;
-  example?: { sentence: string; romaji: string; translation: string };
-}
-
-function buildDictionary(): DictEntry[] {
-  const map = new Map<string, DictEntry>();
-
-  // Course units
-  for (const unit of allUnits) {
-    const jlpt = getJLPTLevelForUnit(unit);
-    for (const v of unit.vocabulary) {
-      const existing = map.get(v.term);
-      if (existing) {
-        if (!existing.sources.includes(`Unité ${unit.number}`)) {
-          existing.sources.push(`Unité ${unit.number}`);
-        }
-        if (jlpt && (!existing.jlptLevel || jlpt.level < existing.jlptLevel)) {
-          existing.jlptLevel = jlpt.level;
-        }
-      } else {
-        map.set(v.term, {
-          term: v.term,
-          romaji: v.romaji,
-          kana: v.kana,
-          french: v.french,
-          english: v.english,
-          sources: [`Unité ${unit.number}`],
-          jlptLevel: jlpt?.level,
-          example: v.example,
-        });
-      }
-    }
-  }
-
-  // Standalone lessons
-  for (const lesson of lessons) {
-    for (const v of lesson.vocabulary) {
-      const existing = map.get(v.term);
-      if (existing) {
-        if (!existing.sources.includes(lesson.title)) {
-          existing.sources.push(lesson.title);
-        }
-      } else {
-        map.set(v.term, {
-          term: v.term,
-          romaji: v.romaji,
-          kana: v.kana,
-          french: v.french,
-          english: v.english,
-          sources: [lesson.title],
-          example: v.example,
-        });
-      }
-    }
-  }
-
-  // Readings
-  for (const reading of gradedTexts) {
-    for (const v of reading.vocabulary) {
-      const existing = map.get(v.term);
-      if (existing) {
-        if (!existing.sources.includes(`Lecture: ${reading.titleFr}`)) {
-          existing.sources.push(`Lecture: ${reading.titleFr}`);
-        }
-      } else {
-        map.set(v.term, {
-          term: v.term,
-          romaji: v.romaji,
-          kana: v.kana || "",
-          french: v.french,
-          english: "",
-          sources: [`Lecture: ${reading.titleFr}`],
-        });
-      }
-    }
-  }
-
-  return [...map.values()].sort((a, b) => japaneseCollator.compare(a.kana, b.kana));
-}
+// The word list is pre-extracted into src/data/dictionary.ts: this page is a
+// client component, so importing @/data/course here would ship every section,
+// dialogue and exercise of the course to the browser. Regenerate that module
+// with scripts/generate-dictionary.mjs after editing any vocabulary.
 
 type SortMode = "kana" | "romaji" | "jlpt";
 type SourceFilter = "all" | "course" | "lessons" | "readings";
 
-/** The dictionary holds ~850 entries; rendering them all blows up the HTML. */
+const SOURCE_FILTER_KIND: Record<Exclude<SourceFilter, "all">, DictionarySourceKind> = {
+  course: "course",
+  lessons: "lesson",
+  readings: "reading",
+};
+
+/** The dictionary holds 846 entries; rendering them all blows up the HTML. */
 const PAGE_SIZE = 100;
 
 export default function DictionaryPage() {
@@ -118,7 +42,7 @@ export default function DictionaryPage() {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const displayMode = getSettings().displayMode;
-  const dictionary = useMemo(() => buildDictionary(), []);
+  const dictionary = dictionaryEntries;
 
   const existingCardChars = useMemo(() => {
     const cards = getCards();
@@ -130,12 +54,9 @@ export default function DictionaryPage() {
     let results = dictionary;
 
     // Source filter
-    if (sourceFilter === "course") {
-      results = results.filter((e) => e.sources.some((s) => s.startsWith("Unité")));
-    } else if (sourceFilter === "lessons") {
-      results = results.filter((e) => e.sources.some((s) => !s.startsWith("Unité") && !s.startsWith("Lecture")));
-    } else if (sourceFilter === "readings") {
-      results = results.filter((e) => e.sources.some((s) => s.startsWith("Lecture")));
+    if (sourceFilter !== "all") {
+      const kind = SOURCE_FILTER_KIND[sourceFilter];
+      results = results.filter((e) => e.sources.some((s) => s.kind === kind));
     }
 
     // JLPT filter
@@ -180,7 +101,7 @@ export default function DictionaryPage() {
   const visible = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
   const remaining = filtered.length - visible.length;
 
-  function handleAddToFlashcards(entry: DictEntry) {
+  function handleAddToFlashcards(entry: DictionaryEntry) {
     if (existingCardChars.has(entry.term) || addedCards.has(entry.term)) return;
     const card = createCard({
       id: `dict-${entry.term}-${Date.now()}`,
@@ -382,8 +303,8 @@ export default function DictionaryPage() {
 
                     <div className="mt-3 flex items-center justify-between">
                       <div className="flex flex-wrap gap-1">
-                        {entry.sources.map((s, i) => (
-                          <span key={i} className="badge bg-stone-100 text-stone-500 text-[10px]">{s}</span>
+                        {entry.sources.map((s) => (
+                          <span key={s.label} className="badge bg-stone-100 text-stone-500 text-[10px]">{s.label}</span>
                         ))}
                       </div>
                       <button

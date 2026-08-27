@@ -107,7 +107,9 @@ export const defaultProgress: UserProgress = {
 };
 
 export function getProgress(): UserProgress {
-  const progress = get<UserProgress>(KEYS.progress, defaultProgress);
+  // Copy the defaults: updateStreak() and completeUnit() mutate what they receive,
+  // and the exported object is also the pre-hydration render seed.
+  const progress = get<UserProgress>(KEYS.progress, { ...defaultProgress, lessonsCompleted: [] });
   // Reset daily counters if new day
   const today = new Date().toISOString().split("T")[0];
   if (progress.lastStudyDate !== today) {

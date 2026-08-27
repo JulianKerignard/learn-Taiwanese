@@ -6,7 +6,7 @@ import AudioButton from "./AudioButton";
 import type { Exercise } from "@/types/course";
 import { addMistake } from "@/lib/storage";
 import { cn } from "@/lib/cn";
-import { shuffleArray, hasJapanese } from "@/lib/utils";
+import { shuffleArray, hasJapanese, stripPunctuation as strip } from "@/lib/utils";
 import ProgressBar from "./ProgressBar";
 
 interface ExerciseRunnerProps {
@@ -21,10 +21,6 @@ interface ExerciseResult {
   answer: string;
 }
 
-/** Full-width punctuation and whitespace, ignored when comparing free-form answers. */
-const IGNORED_CHARS = /[，。？！、：；「」『』…\s]/g;
-
-const strip = (value: string) => value.replace(IGNORED_CHARS, "");
 
 /**
  * Reorder tiles and free-text answers can't be matched byte for byte: the tiles

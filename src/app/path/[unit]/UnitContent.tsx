@@ -65,9 +65,11 @@ export default function UnitContent({
   useEffect(() => {
     if (!unit) return;
     const existingIds = new Set(getCards().map((c) => c.id));
-    setVocabAdded(
-      unit.vocabulary.every((item) => existingIds.has(vocabCardId(unitId, item.term)))
-    );
+    // every() is true for an empty list: 15 units have no vocabulary, and the
+      // button would show as already added next to "0 mots".
+      setVocabAdded(
+        unit.vocabulary.length > 0 && unit.vocabulary.every((item) => existingIds.has(vocabCardId(unitId, item.term)))
+      );
   }, [unit, unitId]);
 
   useEffect(() => {

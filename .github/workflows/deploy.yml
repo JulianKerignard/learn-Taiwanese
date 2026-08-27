@@ -52,4 +52,4 @@ jobs:
 
       - name: Restart app
         run: |
-          ssh -i ~/.ssh/deploy_key ubuntu@5.196.6.59 "pm2 restart taiwan"
+          ssh -i ~/.ssh/deploy_key ubuntu@5.196.6.59 "pm2 restart japon"

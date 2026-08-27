@@ -32,7 +32,10 @@ export default function HangmanPage() {
   const [choices, setChoices] = useState<string[]>([]);
   const [guessed, setGuessed] = useState<Set<string>>(new Set());
   const [errors, setErrors] = useState(0);
-  const [showPinyin, setShowPinyin] = useState(true);
+  // Off by default: the rōmaji is a transliteration of the very reading being
+  // guessed, so showing it hands over the answer. (In the Mandarin original the
+  // pinyin did not identify the hanzi, which is why it was shown.)
+  const [showRomaji, setShowRomaji] = useState(false);
   const [phase, setPhase] = useState<Phase>("playing");
 
   const initGame = useCallback(
@@ -103,8 +106,8 @@ export default function HangmanPage() {
       {/* Romaji toggle */}
       <div className="mb-4 flex justify-end">
         <label className="flex items-center gap-2 text-sm text-stone-500">
-          <input type="checkbox" checked={showPinyin} onChange={(e) => setShowPinyin(e.target.checked)} className="rounded" />
-          Afficher le rōmaji
+          <input type="checkbox" checked={showRomaji} onChange={(e) => setShowRomaji(e.target.checked)} className="rounded" />
+          Afficher le rōmaji (révèle la réponse)
         </label>
       </div>
 
@@ -114,7 +117,7 @@ export default function HangmanPage() {
           Écrivez la lecture en kana de :
         </p>
         <p className="card-title mt-1">{target.french}</p>
-        {showPinyin && (
+        {showRomaji && (
           <p className="mt-1 text-sm italic text-stone-500">{target.romaji}</p>
         )}
       </div>

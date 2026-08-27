@@ -282,7 +282,7 @@ export default function AccentPage() {
           高低アクセント
         </p>
         <p className="mt-3 max-w-2xl text-stone-600">
-          Le japonais n&rsquo;a pas de tons syllabiques comme le japonais. Un mot porte au plus{" "}
+          Le japonais n&rsquo;a pas de tons syllabiques, syllabe par syllabe. Un mot porte au plus{" "}
           <strong>une seule chute de hauteur</strong>, et c&rsquo;est sa position qui définit tout le
           contour. Quatre positions possibles, donc quatre schémas — et une conséquence
           contre-intuitive : deux d&rsquo;entre eux sont indistinguables tant qu&rsquo;on

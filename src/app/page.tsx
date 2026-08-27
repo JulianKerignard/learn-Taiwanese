@@ -21,18 +21,21 @@ import type { UserProgress } from "@/types";
 import type { PathProgress } from "@/types/course";
 
 export default function HomePage() {
-  // Start from the defaults so the page prerenders with real content: returning
-  // null until hydration left <main> at 17 bytes.
+  // Two kinds of content live on this page. The hero, the stat labels and the
+  // lesson cards are known at build time and stay in the prerendered HTML.
+  // Anything that describes the reader — counters, streak, "commence ton
+  // parcours", the resume link — waits for `hydrated`: an empty localStorage at
+  // build time is an absence of data, not a user with zero progress.
   const [progress, setProgress] = useState<UserProgress>(defaultProgress);
   const [cardStats, setCardStats] = useState({ total: 0, due: 0, learned: 0, mature: 0, newCards: 0 });
   const [pathProgress, setPathProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    const p = getProgress();
-    setProgress(p);
-    const cards = getCards();
-    setCardStats(getStats(cards));
+    setProgress(getProgress());
+    setCardStats(getStats(getCards()));
     setPathProgress(getPathProgress());
+    setHydrated(true);
   }, []);
 
   const displayedLessons = lessons.slice(0, 5);
@@ -50,7 +53,7 @@ export default function HomePage() {
       </section>
 
       {/* Parcours */}
-      {pathProgress && <PathCTA pathProgress={pathProgress} />}
+      <PathCTA pathProgress={pathProgress} hydrated={hydrated} />
 
       {/* Stats rapides */}
       <section className="grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -58,26 +61,30 @@ export default function HomePage() {
           icon={<GraduationCap className="h-5 w-5 text-primary" />}
           label="Mots appris"
           value={progress.termsLearned}
+          pending={!hydrated}
         />
         <StatCard
           icon={<Flame className="h-5 w-5 text-warning" />}
           label="Streak actuel"
           value={`${progress.currentStreak} jour${progress.currentStreak > 1 ? "s" : ""}`}
+          pending={!hydrated}
         />
         <StatCard
           icon={<RotateCcw className="h-5 w-5 text-accent" />}
           label="À réviser aujourd'hui"
           value={cardStats.due}
+          pending={!hydrated}
         />
         <StatCard
           icon={<BookOpen className="h-5 w-5 text-success" />}
           label="Leçons complétées"
           value={progress.lessonsCompleted.length}
+          pending={!hydrated}
         />
       </section>
 
       {/* Continuer */}
-      {cardStats.due > 0 && (
+      {hydrated && cardStats.due > 0 && (
         <section>
           <h2 className="section-title mb-4">Continuer</h2>
           <div className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -120,7 +127,7 @@ export default function HomePage() {
                     </h3>
                     <p className="japanese text-sm text-stone-500" lang="ja">{lesson.titleJa}</p>
                     <p className="mt-1 text-sm text-stone-500 line-clamp-2">{lesson.description}</p>
-                    {completed && (
+                    {hydrated && completed && (
                       <span className="badge mt-2 bg-success/10 text-success">Complétée</span>
                     )}
                   </div>
@@ -134,10 +141,11 @@ export default function HomePage() {
   );
 }
 
-function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
+function PathCTA({ pathProgress, hydrated }: { pathProgress: PathProgress; hydrated: boolean }) {
   const currentUnit = getUnitMetaById(pathProgress.currentUnit);
   const hasStarted = pathProgress.completedUnits.length > 0;
   const currentLevel = getCurrentJLPTLevel(pathProgress);
+  const resumeHref = hasStarted && currentUnit ? `/path/${currentUnit.id}` : "/path";
 
   return (
     <section>
@@ -148,22 +156,31 @@ function PathCTA({ pathProgress }: { pathProgress: PathProgress }) {
           </div>
           <div>
             <p className="font-medium text-stone-800">
-              {hasStarted ? "Ton parcours" : "Commence ton parcours"}
+              {hydrated && !hasStarted ? "Commence ton parcours" : "Ton parcours"}
             </p>
-            <p className="text-sm text-stone-500">
-              {hasStarted && currentUnit
-                ? `JLPT ${currentLevel?.level ?? ""} — Unité ${currentUnit.number} : ${currentUnit.title}`
-                : hasStarted
-                  ? `${pathProgress.completedUnits.length} unités complétées`
-                  : "Apprends le japonais pas à pas"}
-            </p>
+            {hydrated ? (
+              <p className="text-sm text-stone-500">
+                {hasStarted && currentUnit
+                  ? `JLPT ${currentLevel?.level ?? ""} — Unité ${currentUnit.number} : ${currentUnit.title}`
+                  : hasStarted
+                    ? `${pathProgress.completedUnits.length} unités complétées`
+                    : "Apprends le japonais pas à pas"}
+              </p>
+            ) : (
+              // Same 20px line box as the sentence it stands in for, so the card
+              // does not change height when the real one arrives.
+              <span className="mt-0.5 block h-5 w-52 animate-pulse rounded bg-stone-100" aria-hidden />
+            )}
           </div>
         </div>
+        {/* The destination is the reader's current unit, which only the browser
+            knows. Until then the link goes to the parcours index — true for
+            everyone — and the fixed width keeps the button from resizing. */}
         <Link
-          href={hasStarted && currentUnit ? `/path/${currentUnit.id}` : "/path"}
-          className="btn-primary gap-1 shrink-0"
+          href={hydrated ? resumeHref : "/path"}
+          className="btn-primary min-w-[12rem] gap-1 shrink-0"
         >
-          {hasStarted ? "Continuer" : "Commencer"}
+          {hydrated ? (hasStarted ? "Continuer" : "Commencer") : "Ouvrir le parcours"}
           <ChevronRight className="h-4 w-4" />
         </Link>
       </div>
@@ -175,15 +192,21 @@ function StatCard({
   icon,
   label,
   value,
+  pending,
 }: {
   icon: React.ReactNode;
   label: string;
   value: string | number;
+  pending?: boolean;
 }) {
   return (
     <div className="card flex flex-col items-center gap-2 text-center">
       {icon}
-      <p className="text-2xl font-bold text-stone-800">{value}</p>
+      {pending ? (
+        <span className="block h-8 w-12 animate-pulse rounded bg-stone-100" aria-hidden />
+      ) : (
+        <p className="text-2xl font-bold text-stone-800">{value}</p>
+      )}
       <p className="text-xs text-stone-500">{label}</p>
     </div>
   );

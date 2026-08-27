@@ -315,7 +315,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
             )}
           >
             {showReading ? <EyeOff size={14} /> : <Eye size={14} />}
-            Romaji
+            Furigana
           </button>
         </div>
       </div>

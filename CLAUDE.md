@@ -135,21 +135,43 @@ its declared pattern; no kanji in chapter 1.
 
 ### Auth
 
-Username-only login, no password — a documented product choice. The session is a
-**signed cookie**, not a plain id: `src/lib/auth.ts` HMACs the user id with
-`SESSION_SECRET`, and `getSessionUserId()` is the only way the API routes read it.
-An unsigned or tampered cookie yields `null`, so pre-existing sessions are invalidated
-rather than trusted.
+Username-only login, **no password and no proof of possession**. This is a deliberate product
+choice for a personal learning app, and it has a consequence that must not be glossed over.
 
-**`SESSION_SECRET` is required in production.** Without it the app throws on the first
-login instead of silently signing with a per-process random key. Generate one with
-`openssl rand -hex 32` and set it in the server environment.
+**Threat model — read this before treating the session layer as a security boundary.**
 
-Also enforced: `sameSite: "strict"` plus an `Origin` check on login and save
-(login-CSRF), `/api/users` requires a session and no longer returns account ids,
-`/api/progress/save` caps each key at 512 kB and the body at 4 MB, and
-`db.pragma("foreign_keys = ON")` — off by default in SQLite, which made the
-`user_data` foreign key decorative.
+Anyone who knows a username can sign in as that account: `POST /api/auth/login` issues a valid
+session for whatever name it is given. Signing the cookie (below) removed *cookie forgery*, not
+account takeover — an attacker no longer needs to craft `Cookie: japon-user=3`, they simply ask the
+login endpoint for a session. Treat synced progress as public-ish data: **never store anything
+sensitive in a user's synced keys.** `/api/users` therefore returns only the requesting account's
+own stats; the directory of usernames it used to expose was the other half of that takeover, and the
+comparison leaderboard that fed is gone on purpose.
+
+Closing this properly requires a per-account secret (a generated code or a password), which
+contradicts the no-password design. That trade-off is open, not solved.
+
+**What the session layer does protect.** `src/lib/auth.ts` HMACs the user id with `SESSION_SECRET`,
+and `getSessionUserId()` is the only way API routes read it. An unsigned or tampered cookie yields
+`null`, so a cookie cannot be minted without the secret, and pre-existing unsigned sessions are
+invalidated rather than trusted.
+
+**`SESSION_SECRET` is required in production.** Without it the app throws on the first login instead
+of silently signing with a per-process random key. Generate one with `openssl rand -hex 32`. It must
+live in the **process environment** (pm2 ecosystem file, systemd unit) — a `.env` dropped into the
+deployed directory is wiped by the next `rsync --delete`. Changing the value logs everyone out.
+
+**`APP_ORIGIN` should be set too** (e.g. `https://juliankerignard.fr`). The Origin check on login and
+save compares against it and ignores request headers entirely. Without it the check falls back to
+`x-forwarded-host` then `host` — which still works behind a proxy that rewrites `Host`, but is looser.
+
+Also enforced: `sameSite: "strict"` plus the Origin check above (login-CSRF), `/api/progress/save`
+caps each key at 512 kB and the body at 4 MB measured in **bytes**, and
+`db.pragma("foreign_keys = ON")` — off by default in SQLite, which made the `user_data` foreign key
+decorative.
+
+Login looks an account up **before** validating the character set, so an account created under the
+older, laxer rules (a space, an apostrophe) can still sign in; the stricter rules apply to new names.
 
 API routes: `/api/auth/{login,logout,me}`, `/api/progress/{load,save}`, `/api/users`.
 SQLite stores users and their synced data in `src/lib/db.ts`.

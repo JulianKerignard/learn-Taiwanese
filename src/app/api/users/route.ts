@@ -1,48 +1,75 @@
 import { getDb } from "@/lib/db";
 import { getSessionUserId } from "@/lib/auth";
 
+/**
+ * Returns the signed-in user's own synced stats — and nobody else's.
+ *
+ * This route used to list every account with its progress. Combined with a login
+ * that asks for no credential, that directory was the second half of an account
+ * takeover: enumerate the usernames here, then ask the login endpoint for a cookie
+ * for any of them. Signing the cookie did not change that, so the enumeration had
+ * to go. The comparison leaderboard it fed is gone with it, deliberately.
+ */
 export async function GET() {
   try {
-    // Reserved for signed-in users: this is a leaderboard, not a public directory.
-    if ((await getSessionUserId()) === null) {
-      return Response.json({ error: "Non connecté" }, { status: 401 });
-    }
+    const id = await getSessionUserId();
+    if (id === null) return Response.json({ error: "Non connecté" }, { status: 401 });
+
     const db = getDb();
-    const users = db.prepare(`
-      SELECT u.id, u.username, u.created_at,
-        (SELECT data FROM user_data WHERE user_id = u.id AND key = 'path_progress') as path_data,
-        (SELECT data FROM user_data WHERE user_id = u.id AND key = 'progress') as progress_data,
-        (SELECT data FROM user_data WHERE user_id = u.id AND key = 'gamification') as gam_data,
-        (SELECT data FROM user_data WHERE user_id = u.id AND key = 'speed_record') as speed_data,
-        (SELECT data FROM user_data WHERE user_id = u.id AND key = 'study_time') as study_data
-      FROM users u
-      ORDER BY u.created_at
-    `).all() as { id: number; username: string; created_at: string; path_data: string | null; progress_data: string | null; gam_data: string | null; speed_data: string | null; study_data: string | null }[];
+    const row = db
+      .prepare(
+        `SELECT u.username, u.created_at,
+           (SELECT data FROM user_data WHERE user_id = u.id AND key = 'path_progress') as path_data,
+           (SELECT data FROM user_data WHERE user_id = u.id AND key = 'progress') as progress_data,
+           (SELECT data FROM user_data WHERE user_id = u.id AND key = 'gamification') as gam_data,
+           (SELECT data FROM user_data WHERE user_id = u.id AND key = 'speed_record') as speed_data,
+           (SELECT data FROM user_data WHERE user_id = u.id AND key = 'study_time') as study_data
+         FROM users u WHERE u.id = ?`
+      )
+      .get(id) as
+      | {
+          username: string;
+          created_at: string;
+          path_data: string | null;
+          progress_data: string | null;
+          gam_data: string | null;
+          speed_data: string | null;
+          study_data: string | null;
+        }
+      | undefined;
 
-    const result = users.map((u) => {
-      const path = u.path_data ? JSON.parse(u.path_data) : null;
-      const progress = u.progress_data ? JSON.parse(u.progress_data) : null;
-      const gam = u.gam_data ? JSON.parse(u.gam_data) : null;
-      const speedRecord = u.speed_data ? JSON.parse(u.speed_data) : 0;
-      const studyTime = u.study_data ? JSON.parse(u.study_data) : {};
-      const totalMinutes = typeof studyTime === "object" ? Object.values(studyTime as Record<string, number>).reduce((a: number, b: number) => a + b, 0) : 0;
+    if (!row) return Response.json({ error: "Compte inconnu" }, { status: 401 });
 
-      return {
-        username: u.username,
-        unitsCompleted: path?.completedUnits?.length ?? 0,
-        currentStreak: progress?.currentStreak ?? 0,
-        totalXP: gam?.totalXP ?? 0,
-        termsLearned: progress?.termsLearned ?? 0,
-        lastStudyDate: progress?.lastStudyDate ?? null,
-        speedRecord: typeof speedRecord === "number" ? speedRecord : 0,
-        totalStudyMinutes: totalMinutes,
-        level: (() => { if (!gam?.totalXP) return 1; let lvl = 1; let acc = 0; while (lvl < 60) { const needed = 100 * lvl; if (acc + needed > gam.totalXP) return lvl; acc += needed; lvl++; } return 60; })(),
-      };
+    const parse = <T,>(raw: string | null, fallback: T): T => {
+      if (!raw) return fallback;
+      try {
+        return JSON.parse(raw) as T;
+      } catch {
+        return fallback;
+      }
+    };
+
+    const path = parse<{ completedUnits?: string[] }>(row.path_data, {});
+    const progress = parse<{ currentStreak?: number; termsLearned?: number; lastStudyDate?: string; level?: number }>(
+      row.progress_data,
+      {}
+    );
+    const gam = parse<{ totalXP?: number }>(row.gam_data, {});
+    const studyTime = parse<Record<string, number>>(row.study_data, {});
+
+    return Response.json({
+      username: row.username,
+      unitsCompleted: path.completedUnits?.length ?? 0,
+      currentStreak: progress.currentStreak ?? 0,
+      termsLearned: progress.termsLearned ?? 0,
+      level: progress.level ?? 1,
+      lastStudyDate: progress.lastStudyDate ?? null,
+      totalXP: gam.totalXP ?? 0,
+      speedRecord: parse<number>(row.speed_data, 0),
+      totalStudyMinutes: Object.values(studyTime).reduce((a, b) => a + b, 0),
     });
-
-    return Response.json(result);
   } catch (error) {
     console.error("Users error:", error);
-    return Response.json([]);
+    return Response.json({ error: "Erreur serveur" }, { status: 500 });
   }
 }

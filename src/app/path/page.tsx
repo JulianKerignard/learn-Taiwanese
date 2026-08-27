@@ -17,11 +17,16 @@ import type { PathProgress } from "@/types/course";
 const TOTAL_UNITS = allUnitMetas.length;
 
 export default function PathPage() {
-  // The level cards are known at build time; only the counters need the browser.
+  // The level cards — titles, descriptions, unit totals — are known at build
+  // time and stay in the prerendered HTML. The counters, the percentages and the
+  // "En cours" badge describe the reader, so they wait for `hydrated` instead of
+  // rendering an empty progression as if it were a measured zero.
   const [progress, setProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     setProgress(getPathProgress());
+    setHydrated(true);
   }, []);
 
   const completedCount = progress.completedUnits.length;
@@ -36,11 +41,23 @@ export default function PathPage() {
           Choisis ton niveau et progresse à ton rythme
         </p>
         <div className="mx-auto mt-4 max-w-md">
-          <ProgressBar
-            value={completedCount}
-            max={TOTAL_UNITS}
-            label={`${completedCount}/${TOTAL_UNITS} unités complétées`}
-          />
+          {hydrated ? (
+            <ProgressBar
+              value={completedCount}
+              max={TOTAL_UNITS}
+              label={`${completedCount}/${TOTAL_UNITS} unités complétées`}
+            />
+          ) : (
+            // Same two rows and same heights as ProgressBar: the total is a fact
+            // about the corpus, the share completed is a fact about the reader.
+            <div className="w-full">
+              <div className="mb-1 flex justify-between text-xs text-stone-500">
+                <span>{TOTAL_UNITS} unités au total</span>
+                <span className="block h-4 w-8 animate-pulse rounded bg-stone-100" aria-hidden />
+              </div>
+              <div className="h-2 w-full animate-pulse rounded-full bg-stone-100" />
+            </div>
+          )}
         </div>
       </section>
 
@@ -51,8 +68,8 @@ export default function PathPage() {
           const unitIds = units.map((u) => u.id);
           const completed = getJLPTLevelCompletedCount(unitIds, progress);
           const total = units.length;
-          const isCurrent = currentLevel?.level === level.level && !level.comingSoon;
-          const isComplete = completed === total && total > 0;
+          const isCurrent = hydrated && currentLevel?.level === level.level && !level.comingSoon;
+          const isComplete = hydrated && completed === total && total > 0;
           const colors = level.color;
 
           if (level.comingSoon) {
@@ -126,14 +143,25 @@ export default function PathPage() {
 
               <div className="mt-4">
                 <div className="flex items-center justify-between text-xs text-stone-500 mb-1">
-                  <span>{completed}/{total} unités</span>
-                  <span>{total > 0 ? Math.round((completed / total) * 100) : 0}%</span>
+                  <span>{hydrated ? `${completed}/${total} unités` : `${total} unités`}</span>
+                  {hydrated ? (
+                    <span>{total > 0 ? Math.round((completed / total) * 100) : 0}%</span>
+                  ) : (
+                    <span className="block h-4 w-8 animate-pulse rounded bg-stone-100" aria-hidden />
+                  )}
                 </div>
-                <div className="h-2 w-full overflow-hidden rounded-full bg-stone-100">
-                  <div
-                    className={cn("h-full rounded-full transition-all", colors.badge)}
-                    style={{ width: `${total > 0 ? (completed / total) * 100 : 0}%` }}
-                  />
+                <div
+                  className={cn(
+                    "h-2 w-full overflow-hidden rounded-full bg-stone-100",
+                    !hydrated && "animate-pulse"
+                  )}
+                >
+                  {hydrated && (
+                    <div
+                      className={cn("h-full rounded-full transition-all", colors.badge)}
+                      style={{ width: `${total > 0 ? (completed / total) * 100 : 0}%` }}
+                    />
+                  )}
                 </div>
               </div>
             </Link>
