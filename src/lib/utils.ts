@@ -16,6 +16,6 @@ export function hasChinese(str: string): boolean {
  * Shared with scripts/validate-corpus.mjs: when the two disagreed, the validator
  * rejected a reorder the runtime graded correctly.
  */
-export const IGNORED_PUNCTUATION = /[，。？！、：；「」『』…\\s]/g;
+export const IGNORED_PUNCTUATION = /[，。？！、：；「」『』…\s]/g;
 
 export const stripPunctuation = (value: string) => value.replace(IGNORED_PUNCTUATION, "");

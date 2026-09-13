@@ -5,13 +5,17 @@ let currentAudio: HTMLAudioElement | null = null;
 // ── Pre-generated audio manifest ──────────────────────────────────────
 
 import { getBasePath } from "@/lib/basepath";
+import { currentLanguage, currentLanguageCode } from "@/lib/language";
 
 let audioManifest: Record<string, string> | null = null;
+let manifestLang: string | null = null;
 
 async function getManifest(): Promise<Record<string, string>> {
-  if (audioManifest) return audioManifest;
+  const lang = currentLanguageCode();
+  if (audioManifest && manifestLang === lang) return audioManifest;
+  manifestLang = lang;
   try {
-    const res = await fetch(`${getBasePath()}/audio/manifest.json`);
+    const res = await fetch(`${getBasePath()}/audio/${currentLanguageCode()}/manifest.json`);
     if (res.ok) {
       audioManifest = await res.json();
       return audioManifest!;
@@ -24,7 +28,7 @@ async function getManifest(): Promise<Record<string, string>> {
 }
 
 function playStaticAudio(audioFile: string): Promise<void> {
-  const audio = new Audio(`${getBasePath()}/audio/${audioFile}`);
+  const audio = new Audio(`${getBasePath()}/audio/${currentLanguageCode()}/${audioFile}`);
   currentAudio = audio;
   return new Promise((resolve) => {
     audio.onended = () => {
@@ -65,7 +69,7 @@ export async function speak(text: string, rate = 0.85): Promise<void> {
   try {
     const params = new URLSearchParams({
       text,
-      voice: "zh-TW-HsiaoChenNeural",
+      voice: currentLanguage().tts.voice,
       rate: String(rate),
     });
 
@@ -112,16 +116,17 @@ function speakFallback(text: string, rate: number): Promise<void> {
     }
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "zh-TW";
+    const { tts } = currentLanguage();
+    utterance.lang = tts.speechLang;
     utterance.rate = rate;
     utterance.pitch = 1;
 
     const voices = window.speechSynthesis.getVoices();
-    const zhVoice =
-      voices.find((v) => v.lang === "zh-TW") ||
-      voices.find((v) => v.lang.startsWith("zh-Hant")) ||
-      voices.find((v) => v.lang.startsWith("zh"));
-    if (zhVoice) utterance.voice = zhVoice;
+    const match = tts.voicePrefixes.reduce<SpeechSynthesisVoice | undefined>(
+      (found, prefix) => found ?? voices.find((v) => v.lang.startsWith(prefix)),
+      undefined
+    );
+    if (match) utterance.voice = match;
 
     utterance.onend = () => resolve();
     utterance.onerror = () => resolve();

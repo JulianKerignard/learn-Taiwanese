@@ -125,3 +125,18 @@ export function getLanguage(segment: string | undefined): LanguageConfig | undef
 export function langHref(segment: LanguageSegment, path: string): string {
   return `/${segment}${path.startsWith("/") ? path : `/${path}`}`;
 }
+
+/**
+ * Language of the page being viewed, read from the first path segment.
+ *
+ * Client code that needs the language without a prop — audio lookup, speech
+ * synthesis — goes through here. Falls back to the default rather than throwing:
+ * a missing segment means a route outside the language tree.
+ */
+export function currentLanguage(): LanguageConfig {
+  if (typeof window === "undefined") return LANGUAGES[DEFAULT_LANGUAGE];
+  const first = window.location.pathname.split("/").filter(Boolean)[0];
+  return getLanguage(first) ?? LANGUAGES[DEFAULT_LANGUAGE];
+}
+
+export const currentLanguageCode = (): LanguageCode => currentLanguage().code;

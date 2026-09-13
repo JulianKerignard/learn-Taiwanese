@@ -146,7 +146,7 @@ export default function DictionaryPage() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Rechercher un caractère, romanization, reading ou traduction..."
+          placeholder="Rechercher un caractère, un pinyin, un zhuyin ou une traduction…"
           className="w-full rounded-lg border border-stone-300 bg-white py-2.5 pl-10 pr-10 text-sm text-stone-900 placeholder:text-stone-400 focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
         />
         {query && (

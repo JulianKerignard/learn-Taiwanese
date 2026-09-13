@@ -66,7 +66,7 @@
   /* Zhuyin is set vertically to the right of its character, the layout every
      Taiwanese textbook uses. Only Firefox implements inter-character today;
      elsewhere it falls back to ruby above, which is still correct. */
-  .ruby-zhuyin {
+  .ruby-reading {
     ruby-position: inter-character;
   }
 
@@ -93,14 +93,14 @@
     @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
   }
 
-  .character-display {
+  .term-display {
     font-family: var(--font-chinese);
     @apply text-5xl sm:text-6xl font-normal leading-none;
   }
 
   /* 田字格: the ruled square used to teach stroke placement in China and
      Taiwan. Two gradients, no assets. */
-  .character-display--boxed {
+  .term-display--boxed {
     display: inline-flex;
     align-items: center;
     justify-content: center;

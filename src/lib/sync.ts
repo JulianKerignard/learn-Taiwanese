@@ -125,7 +125,7 @@ function mergeCards(local: Json, remote: Json): Json {
 
 /** Counters that only ever grow. */
 const MONOTONIC_PROGRESS = [
-  "charactersLearned",
+  "termsLearned",
   "vocabularyMastered",
   "longestStreak",
   "totalStudyDays",
@@ -175,7 +175,7 @@ function mergePathProgress(local: Json, remote: Json): Json {
 
 // ── Gamification ────────────────────────────────────────────────────
 
-const MONOTONIC_GAMIFICATION = ["totalXP", "totalReviews", "totalCharactersLearned"] as const;
+const MONOTONIC_GAMIFICATION = ["totalXP", "totalReviews", "totalTermsLearned"] as const;
 
 /**
  * The union of two XP histories is unbounded — one event per review, forever —

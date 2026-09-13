@@ -13,14 +13,25 @@ npm run dev          # Dev server (accessible at /taiwan due to basePath)
 npm run build        # Production build
 npm run start        # Start production server
 npm run lint         # ESLint
-npm run generate-audio  # Pre-generate TTS audio files (Edge TTS) into public/audio/
-npm run generate-game-words  # Regenerate src/data/game-words.ts from the corpus
-npm run validate     # Corpus invariants (exercises, prerequisites, meta.ts vs index.ts)
+npm run generate-game-words  # Regenerate src/data/<lang>/game-words.ts (both languages)
+npm run generate-dictionary  # Regenerate src/data/<lang>/dictionary.ts (both languages)
+npm run generate-audio       # Pre-generate TTS files into public/audio/<lang>/
+                             #   CORPUS_LANG=ja npm run generate-audio for one language
+npm run validate     # Corpus invariants, once per language (validate:zh, validate:ja)
+                     #   A validator covering one corpus while the other ships
+                     #   unchecked is worse than none: both runs must pass.
 ```
 
 No test framework is configured.
 
 ## Architecture
+
+### Languages
+
+`src/lib/language.ts` is the registry: URL segment, data directory, TTS voice, level
+scale, phonology page and domain nouns for each edition. Nothing else may hardcode a
+language. Client code that needs the language without a prop calls `currentLanguage()`,
+which reads the first path segment.
 
 ### Routing & basePath
 
@@ -28,11 +39,33 @@ Next.js App Router with `basePath: "/taiwan"` and `output: "standalone"`. All cl
 
 ### Data Layer (static, no CMS)
 
-- **Course path**: `src/data/course/chapter{1-7}/` — 88 units across 8 chapters, each a `CourseUnit` with sections, vocabulary, exercises, dialogues. Indexed via `src/data/course/index.ts` which exports `getUnitById()`, `getChapter()`, `getChapterUnits()`.
-- **Course catalogue (metadata only)**: `src/data/course/meta.ts` restates the 88 units' metadata (`CourseUnitMeta`: id, number, chapter, titles, description, icon, requiredScore, prerequisites) plus `chapters` and `hskLevels`, and imports no unit module. **Client components must import from `@/data/course/meta`, never `@/data/course`** — the full index drags all 88 unit modules into the route's browser bundle. Only server components (`src/app/path/[unit]/page.tsx`) and the dictionary read the full index.
-- **Game words**: `src/data/game-words.ts` is generated (`npm run generate-game-words`) from the units' and lessons' vocabulary so `/games/*` never bundles the course. `npm run validate` fails when it drifts.
-- **Standalone lessons**: `src/data/lessons/` — 10 themed lessons (basics, restaurant, transport, etc.) independent of the course path.
-- **Other**: `readings.ts` (3 difficulty levels), `tone-pairs.ts`, `funfacts.ts`.
+**Two corpora live side by side**: `src/data/zh/` (Mandarin, 88 units) and `src/data/ja/`
+(Japanese, 44 units). They expose the same API and the same field names — see the shared
+vocabulary below. Audio is split the same way, `public/audio/zh/` and `public/audio/ja/`:
+34 filenames collided between the two, so the split is required, not cosmetic.
+
+**Shared field vocabulary.** Both editions use one set of names, so a component never
+has to know which language it is rendering:
+
+| Field | Mandarin | Japanese |
+|---|---|---|
+| `term` | 你好 | 行きます |
+| `reading` | ㄋㄧˇ ㄏㄠˇ (zhuyin) | いきます (kana) |
+| `romanization` | nǐhǎo (pinyin) | ikimasu (rōmaji) |
+| `native` | a sentence in the target language | idem |
+| `titleNative` | 發音與基礎 | かなと発音 |
+| `segments` | optional (one character = one syllable) | required whenever a kanji appears |
+
+`native` rather than `text`: `FunFact` and `GradedText` already own a `text` field.
+
+HSK and JLPT are both proficiency scales: the shared API is `levels`, `getLevelBySlug()`,
+`getLevelForUnit()`, `getLevelUnitMetas()`, and the type is `ProficiencyLevel`.
+
+- **Course path**: `src/data/<lang>/course/chapterN/` — a `CourseUnit` per file with sections, vocabulary, exercises, dialogues. Indexed via `src/data/<lang>/course/index.ts` which exports `getUnitById()`, `getChapter()`, `getChapterUnits()`.
+- **Course catalogue (metadata only)**: `src/data/<lang>/course/meta.ts` restates each unit's metadata (`CourseUnitMeta`: id, number, chapter, titles, description, icon, requiredScore, prerequisites) plus `chapters` and `levels`, and imports no unit module. **Client components must import from `@/data/<lang>/course/meta`, never `@/data/<lang>/course`** — the full index drags every unit module into the route's browser bundle. Only server components (`src/app/path/[unit]/page.tsx`) and the dictionary read the full index.
+- **Game words**: `src/data/<lang>/game-words.ts` is generated (`npm run generate-game-words`) from the units' and lessons' vocabulary so `/games/*` never bundles the course. `npm run validate` fails when it drifts.
+- **Standalone lessons**: `src/data/<lang>/lessons/` — themed lessons independent of the course path.
+- **Other**, all under `src/data/<lang>/`: `readings.ts` (3 difficulty levels), `dictionary.ts` (generated), `funfacts.ts`, plus the phonology data — `tone-pairs.ts` for Mandarin, `pitch-accent.ts` for Japanese.
 
 All data is statically imported TypeScript — no database for content. SQLite (better-sqlite3) is only used server-side for user accounts and synced progress.
 
@@ -84,7 +117,7 @@ save compares against it and ignores request headers entirely. Without it the ch
 `x-forwarded-host` then `host` — which still works behind a proxy that rewrites `Host`, but is looser.
 
 Also enforced: `sameSite: "strict"` plus the Origin check above (login-CSRF), `/api/progress/save`
-caps each key at 512 kB and the body at 4 MB measured in **bytes**, and
+caps each key at 2 MB and the body at 4 MB measured in **bytes**, and
 `db.pragma("foreign_keys = ON")` — off by default in SQLite, which made the `user_data` foreign key
 decorative.
 
