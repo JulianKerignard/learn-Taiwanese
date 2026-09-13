@@ -11,10 +11,10 @@ type Phase = "playing" | "won" | "lost";
 const MAX_ERRORS = 6;
 
 function buildChoices(target: GameWord, allWords: GameWord[]): string[] {
-  const targetChars = [...target.character];
+  const targetChars = [...target.term];
   const pool = new Set<string>(targetChars);
 
-  const allChars = allWords.flatMap((w) => [...w.character]);
+  const allChars = allWords.flatMap((w) => [...w.term]);
   const shuffled = shuffleArray(
     [...new Set(allChars)].filter((c) => !pool.has(c))
   );
@@ -63,7 +63,7 @@ export default function HangmanPage() {
     newGuessed.add(char);
     setGuessed(newGuessed);
 
-    const targetChars = [...target.character];
+    const targetChars = [...target.term];
 
     if (targetChars.includes(char)) {
       // Check win
@@ -84,7 +84,7 @@ export default function HangmanPage() {
     );
   }
 
-  const targetChars = [...target.character];
+  const targetChars = [...target.term];
 
   return (
     <main className="mx-auto max-w-xl px-4 py-8">
@@ -118,7 +118,7 @@ export default function HangmanPage() {
           {target.french}
         </p>
         {showPinyin && (
-          <p className="mt-1 text-sm italic text-stone-500">{target.pinyin}</p>
+          <p className="mt-1 text-sm italic text-stone-500">{target.romanization}</p>
         )}
       </div>
 
@@ -180,10 +180,10 @@ export default function HangmanPage() {
             {phase === "won" ? "Bravo !" : "Perdu..."}
           </h2>
           <p className="mb-1 text-lg font-bold text-stone-900 chinese">
-            {target.character}
+            {target.term}
           </p>
-          <p className="mb-3 text-sm text-stone-500">{target.pinyin}</p>
-          <AudioButton text={target.character} size="lg" />
+          <p className="mb-3 text-sm text-stone-500">{target.romanization}</p>
+          <AudioButton text={target.term} size="lg" />
           <div className="mt-4">
             <button
               onClick={() => initGame()}

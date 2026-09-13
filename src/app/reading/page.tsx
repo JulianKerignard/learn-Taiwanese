@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/cn";
 import { storageGet, storageSet, KEYS } from "@/lib/storage";
-import { gradedTexts } from "@/data/readings";
+import { gradedTexts } from "@/data/zh/readings";
 import ReadingText from "@/components/ReadingText";
 import { BookOpen, Check, ChevronRight, Filter } from "lucide-react";
 

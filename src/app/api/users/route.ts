@@ -50,7 +50,7 @@ export async function GET() {
     };
 
     const path = parse<{ completedUnits?: string[] }>(row.path_data, {});
-    const progress = parse<{ currentStreak?: number; charactersLearned?: number; lastStudyDate?: string; level?: number }>(
+    const progress = parse<{ currentStreak?: number; termsLearned?: number; lastStudyDate?: string; level?: number }>(
       row.progress_data,
       {}
     );
@@ -61,7 +61,7 @@ export async function GET() {
       username: row.username,
       unitsCompleted: path.completedUnits?.length ?? 0,
       currentStreak: progress.currentStreak ?? 0,
-      charactersLearned: progress.charactersLearned ?? 0,
+      termsLearned: progress.termsLearned ?? 0,
       level: progress.level ?? 1,
       lastStudyDate: progress.lastStudyDate ?? null,
       totalXP: gam.totalXP ?? 0,

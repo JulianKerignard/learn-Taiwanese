@@ -1,22 +1,22 @@
 import type { SM2Card } from "@/types";
-import type { HSKLevel } from "@/types/course";
+import type { ProficiencyLevel } from "@/types/course";
 // Metadata only: grouping needs a unit's number, title and chapter, never its
 // sections or exercises. /revision is a client route, so importing
 // @/data/course here would ship the whole catalogue to the browser.
 import {
   chapters,
-  hskLevels,
+  levels,
   getUnitMetaById,
-  getHSKLevelForUnit,
-} from "@/data/course/meta";
-import { lessons } from "@/data/lessons";
+  getLevelForUnit,
+} from "@/data/zh/course/meta";
+import { lessons } from "@/data/zh/lessons";
 
 // ── Card source parsing ─────────────────────────────────────────────
 
 interface CardSource {
   unitId?: string;
   chapterNum?: number;
-  hskLevel?: number;
+  level?: number;
   lessonSlug?: string;
 }
 
@@ -50,8 +50,8 @@ function getCardSource(card: SM2Card): CardSource {
     const unit = getUnitMetaById(result.unitId);
     if (unit) {
       result.chapterNum = unit.chapter;
-      const hsk = getHSKLevelForUnit(unit);
-      if (hsk) result.hskLevel = hsk.level;
+      const hsk = getLevelForUnit(unit);
+      if (hsk) result.level = hsk.level;
     }
   }
 
@@ -106,7 +106,7 @@ export function groupCardsByUnit(cards: SM2Card[]): TopicGroup[] {
     result.push({
       id: key,
       label: unit ? `Unité ${unit.number} — ${unit.title}` : lesson ? lesson.title : "Autres",
-      labelZh: unit?.titleZh || lesson?.titleZh,
+      labelZh: unit?.titleNative || lesson?.titleNative,
       cards: groupCards,
       dueCount: groupCards.filter(isDue).length,
       weakCount: groupCards.filter(isWeak).length,
@@ -135,7 +135,7 @@ export function groupCardsByChapter(cards: SM2Card[]): TopicGroup[] {
     result.push({
       id: `chapter-${key}`,
       label: chapter ? `Chapitre ${chapter.number} — ${chapter.title}` : "Leçons indépendantes",
-      labelZh: chapter?.titleZh,
+      labelZh: chapter?.titleNative,
       cards: groupCards,
       dueCount: groupCards.filter(isDue).length,
       weakCount: groupCards.filter(isWeak).length,
@@ -155,7 +155,7 @@ export function groupCardsByHSK(cards: SM2Card[]): TopicGroup[] {
 
   for (const card of cards) {
     const source = getCardSource(card);
-    const key = source.hskLevel ?? 0;
+    const key = source.level ?? 0;
     const arr = groups.get(key) || [];
     arr.push(card);
     groups.set(key, arr);
@@ -163,12 +163,12 @@ export function groupCardsByHSK(cards: SM2Card[]): TopicGroup[] {
 
   const result: TopicGroup[] = [];
   for (const [key, groupCards] of groups) {
-    const level = hskLevels.find((l) => l.level === key);
+    const level = levels.find((l) => l.level === key);
 
     result.push({
       id: `hsk-${key}`,
       label: level ? `HSK ${level.level} — ${level.title}` : "Leçons indépendantes",
-      labelZh: level?.titleZh,
+      labelZh: level?.titleNative,
       cards: groupCards,
       dueCount: groupCards.filter(isDue).length,
       weakCount: groupCards.filter(isWeak).length,
@@ -244,7 +244,7 @@ export function filterCardsByTopic(cards: SM2Card[], topicId: string): SM2Card[]
     const num = parseInt(topicId.replace("hsk-", ""));
     return cards.filter((c) => {
       const source = getCardSource(c);
-      return source.hskLevel === num;
+      return source.level === num;
     });
   }
 

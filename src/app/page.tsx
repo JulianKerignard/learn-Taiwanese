@@ -13,10 +13,10 @@ import {
 import Link from "next/link";
 import { getProgress, getCards, defaultProgress } from "@/lib/storage";
 import { getStats } from "@/lib/fsrs";
-import { lessons } from "@/data/lessons";
+import { lessons } from "@/data/zh/lessons";
 import { getPathProgress, EMPTY_PATH_PROGRESS } from "@/lib/progress";
-import { getUnitMetaById } from "@/data/course/meta";
-import { getCurrentHSKLevel } from "@/lib/progress";
+import { getUnitMetaById } from "@/data/zh/course/meta";
+import { getCurrentLevel } from "@/lib/progress";
 import type { UserProgress } from "@/types";
 import type { PathProgress } from "@/types/course";
 
@@ -60,7 +60,7 @@ export default function HomePage() {
         <StatCard
           icon={<GraduationCap className="h-5 w-5 text-primary" />}
           label="Caractères appris"
-          value={progress.charactersLearned}
+          value={progress.termsLearned}
           pending={!hydrated}
         />
         <StatCard
@@ -125,7 +125,7 @@ export default function HomePage() {
                     <h3 className="font-bold text-stone-800 group-hover:text-primary transition-colors">
                       {lesson.title}
                     </h3>
-                    <p className="chinese text-sm text-stone-500">{lesson.titleZh}</p>
+                    <p className="chinese text-sm text-stone-500">{lesson.titleNative}</p>
                     <p className="mt-1 text-sm text-stone-500 line-clamp-2">{lesson.description}</p>
                     {hydrated && completed && (
                       <span className="badge mt-2 bg-success/10 text-success">Complétée</span>
@@ -144,7 +144,7 @@ export default function HomePage() {
 function PathCTA({ pathProgress, hydrated }: { pathProgress: PathProgress; hydrated: boolean }) {
   const currentUnit = getUnitMetaById(pathProgress.currentUnit);
   const hasStarted = pathProgress.completedUnits.length > 0;
-  const currentLevel = getCurrentHSKLevel(pathProgress);
+  const currentLevel = getCurrentLevel(pathProgress);
   const resumeHref = hasStarted && currentUnit ? `/path/${currentUnit.id}` : "/path";
 
   return (

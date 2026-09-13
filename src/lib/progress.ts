@@ -1,8 +1,8 @@
-import type { PathProgress, CourseUnitMeta, Chapter, HSKLevel } from "@/types/course";
+import type { PathProgress, CourseUnitMeta, Chapter, ProficiencyLevel } from "@/types/course";
 // Metadata only: unlock rules read prerequisites and requiredScore, never the
 // lesson itself. Importing @/data/course here would pull all 88 unit modules
 // into every client bundle that tracks progress.
-import { getUnitMetaById, hskLevels as defaultHskLevels } from "@/data/course/meta";
+import { getUnitMetaById, levels as defaultHskLevels } from "@/data/zh/course/meta";
 import { storageGet, storageSet, KEYS } from "@/lib/storage";
 
 const STORAGE_KEY = KEYS.courseProgress;
@@ -100,17 +100,17 @@ export function getOverallProgress(totalUnits: number, progress: PathProgress): 
 
 // ── HSK Level helpers ──────────────────────────────────────────────
 
-export function getHSKLevelProgress(level: HSKLevel, unitIds: string[], progress: PathProgress): number {
+export function getLevelProgress(level: ProficiencyLevel, unitIds: string[], progress: PathProgress): number {
   if (unitIds.length === 0) return 0;
   const completed = unitIds.filter((id) => progress.completedUnits.includes(id)).length;
   return completed / unitIds.length;
 }
 
-export function getHSKLevelCompletedCount(unitIds: string[], progress: PathProgress): number {
+export function getLevelCompletedCount(unitIds: string[], progress: PathProgress): number {
   return unitIds.filter((id) => progress.completedUnits.includes(id)).length;
 }
 
-export function getCurrentHSKLevel(progress: PathProgress): HSKLevel | undefined {
+export function getCurrentLevel(progress: PathProgress): ProficiencyLevel | undefined {
   const currentUnit = getUnitMetaById(progress.currentUnit);
   if (!currentUnit) return defaultHskLevels[0];
   return defaultHskLevels.find((l) => l.chapterNumbers.includes(currentUnit.chapter));

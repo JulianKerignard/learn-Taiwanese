@@ -42,12 +42,12 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
 
       {/* Question */}
       <div className="flex items-center gap-2">
-        {question.type === "audio-to-character" ? (
+        {question.type === "audio-to-term" ? (
           <AudioButton text={question.question} size="lg" />
         ) : (
           <h3
             className="chinese text-center text-3xl font-medium"
-            lang={question.type === "french-to-character" ? undefined : "zh-Hant-TW"}
+            lang={question.type === "french-to-term" ? undefined : "zh-Hant-TW"}
           >
             {question.question}
           </h3>
@@ -55,10 +55,10 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
       </div>
 
       <p className="text-sm text-stone-500">
-        {question.type === "character-to-french" && "Quelle est la traduction ?"}
-        {question.type === "french-to-character" && "Quel est le caractère ?"}
-        {question.type === "audio-to-character" && "Quel caractère entendez-vous ?"}
-        {question.type === "pinyin-to-character" && "Quel caractère correspond ?"}
+        {question.type === "term-to-french" && "Quelle est la traduction ?"}
+        {question.type === "french-to-term" && "Quel est le caractère ?"}
+        {question.type === "audio-to-term" && "Quel caractère entendez-vous ?"}
+        {question.type === "reading-to-term" && "Quel caractère correspond ?"}
       </p>
 
       {/* Options */}
@@ -80,8 +80,8 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
               )}
             >
               <span
-                className={cn(question.type === "french-to-character" && "chinese text-2xl")}
-                lang={question.type === "french-to-character" ? "zh-Hant-TW" : undefined}
+                className={cn(question.type === "french-to-term" && "chinese text-2xl")}
+                lang={question.type === "french-to-term" ? "zh-Hant-TW" : undefined}
               >
                 {option}
               </span>

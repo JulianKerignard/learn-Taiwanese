@@ -2,8 +2,8 @@
 
 import { useState, useRef, useCallback } from "react";
 import { cn } from "@/lib/cn";
-import { funFacts, categories } from "@/data/funfacts";
-import type { FunFact } from "@/data/funfacts";
+import { funFacts, categories } from "@/data/zh/funfacts";
+import type { FunFact } from "@/data/zh/funfacts";
 import { Sparkles, Shuffle } from "lucide-react";
 
 type Category = FunFact["category"];
@@ -131,13 +131,13 @@ export default function FunFactsPage() {
             <p className="mt-2 text-sm leading-relaxed text-stone-700">
               {fact.text}
             </p>
-            {fact.chinese && (
+            {fact.native && (
               <div className="mt-3 inline-flex items-center gap-2 rounded-lg border border-stone-200 bg-white/60 px-3 py-1.5">
                 <span className="chinese text-lg font-bold text-stone-900">
-                  {fact.chinese}
+                  {fact.native}
                 </span>
-                {fact.pinyin && (
-                  <span className="text-xs text-stone-500">{fact.pinyin}</span>
+                {fact.romanization && (
+                  <span className="text-xs text-stone-500">{fact.romanization}</span>
                 )}
               </div>
             )}

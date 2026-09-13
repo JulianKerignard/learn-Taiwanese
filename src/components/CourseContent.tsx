@@ -88,14 +88,14 @@ function TextBlock({ block }: { block: ContentBlock }) {
 function ExampleBlock({ block }: { block: ContentBlock }) {
   return (
     <Callout role="example" icon="◆" label="Exemple">
-      {block.chinese && (
+      {block.native && (
         <div className="flex items-center gap-2 mb-1">
-          <span className="chinese text-2xl text-stone-900" lang="zh-Hant-TW">{block.chinese}</span>
-          <AudioButton text={block.chinese} size="sm" />
+          <span className="chinese text-2xl text-stone-900" lang="zh-Hant-TW">{block.native}</span>
+          <AudioButton text={block.native} size="sm" />
         </div>
       )}
-      {block.pinyin && (
-        <p className="text-sm italic text-stone-600 mb-1">{block.pinyin}</p>
+      {block.romanization && (
+        <p className="text-sm italic text-stone-600 mb-1">{block.romanization}</p>
       )}
       {block.translation && (
         <p className="text-sm italic text-stone-700">{block.translation}</p>
@@ -133,7 +133,7 @@ function ComparisonBlock({ block }: { block: ContentBlock }) {
   // With a chinese field the block is a two-column contrast: content=FR, chinese=ZH.
   return (
     <Callout role="info" icon="⇄" label="Comparaison">
-      {block.chinese ? (
+      {block.native ? (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div>
             <p className="mb-1 text-xs font-medium uppercase tracking-wide text-accent-ink">Français</p>
@@ -147,7 +147,7 @@ function ComparisonBlock({ block }: { block: ContentBlock }) {
               className="chinese text-sm text-stone-700 leading-relaxed whitespace-pre-line"
               lang="zh-Hant-TW"
             >
-              {parseInlineFormatting(block.chinese)}
+              {parseInlineFormatting(block.native)}
             </p>
           </div>
         </div>

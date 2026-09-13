@@ -75,7 +75,7 @@ export function upsertCard(card: SM2Card): void {
 // Progress
 /** Shape a page can render from before localStorage is read. */
 export const defaultProgress: UserProgress = {
-  charactersLearned: 0,
+  termsLearned: 0,
   vocabularyMastered: 0,
   lessonsCompleted: [],
   currentStreak: 0,
@@ -127,7 +127,7 @@ export function updateStreak(): UserProgress {
 
 // Settings
 const defaultSettings: UserSettings = {
-  displayMode: "pinyin",
+  displayMode: "romanization",
   dailyNewCards: 10,
   showEnglish: true,
   autoPlayAudio: false,

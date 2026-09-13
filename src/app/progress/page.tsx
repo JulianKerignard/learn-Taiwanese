@@ -22,8 +22,8 @@ import {
 } from "@/lib/gamification";
 import { getGamification } from "@/lib/storage";
 import { getStats } from "@/lib/fsrs";
-import { chapters, allUnitMetas } from "@/data/course/meta";
-import { lessons } from "@/data/lessons";
+import { chapters, allUnitMetas } from "@/data/zh/course/meta";
+import { lessons } from "@/data/zh/lessons";
 import type { UserProgress, XPEvent } from "@/types";
 import type { GamificationData } from "@/types";
 import type { PathProgress } from "@/types/course";
@@ -66,7 +66,7 @@ export default function ProgressPage() {
     username: string;
     unitsCompleted: number;
     currentStreak: number;
-    charactersLearned: number;
+    termsLearned: number;
     level: number;
     lastStudyDate: string | null;
     totalXP: number;
@@ -107,7 +107,7 @@ export default function ProgressPage() {
           cards: [],
           progress: {},
           path_progress: { completedUnits: [], unitScores: {}, currentUnit: "unit-01", chapterProgress: {} },
-          gamification: { totalXP: 0, totalReviews: 0, totalCharactersLearned: 0, currentStreak: 0, achievements: [], lastSessionPerfect: false, xpHistory: [] },
+          gamification: { totalXP: 0, totalReviews: 0, totalTermsLearned: 0, currentStreak: 0, achievements: [], lastSessionPerfect: false, xpHistory: [] },
           settings: {},
           speed_record: 0,
           study_time: {},

@@ -1,11 +1,11 @@
 import UnitContent from "./UnitContent";
-import { getUnitById } from "@/data/course";
+import { getUnitById } from "@/data/zh/course";
 import {
   allUnitMetas,
   chapters,
-  getHSKLevelForUnit,
-  getHSKLevelUnitMetas,
-} from "@/data/course/meta";
+  getLevelForUnit,
+  getLevelUnitMetas,
+} from "@/data/zh/course/meta";
 
 export function generateStaticParams() {
   return allUnitMetas.map((u) => ({ unit: u.id }));
@@ -23,15 +23,15 @@ export default async function UnitPage({
   // travels with it as props — were UnitContent to reach for the catalogue
   // itself, all 88 unit modules would land back in the client bundle.
   const unit = getUnitById(unitId);
-  const level = unit ? getHSKLevelForUnit(unit) : undefined;
+  const level = unit ? getLevelForUnit(unit) : undefined;
 
   return (
     <UnitContent
       unitId={unitId}
       unit={unit}
       chapters={chapters}
-      hskLevel={level}
-      levelUnitIds={level ? getHSKLevelUnitMetas(level).map((u) => u.id) : []}
+      level={level}
+      levelUnitIds={level ? getLevelUnitMetas(level).map((u) => u.id) : []}
     />
   );
 }

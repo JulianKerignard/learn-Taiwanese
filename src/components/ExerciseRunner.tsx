@@ -172,12 +172,12 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           )}
         </div>
 
-        {(current.hint || current.hintZhuyin) && (
+        {(current.hint || current.hintReading) && (
           <p className="mb-4 rounded-lg bg-accent/5 px-3 py-1.5 text-sm italic text-accent">
             {current.hint && <span>{current.hint}</span>}
-            {current.hint && current.hintZhuyin && <span className="mx-1.5 text-stone-300">|</span>}
-            {current.hintZhuyin && (
-              <span className="chinese" lang="zh-Hant-TW">{current.hintZhuyin}</span>
+            {current.hint && current.hintReading && <span className="mx-1.5 text-stone-300">|</span>}
+            {current.hintReading && (
+              <span className="chinese" lang="zh-Hant-TW">{current.hintReading}</span>
             )}
           </p>
         )}
@@ -251,7 +251,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           <div className="grid gap-3 sm:grid-cols-2">
             {shuffledData.map(({ opt: option, origIndex }) => {
               const optPinyin = current.optionsHint?.[origIndex];
-              const optZhuyin = current.optionsZhuyin?.[origIndex];
+              const optZhuyin = current.optionsReading?.[origIndex];
               const isSelected = selectedAnswer === option;
               const isAnswer = option === current.correctAnswer;
               let optionStyle = "border-stone-200 bg-white hover:border-primary hover:bg-primary/5";

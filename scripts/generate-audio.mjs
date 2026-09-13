@@ -49,13 +49,13 @@ function extractChineseTexts() {
   function extractFromFile(filePath, set) {
     const content = readFileSync(filePath, "utf-8");
 
-    // character: "..." or character: '...'
-    for (const m of content.matchAll(/character:\s*["']([^"']+)["']/g)) {
+    // term: "..." or term: '...'
+    for (const m of content.matchAll(/term:\s*["']([^"']+)["']/g)) {
       set.add(m[1]);
     }
 
-    // chinese: "..." or chinese: '...'
-    for (const m of content.matchAll(/chinese:\s*["']([^"']+)["']/g)) {
+    // native: "..." or native: '...'
+    for (const m of content.matchAll(/native:\s*["']([^"']+)["']/g)) {
       set.add(m[1]);
     }
   }

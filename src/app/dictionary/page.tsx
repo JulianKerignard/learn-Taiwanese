@@ -8,19 +8,19 @@ import { cn } from "@/lib/cn";
 import { getSettings, getCards, upsertCard } from "@/lib/storage";
 import type { UserSettings } from "@/types";
 import { createCard } from "@/lib/fsrs";
-import { hskLevels } from "@/data/course/levels";
+import { levels } from "@/data/zh/course/levels";
 import {
   dictionaryEntries,
   type DictionaryEntry,
   type DictionarySourceKind,
-} from "@/data/dictionary";
+} from "@/data/zh/dictionary";
 
 // The word list is pre-extracted into src/data/dictionary.ts: this page is a
 // client component, so importing @/data/course here would ship every section,
 // dialogue and exercise of the course to the browser. Regenerate that module
 // with scripts/generate-dictionary.mjs after editing any vocabulary.
 
-type SortMode = "pinyin" | "character" | "hsk";
+type SortMode = "romanization" | "term" | "hsk";
 type SourceFilter = "all" | "course" | "lessons" | "readings";
 
 const SOURCE_FILTER_KIND: Record<Exclude<SourceFilter, "all">, DictionarySourceKind> = {
@@ -34,7 +34,7 @@ const PAGE_SIZE = 100;
 
 export default function DictionaryPage() {
   const [query, setQuery] = useState("");
-  const [sortMode, setSortMode] = useState<SortMode>("pinyin");
+  const [sortMode, setSortMode] = useState<SortMode>("romanization");
   const [sourceFilter, setSourceFilter] = useState<SourceFilter>("all");
   const [hskFilter, setHskFilter] = useState<number | null>(null);
   const [expandedEntry, setExpandedEntry] = useState<string | null>(null);
@@ -44,7 +44,7 @@ export default function DictionaryPage() {
   // Read after mount, never during render: this page is prerendered, so touching
   // localStorage while rendering makes the server and client markup disagree and
   // costs a full client re-render of the list.
-  const [displayMode, setDisplayMode] = useState<UserSettings["displayMode"]>("pinyin");
+  const [displayMode, setDisplayMode] = useState<UserSettings["displayMode"]>("romanization");
   const [existingCardChars, setExistingCardChars] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -67,28 +67,28 @@ export default function DictionaryPage() {
 
     // HSK filter
     if (hskFilter) {
-      results = results.filter((e) => e.hskLevel === hskFilter);
+      results = results.filter((e) => e.level === hskFilter);
     }
 
     // Search
     if (q) {
       results = results.filter(
         (e) =>
-          e.character.includes(q) ||
-          e.pinyin.toLowerCase().includes(q) ||
-          e.zhuyin.includes(q) ||
+          e.term.includes(q) ||
+          e.romanization.toLowerCase().includes(q) ||
+          e.reading.includes(q) ||
           e.french.toLowerCase().includes(q) ||
           e.english.toLowerCase().includes(q)
       );
     }
 
     // Sort
-    if (sortMode === "character") {
-      results = [...results].sort((a, b) => a.character.localeCompare(b.character, "zh-Hant"));
+    if (sortMode === "term") {
+      results = [...results].sort((a, b) => a.term.localeCompare(b.term, "zh-Hant"));
     } else if (sortMode === "hsk") {
-      results = [...results].sort((a, b) => (a.hskLevel ?? 99) - (b.hskLevel ?? 99) || a.pinyin.localeCompare(b.pinyin));
+      results = [...results].sort((a, b) => (a.level ?? 99) - (b.level ?? 99) || a.romanization.localeCompare(b.romanization));
     }
-    // default "pinyin" is already sorted
+    // default "romanization" is already sorted
 
     return results;
   }, [query, sortMode, sourceFilter, hskFilter, dictionary]);
@@ -105,23 +105,23 @@ export default function DictionaryPage() {
   const remaining = filtered.length - visible.length;
 
   function handleAddToFlashcards(entry: DictionaryEntry) {
-    if (existingCardChars.has(entry.character) || addedCards.has(entry.character)) return;
+    if (existingCardChars.has(entry.term) || addedCards.has(entry.term)) return;
     const card = createCard({
-      id: `dict-${entry.character}-${Date.now()}`,
-      front: entry.character,
+      id: `dict-${entry.term}-${Date.now()}`,
+      front: entry.term,
       back: entry.french,
-      pinyin: entry.pinyin,
-      zhuyin: entry.zhuyin,
+      romanization: entry.romanization,
+      reading: entry.reading,
       type: "vocabulary",
     });
     upsertCard(card);
-    setAddedCards((prev) => new Set(prev).add(entry.character));
+    setAddedCards((prev) => new Set(prev).add(entry.term));
   }
 
   const stats = useMemo(() => ({
     total: dictionary.length,
-    hsk1: dictionary.filter((e) => e.hskLevel === 1).length,
-    hsk2: dictionary.filter((e) => e.hskLevel === 2).length,
+    hsk1: dictionary.filter((e) => e.level === 1).length,
+    hsk2: dictionary.filter((e) => e.level === 2).length,
   }), [dictionary]);
 
   return (
@@ -146,7 +146,7 @@ export default function DictionaryPage() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Rechercher un caractère, pinyin, zhuyin ou traduction..."
+          placeholder="Rechercher un caractère, romanization, reading ou traduction..."
           className="w-full rounded-lg border border-stone-300 bg-white py-2.5 pl-10 pr-10 text-sm text-stone-900 placeholder:text-stone-400 focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
         />
         {query && (
@@ -188,7 +188,7 @@ export default function DictionaryPage() {
 
         {/* HSK filter */}
         <div className="flex gap-1">
-          {hskLevels.filter((l) => !l.comingSoon).map((level) => (
+          {levels.filter((l) => !l.comingSoon).map((level) => (
             <button
               key={level.level}
               onClick={() => setHskFilter(hskFilter === level.level ? null : level.level)}
@@ -212,8 +212,8 @@ export default function DictionaryPage() {
           onChange={(e) => setSortMode(e.target.value as SortMode)}
           className="rounded-lg border border-stone-200 bg-white px-2 py-1 text-xs text-stone-600 focus:border-primary"
         >
-          <option value="pinyin">Tri : Pinyin</option>
-          <option value="character">Tri : Caractère</option>
+          <option value="romanization">Tri : Pinyin</option>
+          <option value="term">Tri : Caractère</option>
           <option value="hsk">Tri : Niveau HSK</option>
         </select>
       </div>
@@ -231,13 +231,13 @@ export default function DictionaryPage() {
       {filtered.length > 0 ? (
         <div className="flex flex-col gap-1">
           {visible.map((entry) => {
-            const isExpanded = expandedEntry === entry.character;
-            const isInFlashcards = existingCardChars.has(entry.character) || addedCards.has(entry.character);
+            const isExpanded = expandedEntry === entry.term;
+            const isInFlashcards = existingCardChars.has(entry.term) || addedCards.has(entry.term);
 
             return (
-              <div key={entry.character}>
+              <div key={entry.term}>
                 <button
-                  onClick={() => setExpandedEntry(isExpanded ? null : entry.character)}
+                  onClick={() => setExpandedEntry(isExpanded ? null : entry.term)}
                   aria-expanded={isExpanded}
                   className={cn(
                     "flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left transition-all",
@@ -251,16 +251,16 @@ export default function DictionaryPage() {
                     className="chinese text-2xl font-medium text-stone-900 w-16 text-center shrink-0"
                     lang="zh-Hant-TW"
                   >
-                    {entry.character}
+                    {entry.term}
                   </span>
 
                   {/* Info */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <PinyinDisplay pinyin={entry.pinyin} zhuyin={entry.zhuyin} mode={displayMode} size="sm" />
-                      {entry.hskLevel && (
+                      <PinyinDisplay romanization={entry.romanization} reading={entry.reading} mode={displayMode} size="sm" />
+                      {entry.level && (
                         <span className="badge bg-stone-100 text-stone-500 text-[10px]">
-                          HSK {entry.hskLevel}
+                          HSK {entry.level}
                         </span>
                       )}
                     </div>
@@ -286,15 +286,15 @@ export default function DictionaryPage() {
                       <div>
                         <p className="text-xs font-medium text-stone-400 uppercase mb-1">Prononciation</p>
                         <div className="flex items-center gap-2">
-                          <p className="text-sm text-stone-700">{entry.pinyin}</p>
-                          <AudioButton text={entry.character} size="sm" className="shrink-0" />
+                          <p className="text-sm text-stone-700">{entry.romanization}</p>
+                          <AudioButton text={entry.term} size="sm" className="shrink-0" />
                         </div>
-                        {entry.zhuyin && (
+                        {entry.reading && (
                           <PinyinDisplay
-                            chinese={entry.character}
-                            pinyin={entry.pinyin}
-                            zhuyin={entry.zhuyin}
-                            mode="zhuyin"
+                            native={entry.term}
+                            romanization={entry.romanization}
+                            reading={entry.reading}
+                            mode="reading"
                             size="lg"
                             className="text-stone-900"
                           />
@@ -313,7 +313,7 @@ export default function DictionaryPage() {
                         <p className="chinese text-sm text-stone-800" lang="zh-Hant-TW">
                           {entry.example.sentence}
                         </p>
-                        <p className="text-xs italic text-stone-500">{entry.example.pinyin}</p>
+                        <p className="text-xs italic text-stone-500">{entry.example.romanization}</p>
                         <p className="text-xs text-stone-500">{entry.example.translation}</p>
                       </div>
                     )}

@@ -3,8 +3,8 @@ import type { VocabularyItem } from "./index";
 export interface ContentBlock {
   type: "text" | "example" | "warning" | "tip" | "comparison";
   content: string;
-  chinese?: string;
-  pinyin?: string;
+  native?: string;
+  romanization?: string;
   translation?: string;
 }
 
@@ -16,8 +16,8 @@ export interface CourseSection {
 
 export interface DialogueLine {
   speaker: string;
-  chinese: string;
-  pinyin: string;
+  native: string;
+  romanization: string;
   french: string;
   note?: string;
 }
@@ -34,9 +34,9 @@ export interface Exercise {
   correctAnswer: string;
   options?: string[];
   hint?: string;
-  hintZhuyin?: string;
+  hintReading?: string;
   optionsHint?: string[];
-  optionsZhuyin?: string[];
+  optionsReading?: string[];
 }
 
 /**
@@ -48,7 +48,7 @@ export interface CourseUnitMeta {
   id: string;
   number: number;
   title: string;
-  titleZh: string;
+  titleNative: string;
   chapter: number;
   description: string;
   icon: string;
@@ -69,7 +69,7 @@ export interface CourseUnit extends CourseUnitMeta {
 export interface Chapter {
   number: number;
   title: string;
-  titleZh: string;
+  titleNative: string;
   description: string;
   unitIds: string[];
 }
@@ -79,7 +79,7 @@ export interface Chapter {
  * Tailwind classes so the scanner sees them, and built on the --color-hsk-*
  * tokens so the hue is declared once in globals.css.
  */
-export interface HSKLevelColor {
+export interface LevelColor {
   /** Solid ground under white text: the level chip. */
   badge: string;
   /** Tinted ground for a bar or a panel. Never carries text. */
@@ -88,15 +88,15 @@ export interface HSKLevelColor {
   text: string;
 }
 
-export interface HSKLevel {
+export interface ProficiencyLevel {
   level: number;
   slug: string;
   title: string;
-  titleZh: string;
-  tocflLabel: string;
+  titleNative: string;
+  secondaryLabel: string;
   description: string;
   chapterNumbers: number[];
-  color: HSKLevelColor;
+  color: LevelColor;
   comingSoon?: boolean;
 }
 

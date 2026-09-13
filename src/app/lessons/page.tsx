@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
 import { getProgress } from "@/lib/storage";
-import { lessons } from "@/data/lessons";
+import { lessons } from "@/data/zh/lessons";
 import type { UserProgress } from "@/types";
 
 const categoryLabels: Record<string, { label: string; color: string }> = {
@@ -56,7 +56,7 @@ export default function LessonsPage() {
                 <h2 className="text-title font-bold text-stone-800 group-hover:text-primary transition-colors">
                   {lesson.title}
                 </h2>
-                <p className="chinese text-sm text-stone-500">{lesson.titleZh}</p>
+                <p className="chinese text-sm text-stone-500">{lesson.titleNative}</p>
               </div>
 
               <p className="text-sm text-stone-500 line-clamp-2">{lesson.description}</p>

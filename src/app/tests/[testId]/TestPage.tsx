@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import TestRunner from "@/components/TestRunner";
-import { getTestById } from "@/data/tests";
+import { getTestById } from "@/data/zh/tests";
 
 export default function TestPage({ testId }: { testId: string }) {
   const test = getTestById(testId);

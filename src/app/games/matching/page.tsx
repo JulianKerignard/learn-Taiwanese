@@ -21,7 +21,7 @@ function buildCards(words: GameWord[]): Card[] {
     cards.push({
       id: i * 2,
       pairId: i,
-      text: word.character,
+      text: word.term,
       type: "character",
       word,
       flipped: false,
@@ -233,9 +233,9 @@ export default function MatchingPage() {
                   {card.type === "character" && (card.flipped || card.matched) && (
                     <div className="mt-1 flex flex-col items-center gap-0.5">
                       {showPinyin && (
-                        <span className="text-xs text-stone-500 italic">{card.word.pinyin}</span>
+                        <span className="text-xs text-stone-500 italic">{card.word.romanization}</span>
                       )}
-                      <AudioButton text={card.word.character} size="sm" />
+                      <AudioButton text={card.word.term} size="sm" />
                     </div>
                   )}
                 </div>

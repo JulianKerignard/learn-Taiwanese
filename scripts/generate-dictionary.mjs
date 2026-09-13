@@ -15,13 +15,13 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-import { allUnits, getHSKLevelForUnit } from "../src/data/course/index.ts";
-import { lessons } from "../src/data/lessons.ts";
-import { gradedTexts } from "../src/data/readings.ts";
+import { allUnits, getLevelForUnit } from "../src/data/zh/course/index.ts";
+import { lessons } from "../src/data/zh/lessons.ts";
+import { gradedTexts } from "../src/data/zh/readings.ts";
 
 export const OUTPUT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  "../src/data/dictionary.ts"
+  "../src/data/zh/dictionary.ts"
 );
 
 // Explicit locale: the sort runs here now, so it must not depend on the machine's
@@ -36,17 +36,17 @@ const PINYIN_COLLATOR = new Intl.Collator("en");
 export function collectDictionary() {
   const entries = new Map();
 
-  const add = (item, source, hskLevel) => {
-    const existing = entries.get(item.character);
+  const add = (item, source, level) => {
+    const existing = entries.get(item.term);
 
     if (!existing) {
-      entries.set(item.character, {
-        character: item.character,
-        pinyin: item.pinyin,
-        zhuyin: item.zhuyin ?? "",
+      entries.set(item.term, {
+        term: item.term,
+        romanization: item.romanization,
+        reading: item.reading ?? "",
         french: item.french,
         english: item.english ?? "",
-        hskLevel,
+        level,
         example: item.example,
         sources: [source],
       });
@@ -57,13 +57,13 @@ export function collectDictionary() {
       existing.sources.push(source);
     }
     // A word taught in several units belongs to the earliest level that teaches it.
-    if (hskLevel !== undefined && (existing.hskLevel === undefined || hskLevel < existing.hskLevel)) {
-      existing.hskLevel = hskLevel;
+    if (level !== undefined && (existing.level === undefined || level < existing.level)) {
+      existing.level = level;
     }
   };
 
   for (const unit of allUnits) {
-    const level = getHSKLevelForUnit(unit)?.level;
+    const level = getLevelForUnit(unit)?.level;
     const source = { kind: "course", label: `Unité ${unit.number}` };
     for (const item of unit.vocabulary) add(item, source, level);
   }
@@ -78,7 +78,7 @@ export function collectDictionary() {
     for (const item of reading.vocabulary) add(item, source, undefined);
   }
 
-  return [...entries.values()].sort((a, b) => PINYIN_COLLATOR.compare(a.pinyin, b.pinyin));
+  return [...entries.values()].sort((a, b) => PINYIN_COLLATOR.compare(a.romanization, b.romanization));
 }
 
 const quote = (value) => JSON.stringify(value ?? "");
@@ -89,18 +89,18 @@ function renderSource(source) {
 
 function renderEntry(entry) {
   const fields = [
-    `character: ${quote(entry.character)}`,
-    `pinyin: ${quote(entry.pinyin)}`,
-    `zhuyin: ${quote(entry.zhuyin)}`,
+    `term: ${quote(entry.term)}`,
+    `romanization: ${quote(entry.romanization)}`,
+    `reading: ${quote(entry.reading)}`,
     `french: ${quote(entry.french)}`,
     `english: ${quote(entry.english)}`,
   ];
 
-  if (entry.hskLevel !== undefined) fields.push(`hskLevel: ${entry.hskLevel}`);
+  if (entry.level !== undefined) fields.push(`level: ${entry.level}`);
   if (entry.example) {
     fields.push(
       `example: { sentence: ${quote(entry.example.sentence)}, ` +
-        `pinyin: ${quote(entry.example.pinyin)}, ` +
+        `romanization: ${quote(entry.example.romanization)}, ` +
         `translation: ${quote(entry.example.translation)} }`
     );
   }
@@ -134,14 +134,14 @@ export interface DictionarySource {
 }
 
 export interface DictionaryEntry {
-  character: string;
-  pinyin: string;
-  zhuyin: string;
+  term: string;
+  romanization: string;
+  reading: string;
   french: string;
   english: string;
   /** Earliest HSK level that teaches the word; absent outside the course path. */
-  hskLevel?: number;
-  example?: { sentence: string; pinyin: string; translation: string };
+  level?: number;
+  example?: { sentence: string; romanization: string; translation: string };
   sources: DictionarySource[];
 }
 

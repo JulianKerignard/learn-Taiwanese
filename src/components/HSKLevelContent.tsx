@@ -8,18 +8,18 @@ import { ChapterSection } from "@/components/ChapterSection";
 import { cn } from "@/lib/cn";
 import {
   getPathProgress,
-  getHSKLevelCompletedCount,
+  getLevelCompletedCount,
   EMPTY_PATH_PROGRESS,
 } from "@/lib/progress";
 import {
-  hskLevels,
-  getHSKLevelChapters,
-  getHSKLevelUnitMetas,
+  levels,
+  getLevelChapters,
+  getLevelUnitMetas,
   chapters,
-} from "@/data/course/meta";
+} from "@/data/zh/course/meta";
 import type { PathProgress } from "@/types/course";
 
-export default function HSKLevelContent({ level }: { level: number }) {
+export default function HSKLevelContent({ levelNumber }: { levelNumber: number }) {
   // Every hook runs before the early returns below — the level lookup must not
   // be allowed to skip one.
   //
@@ -36,10 +36,10 @@ export default function HSKLevelContent({ level }: { level: number }) {
     setHydrated(true);
   }, []);
 
-  const hskLevel = hskLevels.find((l) => l.level === level);
-  if (!hskLevel) return null;
+  const level = levels.find((l) => l.level === levelNumber);
+  if (!level) return null;
 
-  if (hskLevel.comingSoon) {
+  if (level.comingSoon) {
     return (
       <div className="flex flex-col gap-10">
         <Link href="/path" className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors">
@@ -48,9 +48,9 @@ export default function HSKLevelContent({ level }: { level: number }) {
         </Link>
         <div className="card text-center py-16">
           <div className="text-5xl mb-4">🚧</div>
-          <h1 className="text-display font-bold text-stone-800 mb-2">HSK {level} — {hskLevel.title}</h1>
-          <p className="text-stone-500 mb-1">{hskLevel.description}</p>
-          <p className="text-sm text-stone-500">{hskLevel.tocflLabel}</p>
+          <h1 className="text-display font-bold text-stone-800 mb-2">HSK {level.level} — {level.title}</h1>
+          <p className="text-stone-500 mb-1">{level.description}</p>
+          <p className="text-sm text-stone-500">{level.secondaryLabel}</p>
           <p className="mt-6 text-stone-500">Ce niveau est en cours de préparation. Reviens bientôt !</p>
           <Link href="/path" className="btn-primary mt-6 inline-flex">
             Retour aux niveaux
@@ -60,10 +60,10 @@ export default function HSKLevelContent({ level }: { level: number }) {
     );
   }
 
-  const levelChapters = getHSKLevelChapters(hskLevel);
-  const levelUnits = getHSKLevelUnitMetas(hskLevel);
+  const levelChapters = getLevelChapters(level);
+  const levelUnits = getLevelUnitMetas(level);
   const unitIds = levelUnits.map((u) => u.id);
-  const completedCount = getHSKLevelCompletedCount(unitIds, progress);
+  const completedCount = getLevelCompletedCount(unitIds, progress);
   const totalCount = levelUnits.length;
 
   // Compute global startIndex for unit numbering
@@ -72,7 +72,7 @@ export default function HSKLevelContent({ level }: { level: number }) {
   const globalStartIndex = firstUnitId ? allOrderedIds.indexOf(firstUnitId) : 0;
 
   // Next HSK level
-  const nextLevel = hskLevels.find((l) => l.level === level + 1);
+  const nextLevel = levels.find((l) => l.level === level.level + 1);
 
   return (
     <div className="flex flex-col gap-10">
@@ -90,19 +90,19 @@ export default function HSKLevelContent({ level }: { level: number }) {
         <div className="flex items-center gap-4">
           <div className={cn(
             "flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-bold text-white",
-            hskLevel.color.badge
+            level.color.badge
           )}>
-            {level}
+            {level.level}
           </div>
           <div>
             <h1 className="text-display font-bold text-stone-900">
-              HSK {level} — {hskLevel.title}
+              HSK {level.level} — {level.title}
             </h1>
-            <p className="chinese text-stone-500" lang="zh-Hant-TW">{hskLevel.titleZh}</p>
-            <p className="text-sm text-stone-500">{hskLevel.tocflLabel}</p>
+            <p className="chinese text-stone-500" lang="zh-Hant-TW">{level.titleNative}</p>
+            <p className="text-sm text-stone-500">{level.secondaryLabel}</p>
           </div>
         </div>
-        <p className="mt-3 text-stone-500">{hskLevel.description}</p>
+        <p className="mt-3 text-stone-500">{level.description}</p>
         <div className="mt-4 max-w-md">
           {hydrated ? (
             <ProgressBar value={completedCount} max={totalCount} label={`${completedCount}/${totalCount} unités complétées`} />
@@ -143,7 +143,7 @@ export default function HSKLevelContent({ level }: { level: number }) {
       {/* Level complete or next level CTA */}
       {hydrated && completedCount === totalCount && totalCount > 0 && (
         <div className="card text-center border-success/30 bg-success/5">
-          <p className="text-lg font-bold text-success mb-2">Niveau HSK {level} terminé !</p>
+          <p className="text-lg font-bold text-success mb-2">Niveau HSK {level.level} terminé !</p>
           {nextLevel ? (
             <Link href={`/path/${nextLevel.slug}`} className="btn-primary gap-1">
               Passer au HSK {nextLevel.level}

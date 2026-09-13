@@ -4,20 +4,20 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronRight, Clock, Trophy, Lock } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { mockTests } from "@/data/tests";
-import { getHSKLevel, hskLevels } from "@/data/course/meta";
+import { mockTests } from "@/data/zh/tests";
+import { getLevelBySlug, levels } from "@/data/zh/course/meta";
 import { getBestResult } from "@/lib/test-storage";
 import type { TestResult } from "@/types/test";
 
 /** A test wears the identity of the HSK level it certifies. */
 function levelColor(level: number) {
-  return (getHSKLevel(level) ?? hskLevels[0]).color;
+  return (getLevelBySlug(level) ?? levels[0]).color;
 }
 
 const HSK3_PLACEHOLDER = {
   id: "hsk-3",
   title: "HSK 3 — Test blanc",
-  titleZh: "HSK三級模擬考試",
+  titleNative: "HSK三級模擬考試",
   level: 3,
   description: "Teste ta compréhension de textes et ta capacité à t'exprimer",
   totalQuestions: 80,
@@ -68,7 +68,7 @@ export default function TestsPage() {
                   <h2 className="text-title font-bold text-stone-800 group-hover:text-primary transition-colors">
                     {test.title}
                   </h2>
-                  <p className="chinese text-sm text-stone-500">{test.titleZh}</p>
+                  <p className="chinese text-sm text-stone-500">{test.titleNative}</p>
                   <p className="mt-1 text-sm text-stone-500">{test.description}</p>
                 </div>
                 <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 group-hover:text-primary transition-colors mt-1" />
@@ -114,7 +114,7 @@ export default function TestsPage() {
                 </h2>
                 <Lock className="h-4 w-4 text-stone-400" />
               </div>
-              <p className="chinese text-sm text-stone-500">{HSK3_PLACEHOLDER.titleZh}</p>
+              <p className="chinese text-sm text-stone-500">{HSK3_PLACEHOLDER.titleNative}</p>
               <p className="mt-1 text-sm text-stone-500">{HSK3_PLACEHOLDER.description}</p>
             </div>
           </div>

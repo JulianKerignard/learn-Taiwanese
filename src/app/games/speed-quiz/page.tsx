@@ -17,12 +17,12 @@ function generateQuestion(
   allWords: GameWord[],
   usedSet: Set<string>
 ): Question | null {
-  const available = allWords.filter((w) => !usedSet.has(w.character));
+  const available = allWords.filter((w) => !usedSet.has(w.term));
   if (available.length === 0) return null;
 
   const word = available[Math.floor(Math.random() * available.length)];
   const distractors = allWords
-    .filter((w) => w.character !== word.character)
+    .filter((w) => w.term !== word.term)
     .sort(() => Math.random() - 0.5)
     .slice(0, 3)
     .map((w) => w.french);
@@ -63,14 +63,14 @@ export default function SpeedQuizPage() {
     if (allWords.length === 0) return;
     const q = generateQuestion(allWords, usedRef.current);
     if (q) {
-      usedRef.current.add(q.word.character);
+      usedRef.current.add(q.word.term);
       setQuestion(q);
     } else {
       // Reset pool if exhausted
       usedRef.current.clear();
       const q2 = generateQuestion(allWords, usedRef.current);
       if (q2) {
-        usedRef.current.add(q2.word.character);
+        usedRef.current.add(q2.word.term);
         setQuestion(q2);
       }
     }
@@ -244,11 +244,11 @@ export default function SpeedQuizPage() {
         <>
           <div className="mb-8 text-center">
             <span className="character-display text-stone-900" lang="zh-Hant-TW">
-              {question.word.character}
+              {question.word.term}
             </span>
             {showPinyin && (
               <p className="mt-2 text-sm text-stone-500 italic">
-                {question.word.pinyin}
+                {question.word.romanization}
               </p>
             )}
           </div>

@@ -1,4 +1,4 @@
-// Extracts the three fields the mini-games need (character, pinyin, french) from
+// Extracts the three fields the mini-games need (character, romanization, french) from
 // the course units and the standalone lessons into src/data/game-words.ts.
 //
 // The games are client components: importing the course index there would ship
@@ -16,12 +16,12 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-import { allUnits } from "../src/data/course/index.ts";
-import { lessons } from "../src/data/lessons.ts";
+import { allUnits } from "../src/data/zh/course/index.ts";
+import { lessons } from "../src/data/zh/lessons.ts";
 
 export const OUTPUT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  "../src/data/game-words.ts"
+  "../src/data/zh/game-words.ts"
 );
 
 /** Course units first, then lessons; first occurrence of a character wins. */
@@ -31,10 +31,10 @@ export function collect() {
   for (const source of [allUnits, lessons]) {
     for (const entry of source) {
       for (const v of entry.vocabulary) {
-        if (words.has(v.character)) continue;
-        words.set(v.character, {
-          character: v.character,
-          pinyin: v.pinyin,
+        if (words.has(v.term)) continue;
+        words.set(v.term, {
+          term: v.term,
+          romanization: v.romanization,
           french: v.french,
         });
       }
@@ -49,7 +49,7 @@ const quote = (value) => JSON.stringify(value ?? "");
 export function render(words) {
   const lines = words.map(
     (w) =>
-      `  { character: ${quote(w.character)}, pinyin: ${quote(w.pinyin)}, french: ${quote(w.french)} },`
+      `  { term: ${quote(w.term)}, romanization: ${quote(w.romanization)}, french: ${quote(w.french)} },`
   );
 
   return `// GENERATED FILE — do not edit by hand.
@@ -62,8 +62,8 @@ export function render(words) {
 // the sections, dialogues and exercises of the course.
 
 export interface GameWord {
-  character: string;
-  pinyin: string;
+  term: string;
+  romanization: string;
   french: string;
 }
 

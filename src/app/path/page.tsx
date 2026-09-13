@@ -7,11 +7,11 @@ import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
 import {
   getPathProgress,
-  getHSKLevelCompletedCount,
-  getCurrentHSKLevel,
+  getLevelCompletedCount,
+  getCurrentLevel,
   EMPTY_PATH_PROGRESS,
 } from "@/lib/progress";
-import { allUnitMetas, hskLevels, getHSKLevelUnitMetas } from "@/data/course/meta";
+import { allUnitMetas, levels, getLevelUnitMetas } from "@/data/zh/course/meta";
 import type { PathProgress } from "@/types/course";
 
 const TOTAL_UNITS = allUnitMetas.length;
@@ -30,7 +30,7 @@ export default function PathPage() {
   }, []);
 
   const completedCount = progress.completedUnits.length;
-  const currentLevel = getCurrentHSKLevel(progress);
+  const currentLevel = getCurrentLevel(progress);
 
   return (
     <div className="flex flex-col gap-10">
@@ -63,10 +63,10 @@ export default function PathPage() {
 
       {/* Level cards */}
       <div className="grid gap-6 sm:grid-cols-2">
-        {hskLevels.map((level) => {
-          const units = getHSKLevelUnitMetas(level);
+        {levels.map((level) => {
+          const units = getLevelUnitMetas(level);
           const unitIds = units.map((u) => u.id);
-          const completed = getHSKLevelCompletedCount(unitIds, progress);
+          const completed = getLevelCompletedCount(unitIds, progress);
           const total = units.length;
           const isCurrent = hydrated && currentLevel?.level === level.level && !level.comingSoon;
           const isComplete = hydrated && completed === total && total > 0;
@@ -92,10 +92,10 @@ export default function PathPage() {
                       </h2>
                       <Lock className="h-4 w-4 text-stone-400" />
                     </div>
-                    <p className="chinese text-sm text-stone-500">{level.titleZh}</p>
+                    <p className="chinese text-sm text-stone-500">{level.titleNative}</p>
                     <p className="mt-1 text-sm text-stone-500">{level.description}</p>
                     <p className="mt-1 text-xs font-medium text-stone-500">
-                      {level.tocflLabel}
+                      {level.secondaryLabel}
                     </p>
                   </div>
                 </div>
@@ -132,10 +132,10 @@ export default function PathPage() {
                       <span className="badge bg-primary/10 text-primary text-xs">En cours</span>
                     )}
                   </div>
-                  <p className="chinese text-sm text-stone-500">{level.titleZh}</p>
+                  <p className="chinese text-sm text-stone-500">{level.titleNative}</p>
                   <p className="mt-1 text-sm text-stone-500">{level.description}</p>
                   <p className={cn("mt-1 text-xs font-medium", colors.text)}>
-                    {level.tocflLabel}
+                    {level.secondaryLabel}
                   </p>
                 </div>
                 <ChevronRight className="h-5 w-5 shrink-0 text-stone-300 group-hover:text-primary transition-colors mt-1" />

@@ -1,4 +1,4 @@
-import { lessons } from "@/data/lessons";
+import { lessons } from "@/data/zh/lessons";
 import LessonContent from "./LessonContent";
 
 export function generateStaticParams() {

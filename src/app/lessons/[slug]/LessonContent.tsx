@@ -16,7 +16,7 @@ import AudioButton from "@/components/AudioButton";
 import PinyinDisplay from "@/components/PinyinDisplay";
 import QuizQuestion from "@/components/QuizQuestion";
 import CourseContent from "@/components/CourseContent";
-import { getLessonBySlug } from "@/data/lessons";
+import { getLessonBySlug } from "@/data/zh/lessons";
 import { createCard } from "@/lib/fsrs";
 import { getCards, upsertCard, getProgress, saveProgress } from "@/lib/storage";
 import { cn } from "@/lib/cn";
@@ -64,14 +64,14 @@ export default function LessonContent({ slug }: { slug: string }) {
     const existingIds = new Set(existingCards.map((c) => c.id));
 
     for (const item of lesson.vocabulary) {
-      const id = `${lesson.id}-${item.character}`;
+      const id = `${lesson.id}-${item.term}`;
       if (!existingIds.has(id)) {
         const data: FlashcardData = {
           id,
-          front: item.character,
+          front: item.term,
           back: item.french,
-          pinyin: item.pinyin,
-          zhuyin: item.zhuyin,
+          romanization: item.romanization,
+          reading: item.reading,
           type: "vocabulary",
           lessonId: lesson.id,
         };
@@ -80,8 +80,8 @@ export default function LessonContent({ slug }: { slug: string }) {
     }
 
     const progress = getProgress();
-    progress.charactersLearned = Math.max(
-      progress.charactersLearned,
+    progress.termsLearned = Math.max(
+      progress.termsLearned,
       getCards().filter(c => c.repetitions > 0).length
     );
     saveProgress(progress);
@@ -132,7 +132,7 @@ export default function LessonContent({ slug }: { slug: string }) {
           <span className="text-4xl sm:text-5xl">{lesson.icon}</span>
           <div>
             <h1 className="text-display font-bold text-stone-900">{lesson.title}</h1>
-            <p className="chinese text-lg text-stone-500">{lesson.titleZh}</p>
+            <p className="chinese text-lg text-stone-500">{lesson.titleNative}</p>
             <p className="mt-1 text-stone-500">{lesson.description}</p>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function LessonContent({ slug }: { slug: string }) {
       {tab === "vocabulary" && (
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {lesson.vocabulary.map((item) => (
-            <CharacterCard key={item.character} item={item} />
+            <CharacterCard key={item.term} item={item} />
           ))}
         </div>
       )}
@@ -199,13 +199,13 @@ export default function LessonContent({ slug }: { slug: string }) {
       {tab === "phrases" && (
         <div className="flex flex-col gap-4">
           {lesson.phrases.map((phrase) => (
-            <div key={phrase.chinese} className="card flex items-start gap-4">
-              <AudioButton text={phrase.chinese} size="md" />
+            <div key={phrase.native} className="card flex items-start gap-4">
+              <AudioButton text={phrase.native} size="md" />
               <div className="flex-1">
                 <p className="chinese text-2xl font-medium text-stone-800">
-                  {phrase.chinese}
+                  {phrase.native}
                 </p>
-                <PinyinDisplay pinyin={phrase.pinyin} zhuyin={phrase.zhuyin} size="md" />
+                <PinyinDisplay romanization={phrase.romanization} reading={phrase.reading} size="md" />
                 <p className="mt-1 text-stone-600">{phrase.french}</p>
                 {phrase.context && (
                   <p className="mt-2 text-xs text-stone-500 italic">{phrase.context}</p>

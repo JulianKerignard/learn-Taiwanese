@@ -1,38 +1,44 @@
-export interface Character {
-  character: string;
-  traditional: string;
-  simplified: string;
-  pinyin: string;
-  zhuyin: string;
-  definition: string;
-  definitionFr: string;
-  strokeCount: number;
-  radical: string;
-  frequency: number;
-  hskLevel?: number;
-  tocflLevel?: number;
-  strokes?: string[];
-  medians?: number[][][];
+/** One ruby unit: a run of text with its reading placed above it. */
+export interface Segment {
+  text: string;
+  /** Omitted when `text` needs no annotation. */
+  reading?: string;
 }
 
+/**
+ * A word in the language being learned, in both editions.
+ *
+ * `reading` is the native phonetic script — zhuyin for Mandarin, kana for
+ * Japanese — and `romanization` is the Latin one: pinyin or rōmaji.
+ */
 export interface VocabularyItem {
-  character: string;
-  pinyin: string;
-  zhuyin: string;
+  /** The word as written: 你好, 食べる. */
+  term: string;
+  reading: string;
+  romanization: string;
+  /**
+   * Ruby placement. Required whenever the reading does not distribute evenly
+   * over the characters, which is most Japanese words. Mandarin can leave it
+   * out: one character is one syllable there.
+   */
+  segments?: Segment[];
+  /** Japanese only: mora index of the pitch downstep, 0 = heiban. */
+  pitch?: number;
   french: string;
   english: string;
   audio?: string;
   example?: {
     sentence: string;
-    pinyin: string;
+    romanization: string;
     translation: string;
   };
 }
 
 export interface Phrase {
-  chinese: string;
-  pinyin: string;
-  zhuyin: string;
+  native: string;
+  reading: string;
+  romanization: string;
+  segments?: Segment[];
   french: string;
   english: string;
   context?: string;
@@ -42,7 +48,7 @@ export interface Lesson {
   id: string;
   slug: string;
   title: string;
-  titleZh: string;
+  titleNative: string;
   description: string;
   icon: string;
   category: "basics" | "survival" | "daily" | "social" | "culture";
@@ -56,7 +62,7 @@ export interface Lesson {
 
 export interface QuizItem {
   id: string;
-  type: "character-to-french" | "french-to-character" | "audio-to-character" | "pinyin-to-character";
+  type: "term-to-french" | "french-to-term" | "audio-to-term" | "reading-to-term";
   question: string;
   correctAnswer: string;
   options: string[];
@@ -67,9 +73,10 @@ export interface FlashcardData {
   id: string;
   front: string;
   back: string;
-  pinyin: string;
-  zhuyin: string;
-  type: "character" | "vocabulary" | "phrase";
+  romanization: string;
+  reading: string;
+  segments?: Segment[];
+  type: "term" | "vocabulary" | "phrase";
   lessonId?: string;
 }
 
@@ -121,7 +128,7 @@ export interface Achievement {
 export interface GamificationData {
   totalXP: number;
   totalReviews: number;
-  totalCharactersLearned: number;
+  totalTermsLearned: number;
   currentStreak: number;
   achievements: Achievement[];
   lastSessionPerfect: boolean;
@@ -139,7 +146,7 @@ export interface SessionResult {
 }
 
 export interface UserProgress {
-  charactersLearned: number;
+  termsLearned: number;
   vocabularyMastered: number;
   lessonsCompleted: string[];
   currentStreak: number;
@@ -153,7 +160,8 @@ export interface UserProgress {
 }
 
 export interface UserSettings {
-  displayMode: "pinyin" | "zhuyin" | "both";
+  /** Which annotation to show: the Latin one, the native one, or both. */
+  displayMode: "romanization" | "reading" | "both";
   dailyNewCards: number;
   showEnglish: boolean;
   autoPlayAudio: boolean;

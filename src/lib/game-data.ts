@@ -1,4 +1,4 @@
-import { gameWords, type GameWord } from "@/data/game-words";
+import { gameWords, type GameWord } from "@/data/zh/game-words";
 
 export type { GameWord };
 

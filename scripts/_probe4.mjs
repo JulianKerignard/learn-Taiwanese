@@ -1,5 +1,5 @@
-import { lessons } from "../src/data/lessons.ts";
-import { gradedTexts } from "../src/data/readings.ts";
+import { lessons } from "../src/data/zh/lessons.ts";
+import { gradedTexts } from "../src/data/zh/readings.ts";
 const qid=new Map(), lid=new Map(), tid=new Map();
 let dup=0;
 for(const l of lessons){ if(lid.has(l.id)){dup++;console.log("dup lesson id",l.id);} lid.set(l.id,1);
@@ -9,7 +9,7 @@ for(const l of lessons){ if(lid.has(l.id)){dup++;console.log("dup lesson id",l.i
 for(const t of gradedTexts){ if(tid.has(t.id)){dup++;console.log("dup text id",t.id);} tid.set(t.id,1);
   if(!t.sentences?.length){dup++;console.log("no sentences",t.id);}
   if(!t.title?.trim()||!t.titleFr?.trim()){dup++;console.log("no title",t.id);}
-  const s=new Set(); for(const v of t.vocabulary){ if(s.has(v.character)){dup++;console.log("dup reading vocab",t.id,v.character);} s.add(v.character); } }
+  const s=new Set(); for(const v of t.vocabulary){ if(s.has(v.term)){dup++;console.log("dup reading vocab",t.id,v.term);} s.add(v.term); } }
 console.log("lessons",lid.size,"quiz",qid.size,"texts",tid.size,"problems",dup);
 // slug uniqueness
 const sl=new Set(); for(const l of lessons){ if(sl.has(l.slug))console.log("dup slug",l.slug); sl.add(l.slug); }

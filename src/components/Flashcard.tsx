@@ -15,7 +15,7 @@ interface FlashcardProps {
   card: SM2Card;
   mode: ReviewMode;
   onGrade: (grade: SM2Grade) => void;
-  displayMode?: "pinyin" | "zhuyin" | "both";
+  displayMode?: "romanization" | "reading" | "both";
   distractors?: SM2Card[];
 }
 
@@ -67,7 +67,7 @@ function RecognizeMode({
     <div className="flex flex-col items-center gap-6">
       <div className="flex flex-col items-center gap-2">
         <span className="text-xs font-medium text-accent uppercase tracking-wide">Reconnaissance</span>
-        <span className="character-display" lang="zh-Hant-TW">{card.front}</span>
+        <span className="term-display" lang="zh-Hant-TW">{card.front}</span>
         <AudioButton text={card.front} size="lg" />
       </div>
 
@@ -102,7 +102,7 @@ function RecallMode({
   onRevealed,
 }: {
   card: SM2Card;
-  displayMode: "pinyin" | "zhuyin" | "both";
+  displayMode: "romanization" | "reading" | "both";
   onRevealed: () => void;
 }) {
   const [flipped, setFlipped] = useState(false);
@@ -134,7 +134,7 @@ function RecallMode({
           )}
         >
           <p className="text-lg font-medium text-stone-700">{card.back}</p>
-          <PinyinDisplay pinyin={card.pinyin} zhuyin={card.zhuyin} mode={displayMode} size="lg" />
+          <PinyinDisplay romanization={card.romanization} reading={card.reading} mode={displayMode} size="lg" />
           <p className="mt-2 text-xs text-stone-400">Cliquer pour révéler le caractère</p>
         </div>
 
@@ -145,8 +145,8 @@ function RecallMode({
             !flipped ? "rotate-y-180" : ""
           )}
         >
-          <span className="character-display" lang="zh-Hant-TW">{card.front}</span>
-          <PinyinDisplay pinyin={card.pinyin} zhuyin={card.zhuyin} mode={displayMode} size="lg" />
+          <span className="term-display" lang="zh-Hant-TW">{card.front}</span>
+          <PinyinDisplay romanization={card.romanization} reading={card.reading} mode={displayMode} size="lg" />
           <p className="text-lg font-medium text-stone-700">{card.back}</p>
           <AudioButton text={card.front} size="md" />
         </div>
@@ -251,7 +251,7 @@ function WritingMode({
   onRevealed,
 }: {
   card: SM2Card;
-  displayMode: "pinyin" | "zhuyin" | "both";
+  displayMode: "romanization" | "reading" | "both";
   onRevealed: () => void;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -343,7 +343,7 @@ function WritingMode({
 
       <div className="flex flex-col items-center gap-1">
         <p className="text-lg font-medium text-stone-700">{card.back}</p>
-        <PinyinDisplay pinyin={card.pinyin} zhuyin={card.zhuyin} mode={displayMode} size="lg" />
+        <PinyinDisplay romanization={card.romanization} reading={card.reading} mode={displayMode} size="lg" />
       </div>
 
       <div className="relative">
@@ -390,7 +390,7 @@ function WritingMode({
         <div className="flex flex-col items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 p-4">
           <p className="text-xs text-stone-500">Caractère correct :</p>
           <span
-            className="character-display character-display--boxed text-stone-900"
+            className="term-display term-display--boxed text-stone-900"
             lang="zh-Hant-TW"
           >
             {card.front}
@@ -449,7 +449,7 @@ export default function Flashcard({
   card,
   mode,
   onGrade,
-  displayMode = "pinyin",
+  displayMode = "romanization",
   distractors = [],
 }: FlashcardProps) {
   const [showGrade, setShowGrade] = useState(false);

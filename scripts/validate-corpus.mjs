@@ -14,16 +14,16 @@
 
 import { readFileSync } from "node:fs";
 
-import { tonePairs } from "../src/data/tone-pairs.ts";
-import { allUnits, chapters, hskLevels } from "../src/data/course/index.ts";
+import { tonePairs } from "../src/data/zh/tone-pairs.ts";
+import { allUnits, chapters, levels } from "../src/data/zh/course/index.ts";
 import {
   allUnitMetas,
   chapters as metaChapters,
-  hskLevels as metaHskLevels,
-} from "../src/data/course/meta.ts";
-import { gameWords } from "../src/data/game-words.ts";
-import { lessons } from "../src/data/lessons.ts";
-import { gradedTexts } from "../src/data/readings.ts";
+  levels as metaHskLevels,
+} from "../src/data/zh/course/meta.ts";
+import { gameWords } from "../src/data/zh/game-words.ts";
+import { lessons } from "../src/data/zh/lessons.ts";
+import { gradedTexts } from "../src/data/zh/readings.ts";
 // The generator is the single source of truth for what game-words.ts should
 // contain; importing it is what wires its --check into the build.
 import {
@@ -31,7 +31,7 @@ import {
   render as renderGameWords,
   OUTPUT as GAME_WORDS_FILE,
 } from "./generate-game-words.mjs";
-import { dictionaryEntries } from "../src/data/dictionary.ts";
+import { dictionaryEntries } from "../src/data/zh/dictionary.ts";
 // The generator is the single source of truth for what dictionary.ts should
 // contain; importing it is what wires its --check into the build. The aliased
 // fs import keeps this section independent of the other sections' imports.
@@ -86,8 +86,8 @@ function pinyinMarkedTones(pinyin) {
 
 for (const pair of tonePairs) {
   for (const word of pair.words) {
-    const tones = zhuyinTones(word.zhuyin);
-    const label = `${pair.id} ${word.chinese} (${word.pinyin})`;
+    const tones = zhuyinTones(word.reading);
+    const label = `${pair.id} ${word.native} (${word.romanization})`;
 
     if (tones.length !== 2) {
       err("tone-pairs", `${label}: ${tones.length} syllabe(s) dans une paire de tons`);
@@ -99,12 +99,12 @@ for (const pair of tonePairs) {
         `${label}: prononce ${tones[0]}+${tones[1]} mais rangé dans ${pair.tone1}+${pair.tone2}`
       );
     }
-    if (word.chinese.length !== tones.length) {
-      warn("tone-pairs", `${label}: ${word.chinese.length} caractères pour ${tones.length} syllabes`);
+    if (word.native.length !== tones.length) {
+      warn("tone-pairs", `${label}: ${word.native.length} caractères pour ${tones.length} syllabes`);
     }
 
     // Cross-check the two annotation systems against each other.
-    const fromPinyin = pinyinMarkedTones(word.pinyin);
+    const fromPinyin = pinyinMarkedTones(word.romanization);
     const fromZhuyin = tones.filter((t) => t !== 0);
     if (fromPinyin.join(",") !== fromZhuyin.join(",")) {
       err(
@@ -118,11 +118,11 @@ for (const pair of tonePairs) {
 const seenPairWords = new Map();
 for (const pair of tonePairs) {
   for (const word of pair.words) {
-    const previous = seenPairWords.get(word.chinese);
+    const previous = seenPairWords.get(word.native);
     if (previous) {
-      err("tone-pairs", `${word.chinese} déclaré dans ${previous} et dans ${pair.id}`);
+      err("tone-pairs", `${word.native} déclaré dans ${previous} et dans ${pair.id}`);
     } else {
-      seenPairWords.set(word.chinese, pair.id);
+      seenPairWords.set(word.native, pair.id);
     }
   }
 }
@@ -224,20 +224,20 @@ const readings = new Map();
 
 /** Records the annotations `source` gives to a word. Warns later if they differ. */
 function noteReading(source, item) {
-  const entry = readings.get(item.character) ?? { pinyin: new Map(), zhuyin: new Map() };
-  if (!entry.pinyin.has(item.pinyin)) entry.pinyin.set(item.pinyin, source);
-  if (!entry.zhuyin.has(item.zhuyin)) entry.zhuyin.set(item.zhuyin, source);
-  readings.set(item.character, entry);
+  const entry = readings.get(item.term) ?? { romanization: new Map(), reading: new Map() };
+  if (!entry.romanization.has(item.romanization)) entry.romanization.set(item.romanization, source);
+  if (!entry.reading.has(item.reading)) entry.reading.set(item.reading, source);
+  readings.set(item.term, entry);
 }
 
 /** Fields no vocabulary entry may omit, wherever it lives. */
 function checkVocabularyItem(check, label, item) {
-  if (!item.character?.trim()) {
+  if (!item.term?.trim()) {
     err(check, `${label}: entrée de vocabulaire sans caractère`);
     return false;
   }
-  for (const field of ["pinyin", "zhuyin", "french"]) {
-    if (!item[field]?.trim()) err(check, `${label}/${item.character}: ${field} manquant`);
+  for (const field of ["romanization", "reading", "french"]) {
+    if (!item[field]?.trim()) err(check, `${label}/${item.term}: ${field} manquant`);
   }
   return true;
 }
@@ -249,10 +249,10 @@ for (const unit of allUnits) {
   for (const item of unit.vocabulary) {
     courseVocabCount += 1;
     if (!checkVocabularyItem("vocabulaire", unit.id, item)) continue;
-    if (seenWords.has(item.character)) {
-      err("vocabulaire", `${unit.id}/${item.character}: doublon dans l'unité`);
+    if (seenWords.has(item.term)) {
+      err("vocabulaire", `${unit.id}/${item.term}: doublon dans l'unité`);
     }
-    seenWords.add(item.character);
+    seenWords.add(item.term);
     noteReading(unit.id, item);
   }
 }
@@ -281,21 +281,21 @@ for (const lesson of lessons) {
   for (const item of lesson.vocabulary) {
     lessonVocabCount += 1;
     if (!checkVocabularyItem("lessons", lesson.id, item)) continue;
-    if (seenWords.has(item.character)) {
-      err("lessons", `${lesson.id}/${item.character}: doublon dans la leçon`);
+    if (seenWords.has(item.term)) {
+      err("lessons", `${lesson.id}/${item.term}: doublon dans la leçon`);
     }
-    seenWords.add(item.character);
+    seenWords.add(item.term);
     noteReading(lesson.id, item);
   }
 
   for (const phrase of lesson.phrases ?? []) {
-    if (!phrase.chinese?.trim()) {
+    if (!phrase.native?.trim()) {
       err("lessons", `${lesson.id}: phrase sans texte chinois`);
       continue;
     }
-    for (const field of ["pinyin", "zhuyin", "french"]) {
+    for (const field of ["romanization", "reading", "french"]) {
       if (!phrase[field]?.trim()) {
-        err("lessons", `${lesson.id}/${phrase.chinese}: ${field} manquant`);
+        err("lessons", `${lesson.id}/${phrase.native}: ${field} manquant`);
       }
     }
   }
@@ -357,18 +357,18 @@ for (const text of gradedTexts) {
 
   for (const sentence of text.sentences) {
     sentenceCount += 1;
-    if (!sentence.chinese?.trim()) {
+    if (!sentence.native?.trim()) {
       err("readings", `${text.id}: phrase sans texte chinois`);
       continue;
     }
-    const label = `${text.id}/${sentence.chinese}`;
+    const label = `${text.id}/${sentence.native}`;
     if (!sentence.french?.trim()) err("readings", `${label}: traduction manquante`);
-    if (!sentence.pinyin?.trim()) err("readings", `${label}: pinyin manquant`);
+    if (!sentence.romanization?.trim()) err("readings", `${label}: pinyin manquant`);
   }
 
   // `text` restates the sentences as running prose. Nothing derives it, so the
   // two copies drift the moment a sentence is edited on its own.
-  const joined = text.sentences.map((sentence) => sentence.chinese).join("");
+  const joined = text.sentences.map((sentence) => sentence.native).join("");
   if (text.text !== joined) {
     err(
       "readings",
@@ -380,10 +380,10 @@ for (const text of gradedTexts) {
   for (const item of text.vocabulary) {
     readingVocabCount += 1;
     if (!checkVocabularyItem("readings", text.id, item)) continue;
-    if (seenWords.has(item.character)) {
-      err("readings", `${text.id}/${item.character}: doublon dans le lexique`);
+    if (seenWords.has(item.term)) {
+      err("readings", `${text.id}/${item.term}: doublon dans le lexique`);
     }
-    seenWords.add(item.character);
+    seenWords.add(item.term);
     noteReading(text.id, item);
   }
 }
@@ -393,12 +393,12 @@ for (const text of gradedTexts) {
 // Runs after all three sources have been recorded above.
 
 for (const [character, entry] of readings) {
-  if (entry.pinyin.size > 1) {
-    const variants = [...entry.pinyin].map(([value, source]) => `${value} (${source})`).join(" vs ");
+  if (entry.romanization.size > 1) {
+    const variants = [...entry.romanization].map(([value, source]) => `${value} (${source})`).join(" vs ");
     warn("annotations", `${character} : pinyin divergent — ${variants}`);
   }
-  if (entry.zhuyin.size > 1) {
-    const variants = [...entry.zhuyin].map(([value, source]) => `${value} (${source})`).join(" vs ");
+  if (entry.reading.size > 1) {
+    const variants = [...entry.reading].map(([value, source]) => `${value} (${source})`).join(" vs ");
     warn("annotations", `${character} : zhuyin divergent — ${variants}`);
   }
 }
@@ -458,7 +458,7 @@ for (const meta of allUnitMetas) {
 if (JSON.stringify(metaChapters) !== JSON.stringify(chapters)) {
   err("meta", "les chapitres de meta.ts divergent de ceux de index.ts");
 }
-if (JSON.stringify(metaHskLevels) !== JSON.stringify(hskLevels)) {
+if (JSON.stringify(metaHskLevels) !== JSON.stringify(levels)) {
   err("meta", "les niveaux HSK de meta.ts divergent de ceux de index.ts");
 }
 
@@ -472,23 +472,23 @@ if (JSON.stringify(metaHskLevels) !== JSON.stringify(hskLevels)) {
 // drift away from what this section accepts.
 
 const expectedGameWords = new Map(
-  collectGameWords().map((word) => [word.character, word])
+  collectGameWords().map((word) => [word.term, word])
 );
 
 const listedGameWords = new Set();
 for (const word of gameWords) {
-  if (listedGameWords.has(word.character)) {
-    err("game-words", `${word.character} apparaît deux fois dans game-words.ts — régénère-le`);
+  if (listedGameWords.has(word.term)) {
+    err("game-words", `${word.term} apparaît deux fois dans game-words.ts — régénère-le`);
   }
-  listedGameWords.add(word.character);
+  listedGameWords.add(word.term);
 
-  const expected = expectedGameWords.get(word.character);
+  const expected = expectedGameWords.get(word.term);
   if (!expected) {
-    err("game-words", `${word.character} n'existe plus dans le corpus — régénère game-words.ts`);
+    err("game-words", `${word.term} n'existe plus dans le corpus — régénère game-words.ts`);
     continue;
   }
-  if (expected.pinyin !== word.pinyin || expected.french !== word.french) {
-    err("game-words", `${word.character} : game-words.ts diverge du corpus — régénère-le`);
+  if (expected.romanization !== word.romanization || expected.french !== word.french) {
+    err("game-words", `${word.term} : game-words.ts diverge du corpus — régénère-le`);
   }
 }
 
@@ -521,14 +521,14 @@ try {
 // corpus says. Both directions are compared: a duplicate must not be able to
 // cover for an omission. Regenerate with scripts/generate-dictionary.mjs.
 
-const expectedDict = new Map(collectDictionary().map((entry) => [entry.character, entry]));
+const expectedDict = new Map(collectDictionary().map((entry) => [entry.term, entry]));
 const listedDict = new Set();
 const dictErrorsBefore = errors.length;
 
 /** Field-by-field so a changed reading, level, example or source is named. */
 function diffDictionaryEntry(expected, actual) {
   const differences = [];
-  for (const field of ["pinyin", "zhuyin", "french", "english", "hskLevel"]) {
+  for (const field of ["pinyin", "zhuyin", "french", "english", "level"]) {
     if (expected[field] !== actual[field]) {
       differences.push(`${field} : corpus ${JSON.stringify(expected[field])} vs fichier ${JSON.stringify(actual[field])}`);
     }
@@ -544,19 +544,19 @@ function diffDictionaryEntry(expected, actual) {
 }
 
 for (const entry of dictionaryEntries) {
-  if (listedDict.has(entry.character)) {
-    err("dictionary", `${entry.character} apparaît deux fois dans dictionary.ts — régénère-le`);
+  if (listedDict.has(entry.term)) {
+    err("dictionary", `${entry.term} apparaît deux fois dans dictionary.ts — régénère-le`);
     continue;
   }
-  listedDict.add(entry.character);
+  listedDict.add(entry.term);
 
-  const expected = expectedDict.get(entry.character);
+  const expected = expectedDict.get(entry.term);
   if (!expected) {
-    err("dictionary", `${entry.character} n'existe plus dans le corpus — régénère dictionary.ts`);
+    err("dictionary", `${entry.term} n'existe plus dans le corpus — régénère dictionary.ts`);
     continue;
   }
   for (const difference of diffDictionaryEntry(expected, entry)) {
-    err("dictionary", `${entry.character} : ${difference} — régénère dictionary.ts`);
+    err("dictionary", `${entry.term} : ${difference} — régénère dictionary.ts`);
   }
 }
 
@@ -569,7 +569,7 @@ for (const character of expectedDict.keys()) {
 // Order carries meaning: it is the page's default "tri par pinyin".
 // Only worth reporting once the two lists hold the same words.
 const expectedOrder = [...expectedDict.keys()].join("|");
-const listedOrder = dictionaryEntries.map((entry) => entry.character).join("|");
+const listedOrder = dictionaryEntries.map((entry) => entry.term).join("|");
 if (errors.length === dictErrorsBefore && expectedOrder !== listedOrder) {
   err("dictionary", "dictionary.ts n'est plus trié comme le corpus — régénère-le");
 }

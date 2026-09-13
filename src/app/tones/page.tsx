@@ -16,7 +16,7 @@ import {
 import { cn } from "@/lib/cn";
 import { storageGet, storageSet, KEYS } from "@/lib/storage";
 import { speak, initVoices } from "@/lib/tts";
-import { tonePairs, sandhiRules, type TonePair, type TonePairWord } from "@/data/tone-pairs";
+import { tonePairs, sandhiRules, type TonePair, type TonePairWord } from "@/data/zh/tone-pairs";
 import { shuffleArray } from "@/lib/utils";
 import ProgressBar from "@/components/ProgressBar";
 import AudioButton from "@/components/AudioButton";
@@ -117,11 +117,11 @@ function ToneOverview({ onStart }: { onStart: () => void }) {
       {/* Tone cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[1, 2, 3, 4].map((tone) => {
-          const examples: Record<number, { char: string; pinyin: string; meaning: string }> = {
-            1: { char: "媽", pinyin: "mā", meaning: "mère" },
-            2: { char: "麻", pinyin: "má", meaning: "chanvre" },
-            3: { char: "馬", pinyin: "mǎ", meaning: "cheval" },
-            4: { char: "罵", pinyin: "mà", meaning: "gronder" },
+          const examples: Record<number, { char: string; romanization: string; meaning: string }> = {
+            1: { char: "媽", romanization: "mā", meaning: "mère" },
+            2: { char: "麻", romanization: "má", meaning: "chanvre" },
+            3: { char: "馬", romanization: "mǎ", meaning: "cheval" },
+            4: { char: "罵", romanization: "mà", meaning: "gronder" },
           };
           const ex = examples[tone];
           return (
@@ -133,7 +133,7 @@ function ToneOverview({ onStart }: { onStart: () => void }) {
                 <AudioButton text={ex.char} size="sm" />
               </div>
               <p className="text-sm text-stone-500">
-                <span className="italic">{ex.pinyin}</span> — {ex.meaning}
+                <span className="italic">{ex.romanization}</span> — {ex.meaning}
               </p>
             </div>
           );
@@ -310,12 +310,12 @@ function Exercise({
       shuffled.push(correctAnswer);
       setOptions(shuffleArray(shuffled));
     } else {
-      const correctAnswer = word.chinese;
+      const correctAnswer = word.native;
       const otherWords = shuffleArray(
         tonePairs
           .filter((p) => p.id !== pair.id)
           .flatMap((p) => p.words)
-          .map((w) => w.chinese)
+          .map((w) => w.native)
       ).slice(0, 3);
       setOptions(shuffleArray([...otherWords, correctAnswer]));
     }
@@ -328,14 +328,14 @@ function Exercise({
   function handleSelect(option: string) {
     if (selected) return;
     setSelected(option);
-    const correctAnswer = mode === "listen" ? `${pair.tone1}+${pair.tone2}` : currentWord?.chinese ?? "";
+    const correctAnswer = mode === "listen" ? `${pair.tone1}+${pair.tone2}` : currentWord?.native ?? "";
     const correct = option === correctAnswer;
     setIsCorrect(correct);
     onResult(correct);
   }
 
   function handlePlayAudio() {
-    if (currentWord) speak(currentWord.chinese, 0.7);
+    if (currentWord) speak(currentWord.native, 0.7);
   }
 
   if (!currentWord) return null;
@@ -353,10 +353,10 @@ function Exercise({
             <Volume2 size={36} />
           </button>
           <div className="flex items-center gap-2">
-            <span className="chinese text-2xl text-stone-800" lang="zh-Hant-TW">{currentWord.chinese}</span>
-            <AudioButton text={currentWord.chinese} size="sm" />
+            <span className="chinese text-2xl text-stone-800" lang="zh-Hant-TW">{currentWord.native}</span>
+            <AudioButton text={currentWord.native} size="sm" />
           </div>
-          <p className="text-xs text-stone-500 italic">{currentWord.pinyin}</p>
+          <p className="text-xs text-stone-500 italic">{currentWord.romanization}</p>
         </div>
       ) : (
         <div className="flex flex-col items-center gap-3">
@@ -378,7 +378,7 @@ function Exercise({
       {/* Options */}
       <div className="grid w-full max-w-sm grid-cols-2 gap-2">
         {options.map((option) => {
-          const correctAnswer = mode === "listen" ? `${pair.tone1}+${pair.tone2}` : currentWord.chinese;
+          const correctAnswer = mode === "listen" ? `${pair.tone1}+${pair.tone2}` : currentWord.native;
           let btnClass = "border-stone-200 bg-white hover:border-primary hover:bg-primary/5";
           if (selected) {
             if (option === correctAnswer) btnClass = "border-success bg-success/10 text-success";
@@ -417,22 +417,22 @@ function Exercise({
           </div>
 
           <div className="flex items-center gap-3 rounded-lg bg-stone-50 border border-stone-100 px-4 py-3 w-full">
-            <AudioButton text={currentWord.chinese} size="sm" />
+            <AudioButton text={currentWord.native} size="sm" />
             <div className="flex-1">
               <span className="chinese text-lg font-medium text-stone-800" lang="zh-Hant-TW">
-                {currentWord.zhuyin ? (
+                {currentWord.reading ? (
                   <RubyText
-                    chinese={currentWord.chinese}
-                    pinyin={currentWord.zhuyin}
-                    showPinyin
-                    mode="zhuyin"
-                    pinyinSize="sm"
+                    native={currentWord.native}
+                    romanization={currentWord.reading}
+                    showReading
+                    mode="reading"
+                    readingSize="sm"
                   />
                 ) : (
-                  currentWord.chinese
+                  currentWord.native
                 )}
               </span>
-              <span className="ml-2 text-sm italic text-stone-500">{currentWord.pinyin}</span>
+              <span className="ml-2 text-sm italic text-stone-500">{currentWord.romanization}</span>
             </div>
             <span className="text-sm text-stone-500">{currentWord.french}</span>
           </div>
@@ -467,7 +467,7 @@ function SandhiSection() {
           <div className="space-y-2">
             {rule.examples.map((ex, j) => (
               <div key={j} className="flex items-center gap-3 rounded-lg bg-stone-50 px-4 py-3">
-                <AudioButton text={ex.pinyin} size="sm" />
+                <AudioButton text={ex.romanization} size="sm" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2 text-sm">
                     <span className="text-stone-400 line-through">{ex.original}</span>
@@ -684,13 +684,13 @@ export default function TonesPage() {
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {selectedPair.words.map((word) => (
                 <div
-                  key={word.chinese}
+                  key={word.native}
                   className="flex items-center gap-2 rounded-lg border border-stone-100 p-2 transition-colors hover:bg-stone-50"
                 >
-                  <AudioButton text={word.chinese} size="sm" />
+                  <AudioButton text={word.native} size="sm" />
                   <div className="min-w-0 flex-1">
-                    <span className="chinese text-base font-medium" lang="zh-Hant-TW">{word.chinese}</span>
-                    <p className="text-xs italic text-stone-500">{word.pinyin}</p>
+                    <span className="chinese text-base font-medium" lang="zh-Hant-TW">{word.native}</span>
+                    <p className="text-xs italic text-stone-500">{word.romanization}</p>
                     <p className="text-xs text-stone-500 truncate">{word.french}</p>
                   </div>
                 </div>

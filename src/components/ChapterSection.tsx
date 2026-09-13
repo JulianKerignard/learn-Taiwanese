@@ -12,7 +12,7 @@ import {
 // Metadata only: a path node shows a title, an icon and a lock state. Reaching
 // for @/data/course here would ship all 88 unit modules to every route that
 // renders the parcours.
-import { getUnitMetaById } from "@/data/course/meta";
+import { getUnitMetaById } from "@/data/zh/course/meta";
 import type { PathProgress, CourseUnitMeta, Chapter } from "@/types/course";
 
 export function ChapterSection({
@@ -46,7 +46,7 @@ export function ChapterSection({
         <h2 className="text-title font-bold text-stone-800">
           Chapitre {chapter.number} — {chapter.title}
         </h2>
-        <p className="chinese text-sm text-stone-500" lang="zh-Hant-TW">{chapter.titleZh}</p>
+        <p className="chinese text-sm text-stone-500" lang="zh-Hant-TW">{chapter.titleNative}</p>
         <p className="mt-1 text-sm text-stone-500">{chapter.description}</p>
         <div className="mt-3 max-w-xs">
           {userStateReady ? (
@@ -139,8 +139,8 @@ function UnitNode({
               </h3>
               {!unlocked && !completed && <Lock className="h-4 w-4 text-stone-300" />}
             </div>
-            {unit.titleZh && (
-              <p className="chinese text-sm text-stone-500" lang="zh-Hant-TW">{unit.titleZh}</p>
+            {unit.titleNative && (
+              <p className="chinese text-sm text-stone-500" lang="zh-Hant-TW">{unit.titleNative}</p>
             )}
             <p
               className={cn(

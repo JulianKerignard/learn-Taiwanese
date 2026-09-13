@@ -1,23 +1,23 @@
-import { allUnits } from "../src/data/course/index.ts";
-import { lessons } from "../src/data/lessons.ts";
-import { gradedTexts } from "../src/data/readings.ts";
+import { allUnits } from "../src/data/zh/course/index.ts";
+import { lessons } from "../src/data/zh/lessons.ts";
+import { gradedTexts } from "../src/data/zh/readings.ts";
 
 const readings=new Map();
 function feed(source, id, items){
   for(const item of items){
-    const e=readings.get(item.character) ?? {pinyin:new Map(), zhuyin:new Map()};
-    if(!e.pinyin.has(item.pinyin)) e.pinyin.set(item.pinyin, id);
-    if(!e.zhuyin.has(item.zhuyin)) e.zhuyin.set(item.zhuyin, id);
-    readings.set(item.character, e);
+    const e=readings.get(item.term) ?? {romanization:new Map(), reading:new Map()};
+    if(!e.romanization.has(item.romanization)) e.romanization.set(item.romanization, id);
+    if(!e.reading.has(item.reading)) e.reading.set(item.reading, id);
+    readings.set(item.term, e);
   }
 }
 for(const u of allUnits) feed("course", u.id, u.vocabulary);
-const before=[...readings].filter(([,e])=>e.pinyin.size>1||e.zhuyin.size>1).length;
+const before=[...readings].filter(([,e])=>e.romanization.size>1||e.reading.size>1).length;
 for(const l of lessons) feed("lesson", l.id, l.vocabulary);
-const afterLessons=[...readings].filter(([,e])=>e.pinyin.size>1||e.zhuyin.size>1).length;
+const afterLessons=[...readings].filter(([,e])=>e.romanization.size>1||e.reading.size>1).length;
 for(const t of gradedTexts) feed("reading", t.id, t.vocabulary);
-const afterAll=[...readings].filter(([,e])=>e.pinyin.size>1||e.zhuyin.size>1).length;
+const afterAll=[...readings].filter(([,e])=>e.romanization.size>1||e.reading.size>1).length;
 console.log({before, afterLessons, afterAll});
 for(const [c,e] of readings){
-  if(e.pinyin.size>1||e.zhuyin.size>1) console.log(c, [...e.pinyin].map(([v,u])=>`${v}(${u})`).join(" vs "), "|", [...e.zhuyin].map(([v,u])=>`${v}(${u})`).join(" vs "));
+  if(e.romanization.size>1||e.reading.size>1) console.log(c, [...e.romanization].map(([v,u])=>`${v}(${u})`).join(" vs "), "|", [...e.reading].map(([v,u])=>`${v}(${u})`).join(" vs "));
 }
