@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Search, X, Plus, Check, ChevronDown } from "lucide-react";
 import AudioButton from "@/components/AudioButton";
 import ReadingDisplay from "@/components/ReadingDisplay";
 import { cn } from "@/lib/cn";
 import { getSettings, getCards, upsertCard } from "@/lib/storage";
+import type { UserSettings } from "@/types";
 import { japaneseCollator } from "@/lib/japanese";
 import { createCard } from "@/lib/fsrs";
 import { jlptLevels } from "@/data/course/meta";
@@ -41,13 +42,19 @@ export default function DictionaryPage() {
   const [addedCards, setAddedCards] = useState<Set<string>>(new Set());
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  const displayMode = getSettings().displayMode;
+  // Read after mount, never during render: this page is prerendered, so touching
+  // localStorage while rendering makes the server and client markup disagree and
+  // costs a full client re-render of the list.
+  const [displayMode, setDisplayMode] = useState<UserSettings["displayMode"]>("romaji");
+  const [existingCardChars, setExistingCardChars] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    setDisplayMode(getSettings().displayMode);
+    setExistingCardChars(new Set(getCards().map((c) => c.front)));
+  }, []);
   const dictionary = dictionaryEntries;
 
-  const existingCardChars = useMemo(() => {
-    const cards = getCards();
-    return new Set(cards.map((c) => c.front));
-  }, []);
+
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
