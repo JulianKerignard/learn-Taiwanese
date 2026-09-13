@@ -14,33 +14,50 @@
 
 import { readFileSync } from "node:fs";
 
-import { tonePairs } from "../src/data/zh/tone-pairs.ts";
-import { allUnits, chapters, levels } from "../src/data/zh/course/index.ts";
-import {
+// One corpus per run. The merged repo holds two, and a validator that silently
+// covered only one would be worse than none: `npm run validate` invokes this
+// script once per language.
+const LANG = process.argv[2];
+if (LANG !== "zh" && LANG !== "ja") {
+  console.error("usage: validate-corpus.mjs <zh|ja>");
+  process.exit(2);
+}
+const DIR = `../src/data/${LANG}`;
+const isZh = LANG === "zh";
+
+const { allUnits, chapters, levels } = await import(`${DIR}/course/index.ts`);
+const {
   allUnitMetas,
-  chapters as metaChapters,
-  levels as metaHskLevels,
-} from "../src/data/zh/course/meta.ts";
-import { gameWords } from "../src/data/zh/game-words.ts";
-import { lessons } from "../src/data/zh/lessons.ts";
-import { gradedTexts } from "../src/data/zh/readings.ts";
-// The generator is the single source of truth for what game-words.ts should
-// contain; importing it is what wires its --check into the build.
-import {
-  collect as collectGameWords,
-  render as renderGameWords,
-  OUTPUT as GAME_WORDS_FILE,
-} from "./generate-game-words.mjs";
-import { dictionaryEntries } from "../src/data/zh/dictionary.ts";
-// The generator is the single source of truth for what dictionary.ts should
-// contain; importing it is what wires its --check into the build. The aliased
-// fs import keeps this section independent of the other sections' imports.
-import { readFileSync as readGeneratedFile } from "node:fs";
-import {
+  chapters: metaChapters,
+  levels: metaLevels,
+} = await import(`${DIR}/course/meta.ts`);
+const { lessons } = await import(`${DIR}/lessons.ts`);
+const { gradedTexts } = await import(`${DIR}/readings.ts`);
+const { gameWords } = await import(`${DIR}/game-words.ts`);
+const { dictionaryEntries } = await import(`${DIR}/dictionary.ts`);
+
+// Phonology differs in kind: Mandarin teaches syllable tones, Japanese a single
+// pitch downstep per word. Each edition brings its own data and its own checks.
+const tonePairs = isZh ? (await import(`${DIR}/tone-pairs.ts`)).tonePairs : [];
+const accentGroups = isZh ? [] : (await import(`${DIR}/pitch-accent.ts`)).accentGroups;
+const minimalPairs = isZh ? [] : (await import(`${DIR}/pitch-accent.ts`)).minimalPairs;
+const { splitMora, countMora, isKana, isKanji } = isZh
+  ? {}
+  : await import("../src/lib/japanese.ts");
+
+// The generators are the single source of truth for what the generated files
+// should contain; importing them is what wires their --check into the build.
+const {
+  collect: collectGameWords,
+  render: renderGameWords,
+  OUTPUT: GAME_WORDS_FILE,
+} = await import("./generate-game-words.mjs");
+const {
   collectDictionary,
-  render as renderDictionary,
-  OUTPUT as DICTIONARY_FILE,
-} from "./generate-dictionary.mjs";
+  render: renderDictionary,
+  OUTPUT: DICTIONARY_FILE,
+} = await import("./generate-dictionary.mjs");
+const readGeneratedFile = readFileSync;
 
 const errors = [];
 const warnings = [];
@@ -458,7 +475,7 @@ for (const meta of allUnitMetas) {
 if (JSON.stringify(metaChapters) !== JSON.stringify(chapters)) {
   err("meta", "les chapitres de meta.ts divergent de ceux de index.ts");
 }
-if (JSON.stringify(metaHskLevels) !== JSON.stringify(levels)) {
+if (JSON.stringify(metaLevels) !== JSON.stringify(levels)) {
   err("meta", "les niveaux HSK de meta.ts divergent de ceux de index.ts");
 }
 

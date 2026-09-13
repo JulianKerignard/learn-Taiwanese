@@ -15,13 +15,18 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-import { allUnits, getLevelForUnit } from "../src/data/zh/course/index.ts";
-import { lessons } from "../src/data/zh/lessons.ts";
-import { gradedTexts } from "../src/data/zh/readings.ts";
+// Which corpus to read. The merged repo holds two; a generator hardwired to one
+// of them silently compares the other against the wrong source.
+export const LANG = process.env.CORPUS_LANG ?? process.argv.find((a) => a === "zh" || a === "ja") ?? "zh";
+const DIR = `../src/data/${LANG}`;
+
+const { allUnits, getLevelForUnit } = await import(`${DIR}/course/index.ts`);
+const { lessons } = await import(`${DIR}/lessons.ts`);
+const { gradedTexts } = await import(`${DIR}/readings.ts`);
 
 export const OUTPUT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  "../src/data/zh/dictionary.ts"
+  `../src/data/${LANG}/dictionary.ts`
 );
 
 // Explicit locale: the sort runs here now, so it must not depend on the machine's

@@ -9,9 +9,15 @@
     "start": "next start",
     "lint": "eslint src",
     "generate-audio": "node scripts/generate-audio.mjs",
-    "generate-game-words": "node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-game-words.mjs",
-    "generate-dictionary": "node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-dictionary.mjs",
-    "validate": "node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/validate-corpus.mjs"
+    "generate-game-words": "npm run generate-game-words:zh && npm run generate-game-words:ja",
+    "generate-dictionary": "npm run generate-dictionary:zh && npm run generate-dictionary:ja",
+    "validate": "npm run validate:zh && npm run validate:ja",
+    "validate:zh": "CORPUS_LANG=zh node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/validate-corpus.mjs zh",
+    "validate:ja": "CORPUS_LANG=ja node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/validate-corpus.mjs ja",
+    "generate-game-words:zh": "CORPUS_LANG=zh node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-game-words.mjs zh",
+    "generate-dictionary:zh": "CORPUS_LANG=zh node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-dictionary.mjs zh",
+    "generate-game-words:ja": "CORPUS_LANG=ja node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-game-words.mjs ja",
+    "generate-dictionary:ja": "CORPUS_LANG=ja node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-dictionary.mjs ja"
   },
   "keywords": [],
   "author": "",

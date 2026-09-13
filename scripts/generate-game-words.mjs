@@ -16,12 +16,17 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-import { allUnits } from "../src/data/zh/course/index.ts";
-import { lessons } from "../src/data/zh/lessons.ts";
+// Which corpus to read. The merged repo holds two; a generator hardwired to one
+// of them silently compares the other against the wrong source.
+export const LANG = process.env.CORPUS_LANG ?? process.argv.find((a) => a === "zh" || a === "ja") ?? "zh";
+const DIR = `../src/data/${LANG}`;
+
+const { allUnits } = await import(`${DIR}/course/index.ts`);
+const { lessons } = await import(`${DIR}/lessons.ts`);
 
 export const OUTPUT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  "../src/data/zh/game-words.ts"
+  `../src/data/${LANG}/game-words.ts`
 );
 
 /** Course units first, then lessons; first occurrence of a character wins. */
