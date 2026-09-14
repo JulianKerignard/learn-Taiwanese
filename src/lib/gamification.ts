@@ -1,8 +1,9 @@
 import type { GamificationData, Achievement, XPEvent } from "@/types";
+import { currentLanguage } from "@/lib/language";
 
 // XP rewards per grade
 const XP_BY_GRADE: Record<number, number> = {
-  0: 2,  // Again - on recompense l'effort
+  0: 2,  // Again still earns a little: the attempt is the habit
   1: 2,
   2: 5,  // Hard
   3: 10, // Good
@@ -13,6 +14,14 @@ const XP_BY_GRADE: Record<number, number> = {
 // Bonus XP for difficult modes
 const HARD_MODE_BONUS = 5;
 const HARD_MODES = new Set(["writing", "recall"]);
+
+/**
+ * The progress chart only reads the last seven days, but the history is also
+ * what a user would lose on a device swap, so it keeps far more than that.
+ * It still needs a ceiling: the whole gamification blob is synced as one key
+ * and rejected past 2 MB server-side.
+ */
+export const MAX_XP_HISTORY = 2000;
 
 // Level thresholds: level N requires 100 * N XP (cumulative)
 const MAX_LEVEL = 60;
@@ -59,6 +68,14 @@ export function getStreakMultiplier(streak: number): number {
   return 1.0;
 }
 
+export function recordXpEvent(data: GamificationData, event: XPEvent): void {
+  data.totalXP += event.total;
+  data.xpHistory.push(event);
+  if (data.xpHistory.length > MAX_XP_HISTORY) {
+    data.xpHistory.splice(0, data.xpHistory.length - MAX_XP_HISTORY);
+  }
+}
+
 export function calculateXP(
   grade: number,
   reviewMode: string,
@@ -80,11 +97,11 @@ export function calculateXP(
 
 // Achievement definitions
 const ACHIEVEMENT_DEFS: Omit<Achievement, "unlockedAt">[] = [
-  { id: "first_char", name: "Premier pas", description: "Apprendre son premier caractère", icon: "sparkles", condition: "characters_1" },
-  { id: "char_10", name: "Débutant", description: "Apprendre 10 caractères", icon: "book", condition: "characters_10" },
-  { id: "char_50", name: "Apprenti", description: "Apprendre 50 caractères", icon: "trophy", condition: "characters_50" },
-  { id: "char_100", name: "Centurion", description: "Apprendre 100 caractères", icon: "star", condition: "characters_100" },
-  { id: "char_500", name: "Érudit", description: "Apprendre 500 caractères", icon: "crown", condition: "characters_500" },
+  { id: "first_char", name: "Premier pas", description: "Apprendre son premier {term}", icon: "sparkles", condition: "characters_1" },
+  { id: "char_10", name: "Débutant", description: "Apprendre 10 {terms}", icon: "book", condition: "characters_10" },
+  { id: "char_50", name: "Apprenti", description: "Apprendre 50 {terms}", icon: "trophy", condition: "characters_50" },
+  { id: "char_100", name: "Centurion", description: "Apprendre 100 {terms}", icon: "star", condition: "characters_100" },
+  { id: "char_500", name: "Érudit", description: "Apprendre 500 {terms}", icon: "crown", condition: "characters_500" },
   { id: "streak_7", name: "Semaine parfaite", description: "Streak de 7 jours", icon: "flame", condition: "streak_7" },
   { id: "streak_30", name: "Mois dédié", description: "Streak de 30 jours", icon: "flame", condition: "streak_30" },
   { id: "streak_100", name: "Centenaire", description: "Streak de 100 jours", icon: "flame", condition: "streak_100" },
@@ -95,6 +112,12 @@ const ACHIEVEMENT_DEFS: Omit<Achievement, "unlockedAt">[] = [
   { id: "review_1000", name: "Marathonien", description: "1000 revisions au total", icon: "repeat", condition: "reviews_1000" },
   { id: "perfect_session", name: "Sans faute", description: "Session parfaite (tout Good ou Easy)", icon: "check-circle", condition: "perfect_session" },
 ];
+
+/** An edition teaches caractères or mots; the badges have to say which. */
+function fillCopy(description: string): string {
+  const { copy } = currentLanguage();
+  return description.replace("{terms}", copy.terms).replace("{term}", copy.term);
+}
 
 export function checkAchievements(data: GamificationData): Achievement[] {
   const newAchievements: Achievement[] = [];
@@ -128,6 +151,7 @@ export function checkAchievements(data: GamificationData): Achievement[] {
     if (earned) {
       newAchievements.push({
         ...def,
+        description: fillCopy(def.description),
         unlockedAt: new Date().toISOString(),
       });
     }

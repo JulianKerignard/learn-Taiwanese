@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { getGamification, saveGamification, addStudyTime } from "@/lib/storage";
-import { checkAchievements } from "@/lib/gamification";
+import { checkAchievements, recordXpEvent } from "@/lib/gamification";
 import CourseContent from "@/components/CourseContent";
 import DialogueDisplay from "@/components/DialogueDisplay";
 import CharacterCard from "@/components/CharacterCard";
@@ -120,9 +120,8 @@ export default function UnitContent({
         // Award XP for completing a unit
         const gam = getGamification();
         const xpEarned = Math.round(50 + score * 50); // 50-100 XP based on score
-        gam.totalXP += xpEarned;
         gam.totalReviews += 1;
-        gam.xpHistory.push({
+        recordXpEvent(gam, {
           base: xpEarned,
           modeBonus: 0,
           streakMultiplier: 1,
