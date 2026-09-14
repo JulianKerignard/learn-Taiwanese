@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
-import { Check, X, RotateCcw, ArrowRight, Volume2 } from "lucide-react";
+import { Check, X, ArrowRight } from "lucide-react";
 import AudioButton from "./AudioButton";
 import type { Exercise } from "@/types/course";
 import { addMistake } from "@/lib/storage";
 import { cn } from "@/lib/cn";
-import { shuffleArray, hasChinese } from "@/lib/utils";
+import { shuffleArray, hasChinese, stripPunctuation as strip } from "@/lib/utils";
 import ProgressBar from "./ProgressBar";
 
 interface ExerciseRunnerProps {
@@ -21,6 +21,18 @@ interface ExerciseResult {
   answer: string;
 }
 
+
+/**
+ * Reorder tiles and free-text answers can't be matched byte for byte: the tiles
+ * never carry punctuation, and typed input varies in spacing.
+ */
+function isAnswerCorrect(exercise: Exercise, answer: string): boolean {
+  if (exercise.type === "reorder" || !exercise.options?.length) {
+    return strip(answer) === strip(exercise.correctAnswer);
+  }
+  return answer === exercise.correctAnswer;
+}
+
 export default function ExerciseRunner({ exercises, onComplete, className }: ExerciseRunnerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [results, setResults] = useState<ExerciseResult[]>([]);
@@ -28,21 +40,18 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
   const [showFeedback, setShowFeedback] = useState(false);
   const [reorderPicked, setReorderPicked] = useState<string[]>([]);
   const [usedIndices, setUsedIndices] = useState<number[]>([]);
+  const [textAnswer, setTextAnswer] = useState("");
   const [finished, setFinished] = useState(false);
 
   const current = exercises[currentIndex];
   const correctCount = results.filter((r) => r.correct).length;
 
-  // Shuffle options once per question (not on every render)
-  // Keep track of original indices for optionsHint mapping
+  // Shuffle options once per question (not on every render).
+  // Keep the original indices so optionsHint / optionsZhuyin stay aligned.
   const shuffledData = useMemo(() => {
-    if (!current?.options) return [];
-    const indexed = current.options.map((opt, i) => ({ opt, origIndex: i }));
-    if (current.type === "reorder") return indexed;
-    return shuffleArray(indexed);
-  }, [currentIndex, current?.type]);
-
-  const shuffledOptions = shuffledData.map((d) => d.opt);
+    if (!current?.options?.length) return [];
+    return shuffleArray(current.options.map((opt, i) => ({ opt, origIndex: i })));
+  }, [currentIndex, current?.id]);
 
   const handleAnswer = useCallback(
     (answer: string) => {
@@ -50,7 +59,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
       setSelectedAnswer(answer);
       setShowFeedback(true);
 
-      const isCorrect = answer === current.correctAnswer;
+      const isCorrect = isAnswerCorrect(current, answer);
       setResults((prev) => [
         ...prev,
         { exerciseId: current.id, correct: isCorrect, answer },
@@ -91,6 +100,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
       setShowFeedback(false);
       setReorderPicked([]);
       setUsedIndices([]);
+      setTextAnswer("");
     }
   };
 
@@ -113,11 +123,20 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
 
   if (!current) return null;
 
-  const isCorrect = selectedAnswer === current.correctAnswer;
-  const reorderOptions = current.options ?? [];
+  const isCorrect = selectedAnswer !== null && isAnswerCorrect(current, selectedAnswer);
+  const hasOptions = shuffledData.length > 0;
 
   return (
     <div className={cn("flex flex-col gap-6", className)}>
+      {/* Screen-reader-only verdict */}
+      <div role="status" aria-live="polite" className="sr-only">
+        {showFeedback
+          ? isCorrect
+            ? "Bonne réponse"
+            : `Mauvaise réponse. La bonne réponse était : ${current.correctAnswer}`
+          : ""}
+      </div>
+
       <div className="flex items-center justify-between">
         <span className="text-sm text-stone-500">
           Question {currentIndex + 1}/{exercises.length}
@@ -142,32 +161,35 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           ) : (
             <p className="text-lg font-medium text-stone-800">
               {hasChinese(current.question) ? (
-                <span className="chinese">{current.question}</span>
+                <span className="chinese" lang="zh-Hant-TW">{current.question}</span>
               ) : (
                 current.question
               )}
               {hasChinese(current.question) && current.hint && (
-                <span className="ml-2 text-sm text-stone-400 italic">({current.hint})</span>
+                <span className="ml-2 text-sm text-stone-500 italic">({current.hint})</span>
               )}
             </p>
           )}
         </div>
 
-        {(current.hint || current.hintZhuyin) && (
+        {(current.hint || current.hintReading) && (
           <p className="mb-4 rounded-lg bg-accent/5 px-3 py-1.5 text-sm italic text-accent">
             {current.hint && <span>{current.hint}</span>}
-            {current.hint && current.hintZhuyin && <span className="mx-1.5 text-stone-300">|</span>}
-            {current.hintZhuyin && <span className="chinese">{current.hintZhuyin}</span>}
+            {current.hint && current.hintReading && <span className="mx-1.5 text-stone-300">|</span>}
+            {current.hintReading && (
+              <span className="chinese" lang="zh-Hant-TW">{current.hintReading}</span>
+            )}
           </p>
         )}
 
-        {current.type === "reorder" ? (
+        {current.type === "reorder" && hasOptions ? (
           <div className="flex flex-col gap-4">
             <div className="min-h-[48px] flex flex-wrap gap-2 rounded-lg border-2 border-dashed border-stone-200 p-3">
               {reorderPicked.map((word, i) => (
                 <span
                   key={i}
                   className="rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-medium chinese text-stone-800"
+                  lang="zh-Hant-TW"
                 >
                   {word}
                 </span>
@@ -177,13 +199,14 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
               )}
             </div>
             <div className="flex flex-wrap gap-2">
-              {reorderOptions.map((word, i) => {
+              {shuffledData.map(({ opt: word }, i) => {
                 const isUsed = usedIndices.includes(i);
                 return (
                   <button
                     key={i}
                     onClick={() => handleReorderPick(word, i)}
                     disabled={showFeedback || isUsed}
+                    lang="zh-Hant-TW"
                     className={cn(
                       "rounded-lg border border-stone-200 px-3 py-1.5 text-sm font-medium chinese transition-colors",
                       isUsed
@@ -197,11 +220,38 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
               })}
             </div>
           </div>
+        ) : !hasOptions ? (
+          <form
+            className="flex flex-col gap-3 sm:flex-row"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (textAnswer.trim()) handleAnswer(textAnswer);
+            }}
+          >
+            <input
+              type="text"
+              value={textAnswer}
+              onChange={(e) => setTextAnswer(e.target.value)}
+              disabled={showFeedback}
+              placeholder="Écrivez votre réponse…"
+              aria-label="Votre réponse"
+              autoComplete="off"
+              lang="zh-Hant-TW"
+              className="chinese flex-1 rounded-lg border-2 border-stone-200 px-4 py-3 text-base text-stone-800 focus-visible:border-primary disabled:bg-stone-50 disabled:text-stone-400"
+            />
+            <button
+              type="submit"
+              disabled={showFeedback || !textAnswer.trim()}
+              className="btn-primary shrink-0 disabled:opacity-40"
+            >
+              Valider
+            </button>
+          </form>
         ) : (
           <div className="grid gap-3 sm:grid-cols-2">
             {shuffledData.map(({ opt: option, origIndex }) => {
               const optPinyin = current.optionsHint?.[origIndex];
-              const optZhuyin = current.optionsZhuyin?.[origIndex];
+              const optZhuyin = current.optionsReading?.[origIndex];
               const isSelected = selectedAnswer === option;
               const isAnswer = option === current.correctAnswer;
               let optionStyle = "border-stone-200 bg-white hover:border-primary hover:bg-primary/5";
@@ -215,33 +265,45 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 }
               }
 
+              // The audio control is a sibling, never a child: a button inside a
+              // button is invalid, and clicking it used to submit the answer.
               return (
-                <button
+                <div
                   key={option}
-                  onClick={() => handleAnswer(option)}
-                  disabled={showFeedback}
                   className={cn(
-                    "flex items-center gap-3 rounded-lg border-2 px-4 py-3 text-left text-sm font-medium transition-all chinese",
-                    optionStyle,
-                    !showFeedback && "cursor-pointer"
+                    "flex items-center gap-2 rounded-lg border-2 transition-all",
+                    optionStyle
                   )}
                 >
-                  {showFeedback && isAnswer && <Check className="h-4 w-4 shrink-0 text-success" />}
-                  {showFeedback && isSelected && !isAnswer && <X className="h-4 w-4 shrink-0 text-danger" />}
-                  <span className="flex-1">
-                    <span>{option}</span>
-                    {hasChinese(option) && (optPinyin || optZhuyin) && (
-                      <span className="ml-2 text-xs text-stone-400 italic">
-                        {optPinyin}
-                        {optPinyin && optZhuyin && <span className="mx-1 text-stone-300">|</span>}
-                        {optZhuyin && <span className="chinese">{optZhuyin}</span>}
-                      </span>
+                  <button
+                    onClick={() => handleAnswer(option)}
+                    disabled={showFeedback}
+                    className={cn(
+                      "chinese flex flex-1 items-center gap-3 px-4 py-3 text-left text-sm font-medium",
+                      !showFeedback && "cursor-pointer"
                     )}
-                  </span>
+                  >
+                    {showFeedback && isAnswer && <Check className="h-4 w-4 shrink-0 text-success" />}
+                    {showFeedback && isSelected && !isAnswer && <X className="h-4 w-4 shrink-0 text-danger" />}
+                    <span className="flex-1">
+                      <span lang={hasChinese(option) ? "zh-Hant-TW" : undefined}>{option}</span>
+                      {hasChinese(option) && (optPinyin || optZhuyin) && (
+                        <span className="ml-2 text-xs text-stone-500 italic">
+                          {optPinyin}
+                          {optPinyin && optZhuyin && <span className="mx-1 text-stone-300">|</span>}
+                          {optZhuyin && (
+                            <span className="chinese" lang="zh-Hant-TW">
+                              {optZhuyin}
+                            </span>
+                          )}
+                        </span>
+                      )}
+                    </span>
+                  </button>
                   {hasChinese(option) && (
-                    <AudioButton text={option} size="sm" className="shrink-0 opacity-60" />
+                    <AudioButton text={option} size="sm" className="mr-2 shrink-0 opacity-60" />
                   )}
-                </button>
+                </div>
               );
             })}
           </div>
@@ -266,7 +328,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 </span>
                 {!isCorrect && hasChinese(current.correctAnswer) && (
                   <div className="flex items-center gap-2 mt-1">
-                    {current.hint && <span className="text-xs text-stone-400 italic">{current.hint}</span>}
+                    {current.hint && <span className="text-xs text-stone-500 italic">{current.hint}</span>}
                     <AudioButton text={current.correctAnswer} size="sm" />
                   </div>
                 )}

@@ -8,23 +8,25 @@ import type { VocabularyItem } from "@/types";
 interface CharacterCardProps {
   item: VocabularyItem;
   showTranslation?: boolean;
-  displayMode?: "pinyin" | "zhuyin" | "both";
+  displayMode?: "romanization" | "reading" | "both";
   className?: string;
 }
 
 export default function CharacterCard({
   item,
   showTranslation = true,
-  displayMode = "pinyin",
+  displayMode = "romanization",
   className,
 }: CharacterCardProps) {
   return (
     <div className={cn("card flex flex-col items-center gap-2 p-4", className)}>
       <div className="flex items-center gap-1">
-        <span className="character-display">{item.character}</span>
-        <AudioButton text={item.character} size="md" />
+        <span className="character-display" lang="zh-Hant-TW">
+          {item.term}
+        </span>
+        <AudioButton text={item.term} size="md" />
       </div>
-      <PinyinDisplay pinyin={item.pinyin} zhuyin={item.zhuyin} mode={displayMode} />
+      <PinyinDisplay romanization={item.romanization} reading={item.reading} mode={displayMode} />
       {showTranslation && (
         <p className="text-center text-sm text-stone-600">{item.french}</p>
       )}

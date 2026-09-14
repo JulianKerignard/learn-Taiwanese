@@ -17,7 +17,6 @@ import { calculateXP, checkAchievements, getLevelFromTotalXP, getStreakMultiplie
 import {
   getCards,
   upsertCard,
-  getProgress,
   saveProgress,
   updateStreak,
   getSettings,
@@ -103,8 +102,8 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
         progress.todayNewCards += 1;
       }
       progress.lastStudyDate = new Date().toISOString().split("T")[0];
-      progress.charactersLearned = Math.max(
-        progress.charactersLearned,
+      progress.termsLearned = Math.max(
+        progress.termsLearned,
         getCards().filter((c) => c.repetitions > 0).length
       );
       saveProgress(progress);
@@ -114,7 +113,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
       const gamData = getGamification();
       gamData.totalXP += xpEvent.total;
       gamData.totalReviews += 1;
-      gamData.totalCharactersLearned = progress.charactersLearned;
+      gamData.totalTermsLearned = progress.termsLearned;
       gamData.currentStreak = progress.currentStreak;
       gamData.xpHistory.push(xpEvent);
 
@@ -178,6 +177,15 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
     [queue, currentIndex, reviewed, newLearned, sessionXP, modeAccuracy, allGradesGood, newAchievements]
   );
 
+  // Hooks must run before any conditional return: the early exits below change
+  // between renders as `loaded` and `sessionDone` flip.
+  const card = queue[currentIndex];
+  const distractors = useMemo(
+    () => (card ? shuffleForDistractors(allCards.length > 0 ? allCards : queue, card) : []),
+    [allCards, queue, card]
+  );
+  const settings = useMemo(() => getSettings(), []);
+
   if (!loaded) return null;
 
   // No cards
@@ -185,7 +193,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
     return (
       <div className="flex flex-col items-center gap-6 py-20 text-center">
         <BookOpen className="h-16 w-16 text-stone-300" />
-        <h1 className="text-2xl font-bold text-stone-800">Rien à réviser !</h1>
+        <h1 className="text-display font-bold text-stone-800">Rien à réviser !</h1>
         <p className="max-w-md text-stone-500">
           Ajoute du vocabulaire depuis les leçons pour commencer tes sessions de
           révision.
@@ -209,7 +217,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
     return (
       <div className="mx-auto flex max-w-md flex-col items-center gap-6 py-12">
         <CheckCircle2 className="h-16 w-16 text-success" />
-        <h1 className="text-2xl font-bold text-stone-800">Session terminée !</h1>
+        <h1 className="text-display font-bold text-stone-800">Session terminée !</h1>
 
         {/* XP and Level */}
         <div className="w-full rounded-xl border border-stone-200 bg-gradient-to-r from-primary/5 to-accent/5 p-4">
@@ -264,7 +272,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
 
         {/* Accuracy per mode */}
         <div className="w-full rounded-xl border border-stone-100 bg-white p-4">
-          <h3 className="text-sm font-semibold text-stone-700 mb-3">Précision par mode</h3>
+          <h3 className="text-sm font-bold text-stone-700 mb-3">Précision par mode</h3>
           <div className="space-y-2">
             {(["recognize", "recall", "listening", "writing"] as ReviewMode[]).map((m) => {
               const data = sessionResult.accuracy[m];
@@ -296,7 +304,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
         {/* New achievements */}
         {newAchievements.length > 0 && (
           <div className="w-full rounded-xl border border-warning/30 bg-warning/5 p-4">
-            <h3 className="text-sm font-semibold text-warning mb-2 flex items-center gap-1">
+            <h3 className="text-sm font-bold text-warning mb-2 flex items-center gap-1">
               <Trophy className="h-4 w-4" />
               Nouveau(x) succès !
             </h3>
@@ -323,18 +331,12 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
   }
 
   // Active session
-  const card = queue[currentIndex];
   const mode = pickMode(currentIndex);
-  const distractors = useMemo(
-    () => shuffleForDistractors(allCards.length > 0 ? allCards : queue, card),
-    [allCards, queue, card]
-  );
-  const settings = useMemo(() => getSettings(), []);
 
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-bold text-stone-900">Révision</h1>
+        <h1 className="text-display font-bold text-stone-900">Révision</h1>
         <p className="text-sm text-stone-500">
           Carte {currentIndex + 1} sur {queue.length}
         </p>
