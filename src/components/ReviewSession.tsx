@@ -12,8 +12,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Flashcard from "./Flashcard";
-import { getDueCards, getNewCards, gradeCard } from "@/lib/fsrs";
-import { calculateXP, checkAchievements, getLevelFromTotalXP, getStreakMultiplier } from "@/lib/gamification";
+import { composeSession, gradeCard } from "@/lib/fsrs";
+import { calculateXP, checkAchievements, getLevelFromTotalXP, getStreakMultiplier, recordXpEvent } from "@/lib/gamification";
 import {
   getCards,
   upsertCard,
@@ -68,11 +68,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
     const allStoredCards = getCards();
     const settings = getSettings();
     const pool = cardFilter ? cardFilter(allStoredCards) : allStoredCards;
-    const due = getDueCards(pool);
-    const newCards = getNewCards(pool, settings.dailyNewCards);
-
-    const dueIds = new Set(due.map((c) => c.id));
-    const combined = [...due, ...newCards.filter((c) => !dueIds.has(c.id))];
+    const combined = composeSession(pool, settings.dailyNewCards);
 
     setAllCards(pool);
     setQueue(combined);
@@ -111,11 +107,10 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
       // Calculate XP
       const xpEvent = calculateXP(grade, mode, progress.currentStreak);
       const gamData = getGamification();
-      gamData.totalXP += xpEvent.total;
       gamData.totalReviews += 1;
       gamData.totalTermsLearned = progress.termsLearned;
       gamData.currentStreak = progress.currentStreak;
-      gamData.xpHistory.push(xpEvent);
+      recordXpEvent(gamData, xpEvent);
 
       // Track grade quality
       const isGoodOrEasy = grade >= 3;
