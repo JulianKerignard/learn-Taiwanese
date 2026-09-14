@@ -3,25 +3,33 @@
 import { cn } from "@/lib/cn";
 
 interface RubyTextProps {
-  chinese: string;
-  pinyin: string;
-  showPinyin: boolean;
-  pinyinSize?: "xs" | "sm" | "md";
+  native: string;
+  /** Reading to annotate with: romanization syllables, or reading in "reading" mode. */
+  romanization: string;
+  showReading: boolean;
+  readingSize?: "xs" | "sm" | "md";
   charSize?: string;
+  /**
+   * "romanization" sets the reading above the term; "reading" sets it vertically
+   * to its right (ruby-position: inter-term), the way every Taiwanese
+   * textbook does. Browsers without inter-term fall back to "over", which
+   * is still a correct annotation.
+   */
+  mode?: "romanization" | "reading";
   className?: string;
 }
 
 /**
- * Splits pinyin string into syllables aligned with Chinese characters.
- * Handles multi-char words by matching syllable count to character count.
+ * Splits a reading into syllables aligned with Chinese characters.
+ * Pinyin and reading are both whitespace-separated, one syllable per term.
  */
-function alignPinyinToChars(chinese: string, pinyin: string): string[] {
-  const syllables = pinyin
+function alignReadingToChars(native: string, reading: string): string[] {
+  const syllables = reading
     .replace(/[，。！？、；：""''（）…—]/g, "")
     .split(/[\s]+/)
     .filter(Boolean);
 
-  const chars = chinese.split("");
+  const chars = [...native];
   const result: string[] = [];
   let syllableIdx = 0;
 
@@ -38,21 +46,24 @@ function alignPinyinToChars(chinese: string, pinyin: string): string[] {
 }
 
 export default function RubyText({
-  chinese,
-  pinyin,
-  showPinyin,
-  pinyinSize = "xs",
+  native,
+  romanization,
+  showReading,
+  readingSize = "xs",
   charSize,
+  mode = "romanization",
   className,
 }: RubyTextProps) {
-  const aligned = alignPinyinToChars(chinese, pinyin);
-  const chars = chinese.split("");
+  const aligned = alignReadingToChars(native, romanization);
+  const chars = [...native];
 
   const rtSize = {
     xs: "text-[10px]",
     sm: "text-xs",
     md: "text-sm",
-  }[pinyinSize];
+  }[readingSize];
+
+  const isZhuyin = mode === "reading";
 
   return (
     <span className={cn("inline", className)} lang="zh-Hant-TW">
@@ -68,13 +79,14 @@ export default function RubyText({
         }
 
         return (
-          <ruby key={i} className={cn("ruby-align-center", charSize)}>
+          <ruby key={i} className={cn(charSize, isZhuyin && "ruby-reading")}>
             {char}
             <rt
               className={cn(
                 rtSize,
-                "font-normal text-stone-400 transition-opacity duration-200",
-                showPinyin ? "opacity-100" : "opacity-0"
+                isZhuyin && "chinese",
+                "font-normal text-stone-500 transition-opacity duration-200",
+                showReading ? "opacity-100" : "opacity-0"
               )}
             >
               {aligned[i]}

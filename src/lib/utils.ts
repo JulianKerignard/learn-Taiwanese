@@ -10,3 +10,12 @@ export function shuffleArray<T>(arr: T[]): T[] {
 export function hasChinese(str: string): boolean {
   return /[\u4e00-\u9fff\u3400-\u4dbf]/.test(str);
 }
+
+/**
+ * Full-width punctuation and whitespace, ignored when comparing free-form answers.
+ * Shared with scripts/validate-corpus.mjs: when the two disagreed, the validator
+ * rejected a reorder the runtime graded correctly.
+ */
+export const IGNORED_PUNCTUATION = /[，。？！、：；「」『』…\s]/g;
+
+export const stripPunctuation = (value: string) => value.replace(IGNORED_PUNCTUATION, "");

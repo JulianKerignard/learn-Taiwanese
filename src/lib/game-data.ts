@@ -1,45 +1,26 @@
-import { allUnits } from "@/data/course";
-import { lessons } from "@/data/lessons";
+/**
+ * Word pool shared by the three mini-games.
+ *
+ * The list is not resolved here: `src/data/<lang>/game-words.ts` is a corpus
+ * module, and a client component that imports one ships *both* editions to the
+ * browser. The games are client components, so their server page reads the list
+ * through `gameWordsData()` in src/data/server.ts and passes it down; these
+ * helpers only shuffle what they are given.
+ *
+ * Regenerate the source lists with `npm run generate-game-words` after editing
+ * any unit or lesson vocabulary.
+ */
 
+/** The three fields the mini-games read. Both editions expose exactly these. */
 export interface GameWord {
-  character: string;
+  term: string;
+  romanization: string;
   french: string;
-  pinyin: string;
 }
 
-export function getAllGameWords(): GameWord[] {
-  const words = new Map<string, GameWord>();
-
-  for (const unit of allUnits) {
-    for (const v of unit.vocabulary) {
-      if (!words.has(v.character)) {
-        words.set(v.character, {
-          character: v.character,
-          french: v.french,
-          pinyin: v.pinyin,
-        });
-      }
-    }
-  }
-
-  for (const lesson of lessons) {
-    for (const v of lesson.vocabulary) {
-      if (!words.has(v.character)) {
-        words.set(v.character, {
-          character: v.character,
-          french: v.french,
-          pinyin: v.pinyin,
-        });
-      }
-    }
-  }
-
-  return [...words.values()];
-}
-
-export function getRandomWords(count: number): GameWord[] {
-  const all = getAllGameWords();
-  const shuffled = [...all];
+/** A shuffled slice of `words`. The input array is never mutated. */
+export function getRandomWords(words: readonly GameWord[], count: number): GameWord[] {
+  const shuffled = [...words];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];

@@ -31,20 +31,34 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
 
   return (
     <div className="flex flex-col items-center gap-6">
+      {/* Screen-reader-only verdict */}
+      <div role="status" aria-live="polite" className="sr-only">
+        {answered
+          ? isCorrect
+            ? "Bonne réponse"
+            : `Mauvaise réponse. La bonne réponse était : ${question.correctAnswer}`
+          : ""}
+      </div>
+
       {/* Question */}
       <div className="flex items-center gap-2">
-        {question.type === "audio-to-character" ? (
+        {question.type === "audio-to-term" ? (
           <AudioButton text={question.question} size="lg" />
         ) : (
-          <h3 className="chinese text-center text-3xl font-medium">{question.question}</h3>
+          <h3
+            className="chinese text-center text-3xl font-medium"
+            lang={question.type === "french-to-term" ? undefined : "zh-Hant-TW"}
+          >
+            {question.question}
+          </h3>
         )}
       </div>
 
       <p className="text-sm text-stone-500">
-        {question.type === "character-to-french" && "Quelle est la traduction ?"}
-        {question.type === "french-to-character" && "Quel est le caractère ?"}
-        {question.type === "audio-to-character" && "Quel caractère entendez-vous ?"}
-        {question.type === "pinyin-to-character" && "Quel caractère correspond ?"}
+        {question.type === "term-to-french" && "Quelle est la traduction ?"}
+        {question.type === "french-to-term" && "Quel est le caractère ?"}
+        {question.type === "audio-to-term" && "Quel caractère entendez-vous ?"}
+        {question.type === "reading-to-term" && "Quel caractère correspond ?"}
       </p>
 
       {/* Options */}
@@ -65,7 +79,10 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
                 answered && !isThis && !isRight && "border-stone-100 text-stone-300"
               )}
             >
-              <span className={cn(question.type === "french-to-character" && "chinese text-2xl")}>
+              <span
+                className={cn(question.type === "french-to-term" && "chinese text-2xl")}
+                lang={question.type === "french-to-term" ? "zh-Hant-TW" : undefined}
+              >
                 {option}
               </span>
               {answered && isThis && (

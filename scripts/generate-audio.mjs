@@ -14,8 +14,12 @@ import { join, resolve } from "path";
 import { EdgeTTS } from "edge-tts-universal";
 
 const ROOT = resolve(".");
-const AUDIO_DIR = join(ROOT, "public", "audio");
-const VOICE = "zh-TW-HsiaoChenNeural";
+// Which corpus to voice, and where its files belong. Hardwiring either one
+// made this script read the wrong data or write over the other language's audio.
+const LANG = process.env.CORPUS_LANG ?? process.argv.find((a) => a === "zh" || a === "ja") ?? "zh";
+const VOICES = { zh: "zh-TW-HsiaoChenNeural", ja: "ja-JP-NanamiNeural" };
+const AUDIO_DIR = join(ROOT, "public", "audio", LANG);
+const VOICE = VOICES[LANG];
 const RATE = "-15%";
 const DELAY_MS = 200;
 
@@ -25,13 +29,13 @@ function extractChineseTexts() {
   const texts = new Set();
 
   const dataDirs = [
-    join(ROOT, "src/data/course"),
-    join(ROOT, "src/data/lessons"),
+    join(ROOT, `src/data/${LANG}/course`),
+    join(ROOT, `src/data/${LANG}/lessons`),
   ];
 
   const standaloneFiles = [
-    join(ROOT, "src/data/readings.ts"),
-    join(ROOT, "src/data/tone-pairs.ts"),
+    join(ROOT, `src/data/${LANG}/readings.ts`),
+    join(ROOT, `src/data/${LANG}/tone-pairs.ts`),
   ];
 
   function scanDir(dir) {
@@ -49,13 +53,13 @@ function extractChineseTexts() {
   function extractFromFile(filePath, set) {
     const content = readFileSync(filePath, "utf-8");
 
-    // character: "..." or character: '...'
-    for (const m of content.matchAll(/character:\s*["']([^"']+)["']/g)) {
+    // term: "..." or term: '...'
+    for (const m of content.matchAll(/term:\s*["']([^"']+)["']/g)) {
       set.add(m[1]);
     }
 
-    // chinese: "..." or chinese: '...'
-    for (const m of content.matchAll(/chinese:\s*["']([^"']+)["']/g)) {
+    // native: "..." or native: '...'
+    for (const m of content.matchAll(/native:\s*["']([^"']+)["']/g)) {
       set.add(m[1]);
     }
   }

@@ -7,7 +7,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Check,
-  X,
   RotateCcw,
   Trophy,
   AlertTriangle,
@@ -18,12 +17,22 @@ import AudioButton from "@/components/AudioButton";
 import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
 import { hasChinese } from "@/lib/utils";
+import { hasJapanese } from "@/lib/japanese";
+import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
 
 interface TestRunnerProps {
+  /** Edition being examined: it decides the back link and the content language. */
+  lang: LanguageSegment;
   test: MockTest;
 }
 
-export default function TestRunner({ test }: TestRunnerProps) {
+export default function TestRunner({ lang, test }: TestRunnerProps) {
+  const language = LANGUAGES[lang];
+
+  // Which strings are content rather than French UI. Kanji alone does not settle
+  // it for Japanese: a question written entirely in kana carries no Han character.
+  const isContent = (value: string) =>
+    language.code === "ja" ? hasJapanese(value) : hasChinese(value);
   const [phase, setPhase] = useState<"intro" | "testing" | "results">("intro");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Map<string, string>>(new Map());
@@ -125,8 +134,8 @@ export default function TestRunner({ test }: TestRunnerProps) {
       <div className="card mx-auto max-w-2xl p-6">
         <div className="mb-6 text-center">
           <span className="mb-2 inline-block text-4xl">{test.icon}</span>
-          <h1 className="text-2xl font-bold">{test.title}</h1>
-          <p className="text-lg text-stone-500">{test.titleZh}</p>
+          <h1 className="text-display font-bold">{test.title}</h1>
+          <p className="text-lg text-stone-500">{test.titleNative}</p>
         </div>
 
         <p className="mb-6 text-center text-stone-600">{test.description}</p>
@@ -140,7 +149,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
         </div>
 
         <div className="mb-6 space-y-2">
-          <h2 className="font-semibold text-stone-700">Sections</h2>
+          <h2 className="text-title font-bold text-stone-700">Sections</h2>
           {test.sections.map((section) => (
             <div
               key={section.id}
@@ -206,13 +215,16 @@ export default function TestRunner({ test }: TestRunnerProps) {
               <p className="text-sm text-stone-500">Écoutez et choisissez la bonne réponse</p>
             </div>
           ) : (
-            <p className={cn("mb-4 text-lg font-medium", hasChinese(current.question) && "chinese")}>
+            <p
+              className={cn("mb-4 text-lg font-medium", isContent(current.question) && "chinese")}
+              lang={isContent(current.question) ? language.contentLang : undefined}
+            >
               {current.question}
             </p>
           )}
 
           {current.hint && (
-            <p className="mb-4 text-sm italic text-stone-400">{current.hint}</p>
+            <p className="mb-4 text-sm italic text-stone-500">{current.hint}</p>
           )}
 
           {/* Options grid */}
@@ -230,8 +242,9 @@ export default function TestRunner({ test }: TestRunnerProps) {
                   selectedAnswer === option
                     ? "border-primary bg-primary/5 font-medium"
                     : "border-stone-200 hover:border-stone-300",
-                  hasChinese(option) && "chinese"
+                  isContent(option) && "chinese"
                 )}
+                lang={isContent(option) ? language.contentLang : undefined}
               >
                 {option}
               </button>
@@ -322,7 +335,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
           </div>
           <p
             className={cn(
-              "text-lg font-semibold",
+              "text-lg font-bold",
               result.passed ? "text-green-700" : "text-yellow-700"
             )}
           >
@@ -338,7 +351,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
 
         {/* Section breakdown */}
         <div className="card space-y-4 p-6">
-          <h2 className="font-semibold text-stone-700">Résultats par section</h2>
+          <h2 className="text-title font-bold text-stone-700">Résultats par section</h2>
           {result.sectionResults.map((sr) => (
             <div key={sr.sectionId}>
               <div className="mb-1 flex items-center justify-between text-sm">
@@ -362,7 +375,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
             <RotateCcw size={16} />
             Réessayer
           </button>
-          <Link href="/tests" className="btn-primary flex flex-1 items-center justify-center gap-2">
+          <Link href={langHref(lang, "/tests")} className="btn-primary flex flex-1 items-center justify-center gap-2">
             Retour aux tests
           </Link>
         </div>
