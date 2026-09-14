@@ -4,16 +4,10 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { User, LogIn, LogOut, Menu, X } from "lucide-react";
 import { checkUser, login, syncUp, syncDown, setConnected } from "@/lib/sync";
-import SyncStatus from "@/components/SyncStatus";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { cn } from "@/lib/cn";
-import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
+import { getBasePath } from "@/lib/basepath";
 
-/** Every link carries the edition it belongs to: a bare href leaves the tree. */
-export default function Navbar({ lang }: { lang: LanguageSegment }) {
-  const language = LANGUAGES[lang];
-  const href = (path: string) => langHref(lang, path);
-
+export default function Navbar() {
   const [user, setUser] = useState<{ id: number; username: string } | null>(null);
   const [showLogin, setShowLogin] = useState(false);
   const [nameInput, setNameInput] = useState("");
@@ -49,7 +43,7 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
   }
 
   async function handleLogout() {
-    await fetch("/api/auth/logout", { method: "POST" });
+    await fetch(`${getBasePath()}/api/auth/logout`, { method: "POST" });
     setConnected(false);
     setUser(null);
     window.location.reload();
@@ -58,47 +52,43 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
   return (
     <nav className="sticky top-0 z-50 border-b border-stone-200 bg-white/80 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href={href("/")} className="flex items-center gap-2 text-lg font-bold text-stone-900">
-          <span className="chinese text-2xl text-primary" lang={language.contentLang}>
-            {language.nameNative.slice(0, 1)}
-          </span>
-          <span className="hidden sm:inline">{language.name}</span>
+        <Link href="/" className="flex items-center gap-2 text-lg font-bold text-stone-900">
+          <span className="chinese text-2xl text-primary">學</span>
+          <span className="hidden sm:inline">Taiwan Mandarin</span>
         </Link>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-6">
-          <Link href={href("/path")} className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+          <Link href="/path" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Parcours
           </Link>
-          <Link href={href("/lessons")} className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+          <Link href="/lessons" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Leçons
           </Link>
-          <Link href={href("/revision")} className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+          <Link href="/revision" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Révision
           </Link>
-          <Link href={href(`/${language.phonology.slug}`)} className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
-            {language.phonology.label}
+          <Link href="/tones" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+            Tons
           </Link>
-          <Link href={href("/dictionary")} className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+          <Link href="/dictionary" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Dictionnaire
           </Link>
-          <Link href={href("/reading")} className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+          <Link href="/reading" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Lecture
           </Link>
-          <Link href={href("/funfacts")} className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+          <Link href="/funfacts" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Fun Facts
           </Link>
-          <Link href={href("/games")} className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+          <Link href="/games" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Jeux
           </Link>
-          <Link href={href("/tests")} className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+          <Link href="/tests" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Tests
           </Link>
-          <Link href={href("/progress")} className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
+          <Link href="/progress" className="text-sm font-medium text-stone-600 hover:text-primary transition-colors">
             Progression
           </Link>
-
-          <LanguageSwitcher />
 
           {/* Auth desktop */}
           <div className="relative ml-2">
@@ -108,7 +98,6 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
                   <User className="h-4 w-4" />
                   {user.username}
                 </span>
-                <SyncStatus />
                 <button onClick={handleLogout} className="text-stone-400 hover:text-stone-600" title="Déconnexion">
                   <LogOut className="h-4 w-4" />
                 </button>
@@ -132,7 +121,7 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
                   onChange={(e) => setNameInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleLogin()}
                   placeholder="Ton prénom..."
-                  className="mb-2 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm focus:border-primary"
+                  className="mb-2 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm focus:border-primary focus:outline-none"
                   autoFocus
                 />
                 {error && <p className="mb-2 text-xs text-danger">{error}</p>}
@@ -149,9 +138,7 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
-          <LanguageSwitcher />
-          {/* Hamburger button */}
+        {/* Hamburger button */}
         <button
           className="md:hidden flex items-center justify-center rounded-lg p-2 text-stone-600 hover:bg-stone-100 transition-colors"
           onClick={() => setMenuOpen(true)}
@@ -160,7 +147,6 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
         >
           <Menu className="h-6 w-6" />
         </button>
-        </div>
 
         {/* Mobile drawer */}
         {menuOpen && (
@@ -178,16 +164,16 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
                 </button>
               </div>
               <nav className="flex flex-col gap-1 p-4">
-                <Link href={href("/path")} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Parcours</Link>
-                <Link href={href("/lessons")} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Leçons</Link>
-                <Link href={href("/revision")} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Révision</Link>
-                <Link href={href(`/${language.phonology.slug}`)} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">{language.phonology.label}</Link>
-                <Link href={href("/dictionary")} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Dictionnaire</Link>
-                <Link href={href("/reading")} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Lecture</Link>
-                <Link href={href("/funfacts")} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Fun Facts</Link>
-                <Link href={href("/games")} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Jeux</Link>
-                <Link href={href("/tests")} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Tests</Link>
-                <Link href={href("/progress")} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Progression</Link>
+                <Link href="/path" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Parcours</Link>
+                <Link href="/lessons" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Leçons</Link>
+                <Link href="/revision" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Révision</Link>
+                <Link href="/tones" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Tons</Link>
+                <Link href="/dictionary" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Dictionnaire</Link>
+                <Link href="/reading" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Lecture</Link>
+                <Link href="/funfacts" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Fun Facts</Link>
+                <Link href="/games" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Jeux</Link>
+                <Link href="/tests" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Tests</Link>
+                <Link href="/progress" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 transition-colors">Progression</Link>
               </nav>
               <div className="mt-auto border-t border-stone-200 p-4">
                 {user ? (
@@ -195,7 +181,6 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
                     <span className="flex items-center gap-1.5 text-sm font-medium text-primary">
                       <User className="h-4 w-4" />
                       {user.username}
-                      <SyncStatus />
                     </span>
                     <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="text-stone-400 hover:text-stone-600" title="Déconnexion">
                       <LogOut className="h-4 w-4" />

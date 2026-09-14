@@ -7,17 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src",
-    "generate-audio": "node scripts/generate-audio.mjs",
-    "generate-game-words": "npm run generate-game-words:zh && npm run generate-game-words:ja",
-    "generate-dictionary": "npm run generate-dictionary:zh && npm run generate-dictionary:ja",
-    "validate": "npm run validate:zh && npm run validate:ja",
-    "validate:zh": "CORPUS_LANG=zh node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/validate-corpus.mjs zh",
-    "validate:ja": "CORPUS_LANG=ja node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/validate-corpus.mjs ja",
-    "generate-game-words:zh": "CORPUS_LANG=zh node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-game-words.mjs zh",
-    "generate-dictionary:zh": "CORPUS_LANG=zh node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-dictionary.mjs zh",
-    "generate-game-words:ja": "CORPUS_LANG=ja node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-game-words.mjs ja",
-    "generate-dictionary:ja": "CORPUS_LANG=ja node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-dictionary.mjs ja"
+    "lint": "next lint",
+    "generate-audio": "node scripts/generate-audio.mjs"
   },
   "keywords": [],
   "author": "",
@@ -30,23 +21,18 @@
     "next": "^16.2.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "server-only": "^0.0.1",
     "tailwind-merge": "^3.5.0",
     "ts-fsrs": "^5.3.1"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
     "@tailwindcss/postcss": "^4.2.2",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^10.1.0",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "globals": "^17.11.0",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.2",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.67.0"
+    "typescript": "^5.9.3"
   }
 }

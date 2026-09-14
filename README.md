@@ -83,8 +83,6 @@ npm run build            # Build production
 npm run start            # Serveur production
 npm run lint             # ESLint
 npm run generate-audio   # Pré-générer les fichiers audio TTS
-npm run generate-game-words  # Régénérer src/data/game-words.ts depuis le corpus
-npm run validate         # Invariants du corpus (exercices, prérequis, meta.ts vs index.ts)
 ```
 
 ## Architecture
@@ -104,12 +102,9 @@ src/
 │   └── tones/              # Exercices des tons
 ├── components/             # Composants React réutilisables
 ├── data/                   # Contenu statique (cours, leçons, lectures, tons, tests)
-│   ├── course/             # 88 unités de cours en 8 chapitres
-│   │   ├── index.ts        # Catalogue complet (contenu des unités) — serveur uniquement
-│   │   └── meta.ts         # Métadonnées seules (titres, prérequis) — pour les composants client
+│   ├── course/             # 71 unités de cours en 8 chapitres
 │   ├── lessons/            # 10 leçons standalone
 │   ├── tests/              # Données des examens HSK
-│   ├── game-words.ts       # Liste générée pour les mini-jeux (npm run generate-game-words)
 │   ├── readings.ts         # 10 textes de lecture graduée
 │   └── tone-pairs.ts       # 16 paires de tons + sandhi
 ├── lib/                    # Utilitaires
@@ -128,11 +123,11 @@ src/
 | Niveau | Unités | Vocabulaire | Statut |
 |--------|--------|-------------|--------|
 | HSK 1  | 40     | ~450 mots   | Complet |
-| HSK 2  | 40     | ~200 mots   | Complet |
+| HSK 2  | 24     | ~200 mots   | Complet |
 | HSK 3  | 8      | ~85 mots    | En construction |
 | HSK 4  | —      | —           | Prévu |
 
-**Total : 88 unités, 888 mots au dictionnaire (835 cours + leçons), 10 leçons, 10 textes de lecture, 100 questions d'examen**
+**Total : 71 unités, ~600+ mots uniques, 10 leçons, 10 textes de lecture, 100 questions d'examen**
 
 ## Audio
 

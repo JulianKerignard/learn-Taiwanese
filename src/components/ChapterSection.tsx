@@ -9,55 +9,34 @@ import {
   isUnitCompleted,
   getChapterProgress,
 } from "@/lib/progress";
-// Metadata only: a path node shows a title, an icon and a lock state. Reaching
-// for @/data/server here would ship every unit module to every route that
-// renders the parcours.
-import { getUnitMetaById } from "@/data/meta";
-import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
-import type { PathProgress, CourseUnitMeta, Chapter } from "@/types/course";
+import { getUnitById } from "@/data/course";
+import type { PathProgress, CourseUnit, Chapter } from "@/types/course";
 
 export function ChapterSection({
-  lang,
   chapter,
   progress,
   startIndex,
-  userStateReady,
 }: {
-  lang: LanguageSegment;
   chapter: Chapter;
   progress: PathProgress;
   startIndex: number;
-  /**
-   * False while the prerendered HTML is still waiting for localStorage. The
-   * chapter and unit copy is build-known and always renders; the lock, the
-   * completion tick, the score and the chapter bar are claims about the reader
-   * and stay out until this is true. In particular, nothing is drawn as locked
-   * before then — a lock computed from an empty progression would tell every
-   * visitor that 39 units out of 40 are closed to them.
-   */
-  userStateReady: boolean;
 }) {
-  const language = LANGUAGES[lang];
   const chapterPct = getChapterProgress(chapter, progress);
 
   const chapterUnits = chapter.unitIds
-    .map((id) => getUnitMetaById(language.code, id))
-    .filter((u): u is CourseUnitMeta => u !== undefined);
+    .map((id) => getUnitById(id))
+    .filter((u): u is CourseUnit => u !== undefined);
 
   return (
     <section>
       <div className="mb-6">
-        <h2 className="text-title font-bold text-stone-800">
+        <h2 className="text-xl font-bold text-stone-800">
           Chapitre {chapter.number} — {chapter.title}
         </h2>
-        <p className="chinese text-sm text-stone-500" lang={language.contentLang}>{chapter.titleNative}</p>
+        <p className="chinese text-sm text-stone-400">{chapter.titleZh}</p>
         <p className="mt-1 text-sm text-stone-500">{chapter.description}</p>
         <div className="mt-3 max-w-xs">
-          {userStateReady ? (
-            <ProgressBar value={Math.round(chapterPct * 100)} max={100} />
-          ) : (
-            <div className="h-2 w-full animate-pulse rounded-full bg-stone-100" />
-          )}
+          <ProgressBar value={Math.round(chapterPct * 100)} max={100} />
         </div>
       </div>
 
@@ -65,13 +44,10 @@ export function ChapterSection({
         {chapterUnits.map((unit, i) => (
           <UnitNode
             key={unit.id}
-            lang={lang}
-            contentLang={language.contentLang}
             unit={unit}
             displayNumber={startIndex + i + 1}
             progress={progress}
             isLast={i === chapterUnits.length - 1}
-            userStateReady={userStateReady}
           />
         ))}
       </div>
@@ -80,29 +56,20 @@ export function ChapterSection({
 }
 
 function UnitNode({
-  lang,
-  contentLang,
   unit,
   displayNumber,
   progress,
   isLast,
-  userStateReady,
 }: {
-  lang: LanguageSegment;
-  contentLang: string;
-  unit: CourseUnitMeta;
+  unit: CourseUnit;
   displayNumber: number;
   progress: PathProgress;
   isLast: boolean;
-  userStateReady: boolean;
 }) {
-  // Before the reader's progression is known, the node renders in its neutral
-  // state: no tick, no lock, no "en cours", and reachable — an open link is the
-  // one option that asserts nothing about them.
-  const completed = userStateReady && isUnitCompleted(unit.id, progress);
-  const unlocked = !userStateReady || isUnitUnlocked(unit.id, unit, progress);
-  const isCurrent = userStateReady && progress.currentUnit === unit.id;
-  const score = userStateReady ? progress.unitScores[unit.id] : undefined;
+  const completed = isUnitCompleted(unit.id, progress);
+  const unlocked = isUnitUnlocked(unit.id, unit, progress);
+  const isCurrent = progress.currentUnit === unit.id;
+  const score = progress.unitScores[unit.id];
 
   let circleStyle = "border-stone-300 bg-white text-stone-400";
   if (completed) {
@@ -141,7 +108,7 @@ function UnitNode({
             <div className="flex items-center gap-2">
               <h3
                 className={cn(
-                  "font-bold",
+                  "font-semibold",
                   !unlocked ? "text-stone-400" : "text-stone-800"
                 )}
               >
@@ -149,8 +116,8 @@ function UnitNode({
               </h3>
               {!unlocked && !completed && <Lock className="h-4 w-4 text-stone-300" />}
             </div>
-            {unit.titleNative && (
-              <p className="chinese text-sm text-stone-500" lang={contentLang}>{unit.titleNative}</p>
+            {unit.titleZh && (
+              <p className="chinese text-sm text-stone-400">{unit.titleZh}</p>
             )}
             <p
               className={cn(
@@ -169,20 +136,14 @@ function UnitNode({
 
           {unlocked && (
             <Link
-              href={langHref(lang, `/path/${unit.id}`)}
+              href={`/path/${unit.id}`}
               className={cn(
                 "shrink-0",
                 completed ? "btn-secondary" : "btn-primary",
-                "min-w-[7.5rem] gap-1 text-sm"
+                "gap-1 text-sm"
               )}
             >
-              {userStateReady
-                ? completed
-                  ? "Refaire"
-                  : isCurrent
-                    ? "Continuer"
-                    : "Commencer"
-                : "Ouvrir"}
+              {completed ? "Refaire" : isCurrent ? "Continuer" : "Commencer"}
               <ChevronRight className="h-4 w-4" />
             </Link>
           )}

@@ -109,7 +109,7 @@ export function checkAchievements(data: GamificationData): Achievement[] {
 
     switch (type) {
       case "characters":
-        earned = data.totalTermsLearned >= value;
+        earned = data.totalCharactersLearned >= value;
         break;
       case "streak":
         earned = data.currentStreak >= value;
@@ -140,7 +140,7 @@ export function getDefaultGamificationData(): GamificationData {
   return {
     totalXP: 0,
     totalReviews: 0,
-    totalTermsLearned: 0,
+    totalCharactersLearned: 0,
     currentStreak: 0,
     achievements: [],
     lastSessionPerfect: false,

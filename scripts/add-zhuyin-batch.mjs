@@ -237,9 +237,9 @@ function processFile(filePath) {
         if (zhuyinValues.every(z => z !== null)) {
           const indent = lines[i].match(/^(\s*)/)[1];
           if (pinyinValues.length <= 4 && zhuyinValues.join('').length < 100) {
-            newLines.push(`${indent}optionsReading: [${zhuyinValues.map(z => `"${z}"`).join(', ')}],`);
+            newLines.push(`${indent}optionsZhuyin: [${zhuyinValues.map(z => `"${z}"`).join(', ')}],`);
           } else {
-            newLines.push(`${indent}optionsReading: [`);
+            newLines.push(`${indent}optionsZhuyin: [`);
             for (let k = 0; k < zhuyinValues.length; k++) {
               const comma = k < zhuyinValues.length - 1 ? ',' : ',';
               newLines.push(`${indent}  "${zhuyinValues[k]}"${comma}`);
@@ -267,7 +267,7 @@ function processFile(filePath) {
         if (!hasHintZhuyin) {
           const zhuyin = convertPinyinHint(hintValue);
           if (zhuyin) {
-            newLines.push(`${indent}hintReading: "${zhuyin}",`);
+            newLines.push(`${indent}hintZhuyin: "${zhuyin}",`);
             modified = true;
           }
         }
