@@ -241,7 +241,7 @@ export default function SpeedQuizContent({
       {question && (
         <>
           <div className="mb-8 text-center">
-            <span className="character-display text-stone-900" lang={language.contentLang}>
+            <span className="term-display text-stone-900" lang={language.contentLang}>
               {question.word.term}
             </span>
             {showRomanization && (

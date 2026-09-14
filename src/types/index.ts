@@ -100,6 +100,8 @@ export interface SM2Card extends FlashcardData {
   nextReview: string; // ISO date
   lastReview?: string;
   fsrs?: FSRSCardState;
+  /** Local calendar day the card was first graded, YYYY-MM-DD. Feeds the daily new-card quota. */
+  introducedOn?: string;
 }
 
 export type SM2Grade = 0 | 1 | 2 | 3 | 4 | 5;

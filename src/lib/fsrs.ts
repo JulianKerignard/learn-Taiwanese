@@ -11,6 +11,7 @@ import {
   type Grade,
 } from "ts-fsrs";
 import type { FlashcardData, SM2Card, FSRSCardState } from "@/types";
+import { localDayKey, shuffleArray } from "@/lib/utils";
 
 /**
  * FSRS configuration optimized for Chinese character learning.
@@ -141,6 +142,7 @@ function gradeCardFSRS(card: SM2Card, grade: Grade): SM2Card {
   return {
     ...card,
     ...fsrsCardToSM2Fields(result.card),
+    introducedOn: card.introducedOn ?? localDayKey(now),
   };
 }
 
@@ -148,19 +150,55 @@ function isDue(card: SM2Card): boolean {
   return new Date(card.nextReview) <= new Date();
 }
 
-function sortByDue(cards: SM2Card[]): SM2Card[] {
-  return [...cards].sort(
-    (a, b) =>
-      new Date(a.nextReview).getTime() - new Date(b.nextReview).getTime()
-  );
+/** Cards first graded today, whatever their state since. */
+export function countIntroducedToday(cards: SM2Card[]): number {
+  const today = localDayKey(new Date());
+  return cards.filter((c) => c.introducedOn === today).length;
 }
 
-export function getDueCards(cards: SM2Card[]): SM2Card[] {
-  return sortByDue(cards.filter(isDue));
+/**
+ * Spread the new cards through the due ones instead of queueing them last.
+ * A backlog of eighty reviews otherwise buries every new card past the point
+ * where anyone is still working.
+ */
+function interleave(due: SM2Card[], fresh: SM2Card[]): SM2Card[] {
+  if (due.length === 0 || fresh.length === 0) return [...due, ...fresh];
+
+  const gap = Math.max(1, Math.floor(due.length / fresh.length));
+  const out: SM2Card[] = [];
+  let next = 0;
+
+  due.forEach((card, index) => {
+    out.push(card);
+    if (next < fresh.length && (index + 1) % gap === 0) {
+      out.push(fresh[next]);
+      next += 1;
+    }
+  });
+
+  return [...out, ...fresh.slice(next)];
 }
 
-export function getNewCards(cards: SM2Card[], limit: number): SM2Card[] {
-  return cards.filter((c) => c.repetitions === 0).slice(0, limit);
+/**
+ * The queue for one sitting.
+ *
+ * `dailyNewCards` is a quota for the calendar day, not for the sitting: three
+ * sessions in one evening used to introduce three times the intended load, and
+ * the review peak lands a few days later when nobody connects it to the cause.
+ *
+ * Due cards are shuffled rather than kept in `nextReview` order — they are all
+ * owed today, and a stable order lets position itself become a cue.
+ */
+export function composeSession(cards: SM2Card[], dailyNewCards: number): SM2Card[] {
+  const due = shuffleArray(cards.filter(isDue));
+  const dueIds = new Set(due.map((c) => c.id));
+
+  const remaining = Math.max(0, dailyNewCards - countIntroducedToday(cards));
+  const fresh = cards
+    .filter((c) => c.repetitions === 0 && !dueIds.has(c.id))
+    .slice(0, remaining);
+
+  return interleave(due, fresh);
 }
 
 export function getStats(cards: SM2Card[]) {
@@ -199,7 +237,8 @@ export function previewScheduling(card: SM2Card): Record<Grade, { interval: stri
     } else if (days < 365) {
       interval = `${Math.round(days / 30)} mois`;
     } else {
-      interval = `${(days / 365).toFixed(1)} an`;
+      const years = days / 365;
+      interval = `${years.toFixed(1)} an${years >= 2 ? "s" : ""}`;
     }
 
     result[grade] = { interval, due: item.card.due };

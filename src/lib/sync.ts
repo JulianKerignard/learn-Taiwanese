@@ -1,5 +1,6 @@
 import { KEYS, SYNCED_KEYS, remoteSyncKey, storageKey } from "@/lib/storage";
 import { currentLanguage } from "@/lib/language";
+import { MAX_XP_HISTORY } from "@/lib/gamification";
 
 /**
  * Client/server reconciliation for the eight synced localStorage keys.
@@ -183,7 +184,6 @@ const MONOTONIC_GAMIFICATION = ["totalXP", "totalReviews", "totalTermsLearned"] 
  * bytes, so 2000 of them is 191 Ko: far more than the seven days the XP chart
  * actually reads, and small enough that the merge can never blow the ceiling.
  */
-const MAX_XP_HISTORY = 2000;
 
 /** Union by id, keeping the earliest unlock: an achievement is never re-locked. */
 function mergeAchievements(local: Json, remote: Json): Json {

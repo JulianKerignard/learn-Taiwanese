@@ -19,3 +19,10 @@ export function hasChinese(str: string): boolean {
 export const IGNORED_PUNCTUATION = /[，。？！、：；「」『』…\s]/g;
 
 export const stripPunctuation = (value: string) => value.replace(IGNORED_PUNCTUATION, "");
+
+/** Calendar day in the reader's own timezone, YYYY-MM-DD. Daily counters reset at local midnight, not at UTC midnight. */
+export function localDayKey(date: Date): string {
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${date.getFullYear()}-${month}-${day}`;
+}

@@ -43,10 +43,10 @@
   --text-subtitle: 1.125rem;
   --text-subtitle--line-height: 1.75rem;
 
-  /* --font-noto-tc is injected by next/font in layout.tsx */
+  /* --font-noto-tc and --font-noto-jp are injected by next/font in layout.tsx */
   --font-sans: var(--font-noto-tc), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-chinese: var(--font-noto-tc), "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-cjk: var(--font-noto-tc), "PingFang TC", "Microsoft JhengHei", sans-serif;
 }
 
 @layer base {
@@ -55,8 +55,17 @@
     @apply bg-surface text-stone-900 antialiased;
   }
 
+  /* Name kept from the Mandarin-only era; it marks text in the language being
+     learned, whichever edition renders it. */
   .chinese {
-    font-family: var(--font-chinese);
+    font-family: var(--font-cjk);
+  }
+
+  /* Noto Sans TC draws shared kanji in their Traditional Chinese forms — 直, 令,
+     海 and some 600 others differ from the shapes a Japanese learner must
+     memorise, so the face has to follow the edition. */
+  [data-lang="ja"] {
+    --font-cjk: var(--font-noto-jp), "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
   }
 
   ruby {
@@ -94,7 +103,7 @@
   }
 
   .term-display {
-    font-family: var(--font-chinese);
+    font-family: var(--font-cjk);
     @apply text-5xl sm:text-6xl font-normal leading-none;
   }
 

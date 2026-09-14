@@ -24,6 +24,7 @@ import {
 } from "@/lib/storage";
 import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
 import { getPathProgress } from "@/lib/progress";
+import { localDayKey } from "@/lib/utils";
 import {
   getLevelFromTotalXP,
   xpForLevel,
@@ -47,16 +48,19 @@ export interface LessonRow {
 }
 
 function getXpByDay(xpHistory: XPEvent[]): { day: string; xp: number; label: string }[] {
-  const days: { day: string; xp: number; label: string }[] = [];
   const dayNames = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+  const totals: Record<string, number> = {};
+  for (const event of xpHistory) {
+    const key = localDayKey(new Date(event.timestamp));
+    totals[key] = (totals[key] ?? 0) + event.total;
+  }
+
+  const days: { day: string; xp: number; label: string }[] = [];
   for (let i = 6; i >= 0; i--) {
     const d = new Date();
     d.setDate(d.getDate() - i);
-    const key = d.toISOString().split("T")[0];
-    const xp = xpHistory
-      .filter((e) => e.timestamp.startsWith(key))
-      .reduce((sum, e) => sum + e.total, 0);
-    days.push({ day: key, xp, label: dayNames[d.getDay()] });
+    const key = localDayKey(d);
+    days.push({ day: key, xp: totals[key] ?? 0, label: dayNames[d.getDay()] });
   }
   return days;
 }

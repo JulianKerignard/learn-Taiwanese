@@ -4,12 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Learn-Taiwanese is a Next.js 16 app for learning Taiwanese Mandarin, targeting French-speaking users. It features spaced repetition (FSRS), gamification, graded reading, tone exercises, and mini-games. The UI is in French, content is in Traditional Chinese with pinyin/zhuyin annotations.
+A Next.js 16 app for French speakers learning Taiwanese Mandarin or Japanese. One
+codebase serves both editions: spaced repetition (FSRS), gamification, graded reading,
+phonology drills and mini-games. The UI is French throughout; the content is Traditional
+Chinese with pinyin/zhuyin, or Japanese with rōmaji/kana.
 
 ## Commands
 
 ```bash
-npm run dev          # Dev server (accessible at /taiwan due to basePath)
+npm run dev          # Dev server; / redirects to /taiwan
 npm run build        # Production build
 npm run start        # Start production server
 npm run lint         # ESLint
@@ -33,9 +36,13 @@ scale, phonology page and domain nouns for each edition. Nothing else may hardco
 language. Client code that needs the language without a prop calls `currentLanguage()`,
 which reads the first path segment.
 
-### Routing & basePath
+### Routing
 
-Next.js App Router with `basePath: "/taiwan"` and `output: "standalone"`. All client-side fetch calls must use the helper from `src/lib/basepath.ts` to resolve the correct base URL.
+Next.js App Router with `output: "standalone"` and **no basePath**: the language is the
+first route segment, `src/app/[lang]/`, with `[lang]` restricted to `taiwan` and `japon`.
+That is what kept the Mandarin edition's public URLs intact through the merge — and why
+assets now live at the domain root (`/_next`, `/api`, `/audio`) rather than under
+`/taiwan`, which the nginx vhost has to forward.
 
 ### Data Layer (static, no CMS)
 
@@ -75,7 +82,15 @@ No external state library. All client state flows through React hooks + localSto
 
 ### Spaced Repetition (FSRS)
 
-Implemented in `src/lib/fsrs.ts` using ts-fsrs. Config: 90% retention target, 365-day max interval. Four review modes: recognize, recall, listening, writing. Includes SM-2 → FSRS migration path.
+Implemented in `src/lib/fsrs.ts` using ts-fsrs. Config: 90% retention target, 365-day max
+interval. Four review modes: recognize, recall, listening, writing. Includes SM-2 → FSRS
+migration path.
+
+`composeSession()` builds the queue for one sitting. `settings.dailyNewCards` is a quota
+for the **calendar day**, not for the sitting — cards carry `introducedOn` (local day) so
+three sessions in one evening still introduce one day's worth. New cards are interleaved
+through the due ones instead of queued last, and due cards are shuffled: they are all owed
+today, and a stable order lets position become a cue.
 
 ### Audio (3-tier fallback)
 
@@ -154,6 +169,15 @@ Two type files in `src/types/`:
 ## Conventions
 
 - Path alias: `@/*` maps to `./src/*`
-- Styling: Tailwind CSS 4 via `@tailwindcss/postcss`. Theme variables defined in `globals.css` (primary red #e11d48, Chinese font: Noto Sans TC). Component classes: `.card`, `.btn-primary`, `.btn-secondary`, `.badge`, `.character-display`.
+- Styling: Tailwind CSS 4 via `@tailwindcss/postcss`. Theme variables in `globals.css`
+  (primary red #e11d48). Component classes: `.card`, `.btn-primary`, `.btn-secondary`,
+  `.badge`, `.term-display`.
+- Fonts: `--font-cjk` resolves to Noto Sans TC, and to Noto Sans JP under
+  `[data-lang="ja"]`, which `src/app/[lang]/layout.tsx` stamps. Noto Sans TC draws shared
+  kanji in their Traditional Chinese forms, so the Japanese edition needs its own face.
+- `lang` on a fragment of target-language text comes from `useContentLang()`
+  (`src/components/ContentLanguage.tsx`), never from a literal: `currentLanguage()` reads
+  `window.location` and resolves to the default edition during SSR.
 - Utility: `cn()` from `src/lib/cn.ts` (clsx + tailwind-merge) for conditional class merging.
-- Content language: UI in French, learning content in Traditional Chinese with pinyin/zhuyin/French/English translations.
+- Content language: UI in French; learning content in the edition's language with its two
+  annotations (pinyin/zhuyin, or rōmaji/kana) plus French and English.
