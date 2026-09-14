@@ -10,17 +10,20 @@ import {
   getChapterProgress,
 } from "@/lib/progress";
 // Metadata only: a path node shows a title, an icon and a lock state. Reaching
-// for @/data/course here would ship all 88 unit modules to every route that
+// for @/data/server here would ship every unit module to every route that
 // renders the parcours.
-import { getUnitMetaById } from "@/data/zh/course/meta";
+import { getUnitMetaById } from "@/data/meta";
+import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
 import type { PathProgress, CourseUnitMeta, Chapter } from "@/types/course";
 
 export function ChapterSection({
+  lang,
   chapter,
   progress,
   startIndex,
   userStateReady,
 }: {
+  lang: LanguageSegment;
   chapter: Chapter;
   progress: PathProgress;
   startIndex: number;
@@ -34,10 +37,11 @@ export function ChapterSection({
    */
   userStateReady: boolean;
 }) {
+  const language = LANGUAGES[lang];
   const chapterPct = getChapterProgress(chapter, progress);
 
   const chapterUnits = chapter.unitIds
-    .map((id) => getUnitMetaById(id))
+    .map((id) => getUnitMetaById(language.code, id))
     .filter((u): u is CourseUnitMeta => u !== undefined);
 
   return (
@@ -46,7 +50,7 @@ export function ChapterSection({
         <h2 className="text-title font-bold text-stone-800">
           Chapitre {chapter.number} — {chapter.title}
         </h2>
-        <p className="chinese text-sm text-stone-500" lang="zh-Hant-TW">{chapter.titleNative}</p>
+        <p className="chinese text-sm text-stone-500" lang={language.contentLang}>{chapter.titleNative}</p>
         <p className="mt-1 text-sm text-stone-500">{chapter.description}</p>
         <div className="mt-3 max-w-xs">
           {userStateReady ? (
@@ -61,6 +65,8 @@ export function ChapterSection({
         {chapterUnits.map((unit, i) => (
           <UnitNode
             key={unit.id}
+            lang={lang}
+            contentLang={language.contentLang}
             unit={unit}
             displayNumber={startIndex + i + 1}
             progress={progress}
@@ -74,12 +80,16 @@ export function ChapterSection({
 }
 
 function UnitNode({
+  lang,
+  contentLang,
   unit,
   displayNumber,
   progress,
   isLast,
   userStateReady,
 }: {
+  lang: LanguageSegment;
+  contentLang: string;
   unit: CourseUnitMeta;
   displayNumber: number;
   progress: PathProgress;
@@ -140,7 +150,7 @@ function UnitNode({
               {!unlocked && !completed && <Lock className="h-4 w-4 text-stone-300" />}
             </div>
             {unit.titleNative && (
-              <p className="chinese text-sm text-stone-500" lang="zh-Hant-TW">{unit.titleNative}</p>
+              <p className="chinese text-sm text-stone-500" lang={contentLang}>{unit.titleNative}</p>
             )}
             <p
               className={cn(
@@ -159,7 +169,7 @@ function UnitNode({
 
           {unlocked && (
             <Link
-              href={`/path/${unit.id}`}
+              href={langHref(lang, `/path/${unit.id}`)}
               className={cn(
                 "shrink-0",
                 completed ? "btn-secondary" : "btn-primary",

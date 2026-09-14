@@ -62,7 +62,7 @@ export function parseSession(value: string | undefined): number | null {
  * Not `cookies()`: Next parses the Cookie header into a Map keyed by name, so a
  * duplicate name collapses to one entry and the other is unreachable. Two
  * cookies named the same is exactly the situation here — old builds set the
- * session on Path=/, current ones on the basePath — and the browser sends both
+ * session on the basePath, current ones on Path=/ — and the browser sends both
  * in one header with no guaranteed order. Reading the raw header lets an unsigned
  * legacy value be skipped instead of masking the valid signed one.
  */
@@ -101,16 +101,21 @@ export const SESSION_COOKIE = {
   sameSite: "strict" as const,
   secure: process.env.NODE_ENV === "production",
   maxAge: 365 * 24 * 60 * 60,
-  path: "/taiwan",
+  // Site root, not "/taiwan". basePath is gone: the API routes now live at
+  // /api/* and the two editions at /taiwan/* and /japon/*, so a cookie scoped to
+  // one of them would never be sent to the endpoints that read it — nor to the
+  // other edition. The language is a route segment, never a session boundary.
+  path: "/",
 };
 
 /**
- * Path of the session cookie as old builds set it. It still sits in the browsers
- * of every existing user, so both login and logout have to clear it explicitly:
- * a stale `taiwan-user=3` on Path=/ is sent alongside the real cookie and would
- * otherwise linger for a year.
+ * Paths the session cookie was set under by earlier builds. They still sit in
+ * the browsers of existing users, and a stale twin is sent alongside the real
+ * cookie, so both login and logout clear them explicitly rather than letting
+ * them linger for a year. "/taiwan" is the basePath era; the unsigned Path=/
+ * cookie that preceded it is erased by the same pass now that "/" is the pose.
  */
-const LEGACY_COOKIE_PATH = "/";
+const LEGACY_COOKIE_PATHS = ["/taiwan"];
 
 /**
  * One Set-Cookie line. A browser matches a deletion on name, domain and path
@@ -130,9 +135,9 @@ function serializeCookie(value: string, path: string, maxAge: number): string {
   return parts.join("; ");
 }
 
-/** Erases the legacy Path=/ twin. Same attributes as the pose, empty value. */
-function clearLegacyCookie(): string {
-  return serializeCookie("", LEGACY_COOKIE_PATH, 0);
+/** Erases every legacy twin. Same attributes as the pose, empty value. */
+function clearLegacyCookies(): string[] {
+  return LEGACY_COOKIE_PATHS.map((path) => serializeCookie("", path, 0));
 }
 
 /**
@@ -141,7 +146,7 @@ function clearLegacyCookie(): string {
  */
 export function sessionCookieHeaders(userId: number): string[] {
   return [
-    clearLegacyCookie(),
+    ...clearLegacyCookies(),
     serializeCookie(serializeSession(userId), SESSION_COOKIE.path, SESSION_COOKIE.maxAge),
   ];
 }
@@ -150,7 +155,7 @@ export function sessionCookieHeaders(userId: number): string[] {
 export function clearSessionCookieHeaders(): string[] {
   return [
     serializeCookie("", SESSION_COOKIE.path, 0),
-    clearLegacyCookie(),
+    ...clearLegacyCookies(),
   ];
 }
 

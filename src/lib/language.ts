@@ -76,7 +76,9 @@ export const LANGUAGES: Record<LanguageSegment, LanguageConfig> = {
       voicePrefixes: ["zh-TW", "zh-Hant", "zh"],
     },
     levels: { code: "HSK", ascending: true },
-    phonology: { slug: "tons", label: "Tons" },
+    // The slug is the route, not the label: /taiwan/tones is the URL the
+    // Mandarin edition already had, and the merge must not move it.
+    phonology: { slug: "tones", label: "Tons" },
     copy: {
       term: "caractère",
       terms: "caractères",
@@ -121,8 +123,12 @@ export function getLanguage(segment: string | undefined): LanguageConfig | undef
   return isLanguageSegment(segment) ? LANGUAGES[segment] : undefined;
 }
 
-/** Prefixes a route with its language: href("japon", "/path") → "/japon/path". */
-export function langHref(segment: LanguageSegment, path: string): string {
+/**
+ * Prefixes a route with its language: langHref("japon", "/path") → "/japon/path".
+ * The edition's own root is "/japon", with no trailing slash.
+ */
+export function langHref(segment: LanguageSegment, path = "/"): string {
+  if (path === "" || path === "/") return `/${segment}`;
   return `/${segment}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
@@ -140,3 +146,44 @@ export function currentLanguage(): LanguageConfig {
 }
 
 export const currentLanguageCode = (): LanguageCode => currentLanguage().code;
+
+const BY_CODE: Record<LanguageCode, LanguageConfig> = {
+  zh: LANGUAGES.taiwan,
+  ja: LANGUAGES.japon,
+};
+
+export function getLanguageByCode(code: LanguageCode): LanguageConfig {
+  return BY_CODE[code];
+}
+
+/**
+ * Short designation of a proficiency level: "HSK 1" counting up, "JLPT N5"
+ * counting down. `levels.ascending` is what tells the two apart — never a sign
+ * hardcoded at the call site.
+ */
+export function levelName(language: LanguageConfig, level: number): string {
+  return language.levels.ascending
+    ? `${language.levels.code} ${level}`
+    : `${language.levels.code} N${level}`;
+}
+
+/**
+ * Heading for a level: its designation followed by its title. The Japanese level
+ * table already names the scale in each title ("JLPT N5"), so the designation is
+ * not repeated when the title already carries it.
+ */
+export function levelHeading(
+  language: LanguageConfig,
+  level: { level: number; title: string }
+): string {
+  const name = levelName(language, level.level);
+  return level.title.startsWith(name) ? level.title : `${name} — ${level.title}`;
+}
+
+/**
+ * The level that follows `level` in difficulty, if any. HSK counts up and JLPT
+ * counts down, so the step comes from `levels.ascending`.
+ */
+export function nextLevelNumber(language: LanguageConfig, level: number): number {
+  return level + (language.levels.ascending ? 1 : -1);
+}

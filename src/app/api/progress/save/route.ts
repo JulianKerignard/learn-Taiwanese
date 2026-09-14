@@ -1,17 +1,12 @@
 import { NextRequest } from "next/server";
 import { getDb } from "@/lib/db";
 import { getSessionUserId, isSameOrigin } from "@/lib/auth";
+import { allRemoteSyncKeys } from "@/lib/storage";
 
-const ALLOWED_KEYS = new Set([
-  "cards",
-  "progress",
-  "path_progress",
-  "gamification",
-  "settings",
-  "speed_record",
-  "study_time",
-  "mistakes",
-]);
+// The eight synced keys, for every edition: the Mandarin rows keep their bare
+// names, a later edition namespaces its own. Derived rather than restated so a
+// third language cannot be silently rejected here.
+const ALLOWED_KEYS = new Set(allRemoteSyncKeys());
 
 /**
  * Per-key ceiling, measured rather than guessed.

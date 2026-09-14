@@ -1,10 +1,13 @@
 import type { PathProgress, CourseUnitMeta, Chapter, ProficiencyLevel } from "@/types/course";
 // Metadata only: unlock rules read prerequisites and requiredScore, never the
-// lesson itself. Importing @/data/course here would pull all 88 unit modules
-// into every client bundle that tracks progress.
-import { getUnitMetaById, levels as defaultHskLevels } from "@/data/zh/course/meta";
+// lesson itself. Importing @/data/server here would pull every unit module into
+// every client bundle that tracks progress.
+import { courseMeta, getUnitMetaById } from "@/data/meta";
+import type { LanguageCode } from "@/lib/language";
 import { storageGet, storageSet, KEYS } from "@/lib/storage";
 
+// A logical name: storage.ts scopes it to the edition being viewed, so the two
+// parcours never share a progression.
 const STORAGE_KEY = KEYS.courseProgress;
 
 const defaultProgress: PathProgress = {
@@ -98,7 +101,7 @@ export function getOverallProgress(totalUnits: number, progress: PathProgress): 
   return totalUnits > 0 ? progress.completedUnits.length / totalUnits : 0;
 }
 
-// ── HSK Level helpers ──────────────────────────────────────────────
+// ── Proficiency level helpers ──────────────────────────────────────
 
 export function getLevelProgress(level: ProficiencyLevel, unitIds: string[], progress: PathProgress): number {
   if (unitIds.length === 0) return 0;
@@ -110,9 +113,15 @@ export function getLevelCompletedCount(unitIds: string[], progress: PathProgress
   return unitIds.filter((id) => progress.completedUnits.includes(id)).length;
 }
 
-export function getCurrentLevel(progress: PathProgress): ProficiencyLevel | undefined {
-  const currentUnit = getUnitMetaById(progress.currentUnit);
-  if (!currentUnit) return defaultHskLevels[0];
-  return defaultHskLevels.find((l) => l.chapterNumbers.includes(currentUnit.chapter));
+export function getCurrentLevel(
+  code: LanguageCode,
+  progress: PathProgress
+): ProficiencyLevel | undefined {
+  const { levels } = courseMeta(code);
+  const currentUnit = getUnitMetaById(code, progress.currentUnit);
+  // No unit yet: the entry level is the first of the table, which each edition
+  // orders by progression — HSK 1 going up, JLPT N5 going down.
+  if (!currentUnit) return levels[0];
+  return levels.find((l) => l.chapterNumbers.includes(currentUnit.chapter));
 }
 

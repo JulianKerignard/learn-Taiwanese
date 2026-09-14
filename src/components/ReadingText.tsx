@@ -7,8 +7,48 @@ import { createCard } from "@/lib/fsrs";
 import { getCards, upsertCard, storageGet, storageSet, getSettings, KEYS } from "@/lib/storage";
 import AudioButton from "@/components/AudioButton";
 import RubyText from "@/components/RubyText";
-import type { GradedText } from "@/data/zh/readings";
+import { LANGUAGES, type LanguageSegment } from "@/lib/language";
 import { Eye, EyeOff, ChevronLeft, ChevronRight, BookOpen, Plus, Volume2 } from "lucide-react";
+import type { Segment } from "@/types";
+
+// ─── The shape this renderer needs ───
+
+/**
+ * A graded text as the renderer reads it, in either edition.
+ *
+ * Each corpus declares its own richer version — the Japanese one carries kana
+ * readings and furigana `segments`, the Mandarin one does not — so the props
+ * describe the subset both satisfy. Importing @/data/<lang>/readings here would
+ * both tie the component to one edition and drag a corpus into the bundle.
+ */
+export interface ReadingVocabulary {
+  term: string;
+  reading: string;
+  romanization: string;
+  french: string;
+  isNew: boolean;
+  /** Ruby placement, when the reading does not distribute over the characters. */
+  segments?: Segment[];
+}
+
+export interface ReadingSentence {
+  native: string;
+  romanization: string;
+  french: string;
+  reading?: string;
+  segments?: Segment[];
+}
+
+export interface GradedText {
+  id: string;
+  level: 1 | 2 | 3;
+  title: string;
+  titleFr: string;
+  text: string;
+  sentences: ReadingSentence[];
+  vocabulary: ReadingVocabulary[];
+  culturalNote?: string;
+}
 
 // ─── Constants ───
 
@@ -61,11 +101,13 @@ interface TooltipData {
 function CharTooltip({
   data,
   displayMode,
+  contentLang,
   onAddFlashcard,
   onDismiss,
 }: {
   data: TooltipData;
   displayMode: "romanization" | "reading" | "both";
+  contentLang: string;
   onAddFlashcard: (char: string, romanization: string, french: string) => void;
   onDismiss: () => void;
 }) {
@@ -101,7 +143,7 @@ function CharTooltip({
         style={{ left: pos.left, top: pos.top }}
       >
         <div className="flex items-center gap-2">
-          <span className="chinese text-2xl font-medium text-stone-900" lang="zh-Hant-TW">
+          <span className="chinese text-2xl font-medium text-stone-900" lang={contentLang}>
             {showZhuyin && data.reading ? (
               <RubyText
                 native={data.term}
@@ -135,12 +177,14 @@ function CharTooltip({
 // ─── Main component ───
 
 interface ReadingTextProps {
+  /** Edition being read: it sets the content language and the reading's name. */
+  lang: LanguageSegment;
   reading: GradedText;
   onClose?: () => void;
 }
 
-export default function ReadingText({ reading, onClose }: ReadingTextProps) {
-  const [showReading, setShowPinyin] = useState(false);
+export default function ReadingText({ lang, reading, onClose }: ReadingTextProps) {
+  const [showReading, setShowReading] = useState(false);
   const [sentenceMode, setSentenceMode] = useState(false);
   const [currentSentence, setCurrentSentence] = useState(0);
   const [revealedTranslations, setRevealedTranslations] = useState<Set<number>>(new Set());
@@ -150,6 +194,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const tooltipTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const language = LANGUAGES[lang];
   const displayMode = getSettings().displayMode;
 
   useEffect(() => {
@@ -255,16 +300,8 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
     });
   }, []);
 
-  const isNewWord = useCallback(
-    (char: string): boolean => {
-      const vocab = charIndex.get(char);
-      if (!vocab) return false;
-      return vocab.isNew && !knownWords.has(vocab.term);
-    },
-    [knownWords, charIndex]
-  );
-
-  const getPinyinForChar = useCallback(
+  /** The syllable of a word's romanization that belongs to one of its characters. */
+  const romanizationForChar = useCallback(
     (char: string): string => {
       const vocab = charIndex.get(char);
       if (!vocab) return "";
@@ -297,7 +334,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
           )}
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-title font-bold chinese text-stone-900" lang="zh-Hant-TW">
+              <h2 className="text-title font-bold chinese text-stone-900" lang={language.contentLang}>
                 {reading.title}
               </h2>
               <span className={cn("badge", levelColor)}>Niveau {reading.level}</span>
@@ -317,14 +354,14 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
             {sentenceMode ? "Mode texte" : "Phrase par phrase"}
           </button>
           <button
-            onClick={() => setShowPinyin(!showReading)}
+            onClick={() => setShowReading(!showReading)}
             className={cn(
               "btn-secondary gap-1.5 text-xs",
               showReading && "border-primary text-primary"
             )}
           >
             {showReading ? <EyeOff size={14} /> : <Eye size={14} />}
-            Pinyin
+            <span className="capitalize">{language.copy.readingPrimary}</span>
           </button>
         </div>
       </div>
@@ -355,7 +392,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
             </div>
 
             <div className="min-h-[120px]">
-              <div className="chinese text-2xl leading-relaxed tracking-wide text-stone-900" lang="zh-Hant-TW">
+              <div className="chinese text-2xl leading-relaxed tracking-wide text-stone-900" lang={language.contentLang}>
                 <RubyText
                   native={reading.sentences[currentSentence].native}
                   romanization={reading.sentences[currentSentence].romanization}
@@ -414,33 +451,38 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
           <div>
             <div
               className="chinese text-2xl leading-[2.5] tracking-wide text-stone-900"
-              lang="zh-Hant-TW"
+              lang={language.contentLang}
               onMouseLeave={handleCharLeave}
             >
               {reading.text.split("").map((char, i) => {
-                const isChinese = /[\u4e00-\u9fff\u3400-\u4dbf]/.test(char);
-                if (!isChinese) {
+                const isIdeograph = /[\u4e00-\u9fff\u3400-\u4dbf]/.test(char);
+                if (!isIdeograph) {
                   return <span key={i}>{char}</span>;
                 }
 
-                const isNew = isNewWord(char);
-                const partOfVocab = charIndex.has(char);
+                const vocab = charIndex.get(char);
+                const isNew = vocab !== undefined && vocab.isNew && !knownWords.has(vocab.term);
+                // A reading that needs `segments` does not distribute over the
+                // characters — one kanji can carry three kana — so it is never
+                // stretched over a single one. The word stays readable, it just
+                // goes unannotated here; the vocabulary list below has the ruby.
+                const annotate = showReading && vocab !== undefined && !vocab.segments;
 
                 return (
                   <span
                     key={i}
                     className={cn(
                       "cursor-pointer rounded transition-colors",
-                      partOfVocab && "hover:bg-primary/10",
+                      vocab !== undefined && "hover:bg-primary/10",
                       isNew && "bg-amber-50 text-amber-900"
                     )}
                     onMouseEnter={isTouchDevice ? undefined : (e) => handleCharInteraction(char, e)}
                     onClick={isTouchDevice ? (e) => handleCharInteraction(char, e) : undefined}
                   >
-                    {showReading ? (
+                    {annotate ? (
                       <RubyText
                         native={char}
-                        romanization={getPinyinForChar(char)}
+                        romanization={romanizationForChar(char)}
                         showReading={showReading}
                         readingSize="xs"
                       />
@@ -464,7 +506,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
                 >
                   <AudioButton text={s.native} size="sm" />
                   <div className="flex-1">
-                    <p className="chinese text-base text-stone-900" lang="zh-Hant-TW">{s.native}</p>
+                    <p className="chinese text-base text-stone-900" lang={language.contentLang}>{s.native}</p>
                     {showReading && (
                       <p className="text-xs italic text-stone-500">{s.romanization}</p>
                     )}
@@ -499,7 +541,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
               >
                 <AudioButton text={v.term} size="sm" />
                 <div className="min-w-0 flex-1">
-                  <span className="chinese font-medium text-stone-900" lang="zh-Hant-TW">
+                  <span className="chinese font-medium text-stone-900" lang={language.contentLang}>
                     {(displayMode === "reading" || displayMode === "both") && v.reading ? (
                       <RubyText
                         native={v.term}
@@ -545,6 +587,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
         <CharTooltip
           data={tooltip}
           displayMode={displayMode}
+          contentLang={language.contentLang}
           onAddFlashcard={handleAddFlashcard}
           onDismiss={dismissTooltip}
         />

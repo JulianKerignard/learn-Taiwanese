@@ -4,7 +4,6 @@ let currentAudio: HTMLAudioElement | null = null;
 
 // ── Pre-generated audio manifest ──────────────────────────────────────
 
-import { getBasePath } from "@/lib/basepath";
 import { currentLanguage, currentLanguageCode } from "@/lib/language";
 
 let audioManifest: Record<string, string> | null = null;
@@ -15,7 +14,7 @@ async function getManifest(): Promise<Record<string, string>> {
   if (audioManifest && manifestLang === lang) return audioManifest;
   manifestLang = lang;
   try {
-    const res = await fetch(`${getBasePath()}/audio/${currentLanguageCode()}/manifest.json`);
+    const res = await fetch(`/audio/${currentLanguageCode()}/manifest.json`);
     if (res.ok) {
       audioManifest = await res.json();
       return audioManifest!;
@@ -28,7 +27,7 @@ async function getManifest(): Promise<Record<string, string>> {
 }
 
 function playStaticAudio(audioFile: string): Promise<void> {
-  const audio = new Audio(`${getBasePath()}/audio/${currentLanguageCode()}/${audioFile}`);
+  const audio = new Audio(`/audio/${currentLanguageCode()}/${audioFile}`);
   currentAudio = audio;
   return new Promise((resolve) => {
     audio.onended = () => {
@@ -73,8 +72,7 @@ export async function speak(text: string, rate = 0.85): Promise<void> {
       rate: String(rate),
     });
 
-    const basePath = getBasePath();
-    const response = await fetch(`${basePath}/api/tts?${params}`);
+    const response = await fetch(`/api/tts?${params}`);
     if (response.ok) {
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);

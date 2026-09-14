@@ -17,12 +17,22 @@ import AudioButton from "@/components/AudioButton";
 import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
 import { hasChinese } from "@/lib/utils";
+import { hasJapanese } from "@/lib/japanese";
+import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
 
 interface TestRunnerProps {
+  /** Edition being examined: it decides the back link and the content language. */
+  lang: LanguageSegment;
   test: MockTest;
 }
 
-export default function TestRunner({ test }: TestRunnerProps) {
+export default function TestRunner({ lang, test }: TestRunnerProps) {
+  const language = LANGUAGES[lang];
+
+  // Which strings are content rather than French UI. Kanji alone does not settle
+  // it for Japanese: a question written entirely in kana carries no Han character.
+  const isContent = (value: string) =>
+    language.code === "ja" ? hasJapanese(value) : hasChinese(value);
   const [phase, setPhase] = useState<"intro" | "testing" | "results">("intro");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Map<string, string>>(new Map());
@@ -206,8 +216,8 @@ export default function TestRunner({ test }: TestRunnerProps) {
             </div>
           ) : (
             <p
-              className={cn("mb-4 text-lg font-medium", hasChinese(current.question) && "chinese")}
-              lang={hasChinese(current.question) ? "zh-Hant-TW" : undefined}
+              className={cn("mb-4 text-lg font-medium", isContent(current.question) && "chinese")}
+              lang={isContent(current.question) ? language.contentLang : undefined}
             >
               {current.question}
             </p>
@@ -232,9 +242,9 @@ export default function TestRunner({ test }: TestRunnerProps) {
                   selectedAnswer === option
                     ? "border-primary bg-primary/5 font-medium"
                     : "border-stone-200 hover:border-stone-300",
-                  hasChinese(option) && "chinese"
+                  isContent(option) && "chinese"
                 )}
-                lang={hasChinese(option) ? "zh-Hant-TW" : undefined}
+                lang={isContent(option) ? language.contentLang : undefined}
               >
                 {option}
               </button>
@@ -365,7 +375,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
             <RotateCcw size={16} />
             Réessayer
           </button>
-          <Link href="/tests" className="btn-primary flex flex-1 items-center justify-center gap-2">
+          <Link href={langHref(lang, "/tests")} className="btn-primary flex flex-1 items-center justify-center gap-2">
             Retour aux tests
           </Link>
         </div>

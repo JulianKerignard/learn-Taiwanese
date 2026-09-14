@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { User, LogIn, UserPlus, X } from "lucide-react";
 import { syncDown, syncUp } from "@/lib/sync";
-import { getBasePath } from "@/lib/basepath";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -41,7 +40,7 @@ export default function AuthModal({ isOpen, onClose, onAuth }: AuthModalProps) {
     try {
       const endpoint =
         mode === "login" ? "/api/auth/login" : "/api/auth/register";
-      const res = await fetch(`${getBasePath()}${endpoint}`, {
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

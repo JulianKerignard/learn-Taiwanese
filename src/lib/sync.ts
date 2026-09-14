@@ -1,5 +1,5 @@
-import { getBasePath } from "@/lib/basepath";
-import { KEYS } from "@/lib/storage";
+import { KEYS, SYNCED_KEYS, remoteSyncKey, storageKey } from "@/lib/storage";
+import { currentLanguage } from "@/lib/language";
 
 /**
  * Client/server reconciliation for the eight synced localStorage keys.
@@ -251,17 +251,33 @@ function mergeGamification(local: Json, remote: Json): Json {
 
 // ── Key table ───────────────────────────────────────────────────────
 
-const SYNC_KEYS: { local: string; remote: string; merge: MergeFn }[] = [
-  { local: KEYS.cards, remote: "cards", merge: mergeCards },
-  { local: KEYS.progress, remote: "progress", merge: mergeProgress },
-  { local: KEYS.courseProgress, remote: "path_progress", merge: mergePathProgress },
-  { local: KEYS.gamification, remote: "gamification", merge: mergeGamification },
+const MERGE_BY_KEY: Record<string, MergeFn> = {
+  [KEYS.cards]: mergeCards,
+  [KEYS.progress]: mergeProgress,
+  [KEYS.courseProgress]: mergePathProgress,
+  [KEYS.gamification]: mergeGamification,
   // A device preference: no timestamp can arbitrate it, so local wins.
-  { local: KEYS.settings, remote: "settings", merge: keepLocal },
-  { local: KEYS.speedRecord, remote: "speed_record", merge: maxOf },
-  { local: KEYS.studyTime, remote: "study_time", merge: maxPerEntry },
-  { local: KEYS.mistakes, remote: "mistakes", merge: maxPerEntry },
-];
+  [KEYS.settings]: keepLocal,
+  [KEYS.speedRecord]: maxOf,
+  [KEYS.studyTime]: maxPerEntry,
+  [KEYS.mistakes]: maxPerEntry,
+};
+
+/**
+ * The eight pairs, resolved for the edition currently being viewed.
+ *
+ * Both sides are scoped, not just the local one: the two editions are separate
+ * card stores, and a shared column name would have a /japon session overwrite
+ * the Mandarin rows on its first save.
+ */
+function syncKeys(): { local: string; remote: string; merge: MergeFn }[] {
+  const { segment } = currentLanguage();
+  return SYNCED_KEYS.map(({ key, remote }) => ({
+    local: storageKey(key),
+    remote: remoteSyncKey(segment, remote),
+    merge: MERGE_BY_KEY[key],
+  }));
+}
 
 // ── Visible sync state ──────────────────────────────────────────────
 
@@ -315,7 +331,7 @@ async function failureMessage(res: Response): Promise<string> {
 
 export async function checkUser(): Promise<{ id: number; username: string } | null> {
   try {
-    const res = await fetch(`${getBasePath()}/api/auth/me`);
+    const res = await fetch(`/api/auth/me`);
     if (!res.ok) return null;
     const data = await res.json();
     return data.user || null;
@@ -324,7 +340,7 @@ export async function checkUser(): Promise<{ id: number; username: string } | nu
 
 export async function login(username: string): Promise<{ id: number; username: string } | null> {
   try {
-    const res = await fetch(`${getBasePath()}/api/auth/login`, {
+    const res = await fetch(`/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username }),
@@ -347,7 +363,7 @@ function readLocal(key: string): Json {
 /** Snapshot every synced key at once, so an await cannot interleave a write. */
 function collectPayload(): Record<string, unknown> {
   const body: Record<string, unknown> = {};
-  for (const { local, remote } of SYNC_KEYS) {
+  for (const { local, remote } of syncKeys()) {
     const value = readLocal(local);
     if (value !== undefined) body[remote] = value;
   }
@@ -359,7 +375,7 @@ export async function syncUp(): Promise<boolean> {
     const body = collectPayload();
     if (Object.keys(body).length === 0) return true;
     setSyncState({ status: "syncing" });
-    const res = await fetch(`${getBasePath()}/api/progress/save`, {
+    const res = await fetch(`/api/progress/save`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -383,7 +399,7 @@ export async function syncUp(): Promise<boolean> {
  */
 export async function syncDown(): Promise<boolean> {
   try {
-    const res = await fetch(`${getBasePath()}/api/progress/load`);
+    const res = await fetch(`/api/progress/load`);
     if (!res.ok) {
       setSyncState({ status: "error", message: await failureMessage(res), at: Date.now() });
       return false;
@@ -392,7 +408,7 @@ export async function syncDown(): Promise<boolean> {
     if (!isRecord(data)) return false;
 
     let changed = false;
-    for (const { local, remote, merge } of SYNC_KEYS) {
+    for (const { local, remote, merge } of syncKeys()) {
       const incoming = data[remote];
       if (incoming === undefined) continue; // Server has nothing: keep local.
 
@@ -443,7 +459,7 @@ if (typeof window !== "undefined") {
   window.addEventListener("beforeunload", () => {
     if (isConnected) {
       navigator.sendBeacon(
-        `${getBasePath()}/api/progress/save`,
+        `/api/progress/save`,
         new Blob([JSON.stringify(collectPayload())], { type: "application/json" })
       );
     }
