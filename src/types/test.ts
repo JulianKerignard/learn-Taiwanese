@@ -3,7 +3,7 @@ import type { Exercise } from "./course";
 export interface TestSection {
   id: string;
   title: string;
-  titleZh: string;
+  titleNative: string;
   description: string;
   exercises: Exercise[];
 }
@@ -11,7 +11,7 @@ export interface TestSection {
 export interface MockTest {
   id: string;
   title: string;
-  titleZh: string;
+  titleNative: string;
   level: number;
   description: string;
   totalQuestions: number;

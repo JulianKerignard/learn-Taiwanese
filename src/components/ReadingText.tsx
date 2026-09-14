@@ -7,8 +7,48 @@ import { createCard } from "@/lib/fsrs";
 import { getCards, upsertCard, storageGet, storageSet, getSettings, KEYS } from "@/lib/storage";
 import AudioButton from "@/components/AudioButton";
 import RubyText from "@/components/RubyText";
-import type { GradedText } from "@/data/readings";
+import { LANGUAGES, type LanguageSegment } from "@/lib/language";
 import { Eye, EyeOff, ChevronLeft, ChevronRight, BookOpen, Plus, Volume2 } from "lucide-react";
+import type { Segment } from "@/types";
+
+// ─── The shape this renderer needs ───
+
+/**
+ * A graded text as the renderer reads it, in either edition.
+ *
+ * Each corpus declares its own richer version — the Japanese one carries kana
+ * readings and furigana `segments`, the Mandarin one does not — so the props
+ * describe the subset both satisfy. Importing @/data/<lang>/readings here would
+ * both tie the component to one edition and drag a corpus into the bundle.
+ */
+export interface ReadingVocabulary {
+  term: string;
+  reading: string;
+  romanization: string;
+  french: string;
+  isNew: boolean;
+  /** Ruby placement, when the reading does not distribute over the characters. */
+  segments?: Segment[];
+}
+
+export interface ReadingSentence {
+  native: string;
+  romanization: string;
+  french: string;
+  reading?: string;
+  segments?: Segment[];
+}
+
+export interface GradedText {
+  id: string;
+  level: 1 | 2 | 3;
+  title: string;
+  titleFr: string;
+  text: string;
+  sentences: ReadingSentence[];
+  vocabulary: ReadingVocabulary[];
+  culturalNote?: string;
+}
 
 // ─── Constants ───
 
@@ -28,16 +68,16 @@ function saveKnownWords(words: Set<string>) {
   storageSet(KNOWN_WORDS_KEY, [...words]);
 }
 
-function addToFlashcards(vocab: { character: string; pinyin: string; zhuyin?: string; french: string }): boolean {
+function addToFlashcards(vocab: { term: string; romanization: string; reading?: string; french: string }): boolean {
   try {
     const existingCards = getCards();
-    if (existingCards.some((c) => c.front === vocab.character)) return false;
+    if (existingCards.some((c) => c.front === vocab.term)) return false;
     const card = createCard({
-      id: `reading-${vocab.character}-${Date.now()}`,
-      front: vocab.character,
+      id: `reading-${vocab.term}-${Date.now()}`,
+      front: vocab.term,
       back: vocab.french,
-      pinyin: vocab.pinyin,
-      zhuyin: vocab.zhuyin || "",
+      romanization: vocab.romanization,
+      reading: vocab.reading || "",
       type: "vocabulary",
     });
     upsertCard(card);
@@ -50,9 +90,9 @@ function addToFlashcards(vocab: { character: string; pinyin: string; zhuyin?: st
 // ─── Tooltip ───
 
 interface TooltipData {
-  character: string;
-  pinyin: string;
-  zhuyin?: string;
+  term: string;
+  romanization: string;
+  reading?: string;
   french: string;
   x: number;
   y: number;
@@ -61,12 +101,14 @@ interface TooltipData {
 function CharTooltip({
   data,
   displayMode,
+  contentLang,
   onAddFlashcard,
   onDismiss,
 }: {
   data: TooltipData;
-  displayMode: "pinyin" | "zhuyin" | "both";
-  onAddFlashcard: (char: string, pinyin: string, french: string) => void;
+  displayMode: "romanization" | "reading" | "both";
+  contentLang: string;
+  onAddFlashcard: (char: string, romanization: string, french: string) => void;
   onDismiss: () => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -88,8 +130,8 @@ function CharTooltip({
     setPos({ left, top });
   }, [data.x, data.y]);
 
-  const showPinyin = displayMode === "pinyin" || displayMode === "both";
-  const showZhuyin = (displayMode === "zhuyin" || displayMode === "both") && data.zhuyin;
+  const showReading = displayMode === "romanization" || displayMode === "both";
+  const showZhuyin = (displayMode === "reading" || displayMode === "both") && data.reading;
 
   return (
     <>
@@ -101,18 +143,27 @@ function CharTooltip({
         style={{ left: pos.left, top: pos.top }}
       >
         <div className="flex items-center gap-2">
-          <span className="chinese text-2xl font-medium text-stone-900">{data.character}</span>
-          <AudioButton text={data.character} size="sm" />
+          <span className="chinese text-2xl font-medium text-stone-900" lang={contentLang}>
+            {showZhuyin && data.reading ? (
+              <RubyText
+                native={data.term}
+                romanization={data.reading}
+                showReading
+                mode="reading"
+                readingSize="sm"
+              />
+            ) : (
+              data.term
+            )}
+          </span>
+          <AudioButton text={data.term} size="sm" />
         </div>
-        {showPinyin && (
-          <p className="mt-1 text-sm italic text-stone-500">{data.pinyin}</p>
-        )}
-        {showZhuyin && (
-          <p className="mt-0.5 text-sm text-stone-400 chinese">{data.zhuyin}</p>
+        {showReading && (
+          <p className="mt-1 text-sm italic text-stone-500">{data.romanization}</p>
         )}
         <p className="text-sm text-stone-700">{data.french}</p>
         <button
-          onClick={() => onAddFlashcard(data.character, data.pinyin, data.french)}
+          onClick={() => onAddFlashcard(data.term, data.romanization, data.french)}
           className="mt-2 flex items-center gap-1 rounded bg-primary/10 px-2 py-1 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
         >
           <Plus size={12} />
@@ -126,12 +177,14 @@ function CharTooltip({
 // ─── Main component ───
 
 interface ReadingTextProps {
+  /** Edition being read: it sets the content language and the reading's name. */
+  lang: LanguageSegment;
   reading: GradedText;
   onClose?: () => void;
 }
 
-export default function ReadingText({ reading, onClose }: ReadingTextProps) {
-  const [showPinyin, setShowPinyin] = useState(false);
+export default function ReadingText({ lang, reading, onClose }: ReadingTextProps) {
+  const [showReading, setShowReading] = useState(false);
   const [sentenceMode, setSentenceMode] = useState(false);
   const [currentSentence, setCurrentSentence] = useState(0);
   const [revealedTranslations, setRevealedTranslations] = useState<Set<number>>(new Set());
@@ -141,6 +194,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const tooltipTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const language = LANGUAGES[lang];
   const displayMode = getSettings().displayMode;
 
   useEffect(() => {
@@ -164,17 +218,17 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
     };
   }, []);
 
-  // Optimized vocab lookup: character → vocab item (O(1) instead of O(n²))
+  // Optimized vocab lookup: term → vocab item (O(1) instead of O(n²))
   const vocabMap = useMemo(
-    () => new Map(reading.vocabulary.map((v) => [v.character, v])),
+    () => new Map(reading.vocabulary.map((v) => [v.term, v])),
     [reading.vocabulary]
   );
 
-  // Reverse index: single char → vocab item (for character-level lookup)
+  // Reverse index: single char → vocab item (for term-level lookup)
   const charIndex = useMemo(() => {
     const map = new Map<string, (typeof reading.vocabulary)[0]>();
     for (const v of reading.vocabulary) {
-      for (const ch of v.character) {
+      for (const ch of v.term) {
         if (!map.has(ch)) map.set(ch, v);
       }
     }
@@ -193,9 +247,9 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
       if (!match) return;
 
       setTooltip({
-        character: match.character,
-        pinyin: match.pinyin,
-        zhuyin: match.zhuyin,
+        term: match.term,
+        romanization: match.romanization,
+        reading: match.reading,
         french: match.french,
         x: rect.left,
         y: rect.bottom + 8,
@@ -222,15 +276,15 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
   }, []);
 
   const handleAddFlashcard = useCallback(
-    (character: string, pinyin: string, french: string) => {
-      const vocab = vocabMap.get(character) || charIndex.get(character);
-      const added = addToFlashcards({ character, pinyin, zhuyin: vocab?.zhuyin, french });
+    (term: string, romanization: string, french: string) => {
+      const vocab = vocabMap.get(term) || charIndex.get(term);
+      const added = addToFlashcards({ term, romanization, reading: vocab?.reading, french });
       if (added) {
         const updated = new Set(knownWords);
-        updated.add(character);
+        updated.add(term);
         setKnownWords(updated);
         saveKnownWords(updated);
-        setFlashcardAdded(character);
+        setFlashcardAdded(term);
         setTimeout(() => setFlashcardAdded(null), FLASHCARD_TOAST_MS);
       }
     },
@@ -246,23 +300,15 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
     });
   }, []);
 
-  const isNewWord = useCallback(
-    (char: string): boolean => {
-      const vocab = charIndex.get(char);
-      if (!vocab) return false;
-      return vocab.isNew && !knownWords.has(vocab.character);
-    },
-    [knownWords, charIndex]
-  );
-
-  const getPinyinForChar = useCallback(
+  /** The syllable of a word's romanization that belongs to one of its characters. */
+  const romanizationForChar = useCallback(
     (char: string): string => {
       const vocab = charIndex.get(char);
       if (!vocab) return "";
-      const idx = vocab.character.indexOf(char);
-      if (idx === -1) return vocab.pinyin;
-      const syllables = vocab.pinyin.split(/[\s]+/);
-      return syllables[idx] || vocab.pinyin;
+      const idx = vocab.term.indexOf(char);
+      if (idx === -1) return vocab.romanization;
+      const syllables = vocab.romanization.split(/[\s]+/);
+      return syllables[idx] || vocab.romanization;
     },
     [charIndex]
   );
@@ -288,7 +334,9 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
           )}
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="chinese text-xl font-bold text-stone-900">{reading.title}</h2>
+              <h2 className="text-title font-bold chinese text-stone-900" lang={language.contentLang}>
+                {reading.title}
+              </h2>
               <span className={cn("badge", levelColor)}>Niveau {reading.level}</span>
             </div>
             <p className="text-sm text-stone-500">{reading.titleFr}</p>
@@ -306,14 +354,14 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
             {sentenceMode ? "Mode texte" : "Phrase par phrase"}
           </button>
           <button
-            onClick={() => setShowPinyin(!showPinyin)}
+            onClick={() => setShowReading(!showReading)}
             className={cn(
               "btn-secondary gap-1.5 text-xs",
-              showPinyin && "border-primary text-primary"
+              showReading && "border-primary text-primary"
             )}
           >
-            {showPinyin ? <EyeOff size={14} /> : <Eye size={14} />}
-            Pinyin
+            {showReading ? <EyeOff size={14} /> : <Eye size={14} />}
+            <span className="capitalize">{language.copy.readingPrimary}</span>
           </button>
         </div>
       </div>
@@ -335,7 +383,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
                 Phrase {currentSentence + 1} / {reading.sentences.length}
               </span>
               <button
-                onClick={() => speak(reading.sentences[currentSentence].chinese, SPEECH_RATE)}
+                onClick={() => speak(reading.sentences[currentSentence].native, SPEECH_RATE)}
                 className="btn-secondary gap-1.5 text-xs"
               >
                 <Volume2 size={14} />
@@ -344,12 +392,12 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
             </div>
 
             <div className="min-h-[120px]">
-              <div className="chinese text-2xl leading-relaxed tracking-wide text-stone-900">
+              <div className="chinese text-2xl leading-relaxed tracking-wide text-stone-900" lang={language.contentLang}>
                 <RubyText
-                  chinese={reading.sentences[currentSentence].chinese}
-                  pinyin={reading.sentences[currentSentence].pinyin}
-                  showPinyin={showPinyin}
-                  pinyinSize="sm"
+                  native={reading.sentences[currentSentence].native}
+                  romanization={reading.sentences[currentSentence].romanization}
+                  showReading={showReading}
+                  readingSize="sm"
                   charSize="text-2xl"
                 />
               </div>
@@ -403,34 +451,40 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
           <div>
             <div
               className="chinese text-2xl leading-[2.5] tracking-wide text-stone-900"
+              lang={language.contentLang}
               onMouseLeave={handleCharLeave}
             >
               {reading.text.split("").map((char, i) => {
-                const isChinese = /[\u4e00-\u9fff\u3400-\u4dbf]/.test(char);
-                if (!isChinese) {
+                const isIdeograph = /[\u4e00-\u9fff\u3400-\u4dbf]/.test(char);
+                if (!isIdeograph) {
                   return <span key={i}>{char}</span>;
                 }
 
-                const isNew = isNewWord(char);
-                const partOfVocab = charIndex.has(char);
+                const vocab = charIndex.get(char);
+                const isNew = vocab !== undefined && vocab.isNew && !knownWords.has(vocab.term);
+                // A reading that needs `segments` does not distribute over the
+                // characters — one kanji can carry three kana — so it is never
+                // stretched over a single one. The word stays readable, it just
+                // goes unannotated here; the vocabulary list below has the ruby.
+                const annotate = showReading && vocab !== undefined && !vocab.segments;
 
                 return (
                   <span
                     key={i}
                     className={cn(
                       "cursor-pointer rounded transition-colors",
-                      partOfVocab && "hover:bg-primary/10",
+                      vocab !== undefined && "hover:bg-primary/10",
                       isNew && "bg-amber-50 text-amber-900"
                     )}
                     onMouseEnter={isTouchDevice ? undefined : (e) => handleCharInteraction(char, e)}
                     onClick={isTouchDevice ? (e) => handleCharInteraction(char, e) : undefined}
                   >
-                    {showPinyin ? (
+                    {annotate ? (
                       <RubyText
-                        chinese={char}
-                        pinyin={getPinyinForChar(char)}
-                        showPinyin={showPinyin}
-                        pinyinSize="xs"
+                        native={char}
+                        romanization={romanizationForChar(char)}
+                        showReading={showReading}
+                        readingSize="xs"
                       />
                     ) : (
                       char
@@ -442,7 +496,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
 
             {/* Sentence breakdown */}
             <div className="mt-8 space-y-3 border-t border-stone-100 pt-6">
-              <h3 className="text-sm font-semibold text-stone-500 uppercase tracking-wider">
+              <h3 className="text-sm font-bold text-stone-500 uppercase tracking-wider">
                 Phrases
               </h3>
               {reading.sentences.map((s, i) => (
@@ -450,11 +504,11 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
                   key={i}
                   className="flex items-start gap-3 rounded-lg p-3 hover:bg-stone-50 transition-colors"
                 >
-                  <AudioButton text={s.chinese} size="sm" />
+                  <AudioButton text={s.native} size="sm" />
                   <div className="flex-1">
-                    <p className="chinese text-base text-stone-900">{s.chinese}</p>
-                    {showPinyin && (
-                      <p className="text-xs italic text-stone-400">{s.pinyin}</p>
+                    <p className="chinese text-base text-stone-900" lang={language.contentLang}>{s.native}</p>
+                    {showReading && (
+                      <p className="text-xs italic text-stone-500">{s.romanization}</p>
                     )}
                     <button
                       onClick={() => toggleTranslation(i)}
@@ -471,34 +525,43 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
 
         {/* Vocabulary */}
         <div className="mt-8 border-t border-stone-100 pt-6">
-          <h3 className="text-sm font-semibold text-stone-500 uppercase tracking-wider mb-3">
+          <h3 className="text-sm font-bold text-stone-500 uppercase tracking-wider mb-3">
             Vocabulaire
           </h3>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
             {reading.vocabulary.map((v) => (
               <div
-                key={v.character}
+                key={v.term}
                 className={cn(
                   "flex items-center gap-2 rounded-lg border p-2 text-sm transition-colors",
-                  v.isNew && !knownWords.has(v.character)
+                  v.isNew && !knownWords.has(v.term)
                     ? "border-amber-200 bg-amber-50"
                     : "border-stone-100 bg-white"
                 )}
               >
-                <AudioButton text={v.character} size="sm" />
+                <AudioButton text={v.term} size="sm" />
                 <div className="min-w-0 flex-1">
-                  <span className="chinese font-medium text-stone-900">{v.character}</span>
-                  {(displayMode === "pinyin" || displayMode === "both") && (
-                    <span className="ml-1 text-xs text-stone-400 italic">{v.pinyin}</span>
-                  )}
-                  {(displayMode === "zhuyin" || displayMode === "both") && v.zhuyin && (
-                    <span className="ml-1 text-xs text-stone-400 chinese">{v.zhuyin}</span>
+                  <span className="chinese font-medium text-stone-900" lang={language.contentLang}>
+                    {(displayMode === "reading" || displayMode === "both") && v.reading ? (
+                      <RubyText
+                        native={v.term}
+                        romanization={v.reading}
+                        showReading
+                        mode="reading"
+                        readingSize="sm"
+                      />
+                    ) : (
+                      v.term
+                    )}
+                  </span>
+                  {(displayMode === "romanization" || displayMode === "both") && (
+                    <span className="ml-1 text-xs text-stone-500 italic">{v.romanization}</span>
                   )}
                   <p className="truncate text-xs text-stone-500">{v.french}</p>
                 </div>
-                {v.isNew && !knownWords.has(v.character) && (
+                {v.isNew && !knownWords.has(v.term) && (
                   <button
-                    onClick={() => handleAddFlashcard(v.character, v.pinyin, v.french)}
+                    onClick={() => handleAddFlashcard(v.term, v.romanization, v.french)}
                     className="shrink-0 rounded p-1 text-primary hover:bg-primary/10 transition-colors"
                     title="Ajouter aux flashcards"
                   >
@@ -513,7 +576,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
         {/* Cultural note */}
         {reading.culturalNote && (
           <div className="mt-6 rounded-lg bg-accent/5 border border-accent/20 p-4">
-            <h3 className="text-sm font-semibold text-accent mb-1">Note culturelle</h3>
+            <h3 className="text-sm font-bold text-accent-ink mb-1">Note culturelle</h3>
             <p className="text-sm text-stone-600 leading-relaxed">{reading.culturalNote}</p>
           </div>
         )}
@@ -524,6 +587,7 @@ export default function ReadingText({ reading, onClose }: ReadingTextProps) {
         <CharTooltip
           data={tooltip}
           displayMode={displayMode}
+          contentLang={language.contentLang}
           onAddFlashcard={handleAddFlashcard}
           onDismiss={dismissTooltip}
         />

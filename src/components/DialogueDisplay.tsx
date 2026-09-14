@@ -17,7 +17,7 @@ export default function DialogueDisplay({ dialogue, className }: DialogueDisplay
 
   return (
     <div className={cn("flex flex-col gap-4", className)}>
-      <p className="text-sm italic text-stone-400">{dialogue.context}</p>
+      <p className="text-sm italic text-stone-500">{dialogue.context}</p>
       <div className="flex flex-col gap-3">
         {dialogue.lines.map((line, i) => {
           const isRight = line.speaker === speakerB;
@@ -25,8 +25,8 @@ export default function DialogueDisplay({ dialogue, className }: DialogueDisplay
             <DialogueBubble
               key={i}
               speaker={line.speaker}
-              chinese={line.chinese}
-              pinyin={line.pinyin}
+              native={line.native}
+              romanization={line.romanization}
               french={line.french}
               note={line.note}
               isRight={isRight}
@@ -40,15 +40,15 @@ export default function DialogueDisplay({ dialogue, className }: DialogueDisplay
 
 function DialogueBubble({
   speaker,
-  chinese,
-  pinyin,
+  native,
+  romanization,
   french,
   note,
   isRight,
 }: {
   speaker: string;
-  chinese: string;
-  pinyin: string;
+  native: string;
+  romanization: string;
   french: string;
   note?: string;
   isRight: boolean;
@@ -67,10 +67,12 @@ function DialogueBubble({
         )}
       >
         <div className="flex items-center gap-2">
-          <span className="chinese text-lg">{chinese}</span>
-          <AudioButton text={chinese} size="sm" />
+          <span className="chinese text-lg" lang="zh-Hant-TW">
+            {native}
+          </span>
+          <AudioButton text={native} size="sm" />
         </div>
-        <p className="text-xs italic text-stone-400 mt-0.5">{pinyin}</p>
+        <p className="text-xs italic text-stone-500 mt-0.5">{romanization}</p>
       </div>
       <button
         onClick={() => setShowTranslation(!showTranslation)}
@@ -82,7 +84,7 @@ function DialogueBubble({
         <div className="mt-1">
           <p className="text-sm text-stone-600">{french}</p>
           {note && (
-            <p className="mt-0.5 text-xs text-stone-400 italic">
+            <p className="mt-0.5 text-xs text-stone-500 italic">
               📌 {note}
             </p>
           )}

@@ -1,12 +1,9 @@
-import { COOKIE_NAME } from "@/lib/constants";
+import { clearSessionCookieHeaders } from "@/lib/auth";
 
 export async function POST() {
-  return new Response(JSON.stringify({ ok: true }), {
-    status: 200,
-    headers: [
-      ["Content-Type", "application/json"],
-      ["Set-Cookie", `${COOKIE_NAME}=; Max-Age=0; Path=/taiwan; HttpOnly; SameSite=Lax`],
-      ["Set-Cookie", `${COOKIE_NAME}=; Max-Age=0; Path=/; HttpOnly; SameSite=Lax`],
-    ],
-  });
+  // Both paths, with the exact attributes the pose used — see auth.ts.
+  const headers = new Headers({ "Content-Type": "application/json" });
+  for (const cookie of clearSessionCookieHeaders()) headers.append("Set-Cookie", cookie);
+
+  return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
 }

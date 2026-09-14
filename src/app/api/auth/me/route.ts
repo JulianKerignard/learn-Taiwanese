@@ -1,16 +1,18 @@
-import { cookies } from "next/headers";
 import { getDb } from "@/lib/db";
-import { COOKIE_NAME } from "@/lib/constants";
+import { getSessionUserId } from "@/lib/auth";
 
 export async function GET() {
   try {
-    const cookieStore = await cookies();
-    const userId = cookieStore.get(COOKIE_NAME)?.value;
-    const id = Number(userId);
-    if (!userId || isNaN(id)) return Response.json({ user: null });
+    const id = await getSessionUserId();
+    if (id === null) return Response.json({ user: null });
+
     const db = getDb();
-    const row = db.prepare("SELECT id, username FROM users WHERE id = ?").get(id) as { id: number; username: string } | undefined;
-    if (!row) return Response.json({ user: null });
-    return Response.json({ user: { id: row.id, username: row.username } });
-  } catch { return Response.json({ user: null }); }
+    const row = db
+      .prepare("SELECT id, username FROM users WHERE id = ?")
+      .get(id) as { id: number; username: string } | undefined;
+
+    return Response.json({ user: row ? { id: row.id, username: row.username } : null });
+  } catch {
+    return Response.json({ user: null });
+  }
 }
