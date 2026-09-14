@@ -23,6 +23,7 @@ import { shuffleArray } from "@/lib/utils";
 import ProgressBar from "@/components/ProgressBar";
 import AudioButton from "@/components/AudioButton";
 import RubyText from "@/components/RubyText";
+import { useContentLang } from "@/components/ContentLanguage";
 
 type ExerciseMode = "listen" | "reverse";
 type PageView = "overview" | "grid" | "exercise" | "sandhi";
@@ -107,6 +108,7 @@ function ToneVisual({ tone, size = 40 }: { tone: number; size?: number }) {
 // ─── Overview: tone introduction cards ───
 
 function ToneOverview({ onStart }: { onStart: () => void }) {
+  const contentLang = useContentLang();
   return (
     <div className="space-y-8">
       <div className="text-center">
@@ -131,7 +133,7 @@ function ToneOverview({ onStart }: { onStart: () => void }) {
               <ToneVisual tone={tone} size={56} />
               <h3 className={cn("text-lg font-bold", toneColor(tone))}>{toneName(tone)}</h3>
               <div className="flex items-center gap-2">
-                <span className="chinese text-3xl" lang="zh-Hant-TW">{ex.char}</span>
+                <span className="chinese text-3xl" lang={contentLang}>{ex.char}</span>
                 <AudioButton text={ex.char} size="sm" />
               </div>
               <p className="text-sm text-stone-500">
@@ -148,8 +150,8 @@ function ToneOverview({ onStart }: { onStart: () => void }) {
         <div>
           <h3 className="font-bold text-stone-700">{toneName(0)}</h3>
           <p className="text-sm text-stone-500">
-            Court et faible, souvent pour les particules : <span className="chinese" lang="zh-Hant-TW">嗎</span> (ma),{" "}
-            <span className="chinese" lang="zh-Hant-TW">的</span> (de), <span className="chinese" lang="zh-Hant-TW">了</span> (le)
+            Court et faible, souvent pour les particules : <span className="chinese" lang={contentLang}>嗎</span> (ma),{" "}
+            <span className="chinese" lang={contentLang}>的</span> (de), <span className="chinese" lang={contentLang}>了</span> (le)
           </p>
         </div>
       </div>
@@ -294,6 +296,7 @@ function Exercise({
   onResult: (correct: boolean) => void;
   onNext: () => void;
 }) {
+  const contentLang = useContentLang();
   const [currentWord, setCurrentWord] = useState<TonePairWord | null>(null);
   const [options, setOptions] = useState<string[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
@@ -358,7 +361,7 @@ function Exercise({
             <Volume2 size={36} />
           </button>
           <div className="flex items-center gap-2">
-            <span className="chinese text-2xl text-stone-800" lang="zh-Hant-TW">{currentWord.native}</span>
+            <span className="chinese text-2xl text-stone-800" lang={contentLang}>{currentWord.native}</span>
             <AudioButton text={currentWord.native} size="sm" />
           </div>
           <p className="text-xs text-stone-500 italic">{currentWord.romanization}</p>
@@ -401,7 +404,7 @@ function Exercise({
               {mode === "listen" ? (
                 <span className="text-lg">{option}</span>
               ) : (
-                <span className="chinese text-xl" lang="zh-Hant-TW">{option}</span>
+                <span className="chinese text-xl" lang={contentLang}>{option}</span>
               )}
             </button>
           );
@@ -424,7 +427,7 @@ function Exercise({
           <div className="flex items-center gap-3 rounded-lg bg-stone-50 border border-stone-100 px-4 py-3 w-full">
             <AudioButton text={currentWord.native} size="sm" />
             <div className="flex-1">
-              <span className="chinese text-lg font-medium text-stone-800" lang="zh-Hant-TW">
+              <span className="chinese text-lg font-medium text-stone-800" lang={contentLang}>
                 {currentWord.reading ? (
                   <RubyText
                     native={currentWord.native}
@@ -506,6 +509,7 @@ export default function ToneContent({
   tonePairs: TonePair[];
   sandhiRules: SandhiRule[];
 }) {
+  const contentLang = useContentLang();
   const [view, setView] = useState<PageView>("overview");
   const [selectedPair, setSelectedPair] = useState<TonePair | null>(null);
   const [exerciseMode, setExerciseMode] = useState<ExerciseMode>("listen");
@@ -564,7 +568,7 @@ export default function ToneContent({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-display font-bold text-stone-900">
-            <span className="chinese text-primary" lang="zh-Hant-TW">聲調</span> Les tons du mandarin
+            <span className="chinese text-primary" lang={contentLang}>聲調</span> Les tons du mandarin
           </h1>
           <p className="mt-1 text-sm text-stone-500">
             Maîtrise les 4 tons et leurs combinaisons pour parler naturellement
@@ -707,7 +711,7 @@ export default function ToneContent({
                 >
                   <AudioButton text={word.native} size="sm" />
                   <div className="min-w-0 flex-1">
-                    <span className="chinese text-base font-medium" lang="zh-Hant-TW">{word.native}</span>
+                    <span className="chinese text-base font-medium" lang={contentLang}>{word.native}</span>
                     <p className="text-xs italic text-stone-500">{word.romanization}</p>
                     <p className="text-xs text-stone-500 truncate">{word.french}</p>
                   </div>

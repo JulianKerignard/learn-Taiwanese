@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/cn";
+import { useContentLang } from "./ContentLanguage";
 
 interface RubyTextProps {
   native: string;
@@ -54,6 +55,7 @@ export default function RubyText({
   mode = "romanization",
   className,
 }: RubyTextProps) {
+  const contentLang = useContentLang();
   const aligned = alignReadingToChars(native, romanization);
   const chars = [...native];
 
@@ -66,7 +68,7 @@ export default function RubyText({
   const isZhuyin = mode === "reading";
 
   return (
-    <span className={cn("inline", className)} lang="zh-Hant-TW">
+    <span className={cn("inline", className)} lang={contentLang}>
       {chars.map((char, i) => {
         const isChinese = /[\u4e00-\u9fff\u3400-\u4dbf]/.test(char);
 

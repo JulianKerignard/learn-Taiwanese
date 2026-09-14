@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import ContentLanguageProvider from "@/components/ContentLanguage";
 import { LANGUAGE_SEGMENTS, getLanguage } from "@/lib/language";
 
 export function generateStaticParams() {
@@ -29,14 +30,16 @@ export default async function LanguageLayout({
   if (!language) notFound();
 
   return (
-    <>
-      <a href="#main-content" className="skip-link">
-        Aller au contenu principal
-      </a>
-      <Navbar lang={language.segment} />
-      <main id="main-content" className="mx-auto max-w-6xl px-4 py-8">
-        {children}
-      </main>
-    </>
+    <ContentLanguageProvider lang={language.segment}>
+      <div data-lang={language.code}>
+        <a href="#main-content" className="skip-link">
+          Aller au contenu principal
+        </a>
+        <Navbar lang={language.segment} />
+        <main id="main-content" className="mx-auto max-w-6xl px-4 py-8">
+          {children}
+        </main>
+      </div>
+    </ContentLanguageProvider>
   );
 }

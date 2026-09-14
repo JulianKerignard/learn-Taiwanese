@@ -8,6 +8,7 @@ import { addMistake } from "@/lib/storage";
 import { cn } from "@/lib/cn";
 import { shuffleArray, hasChinese, stripPunctuation as strip } from "@/lib/utils";
 import ProgressBar from "./ProgressBar";
+import { useContentLang } from "./ContentLanguage";
 
 interface ExerciseRunnerProps {
   exercises: Exercise[];
@@ -34,6 +35,7 @@ function isAnswerCorrect(exercise: Exercise, answer: string): boolean {
 }
 
 export default function ExerciseRunner({ exercises, onComplete, className }: ExerciseRunnerProps) {
+  const contentLang = useContentLang();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [results, setResults] = useState<ExerciseResult[]>([]);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -161,7 +163,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
           ) : (
             <p className="text-lg font-medium text-stone-800">
               {hasChinese(current.question) ? (
-                <span className="chinese" lang="zh-Hant-TW">{current.question}</span>
+                <span className="chinese" lang={contentLang}>{current.question}</span>
               ) : (
                 current.question
               )}
@@ -177,7 +179,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
             {current.hint && <span>{current.hint}</span>}
             {current.hint && current.hintReading && <span className="mx-1.5 text-stone-300">|</span>}
             {current.hintReading && (
-              <span className="chinese" lang="zh-Hant-TW">{current.hintReading}</span>
+              <span className="chinese" lang={contentLang}>{current.hintReading}</span>
             )}
           </p>
         )}
@@ -189,7 +191,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 <span
                   key={i}
                   className="rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-medium chinese text-stone-800"
-                  lang="zh-Hant-TW"
+                  lang={contentLang}
                 >
                   {word}
                 </span>
@@ -206,7 +208,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                     key={i}
                     onClick={() => handleReorderPick(word, i)}
                     disabled={showFeedback || isUsed}
-                    lang="zh-Hant-TW"
+                    lang={contentLang}
                     className={cn(
                       "rounded-lg border border-stone-200 px-3 py-1.5 text-sm font-medium chinese transition-colors",
                       isUsed
@@ -236,7 +238,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
               placeholder="Écrivez votre réponse…"
               aria-label="Votre réponse"
               autoComplete="off"
-              lang="zh-Hant-TW"
+              lang={contentLang}
               className="chinese flex-1 rounded-lg border-2 border-stone-200 px-4 py-3 text-base text-stone-800 focus-visible:border-primary disabled:bg-stone-50 disabled:text-stone-400"
             />
             <button
@@ -292,7 +294,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                           {optPinyin}
                           {optPinyin && optZhuyin && <span className="mx-1 text-stone-300">|</span>}
                           {optZhuyin && (
-                            <span className="chinese" lang="zh-Hant-TW">
+                            <span className="chinese" lang={contentLang}>
                               {optZhuyin}
                             </span>
                           )}

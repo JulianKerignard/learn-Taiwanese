@@ -2,6 +2,7 @@
 
 import RubyText from "./RubyText";
 import { cn } from "@/lib/cn";
+import { useContentLang } from "./ContentLanguage";
 
 interface PinyinDisplayProps {
   romanization: string;
@@ -25,6 +26,7 @@ export default function PinyinDisplay({
   size = "md",
   className,
 }: PinyinDisplayProps) {
+  const contentLang = useContentLang();
   const sizeClass = {
     sm: "text-xs",
     md: "text-sm",
@@ -52,7 +54,7 @@ export default function PinyinDisplay({
             charSize="chinese"
           />
         ) : (
-          <span className="chinese" lang="zh-Hant-TW">
+          <span className="chinese" lang={contentLang}>
             {reading}
           </span>
         ))}

@@ -4,6 +4,7 @@ import { useState } from "react";
 import AudioButton from "./AudioButton";
 import type { Dialogue } from "@/types/course";
 import { cn } from "@/lib/cn";
+import { useContentLang } from "./ContentLanguage";
 
 interface DialogueDisplayProps {
   dialogue: Dialogue;
@@ -53,6 +54,7 @@ function DialogueBubble({
   note?: string;
   isRight: boolean;
 }) {
+  const contentLang = useContentLang();
   const [showTranslation, setShowTranslation] = useState(false);
 
   return (
@@ -67,7 +69,7 @@ function DialogueBubble({
         )}
       >
         <div className="flex items-center gap-2">
-          <span className="chinese text-lg" lang="zh-Hant-TW">
+          <span className="chinese text-lg" lang={contentLang}>
             {native}
           </span>
           <AudioButton text={native} size="sm" />

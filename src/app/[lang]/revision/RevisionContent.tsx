@@ -23,17 +23,6 @@ import type { SM2Card } from "@/types";
 type ViewMode = "recommended" | "unit" | "chapter" | "level";
 
 /**
- * Face for a label written in the language being learned. The stylesheet only
- * carries a `.chinese` utility, and Noto Sans TC renders Japanese kanji in their
- * Traditional forms — so the Japanese edition needs its own face here. Replace
- * both entries with a shared class once globals.css grows one.
- */
-const NATIVE_FONT: Record<LanguageSegment, string> = {
-  taiwan: "var(--font-chinese)",
-  japon: "var(--font-noto-jp), var(--font-sans)",
-};
-
-/**
  * Revision dashboard for one edition.
  *
  * The lesson list arrives as props: grouping only needs each lesson's id, slug
@@ -214,8 +203,7 @@ function TopicCard({
           {topic.labelNative && (
             <p
               lang={LANGUAGES[lang].contentLang}
-              className="text-sm text-stone-500"
-              style={{ fontFamily: NATIVE_FONT[lang] }}
+              className="chinese text-sm text-stone-500"
             >
               {topic.labelNative}
             </p>
