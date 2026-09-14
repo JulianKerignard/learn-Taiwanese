@@ -1,6 +1,5 @@
 import { NextRequest } from "next/server";
 import { EdgeTTS } from "edge-tts-universal";
-import { LANGUAGES } from "@/lib/language";
 
 const audioCache = new Map<string, ArrayBuffer>();
 const MAX_CACHE = 500;
@@ -8,16 +7,11 @@ const MAX_CACHE = 500;
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const text = searchParams.get("text");
-  const voice = searchParams.get("voice") || LANGUAGES.taiwan.tts.voice;
+  const voice = searchParams.get("voice") || "zh-TW-HsiaoChenNeural";
   const rate = searchParams.get("rate") || "0.85";
 
-  // Every edition's voices. A single-language allowlist rewrote the other's
-  // request back to its own voice without a word.
-  const ALLOWED_VOICES: string[] = Object.values(LANGUAGES).flatMap((l) => [
-    l.tts.voice,
-    l.tts.altVoice,
-  ]);
-  const safeVoice = ALLOWED_VOICES.includes(voice) ? voice : LANGUAGES.taiwan.tts.voice;
+  const ALLOWED_VOICES = ["zh-TW-HsiaoChenNeural", "zh-TW-YunJheNeural"];
+  const safeVoice = ALLOWED_VOICES.includes(voice) ? voice : "zh-TW-HsiaoChenNeural";
   const rateNum = parseFloat(rate);
   const safeRate = (!isNaN(rateNum) && rateNum >= 0.5 && rateNum <= 2.0) ? rate : "0.85";
 

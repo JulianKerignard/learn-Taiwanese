@@ -29,7 +29,7 @@ function fixFile(filePath) {
 
       // Read until we find ], or optionsZhuyin (which means ], was eaten)
       while (i < lines.length) {
-        if (lines[i].match(/^\s*optionsReading:/)) {
+        if (lines[i].match(/^\s*optionsZhuyin:/)) {
           // The ], of optionsHint was eaten! Insert it
           const indent = line.match(/^(\s*)/)[1];
           newLines.push(`${indent}],`);
@@ -47,7 +47,7 @@ function fixFile(filePath) {
     }
 
     // Detect optionsZhuyin that contain raw pinyin (bad conversions)
-    if (line.match(/^\s*optionsReading:/)) {
+    if (line.match(/^\s*optionsZhuyin:/)) {
       // Check if this line or subsequent lines contain Latin letters mixed with zhuyin
       // (indicating bad conversion)
       let blockStr = line;

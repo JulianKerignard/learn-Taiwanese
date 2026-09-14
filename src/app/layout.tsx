@@ -1,34 +1,31 @@
 import type { Metadata } from "next";
-import { Noto_Sans_TC, Noto_Sans_JP } from "next/font/google";
+import { Noto_Sans_TC } from "next/font/google";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
-// Both faces are declared here and selected per language in [lang]/layout.tsx.
-// next/font only emits the subsets a page actually uses, so declaring both costs
-// nothing on a page that renders one.
 const notoSansTC = Noto_Sans_TC({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "700"],
   display: "swap",
-  variable: "--font-noto-tc",
-});
-
-const notoSansJP = Noto_Sans_JP({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-noto-jp",
+  variable: "--font-chinese",
 });
 
 export const metadata: Metadata = {
-  title: "Apprendre une langue",
-  description: "Mandarin taïwanais et japonais pour francophones",
+  title: "Learn Taiwanese Mandarin",
+  description: "Apprendre le chinois mandarin pour vivre à Taiwan",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // The interface is French throughout; content carries its own lang attribute.
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="fr" className={`${notoSansTC.variable} ${notoSansJP.variable}`}>
-      <body className="min-h-screen bg-surface">{children}</body>
+    <html lang="zh-Hant-TW" className={notoSansTC.variable}>
+      <body className="min-h-screen bg-surface">
+        <Navbar />
+        <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
+      </body>
     </html>
   );
 }

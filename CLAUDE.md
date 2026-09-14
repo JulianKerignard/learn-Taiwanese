@@ -13,25 +13,12 @@ npm run dev          # Dev server (accessible at /taiwan due to basePath)
 npm run build        # Production build
 npm run start        # Start production server
 npm run lint         # ESLint
-npm run generate-game-words  # Regenerate src/data/<lang>/game-words.ts (both languages)
-npm run generate-dictionary  # Regenerate src/data/<lang>/dictionary.ts (both languages)
-npm run generate-audio       # Pre-generate TTS files into public/audio/<lang>/
-                             #   CORPUS_LANG=ja npm run generate-audio for one language
-npm run validate     # Corpus invariants, once per language (validate:zh, validate:ja)
-                     #   A validator covering one corpus while the other ships
-                     #   unchecked is worse than none: both runs must pass.
+npm run generate-audio  # Pre-generate TTS audio files (Edge TTS) into public/audio/
 ```
 
 No test framework is configured.
 
 ## Architecture
-
-### Languages
-
-`src/lib/language.ts` is the registry: URL segment, data directory, TTS voice, level
-scale, phonology page and domain nouns for each edition. Nothing else may hardcode a
-language. Client code that needs the language without a prop calls `currentLanguage()`,
-which reads the first path segment.
 
 ### Routing & basePath
 
@@ -39,33 +26,9 @@ Next.js App Router with `basePath: "/taiwan"` and `output: "standalone"`. All cl
 
 ### Data Layer (static, no CMS)
 
-**Two corpora live side by side**: `src/data/zh/` (Mandarin, 88 units) and `src/data/ja/`
-(Japanese, 44 units). They expose the same API and the same field names — see the shared
-vocabulary below. Audio is split the same way, `public/audio/zh/` and `public/audio/ja/`:
-34 filenames collided between the two, so the split is required, not cosmetic.
-
-**Shared field vocabulary.** Both editions use one set of names, so a component never
-has to know which language it is rendering:
-
-| Field | Mandarin | Japanese |
-|---|---|---|
-| `term` | 你好 | 行きます |
-| `reading` | ㄋㄧˇ ㄏㄠˇ (zhuyin) | いきます (kana) |
-| `romanization` | nǐhǎo (pinyin) | ikimasu (rōmaji) |
-| `native` | a sentence in the target language | idem |
-| `titleNative` | 發音與基礎 | かなと発音 |
-| `segments` | optional (one character = one syllable) | required whenever a kanji appears |
-
-`native` rather than `text`: `FunFact` and `GradedText` already own a `text` field.
-
-HSK and JLPT are both proficiency scales: the shared API is `levels`, `getLevelBySlug()`,
-`getLevelForUnit()`, `getLevelUnitMetas()`, and the type is `ProficiencyLevel`.
-
-- **Course path**: `src/data/<lang>/course/chapterN/` — a `CourseUnit` per file with sections, vocabulary, exercises, dialogues. Indexed via `src/data/<lang>/course/index.ts` which exports `getUnitById()`, `getChapter()`, `getChapterUnits()`.
-- **Course catalogue (metadata only)**: `src/data/<lang>/course/meta.ts` restates each unit's metadata (`CourseUnitMeta`: id, number, chapter, titles, description, icon, requiredScore, prerequisites) plus `chapters` and `levels`, and imports no unit module. **Client components must import from `@/data/<lang>/course/meta`, never `@/data/<lang>/course`** — the full index drags every unit module into the route's browser bundle. Only server components (`src/app/path/[unit]/page.tsx`) and the dictionary read the full index.
-- **Game words**: `src/data/<lang>/game-words.ts` is generated (`npm run generate-game-words`) from the units' and lessons' vocabulary so `/games/*` never bundles the course. `npm run validate` fails when it drifts.
-- **Standalone lessons**: `src/data/<lang>/lessons/` — themed lessons independent of the course path.
-- **Other**, all under `src/data/<lang>/`: `readings.ts` (3 difficulty levels), `dictionary.ts` (generated), `funfacts.ts`, plus the phonology data — `tone-pairs.ts` for Mandarin, `pitch-accent.ts` for Japanese.
+- **Course path**: `src/data/course/chapter{1-7}/` — 44 units across 8 chapters, each a `CourseUnit` with sections, vocabulary, exercises, dialogues. Indexed via `src/data/course/index.ts` which exports `getUnitById()`, `getChapter()`, `getChapterUnits()`.
+- **Standalone lessons**: `src/data/lessons/` — 10 themed lessons (basics, restaurant, transport, etc.) independent of the course path.
+- **Other**: `readings.ts` (3 difficulty levels), `tone-pairs.ts`, `funfacts.ts`.
 
 All data is statically imported TypeScript — no database for content. SQLite (better-sqlite3) is only used server-side for user accounts and synced progress.
 
@@ -86,46 +49,7 @@ Handled by `src/lib/tts.ts`:
 
 ### Auth
 
-Username-only login, **no password and no proof of possession**. This is a deliberate product
-choice for a personal learning app, and it has a consequence that must not be glossed over.
-
-**Threat model — read this before treating the session layer as a security boundary.**
-
-Anyone who knows a username can sign in as that account: `POST /api/auth/login` issues a valid
-session for whatever name it is given. Signing the cookie (below) removed *cookie forgery*, not
-account takeover — an attacker no longer needs to craft `Cookie: taiwan-user=3`, they simply ask the
-login endpoint for a session. Treat synced progress as public-ish data: **never store anything
-sensitive in a user's synced keys.** `/api/users` therefore returns only the requesting account's
-own stats; the directory of usernames it used to expose was the other half of that takeover, and the
-comparison leaderboard that fed is gone on purpose.
-
-Closing this properly requires a per-account secret (a generated code or a password), which
-contradicts the no-password design. That trade-off is open, not solved.
-
-**What the session layer does protect.** `src/lib/auth.ts` HMACs the user id with `SESSION_SECRET`,
-and `getSessionUserId()` is the only way API routes read it. An unsigned or tampered cookie yields
-`null`, so a cookie cannot be minted without the secret, and pre-existing unsigned sessions are
-invalidated rather than trusted.
-
-**`SESSION_SECRET` is required in production.** Without it the app throws on the first login instead
-of silently signing with a per-process random key. Generate one with `openssl rand -hex 32`. It must
-live in the **process environment** (pm2 ecosystem file, systemd unit) — a `.env` dropped into the
-deployed directory is wiped by the next `rsync --delete`. Changing the value logs everyone out.
-
-**`APP_ORIGIN` should be set too** (e.g. `https://juliankerignard.fr`). The Origin check on login and
-save compares against it and ignores request headers entirely. Without it the check falls back to
-`x-forwarded-host` then `host` — which still works behind a proxy that rewrites `Host`, but is looser.
-
-Also enforced: `sameSite: "strict"` plus the Origin check above (login-CSRF), `/api/progress/save`
-caps each key at 2 MB and the body at 4 MB measured in **bytes**, and
-`db.pragma("foreign_keys = ON")` — off by default in SQLite, which made the `user_data` foreign key
-decorative.
-
-Login looks an account up **before** validating the character set, so an account created under the
-older, laxer rules (a space, an apostrophe) can still sign in; the stricter rules apply to new names.
-
-API routes: `/api/auth/{login,logout,me}`, `/api/progress/{load,save}`, `/api/users`.
-SQLite stores users and their synced data in `src/lib/db.ts`.
+Simple username-based auth (no passwords). HTTP-only cookies for sessions. API routes: `/api/auth/login`, `/api/auth/logout`, `/api/auth/me`. SQLite stores users and their synced data in `src/lib/db.ts`.
 
 ### Gamification
 
