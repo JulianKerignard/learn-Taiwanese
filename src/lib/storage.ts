@@ -35,6 +35,7 @@ export const KEYS = {
   readingCompleted: "reading-completed",
   testResults: "test-results",
   toneDrillProgress: "tone-drill-progress",
+  kanaProgress: "kana-progress",
 } as const;
 
 function isClient(): boolean {

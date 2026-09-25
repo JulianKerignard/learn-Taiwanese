@@ -49,6 +49,16 @@ export interface LanguageConfig {
     label: string;
   };
 
+  /**
+   * Route segment and label of the reading course for the edition's script,
+   * or null when the edition has none. Japanese learners must read kana before
+   * the course path can ask them to read anything.
+   */
+  readingCourse: {
+    slug: string;
+    label: string;
+  } | null;
+
   /** Domain nouns used in UI copy. */
   copy: {
     term: string;
@@ -79,6 +89,7 @@ export const LANGUAGES: Record<LanguageSegment, LanguageConfig> = {
     // The slug is the route, not the label: /taiwan/tones is the URL the
     // Mandarin edition already had, and the merge must not move it.
     phonology: { slug: "tones", label: "Tons" },
+    readingCourse: null,
     copy: {
       term: "caractère",
       terms: "caractères",
@@ -103,6 +114,7 @@ export const LANGUAGES: Record<LanguageSegment, LanguageConfig> = {
     },
     levels: { code: "JLPT", ascending: false },
     phonology: { slug: "accent", label: "Accent" },
+    readingCourse: { slug: "kana", label: "Kana" },
     copy: {
       term: "mot",
       terms: "mots",
