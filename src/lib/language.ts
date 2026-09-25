@@ -59,6 +59,15 @@ export interface LanguageConfig {
     label: string;
   } | null;
 
+  /**
+   * Route segment and label of the kanji course, or null. Follows the reading
+   * course: kanji are taught once the kana can be read.
+   */
+  kanjiCourse: {
+    slug: string;
+    label: string;
+  } | null;
+
   /** Domain nouns used in UI copy. */
   copy: {
     term: string;
@@ -90,6 +99,7 @@ export const LANGUAGES: Record<LanguageSegment, LanguageConfig> = {
     // Mandarin edition already had, and the merge must not move it.
     phonology: { slug: "tones", label: "Tons" },
     readingCourse: null,
+    kanjiCourse: null,
     copy: {
       term: "caractère",
       terms: "caractères",
@@ -115,6 +125,7 @@ export const LANGUAGES: Record<LanguageSegment, LanguageConfig> = {
     levels: { code: "JLPT", ascending: false },
     phonology: { slug: "accent", label: "Accent" },
     readingCourse: { slug: "kana", label: "Kana" },
+    kanjiCourse: { slug: "kanji", label: "Kanji" },
     copy: {
       term: "mot",
       terms: "mots",

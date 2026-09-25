@@ -164,6 +164,12 @@ export interface UserProgress {
 export interface UserSettings {
   /** Which annotation to show: the Latin one, the native one, or both. */
   displayMode: "romanization" | "reading" | "both";
+  /**
+   * Editions whose reading course is mastered stop showing the Latin
+   * annotation (rōmaji) on their own, so the learner reads the script instead.
+   * Optional: settings stored before it existed read as undefined = on.
+   */
+  weanRomanization?: boolean;
   dailyNewCards: number;
   showEnglish: boolean;
   autoPlayAudio: boolean;

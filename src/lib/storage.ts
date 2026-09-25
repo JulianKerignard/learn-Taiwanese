@@ -36,6 +36,7 @@ export const KEYS = {
   testResults: "test-results",
   toneDrillProgress: "tone-drill-progress",
   kanaProgress: "kana-progress",
+  kanjiProgress: "kanji-progress",
 } as const;
 
 function isClient(): boolean {
