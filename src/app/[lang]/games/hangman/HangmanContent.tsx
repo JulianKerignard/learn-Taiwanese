@@ -106,7 +106,7 @@ export default function HangmanContent({
 
   if (!target) {
     return (
-      <div className="mx-auto max-w-xl py-12 text-center">
+      <div className="w-full mx-auto max-w-xl py-12 text-center">
         <p className="text-stone-500">Chargement...</p>
       </div>
     );
@@ -115,7 +115,7 @@ export default function HangmanContent({
   const targetUnits = unitsOf(target);
 
   return (
-    <div className="mx-auto max-w-xl">
+    <div className="w-full mx-auto max-w-xl">
       <div className="mb-6 flex items-center justify-between">
         <Link
           href={langHref(lang, "/games")}

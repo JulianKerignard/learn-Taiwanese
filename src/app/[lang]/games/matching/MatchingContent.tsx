@@ -156,14 +156,14 @@ export default function MatchingContent({
 
   if (words.length === 0) {
     return (
-      <div className="mx-auto max-w-4xl py-12 text-center">
+      <div className="w-full mx-auto max-w-4xl py-12 text-center">
         <p className="text-stone-500">Chargement...</p>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="w-full mx-auto max-w-2xl">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <Link
           href={langHref(lang, "/games")}

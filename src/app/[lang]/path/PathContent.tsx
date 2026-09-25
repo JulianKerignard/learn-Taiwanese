@@ -45,7 +45,7 @@ export default function PathContent({ lang }: { lang: LanguageSegment }) {
         <p className="mt-1 text-stone-500">
           Choisis ton niveau et progresse à ton rythme
         </p>
-        <div className="mx-auto mt-4 max-w-md">
+        <div className="w-full mx-auto mt-4 max-w-md">
           {hydrated ? (
             <ProgressBar
               value={completedCount}

@@ -2,6 +2,25 @@
 
 let currentAudio: HTMLAudioElement | null = null;
 
+/**
+ * Settles the promise of whatever is playing now. Pausing an <audio> fires
+ * neither `ended` nor `error`, so without this an interrupted clip never
+ * resolved and its AudioButton stayed pulsing and unclickable for good.
+ */
+let settleCurrent: (() => void) | null = null;
+
+function track(settle: () => void): () => void {
+  let done = false;
+  const once = () => {
+    if (done) return;
+    done = true;
+    if (settleCurrent === once) settleCurrent = null;
+    settle();
+  };
+  settleCurrent = once;
+  return once;
+}
+
 // ── Pre-generated audio manifest ──────────────────────────────────────
 
 import { currentLanguage, currentLanguageCode } from "@/lib/language";
@@ -30,18 +49,13 @@ function playStaticAudio(audioFile: string): Promise<void> {
   const audio = new Audio(`/audio/${currentLanguageCode()}/${audioFile}`);
   currentAudio = audio;
   return new Promise((resolve) => {
-    audio.onended = () => {
-      currentAudio = null;
-      resolve();
-    };
-    audio.onerror = () => {
-      currentAudio = null;
-      resolve();
-    };
-    audio.play().catch(() => {
-      currentAudio = null;
+    const finish = track(() => {
+      if (currentAudio === audio) currentAudio = null;
       resolve();
     });
+    audio.onended = finish;
+    audio.onerror = finish;
+    audio.play().catch(finish);
   });
 }
 
@@ -50,12 +64,13 @@ function playStaticAudio(audioFile: string): Promise<void> {
 export async function speak(text: string, rate = 0.85): Promise<void> {
   if (typeof window === "undefined") return;
 
-  // Stop any currently playing audio
+  // Stop any currently playing audio, and let its caller know it is over.
   if (currentAudio) {
     currentAudio.pause();
     currentAudio = null;
   }
   window.speechSynthesis?.cancel();
+  settleCurrent?.();
 
   // 1. Try pre-generated audio first (instant, zero latency)
   const manifest = await getManifest();
@@ -80,21 +95,22 @@ export async function speak(text: string, rate = 0.85): Promise<void> {
       currentAudio = audio;
 
       return new Promise((resolve) => {
-        audio.onended = () => {
+        const finish = track(() => {
           URL.revokeObjectURL(url);
-          currentAudio = null;
+          if (currentAudio === audio) currentAudio = null;
           resolve();
-        };
-        audio.onerror = () => {
-          URL.revokeObjectURL(url);
-          currentAudio = null;
-          // Fallback to Web Speech
-          speakFallback(text, rate).then(resolve);
-        };
-        audio.play().catch(() => {
-          // Autoplay blocked, fallback
-          speakFallback(text, rate).then(resolve);
         });
+        const fallback = () => {
+          // The clip failed or autoplay was blocked: hand over to Web Speech,
+          // unless another speak() has taken over in the meantime.
+          if (settleCurrent !== finish) return;
+          URL.revokeObjectURL(url);
+          if (currentAudio === audio) currentAudio = null;
+          speakFallback(text, rate).then(resolve);
+        };
+        audio.onended = finish;
+        audio.onerror = fallback;
+        audio.play().catch(fallback);
       });
     }
   } catch {
@@ -126,8 +142,15 @@ function speakFallback(text: string, rate: number): Promise<void> {
     );
     if (match) utterance.voice = match;
 
-    utterance.onend = () => resolve();
-    utterance.onerror = () => resolve();
+    // iOS Safari does not always fire onend: a ceiling scaled on the text
+    // keeps the caller from waiting forever.
+    const timeout = setTimeout(() => finish(), 3000 + text.length * 400);
+    const finish = track(() => {
+      clearTimeout(timeout);
+      resolve();
+    });
+    utterance.onend = finish;
+    utterance.onerror = finish;
     window.speechSynthesis.speak(utterance);
   });
 }

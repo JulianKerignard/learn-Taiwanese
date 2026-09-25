@@ -209,7 +209,7 @@ export default function DictionaryContent({ lang, entries, levels }: DictionaryC
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={`Rechercher un ${copy.term}, un ${copy.readingPrimary}, un ${copy.readingSecondary} ou une traduction…`}
-          className="w-full rounded-lg border border-stone-300 bg-white py-2.5 pl-10 pr-10 text-sm text-stone-900 placeholder:text-stone-400 focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
+          className="w-full rounded-lg border border-stone-300 bg-white py-2.5 pl-10 pr-10 text-base text-stone-900 sm:text-sm placeholder:text-stone-400 focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
         />
         {query && (
           <button
@@ -276,7 +276,7 @@ export default function DictionaryContent({ lang, entries, levels }: DictionaryC
           value={sortMode}
           onChange={(e) => setSortMode(e.target.value as SortMode)}
           aria-label="Ordre de tri"
-          className="rounded-lg border border-stone-200 bg-white px-2 py-1 text-xs text-stone-600 focus:border-primary"
+          className="rounded-lg border border-stone-200 bg-white px-2 py-1 text-base text-stone-600 focus:border-primary sm:text-xs"
         >
           {sortOptions.map((option) => (
             <option key={option.value} value={option.value}>

@@ -68,7 +68,7 @@ function RecognizeMode({
   }
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex w-full flex-col items-center gap-6">
       <div className="flex flex-col items-center gap-2">
         <span className="text-xs font-medium text-accent uppercase tracking-wide">Reconnaissance</span>
         <span className="term-display" lang={contentLang}>{card.front}</span>
@@ -120,11 +120,23 @@ function RecallMode({
   }
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex w-full flex-col items-center gap-6">
       <span className="text-xs font-medium text-violet-600 uppercase tracking-wide">Rappel</span>
 
-      <button
+      {/* A div, not a <button>: the revealed face holds an AudioButton, and a
+          button inside a button is invalid — the tap on the speaker flipped the
+          card too, and React reports it as a hydration error. */}
+      <div
+        role="button"
+        tabIndex={0}
+        aria-pressed={flipped}
         onClick={handleFlip}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleFlip();
+          }
+        }}
         className="group relative h-72 w-full max-w-md cursor-pointer perspective-1000"
       >
         <div
@@ -151,7 +163,7 @@ function RecallMode({
           <p className="text-lg font-medium text-stone-700">{card.back}</p>
           <AudioButton text={card.front} size="md" />
         </div>
-      </button>
+      </div>
     </div>
   );
 }
@@ -187,7 +199,7 @@ function ListeningMode({
   }
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex w-full flex-col items-center gap-6">
       <span className="text-xs font-medium text-orange-600 uppercase tracking-wide">Écoute</span>
 
       <button
@@ -315,7 +327,7 @@ function WritingMode({
   }
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex w-full flex-col items-center gap-4">
       <span className="text-xs font-medium text-emerald-600 uppercase tracking-wide">Écriture</span>
 
       <div className="flex flex-col items-center gap-1">
@@ -455,7 +467,7 @@ function FlashcardView({
   }
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex w-full flex-col items-center gap-6">
       {mode === "recognize" && (
         <RecognizeMode
           card={card}

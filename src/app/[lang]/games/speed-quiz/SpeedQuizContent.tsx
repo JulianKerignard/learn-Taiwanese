@@ -149,7 +149,7 @@ export default function SpeedQuizContent({
 
   if (phase === "ready") {
     return (
-      <div className="mx-auto max-w-xl py-4 text-center">
+      <div className="w-full mx-auto max-w-xl py-4 text-center">
         <Link
           href={langHref(lang, "/games")}
           className="mb-8 inline-block text-sm text-stone-400 hover:text-stone-600 transition-colors"
@@ -183,7 +183,7 @@ export default function SpeedQuizContent({
   if (phase === "result") {
     const isNewRecord = score >= bestRecord && score > 0;
     return (
-      <div className="mx-auto max-w-xl py-4 text-center">
+      <div className="w-full mx-auto max-w-xl py-4 text-center">
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-8">
           <div className="mb-2 text-4xl" aria-hidden>&#9201;</div>
           <h2 className="text-title font-bold mb-4 text-amber-700">Temps écoulé !</h2>
@@ -216,7 +216,7 @@ export default function SpeedQuizContent({
   }
 
   return (
-    <div className="mx-auto max-w-xl">
+    <div className="w-full mx-auto max-w-xl">
       <div className="mb-4 flex items-center justify-between">
         <div className="text-2xl font-bold text-stone-900">{score} pts</div>
         {combo >= 3 && (

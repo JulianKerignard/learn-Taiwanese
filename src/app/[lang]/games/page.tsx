@@ -85,7 +85,7 @@ export default async function GamesPage({
   }));
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="w-full mx-auto max-w-4xl">
       <div className="mb-10 text-center">
         <h1 className="text-display font-bold text-stone-900">Mini-jeux</h1>
         <p className="mt-2 text-stone-500">Pratique le vocabulaire en t&apos;amusant</p>

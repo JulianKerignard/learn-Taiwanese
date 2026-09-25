@@ -135,7 +135,7 @@ export default function TestRunner({ lang, test }: TestRunnerProps) {
   // ---------- INTRO ----------
   if (phase === "intro") {
     return (
-      <div className="card mx-auto max-w-2xl p-6">
+      <div className="w-full card mx-auto max-w-2xl p-6">
         <div className="mb-6 text-center">
           <span className="mb-2 inline-block text-4xl">{test.icon}</span>
           <h1 className="text-display font-bold">{test.title}</h1>
@@ -189,7 +189,7 @@ export default function TestRunner({ lang, test }: TestRunnerProps) {
     const selectedAnswer = answers.get(current.id);
 
     return (
-      <div className="mx-auto max-w-2xl">
+      <div className="w-full mx-auto max-w-2xl">
         {/* Top bar */}
         <div className="mb-6 flex items-center justify-between gap-4">
           <div
@@ -256,8 +256,9 @@ export default function TestRunner({ lang, test }: TestRunnerProps) {
           </div>
         </div>
 
-        {/* Navigation */}
-        <div className="flex items-center justify-between gap-4">
+        {/* Navigation. On a phone the question grid gets its own row below the
+            two buttons: squeezed between them it collapsed to two columns. */}
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 sm:flex-nowrap">
           <button
             onClick={() => setCurrentIndex((i) => Math.max(0, i - 1))}
             disabled={currentIndex === 0}
@@ -272,13 +273,13 @@ export default function TestRunner({ lang, test }: TestRunnerProps) {
             Précédent
           </button>
 
-          <div className="flex flex-wrap justify-center gap-1.5">
+          <div className="order-last flex w-full flex-wrap justify-center gap-1.5 sm:order-none sm:w-auto sm:flex-1">
             {flatExercises.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrentIndex(i)}
                 className={cn(
-                  "flex h-7 w-7 items-center justify-center rounded-full text-xs font-medium transition-colors",
+                  "flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium transition-colors sm:h-7 sm:w-7",
                   answers.has(flatExercises[i].id)
                     ? "bg-primary text-white"
                     : "bg-stone-100 text-stone-500",
@@ -318,7 +319,7 @@ export default function TestRunner({ lang, test }: TestRunnerProps) {
     const timeUsedSec = result.timeUsedSeconds % 60;
 
     return (
-      <div className="mx-auto max-w-2xl space-y-6">
+      <div className="w-full mx-auto max-w-2xl space-y-6">
         {/* Score */}
         <div
           className={cn(

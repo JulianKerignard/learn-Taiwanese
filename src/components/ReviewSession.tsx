@@ -216,7 +216,7 @@ export default function ReviewSession({ lang, cardFilter }: ReviewSessionProps) 
     const seconds = sessionResult.timeSpent % 60;
 
     return (
-      <div className="mx-auto flex max-w-md flex-col items-center gap-6 py-12">
+      <div className="w-full mx-auto flex max-w-md flex-col items-center gap-6 py-12">
         <CheckCircle2 className="h-16 w-16 text-success" />
         <h1 className="text-display font-bold text-stone-800">Session terminée !</h1>
 
@@ -335,7 +335,7 @@ export default function ReviewSession({ lang, cardFilter }: ReviewSessionProps) 
   const mode = pickMode(currentIndex);
 
   return (
-    <div className="mx-auto flex max-w-lg flex-col gap-6">
+    <div className="w-full mx-auto flex max-w-lg flex-col gap-6">
       <div>
         <h1 className="text-display font-bold text-stone-900">Révision</h1>
         <p className="text-sm text-stone-500">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo } from "react";
 import { cn } from "@/lib/cn";
 import { speak } from "@/lib/tts";
 import { createCard } from "@/lib/fsrs";
@@ -104,44 +104,48 @@ function CharTooltip({
   displayMode,
   contentLang,
   onAddFlashcard,
-  onDismiss,
+  onPointerEnter,
+  onPointerLeave,
 }: {
   data: TooltipData;
   displayMode: "romanization" | "reading" | "both";
   contentLang: string;
   onAddFlashcard: (char: string, romanization: string, french: string) => void;
-  onDismiss: () => void;
+  onPointerEnter: () => void;
+  onPointerLeave: () => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [pos, setPos] = useState({ left: data.x, top: data.y });
 
-  useEffect(() => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
+  // Placed before paint, straight on the node: measuring in a passive effect
+  // showed the tooltip at its raw position for a frame, then made it jump.
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
     let left = data.x;
     let top = data.y;
-
-    if (rect.right > window.innerWidth - 8) {
-      left = window.innerWidth - rect.width - 8;
-    }
+    if (left + rect.width > window.innerWidth - 8) left = window.innerWidth - rect.width - 8;
     if (left < 8) left = 8;
-    if (rect.bottom > window.innerHeight - 8) {
-      top = data.y - rect.height - 40;
-    }
-    setPos({ left, top });
-  }, [data.x, data.y]);
+    if (top + rect.height > window.innerHeight - 8) top = data.y - rect.height - 40;
+    if (top < 8) top = 8;
+    el.style.left = `${left}px`;
+    el.style.top = `${top}px`;
+    el.style.visibility = "visible";
+  }, [data]);
 
   const showReading = displayMode === "romanization" || displayMode === "both";
   const showZhuyin = (displayMode === "reading" || displayMode === "both") && data.reading;
 
   return (
     <>
-      {/* Transparent overlay to dismiss on touch/click outside */}
-      <div className="fixed inset-0 z-[99]" onClick={onDismiss} />
       <div
         ref={ref}
-        className="fixed z-[100] rounded-lg border border-stone-200 bg-white p-3 shadow-lg"
-        style={{ left: pos.left, top: pos.top }}
+        data-reading-tooltip
+        role="tooltip"
+        onPointerEnter={onPointerEnter}
+        onPointerLeave={onPointerLeave}
+        className="invisible fixed z-[100] max-w-[calc(100vw-16px)] rounded-lg border border-stone-200 bg-white p-3 shadow-lg"
+        style={{ left: data.x, top: data.y }}
       >
         <div className="flex items-center gap-2">
           <span className="chinese text-2xl font-medium text-stone-900" lang={contentLang}>
@@ -194,21 +198,10 @@ export default function ReadingText({ lang, reading, onClose }: ReadingTextProps
   const [knownWords, setKnownWords] = useClientState(getKnownWords, NO_KNOWN_WORDS);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const [flashcardAdded, setFlashcardAdded] = useState<string | null>(null);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const tooltipTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const language = LANGUAGES[lang];
   const displayMode = getSettings().displayMode;
-
-  // Detect touch device
-  useEffect(() => {
-    function onTouchStart() {
-      setIsTouchDevice(true);
-      window.removeEventListener("touchstart", onTouchStart);
-    }
-    window.addEventListener("touchstart", onTouchStart, { once: true });
-    return () => window.removeEventListener("touchstart", onTouchStart);
-  }, []);
 
   // Cleanup tooltip timeout on unmount
   useEffect(() => {
@@ -257,22 +250,58 @@ export default function ReadingText({ lang, reading, onClose }: ReadingTextProps
     [findVocabForChar]
   );
 
-  const handleCharInteraction = useCallback(
-    (char: string, e: React.MouseEvent | React.TouchEvent) => {
-      const rect = (e.currentTarget as HTMLSpanElement).getBoundingClientRect();
-      showTooltipForChar(char, rect);
+  // A mouse opens the tooltip on hover; a tap or a click opens it on click.
+  // The pointer type is read per event rather than guessed once per page: a
+  // laptop with a touch screen uses both, and the old "touch seen yet?" flag was
+  // still false during the very first tap.
+  const handleCharHover = useCallback(
+    (char: string, e: React.PointerEvent<HTMLSpanElement>) => {
+      if (e.pointerType !== "mouse") return;
+      showTooltipForChar(char, e.currentTarget.getBoundingClientRect());
     },
     [showTooltipForChar]
   );
 
-  const handleCharLeave = useCallback(() => {
-    if (isTouchDevice) return; // Touch devices dismiss via overlay click
-    tooltipTimeout.current = setTimeout(() => setTooltip(null), TOOLTIP_DISMISS_MS);
-  }, [isTouchDevice]);
+  const handleCharClick = useCallback(
+    (char: string, e: React.MouseEvent<HTMLSpanElement>) => {
+      showTooltipForChar(char, e.currentTarget.getBoundingClientRect());
+    },
+    [showTooltipForChar]
+  );
 
-  const dismissTooltip = useCallback(() => {
-    setTooltip(null);
+  const scheduleDismiss = useCallback((e?: React.PointerEvent) => {
+    if (e && e.pointerType !== "mouse") return; // taps dismiss by tapping elsewhere
+    if (tooltipTimeout.current) clearTimeout(tooltipTimeout.current);
+    tooltipTimeout.current = setTimeout(() => setTooltip(null), TOOLTIP_DISMISS_MS);
   }, []);
+
+  const cancelDismiss = useCallback(() => {
+    if (tooltipTimeout.current) clearTimeout(tooltipTimeout.current);
+  }, []);
+
+  // While open: a press outside the text and the tooltip, Escape, or a scroll
+  // (the tooltip is fixed and would stay behind while the text moves) closes it.
+  const tooltipOpen = tooltip !== null;
+  useEffect(() => {
+    if (!tooltipOpen) return;
+    const close = () => setTooltip(null);
+    const onPointerDown = (e: PointerEvent) => {
+      const target = e.target as Element | null;
+      if (target?.closest("[data-reading-tooltip], [data-reading-char]")) return;
+      close();
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKey);
+    window.addEventListener("scroll", close, { passive: true });
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKey);
+      window.removeEventListener("scroll", close);
+    };
+  }, [tooltipOpen]);
 
   const handleAddFlashcard = useCallback(
     (term: string, romanization: string, french: string) => {
@@ -451,7 +480,7 @@ export default function ReadingText({ lang, reading, onClose }: ReadingTextProps
             <div
               className="chinese text-2xl leading-[2.5] tracking-wide text-stone-900"
               lang={language.contentLang}
-              onMouseLeave={handleCharLeave}
+              onPointerLeave={scheduleDismiss}
             >
               {reading.text.split("").map((char, i) => {
                 const isIdeograph = /[\u4e00-\u9fff\u3400-\u4dbf]/.test(char);
@@ -475,8 +504,9 @@ export default function ReadingText({ lang, reading, onClose }: ReadingTextProps
                       vocab !== undefined && "hover:bg-primary/10",
                       isNew && "bg-amber-50 text-amber-900"
                     )}
-                    onMouseEnter={isTouchDevice ? undefined : (e) => handleCharInteraction(char, e)}
-                    onClick={isTouchDevice ? (e) => handleCharInteraction(char, e) : undefined}
+                    data-reading-char
+                    onPointerEnter={(e) => handleCharHover(char, e)}
+                    onClick={(e) => handleCharClick(char, e)}
                   >
                     {annotate ? (
                       <RubyText
@@ -588,7 +618,8 @@ export default function ReadingText({ lang, reading, onClose }: ReadingTextProps
           displayMode={displayMode}
           contentLang={language.contentLang}
           onAddFlashcard={handleAddFlashcard}
-          onDismiss={dismissTooltip}
+          onPointerEnter={cancelDismiss}
+          onPointerLeave={() => scheduleDismiss()}
         />
       )}
     </div>
