@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import {
   BookOpen,
   MessageSquare,
@@ -21,6 +21,7 @@ import { getCards, upsertCard, getProgress, saveProgress } from "@/lib/storage";
 import { cn } from "@/lib/cn";
 import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
 import type { Lesson, FlashcardData } from "@/types";
+import { useClientState } from "@/lib/use-client-state";
 
 type Tab = "cours" | "vocabulary" | "phrases" | "quiz";
 
@@ -41,14 +42,15 @@ export default function LessonContent({
   const [quizScore, setQuizScore] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
   const [addedToFlashcards, setAddedToFlashcards] = useState(false);
-  const [completed, setCompleted] = useState(false);
 
   const language = LANGUAGES[lang];
 
   // Only the progression needs the browser; the lesson came prerendered.
-  useEffect(() => {
-    setCompleted(getProgress().lessonsCompleted.includes(lesson.id));
-  }, [lesson.id]);
+  const [completed, setCompleted] = useClientState(
+    () => getProgress().lessonsCompleted.includes(lesson.id),
+    false,
+    lesson.id
+  );
 
   const handleQuizAnswer = useCallback(
     (correct: boolean) => {

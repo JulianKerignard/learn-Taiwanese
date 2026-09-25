@@ -5,6 +5,7 @@ import Link from "next/link";
 import { type GameWord } from "@/lib/game-data";
 import { KEYS, storageGet, storageSet } from "@/lib/storage";
 import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
+import { useClientState } from "@/lib/use-client-state";
 
 type Phase = "ready" | "playing" | "result";
 
@@ -56,15 +57,15 @@ export default function SpeedQuizContent({
   const [wrong, setWrong] = useState(0);
   const [timeLeft, setTimeLeft] = useState(DURATION);
   const [feedback, setFeedback] = useState<number | null>(null);
-  const [record, setRecord] = useState(0);
   const [showRomanization, setShowRomanization] = useState(true);
   const usedRef = useRef(new Set<string>());
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // localStorage is invisible to the prerender: read the record after mount.
-  useEffect(() => {
-    setRecord(storageGet<number>(STORAGE_KEY, 0));
-  }, []);
+  // localStorage is invisible to the prerender: read the record after hydration.
+  // It holds the record as of the last game start; the game in progress or just
+  // finished is folded in by `bestRecord` rather than written back in an effect.
+  const [record, setRecord] = useClientState(() => storageGet<number>(STORAGE_KEY, 0), 0);
+  const bestRecord = phase === "result" ? Math.max(record, score) : record;
 
   const nextQuestion = useCallback(() => {
     if (allWords.length === 0) return;
@@ -85,6 +86,7 @@ export default function SpeedQuizContent({
   }, [allWords]);
 
   function startGame() {
+    setRecord(bestRecord);
     setPhase("playing");
     setScore(0);
     setCombo(0);
@@ -110,11 +112,8 @@ export default function SpeedQuizContent({
 
   // Save record when game ends
   useEffect(() => {
-    if (phase === "result") {
-      if (score > storageGet<number>(STORAGE_KEY, 0)) {
-        storageSet(STORAGE_KEY, score);
-        setRecord(score);
-      }
+    if (phase === "result" && score > storageGet<number>(STORAGE_KEY, 0)) {
+      storageSet(STORAGE_KEY, score);
     }
   }, [phase, score]);
 
@@ -182,7 +181,7 @@ export default function SpeedQuizContent({
   }
 
   if (phase === "result") {
-    const isNewRecord = score >= record && score > 0;
+    const isNewRecord = score >= bestRecord && score > 0;
     return (
       <div className="mx-auto max-w-xl py-4 text-center">
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-8">
@@ -203,7 +202,7 @@ export default function SpeedQuizContent({
             </div>
           </div>
           <p className="mb-6 text-sm text-stone-400">
-            Record : <strong>{record}</strong> pts
+            Record : <strong>{bestRecord}</strong> pts
           </p>
           <button
             onClick={startGame}

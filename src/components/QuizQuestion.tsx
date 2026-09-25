@@ -19,7 +19,7 @@ export default function QuizQuestion({ question, onAnswer }: QuizQuestionProps) 
 
   const shuffledOptions = useMemo(
     () => shuffleArray(question.options),
-    [question.id]
+    [question.options]
   );
 
   function handleSelect(option: string) {

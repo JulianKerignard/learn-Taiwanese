@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { type GameWord } from "@/lib/game-data";
 import AudioButton from "@/components/AudioButton";
 import { shuffleArray } from "@/lib/utils";
 import { splitMora } from "@/lib/japanese";
 import { LANGUAGES, langHref, type LanguageCode, type LanguageSegment } from "@/lib/language";
+import { useClientState } from "@/lib/use-client-state";
 
 type Phase = "playing" | "won" | "lost";
 
@@ -41,6 +42,15 @@ function buildChoices(
   return shuffleArray([...pool]);
 }
 
+function drawRound(
+  words: GameWord[],
+  unitsOf: (word: GameWord) => string[]
+): { target: GameWord; choices: string[] } | null {
+  if (words.length === 0) return null;
+  const target = words[Math.floor(Math.random() * words.length)];
+  return { target, choices: buildChoices(target, words, unitsOf) };
+}
+
 export default function HangmanContent({
   lang,
   words,
@@ -57,8 +67,11 @@ export default function HangmanContent({
     [isJapanese]
   );
 
-  const [target, setTarget] = useState<GameWord | null>(null);
-  const [choices, setChoices] = useState<string[]>([]);
+  // The first word is drawn at random, which the prerender cannot do without
+  // the server and the client disagreeing: draw it once hydration is over.
+  const [round, setRound] = useClientState(() => drawRound(words, unitsOf), null);
+  const target = round?.target ?? null;
+  const choices = round?.choices ?? [];
   const [guessed, setGuessed] = useState<Set<string>>(new Set());
   const [errors, setErrors] = useState(0);
   // The rōmaji spells the kana out loud, so it would hand over the answer: the
@@ -66,21 +79,12 @@ export default function HangmanContent({
   const [showRomanization, setShowRomanization] = useState(!isJapanese);
   const [phase, setPhase] = useState<Phase>("playing");
 
-  const initGame = useCallback(() => {
-    if (words.length === 0) return;
-    const word = words[Math.floor(Math.random() * words.length)];
-    setTarget(word);
-    setChoices(buildChoices(word, words, unitsOf));
+  function initGame() {
+    setRound(drawRound(words, unitsOf));
     setGuessed(new Set());
     setErrors(0);
     setPhase("playing");
-  }, [words, unitsOf]);
-
-  // The first word is drawn at random, which the prerender cannot do without
-  // the server and the client disagreeing: draw it after mount.
-  useEffect(() => {
-    initGame();
-  }, [initGame]);
+  }
 
   function handleChoice(unit: string) {
     if (phase !== "playing" || !target || guessed.has(unit)) return;

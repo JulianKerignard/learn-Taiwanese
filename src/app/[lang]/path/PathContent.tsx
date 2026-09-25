@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronRight, Check, Lock } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
@@ -21,19 +20,14 @@ import {
   type LanguageSegment,
 } from "@/lib/language";
 import type { PathProgress } from "@/types/course";
+import { useClientState } from "@/lib/use-client-state";
 
 export default function PathContent({ lang }: { lang: LanguageSegment }) {
   // The level cards — titles, descriptions, unit totals — are known at build
   // time and stay in the prerendered HTML. The counters, the percentages and the
   // "En cours" badge describe the reader, so they wait for `hydrated` instead of
   // rendering an empty progression as if it were a measured zero.
-  const [progress, setProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    setProgress(getPathProgress());
-    setHydrated(true);
-  }, []);
+  const [progress, , hydrated] = useClientState<PathProgress>(getPathProgress, EMPTY_PATH_PROGRESS);
 
   const language = LANGUAGES[lang];
   const { code } = language;

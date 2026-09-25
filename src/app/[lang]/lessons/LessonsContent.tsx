@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
 import { getProgress } from "@/lib/storage";
 import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
 import type { UserProgress } from "@/types";
+import { useClientState } from "@/lib/use-client-state";
 
 /**
  * Everything a lesson card shows, and nothing more.
@@ -40,12 +40,8 @@ export default function LessonsContent({
   lang: LanguageSegment;
   lessons: LessonSummary[];
 }) {
-  const [progress, setProgress] = useState<UserProgress | null>(null);
-
-  // localStorage after mount only: the cards themselves come prerendered.
-  useEffect(() => {
-    setProgress(getProgress());
-  }, []);
+  // localStorage after hydration only: the cards themselves come prerendered.
+  const [progress] = useClientState<UserProgress | null>(getProgress, null);
 
   const language = LANGUAGES[lang];
 

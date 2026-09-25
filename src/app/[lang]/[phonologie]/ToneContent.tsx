@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   Volume2,
   ChevronLeft,
@@ -24,6 +24,7 @@ import ProgressBar from "@/components/ProgressBar";
 import AudioButton from "@/components/AudioButton";
 import RubyText from "@/components/RubyText";
 import { useContentLang } from "@/components/ContentLanguage";
+import { useClientState } from "@/lib/use-client-state";
 
 type ExerciseMode = "listen" | "reverse";
 type PageView = "overview" | "grid" | "exercise" | "sandhi";
@@ -282,6 +283,24 @@ function ToneGrid({
 
 // ─── Exercise component ───
 
+function drawQuestion(
+  pair: TonePair,
+  allPairs: TonePair[],
+  mode: ExerciseMode
+): { word: TonePairWord; options: string[] } {
+  const word = pair.words[Math.floor(Math.random() * pair.words.length)];
+  const others = allPairs.filter((p) => p.id !== pair.id);
+
+  if (mode === "listen") {
+    const correctAnswer = `${pair.tone1}+${pair.tone2}`;
+    const distractors = shuffleArray(others.map((p) => `${p.tone1}+${p.tone2}`)).slice(0, 3);
+    return { word, options: shuffleArray([...distractors, correctAnswer]) };
+  }
+
+  const distractors = shuffleArray(others.flatMap((p) => p.words).map((w) => w.native)).slice(0, 3);
+  return { word, options: shuffleArray([...distractors, word.native]) };
+}
+
 function Exercise({
   pair,
   allPairs,
@@ -297,41 +316,19 @@ function Exercise({
   onNext: () => void;
 }) {
   const contentLang = useContentLang();
-  const [currentWord, setCurrentWord] = useState<TonePairWord | null>(null);
-  const [options, setOptions] = useState<string[]>([]);
+  // The word and the options are drawn at random: never during the prerender.
+  // The parent keys this component on pair and mode, so a new pair starts fresh.
+  const [question, setQuestion] = useClientState(() => drawQuestion(pair, allPairs, mode), null);
+  const currentWord = question?.word ?? null;
+  const options = question?.options ?? [];
   const [selected, setSelected] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
-  const generateQuestion = useCallback(() => {
-    const wordIndex = Math.floor(Math.random() * pair.words.length);
-    const word = pair.words[wordIndex];
-    setCurrentWord(word);
+  function nextQuestion() {
+    setQuestion(drawQuestion(pair, allPairs, mode));
     setSelected(null);
     setIsCorrect(null);
-
-    if (mode === "listen") {
-      const correctAnswer = `${pair.tone1}+${pair.tone2}`;
-      const allPairIds = allPairs
-        .filter((p) => p.id !== pair.id)
-        .map((p) => `${p.tone1}+${p.tone2}`);
-      const shuffled = shuffleArray(allPairIds).slice(0, 3);
-      shuffled.push(correctAnswer);
-      setOptions(shuffleArray(shuffled));
-    } else {
-      const correctAnswer = word.native;
-      const otherWords = shuffleArray(
-        allPairs
-          .filter((p) => p.id !== pair.id)
-          .flatMap((p) => p.words)
-          .map((w) => w.native)
-      ).slice(0, 3);
-      setOptions(shuffleArray([...otherWords, correctAnswer]));
-    }
-  }, [pair, allPairs, mode]);
-
-  useEffect(() => {
-    generateQuestion();
-  }, [generateQuestion]);
+  }
 
   function handleSelect(option: string) {
     if (selected) return;
@@ -445,7 +442,7 @@ function Exercise({
             <span className="text-sm text-stone-500">{currentWord.french}</span>
           </div>
 
-          <button onClick={() => { generateQuestion(); onNext(); }} className="btn-primary gap-1.5 text-sm">
+          <button onClick={() => { nextQuestion(); onNext(); }} className="btn-primary gap-1.5 text-sm">
             Question suivante
             <ArrowRight size={14} />
           </button>
@@ -502,6 +499,8 @@ function SandhiSection({ rules }: { rules: SandhiRule[] }) {
  * The corpus arrives as props from the server page — a client component may not
  * import src/data/<lang>/..., which would ship both editions to the browser.
  */
+const NO_PAIR_PROGRESS = new Map<string, PairProgress>();
+
 export default function ToneContent({
   tonePairs,
   sandhiRules,
@@ -513,16 +512,15 @@ export default function ToneContent({
   const [view, setView] = useState<PageView>("overview");
   const [selectedPair, setSelectedPair] = useState<TonePair | null>(null);
   const [exerciseMode, setExerciseMode] = useState<ExerciseMode>("listen");
-  const [progress, setProgress] = useState<Map<string, PairProgress>>(new Map());
+  const [progress, setProgress] = useClientState(
+    () => new Map(Object.entries(storageGet<Record<string, PairProgress>>(KEYS.toneDrillProgress, {}))),
+    NO_PAIR_PROGRESS
+  );
   const [sessionCorrect, setSessionCorrect] = useState(0);
   const [sessionTotal, setSessionTotal] = useState(0);
 
   useEffect(() => {
     initVoices();
-    const parsed = storageGet<Record<string, PairProgress>>(KEYS.toneDrillProgress, {});
-    if (Object.keys(parsed).length > 0) {
-      setProgress(new Map(Object.entries(parsed)));
-    }
   }, []);
 
   function saveProgress(updated: Map<string, PairProgress>) {
@@ -691,6 +689,7 @@ export default function ToneContent({
 
           {/* Exercise */}
           <Exercise
+            key={`${selectedPair.id}-${exerciseMode}`}
             pair={selectedPair}
             allPairs={tonePairs}
             mode={exerciseMode}

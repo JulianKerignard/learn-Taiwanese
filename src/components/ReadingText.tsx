@@ -10,6 +10,7 @@ import RubyText from "@/components/RubyText";
 import { LANGUAGES, type LanguageSegment } from "@/lib/language";
 import { Eye, EyeOff, ChevronLeft, ChevronRight, BookOpen, Plus, Volume2 } from "lucide-react";
 import type { Segment } from "@/types";
+import { useClientState } from "@/lib/use-client-state";
 
 // ─── The shape this renderer needs ───
 
@@ -183,12 +184,14 @@ interface ReadingTextProps {
   onClose?: () => void;
 }
 
+const NO_KNOWN_WORDS = new Set<string>();
+
 export default function ReadingText({ lang, reading, onClose }: ReadingTextProps) {
   const [showReading, setShowReading] = useState(false);
   const [sentenceMode, setSentenceMode] = useState(false);
   const [currentSentence, setCurrentSentence] = useState(0);
   const [revealedTranslations, setRevealedTranslations] = useState<Set<number>>(new Set());
-  const [knownWords, setKnownWords] = useState<Set<string>>(new Set());
+  const [knownWords, setKnownWords] = useClientState(getKnownWords, NO_KNOWN_WORDS);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const [flashcardAdded, setFlashcardAdded] = useState<string | null>(null);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -196,10 +199,6 @@ export default function ReadingText({ lang, reading, onClose }: ReadingTextProps
 
   const language = LANGUAGES[lang];
   const displayMode = getSettings().displayMode;
-
-  useEffect(() => {
-    setKnownWords(getKnownWords());
-  }, []);
 
   // Detect touch device
   useEffect(() => {
@@ -226,7 +225,7 @@ export default function ReadingText({ lang, reading, onClose }: ReadingTextProps
 
   // Reverse index: single char → vocab item (for term-level lookup)
   const charIndex = useMemo(() => {
-    const map = new Map<string, (typeof reading.vocabulary)[0]>();
+    const map = new Map<string, GradedText["vocabulary"][number]>();
     for (const v of reading.vocabulary) {
       for (const ch of v.term) {
         if (!map.has(ch)) map.set(ch, v);
@@ -288,7 +287,7 @@ export default function ReadingText({ lang, reading, onClose }: ReadingTextProps
         setTimeout(() => setFlashcardAdded(null), FLASHCARD_TOAST_MS);
       }
     },
-    [knownWords, vocabMap, charIndex]
+    [knownWords, setKnownWords, vocabMap, charIndex]
   );
 
   const toggleTranslation = useCallback((idx: number) => {

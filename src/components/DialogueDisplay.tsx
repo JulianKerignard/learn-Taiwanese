@@ -13,7 +13,6 @@ interface DialogueDisplayProps {
 
 export default function DialogueDisplay({ dialogue, className }: DialogueDisplayProps) {
   const speakers = Array.from(new Set(dialogue.lines.map((l) => l.speaker)));
-  const speakerA = speakers[0] ?? "";
   const speakerB = speakers[1] ?? "";
 
   return (

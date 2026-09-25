@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 import {
   CheckCircle2,
   RotateCcw,
@@ -24,6 +24,8 @@ import {
   saveGamification,
 } from "@/lib/storage";
 import { shuffleArray } from "@/lib/utils";
+import { langHref, type LanguageSegment } from "@/lib/language";
+import { useClientState } from "@/lib/use-client-state";
 import type { SM2Card, SM2Grade, ReviewMode, SessionResult, Achievement } from "@/types";
 
 const REVIEW_MODES: ReviewMode[] = ["recognize", "recall", "listening", "writing"];
@@ -37,18 +39,38 @@ function shuffleForDistractors(cards: SM2Card[], current: SM2Card): SM2Card[] {
 }
 
 interface ReviewSessionProps {
+  lang: LanguageSegment;
   cardFilter?: (cards: SM2Card[]) => SM2Card[];
-  topicLabel?: string;
 }
 
-export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionProps = {}) {
-  const [queue, setQueue] = useState<SM2Card[]>([]);
-  const [allCards, setAllCards] = useState<SM2Card[]>([]);
+interface Sitting {
+  /** Every card the filter admits: the distractor pool. */
+  allCards: SM2Card[];
+  queue: SM2Card[];
+  startTime: number;
+}
+
+const NO_SITTING: Sitting = { allCards: [], queue: [], startTime: 0 };
+
+function composeSitting(cardFilter: ReviewSessionProps["cardFilter"]): Sitting {
+  const allStoredCards = getCards();
+  const pool = cardFilter ? cardFilter(allStoredCards) : allStoredCards;
+  return {
+    allCards: pool,
+    queue: composeSession(pool, getSettings().dailyNewCards),
+    startTime: Date.now(),
+  };
+}
+
+export default function ReviewSession({ lang, cardFilter }: ReviewSessionProps) {
+  // Composed once, from localStorage, when the client takes over.
+  const [{ allCards, queue, startTime }, , loaded] = useClientState(
+    () => composeSitting(cardFilter),
+    NO_SITTING
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [sessionDone, setSessionDone] = useState(false);
-  const [loaded, setLoaded] = useState(false);
   const [sessionResult, setSessionResult] = useState<SessionResult | null>(null);
-  const startTimeRef = useRef(Date.now());
 
   // Track accuracy per mode
   const [modeAccuracy, setModeAccuracy] = useState<Record<ReviewMode, { correct: number; total: number }>>({
@@ -63,22 +85,6 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
   const [newLearned, setNewLearned] = useState(0);
   const [allGradesGood, setAllGradesGood] = useState(true);
   const [newAchievements, setNewAchievements] = useState<Achievement[]>([]);
-
-  useEffect(() => {
-    const allStoredCards = getCards();
-    const settings = getSettings();
-    const pool = cardFilter ? cardFilter(allStoredCards) : allStoredCards;
-    const combined = composeSession(pool, settings.dailyNewCards);
-
-    setAllCards(pool);
-    setQueue(combined);
-    setLoaded(true);
-    startTimeRef.current = Date.now();
-
-    if (combined.length === 0) {
-      setSessionDone(true);
-    }
-  }, []);
 
   const handleGrade = useCallback(
     (grade: SM2Grade) => {
@@ -148,7 +154,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
       saveGamification(gamData);
 
       if (currentIndex + 1 >= queue.length) {
-        const timeSpent = Math.round((Date.now() - startTimeRef.current) / 1000);
+        const timeSpent = Math.round((Date.now() - startTime) / 1000);
         setSessionResult({
           totalCards: queue.length,
           reviewed: reviewed + 1,
@@ -169,7 +175,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
         setCurrentIndex((i) => i + 1);
       }
     },
-    [queue, currentIndex, reviewed, newLearned, sessionXP, modeAccuracy, allGradesGood, newAchievements]
+    [queue, startTime, currentIndex, reviewed, newLearned, sessionXP, modeAccuracy, allGradesGood, newAchievements]
   );
 
   // Hooks must run before any conditional return: the early exits below change
@@ -184,7 +190,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
   if (!loaded) return null;
 
   // No cards
-  if (queue.length === 0 && sessionDone) {
+  if (queue.length === 0) {
     return (
       <div className="flex flex-col items-center gap-6 py-20 text-center">
         <BookOpen className="h-16 w-16 text-stone-300" />
@@ -193,7 +199,7 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
           Ajoute du vocabulaire depuis les leçons pour commencer tes sessions de
           révision.
         </p>
-        <Link href="/lessons" className="btn-primary gap-2">
+        <Link href={langHref(lang, "/lessons")} className="btn-primary gap-2">
           <BookOpen className="h-4 w-4" />
           Voir les leçons
         </Link>
@@ -314,10 +320,10 @@ export default function ReviewSession({ cardFilter, topicLabel }: ReviewSessionP
         )}
 
         <div className="flex gap-3">
-          <Link href="/" className="btn-secondary">
+          <Link href={langHref(lang)} className="btn-secondary">
             Accueil
           </Link>
-          <Link href="/lessons" className="btn-primary">
+          <Link href={langHref(lang, "/lessons")} className="btn-primary">
             Continuer à apprendre
           </Link>
         </div>

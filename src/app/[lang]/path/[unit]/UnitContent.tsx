@@ -27,6 +27,7 @@ import { upsertCard, updateStreak, getCards } from "@/lib/storage";
 import { createCard } from "@/lib/fsrs";
 import { langHref, type LanguageSegment } from "@/lib/language";
 import type { Chapter, CourseUnit, ProficiencyLevel } from "@/types/course";
+import { useClientState } from "@/lib/use-client-state";
 
 /** Stable FSRS card id for a unit vocabulary entry. */
 function vocabCardId(unitId: string, term: string): string {
@@ -64,18 +65,21 @@ export default function UnitContent({
     score: number;
     passed: boolean;
   } | null>(null);
-  const [vocabAdded, setVocabAdded] = useState(false);
-
   // Only the flashcard state needs the browser; the lesson itself came prerendered.
-  useEffect(() => {
-    if (!unit) return;
-    const existingIds = new Set(getCards().map((c) => c.id));
-    // every() is true for an empty list: 15 units have no vocabulary, and the
+  const [vocabAdded, setVocabAdded] = useClientState(
+    () => {
+      if (!unit) return false;
+      const existingIds = new Set(getCards().map((c) => c.id));
+      // every() is true for an empty list: 15 units have no vocabulary, and the
       // button would show as already added next to "0 mots".
-      setVocabAdded(
-        unit.vocabulary.length > 0 && unit.vocabulary.every((item) => existingIds.has(vocabCardId(unitId, item.term)))
+      return (
+        unit.vocabulary.length > 0 &&
+        unit.vocabulary.every((item) => existingIds.has(vocabCardId(unitId, item.term)))
       );
-  }, [unit, unitId]);
+    },
+    false,
+    unitId
+  );
 
   useEffect(() => {
     let activeTime = 0;
@@ -156,7 +160,7 @@ export default function UnitContent({
       upsertCard(card);
     }
     setVocabAdded(true);
-  }, [unit, unitId]);
+  }, [unit, unitId, setVocabAdded]);
 
   const handleRetry = () => {
     setExerciseResult(null);

@@ -53,7 +53,7 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
   const shuffledData = useMemo(() => {
     if (!current?.options?.length) return [];
     return shuffleArray(current.options.map((opt, i) => ({ opt, origIndex: i })));
-  }, [currentIndex, current?.id]);
+  }, [current]);
 
   const handleAnswer = useCallback(
     (answer: string) => {

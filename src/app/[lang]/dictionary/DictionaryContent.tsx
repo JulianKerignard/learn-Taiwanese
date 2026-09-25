@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { Search, X, Plus, Check, ChevronDown } from "lucide-react";
 import AudioButton from "@/components/AudioButton";
 import PinyinDisplay from "@/components/PinyinDisplay";
@@ -10,6 +10,7 @@ import type { UserSettings } from "@/types";
 import { createCard } from "@/lib/fsrs";
 import { japaneseCollator } from "@/lib/japanese";
 import { LANGUAGES, levelName, type LanguageSegment } from "@/lib/language";
+import { useClientState } from "@/lib/use-client-state";
 
 // Everything this component knows about the corpus arrives as props. It is a
 // client component: importing @/data/<lang>/dictionary here would ship *both*
@@ -55,6 +56,16 @@ const SOURCE_FILTER_KIND: Record<Exclude<SourceFilter, "all">, DictionarySourceK
 /** Both dictionaries hold hundreds of entries; rendering them all blows up the HTML. */
 const PAGE_SIZE = 100;
 
+const NO_USER_STATE = {
+  displayMode: "romanization" as const,
+  existingCardTerms: new Set<string>(),
+};
+
+/** Called from a click handler only: the timestamp keeps re-added terms distinct. */
+function dictionaryCardId(term: string): string {
+  return `dict-${term}-${Date.now()}`;
+}
+
 export default function DictionaryContent({ lang, entries, levels }: DictionaryContentProps) {
   const language = LANGUAGES[lang];
   const { copy } = language;
@@ -84,16 +95,19 @@ export default function DictionaryContent({ lang, entries, levels }: DictionaryC
   const [addedCards, setAddedCards] = useState<Set<string>>(new Set());
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  // Read after mount, never during render: this page is prerendered, so touching
-  // localStorage while rendering makes the server and client markup disagree and
+  // Read once hydration is over, never while hydrating: this page is prerendered,
+  // so touching localStorage then makes the server and client markup disagree and
   // costs a full client re-render of the list.
-  const [displayMode, setDisplayMode] = useState<UserSettings["displayMode"]>("romanization");
-  const [existingCardTerms, setExistingCardTerms] = useState<Set<string>>(new Set());
-
-  useEffect(() => {
-    setDisplayMode(getSettings().displayMode);
-    setExistingCardTerms(new Set(getCards().map((c) => c.front)));
-  }, []);
+  const [{ displayMode, existingCardTerms }] = useClientState<{
+    displayMode: UserSettings["displayMode"];
+    existingCardTerms: Set<string>;
+  }>(
+    () => ({
+      displayMode: getSettings().displayMode,
+      existingCardTerms: new Set(getCards().map((c) => c.front)),
+    }),
+    NO_USER_STATE
+  );
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -151,7 +165,7 @@ export default function DictionaryContent({ lang, entries, levels }: DictionaryC
   function handleAddToFlashcards(entry: DictionaryEntry) {
     if (existingCardTerms.has(entry.term) || addedCards.has(entry.term)) return;
     const card = createCard({
-      id: `dict-${entry.term}-${Date.now()}`,
+      id: dictionaryCardId(entry.term),
       front: entry.term,
       back: entry.french,
       romanization: entry.romanization,

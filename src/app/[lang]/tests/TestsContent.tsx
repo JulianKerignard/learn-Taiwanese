@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronRight, Clock, Trophy, Lock } from "lucide-react";
 import { cn } from "@/lib/cn";
@@ -8,6 +7,7 @@ import { getBestResult } from "@/lib/test-storage";
 import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
 import type { LevelColor } from "@/types/course";
 import type { TestResult } from "@/types/test";
+import { useClientState } from "@/lib/use-client-state";
 
 // A mock test carries its sections, and those carry every exercise — 34 kB for
 // the Japanese N5 alone. This list needs none of it, so the server page projects
@@ -42,18 +42,16 @@ interface TestsContentProps {
   upcoming: UpcomingTestCard[];
 }
 
+const NO_RESULTS: Record<string, TestResult | null> = {};
+
 export default function TestsContent({ lang, tests, upcoming }: TestsContentProps) {
   const language = LANGUAGES[lang];
-  const [bestResults, setBestResults] = useState<Record<string, TestResult | null>>({});
-
-  // Results live in localStorage, which the prerender cannot see: read after mount.
-  useEffect(() => {
-    const results: Record<string, TestResult | null> = {};
-    for (const test of tests) {
-      results[test.id] = getBestResult(test.id);
-    }
-    setBestResults(results);
-  }, [tests]);
+  // Results live in localStorage, which the prerender cannot see: read after hydration.
+  const [bestResults] = useClientState<Record<string, TestResult | null>>(
+    () => Object.fromEntries(tests.map((test) => [test.id, getBestResult(test.id)])),
+    NO_RESULTS,
+    tests.map((test) => test.id).join(",")
+  );
 
   return (
     <div className="flex flex-col gap-10">

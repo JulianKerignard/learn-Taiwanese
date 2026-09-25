@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { RotateCcw, Volume2, Eye } from "lucide-react";
 import AudioButton from "./AudioButton";
 import PinyinDisplay from "./PinyinDisplay";
@@ -27,6 +27,22 @@ const gradeButtons: { grade: Grade; label: string; color: string }[] = [
   { grade: Rating.Easy, label: "Facile", color: "bg-success text-white" },
 ];
 
+type Option = { text: string; isCorrect: boolean };
+
+/**
+ * The right answer among three distractors, shuffled. Drawn once per card: the
+ * main component remounts the mode on every new card, so no effect has to
+ * reset it.
+ */
+function buildOptions(correct: string, wrong: string[], filler: string): Option[] {
+  const wrongAnswers = wrong.slice(0, 3).map((text) => ({ text, isCorrect: false }));
+  // Fill if not enough distractors
+  while (wrongAnswers.length < 3) {
+    wrongAnswers.push({ text: filler, isCorrect: false });
+  }
+  return shuffleArray([{ text: correct, isCorrect: true }, ...wrongAnswers]);
+}
+
 // ------- Recognize Mode -------
 function RecognizeMode({
   card,
@@ -38,25 +54,11 @@ function RecognizeMode({
   onAnswer: (correct: boolean) => void;
 }) {
   const contentLang = useContentLang();
-  const [options, setOptions] = useState<{ text: string; isCorrect: boolean }[]>([]);
+  const [options] = useState(() =>
+    buildOptions(card.back, distractors.filter((d) => d.id !== card.id).map((d) => d.back), "---")
+  );
   const [answered, setAnswered] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
-
-  useEffect(() => {
-    const wrongAnswers = distractors
-      .filter((d) => d.id !== card.id)
-      .slice(0, 3)
-      .map((d) => ({ text: d.back, isCorrect: false }));
-
-    // Fill if not enough distractors
-    while (wrongAnswers.length < 3) {
-      wrongAnswers.push({ text: "---", isCorrect: false });
-    }
-
-    setOptions(shuffleArray([{ text: card.back, isCorrect: true }, ...wrongAnswers]));
-    setAnswered(false);
-    setSelected(null);
-  }, [card.id, distractors]);
 
   function handleSelect(idx: number) {
     if (answered) return;
@@ -109,10 +111,6 @@ function RecallMode({
 }) {
   const contentLang = useContentLang();
   const [flipped, setFlipped] = useState(false);
-
-  useEffect(() => {
-    setFlipped(false);
-  }, [card.id]);
 
   function handleFlip() {
     if (!flipped) {
@@ -169,26 +167,12 @@ function ListeningMode({
   onAnswer: (correct: boolean) => void;
 }) {
   const contentLang = useContentLang();
-  const [options, setOptions] = useState<{ text: string; isCorrect: boolean }[]>([]);
+  const [options] = useState(() =>
+    buildOptions(card.front, distractors.filter((d) => d.id !== card.id).map((d) => d.front), "?")
+  );
   const [answered, setAnswered] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
   const [audioPlayed, setAudioPlayed] = useState(false);
-
-  useEffect(() => {
-    const wrongAnswers = distractors
-      .filter((d) => d.id !== card.id)
-      .slice(0, 3)
-      .map((d) => ({ text: d.front, isCorrect: false }));
-
-    while (wrongAnswers.length < 3) {
-      wrongAnswers.push({ text: "?", isCorrect: false });
-    }
-
-    setOptions(shuffleArray([{ text: card.front, isCorrect: true }, ...wrongAnswers]));
-    setAnswered(false);
-    setSelected(null);
-    setAudioPlayed(false);
-  }, [card.id, distractors]);
 
   async function playAudio() {
     setAudioPlayed(true);
@@ -263,18 +247,6 @@ function WritingMode({
   const [drawing, setDrawing] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const [hasDrawn, setHasDrawn] = useState(false);
-
-  useEffect(() => {
-    setRevealed(false);
-    setHasDrawn(false);
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext("2d");
-      if (ctx) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-    }
-  }, [card.id]);
 
   function getPos(e: React.MouseEvent | React.TouchEvent, canvas: HTMLCanvasElement) {
     const rect = canvas.getBoundingClientRect();
@@ -450,7 +422,17 @@ function GradeButtons({
 }
 
 // ------- Main Flashcard Component -------
-export default function Flashcard({
+
+/**
+ * Every piece of per-card state — the shuffled options, the flip, the drawing,
+ * the grade buttons — belongs to one card in one mode. Keying on both remounts
+ * the whole card instead of resetting each piece from an effect.
+ */
+export default function Flashcard(props: FlashcardProps) {
+  return <FlashcardView key={`${props.card.id}:${props.mode}`} {...props} />;
+}
+
+function FlashcardView({
   card,
   mode,
   onGrade,
@@ -458,19 +440,8 @@ export default function Flashcard({
   distractors = [],
 }: FlashcardProps) {
   const [showGrade, setShowGrade] = useState(false);
-  const [autoGrade, setAutoGrade] = useState<SM2Grade | null>(null);
 
-  useEffect(() => {
-    setShowGrade(false);
-    setAutoGrade(null);
-  }, [card.id, mode]);
-
-  function handleMultipleChoiceAnswer(correct: boolean) {
-    if (correct) {
-      setAutoGrade(3); // Good
-    } else {
-      setAutoGrade(0); // Again
-    }
+  function handleMultipleChoiceAnswer() {
     setShowGrade(true);
   }
 

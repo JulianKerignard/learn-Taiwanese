@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { RotateCcw, Layers, ChevronRight, Sparkles, BookOpen, GraduationCap } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
@@ -19,6 +19,7 @@ import {
 } from "@/lib/revision";
 import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
 import type { SM2Card } from "@/types";
+import { useClientState } from "@/lib/use-client-state";
 
 type ViewMode = "recommended" | "unit" | "chapter" | "level";
 
@@ -29,6 +30,8 @@ type ViewMode = "recommended" | "unit" | "chapter" | "level";
  * and title, and the lesson modules themselves are hundreds of kilobytes that a
  * client component must never pull in.
  */
+const NO_CARDS: SM2Card[] = [];
+
 export default function RevisionContent({
   lang,
   lessons,
@@ -36,14 +39,8 @@ export default function RevisionContent({
   lang: LanguageSegment;
   lessons: LessonRef[];
 }) {
-  const [cards, setCards] = useState<SM2Card[]>([]);
-  const [loaded, setLoaded] = useState(false);
+  const [cards, , loaded] = useClientState<SM2Card[]>(getCards, NO_CARDS);
   const [view, setView] = useState<ViewMode>("recommended");
-
-  useEffect(() => {
-    setCards(getCards());
-    setLoaded(true);
-  }, []);
 
   if (!loaded) return null;
 

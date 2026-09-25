@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Volume2 } from "lucide-react";
 import { speak, isSupported } from "@/lib/tts";
 import { cn } from "@/lib/cn";
+import { useClientState } from "@/lib/use-client-state";
 
 interface AudioButtonProps {
   text: string;
@@ -14,11 +15,7 @@ interface AudioButtonProps {
 
 export default function AudioButton({ text, rate = 0.85, size = "md", className }: AudioButtonProps) {
   const [playing, setPlaying] = useState(false);
-  const [supported, setSupported] = useState(true);
-
-  useEffect(() => {
-    setSupported(isSupported());
-  }, []);
+  const [supported] = useClientState(isSupported, true);
 
   if (!supported) return null;
 

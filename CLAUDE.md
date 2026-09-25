@@ -144,7 +144,7 @@ SQLite stores users and their synced data in `src/lib/db.ts`.
 
 ### Gamification
 
-`src/lib/gamification.ts`: XP per review grade (0–15 pts), hard mode bonus (+5), streak multipliers (up to 2x), leveling (100×N XP per level, max 60), 13 achievements.
+`src/lib/gamification.ts`: XP per review grade (0–15 pts), hard mode bonus (+5), streak multipliers (up to 2x), leveling (100×N XP per level, max 60), 14 achievements.
 
 ### Key Components
 
@@ -178,6 +178,10 @@ Two type files in `src/types/`:
 - `lang` on a fragment of target-language text comes from `useContentLang()`
   (`src/components/ContentLanguage.tsx`), never from a literal: `currentLanguage()` reads
   `window.location` and resolves to the default edition during SSR.
+- Browser-only initial state (localStorage, feature checks, random draws) goes through
+  `useClientState()` from `src/lib/use-client-state.ts`, never a `setState` in a mount
+  effect: the prerender gets the fallback, the browser value is read once hydration is
+  over. The React Compiler lint rules are blocking (`error`), so the old pattern fails lint.
 - Utility: `cn()` from `src/lib/cn.ts` (clsx + tailwind-merge) for conditional class merging.
 - Content language: UI in French; learning content in the edition's language with its two
   annotations (pinyin/zhuyin, or rōmaji/kana) plus French and English.

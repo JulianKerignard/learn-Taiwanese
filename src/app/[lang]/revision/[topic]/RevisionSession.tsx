@@ -40,7 +40,7 @@ export default function RevisionSession({
         <p className="text-sm text-stone-500">Révision — {label}</p>
       </div>
 
-      <ReviewSession cardFilter={filter} topicLabel={label} />
+      <ReviewSession lang={lang} cardFilter={filter} />
     </div>
   );
 }

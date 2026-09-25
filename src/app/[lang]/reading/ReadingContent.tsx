@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/cn";
 import { storageGet, storageSet, KEYS } from "@/lib/storage";
 import ReadingText, { type GradedText } from "@/components/ReadingText";
 import { LANGUAGES, type LanguageSegment } from "@/lib/language";
 import { BookOpen, Check, ChevronRight, Filter } from "lucide-react";
+import { useClientState } from "@/lib/use-client-state";
 
 const READ_KEY = KEYS.readingCompleted;
 
@@ -30,6 +31,8 @@ const levelConfig = {
  * The texts arrive as props: the page above resolves them on the server so that
  * neither corpus is imported from the browser bundle.
  */
+const NO_TEXTS_READ = new Set<string>();
+
 export default function ReadingContent({
   lang,
   gradedTexts,
@@ -39,11 +42,7 @@ export default function ReadingContent({
 }) {
   const [selectedLevel, setSelectedLevel] = useState<1 | 2 | 3 | null>(null);
   const [activeReading, setActiveReading] = useState<string | null>(null);
-  const [readTexts, setReadTexts] = useState<Set<string>>(new Set());
-
-  useEffect(() => {
-    setReadTexts(getReadTexts());
-  }, []);
+  const [readTexts, setReadTexts] = useClientState<Set<string>>(getReadTexts, NO_TEXTS_READ);
 
   const language = LANGUAGES[lang];
 

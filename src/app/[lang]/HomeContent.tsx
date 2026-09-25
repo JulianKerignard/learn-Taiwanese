@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import {
   BookOpen,
   Flame,
@@ -12,6 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { getProgress, getCards, defaultProgress } from "@/lib/storage";
+import { useClientState } from "@/lib/use-client-state";
 import { getStats } from "@/lib/fsrs";
 import { getUnitMetaById } from "@/data/meta";
 import {
@@ -43,6 +43,16 @@ export interface LessonCard {
   icon: string;
 }
 
+const EMPTY_HOME: {
+  progress: UserProgress;
+  cardStats: ReturnType<typeof getStats>;
+  pathProgress: PathProgress;
+} = {
+  progress: defaultProgress,
+  cardStats: { total: 0, due: 0, learned: 0, mature: 0, newCards: 0 },
+  pathProgress: EMPTY_PATH_PROGRESS,
+};
+
 export default function HomeContent({
   lang,
   lessons,
@@ -55,17 +65,14 @@ export default function HomeContent({
   // Anything that describes the reader — counters, streak, "commence ton
   // parcours", the resume link — waits for `hydrated`: an empty localStorage at
   // build time is an absence of data, not a user with zero progress.
-  const [progress, setProgress] = useState<UserProgress>(defaultProgress);
-  const [cardStats, setCardStats] = useState({ total: 0, due: 0, learned: 0, mature: 0, newCards: 0 });
-  const [pathProgress, setPathProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    setProgress(getProgress());
-    setCardStats(getStats(getCards()));
-    setPathProgress(getPathProgress());
-    setHydrated(true);
-  }, []);
+  const [{ progress, cardStats, pathProgress }, , hydrated] = useClientState(
+    () => ({
+      progress: getProgress(),
+      cardStats: getStats(getCards()),
+      pathProgress: getPathProgress(),
+    }),
+    EMPTY_HOME
+  );
 
   const language = LANGUAGES[lang];
   const href = (path: string) => langHref(lang, path);

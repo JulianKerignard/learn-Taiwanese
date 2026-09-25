@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
@@ -21,6 +20,7 @@ import {
   type LanguageSegment,
 } from "@/lib/language";
 import type { Chapter, PathProgress } from "@/types/course";
+import { useClientState } from "@/lib/use-client-state";
 
 /**
  * One level of the parcours, for either edition.
@@ -44,13 +44,7 @@ export default function LevelContent({
   // `hydrated` keeps the two halves apart — chapter and unit copy is build-known
   // and ships in the HTML, while progression, locks and counters wait for
   // localStorage rather than presenting an empty progression as a measurement.
-  const [progress, setProgress] = useState<PathProgress>(EMPTY_PATH_PROGRESS);
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    setProgress(getPathProgress());
-    setHydrated(true);
-  }, []);
+  const [progress, , hydrated] = useClientState<PathProgress>(getPathProgress, EMPTY_PATH_PROGRESS);
 
   const language = LANGUAGES[lang];
   const { code } = language;
@@ -145,23 +139,21 @@ export default function LevelContent({
 
       {/* Chapters within this level */}
       <div className="flex flex-col gap-12">
-        {(() => {
-          let runningIndex = globalStartIndex;
-          return levelChapters.map((chapter) => {
-            const startIndex = runningIndex;
-            runningIndex += chapter.unitIds.length;
-            return (
-              <ChapterSection
-                key={chapter.number}
-                lang={lang}
-                chapter={chapter}
-                progress={progress}
-                startIndex={startIndex}
-                userStateReady={hydrated}
-              />
-            );
-          });
-        })()}
+        {levelChapters.map((chapter, i) => (
+          <ChapterSection
+            key={chapter.number}
+            lang={lang}
+            chapter={chapter}
+            progress={progress}
+            // Units are numbered across the level: this chapter starts after
+            // every unit of the chapters before it.
+            startIndex={
+              globalStartIndex +
+              levelChapters.slice(0, i).reduce((sum, c) => sum + c.unitIds.length, 0)
+            }
+            userStateReady={hydrated}
+          />
+        ))}
       </div>
 
       {/* Level complete or next level CTA */}

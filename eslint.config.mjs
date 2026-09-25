@@ -22,16 +22,17 @@ export default tseslint.config(
     rules: {
       // The rule that would have caught the ReviewSession crash: keep it blocking.
       "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
-      // React Compiler rules. The codebase hydrates from localStorage in effects
-      // on purpose, so these report style, not defects: advisory only.
-      "react-hooks/set-state-in-effect": "warn",
-      "react-hooks/purity": "warn",
-      "react-hooks/immutability": "warn",
-      "react-hooks/refs": "warn",
-      "react-hooks/preserve-manual-memoization": "warn",
+      "react-hooks/exhaustive-deps": "error",
+      // React Compiler rules. Browser-only state goes through useClientState()
+      // (src/lib/use-client-state.ts) rather than a setState in a mount effect,
+      // so these hold with no exception: blocking.
+      "react-hooks/set-state-in-effect": "error",
+      "react-hooks/purity": "error",
+      "react-hooks/immutability": "error",
+      "react-hooks/refs": "error",
+      "react-hooks/preserve-manual-memoization": "error",
       "@typescript-eslint/no-unused-vars": [
-        "warn",
+        "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
       "@typescript-eslint/no-explicit-any": "error",

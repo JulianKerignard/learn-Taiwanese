@@ -40,8 +40,12 @@ export default function TestRunner({ lang, test }: TestRunnerProps) {
   const [result, setResult] = useState<TestResult | null>(null);
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  // The countdown submits from an interval set up when the test started, so it
+  // reads the answers through a ref, synced after each commit rather than mid-render.
   const answersRef = useRef(answers);
-  answersRef.current = answers;
+  useEffect(() => {
+    answersRef.current = answers;
+  }, [answers]);
 
   const flatExercises = test.sections.flatMap((section) =>
     section.exercises.map((ex) => ({

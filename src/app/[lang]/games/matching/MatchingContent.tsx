@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { getRandomWords, type GameWord } from "@/lib/game-data";
 import AudioButton from "@/components/AudioButton";
 import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
+import { useClientState } from "@/lib/use-client-state";
 
 interface Card {
   id: number;
@@ -48,6 +49,19 @@ function buildCards(words: GameWord[]): Card[] {
 
 const PAIR_COUNT = 6;
 
+interface Game {
+  words: GameWord[];
+  cards: Card[];
+  startTime: number;
+}
+
+const NO_GAME: Game = { words: [], cards: [], startTime: 0 };
+
+function newGame(pool: GameWord[]): Game {
+  const words = getRandomWords(pool, PAIR_COUNT);
+  return { words, cards: buildCards(words), startTime: Date.now() };
+}
+
 // The word pool arrives as a prop: see ./page.tsx.
 export default function MatchingContent({
   lang,
@@ -60,11 +74,13 @@ export default function MatchingContent({
 }) {
   const language = LANGUAGES[lang];
 
-  const [words, setWords] = useState<GameWord[]>([]);
-  const [cards, setCards] = useState<Card[]>([]);
+  // The draw is random and the clock starts now: both wait for the client.
+  const [game, setGame] = useClientState(() => newGame(pool), NO_GAME);
+  const { words, cards, startTime } = game;
+  const setCards = (update: (prev: Card[]) => Card[]) =>
+    setGame((g) => ({ ...g, cards: update(g.cards) }));
   const [selected, setSelected] = useState<number[]>([]);
   const [attempts, setAttempts] = useState(0);
-  const [startTime, setStartTime] = useState<number>(0);
   const [elapsed, setElapsed] = useState(0);
   const [finished, setFinished] = useState(false);
   const [showRomanization, setShowRomanization] = useState(true);
@@ -72,23 +88,15 @@ export default function MatchingContent({
   /** Pairs already found. A ref, not state: nothing renders it. */
   const matched = useRef(0);
 
-  const initGame = useCallback(() => {
-    const w = getRandomWords(pool, PAIR_COUNT);
-    setWords(w);
-    setCards(buildCards(w));
+  function initGame() {
+    setGame(newGame(pool));
     setSelected([]);
     setAttempts(0);
     matched.current = 0;
-    setStartTime(Date.now());
     setElapsed(0);
     setFinished(false);
     locked.current = false;
-  }, [pool]);
-
-  // The draw is random and the clock starts now: both wait for the client.
-  useEffect(() => {
-    initGame();
-  }, [initGame]);
+  }
 
   useEffect(() => {
     if (finished || startTime === 0) return;

@@ -1,5 +1,4 @@
 import type { SM2Card } from "@/types";
-import type { ProficiencyLevel } from "@/types/course";
 // Metadata only: grouping needs a unit's number, title and chapter, never its
 // sections or exercises. /revision is a client route, so importing
 // @/data/server here would ship the whole catalogue to the browser.

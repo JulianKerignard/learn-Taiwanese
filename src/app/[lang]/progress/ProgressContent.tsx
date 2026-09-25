@@ -31,6 +31,7 @@ import {
 } from "@/lib/gamification";
 // Metadata only: the chapter rollup needs unit ids and titles, not lessons.
 import { courseMeta } from "@/data/meta";
+import { useClientState } from "@/lib/use-client-state";
 import type { UserProgress, XPEvent } from "@/types";
 import type { GamificationData } from "@/types";
 import type { PathProgress } from "@/types/course";
@@ -65,6 +66,14 @@ function getXpByDay(xpHistory: XPEvent[]): { day: string; xp: number; label: str
   return days;
 }
 
+const NOTHING_LOADED = {
+  progress: null,
+  gamification: null,
+  pathProgress: null,
+  studyTime: {},
+  mistakes: {},
+};
+
 export default function ProgressContent({
   lang,
   lessons,
@@ -72,15 +81,23 @@ export default function ProgressContent({
   lang: LanguageSegment;
   lessons: LessonRow[];
 }) {
-  const [progress, setProgress] = useState<UserProgress | null>(null);
-  const [gamification, setGamification] = useState<GamificationData | null>(
-    null
+  const [{ progress, gamification, pathProgress, studyTime, mistakes }, , loaded] = useClientState<{
+    progress: UserProgress | null;
+    gamification: GamificationData | null;
+    pathProgress: PathProgress | null;
+    studyTime: Record<string, number>;
+    mistakes: Record<string, number>;
+  }>(
+    () => ({
+      progress: getProgress(),
+      gamification: getGamification(),
+      pathProgress: getPathProgress(),
+      studyTime: getStudyTime(),
+      mistakes: getMistakes(),
+    }),
+    NOTHING_LOADED
   );
-  const [pathProgress, setPathProgress] = useState<PathProgress | null>(null);
-  const [studyTime, setStudyTime] = useState<Record<string, number>>({});
-  const [mistakes, setMistakes] = useState<Record<string, number>>({});
   const [showReset, setShowReset] = useState(false);
-  const [loaded, setLoaded] = useState(false);
   // /api/users returns the signed-in user's own synced stats only: the account
   // directory it used to expose was half of an account takeover.
   const [syncedStats, setSyncedStats] = useState<{
@@ -95,17 +112,7 @@ export default function ProgressContent({
     totalStudyMinutes: number;
   } | null>(null);
 
-  function reload() {
-    setProgress(getProgress());
-    setGamification(getGamification());
-    setPathProgress(getPathProgress());
-    setStudyTime(getStudyTime());
-    setMistakes(getMistakes());
-    setLoaded(true);
-  }
-
   useEffect(() => {
-    reload();
     // Synced stats for the signed-in account, if there is one.
     fetch("/api/users")
       .then((r) => (r.ok ? r.json() : null))
