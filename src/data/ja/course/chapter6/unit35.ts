@@ -2,7 +2,7 @@ import type { CourseUnit } from "@/types/course";
 
 export const unit35: CourseUnit = {
   id: "unit-35",
-  number: 35,
+  number: 43,
   title: "Santé et démarches administratives",
   titleNative: "病院と役所",
   chapter: 6,

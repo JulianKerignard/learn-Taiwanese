@@ -41,6 +41,14 @@ import { unit29 } from "./chapter5/unit29";
 import { unit30 } from "./chapter5/unit30";
 import { unit31 } from "./chapter5/unit31";
 import { unit32 } from "./chapter5/unit32";
+import { unit45 } from "./chapter5/unit45";
+import { unit46 } from "./chapter5/unit46";
+import { unit47 } from "./chapter5/unit47";
+import { unit48 } from "./chapter5/unit48";
+import { unit49 } from "./chapter5/unit49";
+import { unit50 } from "./chapter5/unit50";
+import { unit51 } from "./chapter5/unit51";
+import { unit52 } from "./chapter5/unit52";
 
 // Chapitre 6 — Travail et société
 import { unit33 } from "./chapter6/unit33";
@@ -95,8 +103,11 @@ export const chapters: Chapter[] = [
     title: "Grammaire intermédiaire",
     titleNative: "中級文法",
     description:
-      "Style neutre, conditionnels, passif, causatif et propositions relatives : la charpente de la phrase longue",
-    unitIds: ["unit-27", "unit-28", "unit-29", "unit-30", "unit-31", "unit-32"],
+      "Style neutre, conditionnels, passif, causatif et relatives, puis transitivité, but, concession, temps et discours rapporté : la charpente de la phrase longue",
+    unitIds: [
+      "unit-27", "unit-28", "unit-29", "unit-30", "unit-31", "unit-32",
+      "unit-45", "unit-46", "unit-47", "unit-48", "unit-49", "unit-50", "unit-51", "unit-52",
+    ],
   },
   {
     number: 6,
@@ -180,6 +191,7 @@ export const allUnits: CourseUnit[] = [
   unit14, unit15, unit16, unit17, unit18, unit19, unit20,
   unit21, unit22, unit23, unit24, unit25, unit26,
   unit27, unit28, unit29, unit30, unit31, unit32,
+  unit45, unit46, unit47, unit48, unit49, unit50, unit51, unit52,
   unit33, unit34, unit35, unit36, unit37,
   unit38, unit39, unit40, unit41,
   unit42, unit43, unit44,

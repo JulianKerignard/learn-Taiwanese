@@ -46,6 +46,10 @@ export function savePathProgress(progress: PathProgress): void {
 }
 
 export function isUnitUnlocked(unitId: string, unit: CourseUnitMeta, progress: PathProgress): boolean {
+  // A unit already completed stays open even if the path later gains a
+  // prerequisite before it (the N4 units inserted ahead of unit-33): what the
+  // learner has done is never re-locked.
+  if (progress.completedUnits.includes(unitId)) return true;
   if (unit.prerequisites.length === 0) return true;
   return unit.prerequisites.every((prereq) => progress.completedUnits.includes(prereq));
 }

@@ -25,7 +25,7 @@ import {
 } from "@/lib/progress";
 import { upsertCard, updateStreak, getCards } from "@/lib/storage";
 import { createCard } from "@/lib/fsrs";
-import { langHref, type LanguageSegment } from "@/lib/language";
+import { LANGUAGES, langHref, levelName, type LanguageSegment } from "@/lib/language";
 import type { Chapter, CourseUnit, ProficiencyLevel } from "@/types/course";
 import { useClientState } from "@/lib/use-client-state";
 
@@ -154,6 +154,7 @@ export default function UnitContent({
         back: item.french,
         romanization: item.romanization,
         reading: item.reading,
+        segments: item.segments,
         type: "vocabulary",
         lessonId: unitId,
       });
@@ -166,7 +167,7 @@ export default function UnitContent({
     setExerciseResult(null);
   };
 
-  // Next unit within same HSK level
+  // Next unit within the same proficiency level
   const levelIdx = levelUnitIds.indexOf(unitId);
   const nextUnitId = levelIdx >= 0 && levelIdx < levelUnitIds.length - 1
     ? levelUnitIds[levelIdx + 1]
@@ -201,7 +202,7 @@ export default function UnitContent({
         {level && (
           <>
             <Link href={langHref(lang, `/path/niveau/${level.slug}`)} className="hover:text-primary transition-colors">
-              HSK {level.level}
+              {levelName(LANGUAGES[lang], level.level)}
             </Link>
             <ChevronRight className="h-3 w-3" />
           </>
@@ -354,7 +355,7 @@ export default function UnitContent({
                     Réessayer
                   </button>
                 )}
-                <Link href={level ? `/path/${level.slug}` : "/path"} className="btn-secondary">
+                <Link href={langHref(lang, level ? `/path/niveau/${level.slug}` : "/path")} className="btn-secondary">
                   Retour au parcours
                 </Link>
               </div>
@@ -371,11 +372,11 @@ export default function UnitContent({
       {/* Bottom navigation */}
       <div className="flex items-center justify-between border-t border-stone-200 pt-6">
         <Link
-          href={level ? `/path/${level.slug}` : "/path"}
+          href={langHref(lang, level ? `/path/niveau/${level.slug}` : "/path")}
           className="flex items-center gap-1 text-sm text-stone-500 hover:text-primary transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
-          Retour au HSK {level?.level ?? "parcours"}
+          {level ? `Retour au ${levelName(LANGUAGES[lang], level.level)}` : "Retour au parcours"}
         </Link>
         {nextUnitId && (
           <Link

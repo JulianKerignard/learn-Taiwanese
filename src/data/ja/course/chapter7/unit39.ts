@@ -2,7 +2,7 @@ import type { CourseUnit } from "@/types/course";
 
 export const unit39: CourseUnit = {
   id: "unit-39",
-  number: 39,
+  number: 47,
   title: "Rapporter et supposer : marquer la source de ce qu'on dit",
   titleNative: "伝聞と推量",
   chapter: 7,

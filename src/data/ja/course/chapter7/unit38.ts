@@ -2,7 +2,7 @@ import type { CourseUnit } from "@/types/course";
 
 export const unit38: CourseUnit = {
   id: "unit-38",
-  number: 38,
+  number: 46,
   chapter: 7,
   title: "Les auxiliaires d'aspect : ておく、てしまう、てある",
   titleNative: "アスペクトの補助動詞",

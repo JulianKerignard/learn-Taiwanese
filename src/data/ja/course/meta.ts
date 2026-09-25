@@ -5,7 +5,7 @@ import type { Chapter, CourseUnitMeta, ProficiencyLevel } from "@/types/course";
 // A unit module is heavy: sections, dialogue, vocabulary, exercises. Index and
 // navigation views need none of that — only a title, an icon, a chapter and the
 // prerequisites that decide whether a node is unlocked. Importing
-// `@/data/course` from a client component drags all 44 unit modules into that
+// `@/data/course` from a client component drags every unit module into that
 // route's bundle, so this module restates their metadata and imports none of
 // them. That is the whole point: keep it free of `./chapterN/unitNN` imports.
 //
@@ -47,8 +47,11 @@ export const chapters: Chapter[] = [
     title: "Grammaire intermédiaire",
     titleNative: "中級文法",
     description:
-      "Style neutre, conditionnels, passif, causatif et propositions relatives : la charpente de la phrase longue",
-    unitIds: ["unit-27", "unit-28", "unit-29", "unit-30", "unit-31", "unit-32"],
+      "Style neutre, conditionnels, passif, causatif et relatives, puis transitivité, but, concession, temps et discours rapporté : la charpente de la phrase longue",
+    unitIds: [
+      "unit-27", "unit-28", "unit-29", "unit-30", "unit-31", "unit-32",
+      "unit-45", "unit-46", "unit-47", "unit-48", "unit-49", "unit-50", "unit-51", "unit-52",
+    ],
   },
   {
     number: 6,
@@ -513,8 +516,104 @@ export const allUnitMetas: CourseUnitMeta[] = [
     prerequisites: ["unit-31"],
   },
   {
-    id: "unit-33",
+    id: "unit-45",
     number: 33,
+    chapter: 5,
+    title: "Transitifs et intransitifs : 開ける ou 開く",
+    titleNative: "自動詞と他動詞：開ける・開く",
+    description:
+      "Là où le français dit « ouvrir » et « s'ouvrir », le japonais a deux verbes distincts, et il faut choisir à chaque phrase. Les paires à connaître, les moules qui permettent de les deviner, le 〜ている de l'état obtenu, et pourquoi un Japonais dit « le train a pris du retard » sans nommer personne, mais « j'ai cassé le verre » quand c'est sa faute.",
+    icon: "開",
+    requiredScore: 0.6,
+    prerequisites: ["unit-32"],
+  },
+  {
+    id: "unit-46",
+    number: 34,
+    chapter: 5,
+    title: "Essayer, emporter, évoluer : てみる, ていく, てくる",
+    titleNative: "〜てみる・〜ていく・〜てくる",
+    description:
+      "Trois verbes ordinaires — 見る, 行く, 来る — accrochés à la forme en て deviennent des outils de grammaire. 〜てみる pour essayer et voir ce que ça donne, 〜ていく et 〜てくる pour situer une action dans l'espace puis dans le temps, et les formules de seuil 行ってきます et ただいま.",
+    icon: "試",
+    requiredScore: 0.6,
+    prerequisites: ["unit-45"],
+  },
+  {
+    id: "unit-47",
+    number: 35,
+    chapter: 5,
+    title: "Changer et décider : ようになる, ようにする, ことにする",
+    titleNative: "変化と決定：〜ようになる・〜ようにする・〜ことにする",
+    description:
+      "Quatre tournures bâties sur deux verbes, なる et する, et une seule question : le changement arrive-t-il de lui-même, ou quelqu'un l'a-t-il voulu ? 〜ようになる pour ce qui devient possible ou habituel, 〜ようにする pour l'effort qu'on s'impose, 〜ことにする pour la décision prise, 〜ことになる pour celle qui vous tombe dessus.",
+    icon: "変",
+    requiredScore: 0.6,
+    prerequisites: ["unit-46"],
+  },
+  {
+    id: "unit-48",
+    number: 36,
+    chapter: 5,
+    title: "Le but et la raison : ために, ように, ので",
+    titleNative: "目的と理由：〜ために・〜ように・〜ので",
+    description:
+      "Le français a « pour » et « parce que » ; le japonais en a deux de chaque, et chaque paire se partage le terrain selon une règle précise. ために pour un but qu'on atteint soi-même, ように pour un résultat qu'on ne peut que favoriser, から pour une raison qu'on assume, ので pour une explication qui ménage l'autre.",
+    icon: "的",
+    requiredScore: 0.6,
+    prerequisites: ["unit-47"],
+  },
+  {
+    id: "unit-49",
+    number: 37,
+    chapter: 5,
+    title: "Même si, alors que : ても, のに, けど",
+    titleNative: "逆接：〜ても・〜のに・〜けど",
+    description:
+      "Trois manières d'opposer deux idées, du plus neutre au plus chargé. 〜ても pour « même si » et « peu importe », 〜のに pour « alors que », avec la surprise ou le dépit qu'il transporte, et けど / が pour l'opposition simple — et pour la phrase qu'on laisse volontairement en suspens.",
+    icon: "逆",
+    requiredScore: 0.6,
+    prerequisites: ["unit-48"],
+  },
+  {
+    id: "unit-50",
+    number: 38,
+    chapter: 5,
+    title: "Situer une action dans le temps : ところ, ばかり, てから",
+    titleNative: "時間の表現：〜ところ・〜たばかり・〜てから",
+    description:
+      "Sur le point de partir, en train de manger, tout juste arrivé : 〜ところ découpe une action en trois instants. Puis 〜たばかり pour ce qu'on ressent comme récent, 〜てから et 〜たあとで pour l'ordre des actions — et l'excuse la plus célèbre du Japon, celle du livreur de soba.",
+    icon: "後",
+    requiredScore: 0.6,
+    prerequisites: ["unit-49"],
+  },
+  {
+    id: "unit-51",
+    number: 39,
+    chapter: 5,
+    title: "Énumérer et conseiller : たり, し, ほうがいい",
+    titleNative: "例示と助言：〜たり〜たり・〜し・〜ほうがいい",
+    description:
+      "Donner quelques exemples sans prétendre tout dire avec 〜たり〜たりする, empiler des raisons avec 〜し, puis conseiller — ou déconseiller — avec 〜たほうがいい et 〜ないほうがいい. Et comment donner un conseil à quelqu'un qui ne vous l'a pas demandé, sans avoir l'air de lui faire la leçon.",
+    icon: "例",
+    requiredScore: 0.6,
+    prerequisites: ["unit-50"],
+  },
+  {
+    id: "unit-52",
+    number: 40,
+    chapter: 5,
+    title: "Rapporter des paroles et des questions",
+    titleNative: "引用と伝言：〜と言う・〜か・〜ように言う",
+    description:
+      "Citer quelqu'un avec と言う, transmettre un message avec と伝えてください, glisser une question dans la phrase avec 〜か et 〜かどうか, rapporter un ordre avec 〜ように言う, et nommer ce qu'on ne connaît pas avec 〜という. De quoi passer un message au bureau sans rien perdre en route.",
+    icon: "伝",
+    requiredScore: 0.6,
+    prerequisites: ["unit-51"],
+  },
+  {
+    id: "unit-33",
+    number: 41,
     chapter: 6,
     title: "Le keigo : rehausser l'autre, s'abaisser soi-même",
     titleNative: "敬語：尊敬語と謙譲語",
@@ -522,11 +621,11 @@ export const allUnitMetas: CourseUnitMeta[] = [
       "Les trois branches du 敬語, les verbes irréguliers qu'on ne devine pas, les schémas お〜になる et お〜する, et le principe qui commande tout : la frontière ウチ／ソト, celle que les étrangers franchissent de travers.",
     icon: "敬",
     requiredScore: 0.6,
-    prerequisites: ["unit-32"],
+    prerequisites: ["unit-52"],
   },
   {
     id: "unit-34",
-    number: 34,
+    number: 42,
     chapter: 6,
     title: "Au bureau : téléphone et courriels",
     titleNative: "職場の日本語：電話とメール",
@@ -538,7 +637,7 @@ export const allUnitMetas: CourseUnitMeta[] = [
   },
   {
     id: "unit-35",
-    number: 35,
+    number: 43,
     chapter: 6,
     title: "Santé et démarches administratives",
     titleNative: "病院と役所",
@@ -550,7 +649,7 @@ export const allUnitMetas: CourseUnitMeta[] = [
   },
   {
     id: "unit-36",
-    number: 36,
+    number: 44,
     chapter: 6,
     title: "Exprimer une opinion nuancée",
     titleNative: "意見をやわらかく述べる",
@@ -562,7 +661,7 @@ export const allUnitMetas: CourseUnitMeta[] = [
   },
   {
     id: "unit-37",
-    number: 37,
+    number: 45,
     chapter: 6,
     title: "Langue écrite, langue parlée",
     titleNative: "書き言葉と話し言葉",
@@ -574,7 +673,7 @@ export const allUnitMetas: CourseUnitMeta[] = [
   },
   {
     id: "unit-38",
-    number: 38,
+    number: 46,
     chapter: 7,
     title: "Les auxiliaires d'aspect : ておく、てしまう、てある",
     titleNative: "アスペクトの補助動詞",
@@ -586,7 +685,7 @@ export const allUnitMetas: CourseUnitMeta[] = [
   },
   {
     id: "unit-39",
-    number: 39,
+    number: 47,
     chapter: 7,
     title: "Rapporter et supposer : marquer la source de ce qu'on dit",
     titleNative: "伝聞と推量",
@@ -598,7 +697,7 @@ export const allUnitMetas: CourseUnitMeta[] = [
   },
   {
     id: "unit-40",
-    number: 40,
+    number: 48,
     chapter: 7,
     title: "Les onomatopées : dire le son, le geste et l'état",
     titleNative: "オノマトペ：擬音語と擬態語",
@@ -610,7 +709,7 @@ export const allUnitMetas: CourseUnitMeta[] = [
   },
   {
     id: "unit-41",
-    number: 41,
+    number: 49,
     chapter: 7,
     title: "Le japonais tel qu'on le parle entre proches",
     titleNative: "話しことば：縮約形と終助詞",
@@ -622,7 +721,7 @@ export const allUnitMetas: CourseUnitMeta[] = [
   },
   {
     id: "unit-42",
-    number: 42,
+    number: 50,
     chapter: 8,
     title: "Lire un texte argumenté : les connecteurs de l'écrit",
     titleNative: "書きことば：論の骨組みを読む",
@@ -634,7 +733,7 @@ export const allUnitMetas: CourseUnitMeta[] = [
   },
   {
     id: "unit-43",
-    number: 43,
+    number: 51,
     chapter: 8,
     title: "Presse et documents officiels",
     titleNative: "新聞と公文書を読む",
@@ -646,7 +745,7 @@ export const allUnitMetas: CourseUnitMeta[] = [
   },
   {
     id: "unit-44",
-    number: 44,
+    number: 52,
     chapter: 8,
     title: "Expressions imagées : yojijukugo et métaphores du corps",
     titleNative: "四字熟語と体の慣用句",

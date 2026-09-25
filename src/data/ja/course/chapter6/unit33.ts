@@ -2,7 +2,7 @@ import type { CourseUnit } from "@/types/course";
 
 export const unit33: CourseUnit = {
   id: "unit-33",
-  number: 33,
+  number: 41,
   title: "Le keigo : rehausser l'autre, s'abaisser soi-même",
   titleNative: "敬語：尊敬語と謙譲語",
   chapter: 6,
@@ -589,5 +589,5 @@ export const unit33: CourseUnit = {
   ],
 
   requiredScore: 0.6,
-  prerequisites: ["unit-32"],
+  prerequisites: ["unit-52"],
 };

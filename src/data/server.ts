@@ -53,3 +53,11 @@ export async function phonologyData(code: LanguageCode) {
 export async function kanaData(code: LanguageCode) {
   return code === "ja" ? import("./ja/kana") : null;
 }
+
+/**
+ * The kanji course, after the kana. Mandarin learners read hanzi from the first
+ * lesson, so there is no separate course to hand them: null.
+ */
+export async function kanjiData(code: LanguageCode) {
+  return code === "ja" ? import("./ja/kanji") : null;
+}

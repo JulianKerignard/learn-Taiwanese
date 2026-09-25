@@ -9,7 +9,7 @@ export const culture: Lesson = {
     "Les gestes qu'on ne vous expliquera jamais parce qu'ils vont de soi : quand se déchausser, ce qu'on dit en entrant, pourquoi on refuse deux fois avant d'accepter. Le vocabulaire qui accompagne ces situations.",
   icon: "⛩️",
   category: "culture",
-  order: 6,
+  order: 10,
 
   vocabulary: [
     {

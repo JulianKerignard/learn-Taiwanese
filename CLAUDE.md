@@ -47,7 +47,7 @@ assets now live at the domain root (`/_next`, `/api`, `/audio`) rather than unde
 ### Data Layer (static, no CMS)
 
 **Two corpora live side by side**: `src/data/zh/` (Mandarin, 88 units) and `src/data/ja/`
-(Japanese, 44 units). They expose the same API and the same field names — see the shared
+(Japanese, 52 units). They expose the same API and the same field names — see the shared
 vocabulary below. Audio is split the same way, `public/audio/zh/` and `public/audio/ja/`:
 34 filenames collided between the two, so the split is required, not cosmetic.
 
@@ -90,16 +90,56 @@ d'abord à lire" card and the path banners. Never test for Japanese directly.
   **logic** `src/lib/kana.ts` (pure: segmentation, rōmaji converter, Leitner boxes). Client
   components get the data as props; the home page receives only the basic-table ids.
 - **Mastery** is a Leitner box per sign (0–5, mastered from `MASTERED_BOX` = 3), stored under
-  `KEYS.kanaProgress` keyed by `Kana.id`. Local only: it is not in `SYNCED_KEYS`.
+  `KEYS.kanaProgress` keyed by `Kana.id`, synced as `kana_progress` (merged per sign, the
+  later `lastSeen` wins — never the higher box, since a miss drops a box to 0).
 - **Rōmaji** is wāpuro-style Hepburn without macrons (コーヒー "koohii"), and the converter in
   `src/lib/kana.ts` is the grader. `npm run validate` (ja) recomputes every sign's and word's
   rōmaji with it, checks the table counts (46 basic, 25 dakuten, 33 yōon per script), that
   every sign is taught by exactly one lesson, that confusables are symmetric, and that every
   word is spelt with taught signs only.
 
+### Kanji course (Japanese only)
+
+`/japon/kanji` follows the kana course and the course path. Gated on `language.kanjiCourse`
+(`{ slug: "kanji", label: "Kanji" }`, `null` for Mandarin): the route (`generateStaticParams`
+only for editions that have it), the Navbar link right after Kana, and the kana page's
+"Passe aux kanji" card once 75 % of the hiragana are mastered.
+
+- **Types** `src/types/kanji.ts`, **data** `src/data/ja/kanji.ts` (one entry per kanji the
+  vocabulary writes: French meanings, on'yomi in katakana, kun'yomi in hiragana with okurigana
+  after a dot, strokes, JLPT level, optional mnemonic), **logic** `src/lib/kanji.ts` (pure).
+- **Lessons are derived, never authored**: `deriveKanjiLessons()` gives a kanji to the first
+  unit, by number, whose vocabulary writes it. The page adds lessons for the kanji only the
+  standalone lessons and graded readings write ("Hors parcours"). Adding vocabulary to a unit
+  can therefore move a kanji between lessons; the progress, keyed by the character, survives.
+- **The server page** (`src/app/[lang]/kanji/page.tsx`) derives the lessons and up to four
+  example words per kanji (`examplesFor()`, course words first), and sends each word once with
+  its furigana `segments`; kanji reference words by index. The client never sees a corpus.
+- **Mastery** reuses the kana Leitner boxes (`nextBox`, `MASTERED_BOX`) under
+  `KEYS.kanjiProgress`, keyed by the character, synced as `kanji_progress`. The recommended
+  lesson is the first not mastered up to the learner's current course unit
+  (`KEYS.courseProgress.currentUnit`), else the first not mastered.
+- **Quiz** (`kanji-ui.ts`): kanji → meaning, reading of an example word, word → missing kanji.
+  `buildKanjiOptions()` guarantees no two options share a meaning, or a reading when the
+  reading is printed.
+
+### Rōmaji weaning and furigana
+
+`src/lib/display.ts` decides how a card is annotated. `effectiveDisplayMode()` turns
+"romanization" and "both" into "reading" once the learner has mastered 40 of the 46 basic
+hiragana (`HIRAGANA_READY`), in an edition with a `readingCourse`, unless
+`settings.weanRomanization === false`. Client code reads it through `useDisplayMode()`.
+Furigana is gated on `usesFurigana(language)` (`kanjiCourse !== null`); `cardSegments()`
+falls back to an okurigana split for old cards without `segments`. The settings live in the
+"Réglages" card of `/progress`.
+
+In an edition with a reading course, typed answers (no options, not reorder) go through
+`matchesTypedAnswer()` in `src/lib/kana.ts`: width and punctuation are folded, and a kana-only
+answer also accepts rōmaji.
+
 ### State & Persistence
 
-No external state library. All client state flows through React hooks + localStorage. The `src/lib/storage.ts` module defines a `KEYS` object mapping all storage keys (cards, progress, settings, gamification, favorites, study_time, mistakes). Authenticated users get server sync via `src/lib/sync.ts` (3s debounced, 8 data keys synced).
+No external state library. All client state flows through React hooks + localStorage. The `src/lib/storage.ts` module defines a `KEYS` object mapping all storage keys (cards, progress, settings, gamification, favorites, study_time, mistakes). Authenticated users get server sync via `src/lib/sync.ts` (3s debounced, 10 data keys synced, including the kana and kanji mastery maps).
 
 ### Spaced Repetition (FSRS)
 

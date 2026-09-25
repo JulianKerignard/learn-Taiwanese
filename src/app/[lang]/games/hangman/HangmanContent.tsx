@@ -16,9 +16,10 @@ const CHOICE_COUNT = 20;
 
 // One game, two boards. Mandarin hides the characters of the word and the reader
 // guesses those; Japanese hides the mora of the reading — 今日 is two characters
-// but three mora, so a per-character split would be the wrong board entirely.
-// The Japanese pool is restricted upstream to kana-written words, where the term
-// is its own reading (see ./page.tsx).
+// but three mora (きょ・う), so a per-character split would be the wrong board
+// entirely. The mora come from the word's kana `reading`, which every generated
+// game word carries, so kanji words play too; the written form is revealed as
+// the answer once the round is over.
 const COPY: Record<LanguageCode, { title: string; prompt: string }> = {
   zh: { title: "Pendu chinois", prompt: "Quel est le caractère chinois pour :" },
   ja: { title: "Pendu japonais", prompt: "Quelle est la lecture en kana de :" },
@@ -63,7 +64,7 @@ export default function HangmanContent({
   const copy = COPY[language.code];
 
   const unitsOf = useCallback(
-    (word: GameWord) => (isJapanese ? splitMora(word.term) : [...word.term]),
+    (word: GameWord) => (isJapanese ? splitMora(word.reading) : [...word.term]),
     [isJapanese]
   );
 
@@ -207,6 +208,11 @@ export default function HangmanContent({
           <p className="mb-1 text-lg font-bold text-stone-900 chinese" lang={language.contentLang}>
             {target.term}
           </p>
+          {isJapanese && target.reading !== target.term && (
+            <p className="mb-1 text-sm text-stone-600 chinese" lang={language.contentLang}>
+              {target.reading}
+            </p>
+          )}
           <p className="mb-3 text-sm text-stone-500">{target.romanization}</p>
           <AudioButton text={target.term} size="lg" />
           <div className="mt-4">

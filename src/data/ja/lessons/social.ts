@@ -9,7 +9,7 @@ export const social: Lesson = {
     "Parler de sa famille, échanger une carte de visite, accepter une invitation au izakaya et comprendre ce que cache un « ちょっと… ». Le japonais des relations.",
   icon: "🍻",
   category: "social",
-  order: 5,
+  order: 7,
 
   vocabulary: [
     {

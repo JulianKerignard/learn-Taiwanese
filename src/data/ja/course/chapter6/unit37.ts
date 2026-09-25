@@ -2,7 +2,7 @@ import type { CourseUnit } from "@/types/course";
 
 export const unit37: CourseUnit = {
   id: "unit-37",
-  number: 37,
+  number: 45,
   chapter: 6,
   title: "Langue écrite, langue parlée",
   titleNative: "書き言葉と話し言葉",

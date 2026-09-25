@@ -19,12 +19,12 @@ import {
   upsertCard,
   saveProgress,
   updateStreak,
-  getSettings,
   getGamification,
   saveGamification,
 } from "@/lib/storage";
 import { shuffleArray } from "@/lib/utils";
-import { langHref, type LanguageSegment } from "@/lib/language";
+import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
+import { readSettings, usesFurigana } from "@/lib/display";
 import { useClientState } from "@/lib/use-client-state";
 import type { SM2Card, SM2Grade, ReviewMode, SessionResult, Achievement } from "@/types";
 
@@ -57,7 +57,7 @@ function composeSitting(cardFilter: ReviewSessionProps["cardFilter"]): Sitting {
   const pool = cardFilter ? cardFilter(allStoredCards) : allStoredCards;
   return {
     allCards: pool,
-    queue: composeSession(pool, getSettings().dailyNewCards),
+    queue: composeSession(pool, readSettings().dailyNewCards),
     startTime: Date.now(),
   };
 }
@@ -185,7 +185,6 @@ export default function ReviewSession({ lang, cardFilter }: ReviewSessionProps) 
     () => (card ? shuffleForDistractors(allCards.length > 0 ? allCards : queue, card) : []),
     [allCards, queue, card]
   );
-  const settings = useMemo(() => getSettings(), []);
 
   if (!loaded) return null;
 
@@ -356,7 +355,7 @@ export default function ReviewSession({ lang, cardFilter }: ReviewSessionProps) 
         card={card}
         mode={mode}
         onGrade={handleGrade}
-        displayMode={settings.displayMode}
+        furigana={usesFurigana(LANGUAGES[lang])}
         distractors={distractors}
       />
 

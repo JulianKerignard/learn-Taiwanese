@@ -72,7 +72,13 @@ export function storageKey(name: string): string {
 
 // ── Server-side sync naming ─────────────────────────────────────────
 
-/** Logical name → column name, for the eight keys reconciled with the server. */
+/**
+ * Logical name → column name, for the ten keys reconciled with the server.
+ *
+ * The kana and kanji mastery maps are only ever written by an edition with a
+ * reading course (or a kanji course); elsewhere they stay absent from
+ * localStorage, and sync.ts sends only the keys that exist.
+ */
 export const SYNCED_KEYS: { key: string; remote: string }[] = [
   { key: KEYS.cards, remote: "cards" },
   { key: KEYS.progress, remote: "progress" },
@@ -82,6 +88,8 @@ export const SYNCED_KEYS: { key: string; remote: string }[] = [
   { key: KEYS.speedRecord, remote: "speed_record" },
   { key: KEYS.studyTime, remote: "study_time" },
   { key: KEYS.mistakes, remote: "mistakes" },
+  { key: KEYS.kanaProgress, remote: "kana_progress" },
+  { key: KEYS.kanjiProgress, remote: "kanji_progress" },
 ];
 
 /**

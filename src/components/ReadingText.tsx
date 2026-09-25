@@ -4,7 +4,8 @@ import { useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo } fr
 import { cn } from "@/lib/cn";
 import { speak } from "@/lib/tts";
 import { createCard } from "@/lib/fsrs";
-import { getCards, upsertCard, storageGet, storageSet, getSettings, KEYS } from "@/lib/storage";
+import { getCards, upsertCard, storageGet, storageSet, KEYS } from "@/lib/storage";
+import { useDisplayMode } from "@/lib/display";
 import AudioButton from "@/components/AudioButton";
 import RubyText from "@/components/RubyText";
 import { LANGUAGES, type LanguageSegment } from "@/lib/language";
@@ -69,7 +70,13 @@ function saveKnownWords(words: Set<string>) {
   storageSet(KNOWN_WORDS_KEY, [...words]);
 }
 
-function addToFlashcards(vocab: { term: string; romanization: string; reading?: string; french: string }): boolean {
+function addToFlashcards(vocab: {
+  term: string;
+  romanization: string;
+  reading?: string;
+  segments?: Segment[];
+  french: string;
+}): boolean {
   try {
     const existingCards = getCards();
     if (existingCards.some((c) => c.front === vocab.term)) return false;
@@ -79,6 +86,7 @@ function addToFlashcards(vocab: { term: string; romanization: string; reading?: 
       back: vocab.french,
       romanization: vocab.romanization,
       reading: vocab.reading || "",
+      segments: vocab.segments,
       type: "vocabulary",
     });
     upsertCard(card);
@@ -201,7 +209,7 @@ export default function ReadingText({ lang, reading, onClose }: ReadingTextProps
   const tooltipTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const language = LANGUAGES[lang];
-  const displayMode = getSettings().displayMode;
+  const displayMode = useDisplayMode();
 
   // Cleanup tooltip timeout on unmount
   useEffect(() => {
@@ -306,7 +314,10 @@ export default function ReadingText({ lang, reading, onClose }: ReadingTextProps
   const handleAddFlashcard = useCallback(
     (term: string, romanization: string, french: string) => {
       const vocab = vocabMap.get(term) || charIndex.get(term);
-      const added = addToFlashcards({ term, romanization, reading: vocab?.reading, french });
+      // charIndex maps a character to the word it appears in: that word's
+      // segments only fit when the clicked term is the word itself.
+      const segments = vocab?.term === term ? vocab.segments : undefined;
+      const added = addToFlashcards({ term, romanization, reading: vocab?.reading, segments, french });
       if (added) {
         const updated = new Set(knownWords);
         updated.add(term);

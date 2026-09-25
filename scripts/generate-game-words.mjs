@@ -1,5 +1,9 @@
-// Extracts the three fields the mini-games need (character, romanization, french) from
-// the course units and the standalone lessons into src/data/game-words.ts.
+// Extracts the four fields the mini-games need (term, reading, romanization, french)
+// from the course units and the standalone lessons into src/data/<lang>/game-words.ts.
+//
+// `reading` is the native phonetic script (zhuyin, or kana). The Japanese hangman
+// is played on the mora of the reading, so without it the game could only use
+// the words already written in kana.
 //
 // The games are client components: importing the course index there would ship
 // every section, dialogue and exercise of the 88 units to the browser. This
@@ -39,6 +43,7 @@ export function collect() {
         if (words.has(v.term)) continue;
         words.set(v.term, {
           term: v.term,
+          reading: v.reading,
           romanization: v.romanization,
           french: v.french,
         });
@@ -54,7 +59,7 @@ const quote = (value) => JSON.stringify(value ?? "");
 export function render(words) {
   const lines = words.map(
     (w) =>
-      `  { term: ${quote(w.term)}, romanization: ${quote(w.romanization)}, french: ${quote(w.french)} },`
+      `  { term: ${quote(w.term)}, reading: ${quote(w.reading)}, romanization: ${quote(w.romanization)}, french: ${quote(w.french)} },`
   );
 
   return `// GENERATED FILE — do not edit by hand.
@@ -68,6 +73,8 @@ export function render(words) {
 
 export interface GameWord {
   term: string;
+  /** Native phonetic script: zhuyin for Mandarin, kana for Japanese. */
+  reading: string;
   romanization: string;
   french: string;
 }

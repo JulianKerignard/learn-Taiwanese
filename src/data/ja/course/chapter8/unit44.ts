@@ -2,7 +2,7 @@ import type { CourseUnit } from "@/types/course";
 
 export const unit44: CourseUnit = {
   id: "unit-44",
-  number: 44,
+  number: 52,
   chapter: 8,
   title: "Expressions imagées : yojijukugo et métaphores du corps",
   titleNative: "四字熟語と体の慣用句",

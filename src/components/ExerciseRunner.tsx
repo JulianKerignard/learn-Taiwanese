@@ -9,6 +9,8 @@ import { cn } from "@/lib/cn";
 import { shuffleArray, hasChinese, stripPunctuation as strip } from "@/lib/utils";
 import ProgressBar from "./ProgressBar";
 import { useContentLang } from "./ContentLanguage";
+import { currentLanguage } from "@/lib/language";
+import { matchesTypedAnswer } from "@/lib/kana";
 
 interface ExerciseRunnerProps {
   exercises: Exercise[];
@@ -26,8 +28,17 @@ interface ExerciseResult {
 /**
  * Reorder tiles and free-text answers can't be matched byte for byte: the tiles
  * never carry punctuation, and typed input varies in spacing.
+ *
+ * A free-text answer in an edition with a reading course (kana) is graded by
+ * matchesTypedAnswer: width and punctuation folded, and rōmaji accepted when
+ * the expected answer is written in kana only (see src/lib/kana.ts). Called
+ * from an event handler, so currentLanguage() reads the real URL.
  */
 function isAnswerCorrect(exercise: Exercise, answer: string): boolean {
+  const typed = exercise.type !== "reorder" && !exercise.options?.length;
+  if (typed && currentLanguage().readingCourse) {
+    return matchesTypedAnswer(exercise.correctAnswer, answer);
+  }
   if (exercise.type === "reorder" || !exercise.options?.length) {
     return strip(answer) === strip(exercise.correctAnswer);
   }
@@ -166,9 +177,6 @@ export default function ExerciseRunner({ exercises, onComplete, className }: Exe
                 <span className="chinese" lang={contentLang}>{current.question}</span>
               ) : (
                 current.question
-              )}
-              {hasChinese(current.question) && current.hint && (
-                <span className="ml-2 text-sm text-stone-500 italic">({current.hint})</span>
               )}
             </p>
           )}

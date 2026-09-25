@@ -17,7 +17,16 @@ Tout ce qui suit existe dans les deux éditions, sauf mention contraire.
 - Parcours leçon par leçon : chaque leçon présente quelques signes avec un moyen mnémotechnique et l'audio, puis un quiz
 - Entraînement à maîtrise espacée (boîtes de Leitner, 0 à 5 ; un signe est maîtrisé à partir de la boîte 3) qui insiste sur les signes confondus (シ/ツ, ソ/ン, ぬ/め)
 - Lecture de vrais mots écrits uniquement avec les signes déjà appris
-- Progression locale au navigateur, non synchronisée
+- Progression enregistrée dans le navigateur et synchronisée avec le compte
+- Une fois 40 des 46 hiragana de base maîtrisés, le rōmaji disparaît des cartes de révision au profit des kana (désactivable dans les réglages de la page Progression) ; les kanji des cartes portent leurs furigana
+
+### Apprendre les kanji (japonais)
+- Cours dédié à `/japon/kanji`, juste après les kana dans le menu ; le cours de kana le propose dès que les hiragana sont presque tous maîtrisés
+- Les leçons suivent le parcours : chaque unité apporte ses kanji nouveaux (une leçon par unité), puis ceux des leçons thématiques et des lectures graduées
+- Pour chaque kanji : sens, lectures on et kun, nombre de traits, niveau JLPT, moyen mnémotechnique pour les plus fréquents et jusqu'à quatre mots du cours avec furigana et audio
+- Quiz en trois formes : kanji → sens, lecture d'un mot, mot → kanji manquant
+- Liste complète groupée par niveau du parcours ou par niveau JLPT, recherche par sens, lecture (kana ou rōmaji) ou caractère
+- Entraînement libre et maîtrise espacée (mêmes boîtes de Leitner que les kana), synchronisée avec le compte
 
 ### Parcours structuré par niveaux
 - Chaque unité contient un cours théorique, du vocabulaire avec audio, des exercices interactifs et des dialogues
@@ -121,6 +130,7 @@ src/
 │   │   ├── funfacts/         # Anecdotes culturelles
 │   │   ├── games/            # speed-quiz, matching, hangman
 │   │   ├── kana/             # Cours de lecture des kana (japonais seulement)
+│   │   ├── kanji/            # Cours de kanji calé sur le parcours (japonais seulement)
 │   │   ├── lessons/          # Leçons thématiques
 │   │   ├── path/             # Parcours par niveau et unités
 │   │   ├── progress/         # Tableau de bord
@@ -141,6 +151,7 @@ src/
 │       ├── dictionary.ts     # Généré
 │       ├── game-words.ts     # Généré
 │       ├── kana.ts           # Japonais : signes, leçons et mots du cours de kana
+│       ├── kanji.ts          # Japonais : sens, lectures, traits et niveau de chaque kanji
 │       └── tone-pairs.ts / pitch-accent.ts
 ├── lib/
 │   ├── language.ts           # Registre des éditions (URL, voix, niveaux, phonologie)
@@ -152,6 +163,7 @@ src/
 │   ├── revision.ts           # Recommandations thématiques
 │   ├── gamification.ts       # XP, niveaux, succès
 │   ├── kana.ts               # Cours de kana : découpage, rōmaji, boîtes de Leitner
+│   ├── kanji.ts              # Cours de kanji : leçons dérivées, exemples, options de quiz
 │   ├── tts.ts                # Audio à 3 niveaux
 │   └── progress.ts           # Progression du parcours
 └── types/                    # Types TypeScript

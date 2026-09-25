@@ -2,7 +2,7 @@ import type { CourseUnit } from "@/types/course";
 
 export const unit42: CourseUnit = {
   id: "unit-42",
-  number: 42,
+  number: 50,
   chapter: 8,
   title: "Lire un texte argumenté : les connecteurs de l'écrit",
   titleNative: "書きことば：論の骨組みを読む",

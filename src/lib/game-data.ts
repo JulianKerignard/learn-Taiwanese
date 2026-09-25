@@ -11,9 +11,14 @@
  * any unit or lesson vocabulary.
  */
 
-/** The three fields the mini-games read. Both editions expose exactly these. */
+/** The four fields the mini-games read. Both editions expose exactly these. */
 export interface GameWord {
   term: string;
+  /**
+   * Native phonetic script: zhuyin for Mandarin, kana for Japanese. The
+   * Japanese hangman is played on the mora of this reading.
+   */
+  reading: string;
   romanization: string;
   french: string;
 }

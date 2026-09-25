@@ -2,7 +2,7 @@ import type { CourseUnit } from "@/types/course";
 
 export const unit41: CourseUnit = {
   id: "unit-41",
-  number: 41,
+  number: 49,
   chapter: 7,
   title: "Le japonais tel qu'on le parle entre proches",
   titleNative: "話しことば：縮約形と終助詞",

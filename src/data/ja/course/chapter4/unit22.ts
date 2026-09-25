@@ -210,7 +210,7 @@ export const unit22: CourseUnit = {
       {
         speaker: "不動産屋",
         native: "すみません、ペットはだめです。大家さんの規則ですから。",
-        romanization: "sumimasen, petto wa dame desu. ooya san no kisoku desu kara.",
+        romanization: "sumimasen, petto wa dame desu. ooyasan no kisoku desu kara.",
         french: "Désolé, les animaux sont interdits. C'est le règlement du propriétaire.",
         note: "だめです est le refus oral ordinaire, plus court que てはいけません. Le から final justifie : on invoque une règle extérieure plutôt que sa propre volonté.",
       },
@@ -435,7 +435,7 @@ export const unit22: CourseUnit = {
     {
       term: "大家さん",
       reading: "おおやさん",
-      romanization: "ooya san",
+      romanization: "ooyasan",
       segments: [
         { text: "大家", reading: "おおや" },
         { text: "さん" },

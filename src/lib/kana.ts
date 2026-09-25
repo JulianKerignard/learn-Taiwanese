@@ -223,6 +223,207 @@ export function isAcceptedAnswer(k: Kana, input: string): boolean {
   return answer !== "" && acceptedRomaji(k).some((romaji) => normalizeAnswer(romaji) === answer);
 }
 
+// ── Rōmaji → kana, and typed sentence answers ─────────────────────────
+//
+// The reverse of kanaToRomaji, for grading what a learner types in a free-text
+// exercise. It reads wāpuro input and the corpus' own Hepburn alike: "shi" and
+// "si", "tsu" and "tu", "konnichiwa" (Hepburn) and "konnnichiha" (IME).
+
+/** One rōmaji spelling → the kana it may stand for. The first is canonical. */
+const ROMAJI_TO_KANA: Record<string, string[]> = (() => {
+  const table: Record<string, string[]> = {};
+  const add = (romaji: string, ...kana: string[]) => {
+    const list = (table[romaji] ??= []);
+    for (const k of kana) if (!list.includes(k)) list.push(k);
+  };
+
+  // Plain signs, from the table kanaToRomaji reads. ぢ/づ and the small signs
+  // are left to the explicit spellings below, ん to the parser (it needs context).
+  for (const [kana, romaji] of Object.entries(SYLLABLES)) {
+    if ("ぁぃぅぇぉゃゅょゎんぢづ".includes(kana)) continue;
+    add(romaji, kana);
+  }
+  // Kunrei / IME spellings of the same signs.
+  add("si", "し"); add("zi", "じ"); add("hu", "ふ");
+  add("ti", "ち"); add("tu", "つ");
+  // Yōon: き + ゃ = kya…, and the palatal rows that drop the y.
+  for (const head of ["き", "ぎ", "に", "ひ", "び", "ぴ", "み", "り"]) {
+    const consonant = SYLLABLES[head].slice(0, -1);
+    for (const [small, vowel] of Object.entries(SMALL_Y)) add(`${consonant}y${vowel}`, head + small);
+  }
+  for (const [small, vowel] of Object.entries(SMALL_Y)) {
+    for (const c of ["sh", "sy"]) add(c + vowel, "し" + small);
+    for (const c of ["ch", "cy", "ty"]) add(c + vowel, "ち" + small);
+    for (const c of ["j", "jy", "zy"]) add(c + vowel, "じ" + small);
+  }
+  // Loanword combinations, as kanaToRomaji spells them; ti/tu/di/du keep their
+  // Kunrei and IME readings (ち, つ, ぢ, づ) as alternatives.
+  for (const [kana, romaji] of Object.entries(COMBINATIONS)) add(romaji, kana);
+  add("di", "ぢ"); add("du", "づ"); add("dzu", "づ");
+  add("thi", "てぃ"); add("dhi", "でぃ"); add("twu", "とぅ"); add("dwu", "どぅ");
+  add("dhu", "でゅ"); add("who", "うぉ"); add("sye", "しぇ"); add("zye", "じぇ");
+  add("jye", "じぇ"); add("tye", "ちぇ"); add("cye", "ちぇ");
+  // Small signs typed on their own, IME style.
+  for (const [vowel, small] of Object.entries({ a: "ぁ", i: "ぃ", u: "ぅ", e: "ぇ", o: "ぉ" })) {
+    add(`x${vowel}`, small); add(`l${vowel}`, small);
+  }
+  for (const [small, vowel] of Object.entries(SMALL_Y)) {
+    add(`xy${vowel}`, small); add(`ly${vowel}`, small);
+  }
+  for (const r of ["xtu", "ltu", "xtsu", "ltsu"]) add(r, "っ");
+  add("xwa", "ゎ"); add("lwa", "ゎ");
+  return table;
+})();
+
+const LONGEST_ROMAJI = Math.max(...Object.keys(ROMAJI_TO_KANA).map((r) => r.length));
+const MAX_CANDIDATES = 64;
+
+/** A macron is a long vowel the corpus spells two ways: ō is "oo" or "ou". */
+const MACRON_SPELLINGS: Record<string, string[]> = {
+  ā: ["aa"], ī: ["ii"], ū: ["uu"], ē: ["ee", "ei"], ō: ["oo", "ou"],
+  â: ["aa"], î: ["ii"], û: ["uu"], ê: ["ee", "ei"], ô: ["oo", "ou"],
+};
+
+function expandMacrons(token: string): string[] {
+  let out = [""];
+  for (const char of token) {
+    const spellings = MACRON_SPELLINGS[char] ?? [char];
+    out = out.flatMap((prefix) => spellings.map((s) => prefix + s)).slice(0, MAX_CANDIDATES);
+  }
+  return out;
+}
+
+const PARTICLES: Record<string, string[]> = { wa: ["は", "わ"], e: ["へ", "え"], o: ["を", "お"] };
+const SYLLABLES_BY_VOWEL: Record<string, string> = { a: "あ", i: "い", u: "う", e: "え", o: "お" };
+
+const isVowel = (char: string | undefined) => char !== undefined && VOWELS.includes(char);
+
+/**
+ * Every kana reading of one space-delimited rōmaji token, or [] when a letter
+ * cannot be read. `particle` marks a token that follows another one: typed on
+ * its own there, "wa", "e" and "o" are the particles は, へ and を, and a final
+ * "wa" is は too (konnichiwa, jitsu wa), as the corpus writes them.
+ */
+function readToken(token: string, particle: boolean): string[] {
+  if (particle && token in PARTICLES) return PARTICLES[token];
+
+  const results: string[] = [];
+  const walk = (i: number, kana: string) => {
+    if (results.length >= MAX_CANDIDATES) return;
+    if (i >= token.length) {
+      results.push(kana);
+      return;
+    }
+    const char = token[i];
+    const next = token[i + 1];
+    if (char === "'") return walk(i + 1, kana);
+    if (char === "-") return walk(i + 1, kana + CHOUON);
+    if (char === "n") {
+      if (next === "'") return walk(i + 2, kana + "ん");
+      // nn before a vowel is ん + な-row ("konnichiwa", "zannen"); anywhere
+      // else it is the IME's ん ("konnnichiha", "honn"). Hepburn marks the
+      // other reading with an apostrophe: "kin'en".
+      if (next === "n") return walk(isVowel(token[i + 2]) || token[i + 2] === "y" ? i + 1 : i + 2, kana + "ん");
+      if (!isVowel(next) && next !== "y") return walk(i + 1, kana + "ん");
+    }
+    // Traditional Hepburn writes ん as "m" before b and p: "shimbun", "tempura".
+    if (char === "m" && (next === "b" || next === "p")) return walk(i + 1, kana + "ん");
+    // A doubled consonant is っ: "gakkou", "kitte", "maccha", and Hepburn "tch".
+    if (!isVowel(char) && char !== "n" && (next === char || (char === "t" && token.startsWith("ch", i + 1)))) {
+      return walk(i + 1, kana + "っ");
+    }
+    for (let length = Math.min(LONGEST_ROMAJI, token.length - i); length > 0; length--) {
+      const spellings = ROMAJI_TO_KANA[token.slice(i, i + length)];
+      if (!spellings) continue;
+      const final = i + length === token.length && i > 0;
+      const readings = final && token.slice(i, i + length) === "wa" ? [...spellings, "は"] : spellings;
+      for (const reading of readings) walk(i + length, kana + reading);
+      return;
+    }
+  };
+  walk(0, "");
+  return results;
+}
+
+
+/** Punctuation and spacing a typed answer may add, drop or type half-width. */
+const ANSWER_NOISE = /[\s、。，．,.!?！？・:;：；「」『』()（）［］[\]"“”…〜~]/g;
+
+/** Half-width kana and full-width Latin folded (NFKC), punctuation and spaces dropped. */
+function normalizeTyped(text: string): string {
+  return text.normalize("NFKC").toLowerCase().replace(ANSWER_NOISE, "");
+}
+
+/** Hiragana with ー spelt out as the vowel it lengthens: コーヒー → こおひい. */
+function phonetic(kana: string): string {
+  let out = "";
+  for (const char of toHiragana(kana)) {
+    if (char === CHOUON) {
+      const vowel = kanaToRomaji(out).slice(-1);
+      out += SYLLABLES_BY_VOWEL[vowel] ?? CHOUON;
+    } else {
+      out += char;
+    }
+  }
+  return out;
+}
+
+
+const ALL_KANA = /^[ぁ-ゖァ-ヺー]+$/;
+const ROMAJI_INPUT = /^[a-zāīūēōâîûêô'’\s-]+$/;
+
+/**
+ * Every hiragana string the rōmaji `input` may stand for (canonical first), or
+ * [] when it is not rōmaji. Spaces separate words; punctuation is ignored.
+ */
+export function romajiKanaReadings(input: string): string[] {
+  const text = input.normalize("NFKC").toLowerCase().replace(/’/g, "'").replace(/[、。，．,.!?！？]/g, " ").trim();
+  if (!text || !ROMAJI_INPUT.test(text)) return [];
+
+  let readings = [""];
+  const tokens = text.split(/\s+/);
+  for (const [index, token] of tokens.entries()) {
+    const options = [...new Set(expandMacrons(token).flatMap((t) => readToken(t, index > 0)))];
+    if (options.length === 0) return [];
+    readings = readings.flatMap((prefix) => options.map((o) => prefix + o)).slice(0, MAX_CANDIDATES);
+  }
+  return readings;
+}
+
+/**
+ * Rōmaji → hiragana: wāpuro input (nn and n' for ん, a doubled consonant for っ,
+ * "-" for ー, "xtu"/"la" for small signs) as well as the corpus' Hepburn. Long
+ * vowels are kept as typed ("koohii" こおひい, "ginkou" ぎんこう); a macron is
+ * read "oo". Returns null when the input is not rōmaji.
+ */
+export function romajiToKana(input: string): string | null {
+  return romajiKanaReadings(input)[0] ?? null;
+}
+
+/**
+ * Grades a typed answer against a Japanese `expected` sentence.
+ *
+ * - Punctuation, spaces and character width never matter: "テレビを見ますか" is
+ *   "テレビを見ますか。", ﾃﾚﾋﾞ is テレビ.
+ * - Rōmaji is accepted when the expected answer is written in kana only, since
+ *   then the kana *is* its reading; script (hiragana/katakana) cannot be typed
+ *   in rōmaji, so it is not graded on that path. Long vowels must match as
+ *   the kana spell them: "koohii" is コーヒー, "kouhii" is not.
+ * - An expected answer with kanji needs the exact characters: the exercises
+ *   carry no reading of their answer, so a kana or rōmaji spelling of it cannot
+ *   be checked and is refused rather than guessed.
+ */
+export function matchesTypedAnswer(expected: string, answer: string): boolean {
+  const target = normalizeTyped(expected);
+  const typed = normalizeTyped(answer);
+  if (!typed || !target) return false;
+  if (typed === target) return true;
+
+  if (!ALL_KANA.test(target)) return false;
+  const reading = phonetic(target);
+  return romajiKanaReadings(answer).some((kana) => phonetic(kana) === reading);
+}
+
 // ── Leitner mastery ───────────────────────────────────────────────────
 
 export const MAX_BOX = 5;

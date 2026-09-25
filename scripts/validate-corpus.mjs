@@ -25,7 +25,7 @@ if (LANG !== "zh" && LANG !== "ja") {
 const DIR = `../src/data/${LANG}`;
 const isZh = LANG === "zh";
 
-const { allUnits, chapters, levels } = await import(`${DIR}/course/index.ts`);
+const { allUnits, chapters, levels, getLevelForUnit } = await import(`${DIR}/course/index.ts`);
 const {
   allUnitMetas,
   chapters: metaChapters,
@@ -765,6 +765,177 @@ if (kanaCourse && kanaLib) {
     `(${earlyWords} lisibles après ${earlyLesson?.id})`;
 }
 
+// ── 12. The kanji course (Japanese only) ──────────────────────────────
+//
+// /japon/kanji teaches, unit by unit, the kanji the vocabulary writes. Lessons
+// are derived (src/lib/kanji.ts), so the only thing that can drift is the data:
+// a kanji the corpus writes with no entry in src/data/ja/kanji.ts would be
+// silently dropped from the course. Every vocabulary list is covered — units,
+// standalone lessons, graded readings — since all of them reach the reviews.
+
+const kanjiCourse = isZh ? null : await import(`${DIR}/kanji.ts`);
+const kanjiLib = isZh ? null : await import("../src/lib/kanji.ts");
+let kanjiSummary = "";
+
+if (kanjiCourse && kanjiLib) {
+  const { kanji } = kanjiCourse;
+  const { kanjiIndex, kanjiOf, deriveKanjiLessons } = kanjiLib;
+  const ONYOMI = /^[\u30a1-\u30fa\u30fc]+$/;
+  const KUNYOMI = /^[\u3041-\u3096.-]+$/;
+
+  const byChar = new Map();
+  for (const k of kanji) {
+    const label = k.char ?? "(sans caractère)";
+    if (typeof k.char !== "string" || [...k.char].length !== 1 || !isKanji(k.char)) {
+      err("kanji", `${label}: "char" doit être un kanji unique`);
+      continue;
+    }
+    if (byChar.has(k.char)) err("kanji", `${k.char} déclaré deux fois`);
+    byChar.set(k.char, k);
+
+    if (!k.meanings?.length || k.meanings.some((m) => !m?.trim())) {
+      err("kanji", `${label}: au moins un sens, et aucun sens vide`);
+    }
+    if (k.meanings?.length > 3) warn("kanji", `${label}: ${k.meanings.length} sens (3 au plus visés)`);
+    const onyomi = k.onyomi ?? [];
+    const kunyomi = k.kunyomi ?? [];
+    if (onyomi.length + kunyomi.length === 0) err("kanji", `${label}: aucune lecture`);
+    for (const r of onyomi) {
+      if (!ONYOMI.test(r)) err("kanji", `${label}: on'yomi "${r}" hors katakana`);
+    }
+    for (const r of kunyomi) {
+      if (!KUNYOMI.test(r) || r.startsWith(".") || r.endsWith(".") || r.split(".").length > 2) {
+        err("kanji", `${label}: kun'yomi "${r}" mal formé (hiragana, okurigana après un seul point)`);
+      }
+    }
+    for (const list of [onyomi, kunyomi]) {
+      if (new Set(list).size !== list.length) err("kanji", `${label}: lecture en double`);
+    }
+    if (!Number.isInteger(k.strokes) || k.strokes < 1 || k.strokes > 30) {
+      err("kanji", `${label}: nombre de traits ${k.strokes} hors de 1..30`);
+    }
+    if (![1, 2, 3, 4, 5].includes(k.jlpt)) err("kanji", `${label}: niveau JLPT ${k.jlpt} hors de 1..5`);
+    if (k.mnemonic !== undefined && !k.mnemonic.trim()) err("kanji", `${label}: mnémotechnique vide`);
+  }
+
+  // Coverage: every kanji any vocabulary list writes, with where it first appears.
+  const needed = new Map();
+  const note = (source, items) => {
+    for (const item of items ?? []) {
+      for (const char of kanjiOf(item.term ?? "")) if (!needed.has(char)) needed.set(char, `${source}/${item.term}`);
+    }
+  };
+  const unitsInOrder = [...allUnits].sort((a, b) => a.number - b.number);
+  for (const unit of unitsInOrder) note(unit.id, unit.vocabulary);
+  for (const lesson of lessons) note(lesson.slug, lesson.vocabulary);
+  for (const text of gradedTexts) note(text.id, text.vocabulary);
+
+  const missing = [...needed].filter(([char]) => !byChar.has(char));
+  if (missing.length > 0) {
+    err(
+      "kanji",
+      `${missing.length} kanji du vocabulaire sans entrée : ` +
+        missing.map(([char, where]) => `${char} (${where})`).join(", ")
+    );
+  }
+  const unused = kanji.filter((k) => !needed.has(k.char)).map((k) => k.char);
+  if (unused.length > 0) warn("kanji", `${unused.length} entrée(s) qu'aucun vocabulaire n'écrit : ${unused.join(" ")}`);
+
+  const levelNumberOf = new Map();
+  for (const unit of allUnits) levelNumberOf.set(unit.id, getLevelForUnit(unit)?.level ?? 0);
+  const kanjiLessons = deriveKanjiLessons(allUnits, (id) => levelNumberOf.get(id) ?? 0, kanjiIndex(kanji));
+  for (const lesson of kanjiLessons) {
+    if (!lesson.level) err("kanji", `${lesson.unitId}: aucun niveau pour la leçon de kanji dérivée`);
+  }
+
+  // Readings: every vocabulary word must be readable with the readings its kanji
+  // list — rendaku (人々 ひとびと), gemination (学校 がっこう), okurigana-less
+  // stems (話 はなし, 受付 うけつけ) allowed. A word that is not points at a
+  // reading missing from the entry, or at a wrong reading in the word. Words
+  // read as a whole (jukujikun, the special readings of the Jōyō appendix) are
+  // listed below; so are the few per-kanji readings no table gives as such.
+  const WHOLE_WORD = new Set([
+    "明日", "また明日", "今日", "昨日", "今朝", "一日", "二十日", "一人", "二人", "大人", "部屋",
+    "上手", "下手", "手伝う", "手伝い", "息子", "迷子", "景色", "土産", "お土産", "風邪", "紅葉",
+    "梅雨", "お腹", "眼鏡", "時計", "今年", "果物", "二十歳", "真面目",
+  ]);
+  const SPECIAL = { 日: ["に"], 来: ["き", "こ"], 切: ["きっ"], 子: ["ざ"] };
+  const hira = (s) =>
+    [...s].map((c) => { const x = c.codePointAt(0); return x >= 0x30a1 && x <= 0x30f6 ? String.fromCodePoint(x - 0x60) : c; }).join("");
+  const VOICED = { か: "が", き: "ぎ", く: "ぐ", け: "げ", こ: "ご", さ: "ざ", し: "じ", す: "ず", せ: "ぜ", そ: "ぞ", た: "だ", ち: "じ", つ: "ず", て: "で", と: "ど", は: "ば", ひ: "び", ふ: "ぶ", へ: "べ", ほ: "ぼ" };
+  const SEMI = { は: "ぱ", ひ: "ぴ", ふ: "ぷ", へ: "ぺ", ほ: "ぽ" };
+  const I_ROW = { う: "い", く: "き", ぐ: "ぎ", す: "し", つ: "ち", ぬ: "に", ぶ: "び", む: "み", る: "り" };
+  const variantCache = new Map();
+  const variantsOf = (char) => {
+    if (variantCache.has(char)) return variantCache.get(char);
+    const k = byChar.get(char);
+    const base = new Set([...(k.onyomi ?? []).map(hira), ...(SPECIAL[char] ?? [])]);
+    for (const r of k.kunyomi ?? []) {
+      const [stem, oku = ""] = r.split(".");
+      base.add(stem);
+      base.add(stem + oku);
+      const last = oku.at(-1);
+      if (I_ROW[last]) base.add(stem + oku.slice(0, -1) + I_ROW[last]); // 話す → はなし
+      if (last === "る") base.add(stem + oku.slice(0, -1)); // 受ける → うけ
+    }
+    const out = new Set();
+    for (const v of base) {
+      out.add(v);
+      if (VOICED[v[0]]) out.add(VOICED[v[0]] + v.slice(1));
+      if (SEMI[v[0]]) out.add(SEMI[v[0]] + v.slice(1));
+      if (v[0] === "ち") out.add("ぢ" + v.slice(1)); // 鼻血 はなぢ
+      if (v[0] === "つ") out.add("づ" + v.slice(1)); // 三日月 みかづき
+      if (/[つくちき]$/.test(v)) out.add(v.slice(0, -1) + "っ");
+    }
+    variantCache.set(char, out);
+    return out;
+  };
+  const readable = (chars, reading) => {
+    const memo = new Map();
+    const go = (i, j, prev) => {
+      if (i === chars.length) return j === reading.length;
+      const key = `${i}:${j}`;
+      if (memo.has(key)) return memo.get(key);
+      const c = chars[i] === "々" ? prev : chars[i];
+      let ok = false;
+      if (!c || !isKanji(c)) ok = !!c && reading.startsWith(hira(c), j) && go(i + 1, j + hira(c).length, null);
+      else for (const v of variantsOf(c)) if (reading.startsWith(v, j) && go(i + 1, j + v.length, c)) { ok = true; break; }
+      memo.set(key, ok);
+      return ok;
+    };
+    return go(0, 0, null);
+  };
+  let readingsChecked = 0;
+  const unreadable = new Map();
+  const vocabularyLists = [
+    ...allUnits.map((unit) => [unit.id, unit.vocabulary]),
+    ...lessons.map((lesson) => [lesson.slug, lesson.vocabulary]),
+    ...gradedTexts.map((text) => [text.id, text.vocabulary]),
+  ];
+  for (const [source, items] of vocabularyLists) {
+    for (const item of items ?? []) {
+      const term = item.term ?? "";
+      const chars = [...term].filter((c) => isKanji(c) || c === "々" || isKana(c));
+      if (!chars.some(isKanji) || WHOLE_WORD.has(term) || chars.some((c) => isKanji(c) && !byChar.has(c))) continue;
+      const reading = hira([...(item.reading ?? "")].filter(isKana).join(""));
+      readingsChecked++;
+      if (!readable(chars, reading) && !unreadable.has(term)) unreadable.set(term, `${term} [${item.reading}] (${source})`);
+    }
+  }
+  if (unreadable.size > 0) {
+    warn(
+      "kanji",
+      `${unreadable.size} mot(s) dont la lecture ne se déduit pas des lectures de leurs kanji ` +
+        `(lecture manquante dans kanji.ts, ou mot à lire d'un bloc à ajouter à WHOLE_WORD) : ` +
+        [...unreadable.values()].join(", ")
+    );
+  }
+
+  kanjiSummary =
+    `Kanji : ${kanji.length} entrées, ${kanjiLessons.length} leçons dérivées, ` +
+    `${readingsChecked} lectures de mots vérifiées`;
+}
+
 // ── Report ────────────────────────────────────────────────────────────
 
 function report(title, entries) {
@@ -791,6 +962,7 @@ console.log(
     `${gameWords.length} mots de jeu`
 );
 if (kanaSummary) console.log(kanaSummary);
+if (kanjiSummary) console.log(kanjiSummary);
 
 report("WARNINGS", warnings);
 report("ERREURS", errors);

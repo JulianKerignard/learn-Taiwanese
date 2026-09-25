@@ -203,7 +203,7 @@ export const unit13: CourseUnit = {
       {
         speaker: "Yuki",
         native: "ともだちと しぶやで えいがを 見ます。いっしょに 行きませんか。",
-        romanization: "tomodachi to Shibuya de eiga o mimasu. isshoni ikimasen ka.",
+        romanization: "tomodachi to Shibuya de eiga o mimasu. issho ni ikimasen ka.",
         french: "Je vais voir un film à Shibuya avec des amis. Tu ne viendrais pas avec nous ?",
         note: "Trois particules en une phrase : と (avec qui), で (où l'action a lieu), を (ce qu'on regarde). Chacune suit son mot. 行きませんか, question négative, est la façon normale d'inviter sans imposer.",
       },
@@ -250,7 +250,7 @@ export const unit13: CourseUnit = {
     { term: "行く", reading: "いく", romanization: "iku", segments: [{ text: "行", reading: "い" }, { text: "く" }], pitch: 0, french: "Aller", english: "To go" },
     { term: "見る", reading: "みる", romanization: "miru", segments: [{ text: "見", reading: "み" }, { text: "る" }], pitch: 1, french: "Regarder, voir", english: "To watch, to see" },
     { term: "買う", reading: "かう", romanization: "kau", segments: [{ text: "買", reading: "か" }, { text: "う" }], french: "Acheter", english: "To buy" },
-    { term: "いっしょに", reading: "いっしょに", romanization: "isshoni", french: "Ensemble, avec (quelqu'un)", english: "Together" },
+    { term: "いっしょに", reading: "いっしょに", romanization: "issho ni", french: "Ensemble, avec (quelqu'un)", english: "Together" },
     { term: "土曜日", reading: "どようび", romanization: "doyoubi", segments: [{ text: "土", reading: "ど" }, { text: "曜", reading: "よう" }, { text: "日", reading: "び" }], french: "Samedi", english: "Saturday" },
     { term: "しゅうまつ", reading: "しゅうまつ", romanization: "shuumatsu", french: "Le week-end", english: "Weekend" },
     { term: "ひま", reading: "ひま", romanization: "hima", french: "Du temps libre, disponible", english: "Free time, not busy" },

@@ -1,11 +1,14 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
-import { Route, Grid3x3, Dumbbell, BookOpen } from "lucide-react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { Route, Grid3x3, Dumbbell, BookOpen, ArrowRight } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { useContentLang } from "@/components/ContentLanguage";
 import { cn } from "@/lib/cn";
 import { isMastered, nextBox } from "@/lib/kana";
+import { getLanguage, langHref } from "@/lib/language";
 import { KEYS, storageGet, storageSet } from "@/lib/storage";
 import { useClientState } from "@/lib/use-client-state";
 import type { Kana, KanaLesson, KanaProgress, KanaScript, KanaWord } from "@/types/kana";
@@ -17,6 +20,8 @@ import ReadingPractice from "./ReadingPractice";
 type Tab = "path" | "chart" | "drill" | "reading";
 
 const EMPTY: KanaProgress = {};
+/** Share of the hiragana mastered from which the kanji course is suggested. */
+const KANJI_READY = 0.75;
 const readProgress = () => storageGet<KanaProgress>(KEYS.kanaProgress, EMPTY);
 
 const SCRIPTS: { key: KanaScript; label: string; sample: string }[] = [
@@ -71,6 +76,18 @@ export default function KanaContent({
 
   const scriptLabel = script === "hiragana" ? "hiragana" : "katakana";
 
+  // Once the hiragana are mostly read, the kanji course is the next step — on
+  // editions that have one. The segment comes from the route, like the page.
+  const { lang: segment } = useParams<{ lang: string }>();
+  const language = getLanguage(segment);
+  const kanjiHref =
+    language?.kanjiCourse ? langHref(language.segment, `/${language.kanjiCourse.slug}`) : null;
+  const hiraganaReady = useMemo(() => {
+    const hiragana = kana.filter((k) => k.script === "hiragana");
+    const mastered = hiragana.filter((k) => isMastered(progress[k.id])).length;
+    return hiragana.length > 0 && mastered / hiragana.length >= KANJI_READY;
+  }, [kana, progress]);
+
   return (
     <div className="flex flex-col gap-6 sm:gap-8">
       <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -122,6 +139,24 @@ export default function KanaContent({
           </div>
         </div>
       </header>
+
+      {ready && hiraganaReady && kanjiHref && (
+        <Link
+          href={kanjiHref}
+          className="card flex items-center gap-4 border-primary/30 p-4 transition-colors hover:border-primary/60 sm:p-5"
+        >
+          <span lang={lang} className="chinese text-4xl leading-none text-primary" aria-hidden="true">
+            漢
+          </span>
+          <span className="flex min-w-0 flex-1 flex-col">
+            <span className="font-bold text-stone-800">Passe aux kanji</span>
+            <span className="text-sm text-stone-600">
+              Tu lis déjà les hiragana : découvre les kanji des mots de ton parcours.
+            </span>
+          </span>
+          <ArrowRight className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+        </Link>
+      )}
 
       <div role="tablist" aria-label="Sections" className="flex gap-1 rounded-lg border border-stone-200 bg-stone-50 p-1">
         {tabs.map((t) => (

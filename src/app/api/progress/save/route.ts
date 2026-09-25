@@ -3,7 +3,7 @@ import { getDb } from "@/lib/db";
 import { getSessionUserId, isSameOrigin } from "@/lib/auth";
 import { allRemoteSyncKeys } from "@/lib/storage";
 
-// The eight synced keys, for every edition: the Mandarin rows keep their bare
+// The ten synced keys, for every edition: the Mandarin rows keep their bare
 // names, a later edition namespaces its own. Derived rather than restated so a
 // third language cannot be silently rejected here.
 const ALLOWED_KEYS = new Set(allRemoteSyncKeys());

@@ -2,7 +2,7 @@ import type { CourseUnit } from "@/types/course";
 
 export const unit43: CourseUnit = {
   id: "unit-43",
-  number: 43,
+  number: 51,
   chapter: 8,
   title: "Presse et documents officiels",
   titleNative: "新聞と公文書を読む",

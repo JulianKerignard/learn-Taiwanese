@@ -2,7 +2,7 @@ import type { CourseUnit } from "@/types/course";
 
 export const unit40: CourseUnit = {
   id: "unit-40",
-  number: 40,
+  number: 48,
   title: "Les onomatopées : dire le son, le geste et l'état",
   titleNative: "オノマトペ：擬音語と擬態語",
   chapter: 7,

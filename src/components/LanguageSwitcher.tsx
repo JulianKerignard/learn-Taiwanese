@@ -38,6 +38,13 @@ function swapSegment(pathname: string | null, target: LanguageSegment): string {
     return own ? langHref(target, `/${own}`) : langHref(target);
   }
 
+  // Same for the kanji course: an edition without one goes to its home.
+  const kanjiSlugs = LANGUAGE_SEGMENTS.map((s) => LANGUAGES[s].kanjiCourse?.slug).filter(Boolean);
+  if (kanjiSlugs.includes(rest[0])) {
+    const own = LANGUAGES[target].kanjiCourse?.slug;
+    return own ? langHref(target, `/${own}`) : langHref(target);
+  }
+
   // A unit id, a lesson slug or a test id belongs to one corpus: keep the
   // section, drop the entry.
   if (rest.length > 1 && CORPUS_ROUTES.has(rest[0])) return langHref(target, `/${rest[0]}`);

@@ -16,11 +16,12 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
   const pathname = usePathname();
 
   // Reading comes before everything else: an edition with a syllabary to learn
-  // (Japanese kana) opens its links with it.
+  // (Japanese kana) opens its links with it, then its kanji course.
   const links = [
     ...(language.readingCourse
       ? [{ path: `/${language.readingCourse.slug}`, label: language.readingCourse.label }]
       : []),
+    ...(language.kanjiCourse ? [{ path: `/${language.kanjiCourse.slug}`, label: language.kanjiCourse.label }] : []),
     { path: "/path", label: "Parcours" },
     { path: "/lessons", label: "Leçons" },
     { path: "/revision", label: "Révision" },
@@ -144,10 +145,14 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
             <span className="hidden sm:inline xl:hidden 2xl:inline">{language.name}</span>
           </Link>
 
-          {/* Desktop nav. Up to eleven links (Kana leads the Japanese edition):
-              below xl the drawer takes over rather than letting the row push the
-              page sideways. gap-3, not gap-4: at 2xl the edition name returns
-              beside the logo and the Mandarin row overran its container by 7px. */}
+          {/* Desktop nav. Up to twelve links (Kana and Kanji lead the Japanese
+              edition): below xl the drawer takes over rather than letting the row
+              push the page sideways. gap-3, not gap-4: at 2xl the edition name
+              returns beside the logo and the Mandarin row overran its container
+              by 7px. Measured with Kanji added: the tightest case is Japanese at
+              1536px, signed in with a name at the 6rem cap, with 19px left
+              between the edition name and the first link — one more link needs
+              the breakpoint moved or links grouped. */}
           <div className="hidden items-center gap-3 xl:flex">
             {links.map((link) => (
               <Link

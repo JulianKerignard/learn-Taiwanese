@@ -5,7 +5,8 @@ import { Search, X, Plus, Check, ChevronDown } from "lucide-react";
 import AudioButton from "@/components/AudioButton";
 import PinyinDisplay from "@/components/PinyinDisplay";
 import { cn } from "@/lib/cn";
-import { getSettings, getCards, upsertCard } from "@/lib/storage";
+import { getCards, upsertCard } from "@/lib/storage";
+import { readDisplayMode } from "@/lib/display";
 import type { UserSettings } from "@/types";
 import { createCard } from "@/lib/fsrs";
 import { japaneseCollator } from "@/lib/japanese";
@@ -103,7 +104,7 @@ export default function DictionaryContent({ lang, entries, levels }: DictionaryC
     existingCardTerms: Set<string>;
   }>(
     () => ({
-      displayMode: getSettings().displayMode,
+      displayMode: readDisplayMode(),
       existingCardTerms: new Set(getCards().map((c) => c.front)),
     }),
     NO_USER_STATE

@@ -11,12 +11,17 @@ import { shuffleArray } from "@/lib/utils";
 import type { SM2Card, SM2Grade, ReviewMode } from "@/types";
 import type { Grade } from "ts-fsrs";
 import { useContentLang } from "./ContentLanguage";
+import { cardSegments, useDisplayMode, type DisplayMode } from "@/lib/display";
+import { hasKanji } from "@/lib/japanese";
 
 interface FlashcardProps {
   card: SM2Card;
   mode: ReviewMode;
   onGrade: (grade: SM2Grade) => void;
-  displayMode?: "romanization" | "reading" | "both";
+  /** Overrides the learner's effective mode (useDisplayMode) when given. */
+  displayMode?: DisplayMode;
+  /** The edition glosses its kanji with furigana (usesFurigana). */
+  furigana?: boolean;
   distractors?: SM2Card[];
 }
 
@@ -43,17 +48,87 @@ function buildOptions(correct: string, wrong: string[], filler: string): Option[
   return shuffleArray([{ text: correct, isCorrect: true }, ...wrongAnswers]);
 }
 
+// ------- Term with furigana -------
+
+const showsReading = (mode: DisplayMode) => mode === "reading" || mode === "both";
+const showsRomanization = (mode: DisplayMode) => mode === "romanization" || mode === "both";
+
+/**
+ * How a card's term is annotated in a furigana edition. `segments` is null when
+ * the term has no kanji or no reading to gloss it with. `carriesReading` is true
+ * when the term already shows the kana — as furigana, or because it is written
+ * in kana — so the annotation beside it only needs the Latin line.
+ */
+function termAnnotation(card: SM2Card, furigana: boolean, mode: DisplayMode) {
+  const segments = furigana ? cardSegments(card) : null;
+  const carriesReading = furigana && (segments !== null || !hasKanji(card.front));
+  // null: nothing left to show beside the term.
+  const beside: DisplayMode | null = !carriesReading
+    ? mode
+    : showsRomanization(mode)
+      ? "romanization"
+      : null;
+  return { segments, beside };
+}
+
+/**
+ * The term as a heading, with its furigana when it has segments. A hidden
+ * reading keeps its space (visibility, not display) so revealing it does not
+ * shift the card, and stays out of the accessibility tree until then.
+ */
+function CardTerm({
+  card,
+  segments,
+  revealReading,
+  className = "term-display",
+}: {
+  card: SM2Card;
+  segments: ReturnType<typeof cardSegments>;
+  revealReading: boolean;
+  className?: string;
+}) {
+  const contentLang = useContentLang();
+  if (!segments) {
+    return <span className={className} lang={contentLang}>{card.front}</span>;
+  }
+  return (
+    <span className={cn(className, "pt-5 sm:pt-6")} lang={contentLang}>
+      {segments.map((segment, i) =>
+        segment.reading ? (
+          <ruby key={i}>
+            {segment.text}
+            <rt
+              className={cn(
+                "chinese text-sm font-normal text-stone-500 sm:text-base",
+                !revealReading && "invisible"
+              )}
+            >
+              {segment.reading}
+            </rt>
+          </ruby>
+        ) : (
+          <span key={i}>{segment.text}</span>
+        )
+      )}
+    </span>
+  );
+}
+
 // ------- Recognize Mode -------
 function RecognizeMode({
   card,
   distractors,
+  displayMode,
+  furigana,
   onAnswer,
 }: {
   card: SM2Card;
   distractors: SM2Card[];
+  displayMode: DisplayMode;
+  furigana: boolean;
   onAnswer: (correct: boolean) => void;
 }) {
-  const contentLang = useContentLang();
+  const { segments, beside } = termAnnotation(card, furigana, displayMode);
   const [options] = useState(() =>
     buildOptions(card.back, distractors.filter((d) => d.id !== card.id).map((d) => d.back), "---")
   );
@@ -71,7 +146,12 @@ function RecognizeMode({
     <div className="flex w-full flex-col items-center gap-6">
       <div className="flex flex-col items-center gap-2">
         <span className="text-xs font-medium text-accent uppercase tracking-wide">Reconnaissance</span>
-        <span className="term-display" lang={contentLang}>{card.front}</span>
+        {/* Furigana are a reading aid, not the answer: the question is the
+            meaning. The Latin line waits for the answer. */}
+        <CardTerm card={card} segments={segments} revealReading={answered || showsReading(displayMode)} />
+        {furigana && answered && beside && (
+          <PinyinDisplay romanization={card.romanization} reading={card.reading} mode={beside} size="lg" />
+        )}
         <AudioButton text={card.front} size="lg" />
       </div>
 
@@ -103,13 +183,15 @@ function RecognizeMode({
 function RecallMode({
   card,
   displayMode,
+  furigana,
   onRevealed,
 }: {
   card: SM2Card;
-  displayMode: "romanization" | "reading" | "both";
+  displayMode: DisplayMode;
+  furigana: boolean;
   onRevealed: () => void;
 }) {
-  const contentLang = useContentLang();
+  const { segments, beside } = termAnnotation(card, furigana, displayMode);
   const [flipped, setFlipped] = useState(false);
 
   function handleFlip() {
@@ -158,8 +240,16 @@ function RecallMode({
             !flipped ? "rotate-y-180" : ""
           )}
         >
-          <span className="term-display" lang={contentLang}>{card.front}</span>
-          <PinyinDisplay romanization={card.romanization} reading={card.reading} mode={displayMode} size="lg" />
+          {/* The answer face: rendered only once flipped, so the term and its
+              furigana are not in the page while the prompt is asked. */}
+          {flipped && (
+            <>
+              <CardTerm card={card} segments={segments} revealReading />
+              {beside && (
+                <PinyinDisplay romanization={card.romanization} reading={card.reading} mode={beside} size="lg" />
+              )}
+            </>
+          )}
           <p className="text-lg font-medium text-stone-700">{card.back}</p>
           <AudioButton text={card.front} size="md" />
         </div>
@@ -248,12 +338,15 @@ function ListeningMode({
 function WritingMode({
   card,
   displayMode,
+  furigana,
   onRevealed,
 }: {
   card: SM2Card;
-  displayMode: "romanization" | "reading" | "both";
+  displayMode: DisplayMode;
+  furigana: boolean;
   onRevealed: () => void;
 }) {
+  const { segments } = termAnnotation(card, furigana, displayMode);
   const contentLang = useContentLang();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [drawing, setDrawing] = useState(false);
@@ -378,12 +471,16 @@ function WritingMode({
       {revealed && (
         <div className="flex flex-col items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 p-4">
           <p className="text-xs text-stone-500">Caractère correct :</p>
-          <span
-            className="term-display term-display--boxed text-stone-900"
-            lang={contentLang}
-          >
-            {card.front}
-          </span>
+          {segments ? (
+            <CardTerm card={card} segments={segments} revealReading className="term-display text-stone-900" />
+          ) : (
+            <span
+              className="term-display term-display--boxed text-stone-900"
+              lang={contentLang}
+            >
+              {card.front}
+            </span>
+          )}
           <AudioButton text={card.front} size="md" />
         </div>
       )}
@@ -448,9 +545,12 @@ function FlashcardView({
   card,
   mode,
   onGrade,
-  displayMode = "romanization",
+  displayMode: displayModeOverride,
+  furigana = false,
   distractors = [],
 }: FlashcardProps) {
+  const learnerMode = useDisplayMode();
+  const displayMode = displayModeOverride ?? learnerMode;
   const [showGrade, setShowGrade] = useState(false);
 
   function handleMultipleChoiceAnswer() {
@@ -472,6 +572,8 @@ function FlashcardView({
         <RecognizeMode
           card={card}
           distractors={distractors}
+          displayMode={displayMode}
+          furigana={furigana}
           onAnswer={handleMultipleChoiceAnswer}
         />
       )}
@@ -479,6 +581,7 @@ function FlashcardView({
         <RecallMode
           card={card}
           displayMode={displayMode}
+          furigana={furigana}
           onRevealed={handleRevealed}
         />
       )}
@@ -493,6 +596,7 @@ function FlashcardView({
         <WritingMode
           card={card}
           displayMode={displayMode}
+          furigana={furigana}
           onRevealed={handleRevealed}
         />
       )}

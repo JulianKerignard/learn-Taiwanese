@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import HangmanContent from "./HangmanContent";
 import { gameWordsData } from "@/data/server";
 import { getLanguage } from "@/lib/language";
-import { isKana } from "@/lib/japanese";
 
 const TITLES = { zh: "Pendu chinois", ja: "Pendu japonais" } as const;
 
@@ -30,16 +29,9 @@ export default async function HangmanPage({
   // @/data/<lang>/game-words would put both editions' vocabulary in the bundle.
   const { gameWords } = await gameWordsData(language.code);
 
-  // The Japanese hangman is played on the mora of the *reading*, and the
-  // generated list carries only term, rōmaji and French — no kana reading. So
-  // the Japanese pool is restricted to the words that are written in kana
-  // already, where the term *is* its reading (238 of 773). Widening it means
-  // adding `reading` to scripts/generate-game-words.mjs and regenerating both
-  // corpora, which this change is not allowed to touch.
-  const words =
-    language.code === "ja"
-      ? gameWords.filter((word) => [...word.term].every(isKana))
-      : gameWords;
-
-  return <HangmanContent lang={language.segment} words={words} />;
+  // Every word of the list plays: the Japanese board hides the mora of the
+  // word's kana *reading* (carried by the generated list since it gained
+  // `reading`), so a kanji word such as 今日 is guessed as き・ょ… — see
+  // HangmanContent. The Mandarin board still hides the characters themselves.
+  return <HangmanContent lang={language.segment} words={gameWords} />;
 }

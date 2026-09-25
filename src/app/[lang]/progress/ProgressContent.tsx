@@ -12,6 +12,7 @@ import {
   Target,
   Trash2,
   AlertTriangle,
+  Settings2,
 } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import {
@@ -21,8 +22,24 @@ import {
   getMistakes,
   resetAllData,
   remoteSyncKey,
+  saveSettings,
 } from "@/lib/storage";
-import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
+import {
+  BASIC_HIRAGANA_IDS,
+  DEFAULT_DAILY_NEW_CARDS,
+  DEFAULT_DISPLAY_MODE,
+  HIRAGANA_READY,
+  MAX_DAILY_NEW_CARDS,
+  MIN_DAILY_NEW_CARDS,
+  clampDailyNewCards,
+  isWeaned,
+  masteredBasicHiragana,
+  readKanaProgress,
+  readSettings,
+  type DisplayMode,
+} from "@/lib/display";
+import { cn } from "@/lib/cn";
+import { LANGUAGES, langHref, type LanguageConfig, type LanguageSegment } from "@/lib/language";
 import { getPathProgress } from "@/lib/progress";
 import { localDayKey } from "@/lib/utils";
 import {
@@ -32,7 +49,8 @@ import {
 // Metadata only: the chapter rollup needs unit ids and titles, not lessons.
 import { courseMeta } from "@/data/meta";
 import { useClientState } from "@/lib/use-client-state";
-import type { UserProgress, XPEvent } from "@/types";
+import type { UserProgress, UserSettings, XPEvent } from "@/types";
+import type { KanaProgress } from "@/types/kana";
 import type { GamificationData } from "@/types";
 import type { PathProgress } from "@/types/course";
 
@@ -113,9 +131,13 @@ export default function ProgressContent({
   } | null>(null);
 
   useEffect(() => {
-    // Synced stats for the signed-in account, if there is one.
-    fetch("/api/users")
+    // Synced stats for the signed-in account, if there is one. Asked only once
+    // /api/auth/me names a user: signed out, /api/users answers 401, which the
+    // browser logs as a console error on every visit.
+    fetch("/api/auth/me")
       .then((r) => (r.ok ? r.json() : null))
+      .then((me) => (me?.user ? fetch("/api/users") : null))
+      .then((r) => (r && r.ok ? r.json() : null))
       .then((data) => { if (data && typeof data.username === "string") setSyncedStats(data); })
       .catch(() => {});
   }, []);
@@ -139,6 +161,8 @@ export default function ProgressContent({
         speed_record: 0,
         study_time: {},
         mistakes: {},
+        kana_progress: {},
+        kanji_progress: {},
       };
       await fetch("/api/progress/save", {
         method: "POST",
@@ -549,7 +573,10 @@ export default function ProgressContent({
         </section>
       )}
 
-      {/* Section 7: Reset */}
+      {/* Section 7: Réglages */}
+      <SettingsPanel language={language} />
+
+      {/* Section 8: Reset */}
       <section className="card border-danger/30">
         <h2 className="text-title font-bold mb-2 text-danger">
           Zone de danger
@@ -590,6 +617,152 @@ export default function ProgressContent({
         )}
       </section>
     </div>
+  );
+}
+
+const SETTINGS_FALLBACK: { settings: UserSettings; kanaProgress: KanaProgress } = {
+  settings: {
+    displayMode: DEFAULT_DISPLAY_MODE,
+    dailyNewCards: DEFAULT_DAILY_NEW_CARDS,
+    showEnglish: true,
+    autoPlayAudio: false,
+    theme: "light",
+  },
+  kanaProgress: {},
+};
+
+/**
+ * Display mode, daily quota and — for editions with a reading course — the
+ * switch that drops the Latin annotation once the script is read. Controls stay
+ * disabled until localStorage has been read, so the prerender never presents
+ * the defaults as the learner's choice.
+ */
+function SettingsPanel({ language }: { language: LanguageConfig }) {
+  const [{ settings, kanaProgress }, setState, ready] = useClientState(
+    () => ({ settings: readSettings(), kanaProgress: readKanaProgress(language) }),
+    SETTINGS_FALLBACK
+  );
+  const { copy, readingCourse } = language;
+
+  function update(patch: Partial<UserSettings>) {
+    const next = { ...settings, ...patch };
+    saveSettings(next);
+    setState((prev) => ({ ...prev, settings: next }));
+  }
+
+  const modes: { value: DisplayMode; label: string }[] = [
+    { value: "romanization", label: capitalize(copy.readingPrimary) },
+    { value: "reading", label: capitalize(copy.readingSecondary) },
+    { value: "both", label: "Les deux" },
+  ];
+  const weanOn = settings.weanRomanization !== false;
+  const weaned = ready && isWeaned(settings, language, kanaProgress);
+  const mastered = masteredBasicHiragana(kanaProgress);
+
+  return (
+    <section className="card flex flex-col gap-6" aria-labelledby="settings-title">
+      <h2 id="settings-title" className="text-title font-bold text-stone-800 flex items-center gap-2">
+        <Settings2 className="h-5 w-5 text-stone-500" />
+        Réglages
+      </h2>
+
+      <fieldset className="flex flex-col gap-2" disabled={!ready}>
+        <legend className="mb-2 text-sm font-medium text-stone-700">
+          Annotation sous les mots
+        </legend>
+        <div className="grid grid-cols-3 gap-2" role="radiogroup">
+          {modes.map((m) => {
+            const active = settings.displayMode === m.value;
+            return (
+              <button
+                key={m.value}
+                type="button"
+                role="radio"
+                aria-checked={active}
+                onClick={() => update({ displayMode: m.value })}
+                className={cn(
+                  "rounded-lg border-2 px-2 py-2 text-sm font-medium transition-colors disabled:opacity-60",
+                  active
+                    ? "border-primary bg-primary/5 text-primary"
+                    : "border-stone-200 text-stone-600 hover:border-primary/40"
+                )}
+              >
+                {m.label}
+              </button>
+            );
+          })}
+        </div>
+        <p className="text-xs text-stone-500">
+          {weaned
+            ? `Tu lis les ${copy.readingSecondary} : le ${copy.readingPrimary} est masqué dans tes révisions et tes lectures, seuls les ${copy.readingSecondary} restent.`
+            : `S'affiche en révision, dans le dictionnaire et dans les lectures.`}
+        </p>
+      </fieldset>
+
+      {readingCourse && (
+        <div className="flex flex-col gap-2">
+          <label className="flex cursor-pointer items-start justify-between gap-4">
+            <span className="text-sm font-medium text-stone-700">
+              Masquer le {copy.readingPrimary} quand je sais lire les {copy.readingSecondary}
+            </span>
+            <input
+              type="checkbox"
+              role="switch"
+              checked={weanOn}
+              disabled={!ready}
+              onChange={(e) => update({ weanRomanization: e.target.checked })}
+              className="peer sr-only"
+            />
+            <span
+              aria-hidden
+              className={cn(
+                "relative mt-0.5 inline-flex h-6 w-11 shrink-0 rounded-full transition-colors",
+                "peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-primary",
+                weanOn ? "bg-primary" : "bg-stone-300",
+                !ready && "opacity-60"
+              )}
+            >
+              <span
+                className={cn(
+                  "absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform",
+                  weanOn && "translate-x-5"
+                )}
+              />
+            </span>
+          </label>
+          <p className="text-xs text-stone-500">
+            {ready && mastered >= HIRAGANA_READY
+              ? `Seuil atteint : ${mastered} signes de base maîtrisés sur ${BASIC_HIRAGANA_IDS.length} dans le cours ${readingCourse.label}.`
+              : `Le ${copy.readingPrimary} disparaît quand tu maîtrises ${HIRAGANA_READY} des ${BASIC_HIRAGANA_IDS.length} signes de base du cours ${readingCourse.label}${ready ? ` — tu en es à ${mastered}` : ""}.`}
+          </p>
+        </div>
+      )}
+
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between gap-4">
+          <label htmlFor="daily-new-cards" className="text-sm font-medium text-stone-700">
+            Nouvelles cartes par jour
+          </label>
+          <span className="text-sm font-bold text-primary tabular-nums">
+            {ready ? settings.dailyNewCards : "—"}
+          </span>
+        </div>
+        <input
+          id="daily-new-cards"
+          type="range"
+          min={MIN_DAILY_NEW_CARDS}
+          max={MAX_DAILY_NEW_CARDS}
+          step={1}
+          value={settings.dailyNewCards}
+          disabled={!ready}
+          onChange={(e) => update({ dailyNewCards: clampDailyNewCards(Number(e.target.value)) })}
+          className="w-full accent-primary"
+        />
+        <p className="text-xs text-stone-500">
+          Le quota vaut pour la journée entière, même si tu fais plusieurs séances.
+        </p>
+      </div>
+    </section>
   );
 }
 
