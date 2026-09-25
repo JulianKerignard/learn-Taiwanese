@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       .get(name) as { id: number; username: string } | undefined;
 
     if (!row) {
-      // The name is shown on a leaderboard: bound it and keep it printable.
+      // The name is shown in the navbar: bound it and keep it printable.
       if (name.length > MAX_USERNAME) {
         return Response.json(
           { error: `Nom trop long (${MAX_USERNAME} caractères maximum)` },

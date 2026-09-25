@@ -27,6 +27,9 @@ import {
   type LanguageSegment,
 } from "@/lib/language";
 import { isMastered } from "@/lib/kana";
+// The same threshold weans the rōmaji: the home page stops leading with "learn
+// to read" exactly when the cards stop showing it.
+import { HIRAGANA_READY } from "@/lib/display";
 import type { UserProgress } from "@/types";
 import type { KanaProgress } from "@/types/kana";
 import type { PathProgress } from "@/types/course";
@@ -54,9 +57,6 @@ export interface KanaGoal {
   hiragana: string[];
   katakana: string[];
 }
-
-/** Basic hiragana mastered before the home page stops leading with "learn to read". */
-const HIRAGANA_READY = 40;
 
 const EMPTY_HOME: {
   progress: UserProgress;

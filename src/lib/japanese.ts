@@ -14,8 +14,6 @@ const KATAKANA = /[ァ-ヺヽ-ヿㇰ-ㇿ]/;
 const KANJI = /[一-鿿㐀-䶿豈-﫿]/;
 const JAPANESE = /[ぁ-ゖァ-ヺ一-鿿㐀-䶿ー々]/;
 
-export const isHiragana = (char: string) => HIRAGANA.test(char);
-export const isKatakana = (char: string) => KATAKANA.test(char);
 export const isKana = (char: string) => HIRAGANA.test(char) || KATAKANA.test(char) || char === "ー";
 export const isKanji = (char: string) => KANJI.test(char);
 

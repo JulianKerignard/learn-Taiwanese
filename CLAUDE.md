@@ -69,7 +69,7 @@ HSK and JLPT are both proficiency scales: the shared API is `levels`, `getLevelB
 `getLevelForUnit()`, `getLevelUnitMetas()`, and the type is `ProficiencyLevel`.
 
 - **Course path**: `src/data/<lang>/course/chapterN/` — a `CourseUnit` per file with sections, vocabulary, exercises, dialogues. Indexed via `src/data/<lang>/course/index.ts` which exports `getUnitById()`, `getChapter()`, `getChapterUnits()`.
-- **Course catalogue (metadata only)**: `src/data/<lang>/course/meta.ts` restates each unit's metadata (`CourseUnitMeta`: id, number, chapter, titles, description, icon, requiredScore, prerequisites) plus `chapters` and `levels`, and imports no unit module. **Client components must import from `@/data/<lang>/course/meta`, never `@/data/<lang>/course`** — the full index drags every unit module into the route's browser bundle. Only server components (`src/app/path/[unit]/page.tsx`) and the dictionary read the full index.
+- **Course catalogue (metadata only)**: `src/data/<lang>/course/meta.ts` restates each unit's metadata (`CourseUnitMeta`: id, number, chapter, titles, description, icon, requiredScore, prerequisites) plus `chapters` and `levels`, and imports no unit module. **Client components must import from `@/data/<lang>/course/meta`, never `@/data/<lang>/course`** — the full index drags every unit module into the route's browser bundle. Only server components (`src/app/[lang]/path/[unit]/page.tsx`) and the dictionary read the full index.
 - **Game words**: `src/data/<lang>/game-words.ts` is generated (`npm run generate-game-words`) from the units' and lessons' vocabulary so `/games/*` never bundles the course. `npm run validate` fails when it drifts.
 - **Standalone lessons**: `src/data/<lang>/lessons/` — themed lessons independent of the course path.
 - **Other**, all under `src/data/<lang>/`: `readings.ts` (3 difficulty levels), `dictionary.ts` (generated), `funfacts.ts`, plus the phonology data — `tone-pairs.ts` for Mandarin, `pitch-accent.ts` for Japanese.
@@ -157,7 +157,7 @@ today, and a stable order lets position become a cue.
 
 Handled by `src/lib/tts.ts`:
 1. Pre-generated MP3 from `public/audio/` (manifest.json lookup)
-2. Edge TTS API route (`/api/tts`, zh-TW-HsiaoChenNeural voice, server-side cache of 500 entries)
+2. Edge TTS API route (`/api/tts`, the edition's voice from `LANGUAGES[…].tts` — zh-TW-HsiaoChenNeural or ja-JP-NanamiNeural — server-side cache of 500 entries)
 3. Web Speech API browser fallback
 
 ### Auth
@@ -218,9 +218,11 @@ SQLite stores users and their synced data in `src/lib/db.ts`.
 
 ### Types
 
-Two type files in `src/types/`:
+In `src/types/`:
 - `index.ts`: Core domain types (VocabularyItem, Lesson, FSRSCardState, SM2Card, ReviewMode, UserProgress, UserSettings, GamificationData)
 - `course.ts`: Course-specific types (CourseUnit, Chapter, Exercise, ContentBlock, DialogueLine, PathProgress)
+- `test.ts`: Mock tests (MockTest, TestSection, TestResult)
+- `kana.ts` / `kanji.ts`: the reading and kanji courses' contracts (see above)
 
 ## Git
 

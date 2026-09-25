@@ -134,12 +134,6 @@ export function lessonOf(lessons: KanaLesson[], kanaId: string): KanaLesson | un
   return lessons.find((lesson) => lesson.kana.includes(kanaId));
 }
 
-/** Ids introduced by the given lessons — the page decides which lessons count as done. */
-export function knownKanaIds(lessons: KanaLesson[], lessonIds: Iterable<string>): Set<string> {
-  const wanted = new Set(lessonIds);
-  return new Set(lessons.filter((lesson) => wanted.has(lesson.id)).flatMap((lesson) => lesson.kana));
-}
-
 /** Ids introduced by every lesson up to and including `lessonId`, in learning order. */
 export function kanaIdsThrough(lessons: KanaLesson[], lessonId: string): Set<string> {
   const end = lessons.findIndex((lesson) => lesson.id === lessonId);
@@ -375,6 +369,9 @@ const ROMAJI_INPUT = /^[a-zāīūēōâîûêô'’\s-]+$/;
 /**
  * Every hiragana string the rōmaji `input` may stand for (canonical first), or
  * [] when it is not rōmaji. Spaces separate words; punctuation is ignored.
+ * Accepts wāpuro input (nn and n' for ん, a doubled consonant for っ, "-" for ー,
+ * "xtu"/"la" for small signs) as well as the corpus' Hepburn. Long vowels are
+ * kept as typed ("koohii" こおひい, "ginkou" ぎんこう); a macron is read "oo".
  */
 export function romajiKanaReadings(input: string): string[] {
   const text = input.normalize("NFKC").toLowerCase().replace(/’/g, "'").replace(/[、。，．,.!?！？]/g, " ").trim();
@@ -388,16 +385,6 @@ export function romajiKanaReadings(input: string): string[] {
     readings = readings.flatMap((prefix) => options.map((o) => prefix + o)).slice(0, MAX_CANDIDATES);
   }
   return readings;
-}
-
-/**
- * Rōmaji → hiragana: wāpuro input (nn and n' for ん, a doubled consonant for っ,
- * "-" for ー, "xtu"/"la" for small signs) as well as the corpus' Hepburn. Long
- * vowels are kept as typed ("koohii" こおひい, "ginkou" ぎんこう); a macron is
- * read "oo". Returns null when the input is not rōmaji.
- */
-export function romajiToKana(input: string): string | null {
-  return romajiKanaReadings(input)[0] ?? null;
 }
 
 /**

@@ -30,7 +30,6 @@ const f = fsrs(params);
 
 // Re-export grades for convenience
 export { Rating, State, Grades };
-export type FSRSGrade = Grade;
 
 function sm2GradeToFSRS(grade: number): Grade {
   if (grade <= 1) return Rating.Again;

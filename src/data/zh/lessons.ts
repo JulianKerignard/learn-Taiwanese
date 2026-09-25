@@ -1,4 +1,4 @@
-import type { Lesson, VocabularyItem } from "@/types";
+import type { Lesson } from "@/types";
 import basicsData from "./lessons/basics";
 import survivalData from "./lessons/survival";
 import restaurantData from "./lessons/restaurant";
@@ -25,10 +25,4 @@ export const lessons: Lesson[] = [
 
 export function getLessonBySlug(slug: string): Lesson | undefined {
   return lessons.find((l) => l.slug === slug);
-}
-
-export function getAllVocabulary(): (VocabularyItem & { lessonId: string; lessonTitle: string })[] {
-  return lessons.flatMap((l) =>
-    l.vocabulary.map((v) => ({ ...v, lessonId: l.id, lessonTitle: l.title }))
-  );
 }

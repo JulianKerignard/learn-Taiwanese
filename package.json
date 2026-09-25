@@ -1,8 +1,8 @@
 {
   "name": "site-taiwan",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Apprendre le mandarin taïwanais et le japonais, pour francophones",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -19,8 +19,6 @@
     "generate-game-words:ja": "CORPUS_LANG=ja node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-game-words.mjs ja",
     "generate-dictionary:ja": "CORPUS_LANG=ja node --experimental-strip-types --no-warnings --import ./scripts/register-loader.mjs scripts/generate-dictionary.mjs ja"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "better-sqlite3": "^12.8.0",

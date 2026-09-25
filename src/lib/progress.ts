@@ -101,17 +101,7 @@ export function getChapterProgress(chapter: Chapter, progress: PathProgress): nu
   return chapter.unitIds.length > 0 ? completed / chapter.unitIds.length : 0;
 }
 
-export function getOverallProgress(totalUnits: number, progress: PathProgress): number {
-  return totalUnits > 0 ? progress.completedUnits.length / totalUnits : 0;
-}
-
 // ── Proficiency level helpers ──────────────────────────────────────
-
-export function getLevelProgress(level: ProficiencyLevel, unitIds: string[], progress: PathProgress): number {
-  if (unitIds.length === 0) return 0;
-  const completed = unitIds.filter((id) => progress.completedUnits.includes(id)).length;
-  return completed / unitIds.length;
-}
 
 export function getLevelCompletedCount(unitIds: string[], progress: PathProgress): number {
   return unitIds.filter((id) => progress.completedUnits.includes(id)).length;

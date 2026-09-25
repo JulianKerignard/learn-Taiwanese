@@ -21,12 +21,6 @@ export interface MockTest {
   icon: string;
 }
 
-export interface TestAnswer {
-  exerciseId: string;
-  sectionId: string;
-  selectedAnswer: string | null;
-}
-
 export interface TestSectionResult {
   sectionId: string;
   sectionTitle: string;
