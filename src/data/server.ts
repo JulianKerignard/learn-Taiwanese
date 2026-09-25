@@ -45,3 +45,11 @@ export async function phonologyData(code: LanguageCode) {
     ? { kind: "tones" as const, ...(await import("./zh/tone-pairs")) }
     : { kind: "pitch" as const, ...(await import("./ja/pitch-accent")) };
 }
+
+/**
+ * The kana reading course. Only Japanese has a syllabary to learn before
+ * reading anything, so Mandarin gets null rather than an empty course.
+ */
+export async function kanaData(code: LanguageCode) {
+  return code === "ja" ? import("./ja/kana") : null;
+}

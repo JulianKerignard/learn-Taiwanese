@@ -11,6 +11,14 @@ Application web pour apprendre le **mandarin taïwanais** ou le **japonais**, co
 
 Tout ce qui suit existe dans les deux éditions, sauf mention contraire.
 
+### Apprendre à lire les kana (japonais)
+- Cours dédié à `/japon/kana`, premier lien du menu et première carte de l'accueil tant que les hiragana de base ne sont pas maîtrisés
+- Tableau interactif des hiragana et katakana : 46 signes de base, 25 avec (han)dakuten, 33 sons contractés (yōon), les combinaisons du katakana pour les sons étrangers (ファ, ティ…), っ et ー
+- Parcours leçon par leçon : chaque leçon présente quelques signes avec un moyen mnémotechnique et l'audio, puis un quiz
+- Entraînement à maîtrise espacée (boîtes de Leitner, 0 à 5 ; un signe est maîtrisé à partir de la boîte 3) qui insiste sur les signes confondus (シ/ツ, ソ/ン, ぬ/め)
+- Lecture de vrais mots écrits uniquement avec les signes déjà appris
+- Progression locale au navigateur, non synchronisée
+
 ### Parcours structuré par niveaux
 - Chaque unité contient un cours théorique, du vocabulaire avec audio, des exercices interactifs et des dialogues
 - Prérequis et points de contrôle pour valider la progression
@@ -112,6 +120,7 @@ src/
 │   │   ├── dictionary/       # Dictionnaire
 │   │   ├── funfacts/         # Anecdotes culturelles
 │   │   ├── games/            # speed-quiz, matching, hangman
+│   │   ├── kana/             # Cours de lecture des kana (japonais seulement)
 │   │   ├── lessons/          # Leçons thématiques
 │   │   ├── path/             # Parcours par niveau et unités
 │   │   ├── progress/         # Tableau de bord
@@ -131,6 +140,7 @@ src/
 │       ├── readings.ts       # Lecture graduée
 │       ├── dictionary.ts     # Généré
 │       ├── game-words.ts     # Généré
+│       ├── kana.ts           # Japonais : signes, leçons et mots du cours de kana
 │       └── tone-pairs.ts / pitch-accent.ts
 ├── lib/
 │   ├── language.ts           # Registre des éditions (URL, voix, niveaux, phonologie)
@@ -141,6 +151,7 @@ src/
 │   ├── auth.ts / db.ts       # Sessions signées, SQLite
 │   ├── revision.ts           # Recommandations thématiques
 │   ├── gamification.ts       # XP, niveaux, succès
+│   ├── kana.ts               # Cours de kana : découpage, rōmaji, boîtes de Leitner
 │   ├── tts.ts                # Audio à 3 niveaux
 │   └── progress.ts           # Progression du parcours
 └── types/                    # Types TypeScript

@@ -24,6 +24,13 @@
   --color-hsk-2: #0369a1;
   --color-hsk-3: #6d28d9;
   --color-hsk-4: #be123c;
+  /* Same hues for JLPT, easiest first (N5 → N2). The level data has always
+     used bg-n5 … bg-n2, but the tokens were never declared: the badges came
+     out white on white. */
+  --color-n5: #0f766e;
+  --color-n4: #0369a1;
+  --color-n3: #6d28d9;
+  --color-n2: #be123c;
 
   /* Tone colours are pedagogical, not semantic: they must stay distinct from
      --color-success / --color-danger so a tone is never read as a verdict. */

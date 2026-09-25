@@ -15,7 +15,12 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
   const language = LANGUAGES[lang];
   const pathname = usePathname();
 
+  // Reading comes before everything else: an edition with a syllabary to learn
+  // (Japanese kana) opens its links with it.
   const links = [
+    ...(language.readingCourse
+      ? [{ path: `/${language.readingCourse.slug}`, label: language.readingCourse.label }]
+      : []),
     { path: "/path", label: "Parcours" },
     { path: "/lessons", label: "Leçons" },
     { path: "/revision", label: "Révision" },
@@ -134,14 +139,16 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
             <span className="chinese text-2xl text-primary" lang={language.contentLang}>
               {language.nameNative.slice(0, 1)}
             </span>
-            {/* The name makes way for the ten links between xl and 2xl: the
+            {/* The name makes way for the links between xl and 2xl: the
                 language switcher already says which edition this is. */}
             <span className="hidden sm:inline xl:hidden 2xl:inline">{language.name}</span>
           </Link>
 
-          {/* Desktop nav. Ten links need ~1150px: below that the drawer takes
-              over, rather than letting the row push the page sideways. */}
-          <div className="hidden items-center gap-4 xl:flex">
+          {/* Desktop nav. Up to eleven links (Kana leads the Japanese edition):
+              below xl the drawer takes over rather than letting the row push the
+              page sideways. gap-3, not gap-4: at 2xl the edition name returns
+              beside the logo and the Mandarin row overran its container by 7px. */}
+          <div className="hidden items-center gap-3 xl:flex">
             {links.map((link) => (
               <Link
                 key={link.path}
@@ -162,9 +169,14 @@ export default function Navbar({ lang }: { lang: LanguageSegment }) {
             <div className="relative">
               {user ? (
                 <div className="flex items-center gap-2">
-                  <span className="flex items-center gap-1 whitespace-nowrap text-sm font-medium text-primary">
-                    <User className="h-4 w-4" />
-                    {user.username}
+                  {/* Names run to 32 characters; uncapped, a long one pushed
+                      the row ~100px past its container. */}
+                  <span
+                    className="flex items-center gap-1 whitespace-nowrap text-sm font-medium text-primary"
+                    title={user.username}
+                  >
+                    <User className="h-4 w-4 shrink-0" />
+                    <span className="max-w-[6rem] truncate">{user.username}</span>
                   </span>
                   <SyncStatus />
                   <button

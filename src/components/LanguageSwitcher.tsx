@@ -30,6 +30,14 @@ function swapSegment(pathname: string | null, target: LanguageSegment): string {
     return langHref(target, `/${LANGUAGES[target].phonology.slug}`);
   }
 
+  // The reading course exists only in editions that set one (kana for
+  // Japanese): an edition without it goes to its home, not to a 404.
+  const readingSlugs = LANGUAGE_SEGMENTS.map((s) => LANGUAGES[s].readingCourse?.slug).filter(Boolean);
+  if (readingSlugs.includes(rest[0])) {
+    const own = LANGUAGES[target].readingCourse?.slug;
+    return own ? langHref(target, `/${own}`) : langHref(target);
+  }
+
   // A unit id, a lesson slug or a test id belongs to one corpus: keep the
   // section, drop the entry.
   if (rest.length > 1 && CORPUS_ROUTES.has(rest[0])) return langHref(target, `/${rest[0]}`);

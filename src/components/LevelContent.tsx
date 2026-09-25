@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ChevronRight } from "lucide-react";
+import { Fragment } from "react";
+import { ArrowLeft, ChevronRight, Languages } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { ChapterSection } from "@/components/ChapterSection";
 import { cn } from "@/lib/cn";
@@ -140,19 +141,25 @@ export default function LevelContent({
       {/* Chapters within this level */}
       <div className="flex flex-col gap-12">
         {levelChapters.map((chapter, i) => (
-          <ChapterSection
-            key={chapter.number}
-            lang={lang}
-            chapter={chapter}
-            progress={progress}
-            // Units are numbered across the level: this chapter starts after
-            // every unit of the chapters before it.
-            startIndex={
-              globalStartIndex +
-              levelChapters.slice(0, i).reduce((sum, c) => sum + c.unitIds.length, 0)
-            }
-            userStateReady={hydrated}
-          />
+          <Fragment key={chapter.number}>
+            {/* Chapter 1 teaches about the kana; the reading course is where they
+                are drilled until they read without thinking. */}
+            {chapter.number === 1 && language.readingCourse && (
+              <ReadingBanner href={langHref(lang, `/${language.readingCourse.slug}`)} />
+            )}
+            <ChapterSection
+              lang={lang}
+              chapter={chapter}
+              progress={progress}
+              // Units are numbered across the level: this chapter starts after
+              // every unit of the chapters before it.
+              startIndex={
+                globalStartIndex +
+                levelChapters.slice(0, i).reduce((sum, c) => sum + c.unitIds.length, 0)
+              }
+              userStateReady={hydrated}
+            />
+          </Fragment>
         ))}
       </div>
 
@@ -173,5 +180,27 @@ export default function LevelContent({
         </div>
       )}
     </div>
+  );
+}
+
+function ReadingBanner({ href }: { href: string }) {
+  return (
+    <Link
+      href={href}
+      className="group -mb-6 flex items-center justify-between gap-3 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3 transition-colors hover:border-primary/40"
+    >
+      <span className="flex items-center gap-3">
+        <Languages className="h-5 w-5 shrink-0 text-primary" />
+        <span>
+          <span className="block text-sm font-medium text-stone-800 group-hover:text-primary transition-colors">
+            Entraîne-toi à lire les kana
+          </span>
+          <span className="block text-xs text-stone-500">
+            Hiragana et katakana, leçon par leçon, avant ou pendant ce chapitre
+          </span>
+        </span>
+      </span>
+      <ChevronRight className="h-4 w-4 shrink-0 text-stone-400 group-hover:text-primary" />
+    </Link>
   );
 }

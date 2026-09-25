@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronRight, Check, Lock } from "lucide-react";
+import { ChevronRight, Check, Lock, Languages } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { cn } from "@/lib/cn";
 import {
@@ -65,6 +65,28 @@ export default function PathContent({ lang }: { lang: LanguageSegment }) {
           )}
         </div>
       </section>
+
+      {/* The first level opens with "Les kana et les sons": point at the course
+          that actually drills them, for an edition that has one. */}
+      {language.readingCourse && (
+        <Link
+          href={langHref(lang, `/${language.readingCourse.slug}`)}
+          className="group -my-4 flex items-center justify-between gap-3 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3 transition-colors hover:border-primary/40"
+        >
+          <span className="flex items-center gap-3">
+            <Languages className="h-5 w-5 shrink-0 text-primary" />
+            <span>
+              <span className="block text-sm font-medium text-stone-800 group-hover:text-primary transition-colors">
+                Entraîne-toi à lire les kana
+              </span>
+              <span className="block text-xs text-stone-500">
+                Hiragana et katakana d&apos;abord : le parcours suppose que tu sais les lire
+              </span>
+            </span>
+          </span>
+          <ChevronRight className="h-4 w-4 shrink-0 text-stone-400 group-hover:text-primary" />
+        </Link>
+      )}
 
       {/* Level cards */}
       <div className="grid gap-6 sm:grid-cols-2">

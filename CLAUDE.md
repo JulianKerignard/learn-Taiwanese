@@ -76,6 +76,27 @@ HSK and JLPT are both proficiency scales: the shared API is `levels`, `getLevelB
 
 All data is statically imported TypeScript — no database for content. SQLite (better-sqlite3) is only used server-side for user accounts and synced progress.
 
+### Kana reading course (Japanese only)
+
+`/japon/kana` teaches the learner to read hiragana and katakana before the course path
+asks them to read anything: kana table, lesson-by-lesson introduction (mnemonic + audio,
+then a quiz), drills and reading practice with words made only of signs already taught.
+Everything is gated on `language.readingCourse` (`{ slug: "kana", label: "Kana" }` for
+Japanese, `null` for Mandarin) — the route, the first Navbar link, the home-page "Apprends
+d'abord à lire" card and the path banners. Never test for Japanese directly.
+
+- **Types** `src/types/kana.ts` (the contract), **data** `src/data/ja/kana.ts` (signs,
+  lessons, words — read by server pages through `kanaData()` in `src/data/server.ts`),
+  **logic** `src/lib/kana.ts` (pure: segmentation, rōmaji converter, Leitner boxes). Client
+  components get the data as props; the home page receives only the basic-table ids.
+- **Mastery** is a Leitner box per sign (0–5, mastered from `MASTERED_BOX` = 3), stored under
+  `KEYS.kanaProgress` keyed by `Kana.id`. Local only: it is not in `SYNCED_KEYS`.
+- **Rōmaji** is wāpuro-style Hepburn without macrons (コーヒー "koohii"), and the converter in
+  `src/lib/kana.ts` is the grader. `npm run validate` (ja) recomputes every sign's and word's
+  rōmaji with it, checks the table counts (46 basic, 25 dakuten, 33 yōon per script), that
+  every sign is taught by exactly one lesson, that confusables are symmetric, and that every
+  word is spelt with taught signs only.
+
 ### State & Persistence
 
 No external state library. All client state flows through React hooks + localStorage. The `src/lib/storage.ts` module defines a `KEYS` object mapping all storage keys (cards, progress, settings, gamification, favorites, study_time, mistakes). Authenticated users get server sync via `src/lib/sync.ts` (3s debounced, 8 data keys synced).

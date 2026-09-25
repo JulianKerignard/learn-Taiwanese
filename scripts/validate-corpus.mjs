@@ -605,6 +605,166 @@ try {
   err("dictionary", `dictionary.ts illisible (${error.code ?? error.message})`);
 }
 
+// ── 11. The kana reading course (Japanese only) ───────────────────────
+//
+// /japon/kana teaches the two syllabaries sign by sign, then drills them and
+// offers words to read. A sign missing from the table, taught in no lesson or
+// in two, or a word spelt with a sign the course never teaches is a reading
+// the page cannot grade. Rōmaji is recomputed with the page's own converter
+// (src/lib/kana.ts), so the data and the grader cannot drift apart. There is
+// no escape hatch: a word the converter spells differently (a particle は read
+// "wa", say) does not belong in a list of words.
+
+const kanaCourse = isZh ? null : await import(`${DIR}/kana.ts`);
+const kanaLib = isZh ? null : await import("../src/lib/kana.ts");
+let kanaSummary = "";
+
+if (kanaCourse && kanaLib) {
+  const { kana, kanaLessons, kanaWords } = kanaCourse;
+  const { splitKana, kanaToRomaji, kanaIndex, kanaIdsThrough, readableWords } = kanaLib;
+
+  const EXPECTED = {
+    hiragana: { basic: 46, dakuten: 25, yoon: 33, special: 1, extended: 0 },
+    katakana: { basic: 46, dakuten: 25, yoon: 33, special: 2 },
+  };
+  // The foreign sounds a learner meets in everyday loanwords. More may be added.
+  const REQUIRED_EXTENDED = [
+    "ファ", "フィ", "フェ", "フォ", "ティ", "ディ", "トゥ", "ドゥ", "ウィ", "ウェ", "ウォ",
+    "シェ", "ジェ", "チェ", "ヴァ", "ヴィ", "ヴ", "ヴェ", "ヴォ", "ツァ", "デュ", "フュ",
+  ];
+
+  const byId = new Map();
+  const charsByScript = { hiragana: new Map(), katakana: new Map() };
+  const counts = { hiragana: {}, katakana: {} };
+
+  for (const k of kana) {
+    const label = `${k.id} ${k.char}`;
+    if (byId.has(k.id)) err("kana", `id "${k.id}" déclaré deux fois`);
+    byId.set(k.id, k);
+
+    const prefix = k.script === "hiragana" ? "h-" : k.script === "katakana" ? "k-" : null;
+    if (!prefix) {
+      err("kana", `${label}: écriture inconnue "${k.script}"`);
+      continue;
+    }
+    if (!k.id.startsWith(prefix)) err("kana", `${label}: l'id ne commence pas par ${prefix}`);
+
+    const previous = charsByScript[k.script].get(k.char);
+    if (previous) err("kana", `${k.char} déclaré par ${previous} et par ${k.id}`);
+    charsByScript[k.script].set(k.char, k.id);
+
+    counts[k.script][k.group] = (counts[k.script][k.group] ?? 0) + 1;
+
+    if (k.group === "basic" && !k.mnemonic?.trim()) {
+      err("kana", `${label}: signe de base sans mnémotechnique`);
+    }
+    if (!k.row?.trim()) err("kana", `${label}: ligne (row) manquante`);
+
+    // The converter is what grades typed words: it must agree with the table.
+    if (k.group !== "special" && kanaToRomaji(k.char) !== k.romaji) {
+      err("kana", `${label}: rōmaji "${k.romaji}" mais le convertisseur lit "${kanaToRomaji(k.char)}"`);
+    }
+    if (k.group !== "special" && splitKana(k.char).length !== 1) {
+      err("kana", `${label}: le signe se découpe en ${splitKana(k.char).length} unités`);
+    }
+  }
+
+  for (const [script, expected] of Object.entries(EXPECTED)) {
+    for (const [group, count] of Object.entries(expected)) {
+      const actual = counts[script][group] ?? 0;
+      if (actual !== count) err("kana", `${script} ${group} : ${actual} signes, ${count} attendus`);
+    }
+  }
+  for (const char of REQUIRED_EXTENDED) {
+    const id = charsByScript.katakana.get(char);
+    if (!id || byId.get(id).group !== "extended") {
+      err("kana", `${char} absent des combinaisons étendues du katakana`);
+    }
+  }
+
+  for (const k of kana) {
+    for (const other of k.confusables ?? []) {
+      const target = byId.get(other);
+      if (!target) {
+        err("kana", `${k.id}: confusable "${other}" inexistant`);
+      } else if (other === k.id) {
+        err("kana", `${k.id}: se déclare confusable avec lui-même`);
+      } else if (!(target.confusables ?? []).includes(k.id)) {
+        err("kana", `${k.id} ↔ ${other}: confusable dans un seul sens`);
+      }
+    }
+  }
+
+  // Every sign in exactly one lesson, and every lesson made of real signs.
+  const lessonOfKana = new Map();
+  const kanaLessonIds = new Set();
+  for (const lesson of kanaLessons) {
+    if (kanaLessonIds.has(lesson.id)) err("kana-lessons", `id de leçon "${lesson.id}" déclaré deux fois`);
+    kanaLessonIds.add(lesson.id);
+    if (!lesson.title?.trim()) err("kana-lessons", `${lesson.id}: titre manquant`);
+    if (!lesson.intro?.trim()) err("kana-lessons", `${lesson.id}: introduction manquante`);
+    if (!lesson.kana?.length) err("kana-lessons", `${lesson.id}: aucun signe`);
+
+    for (const id of lesson.kana ?? []) {
+      const k = byId.get(id);
+      if (!k) {
+        err("kana-lessons", `${lesson.id}: signe "${id}" inexistant`);
+        continue;
+      }
+      if (k.script !== lesson.script) {
+        err("kana-lessons", `${lesson.id} (${lesson.script}) enseigne ${id}, un ${k.script}`);
+      }
+      const previous = lessonOfKana.get(id);
+      if (previous) err("kana-lessons", `${id} enseigné par ${previous} et par ${lesson.id}`);
+      lessonOfKana.set(id, lesson.id);
+    }
+  }
+  for (const k of kana) {
+    if (!lessonOfKana.has(k.id)) err("kana-lessons", `${k.id} ${k.char} n'est enseigné par aucune leçon`);
+  }
+
+  // Words: taught signs only, rōmaji the converter agrees with, no duplicate.
+  const index = kanaIndex(kana);
+  const seenTerms = new Set();
+  for (const word of kanaWords) {
+    const label = `${word.term} (${word.romaji})`;
+    if (!word.term?.trim()) {
+      err("kana-words", "mot sans graphie");
+      continue;
+    }
+    if (seenTerms.has(word.term)) err("kana-words", `${word.term}: doublon`);
+    seenTerms.add(word.term);
+    if (!word.french?.trim()) err("kana-words", `${label}: traduction manquante`);
+
+    const unknown = splitKana(word.term).filter((unit) => !index.has(unit));
+    if (unknown.length > 0) {
+      err("kana-words", `${label}: ${unknown.join(" ")} n'est pas un signe enseigné`);
+      continue;
+    }
+    const computed = kanaToRomaji(word.term);
+    if (computed !== word.romaji) {
+      err("kana-words", `${label}: le convertisseur lit "${computed}"`);
+    }
+  }
+
+  // The point of the list is to read early. A first lesson set that unlocks
+  // nothing would leave the reading practice empty for the first hour.
+  const earlyLesson = kanaLessons.filter((lesson) => lesson.script === "hiragana")[2];
+  const earlyWords = earlyLesson
+    ? readableWords(kanaWords, kanaIdsThrough(kanaLessons, earlyLesson.id), kana).length
+    : 0;
+  if (earlyWords < 5) {
+    warn("kana-words", `${earlyWords} mot(s) lisible(s) après ${earlyLesson?.id ?? "la 3e leçon"}`);
+  }
+  if (kanaWords.length < 150) warn("kana-words", `${kanaWords.length} mots de lecture (150 visés)`);
+
+  const scriptCount = (script) => kana.filter((k) => k.script === script).length;
+  kanaSummary =
+    `Kana : ${scriptCount("hiragana")} hiragana, ${scriptCount("katakana")} katakana, ` +
+    `${kanaLessons.length} leçons, ${kanaWords.length} mots de lecture ` +
+    `(${earlyWords} lisibles après ${earlyLesson?.id})`;
+}
+
 // ── Report ────────────────────────────────────────────────────────────
 
 function report(title, entries) {
@@ -630,6 +790,7 @@ console.log(
     `${tonePairs.length} paires de tons, ${allUnitMetas.length} métadonnées, ` +
     `${gameWords.length} mots de jeu`
 );
+if (kanaSummary) console.log(kanaSummary);
 
 report("WARNINGS", warnings);
 report("ERREURS", errors);

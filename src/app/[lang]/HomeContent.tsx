@@ -8,9 +8,10 @@ import {
   ChevronRight,
   Layers,
   Map,
+  Languages,
 } from "lucide-react";
 import Link from "next/link";
-import { getProgress, getCards, defaultProgress } from "@/lib/storage";
+import { getProgress, getCards, defaultProgress, storageGet, KEYS } from "@/lib/storage";
 import { useClientState } from "@/lib/use-client-state";
 import { getStats } from "@/lib/fsrs";
 import { getUnitMetaById } from "@/data/meta";
@@ -25,7 +26,9 @@ import {
   levelName,
   type LanguageSegment,
 } from "@/lib/language";
+import { isMastered } from "@/lib/kana";
 import type { UserProgress } from "@/types";
+import type { KanaProgress } from "@/types/kana";
 import type { PathProgress } from "@/types/course";
 
 /**
@@ -43,33 +46,51 @@ export interface LessonCard {
   icon: string;
 }
 
+/**
+ * The basic tables of the reading course, as ids — resolved by the server page
+ * so the kana module (glyphs, mnemonics, words) stays out of this bundle.
+ */
+export interface KanaGoal {
+  hiragana: string[];
+  katakana: string[];
+}
+
+/** Basic hiragana mastered before the home page stops leading with "learn to read". */
+const HIRAGANA_READY = 40;
+
 const EMPTY_HOME: {
   progress: UserProgress;
   cardStats: ReturnType<typeof getStats>;
   pathProgress: PathProgress;
+  kanaProgress: KanaProgress;
 } = {
   progress: defaultProgress,
   cardStats: { total: 0, due: 0, learned: 0, mature: 0, newCards: 0 },
   pathProgress: EMPTY_PATH_PROGRESS,
+  kanaProgress: {},
 };
 
 export default function HomeContent({
   lang,
   lessons,
+  kanaGoal,
 }: {
   lang: LanguageSegment;
   lessons: LessonCard[];
+  /** Null for an edition without a reading course. */
+  kanaGoal: KanaGoal | null;
 }) {
   // Two kinds of content live on this page. The hero, the stat labels and the
   // lesson cards are known at build time and stay in the prerendered HTML.
   // Anything that describes the reader — counters, streak, "commence ton
   // parcours", the resume link — waits for `hydrated`: an empty localStorage at
   // build time is an absence of data, not a user with zero progress.
-  const [{ progress, cardStats, pathProgress }, , hydrated] = useClientState(
+  const [{ progress, cardStats, pathProgress, kanaProgress }, , hydrated] = useClientState(
     () => ({
       progress: getProgress(),
       cardStats: getStats(getCards()),
       pathProgress: getPathProgress(),
+      kanaProgress: kanaGoal ? storageGet<KanaProgress>(KEYS.kanaProgress, {}) : {},
     }),
     EMPTY_HOME
   );
@@ -88,6 +109,16 @@ export default function HomeContent({
         </p>
         <p className="mt-2 text-lg text-stone-500">{language.tagline}</p>
       </section>
+
+      {/* Lire d'abord: the course path assumes the learner can read kana. */}
+      {kanaGoal && language.readingCourse && (
+        <ReadingCTA
+          href={href(`/${language.readingCourse.slug}`)}
+          goal={kanaGoal}
+          progress={kanaProgress}
+          hydrated={hydrated}
+        />
+      )}
 
       {/* Parcours */}
       <PathCTA lang={lang} pathProgress={pathProgress} hydrated={hydrated} />
@@ -236,6 +267,90 @@ function PathCTA({
           className="btn-primary min-w-[12rem] gap-1 shrink-0"
         >
           {hydrated ? (hasStarted ? "Continuer" : "Commencer") : "Ouvrir le parcours"}
+          <ChevronRight className="h-4 w-4" />
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * "Apprends d'abord à lire" while the basic hiragana are not mastered, then a
+ * one-line reminder (katakana next, or review).
+ *
+ * The prerender cannot know which of the two the reader gets, and a beginner is
+ * the likelier visitor, so the big card is the build-time shape: only its
+ * counter waits for `hydrated`. A reader past the threshold sees it shrink once,
+ * which is better than every beginner watching a card grow under the hero.
+ */
+function ReadingCTA({
+  href,
+  goal,
+  progress,
+  hydrated,
+}: {
+  href: string;
+  goal: KanaGoal;
+  progress: KanaProgress;
+  hydrated: boolean;
+}) {
+  const count = (ids: string[]) => ids.filter((id) => isMastered(progress[id])).length;
+  const hiragana = count(goal.hiragana);
+  const katakana = count(goal.katakana);
+  const katakanaDone = katakana >= Math.min(HIRAGANA_READY, goal.katakana.length);
+
+  if (hydrated && hiragana >= Math.min(HIRAGANA_READY, goal.hiragana.length)) {
+    return (
+      <section>
+        <Link
+          href={href}
+          className="card group flex items-center justify-between gap-3 py-3 transition-colors hover:border-primary/40"
+        >
+          <span className="flex items-center gap-3">
+            <Languages className="h-5 w-5 shrink-0 text-primary" />
+            <span className="whitespace-nowrap font-medium text-stone-800 group-hover:text-primary transition-colors">
+              {katakanaDone ? "Réviser les kana" : "Continue les katakana"}
+            </span>
+            <span className="whitespace-nowrap text-sm text-stone-500">
+              {katakanaDone
+                ? `${hiragana + katakana}/${goal.hiragana.length + goal.katakana.length}`
+                : `${katakana}/${goal.katakana.length}`}
+              <span className="hidden sm:inline"> maîtrisés</span>
+            </span>
+          </span>
+          <ChevronRight className="h-4 w-4 shrink-0 text-stone-400 group-hover:text-primary" />
+        </Link>
+      </section>
+    );
+  }
+
+  return (
+    <section>
+      <div className="card flex flex-col gap-4 border-primary/30 bg-primary/5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-start gap-4">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10">
+            <Languages className="h-6 w-6 text-primary" />
+          </div>
+          <div>
+            <p className="text-lg font-bold text-stone-900">Apprends d&apos;abord à lire</p>
+            <p className="text-sm text-stone-600">
+              Hiragana et katakana, signe par signe, avec un moyen mnémotechnique et
+              l&apos;audio. Le parcours suppose que tu sais les lire.
+            </p>
+            {hydrated ? (
+              <p className="mt-1 text-sm font-medium text-primary">
+                {hiragana > 0
+                  ? `${hiragana}/${goal.hiragana.length} hiragana maîtrisés`
+                  : `${goal.hiragana.length} hiragana puis ${goal.katakana.length} katakana`}
+              </p>
+            ) : (
+              // Same 20px line box as the counter it stands in for.
+              <span className="mt-1 block h-5 w-44 animate-pulse rounded bg-primary/10" aria-hidden />
+            )}
+          </div>
+        </div>
+        <Link href={href} className="btn-primary min-w-[12rem] gap-1 shrink-0">
+          {hydrated && hiragana > 0 ? "Continuer" : "Apprendre les kana"}
           <ChevronRight className="h-4 w-4" />
         </Link>
       </div>

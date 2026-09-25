@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import HomeContent, { type LessonCard } from "./HomeContent";
-import { lessonsData } from "@/data/server";
+import HomeContent, { type KanaGoal, type LessonCard } from "./HomeContent";
+import { kanaData, lessonsData } from "@/data/server";
 import { getLanguage } from "@/lib/language";
 
 /** How many lesson cards the home page shows. */
@@ -30,5 +30,19 @@ export default async function HomePage({
       icon,
     }));
 
-  return <HomeContent lang={language.segment} lessons={featured} />;
+  // The "learn to read first" card counts mastered signs against the basic
+  // table. The ids are resolved here: the kana module stays out of the bundle.
+  const kanaCourse = language.readingCourse ? await kanaData(language.code) : null;
+  const kanaGoal: KanaGoal | null = kanaCourse
+    ? {
+        hiragana: kanaCourse.kana
+          .filter((k) => k.script === "hiragana" && k.group === "basic")
+          .map((k) => k.id),
+        katakana: kanaCourse.kana
+          .filter((k) => k.script === "katakana" && k.group === "basic")
+          .map((k) => k.id),
+      }
+    : null;
+
+  return <HomeContent lang={language.segment} lessons={featured} kanaGoal={kanaGoal} />;
 }
