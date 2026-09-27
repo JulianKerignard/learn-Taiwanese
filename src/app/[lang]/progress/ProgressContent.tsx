@@ -163,6 +163,7 @@ export default function ProgressContent({
         mistakes: {},
         kana_progress: {},
         kanji_progress: {},
+        kana_daily: { minutes: 15, days: {} },
       };
       await fetch("/api/progress/save", {
         method: "POST",

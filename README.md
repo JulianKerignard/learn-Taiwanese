@@ -13,6 +13,7 @@ Tout ce qui suit existe dans les deux éditions, sauf mention contraire.
 
 ### Apprendre à lire les kana (japonais)
 - Cours dédié à `/japon/kana`, premier lien du menu et première carte de l'accueil tant que les hiragana de base ne sont pas maîtrisés
+- **Séance du jour** (onglet par défaut) : objectif de 15 ou 30 minutes ; les signes dont la révision est due passent d'abord (intervalles de 1, 2, 4, 7 puis 14 jours), puis les leçons suivantes dans l'ordre de l'alphabet (freinées quand plus de 40 signes attendent), une consolidation qui remplit le temps et quelques mots à lire ; série de jours consécutifs et historique de la semaine, synchronisés avec le compte
 - Tableau interactif des hiragana et katakana : 46 signes de base, 25 avec (han)dakuten, 33 sons contractés (yōon), les combinaisons du katakana pour les sons étrangers (ファ, ティ…), っ et ー
 - Parcours leçon par leçon : chaque leçon présente quelques signes avec un moyen mnémotechnique et l'audio, puis un quiz
 - Entraînement à maîtrise espacée (boîtes de Leitner, 0 à 5 ; un signe est maîtrisé à partir de la boîte 3) qui insiste sur les signes confondus (シ/ツ, ソ/ン, ぬ/め)

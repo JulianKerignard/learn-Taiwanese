@@ -66,3 +66,22 @@ export interface KanaMastery {
 }
 
 export type KanaProgress = Record<string, KanaMastery>;
+
+/** One day of the daily kana session, keyed by local day "YYYY-MM-DD". */
+export interface KanaDay {
+  /** Seconds actually spent in the session that day. */
+  seconds: number;
+  /** Answers given that day (reviews and new signs). */
+  answers: number;
+  /** Signs met for the first time that day. */
+  learned: number;
+  /** The planned session was finished. */
+  done: boolean;
+}
+
+/** The daily session's settings and history, stored under KEYS.kanaDaily. */
+export interface KanaDaily {
+  /** Daily goal chosen by the learner. */
+  minutes: 15 | 30;
+  days: Record<string, KanaDay>;
+}

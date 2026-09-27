@@ -3,7 +3,7 @@ import { currentLanguage } from "@/lib/language";
 import { MAX_XP_HISTORY } from "@/lib/gamification";
 
 /**
- * Client/server reconciliation for the ten synced localStorage keys.
+ * Client/server reconciliation for the eleven synced localStorage keys.
  *
  * The descent (syncDown) used to overwrite localStorage with whatever the server
  * held. That loses work whenever the two sides diverge, and they diverge for a
@@ -278,6 +278,37 @@ function mergeMastery(local: Json, remote: Json): Json {
   return out;
 }
 
+/**
+ * The daily kana session: the goal is a device preference (local wins), the
+ * days are a union, and a day practised on two devices keeps the larger count
+ * of each field — two sessions the same day both happened, but adding them
+ * would double-count a day already merged once.
+ */
+function mergeKanaDaily(local: Json, remote: Json): Json {
+  if (!isRecord(local)) return isRecord(remote) ? remote : local;
+  if (!isRecord(remote)) return local;
+
+  const ourDays = isRecord(local.days) ? local.days : {};
+  const theirDays = isRecord(remote.days) ? remote.days : {};
+  const days: Record<string, Json> = { ...ourDays };
+  for (const [day, theirs] of Object.entries(theirDays)) {
+    const ours = ourDays[day];
+    if (!isRecord(theirs)) continue;
+    if (!isRecord(ours)) {
+      days[day] = theirs;
+      continue;
+    }
+    const max = (field: string) => Math.max(asNumber(ours[field]) ?? 0, asNumber(theirs[field]) ?? 0);
+    days[day] = {
+      seconds: max("seconds"),
+      answers: max("answers"),
+      learned: max("learned"),
+      done: ours.done === true || theirs.done === true,
+    };
+  }
+  return { ...local, days };
+}
+
 // ── Key table ───────────────────────────────────────────────────────
 
 const MERGE_BY_KEY: Record<string, MergeFn> = {
@@ -292,10 +323,11 @@ const MERGE_BY_KEY: Record<string, MergeFn> = {
   [KEYS.mistakes]: maxPerEntry,
   [KEYS.kanaProgress]: mergeMastery,
   [KEYS.kanjiProgress]: mergeMastery,
+  [KEYS.kanaDaily]: mergeKanaDaily,
 };
 
 /**
- * The ten pairs, resolved for the edition currently being viewed.
+ * The eleven pairs, resolved for the edition currently being viewed.
  *
  * Both sides are scoped, not just the local one: the two editions are separate
  * card stores, and a shared column name would have a /japon session overwrite

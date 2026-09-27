@@ -3,7 +3,7 @@
 import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { Route, Grid3x3, Dumbbell, BookOpen, ArrowRight } from "lucide-react";
+import { Route, Grid3x3, Dumbbell, BookOpen, ArrowRight, CalendarCheck } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { useContentLang } from "@/components/ContentLanguage";
 import { cn } from "@/lib/cn";
@@ -13,11 +13,12 @@ import { KEYS, storageGet, storageSet } from "@/lib/storage";
 import { useClientState } from "@/lib/use-client-state";
 import type { Kana, KanaLesson, KanaProgress, KanaScript, KanaWord } from "@/types/kana";
 import LessonPath from "./LessonPath";
+import DailySession from "./DailySession";
 import KanaChart from "./KanaChart";
 import KanaDrill from "./KanaDrill";
 import ReadingPractice from "./ReadingPractice";
 
-type Tab = "path" | "chart" | "drill" | "reading";
+type Tab = "today" | "path" | "chart" | "drill" | "reading";
 
 const EMPTY: KanaProgress = {};
 /** Share of the hiragana mastered from which the kanji course is suggested. */
@@ -46,7 +47,9 @@ export default function KanaContent({
   words: KanaWord[];
 }) {
   const lang = useContentLang();
-  const [tab, setTab] = useState<Tab>("path");
+  // The daily session is the front door: learning a syllabary is a habit of a
+  // few minutes a day, and the session decides what those minutes hold.
+  const [tab, setTab] = useState<Tab>("today");
   const [script, setScript] = useState<KanaScript>("hiragana");
   const [progress, setProgress, ready] = useClientState(readProgress, EMPTY);
 
@@ -68,6 +71,7 @@ export default function KanaContent({
   }, [kana, script, progress]);
 
   const tabs: { key: Tab; label: string; icon: React.ReactNode }[] = [
+    { key: "today", label: "Aujourd'hui", icon: <CalendarCheck className="h-4 w-4" /> },
     { key: "path", label: "Parcours", icon: <Route className="h-4 w-4" /> },
     { key: "chart", label: "Tableau", icon: <Grid3x3 className="h-4 w-4" /> },
     { key: "drill", label: "Entraînement", icon: <Dumbbell className="h-4 w-4" /> },
@@ -105,39 +109,43 @@ export default function KanaContent({
           </p>
         </div>
 
-        <div className="flex flex-col gap-3 lg:w-72">
-          <div
-            role="radiogroup"
-            aria-label="Alphabet"
-            className="flex gap-1 rounded-lg border border-stone-200 bg-stone-50 p-1"
-          >
-            {SCRIPTS.map((s) => (
-              <button
-                key={s.key}
-                type="button"
-                role="radio"
-                aria-checked={script === s.key}
-                onClick={() => setScript(s.key)}
-                className={cn(
-                  "flex flex-1 items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                  script === s.key ? "bg-white text-stone-800 shadow-sm" : "text-stone-500 hover:text-stone-700"
-                )}
-              >
-                <span lang={lang} className="chinese text-base" aria-hidden="true">
-                  {s.sample}
-                </span>
-                {s.label}
-              </button>
-            ))}
-          </div>
-          <div>
-            <div className="mb-1 flex justify-between text-xs text-stone-500">
-              <span>Signes {scriptLabel} maîtrisés</span>
-              <span className="tabular-nums">{ready ? `${stats.mastered} / ${stats.total}` : `— / ${stats.total}`}</span>
+        {/* The daily session follows the learning order across both scripts,
+            so the script switch and its counter only matter on the other tabs. */}
+        {tab !== "today" && (
+          <div className="flex flex-col gap-3 lg:w-72">
+            <div
+              role="radiogroup"
+              aria-label="Alphabet"
+              className="flex gap-1 rounded-lg border border-stone-200 bg-stone-50 p-1"
+            >
+              {SCRIPTS.map((s) => (
+                <button
+                  key={s.key}
+                  type="button"
+                  role="radio"
+                  aria-checked={script === s.key}
+                  onClick={() => setScript(s.key)}
+                  className={cn(
+                    "flex flex-1 items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                    script === s.key ? "bg-white text-stone-800 shadow-sm" : "text-stone-500 hover:text-stone-700"
+                  )}
+                >
+                  <span lang={lang} className="chinese text-base" aria-hidden="true">
+                    {s.sample}
+                  </span>
+                  {s.label}
+                </button>
+              ))}
             </div>
-            <ProgressBar value={ready ? stats.mastered : 0} max={stats.total} color="bg-success" />
+            <div>
+              <div className="mb-1 flex justify-between text-xs text-stone-500">
+                <span>Signes {scriptLabel} maîtrisés</span>
+                <span className="tabular-nums">{ready ? `${stats.mastered} / ${stats.total}` : `— / ${stats.total}`}</span>
+              </div>
+              <ProgressBar value={ready ? stats.mastered : 0} max={stats.total} color="bg-success" />
+            </div>
           </div>
-        </div>
+        )}
       </header>
 
       {ready && hiraganaReady && kanjiHref && (
@@ -180,6 +188,16 @@ export default function KanaContent({
       </div>
 
       <div id="kana-panel" role="tabpanel" aria-labelledby={`kana-tab-${tab}`}>
+        {tab === "today" && (
+          <DailySession
+            kana={kana}
+            lessons={lessons}
+            words={words}
+            progress={progress}
+            ready={ready}
+            onAnswer={record}
+          />
+        )}
         {tab === "path" && (
           <LessonPath
             key={script}

@@ -92,6 +92,16 @@ d'abord à lire" card and the path banners. Never test for Japanese directly.
 - **Mastery** is a Leitner box per sign (0–5, mastered from `MASTERED_BOX` = 3), stored under
   `KEYS.kanaProgress` keyed by `Kana.id`, synced as `kana_progress` (merged per sign, the
   later `lastSeen` wins — never the higher box, since a miss drops a box to 0).
+- **Daily session** (`DailySession.tsx`, the page's default tab): `planDailySession()` in
+  `src/lib/kana.ts` sizes a 15- or 30-minute session — due reviews first (a box's due date is
+  `lastSeen` + `REVIEW_INTERVAL_DAYS[box]`: 0, 1, 2, 4, 7, 14 days, minus 4 h of slack), then
+  the next lessons in learning order (up to 2 or 3, none past `BACKLOG_LIMIT` due signs),
+  then consolidation capped at `PRACTICE_PER_SIGN` questions per known sign, then words to
+  read. The plan is frozen at start; each step's questions are built as it begins. Days are
+  stored under `KEYS.kanaDaily` (`KanaDaily`: goal + per-day seconds/answers/learned/done),
+  synced as `kana_daily` (days unioned, max per field); `dailyStreak()` counts finished days
+  ending today or yesterday. Finishing a session also calls `updateStreak()` and
+  `addStudyTime()`.
 - **Rōmaji** is wāpuro-style Hepburn without macrons (コーヒー "koohii"), and the converter in
   `src/lib/kana.ts` is the grader. `npm run validate` (ja) recomputes every sign's and word's
   rōmaji with it, checks the table counts (46 basic, 25 dakuten, 33 yōon per script), that
@@ -139,7 +149,7 @@ answer also accepts rōmaji.
 
 ### State & Persistence
 
-No external state library. All client state flows through React hooks + localStorage. The `src/lib/storage.ts` module defines a `KEYS` object mapping all storage keys (cards, progress, settings, gamification, favorites, study_time, mistakes). Authenticated users get server sync via `src/lib/sync.ts` (3s debounced, 10 data keys synced, including the kana and kanji mastery maps).
+No external state library. All client state flows through React hooks + localStorage. The `src/lib/storage.ts` module defines a `KEYS` object mapping all storage keys (cards, progress, settings, gamification, favorites, study_time, mistakes). Authenticated users get server sync via `src/lib/sync.ts` (3s debounced, 11 data keys synced, including the kana and kanji mastery maps and the daily kana sessions).
 
 ### Spaced Repetition (FSRS)
 

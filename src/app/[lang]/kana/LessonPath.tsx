@@ -309,7 +309,7 @@ function LessonView({
   );
 }
 
-function Discover({
+export function Discover({
   intro,
   signs,
   index,

@@ -5,7 +5,7 @@
 // word the drill can read and grade).
 
 import { splitMora } from "@/lib/japanese";
-import type { Kana, KanaLesson, KanaMastery, KanaProgress, KanaWord } from "@/types/kana";
+import type { Kana, KanaDaily, KanaLesson, KanaMastery, KanaProgress, KanaWord } from "@/types/kana";
 
 // ── Segmentation ──────────────────────────────────────────────────────
 
@@ -541,4 +541,171 @@ export function buildOptions(target: Kana, pool: Kana[], count: number, rand: ()
     own.forEach((r) => romaji.add(r));
   }
   return shuffle(chosen, rand);
+}
+
+// ── Daily session ─────────────────────────────────────────────────────
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+/**
+ * Days to wait before a sign comes back, by Leitner box: a sign just failed
+ * (box 0) is due again at once, then 1, 2, 4, 7 and 14 days. The boxes alone
+ * never said *when* — this is what turns them into daily practice.
+ */
+export const REVIEW_INTERVAL_DAYS = [0, 1, 2, 4, 7, 14] as const;
+
+/**
+ * A few hours of slack: a sign answered at 20:00 yesterday is due at 16:00
+ * today, so a learner who practises in the afternoon is not a day behind.
+ */
+const DUE_SLACK_MS = 4 * 60 * 60 * 1000;
+
+export function dueAt(m: KanaMastery): number {
+  const days = REVIEW_INTERVAL_DAYS[clampBox(m.box)];
+  return days === 0 ? m.lastSeen : m.lastSeen + days * DAY_MS - DUE_SLACK_MS;
+}
+
+/** Signs already met whose review is due, the weakest and most overdue first. */
+export function dueKana(kana: Kana[], progress: KanaProgress, now: number): Kana[] {
+  return kana
+    .filter((k) => {
+      const m = progress[k.id];
+      return m !== undefined && m.seen > 0 && dueAt(m) <= now;
+    })
+    .sort((a, b) => {
+      const ma = progress[a.id]!;
+      const mb = progress[b.id]!;
+      return clampBox(ma.box) - clampBox(mb.box) || dueAt(ma) - dueAt(mb);
+    });
+}
+
+/** The next lessons, in learning order, that still hold a sign never answered. */
+export function upcomingLessons(lessons: KanaLesson[], progress: KanaProgress): KanaLesson[] {
+  return lessons.filter((lesson) => lesson.kana.some((id) => !(progress[id]?.seen)));
+}
+
+export type DailyGoal = KanaDaily["minutes"];
+
+/** Rough cost of each activity, from timing the lesson and drill screens. */
+export const SECONDS_PER_REVIEW = 8;
+export const SECONDS_PER_NEW_SIGN = 75;
+
+/**
+ * Beyond this many signs due, the day is spent consolidating: learning new
+ * signs on top of a backlog is how learners end up recognising none of them.
+ */
+export const BACKLOG_LIMIT = 40;
+
+/** At most this many practice questions, however long the goal: past that, repetition stops paying. */
+export const MAX_PRACTICE = 60;
+/**
+ * Consolidation questions per sign known: 60 questions on the five vowels is
+ * rote, not practice. When the cap leaves time over, a further lesson fits.
+ */
+export const PRACTICE_PER_SIGN = 6;
+
+export interface DailyPlan {
+  /** Due signs to review first, weakest first. */
+  review: Kana[];
+  /** Due signs left for another day because the time budget ran out. */
+  deferred: number;
+  /** Lessons to learn today, in order. */
+  newLessons: KanaLesson[];
+  /** Why no new lesson today, when there is none. */
+  noNewReason: "backlog" | "finished" | null;
+  /**
+   * Consolidation questions that fill the rest of the goal, drawn at session
+   * time from every sign met so far (today's included), weakest first.
+   */
+  practice: number;
+  estimateSeconds: number;
+}
+
+const newSignsIn = (lesson: KanaLesson, progress: KanaProgress) =>
+  lesson.kana.filter((id) => !progress[id]?.seen).length;
+
+/**
+ * What today's session holds, sized to the learner's goal:
+ *
+ * 1. the due reviews, weakest first — always the most fragile signs;
+ * 2. new lessons in learning order, up to 2 for 15 minutes and 3 for 30, as
+ *    long as reviews and lessons stay within 85 % of the goal — the first
+ *    lesson always fits, so the learner moves forward every day unless a
+ *    backlog says otherwise;
+ * 3. consolidation questions until the goal is filled, at most
+ *    PRACTICE_PER_SIGN per sign known.
+ */
+export function planDailySession(
+  lessons: KanaLesson[],
+  kana: Kana[],
+  progress: KanaProgress,
+  now: number,
+  goal: DailyGoal
+): DailyPlan {
+  const budget = goal * 60;
+  const due = dueKana(kana, progress, now);
+  const upcoming = upcomingLessons(lessons, progress);
+
+  const reviewSlots = Math.max(10, Math.floor((budget * 0.6) / SECONDS_PER_REVIEW));
+  const review = due.slice(0, reviewSlots);
+  let cost = review.length * SECONDS_PER_REVIEW;
+
+  const newLessons: KanaLesson[] = [];
+  let noNewReason: DailyPlan["noNewReason"] = null;
+  if (upcoming.length === 0) noNewReason = "finished";
+  else if (due.length > BACKLOG_LIMIT) noNewReason = "backlog";
+  else {
+    const maxLessons = goal >= 30 ? 3 : 2;
+    for (const lesson of upcoming.slice(0, maxLessons)) {
+      const lessonCost = newSignsIn(lesson, progress) * SECONDS_PER_NEW_SIGN;
+      if (newLessons.length > 0 && cost + lessonCost > budget * 0.85) break;
+      newLessons.push(lesson);
+      cost += lessonCost;
+    }
+  }
+
+  const known =
+    Object.values(progress).filter((m) => m.seen > 0).length +
+    newLessons.reduce((sum, lesson) => sum + newSignsIn(lesson, progress), 0);
+  const practiceCount = Math.min(
+    MAX_PRACTICE,
+    known * PRACTICE_PER_SIGN,
+    Math.max(0, Math.floor((budget - cost) / SECONDS_PER_REVIEW))
+  );
+  return {
+    review,
+    deferred: due.length - review.length,
+    newLessons,
+    noNewReason,
+    practice: practiceCount,
+    estimateSeconds: cost + practiceCount * SECONDS_PER_REVIEW,
+  };
+}
+
+/** Local calendar day, "YYYY-MM-DD" — the key of KanaDaily.days. */
+export function dayKey(time: number): string {
+  const d = new Date(time);
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+
+/**
+ * Consecutive days with a finished session, ending today — or yesterday, so the
+ * streak is not shown as lost in the morning before today's session.
+ */
+export function dailyStreak(daily: KanaDaily, now: number): number {
+  const doneOn = (time: number) => daily.days[dayKey(time)]?.done === true;
+  let cursor = doneOn(now) ? now : now - DAY_MS;
+  let streak = 0;
+  // Step by calendar day at noon, so a DST change never skips or repeats a day.
+  const noon = new Date(cursor);
+  noon.setHours(12, 0, 0, 0);
+  cursor = noon.getTime();
+  while (doneOn(cursor)) {
+    streak++;
+    const previous = new Date(cursor);
+    previous.setDate(previous.getDate() - 1);
+    cursor = previous.getTime();
+  }
+  return streak;
 }
