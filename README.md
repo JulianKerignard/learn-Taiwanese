@@ -108,8 +108,8 @@ npm run lint                 # ESLint (règles React Compiler bloquantes)
 npm run validate             # Invariants du corpus, pour les deux langues
 npm run generate-game-words  # Régénérer src/data/<lang>/game-words.ts
 npm run generate-dictionary  # Régénérer src/data/<lang>/dictionary.ts
-npm run generate-audio       # Pré-générer l'audio TTS dans public/audio/<lang>/
-                             #   CORPUS_LANG=ja npm run generate-audio pour une seule langue
+npm run generate-audio       # Pré-générer l'audio TTS dans public/audio/<lang>/ (les deux langues ;
+                             #   generate-audio:zh ou :ja pour une seule). Demande un accès réseau à Edge TTS.
 ```
 
 Il n'y a pas de framework de test : le typage, le lint et `npm run validate` servent de filets de sécurité. `validate` doit passer pour **les deux** corpus.

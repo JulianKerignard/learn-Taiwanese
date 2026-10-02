@@ -1,5 +1,9 @@
-// Pre-generate audio files for all Chinese vocabulary and phrases
-// Usage: node scripts/generate-audio.mjs
+// Pre-generate audio files for everything the app speaks, for one edition
+// Usage: node scripts/generate-audio.mjs [zh|ja]   (or CORPUS_LANG=ja)
+//
+// Every text found here plays from a static file; anything missed is voiced
+// on the fly by /api/tts, which is slower and, on iOS, falls back to the
+// browser's voice whenever the network delay outlives the tap.
 // Requires: edge-tts-universal (already in project dependencies)
 
 import {
@@ -32,39 +36,61 @@ function extractChineseTexts() {
     join(ROOT, `src/data/${LANG}/course`),
     join(ROOT, `src/data/${LANG}/lessons`),
   ];
+  // Listening questions of the mock tests are read aloud from `question`.
+  const testDir = join(ROOT, `src/data/${LANG}/tests`);
 
   const standaloneFiles = [
     join(ROOT, `src/data/${LANG}/readings.ts`),
     join(ROOT, `src/data/${LANG}/tone-pairs.ts`),
+    join(ROOT, `src/data/${LANG}/pitch-accent.ts`),
+    // The kana course speaks every sign (`char`) and its reading words (`term`).
+    join(ROOT, `src/data/${LANG}/kana.ts`),
   ];
 
-  function scanDir(dir) {
+  // Only text in the language being learned is spoken: a French quiz
+  // question or a label must not be sent to the voice.
+  const SPEAKABLE = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]/;
+  // っ, ッ and ー are not syllables: the course never speaks them alone.
+  const SILENT = new Set(["っ", "ッ", "ー"]);
+  const add = (set, text) => {
+    const t = text.trim();
+    if (t && SPEAKABLE.test(t) && !SILENT.has(t)) set.add(t);
+  };
+
+  // A test question is spoken only when it is all target language — speaker
+  // labels "A:" / "B:" aside. A French question quoting 「…」 is read, not heard.
+  const LATIN = /[A-Za-zÀ-ÿ]/;
+  const isListening = (text) => !LATIN.test(text.replace(/\b[A-Z]\s*[:：]/g, ""));
+
+  function scanDir(dir, withQuestions = false) {
     if (!existsSync(dir)) return;
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       const fullPath = join(dir, entry.name);
       if (entry.isDirectory()) {
-        scanDir(fullPath);
+        scanDir(fullPath, withQuestions);
       } else if (entry.name.endsWith(".ts")) {
-        extractFromFile(fullPath, texts);
+        extractFromFile(fullPath, texts, withQuestions);
       }
     }
   }
 
-  function extractFromFile(filePath, set) {
+  function extractFromFile(filePath, set, withQuestions = false) {
     const content = readFileSync(filePath, "utf-8");
 
-    // term: "..." or term: '...'
-    for (const m of content.matchAll(/term:\s*["']([^"']+)["']/g)) {
-      set.add(m[1]);
+    // term, native and char (the kana course's signs)
+    for (const m of content.matchAll(/\b(?:term|native|char):\s*["']([^"']+)["']/g)) {
+      add(set, m[1]);
     }
-
-    // native: "..." or native: '...'
-    for (const m of content.matchAll(/native:\s*["']([^"']+)["']/g)) {
-      set.add(m[1]);
+    if (withQuestions) {
+      for (const m of content.matchAll(/\bquestion:\s*["']([^"']+)["']/g)) {
+        // A blank (___) marks a written question, never a listening one.
+        if (isListening(m[1]) && !m[1].includes("_")) add(set, m[1]);
+      }
     }
   }
 
-  dataDirs.forEach(scanDir);
+  dataDirs.forEach((dir) => scanDir(dir));
+  scanDir(testDir, true);
   standaloneFiles.forEach((f) => {
     if (existsSync(f)) extractFromFile(f, texts);
   });
@@ -84,7 +110,7 @@ async function main() {
   mkdirSync(AUDIO_DIR, { recursive: true });
 
   const texts = extractChineseTexts();
-  console.log(`Found ${texts.length} unique Chinese texts to generate\n`);
+  console.log(`Found ${texts.length} unique texts to voice (${LANG})\n`);
 
   if (texts.length === 0) {
     console.log("No texts found. Check that src/data/ contains .ts files.");

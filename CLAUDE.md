@@ -18,8 +18,8 @@ npm run start        # Start production server
 npm run lint         # ESLint
 npm run generate-game-words  # Regenerate src/data/<lang>/game-words.ts (both languages)
 npm run generate-dictionary  # Regenerate src/data/<lang>/dictionary.ts (both languages)
-npm run generate-audio       # Pre-generate TTS files into public/audio/<lang>/
-                             #   CORPUS_LANG=ja npm run generate-audio for one language
+npm run generate-audio       # Pre-generate TTS files into public/audio/<lang>/ (both languages;
+                             #   generate-audio:zh / :ja for one). Needs network access to Edge TTS.
 npm run validate     # Corpus invariants, once per language (validate:zh, validate:ja)
                      #   A validator covering one corpus while the other ships
                      #   unchecked is worse than none: both runs must pass.
@@ -165,7 +165,12 @@ today, and a stable order lets position become a cue.
 
 ### Audio (3-tier fallback)
 
-Handled by `src/lib/tts.ts`:
+Handled by `src/lib/tts.ts`. Clips play through **one long-lived Web Audio context**, resumed
+inside the first tap (and inside every `speak()` call): a fresh `<audio>` per clip woke the
+output device each time and clipped the first syllable, and iOS refuses `<audio>.play()` once a
+fetch has outlived the tap. Each `speak()` takes a request number; a clip that arrives after a
+newer request is dropped instead of cutting it off. Fetched clips are cached (LRU, 200). An
+`<audio>` element remains the fallback where Web Audio cannot decode or play.
 1. Pre-generated MP3 from `public/audio/` (manifest.json lookup)
 2. Edge TTS API route (`/api/tts`, the edition's voice from `LANGUAGES[…].tts` — zh-TW-HsiaoChenNeural or ja-JP-NanamiNeural — server-side cache of 500 entries)
 3. Web Speech API browser fallback
