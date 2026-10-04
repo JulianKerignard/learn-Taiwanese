@@ -1,5 +1,5 @@
 // Pre-generate audio files for everything the app speaks, for one edition
-// Usage: node scripts/generate-audio.mjs [zh|ja]   (or CORPUS_LANG=ja)
+// Usage: npm run generate-audio:zh | generate-audio:ja   (--dry-run: count only)
 //
 // Every text found here plays from a static file; anything missed is voiced
 // on the fly by /api/tts, which is slower and, on iOS, falls back to the
@@ -29,7 +29,7 @@ const DELAY_MS = 200;
 
 // ── Extract all Chinese texts from TypeScript data files ──────────────
 
-function extractChineseTexts() {
+async function extractChineseTexts() {
   const texts = new Set();
 
   const dataDirs = [
@@ -43,8 +43,6 @@ function extractChineseTexts() {
     join(ROOT, `src/data/${LANG}/readings.ts`),
     join(ROOT, `src/data/${LANG}/tone-pairs.ts`),
     join(ROOT, `src/data/${LANG}/pitch-accent.ts`),
-    // The kana course speaks every sign (`char`) and its reading words (`term`).
-    join(ROOT, `src/data/${LANG}/kana.ts`),
   ];
 
   // Only text in the language being learned is spoken: a French quiz
@@ -95,6 +93,15 @@ function extractChineseTexts() {
     if (existsSync(f)) extractFromFile(f, texts);
   });
 
+  // The kana course builds its signs and words through helpers (row tuples,
+  // `w(term, …)`), which no regex reads reliably: the module itself is loaded.
+  const kanaFile = join(ROOT, `src/data/${LANG}/kana.ts`);
+  if (existsSync(kanaFile)) {
+    const { kana, kanaWords } = await import(`../src/data/${LANG}/kana.ts`);
+    kana.forEach((k) => add(texts, k.char));
+    kanaWords.forEach((w) => add(texts, w.term));
+  }
+
   return [...texts].sort();
 }
 
@@ -109,7 +116,7 @@ function hash(text) {
 async function main() {
   mkdirSync(AUDIO_DIR, { recursive: true });
 
-  const texts = extractChineseTexts();
+  const texts = await extractChineseTexts();
   console.log(`Found ${texts.length} unique texts to voice (${LANG})\n`);
 
   if (texts.length === 0) {
@@ -127,6 +134,12 @@ async function main() {
     } catch {
       // ignore corrupt manifest
     }
+  }
+
+  if (process.argv.includes("--dry-run")) {
+    const missing = texts.filter((t) => !existsSync(join(AUDIO_DIR, `${hash(t)}.mp3`)));
+    console.log(`${missing.length} to generate:`, missing.slice(0, 20).join(" / "));
+    return;
   }
 
   let generated = 0;
