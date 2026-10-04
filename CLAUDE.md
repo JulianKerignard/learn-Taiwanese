@@ -171,6 +171,15 @@ output device each time and clipped the first syllable, and iOS refuses `<audio>
 fetch has outlived the tap. Each `speak()` takes a request number; a clip that arrives after a
 newer request is dropped instead of cutting it off. Fetched clips are cached (LRU, 200). An
 `<audio>` element remains the fallback where Web Audio cannot decode or play.
+
+Bandwidth and latency: `next.config.ts` serves `/audio/*.mp3` with a 30-day `Cache-Control`
+(a clip's name is the hash of its text, so a URL never changes meaning) and the manifest with
+one hour; `/api/tts` answers are kept 30 days. Every `AudioButton` calls `warmSpeech()`, which
+fetches the manifest once per page load when the browser is idle. Flows that move from item to
+item call `prefetchSpeech()` for what is about to be heard — the kana and kanji quizzes (this
+question and the next), the kana discover step (this sign and the next), the review session
+(this card and the next), the daily session's words. Prefetch is skipped with Save-Data or on
+2G-class connections, and is capped at six texts per call.
 1. Pre-generated MP3 from `public/audio/` (manifest.json lookup)
 2. Edge TTS API route (`/api/tts`, the edition's voice from `LANGUAGES[…].tts` — zh-TW-HsiaoChenNeural or ja-JP-NanamiNeural — server-side cache of 500 entries)
 3. Web Speech API browser fallback

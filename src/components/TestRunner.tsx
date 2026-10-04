@@ -139,7 +139,7 @@ export default function TestRunner({ lang, test }: TestRunnerProps) {
         <div className="mb-6 text-center">
           <span className="mb-2 inline-block text-4xl">{test.icon}</span>
           <h1 className="text-display font-bold">{test.title}</h1>
-          <p className="text-lg text-stone-500">{test.titleNative}</p>
+          <p className="chinese text-lg text-stone-500" lang={language.contentLang}>{test.titleNative}</p>
         </div>
 
         <p className="mb-6 text-center text-stone-600">{test.description}</p>

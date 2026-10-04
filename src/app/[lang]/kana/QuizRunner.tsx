@@ -6,7 +6,7 @@ import ProgressBar from "@/components/ProgressBar";
 import { useContentLang } from "@/components/ContentLanguage";
 import { cn } from "@/lib/cn";
 import { isAcceptedAnswer } from "@/lib/kana";
-import { speak } from "@/lib/tts";
+import { prefetchSpeech, speak } from "@/lib/tts";
 import type { Kana } from "@/types/kana";
 import { romajiLabel, type Question } from "./kana-ui";
 
@@ -86,6 +86,13 @@ export default function QuizRunner({
     setPicked(null);
     setTyped("");
   }
+
+  // The sign is heard after answering, and the next question may speak as it
+  // appears: fetch both now, while the learner is still reading.
+  useEffect(() => {
+    const upcoming = [questions[index], questions[index + 1]].filter((q): q is Question => !!q);
+    prefetchSpeech(upcoming.map(spoken));
+  }, [questions, index]);
 
   // Move focus to "Suivant" once answered, so Enter (a native click) goes on.
   useEffect(() => {

@@ -18,6 +18,7 @@ import {
 import { KEYS, addStudyTime, storageGet, storageSet, updateStreak } from "@/lib/storage";
 import { useClientState } from "@/lib/use-client-state";
 import { shuffleArray } from "@/lib/utils";
+import { prefetchSpeech } from "@/lib/tts";
 import type { Kana, KanaDaily, KanaDay, KanaLesson, KanaProgress, KanaWord } from "@/types/kana";
 import { Discover } from "./LessonPath";
 import QuizRunner, { QuizSummary, type QuizResult } from "./QuizRunner";
@@ -150,6 +151,12 @@ export default function DailySession({
       root.scrollIntoView({ block: "start", behavior: "smooth" });
     }
   }, [running, stepIndex]);
+
+  // The words to read each have a speaker: fetch them as the step opens.
+  useEffect(() => {
+    const step = steps[stepIndex];
+    if (running && step?.kind === "read") prefetchSpeech(step.words.map((w) => w.term));
+  }, [running, steps, stepIndex]);
 
   const answer = useCallback(
     (kanaId: string, correct: boolean) => {

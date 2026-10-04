@@ -224,7 +224,7 @@ export default function UnitContent({
             <h1 className="text-display font-bold text-stone-900">
               Unité {unit.number} — {unit.title}
             </h1>
-            <p className="chinese text-stone-500">{unit.titleNative}</p>
+            <p className="chinese text-stone-500" lang={LANGUAGES[lang].contentLang}>{unit.titleNative}</p>
           </div>
         </div>
         <p className="mt-2 text-stone-500">{unit.description}</p>

@@ -58,7 +58,13 @@ function DialogueBubble({
 
   return (
     <div className={cn("flex flex-col max-w-[80%]", isRight ? "self-end items-end" : "self-start items-start")}>
-      <span className="mb-1 text-xs font-medium text-stone-400">{speaker}</span>
+      {/* Names like 小美 or 田中さん are content; a Latin "A" / "B" stays French. */}
+      <span
+        className="mb-1 text-xs font-medium text-stone-400"
+        lang={/[\u3040-\u30ff\u3400-\u9fff]/.test(speaker) ? contentLang : undefined}
+      >
+        {speaker}
+      </span>
       <div
         className={cn(
           "rounded-2xl px-4 py-3",

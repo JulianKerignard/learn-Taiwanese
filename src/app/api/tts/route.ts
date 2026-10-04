@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
     return new Response(cached, {
       headers: {
         "Content-Type": "audio/mpeg",
-        "Cache-Control": "public, max-age=86400",
+        "Cache-Control": "public, max-age=2592000",
       },
     });
   }
@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
     return new Response(arrayBuffer, {
       headers: {
         "Content-Type": "audio/mpeg",
-        "Cache-Control": "public, max-age=86400",
+        "Cache-Control": "public, max-age=2592000",
       },
     });
   } catch (error) {

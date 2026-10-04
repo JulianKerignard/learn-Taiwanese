@@ -5,7 +5,7 @@ import { ArrowRight, Check, X } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import { useContentLang } from "@/components/ContentLanguage";
 import { cn } from "@/lib/cn";
-import { speak } from "@/lib/tts";
+import { prefetchSpeech, speak } from "@/lib/tts";
 import type { Kanji } from "@/types/kanji";
 import { BLANK, blanked, meaningLabel, type Question } from "./kanji-ui";
 import { Furigana } from "./KanjiParts";
@@ -76,6 +76,15 @@ export default function KanjiQuiz({
   useEffect(() => {
     if (answered) nextRef.current?.focus();
   }, [answered]);
+
+  // The example word is heard after answering: fetch this question's and the
+  // next one's while the learner thinks.
+  useEffect(() => {
+    const words = [questions[index], questions[index + 1]]
+      .filter((q): q is Question => !!q && q.kind !== "meaning")
+      .map((q) => (q.kind !== "meaning" ? q.word.term : ""));
+    prefetchSpeech(words);
+  }, [questions, index]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {

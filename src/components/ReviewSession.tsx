@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import {
   CheckCircle2,
   RotateCcw,
@@ -23,6 +23,7 @@ import {
   saveGamification,
 } from "@/lib/storage";
 import { shuffleArray } from "@/lib/utils";
+import { prefetchSpeech } from "@/lib/tts";
 import { LANGUAGES, langHref, type LanguageSegment } from "@/lib/language";
 import { readSettings, usesFurigana } from "@/lib/display";
 import { useClientState } from "@/lib/use-client-state";
@@ -181,6 +182,11 @@ export default function ReviewSession({ lang, cardFilter }: ReviewSessionProps) 
   // Hooks must run before any conditional return: the early exits below change
   // between renders as `loaded` and `sessionDone` flip.
   const card = queue[currentIndex];
+  // The listening mode speaks the card as it appears, and every revealed card
+  // has a speaker: have this card and the next one ready.
+  useEffect(() => {
+    prefetchSpeech([queue[currentIndex]?.front, queue[currentIndex + 1]?.front].filter((t): t is string => !!t));
+  }, [queue, currentIndex]);
   const distractors = useMemo(
     () => (card ? shuffleForDistractors(allCards.length > 0 ? allCards : queue, card) : []),
     [allCards, queue, card]

@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, Check, ChevronRight, Eye, Sparkles } from "lucid
 import AudioButton from "@/components/AudioButton";
 import { useContentLang } from "@/components/ContentLanguage";
 import { cn } from "@/lib/cn";
+import { prefetchSpeech } from "@/lib/tts";
 import { isLessonMastered, lessonMastery, readableWords, wordKanaIds } from "@/lib/kana";
 import type { Kana, KanaLesson, KanaProgress, KanaScript, KanaWord } from "@/types/kana";
 import QuizRunner, { QuizSummary, type QuizResult } from "./QuizRunner";
@@ -326,6 +327,10 @@ export function Discover({
 }) {
   const lang = useContentLang();
   const sign = signs[index];
+  // This sign and the next are the ones the learner is about to tap.
+  useEffect(() => {
+    prefetchSpeech([signs[index], signs[index + 1]].filter((k): k is Kana => !!k && !isSpecial(k)).map((k) => k.char));
+  }, [signs, index]);
   if (!sign) return null;
   const description = describeSign(sign);
   const confusables = (sign.confusables ?? []).map((id) => byId.get(id)).filter((k): k is Kana => !!k);

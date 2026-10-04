@@ -230,6 +230,68 @@ function getManifest(): Promise<Record<string, string>> {
   return manifestRequest;
 }
 
+/** The on-the-fly voice for a text. Prefetch and playback must build the same URL to share the cache. */
+function apiUrl(text: string, rate: number): string {
+  const params = new URLSearchParams({ text, voice: currentLanguage().tts.voice, rate: String(rate) });
+  return `/api/tts?${params}`;
+}
+
+// ── Warm-up and prefetch ──────────────────────────────────────────────
+
+type ConnectionNavigator = Navigator & { connection?: { saveData?: boolean; effectiveType?: string } };
+
+/**
+ * Prefetching spends the learner's data on clips they may not play: never when
+ * they asked the browser to save data, nor on a 2G-class connection.
+ */
+function prefetchAllowed(): boolean {
+  const connection = (navigator as ConnectionNavigator).connection;
+  if (!connection) return true;
+  return !connection.saveData && !/(^|-)2g$/.test(connection.effectiveType ?? "");
+}
+
+function whenIdle(task: () => void): void {
+  if ("requestIdleCallback" in window) window.requestIdleCallback(task, { timeout: 3000 });
+  else setTimeout(task, 1500);
+}
+
+let warmed = false;
+
+/**
+ * Loads the edition's audio manifest while the page is idle, so the first tap
+ * does not wait for it (57 KB gzipped for Japanese). Called by every audio
+ * button as it mounts; only the first call does anything per page load.
+ */
+export function warmSpeech(): void {
+  if (typeof window === "undefined" || warmed) return;
+  warmed = true;
+  whenIdle(() => {
+    getManifest().catch(() => {});
+  });
+}
+
+/**
+ * Fetches the clips for what is about to be heard — the next question, the
+ * next card — into the clip cache, so playing them costs no network time.
+ * Small by design: a few texts at a time, clips of 10–20 KB each.
+ */
+export function prefetchSpeech(texts: string[], rate = 0.85): void {
+  if (typeof window === "undefined" || !prefetchAllowed()) return;
+  const wanted = [...new Set(texts.filter((t) => t && t.trim()))].slice(0, 6);
+  if (wanted.length === 0) return;
+  whenIdle(() => {
+    getManifest()
+      .then((manifest) => {
+        const lang = currentLanguageCode();
+        for (const text of wanted) {
+          const file = manifest[text];
+          fetchClip(file ? `/audio/${lang}/${file}` : apiUrl(text, rate));
+        }
+      })
+      .catch(() => {});
+  });
+}
+
 // ── Main speak function ───────────────────────────────────────────────
 
 export async function speak(text: string, rate = 0.85): Promise<void> {
@@ -250,8 +312,7 @@ export async function speak(text: string, rate = 0.85): Promise<void> {
   if (id !== requestId) return;
 
   // 2. Edge TTS API (high quality, slight latency)
-  const params = new URLSearchParams({ text, voice: currentLanguage().tts.voice, rate: String(rate) });
-  if (await playUrl(`/api/tts?${params}`, id)) return;
+  if (await playUrl(apiUrl(text, rate), id)) return;
   if (id !== requestId) return;
 
   // 3. Web Speech API fallback

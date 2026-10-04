@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Volume2 } from "lucide-react";
-import { speak, isSupported } from "@/lib/tts";
+import { speak, isSupported, warmSpeech } from "@/lib/tts";
 import { cn } from "@/lib/cn";
 import { useClientState } from "@/lib/use-client-state";
 
@@ -16,6 +16,11 @@ interface AudioButtonProps {
 export default function AudioButton({ text, rate = 0.85, size = "md", className }: AudioButtonProps) {
   const [playing, setPlaying] = useState(false);
   const [supported] = useClientState(isSupported, true);
+
+  // A page with something to hear fetches the audio manifest while idle.
+  useEffect(() => {
+    warmSpeech();
+  }, []);
 
   if (!supported) return null;
 
