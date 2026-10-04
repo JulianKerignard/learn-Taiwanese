@@ -20,6 +20,9 @@ npm run generate-game-words  # Regenerate src/data/<lang>/game-words.ts (both la
 npm run generate-dictionary  # Regenerate src/data/<lang>/dictionary.ts (both languages)
 npm run generate-audio       # Pre-generate TTS files into public/audio/<lang>/ (both languages;
                              #   generate-audio:zh / :ja for one). Needs network access to Edge TTS.
+                             #   In practice the "Generate audio" GitHub workflow does it: it runs
+                             #   on every push to main touching src/data/ (or by hand), commits the
+                             #   new clips and redeploys.
 npm run validate     # Corpus invariants, once per language (validate:zh, validate:ja)
                      #   A validator covering one corpus while the other ships
                      #   unchecked is worse than none: both runs must pass.

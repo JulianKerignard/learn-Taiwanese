@@ -1,0 +1,63 @@
+name: Generate audio
+
+# Voices every text the app speaks that has no pre-generated clip yet, commits
+# the new files to main and redeploys. Runs on GitHub's runners because Edge TTS
+# needs open network access; scripts/generate-audio.mjs skips every file that
+# already exists, so a run with nothing new commits nothing.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "src/data/**"
+      - "scripts/generate-audio.mjs"
+
+permissions:
+  contents: write # push the new clips
+  actions: write # start the deploy workflow
+
+# Two runs at once would race on the same files and the same push.
+concurrency:
+  group: generate-audio
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run generate-audio
+
+      - name: Commit new clips
+        id: commit
+        run: |
+          git add public/audio
+          if git diff --cached --quiet; then
+            echo "No new clips."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: générer les fichiers audio manquants"
+          # main may have moved while the voices were generated.
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # A push made with GITHUB_TOKEN does not start other workflows, so the
+      # deploy is requested explicitly.
+      - name: Redeploy with the new clips
+        if: steps.commit.outputs.changed == 'true'
+        run: gh workflow run deploy.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}

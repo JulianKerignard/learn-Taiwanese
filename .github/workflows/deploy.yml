@@ -3,6 +3,14 @@ name: Deploy to VPS
 on:
   push:
     branches: [main]
+  # Started by generate-audio.yml once new clips are committed.
+  workflow_dispatch:
+
+# The push deploy and the one generate-audio.yml requests may overlap: queue
+# them, so two rsyncs never write the same directory at once.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
 
 jobs:
   deploy:
